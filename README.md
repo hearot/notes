@@ -5,6 +5,7 @@ A set of educational notes that have been taken while studying.
 
 - [English](#english)
 - [Italian](#italian)
+- [LaTeX](#latex)
 - [Latin](#latin)
 
 ### English
@@ -14,6 +15,12 @@ A set of educational notes that have been taken while studying.
 ### Italian
 
 - **Numeri cateriniani** [numeri_cateriniani.pdf](Italian/numeri_cateriniani.pdf)
+
+### LaTeX
+
+- **English template** [english_template.tex](LaTeX/english_template.tex)
+- **Italian template** [italian_template.tex](LaTeX/italian_template.tex)
+- **Template** [template.pdf](LaTeX/template.pdf)
 
 ### Latin
 
