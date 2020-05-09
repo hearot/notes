@@ -11,6 +11,7 @@ A set of educational notes that have been taken while studying.
 ### English
 
 - **Linear Algebra notes** [linear_algebra.pdf](English/linear_algebra.pdf)
+- **Being Newton for a night** [being_newton_for_a_night.pdf](English/being_newton_for_a_night.pdf)
 
 ### Italian
 
