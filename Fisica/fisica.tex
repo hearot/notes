@@ -1,23 +1,25 @@
-\documentclass{book}
+\documentclass[oneside]{book}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{mathtools}
 \usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
 
 \begin{document}
 
 \author{Gabriel Antonio Videtta}
 \title{Appunti di Fisica}
+
 \maketitle
-\thispagestyle{empty}
 
-\newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
-
-\newpage
+\tableofcontents
 
 \chapter{I moti principali della fisica}
 
-\section{Moto rettilineo uniforme (m.u.a.)}
+\section{Il moto rettilineo uniforme (m.u.a.)}
 
 Conoscendo le definizioni di accelerazione ($\vec{a} = \frac{d\vec{v}}{dt}$)
 e di velocità ($\vec{v} = \frac{d\vec{x}}{dt}$) è possibile, ponendo l'accelerazione
@@ -28,10 +30,10 @@ costante (i.e. il \textit{jerk} è nullo, $\frac{d\vec{a}}{dt} = 0$), ricavare n
 Le equazioni del moto sono le seguenti:
 
 \begin{equation}
-    \begin{cases}
-        x(t)=x_0+v_0t+\frac{1}{2}a_0t^2 \\
+    \begin{dcases}
+        x(t)=x_0+v_0t+\frac{1}{2}at^2 \\
         v(t)=v_0+at
-    \end{cases}
+    \end{dcases}
 \end{equation}
 
 \begin{proof}
@@ -85,5 +87,55 @@ mediante le seguente formula:
 
 \end{proof}
 
+\section{Il moto dei proiettili}
+
+Il \textit{moto dei proiettili}, o moto parabolico, non
+è altro che la forma vettoriale del m.u.a. sfruttando due accelerazioni per
+entrambe le dimensioni: una nulla (quella dello spostamento parallelo al
+terreno) ed una pari a $-g$ (quella data dalla gravità nello spostamento
+normale al terreno).
+
+\subsection{Le equazioni del moto dei proiettili}
+
+Riprendendo le precedenti considerazioni, si può dunque scrivere
+l'equazione del moto in forma vettoriale:
+
+\begin{equation}
+    \begin{pmatrix}
+        x \\
+        y
+    \end{pmatrix} = \begin{pmatrix}
+        x_0 \\
+        y_0
+    \end{pmatrix} + \vec{v_0} t + \frac12 \begin{pmatrix}
+        0 \\
+        -g
+    \end{pmatrix} t^2
+\end{equation}
+
+O si può separare quest'ultima in due equazioni:
+
+\begin{equation}
+    \begin{dcases}
+        x(t)=x_0+v_0\cos(\theta)t \\
+        y(t)=y_0+v_0\sin(\theta)t-\frac12gt^2
+    \end{dcases}
+\end{equation}
+
+\subsection{Il calcolo della gittata e della traiettoria}
+
+Definita la \textit{gittata} come la distanza tra il punto di lancio ed
+il punto in cui il corpo assume la stessa ordinata del punto di lancio e
+la \textit{traiettoria} come la distanza tra il punto di lancio ed il
+punto in cui il corpo assume la massima ordinata, si possono facilmente
+dimostrare le seguenti equazioni:
+
+\begin{equation}
+    \displaystyle
+    \begin{dcases}
+        x_{\text{gittata}} = \frac{v_0^2 \sin(2\theta)}{g} \\
+        x_{\text{traiettoria}} = \frac12 x_{\text{gittata}} = \frac{v_0^2 \sin(2\theta)}{2g}
+    \end{dcases}
+\end{equation}
 
 \end{document}
