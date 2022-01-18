@@ -1,0 +1,89 @@
+\documentclass{book}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[italian]{babel}
+
+\begin{document}
+
+\author{Gabriel Antonio Videtta}
+\title{Appunti di Fisica}
+\maketitle
+\thispagestyle{empty}
+
+\newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
+
+\newpage
+
+\chapter{I moti principali della fisica}
+
+\section{Moto rettilineo uniforme (m.u.a.)}
+
+Conoscendo le definizioni di accelerazione ($\vec{a} = \frac{d\vec{v}}{dt}$)
+e di velocità ($\vec{v} = \frac{d\vec{x}}{dt}$) è possibile, ponendo l'accelerazione
+costante (i.e. il \textit{jerk} è nullo, $\frac{d\vec{a}}{dt} = 0$), ricavare numerose formule.
+
+\subsection{Le equazioni del moto in un sistema di riferimento unidimensionale}
+
+Le equazioni del moto sono le seguenti:
+
+\begin{equation}
+    \begin{cases}
+        x(t)=x_0+v_0t+\frac{1}{2}a_0t^2 \\
+        v(t)=v_0+at
+    \end{cases}
+\end{equation}
+
+\begin{proof}
+    Da $a=\frac{dv}{dt}$, si ricava $dv=a\cdot dt$, da cui:
+
+    \begin{equation*}
+        \int dv=\int a\, dt = a \int dt \Rightarrow v=v_0+at
+    \end{equation*}
+
+    Dimostrata questa prima equazione, è possibile dimostrare in modo analogo l'altra:
+
+    \begin{equation*}
+        \int dx=\int v\cdot dt = \int v_0\, dt + \int at\, dt = x_0+v_0t+\frac12at^2
+    \end{equation*}
+
+    La dimostrazione può essere inoltre resa immediata se si sviluppano $x(t)$ e
+    $v(t)$ come serie di Taylor-Maclaurin.
+
+\end{proof}
+
+\subsection{Lo spostamento in funzione della velocità e dell'accelerazione}
+
+Senza ricorrere alla variabile di tempo $t$, è possibile
+esprimere lo spostamento in funzione della velocità e dell'accelerazione
+mediante le seguente formula:
+
+\begin{equation}
+    x-x_0=\frac{v^2-v_0^2}{2a}
+\end{equation}
+
+\begin{proof}
+
+    Considerando $a=\frac{dv}{dt}$, è possibile riscrivere mediante l'impiego
+    delle formule di derivazione delle funzioni composte quest'ultima formula in
+
+    \begin{equation*}
+        a=\frac{dv}{dt}=\frac{dx}{dt}\frac{dv}{dx}=v\,\frac{dv}{dx}
+    \end{equation*}
+
+    Da ciò si può ricavare infine l'ultima formula:
+
+    \begin{equation*}
+        a\,dx=v\,dv \Rightarrow a \int dx = \int v \, dv
+    \end{equation*}
+
+    E quindi:
+
+    \begin{equation*}
+        a(x-x_0)=\frac{v^2-v_0^2}{2} \Rightarrow x-x_0=\frac{v^2-v_0^2}{2a}
+    \end{equation*}
+
+\end{proof}
+
+
+\end{document}
