@@ -2,11 +2,15 @@
 
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{hyperref}
 \usepackage{mathtools}
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[parfill]{parskip}
 
 \newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert \vec{#1} \rVert}
 
 \begin{document}
 
@@ -19,7 +23,7 @@
 
 \chapter{I moti principali della fisica}
 
-\section{Il moto rettilineo uniforme (m.u.a.)}
+\section{Il moto uniformemente accelerato (m.u.a.)}
 
 Conoscendo le definizioni di accelerazione ($\vec{a} = \frac{d\vec{v}}{dt}$)
 e di velocità ($\vec{v} = \frac{d\vec{x}}{dt}$) è possibile, ponendo l'accelerazione
@@ -34,6 +38,7 @@ Le equazioni del moto sono le seguenti:
         x(t)=x_0+v_0t+\frac{1}{2}at^2 \\
         v(t)=v_0+at
     \end{dcases}
+    \label{eq:mua}
 \end{equation}
 
 \begin{proof}
@@ -137,5 +142,86 @@ dimostrare le seguenti equazioni:
         x_{\text{traiettoria}} = \frac12 x_{\text{gittata}} = \frac{v_0^2 \sin(2\theta)}{2g}
     \end{dcases}
 \end{equation}
+
+\section{Il moto circolare uniforme}
+
+Definendo alcune grandezze fisiche in modo analogo a come vengono
+proposte nel m.u.a., è possibile riproporre le equazioni \ref{eq:mua}
+mediante l'impiego di grandezze esclusivamente angolari.
+
+\subsection{Le equazioni del moto circolare uniforme}
+
+Si definiscono dunque le seguenti grandezze:
+
+\begin{itemize}
+    \item $\theta$ in funzione del tempo
+    \item $\displaystyle \omega=\dot{\theta}=\frac{d\theta}{dt}$
+    \item $\displaystyle \alpha=\ddot{\theta}=\frac{d\omega}{dt}=\frac{d^2\theta}{dt^2}$
+\end{itemize}
+
+Innanzitutto, è possibile coniugare il mondo angolare con quello
+cartesiano, tenendo conto del fatto che $x=\theta r$. In questo modo
+si ricavano le seguenti relazioni:
+
+\begin{itemize}
+    \item $\displaystyle v=\omega r$, la velocità angolare
+    \item $\displaystyle a_t=\alpha r$, l'accelerazione tangenziale
+    (da distinguersi da quella centripeta!)
+\end{itemize}
+
+Per sostituzione, dalle equazioni \ref{eq:mua} si ottengono dunque
+le analoghe seguenti:
+
+\begin{equation}
+    \begin{dcases}
+        \theta = \theta_0 + \omega t + \frac12 \alpha t^2 \\
+        \omega = \omega_0 + \alpha t
+    \end{dcases}
+\end{equation}
+
+\subsection{L'accelerazione centripeta}
+
+Oltre all'accelerazione tangenziale, direttamente proporzionale a
+quella lineare, è possibile definire anche un altro tipo di
+accelerazione: \textbf{l'accelerazione centripeta} ($a_c$), diretta dal
+corpo verso il centro della circonferenza sulla quale questo muove.
+
+Questo tipo di accelerazione è costante nel moto circolare uniforme
+ed è calcolata mediante le seguente equazione:
+
+\begin{equation}
+    a=\frac{v^2}{r}
+\end{equation}
+
+\begin{proof}
+La velocità può essere espressa vettorialmente nella seguente
+forma $\vec{v}(-v\sin(\theta),v\cos(\theta))$, mentre
+le funzioni trigonometriche possono essere sostituite utilizzando
+le coordinate del punto ed il raggio della circonferenza su cui
+si muove il corpo secondo le seguenti relazioni:
+
+\begin{equation*}
+    \begin{dcases}
+        \cos(\theta)=\frac{x}{r} \\
+        \sin(\theta)=\frac{y}{r}
+    \end{dcases}
+\end{equation*}
+
+Perciò, derivando la velocità, si ottiene l'accelerazione
+nella seguente forma:
+
+\begin{equation*}
+    \vec{a}=(-\frac{v}{r}\cdot v_y, \frac{v}{r}\cdot v_x)
+\end{equation*}
+
+Computando il modulo dell'accelerazione e tenendo
+conto che $v=\sqrt{v_x^2+v_y^2}$, si ottiene
+il risultato desiderato:
+
+\begin{equation*}
+    a=\frac{v^2}r
+\end{equation*}
+
+\end{proof}
 
 \end{document}
