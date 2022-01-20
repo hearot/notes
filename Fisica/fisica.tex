@@ -7,10 +7,19 @@
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[parfill]{parskip}
+\usepackage{wrapfig}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,angles,quotes}
+
 
 \newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert \vec{#1} \rVert}
+\newcommand{\nnorm}[1]{\lVert #1 \rVert}
+
 
 \begin{document}
 
@@ -191,6 +200,7 @@ ed è calcolata mediante le seguente equazione:
 
 \begin{equation}
     a=\frac{v^2}{r}
+    \label{eq:acc_c}
 \end{equation}
 
 \begin{proof}
@@ -223,5 +233,88 @@ il risultato desiderato:
 \end{equation*}
 
 \end{proof}
+
+\newpage
+
+\subsection{Il moto circolare visualizzato vettorialmente}
+
+\vskip 0.1in
+
+\begin{wrapfigure}{l}{0.45\textwidth}
+    \begin{tikzpicture}
+        \coordinate (a) at (2.236, 0);
+        \coordinate (b) at (0.89, 0.92);
+        \coordinate (o) at (0, 0);
+
+        \draw [rotate around={0:(0,0)}] (0,0) ellipse (2.236 and 1);
+        \draw [->,thick] (0,0) -- (0,2.5) node[midway, right] {$\vec{\omega}$};
+        \draw [->,thick] (0,0) -- (a) node[right] {$\vec{r}(t)$};
+        \draw [->,thick] (0,0) -- (b) node[above right] {$\vec{r}(t+dt)$};
+
+        \draw [->] (a) -- (2.6, 0.7) node[right] {$\vec{v}(t)$};
+
+        \draw pic["$d\theta$", draw=black, angle eccentricity=1.5, angle radius=0.5cm] {angle=a--o--b};
+
+    \end{tikzpicture}
+    \caption{Il moto circolare nel piano $O_{xy}$} \label{fig:moto_circolare}
+\end{wrapfigure}
+
+Per visualizzare in modo più intuitivo, ma anche più formale, il
+moto circolare, è possibile costruire un sistema di riferimento
+basandosi su alcune assunzioni.
+
+Basandosi sul figura \ref{fig:moto_circolare}, assumiamo
+$\vec{d\theta} = d\theta \cdot \hat{z}$, attraverso cui
+possiamo concludere che $\vec{\omega}=\frac{\vec{d\theta}}{dt}$ è anch'esso
+parallelo a $\hat{z}$.
+
+Inoltre, $d\vec{r}$ deve essere perpendicolare a $\vec{r}$, e, poiché
+appartiene al piano $O_{xy}$, $d\vec{r}$ deve essere perpendicolare anche
+a $\vec{\omega}$.
+
+Perciò è possibile riscrivere $d\vec{r}$ nella seguente forma:
+
+\begin{equation*}
+    d\vec{r}=\frac{d\theta \cdot \norm{r}}{\lVert \vec{w} \times
+    \vec{r} \rVert} \vec{w} \times \vec{r} =
+    \frac{d\theta}{\norm{\omega}} \vec{w} \times \vec{r}
+\end{equation*}
+
+Poiché la velocità $\vec{v}$ è pari a $\frac{d\vec{r}}{dt}$, si ottiene,
+conoscendo $d\vec{r}$, la seguente relazione:
+
+\begin{equation}
+    \vec{v}=\vec{w}\times\vec{r}
+\end{equation}
+
+Dalla quale si ricava che $\vec{v}$ è perpendicolare sia a $\vec{r}$ che
+a $\vec{\omega}$.
+
+Analogamente, è possibile ricavare l'accelerazione:
+
+\begin{equation}
+    \vec{a}=\frac{d\vec{v}}{dt}=\frac{d(\vec{\omega}
+    \times \vec{r})}{dt}=\vec{\alpha} \times \vec{r}
+    + \vec{\omega} \times \vec{v}
+\end{equation}
+
+È interessante notare che $\vec{\alpha} \times \vec{r}$
+è perpendicolare a $\vec{\omega} \times \vec{v}$, permettendoci
+di calcolare facilmente il modulo dell'accelerazione:
+
+\begin{equation}
+    \norm{a} = \sqrt{\nnorm{\vec{\alpha} \times \vec{r}}^2 + \nnorm{\vec{\omega} \times \vec{v}}^2}
+\end{equation}
+
+Non solo: $\vec{\alpha} \times \vec{r}$ è perpendicolare a $\vec{r}$ e
+$\vec{\omega} \times \vec{v}$ gli è parallelo, ma possiede un verso opposto.
+Per questa serie di motivi, $\vec{\alpha} \times \vec{r}$ viene chiamata
+\textbf{accelerazione tangenziale} ($\vec{a_t}$), mentre
+$\vec{\omega} \times \vec{v}$ viene chiamata \textbf{accelerazione centripeta}
+($\vec{a_c}$).
+
+Nel moto circolare uniforme, ove $\vec{\alpha}=0$, infatti l'accelerazione
+centripeta è costante (vd. eq. \ref{eq:acc_c}) e l'accelerazione tangenziale
+è nulla (quindi $\vec{a}=\vec{a_c}$).
 
 \end{document}
