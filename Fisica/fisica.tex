@@ -152,15 +152,15 @@ dimostrare le seguenti equazioni:
     \end{dcases}
 \end{equation}
 
-\section{Il moto circolare uniforme}
+\section{Il moto circolare}
 
 Definendo alcune grandezze fisiche in modo analogo a come vengono
 proposte nel m.u.a., è possibile riproporre le equazioni \ref{eq:mua}
 mediante l'impiego di grandezze esclusivamente angolari.
 
-\subsection{Le equazioni del moto circolare uniforme}
+\subsection{Le equazioni del moto circolare}
 
-Si definiscono dunque le seguenti grandezze:
+Si definiscano dunque le seguenti grandezze:
 
 \begin{itemize}
     \item $\theta$ in funzione del tempo
@@ -192,49 +192,30 @@ le analoghe seguenti:
 
 Oltre all'accelerazione tangenziale, direttamente proporzionale a
 quella lineare, è possibile definire anche un altro tipo di
-accelerazione: \textbf{l'accelerazione centripeta} ($a_c$), diretta dal
+accelerazione: l'\textbf{accelerazione centripeta} ($a_c$), diretta dal
 corpo verso il centro della circonferenza sulla quale questo muove.
 
 Questo tipo di accelerazione è costante nel moto circolare uniforme
-ed è calcolata mediante le seguente equazione:
+($\alpha=0$) ed è calcolata mediante le seguente equazione:
 
 \begin{equation}
-    a=\frac{v^2}{r}
+    a_c=\frac{v^2}{r}
     \label{eq:acc_c}
 \end{equation}
 
-\begin{proof}
-La velocità può essere espressa vettorialmente nella seguente
-forma $\vec{v}(-v\sin(\theta),v\cos(\theta))$, mentre
-le funzioni trigonometriche possono essere sostituite utilizzando
-le coordinate del punto ed il raggio della circonferenza su cui
-si muove il corpo secondo le seguenti relazioni:
+Qualora non ci si riferisse ad un moto circolare uniforme,
+l'accelerazione centripeta non sarà costante, ma variabile in
+funzione della velocità con la quale si muove il corpo.
 
-\begin{equation*}
-    \begin{dcases}
-        \cos(\theta)=\frac{x}{r} \\
-        \sin(\theta)=\frac{y}{r}
-    \end{dcases}
-\end{equation*}
+Inoltre, vale la seguente relazione:
 
-Perciò, derivando la velocità, si ottiene l'accelerazione
-nella seguente forma:
+\begin{equation}
+    a=\sqrt{a_t^2 + a_c^2}
+    \label{eq:acc_moto_cir}
+\end{equation}
 
-\begin{equation*}
-    \vec{a}=(-\frac{v}{r}\cdot v_y, \frac{v}{r}\cdot v_x)
-\end{equation*}
-
-Computando il modulo dell'accelerazione e tenendo
-conto che $v=\sqrt{v_x^2+v_y^2}$, si ottiene
-il risultato desiderato:
-
-\begin{equation*}
-    a=\frac{v^2}r
-\end{equation*}
-
-\end{proof}
-
-\newpage
+Nel caso del moto circolare uniforme, l'unica
+accelerazione agente sul corpo è quindi quella centripeta.
 
 \subsection{Il moto circolare visualizzato vettorialmente}
 
@@ -263,16 +244,17 @@ Per visualizzare in modo più intuitivo, ma anche più formale, il
 moto circolare, è possibile costruire un sistema di riferimento
 basandosi su alcune assunzioni.
 
-Basandosi sul figura \ref{fig:moto_circolare}, assumiamo
+Basandosi sulla figura \ref{fig:moto_circolare}, assumiamo
 $\vec{d\theta} = d\theta \cdot \hat{z}$, attraverso cui
 possiamo concludere che $\vec{\omega}=\frac{\vec{d\theta}}{dt}$ è anch'esso
 parallelo a $\hat{z}$.
 
-Inoltre, $d\vec{r}$ deve essere perpendicolare a $\vec{r}$, e, poiché
-appartiene al piano $O_{xy}$, $d\vec{r}$ deve essere perpendicolare anche
-a $\vec{\omega}$.
+Inoltre, $d\vec{r}$ deve essere perpendicolare sia a $\vec{r}$ che
+a $\vec{\omega}$, poiché appartiene al piano $O_{xy}$. \\ \\ \\
 
-Perciò è possibile riscrivere $d\vec{r}$ nella seguente forma:
+Perciò è possibile riscrivere $d\vec{r}$ nella seguente forma, tenendo
+conto che il suo modulo è pari a $d\theta \cdot \norm{r}$ (ovvero
+l'arco di circonferenza percorso per $d\theta$):
 
 \begin{equation*}
     d\vec{r}=\frac{d\theta \cdot \norm{r}}{\lVert \vec{w} \times
@@ -316,5 +298,9 @@ $\vec{\omega} \times \vec{v}$ viene chiamata \textbf{accelerazione centripeta}
 Nel moto circolare uniforme, ove $\vec{\alpha}=0$, infatti l'accelerazione
 centripeta è costante (vd. eq. \ref{eq:acc_c}) e l'accelerazione tangenziale
 è nulla (quindi $\vec{a}=\vec{a_c}$).
+
+Attraverso questa visualizzazione del moto, è possibile ricavare tutte
+le formule proposte all'inizio della sezione (ed è soprattutto
+possibile giustificare l'equazione \ref{eq:acc_moto_cir}).
 
 \end{document}
