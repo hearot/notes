@@ -20,6 +20,7 @@
 \newcommand{\norm}[1]{\lVert \vec{#1} \rVert}
 \newcommand{\nnorm}[1]{\lVert #1 \rVert}
 
+% \renewcommand{\times}{\wedge}
 
 \begin{document}
 
@@ -30,7 +31,7 @@
 
 \tableofcontents
 
-\chapter{I moti principali della fisica}
+\chapter{I moti principali della meccanica newtoniana}
 
 \section{Il moto uniformemente accelerato (m.u.a.)}
 
@@ -154,7 +155,8 @@ Definita la \textit{gittata} come la distanza tra il punto di lancio ed
 il punto in cui il corpo assume la stessa ordinata del punto di lancio e
 la \textit{traiettoria} come la distanza tra il punto di lancio ed il
 punto in cui il corpo assume la massima ordinata, si possono facilmente
-dimostrare le seguenti equazioni:
+dimostrare le seguenti equazioni per un moto la cui la posizione iniziale
+è nulla e che viene effettuato sulla Terra:
 
 \begin{equation}
     \displaystyle
@@ -163,6 +165,52 @@ dimostrare le seguenti equazioni:
         x_{\text{traiettoria}} = \frac12 x_{\text{gittata}} = \frac{v_0^2 \sin(2\theta)}{2g}
     \end{dcases}
 \end{equation}
+
+\begin{proof}[Dimostrazione dell'equazione della gittata]
+    L'equazione del moto in questo caso si può sintetizzare nel
+    seguente sistema:
+
+    \begin{equation*}
+        \begin{dcases}
+            x=v_0\cos(\theta)t  \\
+            y=v_0\sin(\theta)t -\frac12gt^2
+        \end{dcases}
+    \end{equation*}
+
+    Poiché il corpo deve raggiungere terra, l'ordinata deve
+    annullarsi, da cui si ottiene il seguente sistema:
+
+    \begin{equation*}
+        \begin{dcases}
+            t=\frac{x}{v_0\cos(\theta)} \\
+            \frac12gt^2=v_0\sin(\theta)t 
+        \end{dcases}
+    \end{equation*}
+
+    Sostituendo la prima equazione nella seconda, ricaviamo:
+
+    \begin{equation*}
+        \frac12 g \frac{x^2}{v_0^2 \cos^2(\theta)}=v_0\sin(\theta) \frac{x}{v_0\cos(\theta)} \Rightarrow x=\frac{2 v_0^2 \sin(\theta) \cos(\theta)}{g}
+    \end{equation*}
+
+    Ricordando che $\sin(2\theta)=2\sin(\theta)\cos(\theta)$, otteniamo infine:
+
+    \begin{equation*}
+        x=\frac{v_0^2 \sin(2\theta)}{g}
+    \end{equation*}
+\end{proof}
+
+\begin{proof}[Dimostrazione dell'equazione della traiettoria]
+    Poiché $y(x)$ rappresenta analiticamente una parabola, il punto in cui
+    l'ordinata si massimizza ha come ascissa
+    l'ascissa media tra i due zeri (i.e. l'ascissa del vertice della
+    parabola), ovvero $x_{traiettoria}$ è la media tra $0$ e
+    $x_{\text{gittata}}$:
+
+    \begin{equation*}
+        x_{traiettoria}=\frac{v_0\sin(2\theta)}{2g}
+    \end{equation*}
+\end{proof}
 
 \section{Il moto circolare}
 
@@ -236,8 +284,6 @@ Inoltre, vale la seguente relazione:
 
 Nel caso del moto circolare uniforme, l'unica
 accelerazione agente sul corpo è quindi quella centripeta.
-
-\newpage
 
 \subsection{Il moto circolare visualizzato vettorialmente}
 
