@@ -121,6 +121,18 @@ l'equazione del moto in forma vettoriale:
     \end{pmatrix} = \begin{pmatrix}
         x_0 \\
         y_0
+    \end{pmatrix} + \vec{v_0} t + \frac12 \vec{a} t^2
+\end{equation}
+
+O nel casso del moto parabolico sulla Terra:
+
+\begin{equation}
+    \begin{pmatrix}
+        x \\
+        y
+    \end{pmatrix} = \begin{pmatrix}
+        x_0 \\
+        y_0
     \end{pmatrix} + \vec{v_0} t + \frac12 \begin{pmatrix}
         0 \\
         -g
@@ -163,9 +175,9 @@ mediante l'impiego di grandezze esclusivamente angolari.
 Si definiscano dunque le seguenti grandezze:
 
 \begin{itemize}
-    \item $\theta$ in funzione del tempo
-    \item $\displaystyle \omega=\dot{\theta}=\frac{d\theta}{dt}$
-    \item $\displaystyle \alpha=\ddot{\theta}=\frac{d\omega}{dt}=\frac{d^2\theta}{dt^2}$
+    \item L'angolo $\theta$ in funzione del tempo
+    \item La velocità angolare $\displaystyle \omega=\dot{\theta}=\frac{d\theta}{dt}$
+    \item L'accelerazione angolare $\displaystyle \alpha=\ddot{\theta}=\frac{d\omega}{dt}=\frac{d^2\theta}{dt^2}$
 \end{itemize}
 
 Innanzitutto, è possibile coniugare il mondo angolare con quello
@@ -187,6 +199,14 @@ le analoghe seguenti:
         \omega = \omega_0 + \alpha t
     \end{dcases}
 \end{equation}
+
+Nel caso del moto circolare uniforme ($\alpha=0$) è utile definire
+altre due quantità:
+
+\begin{itemize}
+    \item Il periodo $T=\dfrac{2\pi}{\omega}$
+    \item La frequenza $f=\dfrac{1}{T}=\dfrac{\omega}{2\pi}$
+\end{itemize}
 
 \subsection{L'accelerazione centripeta}
 
@@ -217,11 +237,13 @@ Inoltre, vale la seguente relazione:
 Nel caso del moto circolare uniforme, l'unica
 accelerazione agente sul corpo è quindi quella centripeta.
 
+\newpage
+
 \subsection{Il moto circolare visualizzato vettorialmente}
 
 \vskip 0.1in
 
-\begin{wrapfigure}{l}{0.45\textwidth}
+\begin{wrapfigure}[12]{l}{0.5\textwidth}
     \begin{tikzpicture}
         \coordinate (a) at (2.236, 0);
         \coordinate (b) at (0.89, 0.92);
@@ -237,6 +259,7 @@ accelerazione agente sul corpo è quindi quella centripeta.
         \draw pic["$d\theta$", draw=black, angle eccentricity=1.5, angle radius=0.5cm] {angle=a--o--b};
 
     \end{tikzpicture}
+
     \caption{Il moto circolare nel piano $O_{xy}$} \label{fig:moto_circolare}
 \end{wrapfigure}
 
@@ -250,7 +273,7 @@ possiamo concludere che $\vec{\omega}=\frac{\vec{d\theta}}{dt}$ è anch'esso
 parallelo a $\hat{z}$.
 
 Inoltre, $d\vec{r}$ deve essere perpendicolare sia a $\vec{r}$ che
-a $\vec{\omega}$, poiché appartiene al piano $O_{xy}$. \\ \\ \\
+a $\vec{\omega}$, poiché appartiene al piano $O_{xy}$.
 
 Perciò è possibile riscrivere $d\vec{r}$ nella seguente forma, tenendo
 conto che il suo modulo è pari a $d\theta \cdot \norm{r}$ (ovvero
@@ -296,8 +319,8 @@ $\vec{\omega} \times \vec{v}$ viene chiamata \textbf{accelerazione centripeta}
 ($\vec{a_c}$).
 
 Nel moto circolare uniforme, ove $\vec{\alpha}=0$, infatti l'accelerazione
-centripeta è costante (vd. eq. \ref{eq:acc_c}) e l'accelerazione tangenziale
-è nulla (quindi $\vec{a}=\vec{a_c}$).
+centripeta è costante (vd. eq. \ref{eq:acc_c}) e l'accelerazione
+tangenziale è nulla (quindi $\vec{a}=\vec{a_c}$).
 
 Attraverso questa visualizzazione del moto, è possibile ricavare tutte
 le formule proposte all'inizio della sezione (ed è soprattutto
