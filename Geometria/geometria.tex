@@ -79,30 +79,30 @@ tre concetti primitivi prima elencati.
 
 \begin{axiom}[Primo assioma di relazione di insieme]
     Ogni piano è un insieme infinito di punti
-    ($\forall \alpha, |\alpha| = \infty$).
+    $( \forall \, \alpha, \, |\alpha| = \infty )$.
 \end{axiom}
 
 \begin{axiom}[Secondo assioma di relazione di insieme]
     Ogni retta è un sottoinsieme di un piano
-    ($\forall r \, \exists! \, \alpha : r \in \alpha$).
+    $(\forall \, r \; \exists! \, \alpha \mid r \in \alpha)$.
 \end{axiom}
 
 \begin{axiom}[Primo assioma di appartenenza della retta]
     A ogni retta appartengono almeno due punti distinti
-    ($\forall r \, \exists \, A, B : A \neq B \land A, B \in r$).
+    $(\forall \, r \; \exists \, A, B \mid A \neq B \land A, B \in r)$.
 \end{axiom}
 
 \begin{axiom}[Secondo assioma di appartenenza della retta]
     \label{retta:secondo_assioma_appartenenza}
     Dati due punti distinti, esiste una e una sola retta a cui
     essi appartengano contemporaneamente
-    ($A \neq B \Rightarrow \exists! \, r : A, B \in r$).
+    $(A \neq B \implies \exists! \, r \mid A, B \in r)$.
 \end{axiom}
 
 \begin{theorem}
     Date due rette distinte, esse possono incontrarsi
     in al più un punto
-    ($r \neq s \Rightarrow |r \cap s| \leq 1$).
+    $(r \neq s \implies |r \cap s| \leq 1)$.
 \end{theorem}
 
 \begin{proof}
@@ -115,24 +115,38 @@ tre concetti primitivi prima elencati.
     generando una contraddizione.
 \end{proof}
 
-A partire da questo teorema si possono definire tre combinazioni di rette:
+A partire da questo teorema si possono definire tre combinazioni di rette.
 
-\begin{itemize}[noitemsep]
-    \item due rette che hanno in comune più di un
-          punto sono dette \textbf{coincidenti} e condividono
-          il medesimo sottoinsieme del piano, ossia i suoi
-          stessi punti;
-    \item due rette che hanno in comune un solo punto
-          sono dette \textbf{incidenti};
-    \item due rette che non hanno in comune alcun punto
-          sono dette \textbf{parallele}.
-\end{itemize}
+\begin{definition}[Rette coincidenti]
+    Due rette si dicono coincidenti se e solo se
+    condividono il medesimo sottoinsieme del piano
+    $(r \equiv s \iff \nexists P \in r \mid P \notin s \; \land \;
+        \nexists P \in s \mid P \notin r)$.
+\end{definition}
+
+\begin{definition}[Rette incidenti]
+    Due rette si dicono incidenti se e solo se
+    condividono un solo punto del piano.
+\end{definition}
+
+\begin{definition}[Rette parallele]
+    Due rette si dicono parallele se e solo se
+    non condividono alcun punto del piano.
+    ($r \parallel s \iff |r \cap s| = 0$).
+\end{definition}
+
+\begin{definition}[Punti non allineati]
+    Tre o più punti si dicono non allineati se
+    non esiste alcuna retta che li contenga tutti
+    contemporaneamente.
+\end{definition}
 
 \begin{axiom}
     \label{piano:tre_punti}
-    Ogni piano è ben definito da almeno tre punti non
-    appartenenti alla medesima retta,
-    ossia non allineati.
+    Tre punti non allineati definiscono sempre e
+    univocamente un piano
+    $(A, B, C \mid \nexists \, r \mid A, B, C \in r \implies
+        \exists \, \alpha \mid A, B, C \in \alpha)$.
 \end{axiom}
 
 \subsection{Gli assiomi di ordine}
@@ -150,7 +164,7 @@ a tale verso di percorrenza.
     Presi due punti distinti $A$ e $B$ appartenenti alla retta $r$
     tali che $A<B$, allora esiste un punto $C$, sempre
     appartenente alla retta $r$, tale che $A<C<B$
-    ($A,B \in r : A<B \Rightarrow \exists \, C \in r : A<C<B$).
+    $(A,B \in r \mid A<B \implies \exists \, C \in r \mid A<C<B)$.
 \end{axiom}
 
 \begin{axiom}[Secondo assioma di ordine della retta]
@@ -158,7 +172,7 @@ a tale verso di percorrenza.
     Dato un punto $C$ appartenente alla retta $r$, esistono
     sempre due punti $A$ e $B$, sempre appartenenti a $r$,
     tali che $A<C<B$.
-    ($C \in r \Rightarrow \exists \, A,B \in r : A<C<B$).
+    $(C \in r \implies \exists \, A,B \in r \mid A<C<B)$.
 \end{axiom}
 
 \begin{theorem}
