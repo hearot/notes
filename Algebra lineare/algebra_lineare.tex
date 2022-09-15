@@ -1,0 +1,48 @@
+\documentclass[oneside]{book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[parfill]{parskip}
+\usepackage{wrapfig}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,angles,quotes}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert \vec{#1} \rVert}
+\newcommand{\nnorm}[1]{\lVert #1 \rVert}
+
+\newtheorem{axiom}{Assioma}[section]
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corollario}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definizione}[section]
+
+\begin{document}
+
+\author{Gabriel Antonio Videtta}
+\title{Appunti di Algebra lineare}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\include{1. Primo capitolo.tex}
+
+\end{document}
