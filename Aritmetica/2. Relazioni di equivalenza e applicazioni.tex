@@ -1,0 +1,99 @@
+\chapter{Relazioni di equivalenza e applicazioni}
+
+\section{Le relazioni di equivalenza}
+
+Utilizzando le nozioni di base della teoria degli
+insiemi è possibile definire formalmente il concetto
+di relazione di equivalenza.
+
+Dato un sottoinsieme $R$ di $A \times A$, $R$ si
+dice relazione di equivalenza se:
+
+\begin{itemize}
+    \item $(a,a) \in R$ (proprietà riflessiva)
+    \item $(a,b) \in R \implies (b,a) \in R$ (proprietà simmetrica)
+    \item $(a,b), (b,c) \in R \implies (a,c) \in R$ (proprietà transitiva)
+\end{itemize}
+
+Tale definizione può essere semplificata
+implementando l'operazione binaria $\sim$ tale per cui
+$a\sim b \iff (a,b) \in R$. In questo modo, le condizioni
+di una relazione di equivalenza $R$ diventano:
+
+\begin{itemize}
+    \item $a \sim a$
+    \item $a \sim b \implies b \sim a$
+    \item $a \sim b \land b \sim c \implies a \sim c$
+\end{itemize}
+
+\begin{theorem}
+    Definita una relazione di equivalenza $R$ con operazione
+    binaria $\sim$, $a \sim b \land c \sim b \implies a \sim c$.
+\end{theorem}
+
+\begin{proof}
+    Dalla proprietà riflessiva di $R$, $c \sim b \implies b \sim c$.
+    Verificandosi sia $a \sim b$ che $b \sim c$, si applica la proprietà
+    transitiva di $R$, che implica $a \sim c$.
+\end{proof}
+
+\subsection{Classi di equivalenza}
+
+Si definisce classe di equivalenza di $a$ per un certo insieme
+$A$ e una certa relazione di equivalenza $R$ l'insieme
+$\cl(a)=\{x \in A \mid a \sim x\}$, ossia l'insieme di tutti i punti che
+si relazionano ad $a$ mediante tale relazione di equivalenza.
+
+\begin{theorem}
+    Le classi di equivalenza partizionano l'insieme di relazione
+    in insiemi a due a due disgiunti.
+\end{theorem}
+
+\begin{proof}
+    Prima di tutto è necessario dimostrare che l'unione di tutte
+    le classi di equivalenza dà luogo all'insieme di relazione $A$.
+
+    Per ogni elemento $a \in A$, $a$ appartiene a $\cl(a)$ per la proprietà
+    riflessiva di $R$, ossia della relazione di equivalenza su cui
+    $\cl$ è definita. Pertanto $\bigcup_{a \in A} \cl(a)$, che contiene solo
+    elementi di $A$, è uguale ad $A$.
+
+    In secondo luogo, è necessario dimostrare che le classi di equivalenza
+    sono o disgiunte o identiche. Ponendo l'esistenza
+    di un $a \in \cl(x) \, \cap \, \cl(y)$, la dimostrazione deriva dalle proprietà
+    di $R$: sia $b \in cl(x)$, allora $b \sim a$; dunque, dal momento che $b \sim a$ e che
+    $a \sim y$, $b \sim y$, ossia $\cl(x) \subseteq \cl(y)$ (analogamente si ottiene
+    $\cl(y) \subseteq \cl(x)$, e quindi $\cl(x) = \cl(y)$).
+\end{proof}
+
+\section{Le applicazioni}
+
+La nozione di applicazione di un insieme in un altro ci permette
+di generalizzare, ma soprattutto di definire, il concetto di
+funzione. Dati due insiemi $S$ e $T$, si dice che $\sigma$ è un'applicazione
+da $S$ a $T$, se $\sigma \subseteq S \times T \land \forall s \in S, \existsone
+    t \in T \mid (s, t) \in \sigma$. Tale applicazione allora si scrive come
+$\sigma : S \rightarrow T$.
+
+Si scrive $\sigma : s \rightarrowtail \sigma(s)$ per sottintendere che
+$\forall \, (s, t) \in \sigma, (s, t) = (s, \sigma(t))$.
+
+\subsection{Proprietà delle applicazioni}
+
+\begin{definition}[Iniettività]
+    Un'applicazione si dice iniettiva se ad ogni immagine
+    è corrisposto al più un elemento, ossia anche che
+    $s_1 \neq s_2 \implies \sigma(s_1) \neq \sigma(s_2)$.
+\end{definition}
+
+\begin{definition}[Surgettività]
+    Un'applicazione si dice surgettiva se ad ogni immagine
+    è corrisposto almeno un elemento, ossia anche che
+    $\forall t \in T, \exists s \mid \sigma(s) = t$.
+\end{definition}
+
+\begin{definition}[Bigettività]
+    Un'applicazione si dice bigettiva se è sia iniettiva che
+    suriettiva, ossia se $\forall t \in T, \existsone s \in S
+        \mid \sigma(s) = t$.
+\end{definition}
