@@ -26,10 +26,10 @@ di una relazione di equivalenza $R$ diventano:
     \item $a \sim b \land b \sim c \implies a \sim c$
 \end{itemize}
 
-\begin{theorem}
+\begin{lemma}
     Definita una relazione di equivalenza $R$ con operazione
     binaria $\sim$, $a \sim b \land c \sim b \implies a \sim c$.
-\end{theorem}
+\end{lemma}
 
 \begin{proof}
     Dalla proprietà riflessiva di $R$, $c \sim b \implies b \sim c$.
@@ -66,14 +66,36 @@ si relazionano ad $a$ mediante tale relazione di equivalenza.
     $\cl(y) \subseteq \cl(x)$, e quindi $\cl(x) = \cl(y)$).
 \end{proof}
 
+\begin{theorem}
+    Data una partizione di un insieme che lo compone in insiemi a due
+    a due disgiunti, è sempre possibile costruire delle classi di equivalenza.
+\end{theorem}
+
+\begin{proof}
+    Vogliamo dimostrare che, data la stessa appartenenza ad un insieme come relazione,
+    essa è una relazione di equivalenza.
+
+    Sicuramente $a \sim a$ (proprietà riflessiva).
+    Inoltre, $a \sim b \implies a, b \in A_\alpha \implies b \sim a$
+    (proprietà simmetrica).
+    Infine, $a \sim b, \, b \sim c \implies a, b, c \in A_\alpha \implies a \sim c$
+    (proprietà transitiva).
+
+    In particolare, dato $a \in A_\alpha$, $\cl(a) = A_\alpha$.
+\end{proof}
+
 \section{Le applicazioni}
 
 La nozione di applicazione di un insieme in un altro ci permette
 di generalizzare, ma soprattutto di definire, il concetto di
-funzione. Dati due insiemi $S$ e $T$, si dice che $\sigma$ è un'applicazione
-da $S$ a $T$, se $\sigma \subseteq S \times T \land \forall s \in S, \existsone
-    t \in T \mid (s, t) \in \sigma$. Tale applicazione allora si scrive come
-$\sigma : S \rightarrow T$.
+funzione.
+
+\begin{definition}[Applicazione]
+    Dati due insiemi $S$ e $T$, si dice che $\sigma$ è un'applicazione
+    da $S$ a $T$, se $\sigma \subseteq S \times T \land \forall s \in S, \existsone
+        t \in T \mid (s, t) \in \sigma$. Tale applicazione allora si scrive come
+    $\sigma : S \to T$.
+\end{definition}
 
 Si scrive $\sigma : s \rightarrowtail \sigma(s)$ per sottintendere che
 $\forall \, (s, t) \in \sigma, (s, t) = (s, \sigma(t))$.
@@ -87,7 +109,7 @@ $\forall \, (s, t) \in \sigma, (s, t) = (s, \sigma(t))$.
 \end{definition}
 
 \begin{definition}[Surgettività]
-    Un'applicazione si dice surgettiva se ad ogni immagine
+    Un'applicazione si dice surgettiva (o talvolta \textit{su $T$}) se ad ogni immagine
     è corrisposto almeno un elemento, ossia anche che
     $\forall t \in T, \exists s \mid \sigma(s) = t$.
 \end{definition}
@@ -97,3 +119,87 @@ $\forall \, (s, t) \in \sigma, (s, t) = (s, \sigma(t))$.
     suriettiva, ossia se $\forall t \in T, \existsone s \in S
         \mid \sigma(s) = t$.
 \end{definition}
+
+\subsection{Composizione di applicazioni}
+
+\begin{definition}[Composizione]
+    Date due applicazioni $\sigma : S \to T$ e
+    $\tau : T \to U$, si può definire
+    un'applicazione detta composizione
+    $(\tau \circ \sigma) : S \to U$, tale per cui
+    $(\tau \circ \sigma) : s \mapsto \tau(\sigma(s))$.
+\end{definition}
+
+Dobbiamo tuttavia assicurarci che tale applicazione
+possa esistere, ossia verificare che $\forall s \in S \existsone
+    u \in U \mid (s, u) \in S \times U$; quindi che $\tau(\sigma(s))$
+sia unico. Tuttavia questa proprietà è banale: $\sigma(s)$ è Sicuramente
+unico poiché $\sigma$ è un'applicazione, e pertanto $\tau(\sigma(s))$ lo è,
+essendo anch'essa un'applicazione.
+
+\subsubsection{Proprietà associativa della composizione}
+
+È inoltre interessante dimostrare che la composizione rispetta la proprietà associativa,
+ossia che $(\alpha \circ \beta) \circ \gamma = \alpha \circ (\beta \circ \gamma)$.
+
+\begin{lemma}[Proprietà associativa della composizione]
+    Date tre applicazioni $\alpha$, $\beta$, $\gamma$,
+    $(\alpha \circ \beta) \circ \gamma = \alpha \circ (\beta \circ \gamma)$.
+\end{lemma}
+
+\begin{proof}
+    Preso un $a$ appartenente al dominio di $\gamma$, per il primo membro abbiamo:
+
+    $$((\alpha \circ \beta) \circ \gamma)(a) = (\alpha \circ \beta)(\gamma(a)) =
+        \alpha(\beta(\gamma(a)))$$
+
+    Analogamente per il secondo membro abbiamo:
+
+    $$(\alpha \circ (\beta \circ \gamma))(a) = \alpha((\beta \circ \gamma)(a)) =
+        \alpha(\beta(\gamma(a)))$$
+\end{proof}
+
+\subsubsection{Iniettività, surgettività e bigettività della composizione}
+
+L'iniettività, la surgettività e la bigettività di una composizione sono
+ereditate dalle applicazioni di cui è composta se tutte queste le rispettano, ossia:
+
+\begin{itemize}
+    \item $(\tau \circ \sigma)$ è iniettiva se $\tau$ e $\sigma$ lo sono.
+    \item $(\tau \circ \sigma)$ è surgettiva se $\tau$ e $\sigma$ lo sono.
+    \item $(\tau \circ \sigma)$ è bigettiva se $\tau$ e $\sigma$ lo sono.
+\end{itemize}
+
+\begin{lemma}[Iniettività della composizione]
+    \label{lemma:iniettivita_composizione}
+    $(\tau \circ \sigma)$ è iniettiva se $\tau$ e $\sigma$ lo sono.
+\end{lemma}
+
+\begin{proof}
+    Dal momento che $\sigma$ è iniettiva $s_1 \neq s_2 \implies \sigma(s_1) \neq \sigma(s_2)$,
+    ma a sua volta, essendo $\tau$ iniettiva, $\sigma(s_1) \neq \sigma(s_2) \implies
+        \tau(\sigma(s_1)) \neq \tau(\sigma(s_2))$.
+\end{proof}
+
+\begin{lemma}[Surgettività della composizione]
+    \label{lemma:surgettivita_composizione}
+    $(\tau \circ \sigma)$ è surgettiva se $\tau$ e $\sigma$ lo sono.
+\end{lemma}
+
+\begin{proof}
+    Dal momento che $\sigma$ è surgettiva $\forall s \in \Dom(\sigma),
+        \exists t \in \Codom(\sigma) \mid t = \sigma(s)$. Tuttavia, essendo $t \in \Dom(\tau)$,
+    $\exists u \in \Codom(\tau) \mid u = \tau(t) = \tau(\sigma(s))$.
+\end{proof}
+
+\begin{lemma}[Bigettività della composizione]
+    $(\tau \circ \sigma)$ è bigettiva se $\tau$ e $\sigma$ lo sono.
+\end{lemma}
+
+\begin{proof}
+    Se $\tau$ e $\sigma$ sono bigettive, sono sia iniettive che surgettive;
+    pertanto $(\tau \circ \sigma)$ è sia iniettiva che bigettiva per i
+    lemmi \ref{lemma:iniettivita_composizione} e
+    \ref{lemma:surgettivita_composizione}.
+\end{proof}
+
