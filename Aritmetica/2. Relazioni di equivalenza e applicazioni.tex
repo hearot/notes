@@ -92,13 +92,19 @@ funzione.
 
 \begin{definition}[Applicazione]
     Dati due insiemi $S$ e $T$, si dice che $\sigma$ è un'applicazione
-    da $S$ a $T$, se $\sigma \subseteq S \times T \land \forall s \in S, \existsone
+    da $S$ a $T$, se $\sigma \subseteq (S \times T) \land \forall s \in S, \existsone
         t \in T \mid (s, t) \in \sigma$. Tale applicazione allora si scrive come
     $\sigma : S \to T$.
 \end{definition}
 
 Si scrive $\sigma : s \rightarrowtail \sigma(s)$ per sottintendere che
-$\forall \, (s, t) \in \sigma, (s, t) = (s, \sigma(t))$.
+$\forall \, (s, t) \in \sigma, (s, t) = (s, \sigma(t))$. Dato
+$t=\sigma(s)$, si dice che $t$ è l'\textit{immagine} di $s$ appartenente
+al \textit{codominio} $T$, enunciato come $\Codom(\sigma)$, mentre $s$ è
+la \textit{preimmagine} di $t$, appartenente al \textit{dominio} $S$, detto
+$\Dom(\sigma)$. L'insieme ${(s, t) \in \Dom(\sigma) \times \Codom(\sigma) \mid (s, t) \in \sigma}$ è
+detto \textit{grafico} di $\sigma$, ossia $\Gr(\sigma)$.
+
 
 \subsection{Proprietà delle applicazioni}
 
@@ -187,9 +193,12 @@ ereditate dalle applicazioni di cui è composta se tutte queste le rispettano, o
 \end{lemma}
 
 \begin{proof}
-    Dal momento che $\sigma$ è surgettiva $\forall s \in \Dom(\sigma),
-        \exists t \in \Codom(\sigma) \mid t = \sigma(s)$. Tuttavia, essendo $t \in \Dom(\tau)$,
-    $\exists u \in \Codom(\tau) \mid u = \tau(t) = \tau(\sigma(s))$.
+    Dal momento che $\tau$ è surgettiva, allora $\forall u \in
+    \Codom(\tau), \exists t \in \Dom(\tau) \mid u = \tau(t)$.
+    Poiché $t \in \Codom(\sigma)$, allora, poiché anche
+    $\sigma$ è surgettiva, $\exists s \in \Dom(\sigma) \mid
+        t = \sigma(s)$. Pertanto $\exists s \in \Dom(\sigma) \mid
+        u = \tau(\sigma(s))$. 
 \end{proof}
 
 \begin{lemma}[Bigettività della composizione]
@@ -203,3 +212,51 @@ ereditate dalle applicazioni di cui è composta se tutte queste le rispettano, o
     \ref{lemma:surgettivita_composizione}.
 \end{proof}
 
+\section{Applicazione inversa}
+
+Qualora un'applicazione $\sigma : S \to T$ sia bigettiva, si dice che essa
+crea una \textit{corrispondenza biunivoca} tra $S$ e $T$, ossia che dato un
+elemento qualsiasi appartenente a $S$ è possibile associarlo ad un unico elemento
+di $T$, e viceversa. Questo è possibile dal momento che $\sigma$ è sia iniettiva
+($\forall t \in T, \existsone \lor \nexists s \in S \mid t = \sigma(s)$) che
+surgettiva ($\forall t \in T, \exists s \in S \mid t = \sigma(s)$), prescrivendo
+che $\forall t \in T, \existsone s \in S \mid t = \sigma(s)$.
+
+Da questa conclusione è possibile definire l'\textit{applicazione inversa} di
+$\sigma$, detta $\sigma^{-1}$, che è l'applicazione che associa ad ogni $t \in T$
+un unico $s \in S$. Quindi, $t = \sigma(s) \iff s = \sigma^{-1} (t)$.
+
+In particolare, $(\sigma \circ \sigma^{-1}) = (\sigma^{-1} \circ \sigma) = \Id$,
+ossia l'identità di $\sigma$, per la quale ogni elemento viene associato a sé stesso.
+Banalmente, per ogni applicazione $\alpha$, $(\alpha \circ \Id) = (\Id \circ \alpha) = \alpha$.
+
+\begin{lemma}
+    $\sigma : S \to T$ è una corrispondenza biunivoca se e solo se
+    esiste un'applicazione $\mu : T \to S$ tale per cui
+    $(\sigma \circ \mu) = (\mu \circ \sigma) = \Id$.
+\end{lemma}
+
+\begin{proof}
+    Dal momento che $\sigma$ è bigettiva, $\sigma^{-1}$ esiste, e questa è
+    tale per cui $(\sigma \circ \mu) = (\mu \circ \sigma) = \Id$.
+
+    In direzione opposta, se esiste una $\mu$ tale per cui $(\sigma \circ \mu) =
+    (\mu \circ \sigma) = \Id$, allora:
+
+    \begin{itemize}
+        \item $\sigma$ è iniettiva: $\sigma(s_1) = \sigma(s_2) \implies
+        \mu(\sigma(s_1)) = \mu(\sigma(s_2)) \implies s_1 = s_2$.
+        \item $\sigma$ è surgettiva: $\forall t \in T, t = \sigma(\mu(t)) \implies
+        \exists s = \mu(t) \in S \mid t = \sigma(s)$.
+    \end{itemize}
+\end{proof}
+
+\begin{lemma}[Unicità dell'applicazione inversa]
+    Per ogni applicazione bigettiva $\sigma$, $\sigma^{-1}$ è unica.
+\end{lemma}
+
+\begin{proof}
+    Poniamo $\alpha \neq \beta$ come due applicazioni inverse distinte
+    di $\sigma$. Allora $\alpha = \alpha \circ (\sigma \circ \beta) =
+    (\alpha \circ \sigma) \circ \beta = \beta$, che è una contraddizione.
+\end{proof}
