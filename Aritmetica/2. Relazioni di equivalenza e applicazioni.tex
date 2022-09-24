@@ -149,6 +149,7 @@ essendo anch'essa un'applicazione.
 ossia che $(\alpha \circ \beta) \circ \gamma = \alpha \circ (\beta \circ \gamma)$.
 
 \begin{lemma}[Proprietà associativa della composizione]
+    \label{lemma:associativita_composizione}
     Date tre applicazioni $\alpha$, $\beta$, $\gamma$,
     $(\alpha \circ \beta) \circ \gamma = \alpha \circ (\beta \circ \gamma)$.
 \end{lemma}
@@ -202,6 +203,7 @@ ereditate dalle applicazioni di cui è composta se tutte queste le rispettano, o
 \end{proof}
 
 \begin{lemma}[Bigettività della composizione]
+    \label{lemma:bigettivita_composizione}
     $(\tau \circ \sigma)$ è bigettiva se $\tau$ e $\sigma$ lo sono.
 \end{lemma}
 
@@ -231,6 +233,7 @@ ossia l'identità di $\sigma$, per la quale ogni elemento viene associato a sé 
 Banalmente, per ogni applicazione $\alpha$, $(\alpha \circ \Id) = (\Id \circ \alpha) = \alpha$.
 
 \begin{lemma}
+    \label{lemma:inversa_applicazione}
     $\sigma : S \to T$ è una corrispondenza biunivoca se e solo se
     esiste un'applicazione $\mu : T \to S$ tale per cui
     $(\sigma \circ \mu) = (\mu \circ \sigma) = \Id$.
@@ -259,4 +262,39 @@ Banalmente, per ogni applicazione $\alpha$, $(\alpha \circ \Id) = (\Id \circ \al
     Poniamo $\alpha \neq \beta$ come due applicazioni inverse distinte
     di $\sigma$. Allora $\alpha = \alpha \circ (\sigma \circ \beta) =
     (\alpha \circ \sigma) \circ \beta = \beta$, che è una contraddizione.
+\end{proof}
+
+\section{Il gruppo \texorpdfstring{$A(S)$}{A(S)} delle corrispondenze biunivoche}
+
+Si definisce $A(S)$ come l'insieme $\{\sigma : S \to S \mid \sigma \text{ sia biunivoca}\} =
+\{\sigma : S \to S \mid \forall s \in S \existsone t \in S \mid t = \sigma(s)\}$.
+
+Prendendo in considerazione l'operazione di composizione $\circ$, si può dimostrare
+che $(A(S), \circ)$ è un gruppo:
+
+\begin{itemize}
+    \item $\forall \alpha, \beta \in A(S), \alpha \circ \beta \in A(S)$ (vd. Lemma \ref{lemma:bigettivita_composizione}).
+    \item $\forall \alpha, \beta, \gamma \in A(S), (\alpha \circ \beta) \circ \gamma = \alpha \circ (\beta \circ \gamma)$ (vd. Lemma \ref{lemma:associativita_composizione}).
+    \item $\exists \Id \in A(S) \mid \forall \alpha \in A(S), (\Id \circ \alpha) = (\alpha \circ \Id) = \alpha$.
+    \item $\forall \alpha \in A(S), \exists \alpha^{-1} \in A(S) \mid (\alpha \circ \alpha^{-1}) = (\alpha^{-1} \circ \alpha) = \Id$ (vd. Lemma \ref{lemma:inversa_applicazione}).
+\end{itemize}
+
+\begin{lemma}
+    Se $S$ consta di più di due elementi ($\nnorm{S} > 2$), allora esistono sicuramente
+    due applicazioni $\alpha, \beta \in A(S)$ tale per cui $(\alpha \circ \beta) \neq
+    (\beta \circ \alpha)$.
+\end{lemma}
+
+\begin{proof}
+    Se $S$ consta di due elementi, $S$ possiede almeno tre elementi $s_1, s_2, s_3$,
+    possiamo definire due applicazioni $\sigma$ e $\tau$ come segue:
+
+    \begin{itemize}
+        \item $\sigma(s_1) = s_2$, $\sigma(s_2) = s_3$, $\sigma(s_3) = s_1$.
+        \item $\tau(s_1) = s_1$, $\tau(s_2) = s_2$, $\tau(s_3) = s_3$.
+        \item $\sigma(a) = \tau(a) = a \forall a \notin \{s_1, s_2, s_3\}$.
+    \end{itemize}
+
+    Allora $(\sigma \circ \tau)(s_1) = \sigma(s_1) = s_2$ e
+    $(\tau \circ \sigma)(s_1) = \tau(s_2) = s_3$, ma $s_2 \neq s_3$.
 \end{proof}
