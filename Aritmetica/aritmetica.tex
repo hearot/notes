@@ -1,27 +1,15 @@
-\documentclass[oneside]{book}
+% Style formatting by Evan Chen (evanchen.cc)
+% Inspired by https://github.com/diego-unipi/Appunti-Aritmetica
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{enumitem}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
-\usepackage{hyperref}
-\usepackage{mathtools}
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrartcl}
+\usepackage[sexy]{evan}
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[parfill]{parskip}
-\usepackage{wrapfig}
 
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.15}
-\usepackage{mathrsfs}
-\usetikzlibrary{arrows,angles,quotes}
-
-\renewcommand\qedsymbol{$\blacksquare$}
+\setlength{\headsep}{0.3in}
 
 \newcommand{\gfrac}[2]{\displaystyle \frac{#1}{#2}}
-\newcommand{\abs}[1]{\lvert#1\rvert}
-\newcommand{\norm}[1]{\lVert \vec{#1} \rVert}
 \newcommand{\nnorm}[1]{\lVert #1 \rVert}
 
 \let\oldforall\forall
@@ -55,26 +43,56 @@
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 
-\newtheorem{axiom}{Assioma}[section]
-\newtheorem{theorem}{Teorema}[section]
-\newtheorem{corollary}{Corollario}[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definizione}[section]
-
 \begin{document}
 
-\author{Gabriel Antonio Videtta}
-\title{Appunti di Aritmetica}
-
+\author{Gabriel Antonio Videtta \\ \textnormal{\href{mailto:g.videtta1@studenti.unipi.it}{g.videtta1@studenti.unipi.it}}}
+\title{Appunti del corso di Aritmetica}
+\subtitle{tenutosi sotto la supervisione dei proff. Gaiffi e \textit{D'Adderio}}
+\date{A.A. 2022/2023}
 \maketitle
-\newpage
+\thispagestyle{empty}
 
+\begin{center}
+	\includegraphics[scale=0.3]{logo.png}
+\end{center}
+
+\author{Gabriel Antonio Videtta}
+\newpage
+\thispagestyle{empty}
+~\newpage
+
+\section*{Premessa}
+
+Affinché possano chiamarsi queste dispense, voglio mettere alcuni punti
+in chiaro. Non sono un professore, né ho mai insegnato nella mia vita, per
+quanto punti a farlo, pertanto queste dispense non forniscono né coprono
+l'esperienza che un professore potrebbe condividere durante un vero e proprio
+corso universitario.
+
+Piuttosto queste dispense hanno lo scopo di immagazzinare e incapsulare
+le nozioni che un normale corso di Aritmetica -- o Algebra 1 che sia --
+potrebbe fornire, e non hanno quindi la pretesa di sostituirsi a uno
+studio più approfondito e personale.
+
+Naturalmente sono accettati a braccia aperte suggerimenti e correzioni
+(che potete inviare alla mia mail,
+\texttt{\href{mailto:g.videtta1@studenti.unipi.it}{g.videtta1@studenti.unipi.it}}).
+
+\section*{Ringraziamenti}
+
+Chiaramente ci sono alcuni ringraziamenti che ho piacere a fare. Innanzitutto
+vorrei ringraziare il mio caro amico \textbf{Diego Monaco}
+(\texttt{\href{mailto:d.monaco2@studenti.unipi.it}{d.monaco2@studenti.unipi.it}}),
+da cui ho preso pesante ispirazione per lo stile e il contenuto di queste dispense
+(trovate difatti i suoi appunti su \underline{\href{https://github.com/diego-unipi/Appunti-Aritmetica}{GitHub}}).
+
+In secondo luogo, voglio ringraziare \textbf{Evan Chen}, dal quale ho reperito
+già pronti i fogli di stile per queste dispense (e che anche voi potete trovare
+sul suo \underline{\href{https://web.evanchen.cc/faq-latex.html}{sito personale}}).
+
+\newpage
 \tableofcontents
-\newpage
 
-\include{1. Teoria degli insiemi.tex}
-\include{2. Relazioni di equivalenza e applicazioni.tex}
+\include{1. Gruppi.tex}
 
 \end{document}

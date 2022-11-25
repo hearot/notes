@@ -1,0 +1,33 @@
+\section{Gruppi}
+
+\subsection{Definizione e motivazione}
+
+Innanzitutto, prima di dare una definizione formale, un
+\vocab{gruppo} è una struttura algebrica, ossia un insieme
+di oggetti di varia natura che rispettano alcune determinate
+regole.
+
+Il motivo (con ogni probabilità l'unico) per cui la teoria dei
+gruppi risulta interessante è la facilità con cui un'astrazione
+come la struttura di gruppo permette di desumere teoremi universali
+per oggetti matematici apparentemente scollegati.
+
+Infatti, dimostrato un teorema in modo astratto per un gruppo
+generico, esso è valido per ogni gruppo. Per quanto questo
+fatto risulti di una banalità assoluta, esso è di fondamentale
+aiuto nello studio della matematica. Si pensi ad esempio all'
+aritmetica modulare, o alle funzioni bigettive, o ancora
+alle trasformazioni del piano: tutte queste nozioni condividono
+teoremi e metodi che si fondano su una stessa logica. Come vedremo,
+esse condividono la natura di gruppo.
+
+\begin{definition}
+    Dato un insieme non vuoto $G$, esso si dice \textbf{gruppo} se data
+    un'operazione ben definita $\cdot : G \times G \to G$ è t.c:
+
+    \begin{itemize}
+        \item (\vocab{associatività}) $\forall a, b, c \in G, \, (a \cdot b) \cdot c = a \cdot (b \cdot c)$
+        \item (\vocab{esistenza dell'elem. neutro}) $\exists e \in G \mid a \cdot e = a = e \, \cdot a \forall a \in G$
+        \item (\vocab{esistenza dell'elem. inverso}) $\forall a \in G, \, \exists a^{-1} \in G \mid a \cdot a^{-1} = a^{-1} \cdot a = e$
+    \end{itemize}
+\end{definition}
