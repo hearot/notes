@@ -22,12 +22,58 @@ teoremi e metodi che si fondano su una stessa logica. Come vedremo,
 esse condividono la natura di gruppo.
 
 \begin{definition}
-    Dato un insieme non vuoto $G$, esso si dice \textbf{gruppo} se data
-    un'operazione ben definita $\cdot : G \times G \to G$ è t.c:
+    Dato un insieme non vuoto $G$, $(G, \cdot)$ si dice \textbf{gruppo} se data
+    un'operazione ben definita $\cdot : G \times G \to G$ essa è t.c:
 
     \begin{itemize}
         \item (\vocab{associatività}) $\forall a, b, c \in G, \, (a \cdot b) \cdot c = a \cdot (b \cdot c)$
-        \item (\vocab{esistenza dell'elem. neutro}) $\exists e \in G \mid a \cdot e = a = e \, \cdot a \forall a \in G$
-        \item (\vocab{esistenza dell'elem. inverso}) $\forall a \in G, \, \exists a^{-1} \in G \mid a \cdot a^{-1} = a^{-1} \cdot a = e$
+        \item (\vocab{esistenza dell'elem. neutro}) $\exists e \in G \mid a \cdot e = a = e \, \cdot a \,\, \forall a \in G$
+        \item (\vocab{esistenza dell'elem. inverso}) $\forall a \in G, \, \exists a^{-1} \in G \mid a \cdot a^{-1} = e$
     \end{itemize}
 \end{definition}
+
+\begin{remark}
+    Nella definizione di gruppo si è chiaramente specificato che l'operazione dev'essere
+    ben definita e, soprattutto, che l'insieme $G$ dev'essere chiuso rispetto ad esso.
+    
+    Pertanto, non è sufficiente aver verificato le tre proprietà sopraelencate senza
+    aver prima verificato che l'operazione sia effettivamente un'operazione di
+    gruppo.
+\end{remark}
+
+\begin{example}[Gruppo ciclico elementare]
+    L'insieme $\ZZ/n\ZZ$ (che talvolta indicheremo semplicemente come $\ZZ_n$) degli interi modulo $n$ è un gruppo con l'operazione di
+    somma $+$. Infatti:
+
+    \begin{itemize}
+        \item $\forall \left[a\right]_n, \left[b\right]_n \in \ZZ/n\ZZ, \, \left[a\right]_n + \left[b\right]_n = \left[a+b\right]_n \in \ZZ/n\ZZ$ (\textit{chiusura rispetto all'operazione})
+        \item $\forall \left[a\right]_n, \left[b\right]_n, \left[c\right]_n \in \ZZ/n\ZZ, \, \left(\left[a\right]_n + \left[b\right]_n\right) + \left[c\right]_n = \left[a+b\right]_n +
+        \left[c\right]_n = \left[a+b+c\right]_n = \left[a\right]_n + \left[b+c\right]_n = \left[a\right]_n + \left(\left[b\right]_n + \left[c\right]_n\right)$ (\textit{associatività})
+        \item $\forall \left[a\right]_n \in \ZZ/n\ZZ, \, \left[a\right]_n + 0 = \left[a\right]_n$ (\textit{esistenza dell'elem. neutro})
+        \item $\forall \left[a\right]_n \in \ZZ/n\ZZ, \, \exists \left[-a\right]_n \in \ZZ/n\ZZ \mid \left[a\right]_n + \left[-a\right]_n = 0$ (\textit{esistenza dell'elem. inverso})
+    \end{itemize}
+\end{example}
+
+\begin{example}[Gruppo simmetrico]
+    L'insieme $S_n$ delle funzioni bigettive da $X_n = \{1, 2, \ldots, n\}$ in sé stesso è un
+    gruppo rispetto all'operazione di composizione. Infatti:
+
+    \begin{itemize}
+        \item $\forall f, g \in S_n, \, f \circ g \in S_n$ (\textit{chiusura rispetto all'operazione})
+        \item $\forall f, g, h \in S_n, \, (f \circ g) \circ h = f \circ (g \circ h)$ (\textit{associatività})
+        \item $\exists e = \Id \in S_n \mid f \circ e = f = e \circ f \forall f \in S_n$ (\textit{esistenza dell'elem. neutro})
+        \item $\forall f \in S_n, \, \exists f^{-1} \in S_n \mid f \circ f^{-1} = e$ (\textit{esistenza dell'elem. inverso})
+    \end{itemize}
+\end{example}
+
+Le proprietà date dalla definizione di un gruppo ci permettono immediatamente di desumere
+altre proprietà fondamentali, e che sulle quali faremo affidamento d'ora in poi.
+
+\begin{theorem}
+    L'inverso $a^{-1}$ di un elemento $a$ di un gruppo $G$ è unico.
+\end{theorem}
+
+\begin{proof}
+    Supponiamo che $b$ e $c$ siano due elementi inversi distinti di $a$. Allora
+    $b=b\cdot e=b\cdot \underbrace{(a \cdot c)}_{=e}=\underbrace{(b \cdot a)}_{=e} \cdot c=c$, \Lightning. Pertanto l'inverso è unico.
+\end{proof}
