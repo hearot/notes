@@ -6,3 +6,7 @@
 *.toc
 *.out
 *.pre
+*.bbl
+*.bcf
+*.blg
+*.run.xml

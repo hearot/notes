@@ -1,0 +1,53 @@
+\section{Campi di spezzamento}
+
+\begin{theorem}
+    \label{th:esistenza_spezzamento}
+    Sia $A$ un campo, e sia $f(x) \in A[x]$.
+    Allora esiste sempre un estensione di $A$ in cui siano
+    contenute tutte le radici di $f(x)$.
+\end{theorem}
+
+\begin{proof}
+    Si dimostra il teorema applicando il principio di induzione sul
+    grado di $f(X)$. \\
+
+    \ (\textit{passo base}) \,Sia $\deg f(x) = 0$. Allora $A$ stesso è un
+    campo in cui sono contenute tutte le radici, dacché esse non esistono. \\
+
+    \ (\textit{passo induttivo}) \,Sia $\deg f(x) = n$. Sia $f_1(x)$ un
+    irriducibile di $f(x)$ e sia $\gamma(x) \in A[x]$ tale che
+    $f(x)=f_1(x)\gamma(x)$. Allora, per il \thref{th:campo_quoziente_irriducibile}
+    $A[x]/(f_1(x))$ è un campo, in cui, per la \propref{prop:radice_quoziente},
+    $f_1(x)$ ammette radice. \\
+
+    Poiché $\deg \gamma(x) < n$, per il passo induttivo
+    esiste un campo $C$ che estende $A[x]/(f_1(x))$ in cui risiedono tutte le sue radici. Dacché $C$ contiene $A[x]/(f_1(x))$, sia le radici
+    di $f_1(x)$ che di $\gamma(x)$ risiedono in $C$. Tuttavia queste sono
+    tutte le radici di $f(x)$, si conclude che $C$, che è un'estensione di $A[x]/(f_1(x))$, e quindi anche di $A$, è il campo ricercato.
+\end{proof}
+
+Pertanto ora è possibile enunciare la definizione di \textit{campo di spezzamento}.
+
+\begin{definition}
+    Si definisce \textbf{campo di spezzamento} di un polinomio $f(x) \in A[x]$ un
+    campo $C$ con le seguenti caratteristiche:
+
+    \begin{itemize}
+        \item $f(x)$ si fattorizza in $C[x]$ come prodotto di irriducibili di
+              primo grado (i.e. in $C[x]$ risiedono tutte le radici di $f(x)$),
+        \item Se $B$ è un campo tale che $A \subseteq B \subsetneq C$, allora
+              $f(x)$ non si fattorizza in $B[x]$ come prodotto di irriducibili di
+              primo grado.
+    \end{itemize}
+\end{definition}
+
+\begin{remark*}
+    Per il \thref{th:esistenza_spezzamento} esiste sempre un campo di spezzamento
+    di un polinomio, dunque la definizione data è una buona definizione.
+\end{remark*}
+
+\begin{remark*}
+    In generale i campi di spezzamento non sono uguali, sebbene siano tutti
+    isomorfi tra loro\footnote{Per la dimostrazione di questo risultato
+        si rimanda a TODO}.
+\end{remark*}

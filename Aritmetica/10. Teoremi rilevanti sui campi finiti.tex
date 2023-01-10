@@ -1,0 +1,203 @@
+\section{Teoremi rilevanti sui campi finiti}
+
+\subsection{Campo di spezzamento di un irriducibile in $\FFpp$}
+
+\begin{theorem}
+    Sia $f(x)$ un polinomio irriducibile in $\FFpp$ e sia
+    $n$ il suo grado. Allora $\FFpn$ è il suo campo
+    di spezzamento.
+\end{theorem}
+
+\begin{proof}
+    Dacché $f(x)$ è irriducibile, $\FFpp/((f(x))$ è un
+    campo con $p^n$ elementi, ed è quindi isomorfo
+    a $\FFpn$. \\
+    
+    Sia $\alpha = x + (f(x))$ una radice di $f(x)$
+    in $\FFpn$. Dal momento che $f(x)$ è irriducibile in
+    $\FFpp$, esso è il polinomio minimo di $\alpha$. Tuttavia,
+    poiché $\alpha \in \FFpn$, $\alpha$ è anche radice
+    di $x^{p^n}-x$. Pertanto si deduce che $f(x)$ divide
+    $x^{p^n}-x$. \\
+    
+    Dunque, poiché $x^{p^n}-x$ in $\FFpn$ è prodotto di
+    fattori lineari, tutte le radici di $f(x)$ sono già
+    in $\FFpn$. \\
+    
+    Inoltre, $\FFpn$ è il più piccolo sottocampo contenente
+    $\alpha$, dacché $\FFpn \cong \FFpp/(f(x)) \cong \FFpp(\alpha)$.
+    Quindi si deduce che $\FFpn$ è un campo di spezzamento per
+    $f(x)$, ossia la tesi.
+\end{proof}
+
+\begin{lemma}
+    \label{lem:frobexp}
+    Sia $f(x)$ un irriducibile di grado $n$ su $\FFpp[x]$ e sia $\alpha$
+    una sua radice in $\FFpn$. Allora $f(\Frobexp^k(\alpha))=0$, $\forall k \geq 0$
+    \footnote{$\Frob$ è l'omomorfismo di Frobenius, definito come $\Frob : \FFpp \to \FFpp$,
+    $a \mapsto a^p$.}.
+\end{lemma}
+
+\begin{proof} Sia $f(x) = a_n x^n + \ldots + a_0$ a coefficienti in $\FFpp$.
+    Si dimostra la tesi applicando il principio di induzione su $k$. \\
+    
+    \ (\textit{passo base})\; $f(\Frobexp^0(\alpha))=f(\alpha)=0$. \\
+    
+    \ (\textit{passo induttivo})\; Per l'ipotesi induttiva, $f(\Frobexp^{k-1}(\alpha))=0$.
+        Allora, si verifica algebricamente che:
+        
+        \begin{multline*}
+            f(\Frobexp^k(\alpha)) = a_n (\Frobexp^k(\alpha))^n + \ldots + a_0 =
+            \Frob(a_n) \Frob((\Frobexp^{k-1}(\alpha))^n) + \ldots + \Frob(a_0) = \\
+            \Frob(f(\Frobexp^{k-1}(\alpha))) = \Frob(0) = 0,
+        \end{multline*}
+            
+        \vskip 0.1in
+        
+        dove si è usato che $\Frob(a_i) = a_i$, $\forall 0 \leq i \leq n$, dacché
+        ogni elemento di $\FFpp$ è radice di $x^p-x$.
+    
+\end{proof}
+
+\begin{theorem}
+    Sia $f(x)$ un irriducibile di grado $n$ su $\FFpp[x]$ e sia $\alpha$ una
+    sua radice in $\FFpn$. Allora vale la seguente fattorizzazione
+    in $\FFpn$:
+    
+    \[ f(x) = \prod_{i=0}^{n-1} \left(x - \alpha^{p^i}\right) = \prod_{i=0}^{n-1} \left(x - \Frobexp^i(\alpha)\right), \]
+    
+    \vskip 0.1in
+    
+    dove ogni fattore non è associato.
+\end{theorem}
+
+\begin{proof}
+    Si verifica innanzitutto che vale chiaramente che $\alpha^{p^i} = \Frobexp^i(\alpha)$.
+    Dal momento che $\alpha$ è radice, allora ogni $\alpha^{p^i}$ lo è, per il
+    \lemref{lem:frobexp}. \\
+    
+    Affinché tutti i fattori della moltiplicazione non siano associati è sufficiente
+    dimostrare che $n$ è il più piccolo esponente $j$ per cui $\Frobexp^j(\alpha)=\alpha$.
+    Infatti, siano $\Frobexp^i(\alpha)=\Frobexp^j(\alpha)$ con $0\leq j < i < n$, allora,
+    applicando più volte $\Frob$, si ricava che:
+    
+    \[ \Frobexp^n(\alpha)=\Frobexp^{j+n-i}(\alpha) \implies \Frobexp^{j+n-i}(\alpha)=
+        \alpha, \]
+    
+    \vskip 0.1in
+    
+    che è assurdo, dacché $j < i < n \implies j+n-i < n$, \Lightning{}. \\
+    
+    Innanzitutto, si verifica che $\Frobexp^{n}(\alpha)=\alpha^{p^n}=\alpha$, dacché
+    $\alpha \in \FFpn$. Infine, sia $t$ il più piccolo esponente $j$ per cui
+    $\Frobexp^j(\alpha)=\alpha$. Se $j$ fosse minore di $n$, $\alpha$ sarebbe
+    radice di $x^{p^t}-x$. Tuttavia questo è assurdo, dal momento che così
+    $\alpha$ apparterrebbe a $\FFp{t} \neq \FFpn$, quando invece il più
+    piccolo campo che lo contiene è $\FFpp(\alpha) \cong \FFpp[x]/(f(x)) \cong \FFpn$,
+    \Lightning{}.
+\end{proof}
+
+\subsection{L'inclusione $\FFpm \subseteq \FFpn$ e il polinomio $x^{p^n}-x$}
+
+\begin{lemma}
+    \label{lem:alpha_radice}
+    Sia $\alpha$ una radice di $x^{p^d}-x$ con $d \mid n$. Allora
+    $\alpha$ è anche una radice di $x^{p^n}-x$.
+\end{lemma}
+
+\begin{proof} Sia $s \in \NN$ tale che $n=ds$.
+    Si verifica la tesi applicando il principio di induzione su $k \in \NN$. \\
+    
+    \ (\textit{passo base})\; Per ipotesi, $\alpha^{p^d}=\alpha$. \\
+    
+    \ (\textit{passo induttivo})\; Per ipotesi induttiva, $\alpha^{p^{(k-1)d}}=\alpha$. Allora si ricava che:
+    
+    \[ \alpha^{p^{(k-1)d}}=\alpha \implies \alpha^{p^{kd}}=\alpha^{p^d}=\alpha. \]
+    
+    \vskip 0.1in
+    
+    In particolare, $\alpha^{p^n} = \alpha^{p^{ds}} = \alpha$, da cui la tesi.
+    
+\end{proof}
+
+\begin{theorem}
+    \label{th:inclusione}
+    $\FFpm \subseteq \FFpn$ se e solo se $m \mid n$.
+\end{theorem}
+
+\begin{proof}
+    Si dimostrano le due implicazioni separatamente. \\
+
+    \ ($\implies$)\; Dal momento che $\FFpm \subseteq \FFpn$,
+        si ricava la seguente catena di estensioni:
+        
+        \[ \FFpp \subseteq \FFpm \subseteq \FFpn, \]
+        
+        \vskip 0.1in
+        
+        dalla quale, applicando il \textit{Teorema delle Torri Algebriche},
+        si desume la seguente equazione:
+        
+        \[ \underbrace{[\FFpn : \FFpp]}_n = [\FFpn : \FFpm] \underbrace{[\FFpm : \FFpp]}_d, \]
+        
+        e quindi che $m$ divide $n$. \\
+        
+    \ ($\,\Longleftarrow\,\,$)\; Sia $m \mid n$. Si consideri $\alpha \in \FFpm$. $\alpha$
+        è sicuramente radice di $x^{p^m}-x$, e poiché $m$ divide $n$, è
+        anche radice di $x^{p^n}-x$, per il \lemref{lem:alpha_radice}. Allora
+        $\alpha$ appartiene al campo di spezzamento di $x^{p^n}-x$ su $\FFpp$,
+        ossia $\FFpn$. Pertanto $\FFpm \subseteq \FFpn$. \\
+\end{proof}
+
+\begin{corollary}
+    $\forall 1 \leq i \leq n$. Allora, detta $m_i$ il grado di $g_i(x)$, il
+    campo di spezzamento di $f(x)$ è $\FFp{k}$, dove $k = \mcm(m_1, m_2, \ldots, m_n)$.
+\end{corollary}
+
+\begin{proof}
+    Il campo di spezzamento di $f(x)$ è il più piccolo campo rispetto all'inclusione
+    che ne contenga tutte le radici, ossia il più piccolo campo che contenga
+    $\FFp{m_1}$, $\FFp{m_2}$, $\ldots,\, \FFp{m_n}$. Si dimostra che tale campo
+    è proprio $\FFp{k}$. \\
+    
+    Innanzitutto $\FFp{k}$, per il \thref{th:inclusione}, contiene tutti i campi di spezzamento dei fattori irriducibili di $f(x)$, dacché $m_i$ divide $k$ $\forall 1 \leq i \leq n$. \\
+    
+    Sia supponga esista adesso un altro campo $\FFp{t} \subseteq \FFp{k}$ con tutte le
+    radici. Sicuramente $t \mid k$, per il \thref{th:inclusione}. Inoltre, dal momento
+    che dovrebbe includere ogni campo $\FFp{m_i}$, sempre per il \thref{th:inclusione},
+    $m_i$ divide $t$ $\forall 1 \leq i \leq n$. \\
+    
+    Allora $t$ è un multiplo comune di tutti i $m_i$, e quindi $k$, in quanto minimo
+    comune multiplo, lo divide. Si conclude allora che $t = k$, e quindi che
+    $\FFp{k}$ è un campo di spezzamento di $f(x)$.
+\end{proof}
+
+\begin{theorem}
+    $x^{p^n}-x$ è il prodotto di tutti i polinomi irriducibili in $\FFpp$
+    di grado divisore di $n$.
+\end{theorem}
+
+\begin{proof}
+    La proposizione è equivalente a affermare che ogni polinomio irriducibile in $\FFpp$
+    ha grado divisore di $n$ se e solo se divide $x^{p^n}-x$. Si dimostrano le
+    due implicazioni separatamente. \\
+    
+    \ ($\implies$)\; Sia $f(x)$ un polinomio irriducibile in $\FFpp$ di grado $d$, con
+        $d \mid n$. Si consideri allora il campo $\FFpd \cong \FFpp/(f(x))$, e
+        sia $\alpha$ una radice di $f(x)$ in tale campo. \\
+        
+        Per il \lemref{lem:alpha_radice} si verifica che $\alpha$ è anche una radice
+        di $x^{p^n}-x$. Poiché $f(x)$ è irriducibile, esso è il polinomio minimo
+        di $\alpha$, e quindi si deduce che $f(x)$ divide $x^{p^n}-x$. \\
+    
+    \ ($\,\Longleftarrow\,\,$)\; Sia $f(x)$ un polinomio irriducibile in $\FFpp$ di grado
+        $d$ che divide $x^{p^n}-x$. Si consideri allora il campo $\FFpd \cong \FFpp/(f(x))$,
+        e sia $\alpha$ una radice di $f(x)$ in tale campo. Allora $\FFpd \cong
+        \FFpp(\alpha)$, dacché $f(x)$, in quanto irriducibile, è il polinomio minimo
+        di $\alpha$. \\
+        
+        Dacché $f(x)$ divide $x^{p^n}-x$, $\alpha$ è anche una radice
+        di $x^{p^n}-x$, e quindi che $\alpha \in \FFpn$. Dal momento che chiaramente
+        anche $\FFpp \subseteq \FFpn$, si deduce che $\FFpd \cong \FFpp(\alpha) \subseteq
+        \FFpn$. Allora, per il \thref{th:inclusione}, $d$ divide $n$.
+\end{proof}

@@ -1,0 +1,299 @@
+\section{I polinomi di un campo: $\KKx$}
+
+\subsection{Elementi preliminari}
+
+Prima di procedere ad enunciare le proprietà più
+rilevanti dell'anello dei polinomi $\KKx$, si ricorda
+che esso è un \textbf{anello euclideo} in cui la funzione
+grado coincide con il grado del polinomio, ossia
+$g = \deg$. Si enuncia
+ora invece la definizione di radice.
+
+\begin{definition}
+    Si dice che $\alpha \in \KK$ è una \textbf{radice} del polinomio
+    $f(x) \in \KKx$ se $f(\alpha)=0$.
+\end{definition}
+
+\begin{proposition}
+    \label{prop:radice_x_meno_alpha}
+    Se $\alpha \in \KK$ è una radice di $f(x) \in \KKx$, allora
+    $(x-\alpha)$ divide $f(x)$.
+\end{proposition}
+
+\begin{proof}
+    Dal momento che $\KKx$ è un anello euclideo, si può eseguire
+    la divisione euclidea tra $f(x)$ e $(x-\alpha)$, ossia
+    esistono $q(x)$, $r(x) \in \KKx$ tali che $f(x)=q(x)(x-\alpha)+r(x)$
+    con $\deg r(x) < \deg (x-\alpha)$ o con $r(x)=0$. \\
+
+    Se $r(x) \neq 0$, poiché $\deg r(x) < \deg (x-\alpha)$, si deduce
+    che $\deg r(x) = 0$, ossia che $r(x)$ è un invertibile. In entrambi
+    i casi, $r(x)$ è comunque una costante. Pertanto, valutando il
+    polinomio in $\alpha$, si ricava:
+
+    \[ 0=f(\alpha)=\underbrace{q(\alpha)(\alpha-\alpha)}_{=\,0} + r(\alpha), \]
+
+    da cui $r(\alpha)=0$. Quindi $f(x)=q(x)(x-\alpha)$, e si verifica
+    la tesi.
+\end{proof}
+
+\begin{theorem}
+    \label{th:al_più_n_radici}
+    Sia $f(x) \in \KKx$ di grado $n$. Allora $f(x)$ ha al più
+    $n$ radici.
+\end{theorem}
+
+\begin{proof} Se $n$ è nullo, allora $f(x)$ è una costante
+    non nulla, e quindi non ammette radici, in accordo alla tesi. \\
+
+    Sia allora $n \geq 1$. Se $f(x)$ non ha radici in $\KK$, allora
+    la tesi è ancora soddisfatta. Altrimenti sia $\zeta_1$ una radice  di $f(x)$. Si divida $f(x)$ per
+    $(x-\zeta_1)$ e se ne prende il quoziente $q_1(x)$, mentre si
+    ignori il resto, che,
+    per la \textit{Proposizione \ref{prop:radice_x_meno_alpha}},
+    è nullo. \\
+
+    Si reiteri il procedimento utilizzando $q_1(x)$ al
+    posto di $f(x)$ fino a quando il grado del quoziente non è nullo o
+    il quoziente non ammette radici in $\KK$, e si chiami quest'ultimo
+    quoziente $\lambda(x)$.
+    Infatti, poiché i gradi dei quozienti diminuiscono di $1$ ad
+    ogni iterazione, è garantito che l'algoritmo termini al più
+    dopo $n$ iterazioni. \\
+
+    In questo modo, numerando le radici, si può scrivere $f(x)$ come:
+
+    \begin{equation}
+        \label{eq:fattorizzazione_fx}
+        f(x)=\alpha(x-\zeta_1)(x-\zeta_2)\cdots(x-\zeta_k)\lambda(x).
+    \end{equation}
+
+    \vskip 0.1in
+
+    Si osserva che $x-\zeta_i$ è irriducibile $\forall 1 \leq i \leq k$.
+    Se $f(x)$ ammettesse un'altra fattorizzazione in cui compaia
+    un fattore $x-\alpha$ con $\alpha \neq \zeta_i$ $\forall 1 \leq i \leq k$, allora $f(x)$ ammetterebbe due fattorizzazioni in
+    irriducibili, dacché $x-\alpha$ non sarebbe un associato
+    di nessuno dei $x-\zeta_i$, né tantomeno di un
+    irriducibile $\lambda(x)$. \\
+
+    Se infatti $x-\alpha$ fosse un associato di un
+    irriducibile $\lambda(x)$, $x-\alpha$ dividerebbe
+    $\lambda(x)$, e quindi $\lambda(x)$ ammetterebbe $\alpha$ come radice. Se $\lambda(x)$
+    è una costante, questo è a priori assurdo, \Lightning{}. Se invece
+    $\lambda(x)$ non è una costante, il fatto che ammetta una radice contraddirebbe il funzionamento
+    dell'algoritmo di fattorizzazione espresso in precedenza, \Lightning{}. Quindi $x-\alpha$ non è associato di nessun irriducibile di $\lambda(x)$. \\
+
+    Allora il fatto che $f(x)$ ammetta due fattorizzazioni in
+    irriducibili è assurdo, dacché $\KKx$ è un anello euclideo, e
+    quindi un UFD, \Lightning{}. Quindi le radici sono esattamente $k \leq n$, da cui la tesi.
+\end{proof}
+
+\subsection{Sottogruppi moltiplicativi finiti di $\KK$}
+
+Si illustra adesso un teorema che riguarda i sottogruppi
+moltiplicativi finiti di $\KK$, da cui conseguirà,
+per esempio, che $\ZZ_p^*$ è sempre ciclico, per
+qualsiasi $p$ primo. \\
+
+\begin{lemma}
+    \label{lem:somma_phi_n}
+    Per ogni $n \in \NN$ vale la seguente identità:
+
+    \[ n = \sum_{d \mid n} \varphi(d). \]
+\end{lemma}
+
+\begin{proof}
+    Si consideri il gruppo ciclico $\ZZ_n$ per $n \in \NN$.
+    Si osserva che $\card{\ZZ_n} = n$. \\
+
+    Si definisca $X_d$ come l'insieme degli elementi di $G$
+    di ordine $d$. Dal momento che ogni elemento appartiene
+    a uno e uno solo di questi $X_d$, per ogni divisore
+    $d$ di $n$, allora si può partizionare $G$ nel
+    seguente modo:
+
+    \begin{equation*}
+        G = \bigcup_{d \mid n} X_d.
+    \end{equation*}
+
+    Dal momento che $\ZZ_n$ è ciclico, ogni $X_d$ ha esattamente
+    $\varphi(d)$ elementi, e dunque si deduce che:
+
+    \begin{equation*}
+        n = \card{G} = \sum_{d \mid n} \card{X_d} =  \sum_{d \mid n} \varphi(d),
+    \end{equation*}
+
+    ossia la tesi.
+\end{proof}
+
+\begin{theorem}
+    Un sottogruppo moltiplicativo finito di un campo
+    $\KK$ è sempre ciclico.
+\end{theorem}
+
+\begin{proof}
+    Sia $G$ un sottogruppo finito di un campo $\KK$ definito
+    sulla sua operazione di moltiplicazione, e sia
+    $\card{G} = n$. \\
+
+    Si definisca $X_d$ come l'insieme degli elementi di $G$
+    di ordine $d$. Dal momento che ogni elemento appartiene
+    a uno e uno solo di questi $X_d$, per ogni divisore
+    $d$ di $n$, allora si può partizionare $G$ nel
+    seguente modo:
+
+    \begin{equation*}
+        G = \bigcup_{d \mid n} X_d,
+    \end{equation*}
+
+    da cui:
+
+    \begin{equation}
+        \label{eq:partizione_g_xd}
+        n = \card{G} = \sum_{d \mid n} \card{X_d}.
+    \end{equation}
+
+    \vskip 0.1in
+
+    Dal \lemref{lem:somma_phi_n} e da \eqref{eq:partizione_g_xd},
+    si ricava infine la seguente equazione:
+
+    \begin{equation}
+        \label{eq:uguaglianza_xd}
+        \sum_{d \mid n} \card{X_d} = n = \sum_{d \mid n} \varphi(d).
+    \end{equation}
+
+    Adesso vi sono due casi: o $\card{X_n} > 0$ o $\card{X_n} = 0$. \\
+
+    Nel primo caso si concluderebbe che esiste almeno un elemento in
+    $G$ di ordine $n$, e quindi che esiste un generatore con cui
+    $G$ è ciclico, ossia la tesi. \\
+
+    Nel secondo caso si dimostra un assurdo. Dal momento che
+    $\card{X_n} = 0$, esiste sicuramente un divisore proprio
+    $d$ di $n$ tale che $\card{X_d} > \varphi(d)$. Altrimenti,
+    se $\card{X_d} \leq \varphi(d)$ per ogni divisore $d$,
+    si ricaverebbe la seguente disuguaglianza:
+
+    \[ \sum_{\substack{d \mid n \\ d \neq n}} \card{X_d} \leq \sum_{
+            \substack{d \mid n \\ d \neq n}} \varphi(d) \implies \sum_{d \mid n} \card{X_d}
+        \overbrace{=}^{\card{X_n}=0} \sum_{\substack{d \mid n \\ d \neq n}} \card{X_d}
+        \leq \sum_{\substack{d \mid n \\ d \neq n}} \varphi(d)
+        \overbrace{<}^{\varphi(n) \geq 1} \sum_{d \mid n} \varphi(d).\]
+
+    \vskip 0.1in
+
+    Tuttavia questo è un assurdo, dal momento che per \eqref{eq:uguaglianza_xd}
+    deve valere l'uguaglianza, \Lightning{}. \\
+
+    Sia $g \in X_d$ e si consideri $(g)$, il sottogruppo generato da $g$.
+    Vale in particolare che $\card{(g)} = d$. \\
+
+    Si consideri adesso il polinomio $f(x)= x^d-1 \in \KK[x]$. Tutti e $d$ gli
+    elementi di $(g)$ sono già soluzione di $f(x)$. Tuttavia, poiché
+    $\card{X_d} > \varphi(d)$, esiste sicuramente un elemento $h$ in $X_d$ che
+    non appartiene a $(g)$. Infatti se tutti gli elementi di $X_d$ appartenessero
+    a $(g)$ vi sarebbero più di $\varphi(d)$ generatori, \Lightning{}. \\
+
+    Infine, poiché $h \in X_d$, anch'esso è soluzione di $f(x)$. Questo è
+    però un assurdo, poiché, per il \thref{th:al_più_n_radici}, $f(x)$
+    ammette al più $d$ radici, mentre così ne avrebbe almeno $d+1$, \Lightning{}. \\
+
+    Quindi $\card{X_d}>0$, e $G$ è ciclico.
+\end{proof}
+
+\subsection{Il quoziente $\KKx/(f(x))$}
+
+Nell'ambito dello studio delle radici di un polinomio,
+il quoziente $\KKx/(f(x))$ gioca un ruolo fondamentale.
+Infatti, come vedremo in seguito, se $f(x)$ è irriducibile,
+questo diventa un campo, e, soprattutto, ammette sempre una
+radice per $f(x)$. \\
+
+In realtà, il quoziente $\KKx/(f(x))$ si comporta pressocché
+allo stesso modo dei più familiari $\ZZ/n\ZZ$. Infatti
+le principali regole dell'aritmetica modulare potrebbero
+essere estese anche a tale quoziente, senza particolari
+sacrifici. \\
+
+Si enuncia adesso un teorema importante, che è equivalente --
+anche nella dimostrazione -- all'analogo per i campi
+$\ZZ/p\ZZ$.
+
+\begin{theorem}
+    \label{th:campo_quoziente_irriducibile}
+    $\KKx/(f(x))$ è un campo se e solo se $f(x)$ è irriducibile.
+\end{theorem}
+
+\begin{proof}
+    Si dimostrano le due implicazioni separatamente. \\
+
+    ($\implies$)\; Sia $f(x) \in \KKx$ irriducibile. Affinché l'anello
+    commutativo $\KKx/(f(x))$ sia un campo è sufficiente dimostrare
+    che ogni suo elemento non nullo ammette un inverso moltiplicativo. \\
+
+    Sia $\alpha(x) + (f(x)) \in \KKx/(f(x))$ non nullo. Allora
+    $\alpha(x)$ non è divisibile da $f(x)$, e pertanto
+    $\MCD(\alpha(x), f(x))=1$\footnote{Si ricorda che in un PID la
+        nozione di \textit{massimo comun divisore} (MCD) è più ambigua
+        di quella di $\ZZ$. Infatti $\MCD(a,b)$ comprende tutti i
+        generatori dell'ideale $(a,b)$, e quindi tutti i suoi associati.
+        Pertanto si dirà $\MCD(a,b)$ uno qualsiasi di questi associati,
+        e nel nostro caso $1$ è un buon valore, dacché l'MCD deve essere
+        un associato di un'unità.}. \\
+
+    Allora, per l'\textit{Identità di Bézout}, esistono $\beta(x)$,
+    $\lambda(x) \in \KKx$ tali che:
+
+    \[ \alpha(x)\beta(x) + \lambda(x)f(x) = 1. \]
+
+    Dacché $\alpha(x)\beta(x)-1 \in (f(x))$, si deduce che
+    $\alpha(x)\beta(x)+(f(x))=1+(f(x))$, e quindi
+    $\beta(x) + (f(x))$ è l'inverso moltiplicativo di $\alpha(x) +
+        (f(x))$, da cui la dimostrazione dell'implicazione. \\
+
+    ($\,\Longleftarrow\,\,$)\; Si dimostra l'implicazione
+    contronominalmente. Sia $f(x) \in \KKx$ riducibile. Allora
+    esistono $\alpha(x)$ e $\beta(x)$ non
+    invertibili tali che $f(x)=\alpha(x)\beta(x)$, da cui si ricava che:
+
+    \[[\alpha(x)+(f(x))][\beta(x)+(f(x))]=f(x)+(f(x))=0+(f(x)),\]
+
+    \vskip 0.1in
+
+    ossia l'identità di $\KKx/(f(x))$. \\
+
+    Tuttavia, se $\KKx/(f(x))$ fosse un campo, e quindi un dominio,
+    ciò non sarebbe ammissibile, dacché non potrebbero esservi
+    divisori di zero. Quindi $\KKx/(f(x))$ non è un campo.
+
+\end{proof}
+
+\begin{remark*}
+    Una notazione per indicare un elemento di $\KKx/(f(x))$ alternativa
+    e più sintetica di $a+(f(x))$ è $\overline{a}$, qualora
+    sia noto nel contesto a quale $f(x)$ si fa riferimento.
+\end{remark*}
+
+\begin{proposition}
+    \label{prop:radice_quoziente}
+    Nell'anello $\KKx/(f(x))$ esiste sempre una radice di $f(x)$,
+    convertendo opportunamente i coefficienti da $\KK$ a $\KKx/(f(x))$.
+\end{proposition}
+
+\begin{proof}
+    Sia $\overline{x} = x + (f(x)) \in \KKx/(f(x))$ e si descriva $f(x)$ come:
+
+    \[ f(x)=a_nx^n+\ldots+a_0. \]
+
+    Allora, computando $f(x)$ in $\overline{x}$ e convertendone
+    i coefficienti, si ricava che:
+
+    \[f(\overline{x})=\overline{a_n} \, \overline{x}^n + \ldots + \overline{a_0} =
+        \overline{a_n x^n} + \ldots + \overline{a_0} = \overline{f(x)} =
+        \overline{0}.\]
+
+    Quindi $\overline{x}$ è una radice di $f(x)$, da cui la tesi.
+
+\end{proof}

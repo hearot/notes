@@ -262,7 +262,7 @@
 \DeclareMathOperator{\Ext}{Ext} % Ext functor
 \DeclareMathOperator{\Tor}{Tor} % Tor functor
 \newcommand{\gl}{\opname{\mathfrak{gl}}} % frak gl group
-% \renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak sl group chktex 6
+\def\sl{\opname{\mathfrak{sl}}} % frak sl group chktex 6
 
 % More script letters etc.
 \newcommand{\SA}{\mathcal A}
@@ -299,7 +299,7 @@
 %%fakesection Asymptote setup
 \ifevanasy
   \ifevanpatchasy
-    \usepackage{patch-asy}
+    \usepackage{patchasy}
   \else
     \usepackage{asymptote}
   \fi
@@ -359,9 +359,9 @@
   \ifevanauthor
     \title{} % empty title to avoid crashes
     \ifluatex
-      \author{Evan Chen《陳誼廷》}
+      \author{Gabriel Antonio Videtta}
     \else
-      \author{Evan Chen}
+      \author{Gabriel Antonio Videtta}
     \fi
     \date{\today}
   \fi
@@ -370,13 +370,13 @@
     \PassOptionsToPackage{usenames,svgnames,dvipsnames,table}{xcolor}
     \usepackage{xcolor}
     \ifevanhref
-      \usepackage[colorlinks=false]{hyperref}
+      \usepackage[colorlinks=true]{hyperref}
       \hypersetup{urlcolor=RubineRed,linkcolor=RoyalBlue,citecolor=ForestGreen}
     \fi
     \usepackage[nameinlink]{cleveref}
   \fi
 
-  %%fakesection New Theorem Styles
+  %%fakesection New theorem styles
   \ifevanthm
     \usepackage{amsthm}
     \usepackage{thmtools}
@@ -406,6 +406,23 @@
       headpunct={\\[3pt]},
       postheadspace={0pt}
     ]{thmbluebox}
+    
+    \mdfdefinestyle{mdbluebox2}{%
+      roundcorner=10pt,
+      linewidth=1pt,
+      skipabove=12pt,
+      innerbottommargin=9pt,
+      skipbelow=2pt,
+      linecolor=blue,
+      nobreak=true,
+      backgroundcolor=BlueViolet!9,
+    }
+    \declaretheoremstyle[
+      headfont=\sffamily\bfseries\color{RoyalPurple},
+      mdframed={style=mdbluebox2},
+      headpunct={\\[3pt]},
+      postheadspace={0pt}
+    ]{thmbluebox2}
 
     \mdfdefinestyle{mdredbox}{%
       linewidth=0.5pt,
@@ -426,6 +443,23 @@
       headpunct={\\[3pt]},
       postheadspace={0pt},
     ]{thmredbox}
+    
+    \mdfdefinestyle{mdredbox2}{%
+      roundcorner=10pt,
+      linewidth=1pt,
+      skipabove=12pt,
+      innerbottommargin=9pt,
+      skipbelow=2pt,
+      linecolor=red,
+      nobreak=true,
+      backgroundcolor=WildStrawberry!5,
+    }
+    \declaretheoremstyle[
+      headfont=\sffamily\bfseries\color{Maroon},
+      mdframed={style=mdredbox2},
+      headpunct={\\[3pt]},
+      postheadspace={0pt}
+    ]{thmredbox2}
 
     \mdfdefinestyle{mdgreenbox}{%
       skipabove=8pt,
@@ -445,6 +479,23 @@
       mdframed={style=mdgreenbox},
       headpunct={ --- },
     ]{thmgreenbox}
+    
+    \mdfdefinestyle{mdgreenbox2}{%
+      roundcorner=10pt,
+      linewidth=1pt,
+      skipabove=12pt,
+      innerbottommargin=9pt,
+      skipbelow=2pt,
+      linecolor=ForestGreen,
+      nobreak=true,
+      backgroundcolor=ForestGreen!5,
+    }
+    \declaretheoremstyle[
+      headfont=\sffamily\bfseries\color{ForestGreen!70!black},
+      mdframed={style=mdgreenbox2},
+      headpunct={\\[3pt]},
+      postheadspace={0pt}
+    ]{thmgreenbox2}
 
     \mdfdefinestyle{mdblackbox}{%
       skipabove=8pt,
@@ -454,7 +505,7 @@
       topline=false,
       bottomline=false,
       linecolor=black,
-      backgroundcolor=RedViolet!5!gray!5,
+      backgroundcolor=RedViolet!5!gray!10,
     }
     \declaretheoremstyle[
       headfont=\bfseries,
@@ -463,6 +514,24 @@
       spacebelow=0pt,
       mdframed={style=mdblackbox}
     ]{thmblackbox}
+    
+    \mdfdefinestyle{mdblackbox2}{%
+      skipabove=8pt,
+      linewidth=3pt,
+      rightline=false,
+      leftline=true,
+      topline=false,
+      bottomline=false,
+      linecolor=gray,
+      backgroundcolor=RedViolet!5!gray!10,
+    }
+    \declaretheoremstyle[
+      headfont=\bfseries,
+      bodyfont=\normalfont\small,
+      spaceabove=0pt,
+      spacebelow=0pt,
+      mdframed={style=mdblackbox2}
+    ]{thmblackbox2}
 
     \newcommand{\listhack}{$\empty$\vspace{-2em}}
   \fi
@@ -479,18 +548,18 @@
         \declaretheorem[%
         style=thmbluebox,name=Teorema]{theorem}
       \fi
-      \declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
-      \declaretheorem[style=thmbluebox,name=Proposizione,sibling=theorem]{proposition}
-      \declaretheorem[style=thmbluebox,name=Corollario,sibling=theorem]{corollary}
+      \declaretheorem[style=thmgreenbox2,name=Lemma,sibling=theorem]{lemma}
+      \declaretheorem[style=thmredbox2,name=Proposizione,sibling=theorem]{proposition}
+      \declaretheorem[style=thmbluebox2,name=Corollario,sibling=theorem]{corollary}
       \declaretheorem[style=thmbluebox,name=Teorema,numbered=no]{theorem*}
-      \declaretheorem[style=thmbluebox,name=Lemma,numbered=no]{lemma*}
-      \declaretheorem[style=thmbluebox,name=Proposizione,numbered=no]{proposition*}
-      \declaretheorem[style=thmbluebox,name=Corollario,numbered=no]{corollary*}
+      \declaretheorem[style=thmgreenbox2,name=Lemma,numbered=no]{lemma*}
+      \declaretheorem[style=thmredbox2,name=Proposizione,numbered=no]{proposition*}
+      \declaretheorem[style=thmbluebox2,name=Corollario,numbered=no]{corollary*}
     \else
       \ifevansecthm
-        \declaretheorem[name=Theorem,numberwithin=section]{theorem}
+        \declaretheorem[name=Teorema,numberwithin=section]{theorem}
       \else
-        \declaretheorem[name=Theorem]{theorem}
+        \declaretheorem[name=Teorema]{theorem}
       \fi
       \declaretheorem[name=Lemma,sibling=theorem]{lemma}
       \declaretheorem[name=Proposizione,sibling=theorem]{proposition}
@@ -502,13 +571,9 @@
     \fi
 
     \ifevanmdthm
-      \declaretheorem[style=thmgreenbox,name=Algoritmo,sibling=theorem]{algorithm}
-      \declaretheorem[style=thmgreenbox,name=Algoritmo,numbered=no]{algorithm*}
       \declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
       \declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
     \else
-      \declaretheorem[name=Algoritmo,sibling=theorem]{algorithm}
-      \declaretheorem[name=Algoritmo,numbered=no]{algorithm*}
       \declaretheorem[name=Claim,sibling=theorem]{claim}
       \declaretheorem[name=Claim,numbered=no]{claim*}
     \fi
@@ -524,31 +589,33 @@
     % Remark-style theorems
     %\theoremstyle{remark}
     \ifevanmdthm
-      \declaretheorem[style=thmgreenbox,name=Osservazione,sibling=theorem]{remark}
-      \declaretheorem[style=thmgreenbox,name=Osservazione,numbered=no]{remark*}
+      \declaretheorem[style=thmblackbox, name=Definizione,sibling=theorem]{definition}
+      \declaretheorem[style=thmblackbox, name=Definizione,numbered=no]{definition*}
+      \declaretheorem[style=thmblackbox2,name=Osservazione,sibling=theorem]{remark}
+      \declaretheorem[style=thmblackbox2,name=Osservazione,numbered=no]{remark*}
     \else
+      \declaretheorem[name=Definizione,sibling=theorem]{definition}
+      \declaretheorem[name=Definizione,numbered=no]{definition*}
       \declaretheorem[name=Osservazione,sibling=theorem]{remark}
       \declaretheorem[name=Osservazione,numbered=no]{remark*}
     \fi
 
     \declaretheorem[name=Congettura,sibling=theorem]{conjecture}
     \declaretheorem[name=Congettura,numbered=no]{conjecture*}
-    \declaretheorem[name=Definizione,sibling=theorem]{definition}
-    \declaretheorem[name=Definizione,numbered=no]{definition*}
     \declaretheorem[name=Esercizio,sibling=theorem]{exercise}
     \declaretheorem[name=Esercizio,numbered=no]{exercise*}
-    \declaretheorem[name=Fatto noto,sibling=theorem]{fact}
-    \declaretheorem[name=Fatto noto,numbered=no]{fact*}
+    \declaretheorem[name=Asserzione,sibling=theorem]{fact}
+    \declaretheorem[name=Asserzione,numbered=no]{fact*}
     \declaretheorem[name=Problema,sibling=theorem]{problem}
     \declaretheorem[name=Problema,numbered=no]{problem*}
     \declaretheorem[name=Domanda,sibling=theorem]{ques}
     \declaretheorem[name=Domanda,numbered=no]{ques*}
 
     \ifevanpkg
-      \Crefname{claim}{Claim}{Claims}
+      \Crefname{claim}{Claim}{Claim}
       \Crefname{conjecture}{Congettura}{Congetture}
-      \Crefname{exercise}{Esercizio}{Esercizio}
-      \Crefname{fact}{Fatto noto}{Fatti noti}
+      \Crefname{exercise}{Esercizio}{Esercizi}
+      \Crefname{fact}{Asserzione}{Asserzioni}
       \Crefname{problem}{Problema}{Problemi}
       \Crefname{ques}{Domanda}{Domande}
     \fi
@@ -622,15 +689,13 @@
     \usepackage[obeyFinal,textsize=scriptsize,shadow]{todonotes}
     \usepackage{textcomp}
     \usepackage{multirow}
+    \usepackage{ellipsis} % don't use ugly unicode ellipsis
     % Tiny optimizations:
     \usepackage{mathtools}
     \usepackage{microtype}
     \usepackage{xstring}
     \usepackage{wrapfig}
-    \ifevanbritish
-      % Use day-first date format
-      \usepackage[cleanlook,british]{isodate}
-    \fi
+    \ifevanbritish\usepackage[cleanlook,british]{isodate}\fi % day-first date
 
     % a list I like for walkthrough's --- Drew-style parts
     \newlist{walk}{enumerate}{3}
@@ -667,7 +732,7 @@
     \usetikzlibrary{decorations.pathmorphing}
   \fi
 
-  %%fakesection Page Setup
+  %%fakesection Page setup
   \ifevanfancy
     \@ifundefined{KOMAClassName}
     {
@@ -686,7 +751,7 @@
         \renewcommand{\headrulewidth}{0.5pt}
         \renewcommand{\footrulewidth}{0.0pt}
         \pagestyle{fancy}
-        \lhead{Evan Chen}
+        \lhead{Gabriel Antonio Videtta}
         \chead{}
         \rhead{\nouppercase{\leftmark}}
         \lfoot{}
@@ -738,7 +803,7 @@
       ]
     \else
       \ifevanchinese
-        \usepackage{babel}
+        \usepackage[italian]{babel}
         \usepackage[encapsulated]{CJK}
         \usepackage{ucs}
         \usepackage[utf8x]{inputenc}
