@@ -1,6 +1,6 @@
 \PassOptionsToPackage{main=italian}{babel}
 \documentclass[11pt]{scrartcl}
-\usepackage[sexy]{evan}
+\usepackage{evan}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{algorithm2e}
@@ -18,96 +18,6 @@
 \usepackage{xpatch}
 
 \addbibresource{bibliography.bib}
-
-\newcommand{\nsqrt}[2]{\!\sqrt[#1]{#2}\,}
-\newcommand{\card}[1]{\left|#1\right|}
-
-\newcommand{\zeroset}{\{0\}}
-\newcommand{\setminuszero}{\setminus \{0\}}
-
-\newcommand{\corref}[1]{\textit{Corollario \ref{#1}}}
-\newcommand{\exref}[1]{\textit{Esercizio \ref{#1}}}
-\newcommand{\exmplref}[1]{\textit{Esempio \ref{#1}}}
-\newcommand{\propref}[1]{\textit{Proposizione \ref{#1}}}
-\newcommand{\lemref}[1]{\textit{Lemma \ref{#1}}}
-\newcommand{\thref}[1]{\textit{Teorema \ref{#1}}}
-
-\newcommand{\BB}{\mathcal{B}}
-\newcommand{\HH}{\mathbb{H}}
-\newcommand{\KK}{\mathbb{K}}
-\newcommand{\ZZp}{\mathbb{Z}_p}
-
-\newcommand{\CCx}{\mathbb{C}[x]}
-\newcommand{\FFpp}{\mathbb{F}_p}
-\newcommand{\FFpd}{\mathbb{F}_{p^d}}
-\newcommand{\FFpm}{\mathbb{F}_{p^m}}
-\newcommand{\FFpn}{\mathbb{F}_{p^n}}
-\newcommand{\FFp}[1]{\mathbb{F}_{p^{#1}}}
-\newcommand{\KKx}{\mathbb{K}[x]}
-\newcommand{\QQx}{\mathbb{Q}[x]}
-\newcommand{\RRx}{\mathbb{R}[x]}
-\newcommand{\ZZi}{\mathbb{Z}[i]}
-\newcommand{\ZZom}{\mathbb{Z}[\omega]}
-\newcommand{\ZZpx}{\mathbb{Z}_p[x]}
-\newcommand{\ZZx}{\mathbb{Z}[x]}
-
-\renewcommand{\ii}{\mathbf{i}}
-\newcommand{\jj}{\mathbf{j}}
-\newcommand{\kk}{\mathbf{k}}
-
-\newcommand{\valalpha}{\varphi_\alpha}
-\newcommand{\Frob}{\mathcal{F}}
-\newcommand{\Frobexp}{\mathcal{F}{\mkern 1.5mu}}
-
-\newcommand{\dual}[1]{#1^{*}}
-\newcommand{\LL}[2]{\mathcal{L} \left(#1, \, #2\right)}
-\newcommand{\M}[1]{\mathcal{M}_{#1}\left(\KK\right)}
-\newcommand{\nsg}{\mathrel{\unlhd}}
-\renewcommand{\vec}[1]{\underline{#1}}
-
-\newcommand{\hatpi}{\hat{\pi}}
-\newcommand{\hatpip}{\hat{\pi}_p}
-
-\theoremstyle{definition}
-
-\DeclareMathOperator{\existsone}{\exists !}
-\DeclareMathOperator{\Imm}{Imm}
-\DeclareMathOperator{\MCD}{MCD}
-\DeclareMathOperator{\mcm}{mcm}
-\DeclareMathOperator{\tr}{tr}
-
-\let\oldemptyset\emptyset
-\let\emptyset\varnothing
-
-\let\oldcirc\circ
-\let\circ\undefined
-\DeclareMathOperator{\circ}{\oldcirc}
-
-\let\oldexists\exists
-\let\exists\undefined
-\DeclareMathOperator{\exists}{\oldexists}
-
-\let\oldforall\forall
-\let\forall\undefined
-\DeclareMathOperator{\forall}{\oldforall}
-
-\let\oldnexists\nexists
-\let\nexists\undefined
-\DeclareMathOperator{\nexists}{\oldnexists}
-
-\let\oldland\land
-\let\land\undefined
-\DeclareMathOperator{\land}{\oldland}
-
-\let\oldlnot\lnot
-\let\lnot\undefined
-\DeclareMathOperator{\lnot}{\oldlnot}
-
-\let\oldlor\lor
-\let\lor\undefined
-\DeclareMathOperator{\lor}{\oldlor}
-
-\setlength\parindent{0pt}
 
 \begin{document}
 
@@ -192,7 +102,13 @@
 \thispagestyle{empty}
 ~\newpage
 
-\include{10. Teoremi rilevanti sui campi finiti}
+\include{10. Introduzione a teoria dei campi}
+
+\newpage
+\thispagestyle{empty}
+~\newpage
+
+\include{11. Teoremi rilevanti sui campi finiti}
 
 \newpage
 \thispagestyle{empty}

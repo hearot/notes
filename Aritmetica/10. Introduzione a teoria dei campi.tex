@@ -1,0 +1,285 @@
+\section{Introduzione alla teoria dei campi}
+
+\subsection{La caratteristica di un campo}
+
+Si consideri il seguente omomorfismo:
+
+\[ \psi : \ZZ \to \KK, \]
+
+\vskip 0.1in
+
+completamente determinato dalla condizione $\psi(1) = 1$, dacché
+$\ZZ$ è generato da $1$. Si studia innanzitutto il caso in cui
+$\Ker \psi = (0)$. In questo caso, $\psi$ è un monomorfismo, e per
+il \corref{cor:primo_isomorfismo_iniettivo}, $\ZZ \cong \Imm \psi$. \\
+
+Pertanto, $\KK$ ammetterebbe come sottoanello una copia isomorfa di $\ZZ$.
+Inoltre, poiché $\KK$ è un campo, deve anche ammetterne gli inversi, e quindi
+ammetterebbe come sottocampo una copia isomorfa di $\QQ$. La seguente
+definizione classificherà questi tipi di campo. \\
+
+\begin{definition}
+    Si dice che un campo $\KK$ è di \textbf{caratteristica zero} ($\Char \KK = 0$),
+    quando $\Ker \psi = (0)$.
+\end{definition}
+
+Altrimenti, se $\Ker \psi \neq (0)$, dacché $\ZZ$ è un anello euclideo,
+$\Ker \psi$ deve essere monogenerato da un intero $n$, ossia $\Ker \psi = (n)$. \\
+
+Tuttavia non tutti gli interi sono ammissibili. Sia infatti $n$ non primo, allora
+$n = ab$ con $a$, $b \neq \pm 1$. Si nota innanzitutto che $\psi(a) \neq 0$,
+se infatti fosse nullo, $n$ dovrebbe dividere $a$, impossibile dal momento
+che $\card{a} < \card{n}$, \Lightning{}. Analogamente anche $\psi(b) \neq 0$. \\
+
+Se $n$ fosse generatore di $\Ker \psi$ si ricaverebbe allora che:
+
+\[ \underbrace{\psi(a)}_{\neq\,0} \underbrace{\psi(b)}_{\neq\,0} = \psi(n) = 0, \]
+
+\vskip 0.1in
+
+che è assurdo, dal momento che $\KK$, in quanto campo, è anche un dominio.
+Quindi $n$ deve essere un numero primo. In particolare, allora, per
+il \nameref{th:primo_isomorfismo}, $\ZZp = \ZZ/(p) \cong \Imm \psi$,
+ossia $\KK$ contiene una copia isomorfa di $\ZZp$, a cui ci riferiremo
+semplicemente con $\FFpp$. \\
+
+Allora, poiché sia $\KK$ che $\FFpp$ sono campi, $\KK$ è uno spazio
+vettoriale su $\FFpp$. Si può dunque classificare quest'ultimo tipo di
+campi con la seguente definizione:
+
+\begin{definition}
+    Si dice che un campo $\KK$ è di \textbf{caratteristica $p$} ($\Char \KK = p$)
+    quando $\Ker \psi = (p)$, con $p$ primo.
+\end{definition}
+
+\begin{remark*}
+    La caratteristica di un campo \textbf{non} distingue i campi finiti
+    dai campi infiniti. Esistono infatti campi infiniti di caratteristica
+    $p$, come il campo delle funzioni razionali su $\ZZp$:
+
+    \[ \ZZ_p(x) =  \left\{ \frac{f(x)}{g(x)} \mid f(x),\, g(x) \in \ZZpx,\, g(x) \neq 0 \right\}. \]
+
+    \vskip 0.1in
+
+    Infatti $\psi(p) = p \, \psi(1) = 0$.
+\end{remark*}
+
+\subsection{Prime proprietà dei campi di caratteristica \texorpdfstring{$p$}{p}}
+
+Come si è appena visto, un campo $\KK$ di caratteristica $p$ contiene
+al suo interno un sottocampo $\FFpp$ isomorfo a $\ZZp$, ed è per questo
+uno spazio vettoriale su di esso. A partire da questa informazione si
+può dimostrare la seguente proposizione.
+
+\begin{proposition}
+    \label{prop:campo_char_p_prodotto_per_p}
+    Sia $\KK$ un campo di caratteristica $p$. Allora, per ogni
+    elemento $v$ di $\KK$, $pv=0$.
+\end{proposition}
+
+\begin{proof}
+    Considerando ogni elemento di $\KK$ come vettore e $p$ come
+    scalare, si ricava che:
+
+    \[ pv=(\underbrace{1+\ldots+1}_{p\text{ volte}})v=
+        (\underbrace{\psi(1)+\ldots+\psi(1)}_{p\text{ volte}})v=
+        \psi(p)v=0v=0. \]
+
+\end{proof}
+
+Mentre, partendo da questa proposizione, si può dimostrare il
+seguente teorema.
+
+\begin{theorem}[\textit{Teorema del binomio ingenuo}]
+    \label{th:binomio_ingenuo}
+    Siano $a$ e $b$ elementi di un campo di caratteristica $p$. Allora
+    $(a+b)^p = a^p + b^p$.
+\end{theorem}
+
+\begin{proof}
+    Per dimostrare la tesi si applica la formula del binomio di Newton
+    nel seguente modo:
+
+    \[ (a+b)^p = \sum_{i=0}^p \binom{p}{i} a^{p-i}b^p. \]
+
+    \vskip 0.1in
+
+    Tuttavia, dal momento che $p$ è un fattore di tutti i binomiali per
+    $1 \leq i \leq p-1$, tutti i termini computati con queste $i$
+    sono nulli per la \propref{prop:campo_char_p_prodotto_per_p}.
+    Si desume così l'identità della tesi.
+\end{proof}
+
+\subsection{L'omomorfismo di Frobenius}
+
+\begin{definition}
+    Dato un campo $\KK$ di caratteristica $p$, si definisce
+    \textbf{omomorfismo di Frobenius} per il campo $\KK$
+    la funzione:
+
+    \[ \Frob : \KK \to \KK,\, a \mapsto a^p. \]
+\end{definition}
+
+\begin{remark*}
+    In effetti, l'omomorfismo di Frobenius è un omomorfismo. \\
+
+    Infatti, $\Frob(1) = 1^p = 1$. Inoltre tale funzione
+    rispetta la linearità per il \nameref{th:binomio_ingenuo}:
+
+    \[ \Frob(a + b) = (a+b)^p = a^p + b^p = \Frob(a) + \Frob(b), \]
+
+    \vskip 0.1in
+
+    e chiaramente anche la moltiplicatività:
+
+    \[ \Frob(ab) = (ab)^p = a^p b^p = \Frob(a) \Frob(b). \]
+\end{remark*}
+
+\begin{proposition}
+    \label{prop:frobenius_monomorfismo}
+    L'omomorfismo di Frobenius di un campo $\KK$ di caratteristica
+    $p$ è un monomorfismo.
+\end{proposition}
+
+\begin{proof}
+    Si prenda in considerazione $\Ker \Frob$. Esso è sicuramente
+    un ideale diverso da $\KK$, dacché $1 \notin \Ker \Frob$.
+    Tuttavia, se $\Ker \Frob \neq (0)$, $\Ker \Frob$, dal
+    momento che $\KK$, in quanto campo, è un anello euclideo,
+    e quindi un PID, è monogenerato da un invertibile. \\
+
+    Se però così fosse, $\Ker \Frob$ coinciderebbe con il
+    campo $\KK$ stesso, \Lightning{}. Quindi $\Ker \Frob = (0)$,
+    da cui la tesi.
+\end{proof}
+
+\begin{proposition}
+    Sia $\KK$ un campo finito di caratteristica $p$. Allora
+    l'omomorfismo di Frobenius è un automorfismo.
+\end{proposition}
+
+\begin{proof}
+    Dalla \propref{prop:frobenius_monomorfismo} è noto che
+    $\Frob$ sia già un monomorfismo. Dal momento che
+    il dominio e il codominio sono lo stesso e constano
+    entrambi dunque di un numero finito di elementi,
+    se $\Frob$ non fosse surgettivo, vi sarebbe un elemento
+    di $\KK$ a cui non è associato nessun elemento di $\KK$
+    mediante $\Frob$. \\
+
+    Per il principio dei cassetti, allora, spartendo
+    $\card{\KK}$ elementi in $\card{\KK}-1$ elementi,
+    vi sarebbe almeno un elemento dell'immagine a cui
+    sarebbero associati due elementi del dominio. Tuttavia
+    questo è assurdo dal momento che $\Frob$ è un
+    monomorfismo. Quindi $\Frob$ è un epimorfismo. \\
+
+    Dacché $\Frob$ è contemporaneamente un endomorfismo,
+    un monomorfismo e un epimorfismo, è allora anche
+    un automorfismo.
+\end{proof}
+
+\begin{proposition}
+    \label{prop:punti_fissi_frobenius_campo}
+    Sia $\KK$ un campo di caratteristica $p$ e si
+    definisca l'insieme dei punti fissi del suo
+    omomorfismo di Frobenius:
+
+    \[ \Fix(\Frobexp^n) = \{ a \in \KK \mid \Frobexp^n(a) = a \} .\]
+
+    \vskip 0.1in
+
+    Allora $\Fix(\Frobexp^n)$ è un sottocampo di $\KK$.
+\end{proposition}
+
+\begin{proof}
+    Affinché $\Fix(\Frobexp^n)$ sia un sottocampo di $\KK$,
+    la sua somma e la sua moltiplicazione devono essere ben
+    definite, e ogni suo elemento deve ammettere un inverso
+    sia additivo che moltiplicativo. \\
+
+    Siano allora $a$, $b \in \Fix(\Frobexp^n)$.
+    $\Frobexp^n$ è un omomorfismo, in quanto è composizione
+    di omomorfismi (in particolare, dello stesso omomorfismo
+    $\Frobexp$). Sfruttando le proprietà
+    degli omomorfismi si dimostra dunque
+    che $a+b \in \Fix(\Frobexp^n)$:
+
+    \[ \Frobexp^n(a+b) = \Frobexp^n(a) + \Frobexp^n(b) = a+b, \]
+
+    \vskip 0.1in
+
+    e che $ab \in \Fix(\Frobexp^n)$:
+
+    \[ \Frobexp^n(ab) = \Frobexp^n(a)\Frobexp^n(b) = ab. \]
+
+    \vskip 0.1in
+
+    Analogamente si dimostra che $-a \in \Fix(\Frobexp^n)$:
+
+    \[ \Frobexp^n(-a) = -\Frobexp^n(a) = -a, \]
+
+    \vskip 0.1in
+
+    e che $a\inv \in \Fix(\Frobexp^n)$:
+
+    \[ \Frobexp^n(a\inv) = \Frobexp^n(a)\inv = a\inv. \]
+
+\end{proof}
+
+
+\subsection{Classificazione dei campi finiti}
+
+\begin{theorem}
+    Ogni campo finito $\KK$ di caratteristica $p$ consta
+    di $p^n$ elementi, con $n \in \NN^+$.
+\end{theorem}
+
+\begin{proof}
+    Come già detto precedentemente, $\KK$ è uno
+    spazio vettoriale su una copia isomorfa di $\ZZp$,
+    $\FFpp$. \\
+
+    Si consideri allora il grado $[\KK : \FFpp]$. Sicuramente
+    questo grado non è infinito, dal momento che $\KK$ non
+    ha infiniti elementi. Quindi $[\KK : \FFpp] = n \in \NN$. \\
+
+    Sia dunque $(k_1, k_2, \ldots, k_n)$ una base di $\KK$
+    su $\FFpp$. Ogni elemento $a$ di $\KK$ si potrà dunque scrivere
+    come:
+
+    \[ a = \alpha_1 k_1 + \ldots + \alpha_n k_n, \quad \alpha_1, \ldots, \alpha_n \in \FFpp,\]
+
+    \vskip 0.1in
+
+    e dunque vi saranno in totale $p^n$
+    elementi, dove ogni $p$ è contato dal numero di elementi che è
+    possibile associare ad ogni coefficiente, ossia $\card{\FFpp} = p$,
+    per il numero di elementi appartenenti alla base, ossia $[\KK : \FFpp] =
+        n$, da cui la tesi.
+\end{proof}
+
+\begin{theorem}
+    Per ogni $n \in \NN^+$ e per ogni numero primo $p$ esiste un
+    campo finito con $p^n$ elementi.
+\end{theorem}
+
+\begin{proof}
+    Si consideri il polinomio $x^{p^n}-x$ su $\ZZp$ e un suo
+    campo di spezzamento $A$. $\Fix(\Frobexp^n)$, per
+    la \propref{prop:punti_fissi_frobenius_campo}, è
+    un sottocampo, e
+    contiene esattamente le radici di $x^{p^n}-x$, che
+    in $A$ si spezza in fattori lineari, per definizione. \\
+
+    La derivata di $x^{p^n}-x$ è $p^n x^{p^n - 1}-1 \equiv -1$,
+    dacché $A$ è uno spazio vettoriale su $\ZZp$, e pertanto
+    vale ancora la \propref{prop:campo_char_p_prodotto_per_p}.
+    Dal momento che $-1$ e $x^{p^n}-x$ non hanno fattori lineari
+    in comune, per il \textit{Criterio della derivata},
+    $x^{p^n}-x$ non ammette radici multiple. \\
+
+    Allora $\Fix(\Frobexp^n)$ è un campo con $p^n$ elementi,
+    ossia tutte le radici di $x^{p^n}-x$ (e coincide quindi
+    con il campo di spezzamento $A$), da cui la tesi.
+\end{proof}

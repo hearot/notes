@@ -51,3 +51,25 @@ Pertanto ora è possibile enunciare la definizione di \textit{campo di spezzamen
     isomorfi tra loro\footnote{Per la dimostrazione di questo risultato
         si rimanda a TODO}.
 \end{remark*}
+
+\begin{theorem}
+    Sia $A$ un campo e sia $B \supseteq A$ un campo di spezzamento
+    di $f(x) \in A[x]$ su $A$, con $f(x)$ non costante. Sia $\deg f(x) = n$.
+    Allora $[B : A] \leq n!$.
+\end{theorem}
+
+\begin{proof}
+    Siano $\lambda_1$, $\lambda_2,\,\ldots,$ $\lambda_n$ le radici
+    di $f(x)$. Allora $[\KK(\lambda_1) : \KK] \leq n$, dacché
+    $\lambda_1$ è radice di $f(x)$. \\
+    
+    Sia ora $f(x)=(x-\lambda_1)g(x)$, con $\deg g(x) = n-1$. Sicuramente
+    $\lambda_2$ è radice di $g(x)$, pertanto $[\KK(\lambda_1, \lambda_2) : \KK(\lambda_1)] \leq n-1$. Reiterando il ragionamento si può applicare infine il \nameref{th:torri}:
+    
+    \[ [\KK(\lambda_1, \ldots, \lambda_n) : \KK] = [\KK(\lambda_1, \ldots, \lambda_n) : \KK(\lambda_1, \ldots, \lambda_{n-1})] \cdots [\KK(\lambda_1) : \KK] \leq 1 \cdot 2 \cdots n = n!, \]
+    
+    \vskip 0.1in
+    
+    da cui la tesi.
+\end{proof}
+
