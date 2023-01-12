@@ -490,3 +490,156 @@ euclidei.
     verificando la tesi.
 \end{proof}
 
+\subsection{Il teorema cinese del resto}
+
+    Il noto \nameref{th:cinese} è un risultato più generale di quanto
+    si sia visto nel contesto dell'aritmetica modulare. Difatti, esso è
+    applicabile in forma estesa a tutti gli anelli euclidei, non solo ai
+    numeri interi (che comunque rimangono un esempio classico di anello euclideo). \\
+    
+    \begin{lemma}
+        \label{lem:pre_cinese}
+
+        Sia $a$ un elemento riducibile di un anello euclideo $E$ e
+        sia $a=bc$, dove $\MCD(b, c) \in E^*$. Allora vale
+        il seguente isomorfismo:
+        
+        \[ A/(a) \cong A/(b) \times A/(c). \]
+    \end{lemma}
+    
+    \begin{proof}
+        Si consideri la funzione $\pi$ definita nel seguente
+        modo:
+        
+        \[ \pi : A/(a) \to A/(b) \times A/(c),\,e + (a) \mapsto (e + (b), e + (c)). \]
+        
+        \vskip 0.1in
+        
+        Si verifica che $\pi$ è un omomorfismo. Infatti
+        $\pi(1 + (a)) = (1 + (b), 1 + (c))$. \\
+        
+        Siano $e$, $k \in A$. Allora
+        $\pi$ soddisfa la linearità:
+        
+        \begin{multline*}
+            \pi\Bigl(\bigl(e + (a)\bigr) + \bigl(k + (a)\bigr)\Bigr) = \pi\bigl(e + k + (a)\bigr) =
+            \bigl(e + k + (b), e + k + (c)\bigr) =
+            \bigl(e + (b), e + (c)\bigr) + \\ \bigl(k + (b), k + (c)\bigr) = \pi\bigl(e + (a)\bigr) +
+            \pi\bigl(k + (a)\bigr).
+        \end{multline*}
+        
+        \vskip 0.1in
+        
+        e la moltiplicatività:
+        
+        \begin{multline*}
+            \pi\Bigl(\bigl(e + (a)\bigr) \cdot \bigl(k + (a)\bigr)\Bigr) = \pi\bigl(ek + (a)\bigr) =
+            \bigl(ek + (b), ek + (c)\bigr) =
+            \bigl(e + (b), e + (c)\bigr) \cdot \\ \bigl(k + (b), k + (c)\bigr) = \pi\bigl(e + (a)\bigr) \cdot
+            \pi\bigl(k + (a)\bigr).
+        \end{multline*}
+        
+        \vskip 0.1in
+        
+        Si studia $\Ker \pi$ per dimostrare l'iniettività di $\pi$.
+        Si pone dunque $\pi\bigl(e + (a)\bigr) = \bigl(0 + (b), 0 + (c)\bigr)$.
+        Questa condizione è equivalente ad asserire che sia $b$ che $c$ dividano
+        $e$. \\
+        
+        Sia allora $k \in E$ tale che $e=bk$. Dal momento che $c$ divide $e$, si
+        $e$ divide $bk$. Allora, dacché per ipotesi $\MCD(a, b) \in E^*$, per la
+        \propref{prop:divisione_gcd} $c$ divide $k$. Quindi esiste $j \in E$ tale che
+        $k=cj$. In particolare, unendo le due condizioni si ottiene
+        $e=bk=bcj=aj$. Pertanto $a$ divide $e$, da cui si deduce che $e + (a)$
+        è equivalente a $0 + (a)$. Allora, poiché $\Ker \pi = (0)$, $\pi$ è un
+        monomorfismo. \\
+        
+        Si studia invece adesso la surgettività di $\pi$. Siano $\alpha$,
+        $\beta \in E$. Si pone dunque $\pi\bigl(e + (a)\bigr) =
+        \bigl(\alpha + (b), \beta + (c)\bigr)$. Questa condizione è equivalente
+        al seguente sistema:
+        
+        \[ \begin{cases} e = \alpha + bk, \\ e = \beta + cj, \end{cases} \quad \text{con } k, j \in E. \]
+        
+        \vskip 0.1in
+        
+        Unendo le due condizioni si ottiene la seguente equazione:
+        
+        \[ \alpha + bk = \beta + cj \iff cj - bk = \alpha - \beta.  \]
+        
+        \vskip 0.1in
+        
+        Si consideri ora $d = \MCD(b, c)$. Per l'\nameref{th:bezout} esistono
+        $x$, $y$ tali che:
+        
+        \[ cx+by=d, \]
+        
+        \vskip 0.1in
+        
+        da cui si ricava che:
+        
+        \[ (\alpha-\beta)(cx + by) = (\alpha-\beta)d \implies cxd\inv(\alpha-\beta)+byd\inv(\alpha-\beta)=\alpha-\beta, \]
+        
+        \vskip 0.1in
+        
+        ponendo allora $j=xd\inv(\alpha-\beta)$ e $k=-yd\inv(\alpha-\beta)$
+        si ricava una possibile soluzione per $e$. Quindi
+        $\pi$ è un epimorfismo. \\
+        
+        Poiché $\pi$ è sia un monomorfismo che un epimorfismo, si conclude
+        che $\pi$ è un isomorfismo, da cui la tesi.
+        
+    \end{proof}
+
+    \begin{theorem}[\textit{Teorema cinese del resto}]
+        \label{th:cinese}
+    
+        Sia $a$ un elemento di un anello euclideo $A$ e sia
+        $p_1^{m_1}p_2^{m_2}\cdots p_n^{m_n}$ una sua fattorizzazione
+        in irriducibili non associati.
+        Allora vale il seguente isomorfismo:
+        
+        \[ A/(a) \cong A/(p_1^{m_1}) \times \cdots \times A/(p_n^{m_n}). \]
+    \end{theorem}
+    
+    \begin{proof}
+        Si dimostra il teorema applicando il principio di induzione su $n$,
+        il numero di fattori irriducibili distinti che appaiono
+        nella fattorizzazione di $a$. \\
+        
+        \,(\textit{passo base}) \, Se $a$ consta di un solo fattore irriducibile,
+        allora banalmente $A/(a) \cong A/(p_1^{m_1})$. \\
+        
+        \,(\textit{passo induttivo}) \, Possiamo riscrivere $a$ come
+        il prodotto di $(p_1^{m_1}\cdots p_{n-1}^{m_{n-1}})$ e di
+        $p_n^{m_n}$. \\
+        
+        Si nota innanzitutto che $d = \MCD(p_1^{m_1}\cdots p_{n-1}^{m_{n-1}}, p_n^{m_n})$
+        è un invertibile. Se così non fosse, infatti, si potrebbe
+        considerare un irriducibile $q$ della fattorizzazione di $d$:
+        tale $q$, in quanto primo per il \thref{th:irriducibili_primi},
+        deve dividere un $p_j$ con $1 \leq j \leq n-1$, così
+        come deve dividere $p_n$. Allora $p_j$ e $q$ sono associati,
+        così come $q$ e $p_n$. Dunque anche $p_j$ e $p_n$ sono associati.
+        Tuttavia questo è un assurdo, dal momento che per ipotesi
+        la fattorizzazione di $a$ include irriducibili distinti e
+        non associati, \Lightning{}. \\
+        
+        Allora dal \lemref{lem:pre_cinese} si ricava che:
+        
+        \[ A/(a) \cong A/(p_1^{m_1}\cdots p_{n-1}^{m_{n-1}}) \times A/(p_n^{m_n}), \]
+        
+        \vskip 0.1in
+        
+        mentre dal passo induttivo si sa già che:
+        
+        \[ A/(p_1^{m_1}\cdots p_{n-1}^{m_{n-1}}) \cong A/(p_1^{m_1}) \times \cdots \times A/(p_{n-1}^{m_{n-1}}). \]
+        
+        \vskip 0.1in
+        
+        Pertanto, unendo le due informazioni, si verifica la tesi:
+        
+            \[ A/(a) \cong
+            A/(p_1^{m_1}) \times \cdots \times A/(p_{n-1}^{m_{n-1}}) \times A/(p_n^{m_n}). \]
+        
+    \end{proof}
