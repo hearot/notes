@@ -643,3 +643,154 @@ euclidei.
             A/(p_1^{m_1}) \times \cdots \times A/(p_{n-1}^{m_{n-1}}) \times A/(p_n^{m_n}). \]
         
     \end{proof}
+
+\subsection{La seminorma di \texorpdfstring{$\ZZ[\sqrt{n}]$}{Z[√n]}}
+
+Si definisce innanzitutto $\ZZ[\sqrt{n}]$ nel seguente modo:
+
+\[ \ZZ[\sqrt{n}] = \{ a + b\sqrt{n} \mid a, b \in \ZZ \}. \]
+
+\begin{definition}
+    Si definisce \textbf{seminorma} di $\ZZ[\sqrt{n}]$ la seguente
+    funzione:
+    
+    \[ \ell : \ZZ[\sqrt{n}] \to \ZZ, \, a + b\sqrt{n} \mapsto a^2 - n b^2. \]
+\end{definition}
+
+\begin{proposition}
+    La seminorma di $\ZZ[\sqrt{n}]$ è una funzione moltiplicativa.
+\end{proposition}
+
+\begin{proof}
+    Dimostrare la tesi è equivalente al verificare la seguente identità:
+    
+    \[ (a^2-nb^2)(c^2-nd^2)=(ac+nbd)^2-n(ad+bc)^2, \]
+    
+    \vskip 0.1in
+    
+    come si verifica nelle seguenti righe:
+    
+    \begin{multline*}
+        (ac+nbd)^2-n(ad+bc)^2 = a^2c^2+n^2b^2d^2+\cancel{2acnbd}-na^2d^2-nb^2c^2-\cancel{2acnbd} = \\
+        a^2(c^2-nd^2) -nb^2(c^2-nd^2) = (a^2-nb^2)(c^2-nd^2).
+    \end{multline*}
+\end{proof}
+
+\begin{theorem}
+    \label{th:invertibili_z_sqrtn}
+    Un elemento $a \in \ZZ[\sqrt{n}]$ è invertibile se e solo se
+    $\ell(a) \in \{1, -1\}$.
+\end{theorem}
+
+\begin{proof}
+    Si dimostrano le due implicazioni separatamente. \\
+    
+    ($\implies$) \; Sia $a \in a \in \ZZ[\sqrt{n}]^*$. Allora esiste un
+    $b \in \ZZ[\sqrt{n}]^*$ tale che $ab = 1$. Applicando la seminorma
+    a entrambi i membri si ricava che:
+    
+    \[ \ell(ab) = 1 \implies \ell(a)\ell(b) = 1. \]
+    
+    \vskip 0.1in
+    
+    Gli unici invertibili di $\ZZ$ sono tuttavia $1$ e $-1$,
+    da cui la tesi. \\
+    
+    ($\;\Longleftarrow\;$) \; Si consideri $a+b\sqrt{n} \in \ZZ[\sqrt{n}]$.
+    Sia $d = \ell(a) \in \{1, -1\}$ si ricava che:
+    
+    \[ a^2-nb^2 = d \implies (a+b\sqrt{n})(a-b\sqrt{n})=d \implies (a+b\sqrt{n})d\inv(a-b\sqrt{n})=1, \]
+    
+    \vskip 0.1in
+    
+    da cui la tesi.
+\end{proof}
+
+\begin{example}[$\ZZsqrt{10}$ non è un UFD]
+    Il numero $6$ ammette due fattorizzazioni in irriducibili
+    completamente distinte in $\ZZsqrt{10}$. Dunque
+    $\ZZsqrt{10}$ non è un UFD. Conseguentemente non è né un anello
+    euclideo\footnote{Violerebbe altrimenti il \thref{th:euclidei_ufd}.}, né un
+    PID\footnote{Si usa ancora la proposizione, non dimostrata
+    in queste dispense, secondo cui un PID è sempre un UFD. Per
+    tale dimostrazione si rimanda ancora a \cite[pp.~124-126]{di2013algebra}.}.
+\end{example}    
+
+\begin{proof}
+    Dal momento che $6=16-10$,
+    possiamo fattorizzare $6$ come il prodotto
+    di $4+\sqrt{10}$ e $4-\sqrt{10}$. Tuttavia, dalla
+    fattorizzazione in $\ZZ$, sappiamo anche
+    che $6=2 \cdot 3$. \\
+    
+    Dimostriamo che sia $2$ che $3$ sono irriducibili
+    in $\ZZ[\sqrt{10}]$. Se $2$ fosse riducibile,
+    si potrebbe scrivere come prodotto
+    di due fattori non invertibili: \\
+    
+    \begin{equation}
+        \label{eq:es_z_sqrt10_fattorizzazione_2}
+        2 = (a + b\sqrt{10})(c + d\sqrt{10}) \implies 4 = (a^2 - 10b^2)(c^2 - 10d^2).
+    \end{equation}
+    
+    \vskip 0.1in
+    
+    Poiché nessun fattore di $2$ è invertibile per ipotesi, per il
+    \thref{th:invertibili_z_sqrtn} nessuno dei due
+    fattori in \eqref{eq:es_z_sqrt10_fattorizzazione_2} può essere uguale a $1$ o $-1$.
+    Allora l'unica possibilità è che $a^2 - 10b^2$ sia uguale a $2$ o
+    $-2$. Se però così fosse, $a^2 \equiv \pm 2 \pod{10}$, che
+    non ammette soluzione. \\
+    
+    Reiterando lo stesso ragionamento per $3$,
+    si ottiene $a^2 \equiv \pm 3 \pod{10}$, che anche
+    stavolta non ammette soluzione. Quindi sia $2$ che
+    $3$ sono irriducibili in $\ZZ[\sqrt{10}]$. \\
+    
+    Analogamente dimostriamo che sia $4+\sqrt{10}$ che
+    $4-\sqrt{10}$ sono irriducibili. Si assuma che
+    $4+\sqrt{10}$ sia riducibile, allora si ricava che:
+    
+    \[ 4+\sqrt{10} = (a + b\sqrt{10})(c + d\sqrt{10}), \]
+    
+    \vskip 0.1in
+    
+    da cui, passando alle seminorme si ottiene che:
+    
+    \[ 6 = (a^2 - 10b^2)(c^2 - 10d^2). \]
+    
+    \vskip 0.1in
+    
+    Poiché entrambi i fattori sono non invertibili per ipotesi,
+    per il \thref{th:invertibili_z_sqrtn} ognuno di essi è
+    diverso da $1$ e $-1$, come visto prima. Quindi l'unica
+    possibilità è che $a^2 - 10b^2$ sia uguale a $\pm 2$ o
+    $\pm 3$. Tuttavia, da prima sappiamo che nessuna di queste
+    equazioni ammette soluzione. Quindi $4+\sqrt{10}$ è irriducibile,
+    e allo stesso modo si dimostra che anche $4-\sqrt{10}$ lo
+    è. \\
+    
+    Ora si dimostra che $2$ non è associato né a $4 + \sqrt{10}$
+    né a $4 - \sqrt{10}$. Se fossero associati, esisterebbe
+    un invertibile $a$ tale che $2 = (4 \pm \sqrt{10})a$. \\
+    
+    Passando alle norme, si ricava che:
+    
+    \[ 4 = 6 \, \ell(a),  \]
+    
+    \vskip 0.1in
+    
+    dove, ricordando che $\ell(a)=\pm 1$ per il \thref{th:invertibili_z_sqrtn},
+    si ottiene:
+    
+    \[ 4 = \pm 6, \]
+    
+    \vskip 0.1in
+    
+    ossia un assurdo, \Lightning{}. \\
+    
+    Poiché $2$ non è associato né a né a $4 + \sqrt{10}$
+    né a $4 - \sqrt{10}$, le due fattorizzazioni sono due
+    fattorizzazioni in irriducibili completamente
+    distinte. Quindi $\ZZsqrt{10}$ non può essere un UFD.
+\end{proof}
