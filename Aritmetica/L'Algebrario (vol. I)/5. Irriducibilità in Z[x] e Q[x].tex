@@ -1,0 +1,357 @@
+\section{Irriducibilità in \texorpdfstring{$\ZZx$}{Z[x]} e in \texorpdfstring{$\QQx$}{Q[x]}}
+
+\subsection{Criterio di Eisenstein e proiezione in \texorpdfstring{$\ZZpx$}{Z\_p[x]}}
+
+Prima di studiare le irriducibilità in $\ZZ$, si guarda
+alle irriducibilità nei vari campi finiti $\ZZp$, con
+$p$ primo. Questo metodo presenta un vantaggio da non
+sottovalutare: in $\ZZp$ per ogni grado $n$ esiste un
+numero finito di polinomi monici\footnote{Si prendono in
+    considerazione solo i polinomi monici dal momento che vale
+    l'equivalenza degli associati: se $a$ divide $b$, allora
+    tutti gli associati di $a$ dividono $b$. $\ZZp$ è infatti
+    un campo, e quindi $\ZZpx$ è un anello euclideo.} -- in particolare, $p^n$ --
+e quindi per un polinomio di grado $d$ è sufficiente controllare
+che questo non sia prodotto di tali polinomi monici per
+$1 \leq n < d$. \\
+
+In modo preliminare, si definisce un omomorfismo fondamentale.
+
+\begin{definition}
+    Sia il seguente l'\textbf{omomorfismo di proiezione} da
+    $\ZZ$ in $\ZZp$:
+
+    \[ \hatpip : \ZZx \to \ZZpx,\, a_n x^n + \ldots + a_0 \mapsto [a_n]_p \, x^n + \ldots + [a_0]_p. \]
+\end{definition}
+
+\begin{remark*}
+    Si dimostra facilmente che $\hatpi$ è un omomorfismo di anelli.
+    Innanzitutto, $\hatpi(1) = [1]_p$. Vale chiaramente la linearità:
+
+    \begin{multline*}
+        \hatpip(a_n x^n + \ldots + a_0) + \hatpip(b_n x^n + \ldots + b_0) = [a_n]_p \, x^n + \ldots + [b_n]_p \, x^n + \ldots = \\
+        = [a_n+b_n]_p \, x^n + \ldots = \hatpip(a_n x^n + \ldots + a_0 + b_n x^n + \ldots + b_0).
+    \end{multline*}
+
+    Infine vale anche la moltiplicatività:
+
+    \begin{multline*}
+        \hatpip(a_n x^n + \ldots + a_0) \hatpip(b_n x^n + \ldots + b_0) = ([a_n]_p \, x^n + \ldots)([b_n]_p \, x^n + \ldots) = \\
+        = \sum_{i=0}^n \sum_{j+k=i} [a_j]_p \, [b_k]_p \, x^i
+        = \sum_{i=0}^n \sum_{j+k=i} [a_j b_k]_p \, x^i
+        = \hatpip\left(\sum_{i=0}^n \sum_{j+k=i} a_j b_k x^i\right) = \\
+        =\hatpip\left((a_n x^n + \ldots + a_0)(b_n x^n + \ldots + b_0)\right).
+    \end{multline*}
+\end{remark*}
+
+Prima di enunciare un teorema che si rivelerà
+importante nel determinare l'irriducibilità di un
+polinomio in $\ZZx$, si enuncia una definizione che
+verrà ripresa anche in seguito
+
+\begin{definition}
+    Un polinomio $a_n x^n + \ldots + a_0 \in \ZZx$ si dice
+    \textbf{primitivo} se $\MCD(a_n, \ldots, a_0)=1$.
+\end{definition}
+
+\begin{theorem}
+    \label{th:proiezione_irriducibilità}
+    Sia $p$ un primo. Sia $f(x) = a_n x^n + \ldots \in \ZZx$
+    primitivo. Se $p \nmid a_n$ e
+    $\hatpip(f(x))$ è irriducibile in $\ZZpx$, allora anche $f(x)$ lo
+    è in $\ZZx$.
+\end{theorem}
+
+\begin{proof}
+    Si dimostra la tesi contronominalmente. Sia $f(x) =
+        a_nx^n + \ldots \in \ZZ[x]$ primitivo e riducibile, con
+    $p \nmid a_n$. Dal momento che $f(x)$ è riducibile, esistono
+    $g(x)$, $h(x)$ non invertibili tali che $f(x)=g(x)h(x)$. \\
+
+    Si dimostra che $\deg g(x) \geq 1$. Se infatti fosse nullo,
+    $g(x)$ dovrebbe o essere uguale a $\pm 1$ -- assurdo, dal
+    momento che $g(x)$ non è invertibile, \Lightning{} -- o
+    essere una costante non invertibile. Tuttavia, nell'ultimo
+    caso, risulterebbe che $f(x)$ non è primitivo, poiché
+    $g(x)$ dividerebbe ogni coefficiente del polinomio.
+    Analogamente anche $\deg h(x) \geq 1$. \\
+
+    Si consideri ora $\hatpip(f(x))=\hatpip(g(x))\hatpip(h(x))$.
+    Dal momento che $p \nmid a_n$, il grado di $f(x)$ rimane costante
+    sotto l'operazione di omomorfismo, ossia $\deg \hatpip(f(x)) =
+        \deg f(x)$. \\
+
+    Inoltre, poiché nessuno dei fattori di $f(x)$ è nullo, $\deg f(x) = \deg g(x) +
+        \deg h(x)$. Da questa considerazione si deduce che anche i
+    gradi di $g(x)$ e $h(x)$ non devono calare, altrimenti si
+    avrebbe che $\deg \hatpip(f(x)) < \deg f(x)$, \Lightning{}.
+    Allora $\deg \hatpip(g(x)) = \deg g(x) \geq 1$,
+    $\deg \hatpip(h(x)) = \deg h(x) \geq 1$. \\
+
+    Poiché $\deg \hatpip(g(x))$ e $\deg \hatpip(h(x))$ sono
+    dunque entrambi non nulli, $\hatpip(g(x))$ e $\hatpip(h(x))$
+    non sono invertibili\footnote{Si ricorda che $\ZZpx$
+        è un anello euclideo. Pertanto, non avere lo stesso grado
+        dell'unità equivale a non essere invertibili.}. Quindi
+    $f(x)$ è prodotto di non invertibili, ed è dunque riducibile.
+
+\end{proof}
+
+\begin{theorem}[\textit{Criterio di Eisenstein}]
+    \label{th:eisenstein}
+    Sia $p$ un primo.
+    Sia $f(x) = a_n x^n + \ldots + a_0 \in \ZZx$ primitivo tale che:
+
+    \begin{enumerate}[ (1)]
+        \item $p \nmid a_n$,
+        \item $p \mid a_i$, $\forall i \neq n$,
+        \item $p^2 \nmid a_0$.
+    \end{enumerate}
+
+    Allora $f(x)$ è irriducibile in $\ZZx$.
+\end{theorem}
+
+\begin{proof}
+    Si ponga $f(x)$ riducibile e sia pertanto $f(x)=g(x)h(x)$ con
+    $g(x)$ e $h(x)$ non invertibili. Analogamente a come visto
+    per il \textit{Teorema \ref{th:proiezione_irriducibilità}}, si
+    desume che $\deg g(x)$, $\deg h(x) \geq 1$. \\
+
+    Si applica l'omomorfismo di proiezione in $\ZZpx$:
+
+    \[ \hatpip(f(x))=\underbrace{[a_n]_p}_{\neq 0} x_n, \]
+
+    da cui si deduce che $\deg \hatpip(f(x)) = \deg f(x)$. \\
+
+    Dal momento che $\hatpip(f(x))=\hatpip(g(x))\hatpip(h(x))$ e
+    che $\ZZpx$, in quanto campo, è un dominio,
+    necessariamente sia $\hatpip(g(x))$ che $\hatpip(h(x))$
+    sono dei monomi. \\
+
+    Inoltre, sempre in modo analogo a come visto per il \textit{Teorema
+        \ref{th:proiezione_irriducibilità}}, sia $\deg \hatpip(g(x))$
+    che $\deg \hatpip(h(x))$ sono maggiori o uguali ad $1$. \\
+
+    Combinando questo risultato col fatto che questi due fattori
+    sono monomi, si desume che
+    $\hatpip(g(x))$ e $\hatpip(h(x))$ sono monomi di grado positivo.
+    Quindi $p$ deve dividere entrambi i termini noti di $g(x)$ e
+    $h(x)$, e in particolare $p^2$ deve dividere il loro prodotto,
+    ossia $a_0$. Tuttavia questo è un assurdo, \Lightning{}.
+\end{proof}
+
+\begin{remark*}
+    Si consideri $x^k-2$, per $k \geq 1$.
+    Per il \nameref{th:eisenstein},
+    considerando come primo $p=2$, si verifica che
+    $x^k-2$ è sempre irriducibile. Pertanto, per ogni
+    grado di un polinomio esiste almeno un irriducibile --
+    a differenza di come invece avviene in $\RRx$ o in $\CCx$.
+\end{remark*}
+
+\begin{theorem}
+    Sia $f(x) \in \ZZx$ primitivo e sia $a \in \ZZ$. Allora $f(x)$ è
+    irriducibile se e solo se $f(x+a)$ è irriducibile.
+\end{theorem}
+
+\begin{proof}
+    Si dimostra una sola implicazione, dal momento che l'implicazione
+    contraria consegue dalle stesse considerazioni poste
+    studiando prima $f(x+a)$ e poi $f(x)$. \\
+
+    Sia $f(x)=a(x)b(x)$ riducibile, con $a(x)$, $b(x) \in \ZZx$ non
+    invertibili. Come già visto per il \textit{Teorema
+        \ref{th:proiezione_irriducibilità}}, $\deg a(x)$, $\deg b(x) \geq 1$. \\
+
+    Allora chiaramente $f(x+a)=g(x+a)h(x+a)$, con $\deg g(x+a) =
+        \deg g(x) \geq 1$, $\deg h(x+a) = \deg h(x) \geq 1$. Pertanto
+    $f(x+a)$ continua a essere riducibile, da cui la tesi.
+\end{proof}
+
+\begin{example}
+    Si consideri $f(x) = x^{p-1}+\ldots+x^2+x+1 \in \ZZx$, dove
+    tutti i coefficienti del polinomio sono $1$. Si verifica che:
+
+    \[ f(x+1)=\frac{(x+1)^p-1}x = p+\binom{p}{2}x+\ldots+x^{p-1}. \]
+
+    Allora, per il \nameref{th:eisenstein} con $p$, $f(x+1)$ è
+    irriducibile. Pertanto anche $f(x)$ lo è.
+\end{example}
+
+\subsection{Alcuni irriducibili di \texorpdfstring{$\ZZ_2[x]$}{Z\_2[x]}}
+
+Tra tutti gli anelli $\ZZpx$, $\ZZ_2[x]$ ricopre sicuramente
+un ruolo fondamentale, dal momento che è il meno costoso
+computazionalmente da analizzare, dacché $\ZZ_2$ consta
+di soli due elementi. Pertanto si computano adesso gli
+irriducibili di $\ZZ_2[x]$ fino al quarto grado incluso, a meno
+di associati. \\
+
+Sicuramente $x$ e $x+1$ sono irriducibili, dal momento che sono di
+primo grado. I polinomi di secondo grado devono dunque essere
+prodotto di questi polinomi, e pertanto devono avere o $0$ o
+$1$ come radice: si verifica quindi che $x^2+x+1$ è l'unico
+polinomio di secondo grado irriducibile. \\
+
+Per il terzo grado vale ancora lo stesso principio, per cui
+$x^3+x^2+1$ e $x^3+x+1$ sono gli unici irriducibili di tale grado.
+Infine, per il quarto grado, i polinomi riducibili soddisfano
+una qualsiasi delle seguenti proprietà:
+
+\begin{itemize}
+    \item $0$ e $1$ sono radici del polinomio,
+    \item il polinomio è prodotto di due polinomi irriducibili di
+          secondo grado.
+\end{itemize}
+
+Si escludono pertanto dagli irriducibili i polinomi non omogenei --
+che hanno sicuramente $0$ come radice --, e i polinomi con $1$ come
+radice, ossia $x^4+x^3+x+1$,\ \
+$x^4+x^3+x^2+1$, e $x^4+x^2+x+1$. Si esclude anche
+$(x^2+x+1)^2 = x^4+x^2+1$. Pertanto gli unici irriducibili di
+grado quattro sono $x^4+x^3+x^2+x+1$,\ \ $x^4+x^3+1$,\ \  $x^4+x+1$. \\
+
+Tutti questi irriducibili sono raccolti nella seguente tabella:
+
+\begin{itemize}
+    \item (grado 1) $x$, $x+1$,
+    \item (grado 2) $x^2+x+1$,
+    \item (grado 3) $x^3+x^2+1$, $x^3+x+1$,
+    \item (grado 4) $x^4+x^3+x^2+x+1$,\ \ $x^4+x^3+1$,\ \ $x^4+x+1$.
+\end{itemize}
+
+\begin{example}
+    Il polinomio $51x^3+11x^2+1 \in \ZZx$ è primitivo dal momento
+    che $\MCD(51, 11, 1)=1$. Inoltre, poiché $\hatpi_2(51x^3+11x^2+1)=
+        x^3+x+1$ è irriducibile, si deduce che anche $51x^3+11x^2+1$ lo
+    è per il \textit{Teorema \ref{th:proiezione_irriducibilità}}.
+\end{example}
+
+\subsection{Teorema delle radici razionali e lemma di Gauss}
+
+Si enunciano in questa sezione i teoremi più importanti per
+lo studio dell'irriducibilità dei polinomi in $\QQx$ e
+in $\ZZx$, a partire dai due teoremi più importanti: il
+classico \nameref{th:radici_razionali} e il \nameref{th:lemma_gauss},
+che si pone da ponte tra l'analisi dell'irriducibilità in $\ZZx$ e
+quella in $\QQx$.
+
+\begin{theorem}[\textit{Teorema delle radici razionali}]
+    \label{th:radici_razionali}
+    Sia $f(x) = a_n x^n + \ldots + a_0 \in \ZZx$. Abbia $f(x)$
+    una radice razionale. Allora, detta tale radice $\frac{p}{q}$,  già ridotta ai minimi termini, questa è tale che:
+
+    \begin{enumerate}[ (i.)]
+        \item $p \mid a_0$,
+        \item $q \mid a_n$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Poiché $\frac{p}{q}$ è radice, $f\left(\frac{p}{q}\right)=0$, e
+    quindi si ricava che:
+
+    \[ a_n \left( \frac{p}{q} \right)^n + \ldots + a_0 = 0 \implies
+        a_n p^n = -q( \ldots + a_0 q^{n-1}). \]
+
+    \vskip 0.1in
+
+    Quindi $q \mid a_n p^n$. Dal momento che $\MCD(p, q)=1$, si
+    deduce che $q \mid a_n$. \\
+
+    Analogamente si ricava che:
+
+    \[ a_0 q^n = -p(a_n p^{n-1} + \ldots). \]
+
+    \vskip 0.1in
+
+    Pertanto, per lo stesso motivo espresso in precedenza,
+    $p \mid a_0$, da cui la tesi.
+\end{proof}
+
+\begin{theorem}[\textit{Lemma di Gauss}]
+    \label{th:lemma_gauss}
+    Il prodotto di due polinomi primitivi in $\ZZx$ è anch'esso primitivo.
+\end{theorem}
+
+\begin{proof}
+    Siano $g(x) = a_m x^m + \ldots + a_0$ e $h(x) = b^n x^n + \ldots + b_0$ due polinomi primitivi in $\ZZx$. Si assuma che $f(x)=g(x)h(x)$
+    non sia primitivo. Allora esiste un $p$ primo che divide tutti i
+    coefficienti di $f(x)$. \\
+
+    Siano $a_s$ e $b_t$ i più piccoli coefficienti non divisibili
+    da $p$ dei rispettivi polinomi. Questi sicuramente esistono,
+    altrimenti $p$ dividerebbe tutti i coefficienti, e quindi
+    o $g(x)$ o $h(x)$ non sarebbe primitivo, \Lightning{}. \\
+
+    Si consideri il coefficiente di $x^{s+t}$ di $f(x)$:
+
+    \[c_{s+t} = \sum_{j+k=s+t} a_j b_k = \underbrace{a_0 b_{s+t} + a_1 b_{s+t-1} + \ldots}_{\equiv \, 0 \pmod p} + a_s b_t + \underbrace{a_{s+1}b_{t-1} + \ldots}_{\equiv \, 0 \pmod p},\]
+
+    dal momento che $p \mid c_{s+t}$, si deduce che $p$ deve dividere
+    anche $a_sb_t$, ossia uno tra $a_s$ e $b_t$, che è assurdo, \Lightning{}. Quindi $f(x)$ è primitivo.
+
+\end{proof}
+
+\begin{theorem}[\textit{Secondo lemma di Gauss}]
+    \label{th:lemma_gauss_2}
+    Sia $f(x) \in \ZZx$. Allora $f(x)$ è irriducibile in $\ZZx$
+    se e solo se $f(x)$ è irriducibile in $\QQx$ ed è primitivo.
+\end{theorem}
+
+\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+
+    ($\implies$)\; Si dimostra l'implicazione contronominalmente,
+    ossia mostrando che se $f(x)$ non è primitivo o se è
+    riducibile in $\QQx$, allora $f(x)$ è riducibile in $\ZZx$. \\
+
+    Se $f(x)$ non è primitivo, allora
+    $f(x)$ è riducibile in $\ZZx$. Sia quindi $f(x)$ primitivo
+    e riducibile in $\QQx$, con $f(x)=g(x)h(x)$,
+    $g(x)$, $h(x) \in \QQx \setminus \QQx^*$. \\
+
+    Si descrivano $g(x)$ e $h(x)$ nel seguente modo:
+
+    \[ g(x)=\frac{p_m}{q_m} x^m + \ldots + \frac{p_0}{q_0}, \quad \MCD(p_i, q_i)=1 \; \forall 0 \leq i \leq m, \]
+
+    \[ h(x)=\frac{s_n}{t_n} x^n + \ldots + \frac{s_0}{t_0}, \quad
+        \MCD(s_i, t_i)=1 \; \forall 0 \leq i \leq n. \]
+
+    \vskip 0.1in
+
+    Si definiscano inoltre le seguenti costanti:
+
+    \[ \alpha = \frac{\mcm(q_m, \ldots, q_0)}{\MCD(p_m, \ldots, p_0)}, \quad \beta = \frac{\mcm(t_n, \ldots, t_0)}{\MCD(s_n, \ldots, s_0)}. \]
+
+    \vskip 0.1in
+
+    Si verifica che sia $\hat{g}(x)=\alpha g(x)$ che
+    $\hat{h}(x)=\beta h(x)$ appartengono a $\ZZx$ e che entrambi
+    sono primitivi. Pertanto $\hat{g}(x) \hat{h}(x) \in \ZZx$. \\
+
+    Si descriva $f(x)$ nel seguente modo:
+
+    \[ f(x)=a_k x^k + \ldots + a_0, \quad \MCD(a_k,\ldots,a_0)=1. \]
+
+    \vskip 0.1in
+
+    Sia $\alpha \beta = \frac{p}{q}$ con $\MCD(p,q)=1$, allora:
+
+    \[\hat{g}(x) \hat{h}(x) = \alpha \beta f(x) = \frac{p}{q} (a_k x^k + \ldots + a_0), \]
+
+    da cui, per far sì che $\hat{g}(x) \hat{h}(x)$ appartenga
+    a $\ZZx$, $q$ deve necessariamente dividere tutti i
+    coefficienti di $f(x)$. Tuttavia $f(x)$ è primitivo, e quindi
+    $q=\pm 1$. Pertanto $\alpha \beta = \pm p \in \ZZ$. \\
+
+    Infine, per il \nameref{th:lemma_gauss}, $\alpha \beta f(x)$
+    è primitivo, da cui $\alpha \beta = \pm 1$. Quindi
+    $f(x) = \pm \hat{g}(x) \hat{h}(x)$ è riducibile. \\
+
+    ($\,\Longleftarrow\,\,$)\; Se $f(x)$ è irriducibile in $\QQx$
+    ed è primitivo, sicuramente $f(x)$ è irriducibile anche in
+    $\ZZx$. Infatti, se esiste una fattorizzazione in
+    irriducibili in $\ZZx$, essa non include alcuna costante
+    moltiplicativa dal momento che $f(x)$ è primitivo, e quindi
+    esisterebbe una fattorizzazione in irriducibili anche in $\QQx$.
+\end{proof}

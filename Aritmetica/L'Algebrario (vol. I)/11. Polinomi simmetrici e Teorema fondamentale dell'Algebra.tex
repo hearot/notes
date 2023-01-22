@@ -1,0 +1,250 @@
+\section{Polinomi simmetrici}
+
+\subsection{Definizione e prime proprietà}
+
+Sia $\KK$ un campo. Dati $\sigma \in S_n$ e un polinomio $f \in \KK[x_1, \ldots, x_n]$,
+si definisce il seguente polinomio:
+
+\[ (\sigma \cdot f) (x_1, \ldots, x_n) = f(x_{\sigma(1)}, \ldots, x_{\sigma(n)}), \]
+
+\vskip 0.1in
+
+ossia il polinomio ottenuto permutando le variabili $x_i$ secondo $\sigma$.
+
+\begin{definition}
+    Si definisce $\Sym[X_n]$ su $K$ come il sottoanello di $\KK[x_1, \ldots, x_n]$ dei
+    \textbf{polinomi simmetrici}, ossia di quei polinomi tali che
+    $\sigma \cdot f = f$, $\forall \sigma \in S_n$.
+\end{definition}
+
+\begin{definition}
+    Sia $d \in \NN$ tale che $0 \leq d \leq n$. Si definisce \textbf{polinomio simmetrico elementare} su $\Sym[X_n]$ ogni polinomio
+    della seguente forma:
+    
+    \[ e_d(x_1, \ldots, x_n) = \sum_{1 \leq i_1 < \cdots < i_d \leq n} \underbrace{x_{i_1} \cdots x_{i_n}}_{d\text{ volte}}, \]
+    
+    \vskip 0.1in
+    
+    dove si pone $e_0(x_1, \ldots, x_n) := 1$
+\end{definition}
+
+\begin{remark*}
+    Qualora siano noti al contesto le variabili su cui è definito $\Sym[X_n]$ si
+    può omettere la parentesi di $e_d$, scrivendo pertanto semplicemente
+    $e_d$.
+\end{remark*}
+
+\begin{remark*}
+    Sia $p(x) = a_n x^n + \ldots + a_0$ un polinomio in $\KK[x]$. Siano $\lambda_1$,
+    ..., $\lambda_n$ le sue radici nel suo campo di spezzamento. Allora vale
+    che:
+    
+    \[ a_{n-i} = (-1)^i \, a_n \, e_i(\lambda_1, \ldots, \lambda_n). \]
+\end{remark*}
+
+\begin{definition}
+    Sia $\alpha = (\alpha_1, \ldots, \alpha_n) \in \NN^n$, si definisce:
+    
+    \[ x^\alpha = x_1^{\alpha_1} x_2^{\alpha_2} \cdots x_n^{\alpha_n}, \quad
+        \card{\alpha} = \sum_{i=1}^n \alpha_i. \]
+\end{definition}
+
+\begin{remark*}
+    Ogni monomio nelle variabili $x_1$, ..., $x_n$ può essere rappresentato
+    nella forma $x^\alpha$, ponendo $\alpha_i$ uguale al numero di volte
+    in cui la variabile $x_i$ compare nel monomio.
+\end{remark*}
+
+\begin{definition}
+    Si definisce \textit{degree lexicographic order} (\textbf{deglex}) la seguente
+    relazione di ordine sui monomi monici di un polinomio:
+
+    \[ x^\alpha > x^\beta \defiff \card{\alpha} > \card{\beta} \text{ oppure }  \\
+        \card{\alpha} = \card{\beta} \text{ e } \alpha > \beta \text{ secondo il LO,} \]
+        
+    \vskip 0.1in
+    
+    dove con LO si indica il \textit{lexicographic order}.
+\end{definition}
+
+\begin{proposition}
+    Il \textit{deglex} è una relazione di ordine totale.
+\end{proposition}
+
+\begin{proof}
+    [TODO]
+\end{proof}
+
+\begin{proposition}
+    \label{prop:moltiplicazione_disuguaglianza_deglex}
+    Vale la seguente equivalenza:
+    
+    \[ x^\alpha x^\gamma > x^\beta x^\gamma \iff x^\alpha > x^\beta. \]
+\end{proposition}
+
+\begin{proof}
+    Si dimostrano le due implicazioni separamente. \\
+    
+    \ ($\implies$)\; Se $\card{\alpha} + \card{\gamma} > \card{\beta} + \card{\gamma}$, allora
+    anche $\card{\alpha} > \card{\beta}$, e dunque
+    $x^\alpha > x^\beta$. Altrimenti, esiste un $i \in \NN$ tale
+    per cui $\alpha_i + \gamma_i > \beta_i + \gamma_i$ e $\alpha_j + \gamma_j
+    = \beta_j + \gamma_j$ $\forall j < i$. Allora
+    anche $\alpha_j = \beta_j$ $\forall j < i$ e
+    $\alpha_i > \beta_i$. Dunque, per il LO, $\alpha
+    > \beta$, e quindi $x^\alpha > x^\beta$. \\
+    
+    \ ($\,\,\Longleftarrow\,\;$)\; Se $\card{\alpha} > \card{\beta}$, allora
+    anche $\card{\alpha} + \card{\gamma} > \card{\beta} + \card{\gamma}$, e dunque
+    $x^\alpha x^\gamma > x^\beta x^\gamma$. Altrimenti, esiste un $i \in \NN$ tale
+    per cui $\alpha_i > \beta_i$ e $\alpha_j = \beta_j$ $\forall j < i$. Allora
+    anche $\alpha_j + \gamma_j = \beta_j + \gamma_j$ $\forall j < i$ e
+    $\alpha_i + \gamma_i > \beta_i + \gamma_i$. Dunque, per il LO, $\alpha + \gamma
+    > \beta + \gamma$, e quindi $x^\alpha x^\gamma > x^\beta x^\gamma$.
+\end{proof}
+
+\begin{proposition}
+    \label{prop:numero_finito_soluzioni_deglex}
+
+    Sia $\alpha \in \NN^n$. Allora esiste un numero finito di $\beta \in \NN^n$
+    tale che $x^\alpha > x^\beta$.
+\end{proposition}
+
+\begin{proof}
+    Siano fissati gli $\alpha_i$. Se $x^\alpha > x^\beta$,
+    allora vale sicuramente l'equazione:
+    
+    \[ \alpha_1 + \ldots + \alpha_n > \beta_1 + \ldots + \beta_n, \]
+    
+    \vskip 0.1in
+    
+    che ammette un numero finito di soluzioni.
+\end{proof}
+
+\begin{definition}
+    Si definisce \textbf{leading term} di un polinomio in
+    $x_1$, ..., $x_n$ il termine $cx^\alpha$ tale che
+    $x^\alpha > x^\beta$, per ogni altro monomio $x^\beta$
+    del polinomio.
+\end{definition}
+
+\begin{proposition}
+    \label{prop:leading_term_prodotto}
+
+    Siano $f$ e $g \in \KK[x_1, \ldots, x_n]$.
+    Il \textit{leading term} di $fg$ è il
+    prodotto dei \textit{leading term} di $f$ e di $g$.
+\end{proposition}
+
+\begin{proof}
+    Siano $x^\alpha$ e $x^\beta$ i rispettivi \textit{leading term}
+    di $f$ e di $g$. Sia inoltre $x^\gamma$ il \textit{leading term}
+    di $fg$. Si assuma che $x^\gamma \neq x^\alpha x^\beta$. \\
+    
+    Poiché ogni monomio del prodotto di $fg$ è un prodotto di due
+    monomi di $f$ e di $g$, $x^\gamma$ potrà scriversi come
+    prodotto di $x^\delta x^\zeta$, dove $x^\delta$ è un monomio
+    di $f$ e $x^\zeta$ è un monomio di $g$. \\
+    
+    Poiché $x^\alpha$ è il \textit{leading term} di $f$, vale
+    la seguente disuguaglianza:
+    
+    \[ x^\alpha > x^\delta, \]
+    
+    \vskip 0.1in
+    
+    da cui, dalla \propref{prop:moltiplicazione_disuguaglianza_deglex}, si
+    ricava che:
+    
+    \[ x^\alpha x^\zeta > x^\delta x^\zeta. \]
+    
+    \vskip 0.1in
+    
+    Analogamente vale la seguente altra disuguaglianza:
+    
+    \[ x^\beta > x^\zeta, \]
+    
+    \vskip 0.1in
+    
+    da cui si ottiene che:
+    
+    \[ x^\alpha x^\beta > x^\alpha x^\zeta. \]
+    
+    \vskip 0.1in
+    
+    Combinando le due disuguaglianze si ottiene infine che:
+    
+    \[ x^\alpha x^\beta > x^\delta x^\zeta, \]
+    
+    \vskip 0.1in
+    
+    che è assurdo, dal momento che $x^\delta x^\zeta = x^\gamma$ è il \textit{leading
+    term} di $fg$, \Lightning{}. Quindi $x^\gamma = x^\alpha x^\beta$.
+\end{proof}
+
+\begin{lemma}
+    \label{lem:leading_term_simmetrico_disuguaglianza}
+    Sia $c x^\alpha$ il \textit{leading term}
+    di $f \in \Sym[X_n]$, con $\alpha = (\alpha_1, \ldots, \alpha_n) \in \NN^n$.
+    Allora $\alpha_1 \geq \alpha_2 \geq \cdots \geq \alpha_n$.
+\end{lemma}
+
+\begin{proof}
+    Si dimostra la tesi contronominalmente. \\
+    
+    Sia $c x^\beta$ un monomio di $f$ con $\beta = (\beta_1, \ldots, \beta_n)$ tale che esistano $i < j
+    \mid \beta_i < \beta_j$. Si consideri $\gamma \in \NN^n$ come
+    la tupla riordinata in modo decrescente di $\beta$ e sia
+    $\sigma \in S_n$ tale che $\gamma = (\beta_{\sigma(1)},
+    \ldots, \beta_{\sigma(n)})$. \\
+    
+    Poiché $f$ è un polinomio simmetrico, $\sigma \cdot f = f$. Quindi
+    $f$ ammette un monomio della forma $c x^\gamma$. Dal momento
+    che $\gamma > \beta$ per il LO, $x^\gamma > x^\beta$. Quindi
+    $c x^\beta$ non è il \textit{leading term} di $f$.
+\end{proof}
+
+\begin{theorem}[\textit{Teorema fondamentale dei polinomi simmetrici}]
+    Sia $\KK$ un campo. Vale il seguente isomorfismo:
+    
+    \[ \Sym[X_n] \cong \KK\left[e_1, \ldots, e_n\right]. \]
+\end{theorem}
+
+\begin{proof}
+    Sia $c x^\alpha$ il \textit{leading term} di $f$, con
+    $\alpha = (\alpha_1, \ldots, \alpha_n) \in \NN^n$.
+    Per il \lemref{lem:leading_term_simmetrico_disuguaglianza},
+    $\alpha_i - \alpha_{i+1} \geq 0$ $\forall 1 \leq i < n$. \\
+    
+    Si definisca dunque $\beta \in \NN^n$ in modo tale
+    che $\beta_i = \alpha_i - \alpha_{i+1} \geq 0$ $\forall 1 \leq i < n$
+    e $\beta_n = \alpha_n$. \\
+    
+    Si consideri il monomio $e_1^{\beta_1} e_2^{\beta_2} \ldots e_n^{\beta_n}$:
+    il suo \textit{leading term}, per la \propref{prop:leading_term_prodotto},
+    è il prodotto dei \textit{leading term} dei suoi fattori,
+    ossia $x_1^{\alpha_1} \cdots x_n^{\alpha_n} = x^\alpha$. \\
+    
+    Si consideri adesso come polinomio $f - c e_1^{\beta_1} e_2^{\beta_2} \ldots e_n^{\beta_n}$,
+    e si reiteri l'algoritmo fino a quando il risultato non è zero. Che l'algoritmo
+    termini è garantito dalla \propref{prop:numero_finito_soluzioni_deglex}, da cui
+    si desume che vi è numero finito di \textit{leading term} possibili una
+    volta tolto ad ogni iterazione il termine $c e_1^{\beta_1} e_2^{\beta_2} \ldots e_n^{\beta_n}$. \\
+    
+    Infine si sarà ottenuto una rappresentazione di $f$ come combinazione di
+    $e_1$, ..., $e_n$. Questa rappresentazione è unica perché
+    i termini $e_1^{\beta_1} e_2^{\beta_2} \ldots e_n^{\beta_n}$ sono
+    linearmente indipendenti, dal momento che i loro
+    \textit{leading term} sono distinti. \\
+    
+    Si costruisca dunque l'omomorfismo $\Pi : \Sym[X_n] \to \KK\left[e_1, \ldots, e_n\right]$
+    che associa ad ogni polinomio simmetrico la sua rappresentazione in
+    $\KK\left[e_1, \ldots, e_n\right]$. \\
+    
+    Si verifica che $\Pi$ è un omomorfismo. Poiché tale omomorfismo è iniettivo
+    e surgettivo, è un isomorfismo, da cui la tesi.
+\end{proof}
+
+\subsection{Teorema fondamentale dell'Algebra}
+
+

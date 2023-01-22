@@ -1,0 +1,597 @@
+\section{Estensioni algebriche di \texorpdfstring{$\KK$}{K}}
+
+\subsection{Morfismi di valutazione, elementi algebrici e trascendenti}
+
+Si definisce adesso il concetto di \textit{omomorfismo di
+    valutazione}, che impiegheremo successivamente nello
+studio dei quozienti $\KKx/(f(x))$ e dei cosiddetti
+\textit{elementi algebrici} (o \textit{trascendenti}).
+
+\begin{definition}
+    Sia $B$ un anello commutativo, e sia $A \subseteq B$ un suo
+    sottoanello. Si definisce \textbf{omomorfismo di valutazione} di
+    $\alpha \in B$ in $A$ l'omomorfismo:
+
+    \[ \valalpha : A[x] \to B, \, f(x) \mapsto f(\alpha). \]
+\end{definition}
+
+\begin{remark*}
+    L'omomorfismo di valutazione è effettivamente un omomorfismo
+    di anelli. Innanzitutto $\valalpha(1)=1$. Inoltre vale
+    la linearità:
+
+    \begin{multline*}
+        \valalpha(f(x))+\valalpha(g(x))=f(\alpha)+g(\alpha)=
+        (f+g)(\alpha)=\valalpha((f+g)(x))=\\=\valalpha(f(x)+g(x)),
+    \end{multline*}
+
+    così come la moltiplicatività:
+
+    \begin{multline*}
+        \valalpha(f(x))\valalpha(g(x))=f(\alpha)g(\alpha)=
+        (fg)(\alpha)=\valalpha((fg)(x))=\valalpha(f(x)g(x)).
+    \end{multline*}
+
+    \vskip 0.1in
+
+\end{remark*}
+
+Si evidenziano adesso le principali proprietà di tale
+omomorfismo.
+
+\begin{proposition}
+    \label{prop:imm_valalpha}
+    $\Imm \valalpha = A[\alpha]$
+\end{proposition}
+
+\begin{proof} Sicuramente $\Imm \valalpha \subseteq A[\alpha]$,
+    dacché ogni immagine di $\valalpha$ è una valutazione di un
+    polinomio a coefficienti in $A$ in $\alpha$. \\
+
+    Sia dunque $a=a_n \alpha^n + \ldots + a_0 \in A[\alpha]$. Allora
+    $\valalpha(a_n x^n + \ldots + a_0) = a$. Pertanto $a \in \Imm
+        \valalpha$, da cui $A[\alpha] \in \Imm \valalpha$. \\
+
+    Poiché vale la doppia inclusione, si desume che $\Imm \valalpha =
+        A[\alpha]$.
+\end{proof}
+
+Prima di applicare il \textit{Primo teorema d'isomorfismo}, si
+distinguono due importanti casi, sui quali si baseranno le
+definizioni di \textit{elemento algebrico} e di
+\textit{elemento trascendente}.
+
+\begin{definition}
+    Sia $\alpha \in B$. Se $\Ker \valalpha = (0)$, allora si
+    dice che $\alpha$ è un \textbf{elemento trascendente} di
+    $B$ su $A$.
+\end{definition}
+
+\begin{remark*}
+    Equivalentemente, se $\alpha \in B$ è trascendente su $A$,
+    significa che non vi è alcun polinomio non nullo in $A[x]$ che ha $\alpha$
+    come soluzione.
+\end{remark*}
+
+\begin{example}
+    Per esempio, il numero di Nepero-Eulero $e$ è trascendente su $\QQx$\footnote{Per una dimostrazione di questo fatto, si
+        guardi a \cite[pp.~234-237]{herstein2010algebra}}. Quindi
+    $\Ker \varphi_e = (0)$, e dunque, dal \textit{Primo teorema di
+        isomorfismo}, vale che:
+
+    \[ \QQx \cong \QQx/(0) \cong \QQ[e]. \]
+\end{example}
+
+Possiamo generalizzare questo esempio nel seguente teorema.
+
+\begin{theorem}
+    \label{th:isomorfismo_trascendente}
+    Sia $B$ un campo e sia $A \subseteq B$ un suo sottoanello.
+    Se $\alpha \in B$ è trascendente su $A$, allora vale
+    la seguente relazione:
+
+    \[ A[x] \cong A[\alpha]. \]
+\end{theorem}
+
+\begin{proof}
+    Si consideri l'omomorfismo $\valalpha$. Dacché $\alpha$ è
+    trascendente, $\Ker \valalpha  = (0)$. Allora, combinando
+    il \textit{Primo teorema di isomorfismo} con la
+    \textit{Proposizione \ref{prop:imm_valalpha}}, si ottiene
+    proprio $A[x] \cong A[x]/(0) \cong A[\alpha]$, ossia la tesi.
+\end{proof}
+
+\begin{definition}
+    Sia $\alpha \in B$. Se $\Ker \valalpha \neq (0)$, allora si
+    dice che $\alpha$ è un \textbf{elemento algebrico} di
+    $B$ su $A$, mentre il generatore monico\footnote{Vi potrebbero
+        essere infatti più generatori di $\Ker \valalpha$, sebbene
+        tutti associati tra loro. L'attributo \textit{monico} garantisce
+        così l'unicità del polinomio minimo.} non nullo di $\Ker \valalpha$ si
+    dice \textbf{polinomio minimo} di $\alpha$ su $A$. Il grado
+    di tale polinomio minimo è detto \textbf{grado di} $\alpha$.
+\end{definition}
+
+\begin{remark*}
+    Equivalentemente, se $\alpha \in B$ è trascendente su $A$,
+    significa che esiste un polinomio non nullo in $A[x]$ che ha $\alpha$ come
+    soluzione. In particolare, ogni polinomio in $A[x]$ che ha
+    $\alpha$ come soluzione è un multiplo del suo polinomio
+    minimo su $A$.
+\end{remark*}
+
+\begin{example}
+    Sia $\alpha \in A$. Allora $\alpha$ è banalmente un elemento
+    algebrico su $A$, il cui polinomio minimo è $x-\alpha$. Vale
+    dunque che $\Ker \valalpha = (x-\alpha)$, da cui, secondo
+    il \textit{Primo teorema di isomorfismo}, si ricava che:
+
+    \[ A[x]/(x-\alpha) \cong A[\alpha] \cong A. \]
+\end{example}
+
+\begin{example}
+    $i \in \CC$ è un elemento algebrico su $\RR$. Infatti, si
+    consideri $\varphi_i$: poiché $i$ è soluzione di $x^2+1$,
+    si ha che $x^2+1 \in \Ker \varphi_i$, che è quindi non vuoto. \\
+
+    Inoltre, dal momento che $x^2+1$ è irriducibile in $\RR[x]$,
+    esso è generatore di
+    $\Ker \varphi_i$. Inoltre, poiché monico, è anche il
+    polinomio minimo di $i$ su $\RR$. \\
+
+    Allora, poiché dalla \textit{Proposizione
+        \ref{prop:imm_valalpha}} $\Imm \varphi_i = \RR[i]$, si deduce dal \textit{Primo teorema di isomorfismo} che:
+
+    \[ \RRx/(x^2+1) \cong \RR[i] \cong \CC. \]
+\end{example}
+
+Ancora una volta possiamo generalizzare questo esempio con il
+seguente teorema.
+
+\begin{theorem}
+    \label{th:isomorfismo_algebrico}
+    Sia $B$ un campo e sia $A \subseteq B$ un suo sottoanello.
+    Se $\alpha \in B$ è algebrico su $A$, allora, detto
+    $f(x)$ il polinomio minimo di $\alpha$, vale
+    la seguente relazione:
+
+    \[ A[x]/(f(x)) \cong A[\alpha]. \]
+
+\end{theorem}
+
+\begin{proof}
+    Si consideri l'omomorfismo $\valalpha$. Dacché $\Ker \valalpha
+        = (f(x))$ per definizione di polinomio minimo, combinando
+    il \textit{Primo teorema di isomorfismo} con la
+    \textit{Proposizione \ref{prop:imm_valalpha}}, si ottiene
+    proprio $A[x]/(f(x)) \cong A[\alpha]$, ossia la tesi.
+\end{proof}
+
+\begin{definition}
+    Sia $B$ un campo e sia $A \subseteq B$ un suo sottoanello. Allora,
+    dato $\alpha \in B$,
+    si definisce con la notazione $A(\alpha)$ il
+    sottocampo di $B$ che contiene $A$ e $\alpha$ che
+    sia minimale rispetto all'inclusione.
+\end{definition}
+
+\begin{remark*}
+    Le notazioni $\KK(\alpha, \beta)$ e $\KK(\alpha)(\beta)$ sono equivalenti.
+\end{remark*}
+
+\begin{proposition}
+    Sia $B$ un campo e sia $A \subseteq B$ un suo sottoanello.
+    Se $\alpha \in B$ è algebrico su $A$, allora $A(\alpha)=A[\alpha]$.
+\end{proposition}
+
+\begin{proof}
+    Se $\alpha$ è algebrico, allora $\Ker \valalpha = (f(x)) \neq (0)$,
+    dove $f(x) \in A[x]$ è irriducibile. Pertanto, per
+    il \textit{Teorema \ref{th:campo_quoziente_irriducibile}},
+    $A[x]/(f(x))$ è un campo. \\
+
+    Dunque dal \textit{Teorema \ref{th:isomorfismo_algebrico}} si
+    ricava che:
+
+    \[ A[x]/(f(x)) \cong A[\alpha]. \]
+
+    \vskip 0.1in
+
+    Pertanto $A[\alpha]$ è un campo. Dacché $A[\alpha] \subseteq A(\alpha)$ e $A(\alpha)$ è minimale rispetto all'inclusione,
+    si deduce che $A[\alpha]=A(\alpha)$, ossia la tesi.
+\end{proof}
+
+\begin{remark*}
+    Il teorema che è stato appena enunciato non vale per
+    gli elementi trascendenti. Infatti, $A[\alpha]$ sarebbe
+    isomorfo a $A[x]$, che non è un campo. Al contrario
+    $A(\alpha)$ è un campo, per definizione.
+\end{remark*}
+
+\begin{proposition}
+    Sia $B$ un campo e sia $A \subseteq B$ un suo sottoanello.
+    Se $\alpha$, $\beta \in B$ sono algebrici su $A$ e condividono
+    lo stesso polinomio minimo, allora $A[\alpha] \cong A[\beta]$.
+\end{proposition}
+
+\begin{proof}
+    Sia $f(x)$ il polinomio minimo di $\alpha$ e $\beta$.
+    Dal \textit{Primo teorema di isomorfismo} e dalla
+    \textit{Proposizione \ref{prop:imm_valalpha}} si
+    desume che $A[x]/(f(x)) \cong A[\alpha]$. Analogamente
+    si ricava che $A[x]/(f(x)) \cong A[\beta]$. Pertanto
+    $A[\alpha] \cong A[\beta]$.
+\end{proof}
+
+\subsection{Teorema delle torri ed estensioni algebriche}
+
+\begin{definition}
+    Siano $A \subseteq B$ campi. Allora si denota come
+    $[B : A]$ la dimensione dello spazio vettoriale $B$
+    costruito su $A$, ossia $\dim B_A$. Tale dimensione è detta \textbf{grado
+        dell'estensione}.
+\end{definition}
+
+\begin{theorem}[\textit{Teorema delle torri algebriche}]
+    \label{th:torri}
+    Siano $A \subseteq B \subseteq C$ campi. Allora:
+
+    \[ [C : A] = [C : B] [B : A]. \]
+    \vskip 0.1in
+\end{theorem}
+
+\begin{proof}
+    Siano $[C : B] = m$ e $[B : A] = n$. Sia
+    $\BB_C = (a_1, \ldots, a_m)$ una base
+    di $C$ su $B$, e sia $\BB_B = (b_1, \ldots, b_n)$ una
+    base di $B$ su $A$. \\
+
+    Si dimostra che la seguente è una base di $C$ su $A$:
+
+    \[\BB_A \BB_B = \{ a_1b_1, \ldots, a_1b_n, \ldots, a_mb_n\}. \]
+
+    \vskip 0.1in
+
+    \ (i) $\BB_C \BB_B$ genera $A$ su $C$. \\
+
+    Sia $c \in C$. Allora si può descrivere $a$ nel seguente
+    modo:
+
+    \[c = \sum_{i=1}^m \beta_i a_i, \quad \text{con } \beta_i \in B, \; \forall 1 \leq i \leq m.\]
+
+    A sua volta, allora, si può descrivere ogni $\beta_i$ nel
+    seguente modo:
+
+    \[\beta_i = \sum_{j=1}^n \gamma_j^{(i)} b_j, \quad \text{con }
+        \gamma_j^{(i)} \in A, \; \forall 1 \leq j \leq n.\]
+
+    \vskip 0.1in
+
+    Combinando le due equazioni, si verifica che $\BB_C \BB_B$ genera $C$ su $A$:
+
+    \[ c = \sum_{i=1}^m \sum_{j=1}^n \gamma_j^{(i)} b_j a_i, \quad \text{con } \gamma_j^{(i)} \in A, \; \forall 1 \leq i \leq m, \, 1 \leq j \leq n. \]
+
+    \vskip 0.1in
+
+    \ (ii) $\BB_C \BB_B$ è linearmente indipendente. \\
+
+    Si consideri l'equazione:
+
+    \[ \sum_{i=1}^m \sum_{j=1}^n \gamma_j^{(i)} b_j a_i = 0, \quad \text{con } \gamma_j^{(i)} \in A, \; \forall 1 \leq i \leq m, \, 1 \leq j \leq n .\]
+
+    Poiché $\BB_C$ è linearmente indipendente, si deduce
+    che:
+
+    \[ \sum_{j=1}^n \gamma_j^{(i)} b_j = 0, \; \forall 1 \leq i \leq m. \]
+
+    Tuttavia, $\BB_B$ è a sua volta linearmente indipendente,
+    e quindi $\gamma_j^{(i)} = 0$, $\forall i, j$. Dunque
+    $\BB_C \BB_B$ è linearmente indipendente. \\
+
+    Dal momento che $\BB_C \BB_B$ è linearmente indipendente e
+    genera $C$ su $A$, consegue che essa sia una base di $C$ su
+    $A$. Quindi $[C : A] = mn = [C : B][B : A]$, da cui la tesi.
+\end{proof}
+
+\begin{definition}
+    Siano $A \subseteq B$ campi. Se $[B : A] \neq \infty$, allora
+    si dice che $BA$ è un'\textbf{estensione finita} di $A$.
+    Altrimenti si dice che $B$ è un'\textbf{estensione infinita}
+    di $A$.
+\end{definition}
+
+\begin{proposition}
+    \label{prop:estensione_finita}
+    Siano $A \subseteq B \subseteq C$ campi. Allora, se $C$ è
+    un'estensione finita di $A$, anche $B$ lo è. Inoltre
+    $C$ è un'estensione finita di $B$.
+\end{proposition}
+
+\begin{proof}
+    Dal momento che $B$ è un sottospazio dello spazio vettoriale
+    $C$ costruito su $A$, e questo ha dimensione finita,
+    anche $B$ su $A$ ha dimensione finita. Quindi $[B : A] \neq
+        \infty$, e $B$ è dunque un'estensione finita di $A$. \\
+
+    Infine, dacché una base di $C$ su $A$ è un generatore finito
+    di $C$ su $B$, si deduce che $[C : B] \neq \infty$, e quindi
+    che $C$ è un'estensione finita di $B$.
+\end{proof}
+
+\begin{theorem}
+    \label{th:estensione_algebrica}
+    Siano $A \subseteq B$ campi. Allora $a \in B$ è
+    algebrico su $A$ se e solo se $[A(a) : A] \neq \infty$,
+    ossia solo se $A(a)$ è un'estensione finita di $A$.
+\end{theorem}
+
+\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+
+    ($\implies$)\; Se $a \in B$ è algebrico su $A$, allora
+    dal \textit{Teorema \ref{th:isomorfismo_algebrico}} si ricava che:
+
+    \[ A[x]/(f(x)) \cong A[a] \cong A(a). \]
+
+    \vskip 0.1in
+
+    Dacché $A[x]/(f(x))$ ha dimensione finita, anche $A(a)$
+    ha dimensione finita, e quindi è un'estensione finita
+    di $A$. \\
+
+    ($\,\Longleftarrow\,\,$)\; Sia $A(a)$ un'estensione
+    finita di $A$ e sia $[A(a) : A]=m$. Allora $I=(1, a, a^2, \ldots, a^m)$ è linearmente dipendente, dal momento che contiene
+    $m+1$ elementi. Quindi esiste una sequenza finita non nulla
+    $(\alpha_i)_{i=\,0\to m}$ con elementi in $A$ tale che:
+
+    \[ \alpha_m a^m + \ldots + \alpha_2 a^2 + \alpha_1 a + \alpha_0 = 0. \]
+
+    Quindi $a$ è soluzione del polinomio:
+
+    \[ f(x) = \alpha_m x^m + \ldots + \alpha_2 x^2 + \alpha_1 x + \alpha_0 \in A[x], \]
+
+    \vskip 0.1in
+
+    pertanto $a$ è algebrico su $A$, da cui la tesi.
+\end{proof}
+
+\begin{definition}
+    Siano $A \subseteq B$ campi. Allora si dice che $B$ è
+    un'\textbf{estensione algebrica} di $A$ se ogni elemento
+    di $B$ è algebrico su $A$.
+\end{definition}
+
+\begin{proposition}
+    \label{prop:estensione_finita_algebrica}
+    Siano $A \subseteq B$ campi. Se $B$ è un'estensione finita
+    di $A$, allora $B$ è una sua estensione algebrica.
+\end{proposition}
+
+\begin{proof}
+    Sia $\alpha \in B$ e si consideri la catena di campi $A \subseteq A(\alpha)
+        \subseteq B$. Dacché $[B : A] \neq \infty$, per la \propref{prop:estensione_finita}
+    anche $[A(\alpha) : A] \neq \infty$. Pertanto, dal \thref{th:estensione_algebrica}, $\alpha$ è algebrico. Così tutti gli elementi
+    di $B$ sono algebrici in $A$, e dunque, per definizione, $B$ è un'estensione
+    algebrica di $A$.
+\end{proof}
+
+\begin{theorem}
+    \label{th:somma_prodotto_algebrici}
+    Siano $A \subseteq B$ campi e siano $\beta_1$, $\beta_2$, $\ldots$, $\beta_n$
+    elementi algebrici di $B$ su $A$, con $n \geq 1$.
+    Allora $[A(\beta_1, \beta_2, \ldots, \beta_n) : A] \neq \infty$.
+\end{theorem}
+
+\begin{proof} Si procede applicando il principio di induzione su $n$. \\
+
+    \ (\textit{passo base}) La tesi è verificata per il \thref{th:estensione_algebrica}. \, \\
+
+    \ (\textit{passo induttivo}) Per l'ipotesi induttiva, si sa che
+    $[A(\beta_1, \beta_2, \ldots, \beta_{n-1}) : A] \neq \infty$. \\
+
+    Poiché $\beta_n$ è algebrico su $A$, sin da subito si osserva
+    che $[A(\beta_n) : A] \neq \infty$ per il \thref{th:estensione_algebrica}.
+    Sia allora $f(x)$ il polinomio minimo di $\beta_n$ appartenente a
+    $A[x]$. Esso è un polinomio che ammette $\beta_n$ come radice
+    anche in $A(\beta_1, \beta_2, \ldots, \beta_{n-1})[x]$, e quindi
+    $\Ker \varphi_{\beta_n} \neq (0)$ ammette un generatore
+    $p(x)$, che divide $f(x)$. Si ottiene pertanto la seguente
+    disuguaglianza:
+
+    \[ [A(\beta_1, \beta_2, \ldots, \beta_{n-1})(\beta_n) : A(\beta_1, \beta_2, \ldots, \beta_{n-1})] = \deg p(x) \leq
+        \deg f(x) = [A(\beta_n) : A].  \]
+
+    \vskip 0.1in
+
+    Poiché $[A(\beta_n) : A]$ è finito, anche $[A(\beta_1, \beta_2, \ldots, \beta_{n-1})(\beta_n) : A(\beta_1, \beta_2, \ldots, \beta_{n-1})]$ lo è. \\
+
+    Combinando i due risultati, si ottiene con il \nameref{th:torri} che:
+
+    \begin{multline*}
+        [A(\beta_1, \beta_2, \ldots, \beta_n) : A] = [A(\beta_1, \beta_2, \ldots, \beta_{n-1})(\beta_n) : A(\beta_1, \beta_2, \ldots, \beta_{n-1})] \\ \cdot[A(\beta_1, \beta_2, \ldots, \beta_{n-1}) : A] \neq \infty,
+    \end{multline*}
+
+    da cui la tesi.
+    \, \\
+\end{proof}
+
+\begin{corollary}
+    \label{cor:estensione_algebrica_due_elementi}
+    Siano $A \subseteq B$ campi e siano $\alpha$, $\beta \in B$ elementi
+    algebrici su $A$. Allora $A(\alpha, \beta)$ è un'estensione algebrica.
+\end{corollary}
+
+\begin{proof}
+    Dal \thref{th:somma_prodotto_algebrici} si ricava che $[A(\alpha, \beta) : A] \neq
+        \infty$. Quindi $A(\alpha, \beta)$ è un'estensione finita di $A$, ed in quanto
+    tale, per la \propref{prop:estensione_finita_algebrica}, essa è algebrica.
+\end{proof}
+
+\begin{remark*}
+    Esistono estensioni algebriche che hanno grado infinito. Un
+    esempio notevole è $\mathcal{A}$, l'insieme dei numeri algebrici di $\CC$
+    su $\QQ$. Infatti, si ponga $[\mathcal{A} : \QQ] = n-1 \in \NN$ e si
+    consideri $x^n-2$. Dal momento che per il \textit{Criterio di Eisenstein}
+    tale polinomio è irriducibile, si ricava che $[\QQ(\nsqrt{n}{2}) : \QQ] = n$. \\
+
+    Poiché $\nsqrt{n}{2}$ è algebrico, si deduce che $\QQ(\nsqrt{n}{2}) \subseteq
+        \mathcal{A}$, dal momento che per il \corref{cor:estensione_algebrica_due_elementi} ogni elemento di $\QQ(\nsqrt{n}{2})$ è algebrico su $\QQ$.
+    Tuttavia questo è un assurdo dal momento che
+    $\QQ(\nsqrt{n}{2})$ ha
+    dimensione maggiore di $\mathcal{A}$, di cui è sottospazio vettoriale.
+\end{remark*}
+
+\begin{proposition}
+    \label{prop:alpha_quadro}
+    Siano $A \subseteq B$ campi e sia $\alpha \in B$. Se $[A(\alpha) : A]$
+    è dispari, allora $A(\alpha^2)=A(\alpha)$.
+\end{proposition}
+
+\begin{proof}
+    Innanzitutto, si osserva che $A(\alpha^2) \subseteq A(\alpha)$, ossia
+    che $A(\alpha)$ è un'estensione di $A(\alpha^2)$. Grazie a questa
+    osservazione è possibile considerare il grado di $A(\alpha)$ su
+    $A(\alpha^2)$, ossia $[A(\alpha) : A(\alpha^2)]$. Poiché $\alpha$ è
+    radice del polinomio $x^2 - \alpha^2$ in $A(\alpha^2)$, si deduce
+    che tale grado è al più $2$. \\
+
+    Si applichi il \nameref{th:torri} alla catena di estensioni
+    $A \subseteq A(\alpha^2) \subseteq A(\alpha)$:
+
+    \[ [A(\alpha) : A] = \underbrace{[A(\alpha) : A(\alpha^2)]}_{\leq 2} [A(\alpha^2) : A]. \]
+
+    \vskip 0.1in
+
+    Se $[A(\alpha) : A(\alpha^2)]$ fosse $2$, $[A(\alpha) : A]$ sarebbe
+    pari, \Lightning{}. Pertanto $[A(\alpha) : A(\alpha^2)] = 1$, da
+    cui si ricava che $[A(\alpha) : A] = [A(\alpha^2) : A]$, ossia
+    che $A(\alpha^2)$ ha la stessa dimensione di $A(\alpha)$ su $A$. \\
+
+    Dal momento che $A(\alpha^2)$ è un sottospazio vettoriale di $A(\alpha)$,
+    avere la sua stessa dimensione equivale a coincidere con lo spazio
+    stesso. Si conclude allora che $A(\alpha^2) = A(\alpha)$.
+\end{proof}
+
+\begin{remark*}
+    Si osserva che la \propref{prop:alpha_quadro} si può generalizzare
+    facilmente ad un esponente $n$ qualsiasi, finché sia data come ipotesi
+    la non divisibilità di $[A(\alpha) : A]$ per nessun numero primo
+    minore o uguale di $n$. \\
+
+    Si può infatti considerare, per
+    la dimostrazione generale, il polinomio $x^n - \alpha^n$, la cui
+    esistenza implica che $[A(\alpha) : A(\alpha^n)]$ sia minore
+    o uguale di $n$.
+\end{remark*}
+
+
+\begin{theorem}
+    Siano $A \subseteq B \subseteq C$ campi. Se $B$ è un'estensione algebrica di $A$
+    e $C$ è un'estensione algebrica di $B$, allora $C$ è un'estensione algebrica di
+    $A$.
+\end{theorem}
+
+\begin{proof}
+    Per mostrare che $C$ è un'estensione algebrica di $A$, verificheremo che
+    ogni suo elemento è algebrico in $A$. Sia dunque $c \in C$. \\
+
+    Poiché per ipotesi $c$ è algebrico su $B$, esiste un polinomio $f(x) \in B[x]$
+    tale che $c$ ne sia radice. Sia $f(x)$ il polinomio minimo di $c$ su $B$,
+    descritto come:
+
+    \[ f(x) = b_0 + b_1 x + \ldots + b_n x^n,\quad n = [B(c) : B].\]
+
+    \vskip 0.1in
+
+    Dacché $B$ è un'estensione algebrica di $A$, ogni coefficiente $b_i$ di $f(x)$ è
+    algebrico su $A$, ossia $[A(b_i) : A] \neq \infty$. Allora, per il
+    \thref{th:somma_prodotto_algebrici}, $[A(b_0, \ldots, b_n) : A] \neq \infty$.
+    \\
+
+    Anche $[A(c, b_0, \ldots, b_n) : A(b_0, \ldots, b_n)] \neq \infty$, dal
+    momento che $c$ è soluzione di $f(x) \in A(b_0, \ldots, b_n)[x]$. \\
+
+    Allora, per il \nameref{th:torri}, $[A(c, b_0, \ldots, b_n) : A] = [A(c, b_0,
+        \ldots, b_n) : A(b_0, \ldots, b_n)][A(b_0, \ldots, b_n) : A] \neq \infty$.
+    Quindi $A(c, b_0, \ldots, b_n)$ è un'estensione finita di $A$. \\
+
+    Poiché $A \subseteq A(c) \subseteq A(c, b_0, \ldots, b_n)$ è una
+    catena di estensione di campi, per la \propref{prop:estensione_finita},
+    $A(c)$ è un'estensione finita di $A$, ed in quanto tale, per
+    la \propref{prop:estensione_finita_algebrica}, è anche algebrica. Quindi
+    $c$ è algebrico su $A$, da cui la tesi.
+\end{proof}
+
+\begin{theorem}
+    \label{th:esistenza_spezzamento}
+    Sia $A$ un campo, e sia $f(x) \in A[x]$.
+    Allora esiste sempre un estensione di $A$ in cui siano
+    contenute tutte le radici di $f(x)$.
+\end{theorem}
+
+\begin{proof}
+    Si dimostra il teorema applicando il principio di induzione sul
+    grado di $f(X)$. \\
+
+    \ (\textit{passo base}) \,Sia $\deg f(x) = 0$. Allora $A$ stesso è un
+    campo in cui sono contenute tutte le radici, dacché esse non esistono. \\
+
+    \ (\textit{passo induttivo}) \,Sia $\deg f(x) = n$. Sia $f_1(x)$ un
+    irriducibile di $f(x)$ e sia $\gamma(x) \in A[x]$ tale che
+    $f(x)=f_1(x)\gamma(x)$. Allora, per il \thref{th:campo_quoziente_irriducibile}
+    $A[x]/(f_1(x))$ è un campo, in cui, per la \propref{prop:radice_quoziente},
+    $f_1(x)$ ammette radice. \\
+
+    Poiché $\deg \gamma(x) < n$, per il passo induttivo
+    esiste un campo $C$ che estende $A[x]/(f_1(x))$ in cui risiedono tutte le sue radici. Dacché $C$ contiene $A[x]/(f_1(x))$, sia le radici
+    di $f_1(x)$ che di $\gamma(x)$ risiedono in $C$. Tuttavia queste sono
+    tutte le radici di $f(x)$, si conclude che $C$, che è un'estensione di $A[x]/(f_1(x))$, e quindi anche di $A$, è il campo ricercato.
+\end{proof}
+
+\subsection{Campi di spezzamento di un polinomio}
+
+Pertanto ora è possibile enunciare la definizione di \textit{campo di spezzamento}.
+
+\begin{definition}
+    Si definisce \textbf{campo di spezzamento} di un polinomio $f(x) \in A[x]$ un
+    campo $C$ con le seguenti caratteristiche:
+
+    \begin{itemize}
+        \item $f(x)$ si fattorizza in $C[x]$ come prodotto di irriducibili di
+              primo grado (i.e. in $C[x]$ risiedono tutte le radici di $f(x)$),
+        \item Se $B$ è un campo tale che $A \subseteq B \subsetneq C$, allora
+              $f(x)$ non si fattorizza in $B[x]$ come prodotto di irriducibili di
+              primo grado.
+    \end{itemize}
+\end{definition}
+
+\begin{remark*}
+    Per il \thref{th:esistenza_spezzamento} esiste sempre un campo di spezzamento
+    di un polinomio, dunque la definizione data è una buona definizione.
+\end{remark*}
+
+\begin{remark*}
+    In generale i campi di spezzamento non sono uguali, sebbene siano tutti
+    isomorfi tra loro\footnote{Per la dimostrazione di questo risultato
+        si rimanda a TODO}.
+\end{remark*}
+
+\begin{theorem}
+    Sia $A$ un campo e sia $B \supseteq A$ un campo di spezzamento
+    di $f(x) \in A[x]$ su $A$, con $f(x)$ non costante. Sia $\deg f(x) = n$.
+    Allora $[B : A] \leq n!$.
+\end{theorem}
+
+\begin{proof}
+    Siano $\lambda_1$, $\lambda_2,\,\ldots,$ $\lambda_n$ le radici
+    di $f(x)$. Allora $[\KK(\lambda_1) : \KK] \leq n$, dacché
+    $\lambda_1$ è radice di $f(x)$. \\
+    
+    Sia ora $f(x)=(x-\lambda_1)g(x)$, con $\deg g(x) = n-1$. Sicuramente
+    $\lambda_2$ è radice di $g(x)$, pertanto $[\KK(\lambda_1, \lambda_2) : \KK(\lambda_1)] \leq n-1$. Reiterando il ragionamento si può applicare infine il \nameref{th:torri}:
+    
+    \[ [\KK(\lambda_1, \ldots, \lambda_n) : \KK] = [\KK(\lambda_1, \ldots, \lambda_n) : \KK(\lambda_1, \ldots, \lambda_{n-1})] \cdots [\KK(\lambda_1) : \KK] \leq 1 \cdot 2 \cdots n = n!, \]
+    
+    \vskip 0.1in
+    
+    da cui la tesi.
+\end{proof}

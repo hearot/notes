@@ -1,0 +1,319 @@
+\section{Introduzione alla teoria degli anelli}
+
+\subsection{Definizione e prime proprietà}
+
+\begin{definition}
+    Si definisce \textbf{anello}\footnote{In realtà, si parla in questo caso di anello \textit{con unità}, in cui vale l'assioma di esistenza di un'identità
+        moltiplicativa. In queste dispense si identificherà con "anello" solamente un anello con unità.} una struttura algebrica
+    costruita su un insieme $A$ e due operazioni binarie $+$
+    e $\cdot$\footnote{D'ora in avanti il punto verrà omesso.} avente le seguenti proprietà:
+
+    \begin{itemize}
+        \item $\left(A,\, +\right)$ è un \textit{gruppo abeliano}, alla cui
+              identità, detta \textit{identità additiva}, ci si riferisce con il simbolo $0$,
+        \item $\forall a, b, c \in A$, $(ab)c = a(bc)$,
+        \item $\forall a, b, c \in A$, $(a+b)c=ac+bc$,
+        \item $\forall a, b, c \in A$, $a(b+c)=ab+ac$,
+        \item $\exists 1 \in A \mid \forall a \in A$, $1a=a=a1$, e tale $1$ viene
+              detto \textit{identità moltiplicativa}.
+    \end{itemize}
+\end{definition}
+
+Come accade per i gruppi, gli anelli soddisfano alcune proprietà algebriche
+particolari, tra le quali si citano le più importanti:
+
+\begin{proposition}
+    $\forall a \in A$, $0a=0=a0$.
+\end{proposition}
+
+\begin{proof}
+    $0a=(0+0)a=0a+0a \implies 0a=0$. Analogamente $a0=a(0+0)=a0+a0 \implies a0=0$.
+\end{proof}
+
+\begin{proposition}
+    $\forall a \in A$, $-(-a)=a$.
+\end{proposition}
+
+\begin{proof}
+    $-(-a)-a=0 \,\land\, a-a=0 \implies -(-a)=a$, per la proprietà di unicità
+    dell'inverso in un gruppo\footnote{In questo caso, il gruppo additivo dell'anello.}.
+\end{proof}
+
+\begin{proposition}
+    \label{prop:inverso_inverso}
+    $a(-b)=(-a)b=-(ab)$.
+\end{proposition}
+
+\begin{proof}
+    $a(-b)+ab=a(b-b)=a0=0 \implies a(-b)=-(ab)$, per la proprietà di unicità dell'inverso in un gruppo. Analogamente $(-a)b+ab=(a-a)b=0b=0 \implies
+        (-a)b=-(ab)$.
+\end{proof}
+
+\begin{corollary}
+    $(-1)a=a(-1)=-a$.
+\end{corollary}
+
+\begin{proposition}
+    $(-a)(-b)=ab$.
+\end{proposition}
+
+\begin{proof}
+    $(-a)(-b)=-(a(-b))=-(-(ab))=ab$, per la \textit{Proposizione \ref{prop:inverso_inverso}}.
+\end{proof}
+
+Si enuncia invece adesso la nozione di \textbf{sottoanello}, in tutto e per
+tutto analoga a quella di \textit{sottogruppo}.
+
+\begin{definition}
+    Si definisce sottoanello rispetto all'anello $A$ un anello $B$ avente le
+    seguenti proprietà:
+
+    \begin{itemize}
+        \item $B \subseteq A$,
+        \item $0, 1 \in B$,
+        \item $\forall a, b \in B,$ $a + b \in B \,\land\, ab \in B$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Un sottoanello $B$ rispetto ad $A$ si dice \textbf{proprio} se
+    $B \neq A$.
+\end{definition}
+
+\begin{definition}
+    Un anello si dice \textbf{commutativo} se $\forall a$, $b \in A$, $ab=ba$.
+\end{definition}
+
+\begin{example}
+    Un facile esempio di anello commutativo è $\ZZ/n\ZZ$.
+\end{example}
+
+\begin{definition}
+    Un elemento $a$ di un anello $A$ si dice \textbf{invertibile} se
+    $\exists b \in A \mid ab = ba = 1$.
+\end{definition}
+
+\begin{definition}
+    Dato un anello $A$, si definisce $A^*$ come l'insieme degli elementi
+    invertibili di $A$, che a sua volta forma un \textit{gruppo moltiplicativo}.
+\end{definition}
+
+\begin{definition}
+    Un anello $A$ si dice \textbf{corpo} se $\forall a \neq 0 \in A$, $\exists b \in A \mid ab=ba=1$,
+    ossia se $A \setminus \{0\} = A^*$.
+\end{definition}
+
+\begin{example}
+    L'esempio più rilevante di corpo è quello dei \textit{quaternioni} $\HH$, definiti
+    nel seguente modo:
+
+    \[\HH = \{a+b\ii+c\jj+d\kk \mid a,\, b,\, c,\, d \in \RR\},\]
+
+    dove:
+
+    \[\ii^2 = \jj^2 = \kk^2 = -1, \quad \ii\jj = \kk,\, \jj\kk = \ii,\, \kk\ii = \jj. \]
+
+    Infatti ogni elemento non nullo di $\HH$ possiede un inverso moltiplicativo:
+
+    \[\left(a+b\ii+c\jj+d\kk\right)^{-1} = \frac{a-b\ii-c\jj-d\kk}{a^2+b^2+c^2+d^2},\]
+
+    mentre la moltiplicazione non è commutativa.
+
+\end{example}
+
+\begin{definition}
+    Un anello commutativo che è anche un corpo si dice \textbf{campo}.
+\end{definition}
+
+\begin{example}
+    Alcuni campi, tra i più importanti, sono $\QQ$, $\RR$, $\CC$ e $\ZZ/p\ZZ$ con
+    $p$ primo.
+\end{example}
+
+\begin{definition}
+    Un elemento $a \neq 0$ appartenente a un anello $A$ si dice \textbf{divisore di zero} se
+    $\exists b \neq 0 \in A \mid ab = 0$ o $ba = 0$.
+\end{definition}
+
+\begin{example}
+    $2$ è un divisore di zero in $\ZZ/6\ZZ$, infatti $2 \cdot 3 \equiv 0 \pmod 6.$
+\end{example}
+
+\begin{definition}
+    Un anello commutativo in cui non sono presenti divisori di zero si dice \textbf{dominio d'integrità},
+    o più semplicemente \textit{dominio}.
+\end{definition}
+
+\begin{proposition}[\textit{Legge di annullamento del prodotto}]
+    Sia $D$ un dominio. Allora $ab=0 \implies a=0 \,\lor\, b=0$.
+\end{proposition}
+
+\begin{proof}
+    Siano $a$, $b \in D \mid ab = 0$. Se $a=0$, la condizione è soddisfatta.
+    Se invece $a \neq 0$, $b$ deve essere per forza nullo, altrimenti si
+    sarebbe trovato un divisore di $0$, e $D$ non sarebbe un dominio, \Lightning.
+\end{proof}
+
+\begin{example}
+    L'anello dei polinomi su un campo, $\KK[x]$, è un dominio.
+\end{example}
+
+\subsection{Omomorfismi di anelli e ideali}
+
+\begin{definition}
+    Un \textbf{omomorfismo di anelli}\footnote{La specificazione "di anelli" è d'ora in avanti omessa.} è una mappa $\phi : A \to B$ -- con
+    $A$ e $B$ anelli -- soddisfacente alcune particolari proprietà:
+
+    \begin{itemize}
+        \item $\phi$ è un \textit{omomorfismo di gruppi} rispetto all'addizione
+              di $A$ e di $B$, ossia $\forall a, b \in A, \, \phi(a+b)=\phi(a)+\phi(b)$,
+        \item $\phi(ab)=\phi(a)\phi(b)$,
+        \item $\phi(1_A)=1_B$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Se $\phi : A \to B$ è un omomorfismo iniettivo, si dice che
+    $\phi$ è un \textbf{monomorfismo}.
+\end{definition}
+
+\begin{definition}
+    Se $\phi : A \to B$ è un omomorfismo suriettivo, si dice che
+    $\phi$ è un \textbf{epimorfismo}.
+\end{definition}
+
+\begin{definition}
+    Se $\phi : A \to B$ è un omomorfismo bigettivo\footnote{Ovvero se è sia un monomorfismo che un epimorfismo.}, si dice che
+    $\phi$ è un \textbf{isomorfismo}.
+\end{definition}
+
+Prima di enunciare l'analogo del \textit{Primo teorema d'isomorfismo} dei gruppi
+in relazione agli anelli, si rifletta su un esempio di omomorfismo:
+
+\begin{example}
+    Sia $\phi : \ZZ \to \ZZ, k \mapsto 2k$ un omomorfismo. Esso è un monomorfismo,
+    infatti $\phi(x)=\phi(y) \implies 2x=2y \implies x=y$. Pertanto $\Ker \phi = \{0\}$. Sebbene $\Ker \phi < \ZZ$, esso \textbf{non è un sottoanello}\footnote{Infatti $1 \notin \Ker \phi$.}.
+\end{example}
+
+Dunque, con lo scopo di definire meglio le proprietà di un \textit{kernel},
+così come si introdotto il concetto di \textit{sottogruppo normale} per i gruppi, si introduce ora il concetto di \textbf{ideale}.
+
+\begin{definition}
+    Si definisce ideale rispetto all'anello $A$ un insieme $I$ avente le seguenti proprietà:
+
+    \begin{itemize}
+        \item $I \leq A$,
+        \item $\forall a \in A$, $\forall b \in I$, $ab \in I$ e $ba \in I$.
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    \label{exmpl:polinomi}
+    Sia $I$ l'insieme dei polinomi di $\RR[x]$ tali che $2$ ne sia radice. Esso
+    altro non è che un ideale, infatti $0 \in I \,\land\, \forall f(x), g(x) \in I, (f+g)(2)=0$ (i.e. $I<\RR[x]$) e $\forall f(x) \in A, \, g(x) \in I, \, (fg)(2) = 0$.
+\end{example}
+
+\begin{proposition}
+    Sia $I$ un ideale di $A$. $1 \in I \implies I = A$.
+\end{proposition}
+
+\begin{proof}
+    Per le proprietà dell'ideale $I$, $\forall a \in A$, $a1 = a \in I \implies
+        A \subseteq I$. Dal momento che anche $I \subseteq A$, si deduce che $I = A$.
+\end{proof}
+
+\begin{proposition}
+    Sia $\phi : A \to B$ un omomorfismo. $\Ker \phi$ è allora un ideale di $A$.
+\end{proposition}
+
+\begin{proof}
+    Poiché $\phi$ è anche un omomorfismo tra gruppi, si deduce che $\Ker \phi \leq A$.
+    Inoltre $\forall a \in A$, $\forall b \in \Ker \phi$, $\phi(ab)=\phi(a)\phi(b)=\phi(a)0=0 \implies ab \in I$.
+\end{proof}
+
+\begin{proposition}
+    Sia $\phi : A \to B$ un omomorfismo. $\Imm \phi$ è allora un sottoanello di $B$.
+\end{proposition}
+
+\begin{proof}
+    Chiaramente $0, 1 \in \Imm \phi$, dal momento che $\phi(0) = 0,\, \phi(1)=1$. Inoltre, dalla teoria dei gruppi, si ricorda anche che $\Imm \phi \leq B$.
+    Infine, $\forall \phi(a),\, \phi(b) \in \Imm \phi, \, \phi(a)\phi(b) = \phi(ab) \in \Imm \phi$.
+\end{proof}
+
+\begin{definition}
+    Si definisce con la notazione $(a)$ l'ideale \textit{bilatero} generato da $a$ in $A$, ossia:
+
+    \[(a)=\{ba \mid b \in A\} \cup \{ab \mid b \in A\}.\]
+\end{definition}
+
+\begin{definition}
+    Si dice che un ideale $I$ è \textit{principale} o \textbf{monogenerato}, quando $\exists a \in I \mid I = (a)$.
+\end{definition}
+
+\begin{example}
+    In relazione all'\textit{Esempio \ref{exmpl:polinomi}}, l'ideale $I$ è
+    monogenerato\footnote{Non è un caso: $\RR[x]$, in quanto anello euclideo, si dimostra essere un PID (\textit{principal ideal domain}), ossia un dominio che ammette \textit{solo} ideali monogenerati.}. In particolare, $I=(x-2)$.
+\end{example}
+
+\subsection{Quoziente per un ideale e primo teorema d'isomorfismo}
+
+Si definisce invece adesso il concetto di \textbf{anello quoziente}, in modo
+completamente analogo a quello di \textit{gruppo quoziente}:
+
+\begin{definition}
+    Sia $A$ un anello e $I$ un suo ideale, si definisce $A/I$ l'anello ottenuto
+    quozientando $A$ per $I$. Gli elementi di tale anello sono le classi di equivalenza di $\sim$ (i.e. gli elementi di $A/{\sim}$), dove $\forall a$, $b \in A$, $a\sim b \iff a-b \in I$. Tali classi di equivalenza vengono indicate come
+    $a + I$, dove $a$ è un rappresentante della classe. L'anello è così dotato di due operazioni:
+
+    \begin{itemize}
+        \item $\forall a$, $b \in A$, $(a+I)+(b+I)=(a+b)+I$,
+        \item $\forall a$, $b \in A$, $(a+I)(b+I)=ab+I$.
+    \end{itemize}
+\end{definition}
+
+\begin{remark*}
+    L'addizione di $A/I$ è ben definita, dal momento che $I \nsg A$, in quanto sottogruppo di un gruppo abeliano.
+\end{remark*}
+
+\begin{remark*}
+    Anche la moltiplicazione di $A/I$ è ben definita. Siano $a\sim a'$, $b \sim b'$ quattro elementi di $A$ tali che $a = a' + i_1$ e $b = b' + i_2$ con $i_1$, $i_2 \in I$. Allora $ab=(a'+i_1)(b'+i_2)=a'b' + \underbrace{i_1b' + i_2a' + i_1i_2}_{\in I} \implies ab \sim a'b'$.
+\end{remark*}
+
+\begin{proposition}
+    \label{prop:quoziente_pieno}
+    $A/\{0\} \cong A$.
+\end{proposition}
+
+\begin{proof}
+    Sia $\pi : A \to A/\{0\}$, $a \mapsto a + \{0\}$ l'omomorfismo di proiezione
+    al quoziente. Innanzitutto, $a \sim a' \iff a-a'=0 \iff a=a'$, per cui $\pi$ è
+    un monomorfismo (altrimenti si troverebbero due $a$, $b \mid a \neq b \,\land\, a \sim b$). Infine, $\pi$ è un epimorfismo, dal momento che $\forall a + \{0\} \in A/\{0\}, \, \pi(a) = a + \{0\}$. Pertanto $\pi$ è un isomorfismo.
+\end{proof}
+
+Adesso è possibile enunciare il seguente fondamentale teorema:
+
+\begin{theorem}[\textit{Primo teorema d'isomorfismo}]
+    \label{th:primo_isomorfismo}
+    Sia $\phi : A \to B$ un omomorfismo. $A/\Ker \phi \cong \Imm \phi$.
+\end{theorem}
+
+\begin{proof}
+    La dimostrazione procede in modo analogo a quanto visto per il teorema correlato
+    in teoria dei gruppi. \\
+
+    Sia $\zeta : A/\Ker \phi \to \Imm \phi$, $a + \Ker \phi \mapsto \phi(a)$.
+    Si verifica che $\zeta$ è un omomorfismo: essendolo già per i
+    gruppi, è sufficiente verificare che $\zeta((a+I)(b+I))=\zeta(ab+I)=\phi(ab)=\phi(a)\phi(b)=\zeta(a+I)\zeta(b+I)$. \\
+
+    $\zeta$ è chiaramente anche un epimorfismo, dal momento che $\forall \phi(a) \in \Imm \phi$, $\zeta(a + \Ker \phi) = \phi(a)$. Inoltre, dal momento che $\zeta(a + \Ker \phi) = 0 \iff \phi(a) = 0 \iff a + \Ker \phi = \Ker \phi$, ossia l'identità di $A/\Ker \phi$, si deduce anche che $\zeta$ è un monomorfismo. Pertanto $\zeta$ è un isomorfismo.
+\end{proof}
+
+\begin{corollary}
+    \label{cor:primo_isomorfismo_iniettivo}
+    Sia $\phi : A \to B$ un monomorfismo. $A \cong \Imm \phi$.
+\end{corollary}
+
+\begin{proof}
+    Poiché $\phi$ è un monomorfismo, $\Ker \phi = \{0\}$. Allora, per il \textit{Primo teorema di isomorfismo}, $A/\{0\} \cong \Imm \phi$. Dalla
+    \textit{Proposizione \ref{prop:quoziente_pieno}}, si desume che $A \cong A/\{0\}$. Allora, per la proprietà transitiva degli isomorfismi, $A \cong \Imm \phi$.
+\end{proof}
