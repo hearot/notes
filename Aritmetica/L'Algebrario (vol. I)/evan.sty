@@ -408,6 +408,17 @@
 \renewcommand*{\partformat}{\color{purple}
   \scalebox{2.5}{\thepart}\enlargethispage{2em}}
 
+\@ifundefined{chapter}{}{
+  \addtokomafont{partprefix}{\rmfamily}
+  \renewcommand*{\partformat}{\color{purple}
+    \scalebox{2.5}{\thepart}\enlargethispage{2em}}
+  \addtokomafont{chapterprefix}{\raggedleft}
+  \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
+  \renewcommand*{\chapterformat}{\mbox{%
+      \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
+      \scalebox{2.718}{\color{purple}\thechapter}\enskip}}
+}
+
 \renewcommand*{\sectionformat}%
 {\color{purple}\S\thesection\enskip}
 \renewcommand*{\subsectionformat}%
@@ -473,3 +484,5 @@
 \hfuzz=\maxdimen
 \tolerance=10000
 \hbadness=10000
+
+\KOMAoptions{twoside=false}
