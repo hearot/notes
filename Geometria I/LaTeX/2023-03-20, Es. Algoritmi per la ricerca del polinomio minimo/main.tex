@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \Large \textbf{Esercitazione: algoritmi per la ricerca del polinomio minimo}
+\end{center}
+
+\begin{definition} Dato $f \in \End(V)$, si definisce
+come $\val_{f, \vec{v}}$ l'applicazione
+lineare da $\KK[x]$ in $V$ tale che
+$\val_{f, \vec{v}}(p) = p(f)(\vec{v})$.
+\end{definition}
+
+\begin{remark} Vi sono varie proprietà
+che legano $\Ker \val_{f, \vec{v}}$
+a $\Ker \val_f$, ed in particolare
+il generatore monico di $\Ker \val_{f, \vec{v}}$
+$\varphi_{f, \vec{v}}$ a quello
+$\varphi_{f}$ di $\Ker \val_f$, ossia al polinomio minimo di $f$. \\
+
+\li $\varphi_{f, \vec{v}} \mid \varphi_{f}$, $\forall \vec{v} \in V$. \\
+\li $\varphi_{f} = \mcm(\varphi_{f, \vec{v_1}}, ..., \varphi_{f, \vec{v_n}}).$, dove i $\vec{v_1}$, ...,
+$\vec{v_n}$ formano una base di $V$. \\
+\end{remark}
+
+\begin{example} Sia $A = \begin{pmatrix}2 & 0 & 0 \\ 1 & -1 & 3 \\ 1 & 3 & -1 \end{pmatrix}$. Allora
+si possono considerare le seguenti
+catene: \\
+
+\li $\vec{e_1} \mapsto 2\vec{e_1} + \vec{e_2} + \vec{e_3} \mapsto 2(2\vec{e_1} + \vec{e_2} + \vec{e_3}) + (-\vec{e_2} + 3\vec{e_3})
++ (3\vec{e_2} -\vec{e_3}) = 4\vec{e_1} + 4\vec{e_2} + 4\vec{e_3} = 4 A \vec{e_1} - 4 \vec{e_1}$.
+Pertanto $A^2 \vec{e_1} - 4 A \vec{e_1} + 4 \vec{e_1} = \vec{0}$.
+Essendo $A \vec{e_1}$ e $\vec{e_1}$ linearmente indipendenti, si conclude
+che $\varphi_{A, \vec{e_1}}(x) = x^2 - 4x + 4 = (x-2)^2$. \\
+\li $\vec{e_2} \mapsto -\vec{e_2} + 3\vec{e_3} \mapsto -(-\vec{e_2} + 3\vec{e_3}) + 3(3\vec{e_2} -\vec{e_3}) = 10\vec{e_2} - 6\vec{e_3} = -2(-\vec{e_2} + 3\vec{e_3}) + 8\vec{e_2}$.
+Si conclude dunque che $\varphi_{A, \vec{e_2}}(x) = x^2+2x-8 = (x-2)(x+4)$. \\
+\li $\vec{e_3} \mapsto 3\Vec{e_2}-\Vec{e_3} \mapsto 3(-\Vec{e_2} + 3\Vec{e_3}) - (3\Vec{e_2} - \Vec{e_3}) = -6\Vec{e_2} + 10\Vec{e_3} = -2(3\Vec{e_2} - \Vec{e_3}) + 8\Vec{e_3}$. Dunque
+$\varphi_{A,\Vec{e_3}}(x) = x^2+2x-8 = \varphi_{A,\Vec{e_2}}(x)$. \\
+
+Pertanto $\varphi_A(x) = \mcm(\varphi_{A,\Vec{e_1}}(x),\varphi_{A,\Vec{e_2}}(x),\varphi_{A,\Vec{e_3}}(x)) = (x-2)^2(x+4)$.
+\end{example}
+
+\begin{definition}
+    Si dice che un vettore $\Vec{v}$ è \textit{ciclico} su $f$ se il ciclo
+    $\Span(\vec{v}, f(\vec{v}), f^2(\Vec{v}), ...)$ coincide
+    con $V$.
+\end{definition}
+
+\begin{remark}
+    Riguardo all'esistenza di un vettore ciclico si possono
+    fare alcune osservazioni. \\
+
+    \li Se esiste un vettore $\vec{v}$ ciclico rispetto a $f$, i primi $n = \dim V$
+    vettori del suo ciclo devono essere linearmente indipendenti
+    (altrimenti non potrebbe generare $V$), e quindi $\varphi_{f,\Vec{v}}$ deve avere grado $n$. Allora
+    anche $\varphi_f$ deve avere grado $n$, ossia lo stesso
+    grado di $p_f$. Allora, dal momento che $\varphi_f \mid p_f$
+    e $\deg \varphi_f = \deg p_f$, deve valere necessariamente
+    $\varphi_f = \pm p_f$. \\
+    \li Dal momento che $\varphi_{f,\Vec{v}}$ è monico, ha lo stesso grado
+    di $\varphi_f$ e lo divide, deve anche valere che $\varphi_{f,\Vec{v}} = \varphi_f$. \\
+    \li Nella base ordinata $\basis$ costituita dai primi $n$ vettori del ciclo di $\Vec{v}$, la matrice associata di $f$ è della forma:
+
+    \[ M_{\basis}(f) =  \begin{pmatrix}
+        0 & 0 & \ldots & \ldots & 0 & -a_0 \\
+        1 & 0 & \ldots & \ldots & 0 & -a_1 \\
+        0 & 1 & \ddots & & \vdots & \vdots \\
+        \vdots & \vdots & & \ddots & 0 & -a_{n-2} \\
+        0 & 0 & 0 & \ldots & 1 & -a_{n-1}
+    \end{pmatrix}, \]
+
+    dove gli $a_i$ sono i coefficienti di $\varphi_f(x) = \varphi_{f,\Vec{v}} = x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0$.
+\end{remark}
+
+\begin{proposition}
+Se $\KK$ è un campo infinito\footnote{In realtà la tesi è vera per qualsiasi campo, benché la dimostrazione che è stata fornita sia valida solo per campi infiniti.}, esiste sempre un vettore $\vec{v} \in V$ tale che $\varphi_{f, \vec{v}} = \varphi_f$.
+\end{proposition}
+
+\begin{proof}
+Si definisce il seguente insieme:
+
+\[ S = \{ \varphi_{f, \vec{v}} \mid \vec{v} \in V \}. \]
+
+\vskip 0.1in
+
+Poiché $S$ è un sottoinsieme dei divisori di $\phi_f$, $S$ è finito.
+In particolare $\exists v_1$, ..., $v_n$ tali che $S = \{ \varphi_{f, \vec{v_1}}, ..., \varphi_{f, \vec{v_n}} \}$. Dal momento
+che ogni $\vec{v} \in V$ è associato
+ad un unico polinomio caratteristico,
+vale che $V = \bigcup_{i=1}^n \Ker \varphi_{f, \vec{v_i}}$. Tuttavia, se
+tutti i $\Ker \varphi_{f, \vec{v_i}}$
+fossero propri, questo sarebbe
+impossibile, dal momento che uno spazio vettoriale fondato su un campo finito non può essere unione finita di sottospazi propri. Quindi $V = \Ker \varphi_{f, \vec{v_i}}$ per un $i$ tale che $1 \leq i \leq n$. Allora
+$\varphi_f \mid \varphi_{f, \vec{v_i}}$, da cui si ricava
+l'uguaglianza.
+\end{proof}
+
+\begin{theorem}
+Lo spazio $V$ ammette un vettore ciclico su $f \in \End(V)$ se e
+solo se $p_f = \pm \varphi_f$.
+\end{theorem}
+
+\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+
+($\implies$) Dall'osservazione precedente. \\
+($\impliedby$) Dalla proposizione precedente esiste sicuramente
+un vettore $\Vec{v}$ tale che $\varphi_{f,\Vec{v}} = \varphi_f$. Allora, essendo $\varphi_f = \pm p_f$, deve valere
+che $p_f = \pm \varphi_{f, \Vec{v}}$, ossia che la minima
+combinazione lineare linearmente dipendente di $\Vec{v}$, ..., $f^k(\Vec{v})$ si può ottenere coinvolgendo almeno $n+1$
+termini (i.e.~con $k\geq n$). Allora i vettori
+$\Vec{v}$, ...,
+$f^{n-1}(\Vec{v})$ sono linearmente indipendenti, ed essendo
+in totale $n$ formano una base di $V$. Pertanto $V = \Span(\Vec{v}, f(\Vec{v}), ...)$.
+\end{proof}
+
+\begin{example}
+    Riprendendo l'esempio di prima, $\varphi_A(x) = (x-2)^2(x+4)$. Poiché $\deg p_A = 3$, allora $\varphi_A(x) - p_A(x)$. Allora per il teorema appena dimostrato deve
+    necessariamente esistere un vettore ciclico di $\RR^3$ su
+    $A$. \\
+
+    In effetti, posto $\Vec{v} = \begin{pmatrix}
+        4 \\ -3 \\ 5
+    \end{pmatrix}$, si ottiene che $\Vec{v}$, $A\Vec{v}$ e
+    $A^2\Vec{v}$ sono linearmente indipendenti, e sono
+    dunque una base $\basis$ di $\RR^3$. In particolare, la
+    matrice associata su questa base è la seguente:
+
+    \[ M_\basis(A) = \begin{pmatrix}
+        0 & 0 & -16 \\
+        1 & 0 & 12 \\
+        0 & 1 & 0 \\
+    \end{pmatrix}, \]
+
+    \vskip 0.1in
+
+    proprio come ci aspettavamo che venisse da una delle osservazioni
+    iniziali, dal momento che $\varphi_A(x) = (x-2)^2(x+4) = x^3 - 12x + 16$.
+\end{example}
+
+
+\end{document}
