@@ -17,6 +17,7 @@
 \newcommand{\system}[1]{\begin{cases} #1 \end{cases}}
 
 % Modalità matematica/fisica
+\let\oldvec\vec
 \renewcommand{\vec}[1]{\underline{#1}}
 
 \newcommand{\lemmaref}[1]{\textit{Lemma \ref{#1}}}
@@ -232,3 +233,9 @@
 \let\oldlor\lor
 \let\lor\undefined
 \DeclareMathOperator{\lor}{\oldlor}
+
+\DeclareOption{physics}{
+	\let\vec\oldvec
+}
+
+\ProcessOptions\relax

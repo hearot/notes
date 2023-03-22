@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage[physics]{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Fisica 1}}
+\author{Gabriel Antonio Videtta}
+\date{21 marzo 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Moto di un corpo in un mezzo viscoso}
+	\end{center}
+	
+	\begin{definition}
+		Si definisce \textit{forza viscosa} una particolare
+		forza analoga a quella di attrito, dipendente dalla sola velocità in
+		un corpo omogeneo.
+	\end{definition}
+	
+	\begin{remark} Riguardo la forza viscosa si possono
+		enumerare alcune proprietà. \\
+		
+		\li Come la forza di attrito, la forza viscosa ha verso
+		contrario rispetto alla velocità ($\hat{F} = -\hat{v}$).
+		
+		\li In base alle caratteristiche del mezzo nel quale il
+		corpo si muove, esiste una certa velocità critica $v_{cr}$ tale
+		per cui $v < v_{cr} \implies \Vec{F} = -\beta \Vec{v}$, dove
+		$\beta$ è una costante positiva (\textbf{legge di Stokes}).
+		
+		\li Per $v > v_{cr}$, la legge di Stokes non è più valida.
+	\end{remark}
+	
+	\begin{example}
+		Un esempio di forza viscosa è la resistenza aerodinamica
+		al moto del proiettile, spesso trascurata.
+	\end{example}
+	
+	\begin{remark}
+		La costante $\beta$ della legge di Stokes dipende dalla
+		viscosità del mezzo e dalle dimensioni e dalla forma del
+		corpo.
+	\end{remark}
+	
+	\begin{example} (senza alcuna forza)
+		Si pongano le condizioni $t_0 = 0$ e $\Vec{v_0} = \Vec{v}(t_0) \neq 0$. Se non agiscono altre forze sul corpo, si starà
+		allora trattando un moto unidimensionale. Si considera
+		allora il seguente sistema di equazioni:
+		
+		\[ \begin{cases} F = ma, \\ F = -\beta v, \end{cases} \]
+		
+		da cui si ricava che:
+		
+		\[ ma=-\beta v \implies \dv=-\frac{\beta}{m} v. \]
+		
+		Si definisce la costante $\tau = \frac{m}{\beta}$,
+		la cui unità di misura è il secondo.
+		
+		L'eq.~differenziale si riscrive allora come:
+		
+		\[ \dv = -\frac{1}{\tau} v. \]
+		
+		Risolvendo quest'eq.~differenziale, si ottiene allora
+		dunque che:
+		
+		\[ v(t) = c e^{-\frac{t}{\tau}}. \]
+		
+		Poiché $c = v(t_0) = v_0$, si conclude dunque che:
+		
+		\[ \system{v(t) = v_0 e^{-\frac{t}{\tau}}, \\ a(t) = -\frac{1}{\tau} v(t).} \]
+		
+		\vskip 0.1in
+		
+		In particolare, integrando la velocità, si ottiene lo
+		spostamento:
+		
+		\[ x(t) = \int_{t_0}^t v(t) dt = x_0 + v_0 \tau (1- e^{-\frac{t}{\tau}}). \]
+		
+		Quindi, la distanza percorsa all'infinito\footnote{Ossia, con
+			buona approssimazione, dopo alcuni periodi di $\tau$.} è
+		data da $x_\infty - x_0 = v_0 \tau$, dove $x_\infty = \lim_{t \to \infty} x(t) = x_0 + v_0 \tau$.
+		
+	\end{example}
+	
+	\begin{remark}
+		Si osserva che la velocità inizia a diventare
+		trascurabile dopo
+	\end{remark}
+	
+	\begin{example} (con forza di gravità\footnote{In generale,
+			con qualsiasi forza costante.}) Si supponga che $\Vec{v_0}$
+		ed $\Vec{F} = \Vec{F_0}$ siano paralleli, e che dunque il
+		moto sia ancora completamente unidimensionale. 
+		Si deve ora considerare il seguente sistema di forze:
+		
+		\[ \system{\Vec{F_v} = -\beta \Vec{v}, \\ \Vec{F} = \Vec{F_0} = m\vec{g}}, \]
+		
+		ossia, passando alle coordinate unidimensionali:
+		
+		\[ \system{F_v = -\beta v, \\ F = mg.} \]
+		
+		Da questo sistema si ottiene l'eq.~del sistema:
+		
+		\vskip 0.1in
+		
+		\[ F = mg - \beta v \implies m \dv = mg - \beta v \implies \dv = g - \frac{1}{\tau} v, \]
+		
+		ossia un'eq.~differenziale la cui associata omogenea è
+		esattamente quella analizzata nello scorso esempio. Allora
+		la soluzione generale è data dalla somma della soluzione
+		omogenea a quella particolare $v = \tau g$, detta
+		\textit{velocità limite} $v_{lim}$:
+		
+		\[ v(t) = c e^{-\frac{t}{\tau}} + \tau g. \]
+		
+		Ponendo allora $v(0) = v_0$, si ricava che $v_0 = c - \tau g \implies c = v_0 - \tau g$. Quindi si conclude che:
+		
+		\[ v(t) = (v_0 - v_{lim}) e^{-\frac{t}{\tau}} + v_{lim}, \]
+		
+		da cui chiaramente si osserva che $v(t) \tendstot v_{lim}$.
+		
+	\end{example}
+	
+	\begin{example} (approssimazione al moto uniformemente accelerato)
+		Si assumano $t << \tau$ e $v_0 << v_{lim}$. Allora
+		$\frac{t}{\tau} << 1$. Pertanto si può approssimare
+		$e^{-\frac{t}{\tau}}$ con $1 - \frac{t}{\tau}$.
+		In questo modo si ricava che:
+		
+		\[ v(t) = (v_0 - v_{lim})(1 - \frac{t}{\tau}) + v_{lim} =
+		v_0 - v_0 \frac{t}{\tau} + \frac{v_{lim}}{\tau} t
+		\approx v_0 + \frac{v_{lim}}{\tau} t = v_0 + gt,\]
+		
+		ossia che il moto, per queste assunzioni, è un moto
+		uniformemente accelerato.
+	\end{example}
+	
+	\begin{center}
+		\Large \textbf{Lavoro ed energia}
+	\end{center}
+	
+	Supponiamo che su un corpo di massa $m$ agisca una sola forza
+	costante $\vec{F}$ (e quindi che ci si stia riferendo
+	ad un caso unidimensionale). Supponiamo ancora che
+	in questa semplificazione il corpo si sia spostato
+	di una lunghezza $\Delta x$ dal punto $A$ al 
+	punto $B$. In questo caso si chiamerà
+	lavoro svolto dalla forza $\vec{F}$ sul corpo la quantità
+	scalare:
+	
+	\[ L_{AB} = F \Delta x. \]
+	
+	In generale, dato il vettore spostamento
+	$\Delta \Vec{r}$, se $\Vec{F}$ non è l'unica forza
+	che agisce sul corpo, si ricava che il lavoro è il seguente:
+	
+	\[ L_{AB} = \vec{F} \cdot \Delta \Vec{r}. \]
+	
+	\begin{remark} Si osservano le seguenti proprietà. \\
+		
+		\li Se la proiezione di $\vec{F}$ sul vettore spostamento ha
+		direzione opposta a $\Delta \vec{r}$ (ossia se l'angolo
+		compreso tra i due vettori è maggiore a $\frac{\pi}{2}$),
+		il lavoro è negativo.
+		
+		\li Il lavoro è additivo: $L_{AC} = L_{AB} + L_{BC}$.
+		
+		\li Il lavoro da $A$ a $B$, se $\Vec{F}$ non è costante,
+		può essere ricavato come una somma degli infinitesimi lavori
+		compiuti dalla forza, ossia:
+		
+		\[ dL_{AB} = \Vec{F}(\Vec{r}) \cdot d\Vec{r}, \]
+		
+		da cui si ricava la fondamentale identità che coinvolge
+		un integrale di linea:
+		
+		\[ L_{AB} = \int_{\gamma(A, B)} \vec{F}(\Vec{r}) \cdot d \vec{r}, \]
+		
+		dove $\gamma(A, B)$ è la traiettoria percorsa dal corpo
+		negli estremi $A$ e $B$.
+	\end{remark}
+	
+	
+\end{document}
