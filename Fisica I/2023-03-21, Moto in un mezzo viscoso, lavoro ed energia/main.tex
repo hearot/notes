@@ -87,7 +87,7 @@
 	
 	\begin{remark}
 		Si osserva che la velocità inizia a diventare
-		trascurabile dopo
+		trascurabile dopo alcuni periodi di $\tau$.
 	\end{remark}
 	
 	\begin{example} (con forza di gravità\footnote{In generale,
@@ -125,17 +125,17 @@
 	\end{example}
 	
 	\begin{example} (approssimazione al moto uniformemente accelerato)
-		Si assumano $t << \tau$ e $v_0 << v_{lim}$. Allora
-		$\frac{t}{\tau} << 1$. Pertanto si può approssimare
+		Si assumano $t \ll \tau$ e $v_0 \ll v_{lim}$. Allora
+		$\frac{t}{\tau} \ll 1$. Pertanto si può approssimare
 		$e^{-\frac{t}{\tau}}$ con $1 - \frac{t}{\tau}$.
 		In questo modo si ricava che:
 		
 		\[ v(t) = (v_0 - v_{lim})(1 - \frac{t}{\tau}) + v_{lim} =
-		v_0 - v_0 \frac{t}{\tau} + \frac{v_{lim}}{\tau} t
-		\approx v_0 + \frac{v_{lim}}{\tau} t = v_0 + gt,\]
+		v_0 - \frac{v_0}{\tau}t + \frac{v_{lim}}{\tau} t
+		\overbrace{\approx}^{v_0 \ll v_{lim}} v_0 + \frac{v_{lim}}{\tau} t = v_0 + gt,\]
 		
-		ossia che il moto, per queste assunzioni, è un moto
-		uniformemente accelerato.
+		ossia che il moto, considerate queste assunzioni, è ben approssimato
+		da un moto uniformemente accelerato.
 	\end{example}
 	
 	\begin{center}
