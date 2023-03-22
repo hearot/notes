@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{6 marzo 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Teorema degli orlati e calcolo del rango di una matrice}
+	\end{center}
+
+	\begin{note}
+		Nel corso di questo documento, per $A$ si intenderà una generica matrice appartenente all'anello
+		$M(m, n, \KK)$.
+	\end{note}
+	
+	\begin{definition}
+		Dato un minore $M$ di $A$ di ordine $p$, si definiscono \textit{orlati di} $M$ i minori di $A$ di ordine
+		$p+1$ che contengono come blocco $M$.
+	\end{definition}
+
+	\begin{example}
+		Se $A = \Matrix{1 & 2 & 3 & 4 & 5 \\ 6 & 7 & 8 & 9 & 10 \\ 11 & 12 & 13 & 14 & 15}$ e $M = \Matrix{1 & 2 \\ 6 & 7}$, allora gli orlati di $M$ sono le matrici:
+		
+		\[ M_1 = \Matrix{1 & 2 & 3 \\ 6 & 7 & 8 \\ 11 & 12 & 13}, \quad M_2 = \Matrix{1 & 2 & 4 \\ 6 & 7 & 9 \\ 11 & 12 & 14}, \quad M_3 = \Matrix{1 & 2 & 5 \\ 6 & 7 & 10 \\ 11 & 12 & 15}. \]
+	\end{example}
+
+	\begin{theorem} (di Kronecker, o degli orlati)
+		La matrice $A$ ha rango $r \in \NN^+$ se e solo se $\exists$ un minore $M$ di $A$ di taglia $r$ $\mid \det(M) \neq 0$, $\det(N) = 0$ $\forall$
+		orlato $N$ di $M$.
+	\end{theorem}
+
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Poiché $r = \min\{ k \in \NN \mid \det(N) = 0 \, \forall \text{minore } N \text{ di taglia } k+1 \}$ e $r>0$, in
+		particolare è vero che esiste un minore $M$ di $A$ di taglia $r$ tale che $\det(M) \neq 0$ e che ogni orlato $N$
+		di $M$, essendone chiaramente anche minore, è tale che $\det(N) = 0$. \\
+		
+		\leftproof Senza perdità di generalità, supponiamo che $M = A^{1, ..., k}_{1, ..., k}$ (altrimenti è sufficiente
+		considerare una permutazione delle colonne e delle righe di $A$ per ricadere nel caso studiato in questa dimostrazione). Dal momento che $A^1$, ..., $A^k$ sono per ipotesi colonne linearmente indipendenti (infatti
+		$\det(M) \neq 0 \implies \rg(A^1 \cdots A^k) = k$), per dimostrare che $\rg(A) = r$ è sufficiente mostrare che
+		$\forall j > k$, $A^j \in \Span(A^1, ..., A^k)$. \\
+		
+		Si consideri allora la matrice $B = A^{1, ..., k, j}_{1, ..., m}$. Sia $i > k$ e $N_i = A^{1, ..., k, j}_{1, ..., k, i}$. Poiché $N_i$ è un orlato di $M$, $\det(N_i) = 0$, e quindi $\rg(N_i) < k+1$. Tuttavia, poiché le righe $N_{i_1} = B_1$, ..., $N_{i_k} = B_k$ sono linearmente
+		indipendenti (sono infatti righe di $M$ a cui è stata aggiunta una colonna), $\rg(N_i) \geq k$. Si conclude
+		allora che $\rg(N_i) = k$, e che, essendo le righe $N_{i_1}$, ..., $N_{i_k}$ linearmente indipendenti,
+		$N_{i_j} \in \Span(N_{i_1}, ..., N_{i_k}) = \Span(B_1, ..., B_k)$. Allora ogni $B_i \in \Span(B_1, ..., B_k)$,
+		e quindi $\rg(B) \leq k$. Dal momento però che, come osservato prima, $B_1$, ..., $B_k$ sono linearmente
+		indipendenti, si conclude che $\rg(B) = k$. Infine, poiché $B^1 = A^1$, ..., $B^k = A^k$ sono linearmente
+		indipendenti, deve valere che $B^{k+1} = A^j \in \Span(B^1, ..., B^k) = \Span(A^1, ..., A^k)$, da cui la tesi.
+	\end{proof}
+
+	\begin{example}
+		Si può impiegare il teorema degli orlati per calcolare agevolmente il rango di una matrice senza impiegare
+		il metodo di eliminazione di Gauss. Sia per esempio:
+		
+		\[ A = \Matrix{1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9}. \]
+		
+		Poiché $B_1 = (A_{11}) = (1) \neq (0)$, $\rg(A) \geq 1$. Si consideri l'orlato $B_2 = \Matrix{1 & 2 \\ 4 & 5}$ di $B_1$:
+		$\det(B_2) = 1\cdot 5 - 4 \cdot 2 = -3 \neq 0$: allora $\rg(A) \geq 2$. Infine, si consideri l'orlato $B_3 = A$ di
+		$B_2$: poiché $\det(B_3) = \det(A) = 1\cdot \det\Matrix{5 & 6 \\ 8 & 9} - 2 \cdot \det\Matrix{4 & 6 \\ 7 & 9} + 3  \cdot \det\Matrix{4 & 5 \\ 7 & 8}  = 0$ e $B_3$ è l'unico orlato di $B_2$, si conclude che $\rg(A) = 2$.
+	\end{example}
+
+\end{document}
+content...
