@@ -6,20 +6,22 @@
 \usepackage{amssymb}
 \usepackage{amsopn}
 \usepackage{mathtools}
+\usepackage{stmaryrd}
 \usepackage{marvosym}
-\usepackage{floatflt}
-\usepackage{graphicx}
 \usepackage{float}
 
 \hfuzz=\maxdimen
 \tolerance=10000
 \hbadness=10000
 
-\newcommand{\cororef}[1]{\textit{Corollario \ref{#1}}}
-\newcommand{\exref}[1]{\textit{Esercizio \ref{#1}}}
-\newcommand{\propref}[1]{\textit{Proposizione \ref{#1}}}
+\newcommand{\system}[1]{\begin{cases} #1 \end{cases}}
+
+% Modalità matematica/fisica
+\renewcommand{\vec}[1]{\underline{#1}}
+
 \newcommand{\lemmaref}[1]{\textit{Lemma \ref{#1}}}
 \newcommand{\thref}[1]{\textit{Teorema \ref{#1}}}
+
 \newcommand{\li}[0]{$\blacktriangleright\;\;$}
 
 \newcommand{\tendsto}[1]{\xrightarrow[\text{$x \to #1$}]{}}
@@ -27,67 +29,105 @@
 
 \setlength\parindent{0pt}
 
-% Personal commands
+% Principio di induzione e setup dimostrativi.
+\newcommand{\basestep}{(\textit{passo base})\;}
+\newcommand{\inductivestep}{(\textit{passo induttivo})\;}
+
+\newcommand{\rightproof}{($\,\implies$)\;}
+\newcommand{\leftproof}{($\impliedby$)\;}
+
+% Spesso utilizzati al corso di Fisica 1.
+\newcommand{\dx}{\dot{x}}
+\newcommand{\ddx}{\ddot{x}}
+\newcommand{\dv}{\dot{v}}
+
+\newcommand{\tendstot}[0]{\xrightarrow[\text{$t \to \infty$}]{}}
+
+% Spesso utilizzati al corso di Analisi 1.
+%\newcommand{\liminf}{\lim_{x \to \infty}}
+\newcommand{\liminfty}{\lim_{x \to \infty}}
+\newcommand{\liminftym}{\lim_{x \to -\infty}}
+\newcommand{\liminftyn}{\lim_{n \to \infty}}
+\newcommand{\limzero}{\lim_{x \to 0}}
+\newcommand{\limzerop}{\lim_{x \to 0^+}}
+\newcommand{\limzerom}{\lim_{x \to 0^-}}
+
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\RRbar}{\overline{\RR}}
+
+% Spesso utilizzati al corso di Geometria 1.
+\DeclareMathOperator{\val}{val}
+\DeclareMathOperator{\Span}{Span}
+\newcommand{\charpoly}[1]{p_{#1}}
+\newcommand{\minpoly}[1]{\varphi_{#1}}
+\newcommand{\valf}{\val_f}
+\newcommand{\valfv}{\val_{f,\V}}
+\newcommand{\e}[1]{\vec{e_{#1}}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\VV}[1]{\vec{v_{#1}}}
+\newcommand{\Matrix}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\Vector}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+
+\let\v\undefined
+\newcommand{\v}{\vec{v}}
+\newcommand{\vv}[1]{\vec{v_{#1}}}
+
+\newcommand{\mapstoby}[1]{\xmapsto{#1}}
+
+% Comandi personali.
+
 \newcommand{\card}[1]{\left|#1\right|}
 \newcommand{\nsqrt}[2]{\!\sqrt[#1]{#2}\,}
 \newcommand{\zeroset}{\{0\}}
 \newcommand{\setminuszero}{\setminus \{0\}}
 
-\newenvironment{solution}
-  {\begin{proof}[Soluzione]}
-  {\end{proof}}
-
 \theoremstyle{definition}
 
 \let\abstract\undefined
+\let\endabstract\undefined
 
 \newtheorem*{abstract}{Abstract}
 \newtheorem{corollary}{Corollario}
 \newtheorem*{definition}{Definizione}
 \newtheorem*{example}{Esempio}
 \newtheorem{exercise}{Esercizio}
-\newtheorem*{goal}{Obiettivo}
 \newtheorem{lemma}{Lemma}
+\newtheorem*{note}{Nota}
 \newtheorem*{remark}{Osservazione}
 \newtheorem*{proposition}{Proposizione}
-\newtheorem{theorem}{Teorema}
+\newtheorem*{summary}{Sommario}
+\newtheorem*{theorem}{Teorema}
 
+\newcommand{\basis}{\mathcal{B}}
 \newcommand{\BB}{\mathcal{B}}
+
 \newcommand{\HH}{\mathbb{H}}
-\newcommand{\KK}{\mathbb{K}}
-\newcommand{\ZZp}{\mathbb{Z}_p}
+
+\newcommand{\FFp}[1]{\mathbb{F}_p}
+\newcommand{\FFpx}[1]{\mathbb{F}_p[x]}
 
 \newcommand{\CCx}{\mathbb{C}[x]}
-\newcommand{\FFpp}{\mathbb{F}_p}
-\newcommand{\FFpd}{\mathbb{F}_{p^d}}
-\newcommand{\FFpm}{\mathbb{F}_{p^m}}
-\newcommand{\FFpn}{\mathbb{F}_{p^n}}
-\newcommand{\FFp}[1]{\mathbb{F}_{p^{#1}}}
+
+\newcommand{\KK}{\mathbb{K}}
 \newcommand{\KKx}{\mathbb{K}[x]}
+
 \newcommand{\QQx}{\mathbb{Q}[x]}
 \newcommand{\RRx}{\mathbb{R}[x]}
+
 \newcommand{\ZZi}{\mathbb{Z}[i]}
-\newcommand{\ZZom}{\mathbb{Z}[\omega]}
+\newcommand{\ZZp}{\mathbb{Z}_p}
 \newcommand{\ZZpx}{\mathbb{Z}_p[x]}
-\newcommand{\ZZsqrt}[1]{\mathbb{Z}[\sqrt{#1}]}
 \newcommand{\ZZx}{\mathbb{Z}[x]}
 
 \newcommand{\ii}{\mathbf{i}}
 \newcommand{\jj}{\mathbf{j}}
 \newcommand{\kk}{\mathbf{k}}
 
-\newcommand{\valalpha}{\varphi_\alpha}
-\newcommand{\Frob}{\mathcal{F}}
-\newcommand{\Frobexp}{\mathcal{F}{\mkern 1.5mu}}
-
+\newcommand{\bidual}[1]{#1^{**}}
 \newcommand{\dual}[1]{#1^{*}}
-\newcommand{\LL}[2]{\mathcal{L} \left(#1, \, #2\right)}
-\newcommand{\M}[1]{\mathcal{M}_{#1}\left(\KK\right)}
-\newcommand{\nsg}{\mathrel{\unlhd}}
-\renewcommand{\vec}[1]{\underline{#1}}
+\newcommand{\LL}[2]{\mathcal{L} \left(#1, \, #2\right)} % L(V, W)
 
-\newcommand{\hatpi}{\hat{\pi}}
-\newcommand{\hatpip}{\hat{\pi}_p}
+\newcommand{\nsg}{\mathrel{\unlhd}} % sottogruppo normale
 
 % evan.sty original commands
 \newcommand{\cbrt}[1]{\sqrt[3]{#1}}
@@ -111,12 +151,10 @@
 \DeclareMathOperator{\Inn}{Inn}
 \DeclareMathOperator{\Syl}{Syl}
 \DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\val}{val}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
 
-
-%From Kiran Kedlaya's "Geometry Unbound"
+% From Kiran Kedlaya's "Geometry Unbound"
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\dang}{\measuredangle} %% Directed angle
@@ -124,6 +162,7 @@
 \newcommand{\seg}[1]{\overline{#1}}
 
 % From M275 "Topology" at SJSU
+\newcommand{\Id}{\mathrm{Id}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\taking}[1]{\xrightarrow{#1}}
 \newcommand{\inv}{^{-1}}
@@ -140,12 +179,14 @@
 \newcommand{\opname}{\operatorname}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
+
+% Alcuni degli operatori più comunemente utilizzati.
+
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Dom}{Dom}
 \DeclareMathOperator{\Fix}{\textit{Fix}\,}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\existsone}{\exists !}
-\DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Imm}{Imm}
 \DeclareMathOperator{\Ker}{Ker}
@@ -154,11 +195,15 @@
 \DeclareMathOperator{\Mor}{Mor}
 \DeclareMathOperator{\mcm}{mcm}
 \DeclareMathOperator{\Sym}{Sym}
-\newcommand{\basis}{\mathcal{B}}
 \DeclareMathOperator{\tr}{tr}
+
+% Reimposta alcuni simboli presenti di default in LaTeX con degli analoghi
+% più comuni.
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
+
+% Trasforma alcuni simboli in operatori matematici.
 
 \let\oldcirc\circ
 \let\circ\undefined

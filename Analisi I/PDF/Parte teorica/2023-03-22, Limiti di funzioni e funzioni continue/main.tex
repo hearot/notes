@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Analisi Matematica 1}}
+\author{Gabriel Antonio Videtta}
+\date{21 marzo 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Limiti di funzioni e funzioni continue}
+	\end{center}
+	
+	\begin{note} Nel corso del documento, per un insieme $X$, qualora non
+		specificato, si intenderà sempre un sottoinsieme generico dell'insieme
+		dei numeri reali esteso $\RRbar$. Analogamente per $f$ si intenderà
+		sempre una funzione $f : X \to \RRbar$.
+	\end{note}
+	
+	\begin{definition} (continuità in un punto) Sia
+		$\xbar \in X$. Allora $f$ si dice \textit{continua} su $\xbar$ se e solo
+		se $\forall I$ intorno di $f(\xbar)$ $\exists J$ intorno di $\xbar$ tale
+		che $f(J \cap X) \subseteq I$. Conseguentemente $f$ si dirà \textit{discontinua}
+		su $\xbar$ se non è continua su $\xbar$.
+	\end{definition}
+	
+	\begin{definition} (continuità di una funzione) Si dice che $f$ è una \textit{funzione 
+			continua} se e solo se $f$ è continua su $\xbar$ $\forall \xbar \in X$.
+	\end{definition}
+	
+	\begin{definition} (punti di accumulazione e punti isolati) Si dice che $\xbar \in \RRbar$ è un \textit{punto
+			di accumulazione} di $X$ se $\forall I$ intorno di $x$ $\exists x \in X$, $x \neq \xbar \mid
+		x \in I$, o equivalentemente se $I \cap X \setminus \{\xbar\} \neq \emptyset$. Analogamente
+		un punto che non è di accumulazione e che appartiene a $X$ si dice \textit{punto isolato}.
+	\end{definition}
+	
+	\begin{definition}
+		(derivato di un insieme) Si definisce derivato di $X$ l'insieme dei punti di
+		accumulazione di $X$, e si denota con $D(X)$.
+	\end{definition}
+	
+	\begin{definition}
+		(chiusura di un insieme) Si definisce chiusura di $X$ l'unione di $X$ ai suoi
+		punti di accumulazione, ossia $\bar{X} = X \cup D(X)$.
+	\end{definition}
+	
+	\begin{proposition}
+		Sono equivalenti i seguenti fatti:
+		
+		\begin{enumerate}
+			\item $\xbar$ è un punto di accumulazione di $X$,
+			\item esiste una successione $(x_n) \subseteq X \setminus \{\xbar\}$ tale
+			che $x_n \tendston \xbar$.
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Se $\xbar \in \RR$, per ogni $n$ si consideri l'intorno $I_n = [\xbar - \frac{1}{n}, \xbar + \frac{1}{n}]$, e si estragga un elemento $k \in I_n \cap X \setminus \{\xbar\}$ (che per ipotesi esiste, dacché
+		$\xbar$ è un punto di accumulazione). Si ponga dunque $x_n = k$. Poiché $\liminftyn \xbar - \frac{1}{n} = \liminftyn \xbar + \frac{1}{n} = \xbar$ e $x_n \in I_n$ $\forall n \in \NN$, allora $x_n \tendston \xbar$. \\
+		
+		Altrimenti, se $\xbar$ non è finito, si consideri il caso $\xbar = +\infty$. Per ogni $n$ si consideri allora l'intorno $I_n = [n, \infty]$, e si
+		estragga, come prima, $k \in I_n \cap X \setminus \{\xbar\}$, ponendo infine $x_n = k$. Poiché $I_n \tendston \{\infty\}$, $x_n \tendston \xbar$. Analogamente si dimostra il caso $\xbar = -\infty$. \\
+		
+		\leftproof Se esiste una tale successione, allora $\forall I$ intorno di $\xbar$ $\exists n_k \in \NN \mid n \geq n_k \implies x_n \in I$, ed in particolare, poiché per ipotesi
+		$x_n \neq \xbar$, $x_n \in X \forall n \in \NN$, $I$ contiene sempre un punto diverso
+		da $\xbar$ ed appartenente ad $X$, ossia $I \cap X \setminus \{\xbar\}$.
+	\end{proof}
+	
+	\begin{remark} Negando la definizione di punto di accumulazione, si ricava che $\xbar \in X$ è un
+		punto isolato $\iff$ $\exists I$ intorno di $\xbar$ $\mid I \cap X = \{\xbar\}$.
+	\end{remark}
+	
+	\begin{definition} (limite di una funzione) Sia $\xbar \in D(X)$. Allora $\lim_{x \to \xbar} f(x) = L 
+		\defiff \forall I$ intorno di $L$, $\exists J$ intorno di $\xbar$ $\mid f(J \cap X \setminus \{\xbar\}) 
+		\subseteq I$.
+	\end{definition}
+	
+	\begin{remark} La definizione di limite di una funzione richiede che $\xbar$ sia un punto di
+		accumulazione di $X$ per due principali motivi, uno teorico e uno strettamente pratico:
+		
+		\begin{enumerate}
+			\item se $\xbar$ fosse un punto isolato, allora esisterebbe sicuramente un suo intorno $J$ tale
+			che $J \cap X \setminus \{\xbar\} = \emptyset$, e quindi $f(J \cap X \setminus \{\xbar\}) = f(\emptyset) = \emptyset \in I$, per qualsiasi intorno $I$ scelto, a prescindere da $L$; si
+			perderebbe dunque una proprietà fondamentale del limite, ovverosia la sua unicità.
+			\item se $\xbar$ fosse un punto isolato, non vi sarebbe alcun modo di ``predirre'' il
+			comportamento di $f$ nel momento in cui tende a $\xbar$, dacché non si potrebbero
+			computare valori per $x$ ``vicine'' a $\xbar$.
+		\end{enumerate}
+		
+	\end{remark}
+	
+	\begin{proposition}
+		Se $\xbar \in D(X)$, sono equivalenti i seguenti fatti:
+		
+		\begin{enumerate}
+			\item $\lim_{x \to \xbar} f(x) = L$,
+			\item $\forall$ successione $(x_n) \subseteq X \setminus \{\xbar\}$ tale che
+			$x_n \tendston \xbar$, $f(x_n) \tendston L$.
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+		Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Sia $(x_n) \subseteq X \setminus \{\xbar\}$ una successione tale che
+		$x_n \tendston \xbar$. Poiché $\lim_{x \to \xbar} f(x) = L$, $\forall I$ intorno di
+		$L$, $\exists J$ intorno di $\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$.
+		Allo stesso tempo, poiché $x_n \tendston \xbar$ e $J$ è un intorno di $\xbar$, esiste un $n_k \in \NN$
+		tale che $n \geq n_k \implies x_n \in J \implies f(x_n) \in I$ (infatti $x_n$ per definizione
+		appartiene a $X$ ed è sempre diverso da $\xbar$). Allora $\forall I$ intorno di $L$, $\exists n_k$
+		tale che $n \geq n_k \implies f(x_n) \in I$, ossia $f(x_n) \tendston L$. \\
+		
+		\leftproof Si ponga per assurdo che $\lim_{x \to \xbar} f(x) \neq L$. Allora esiste almeno
+		un intorno $I$ di $L$ tale per cui non esista alcun intorno $J$ di $\xbar \mid f(J \cap X \setminus \{\xbar\}) \subseteq I$. Si consideri adesso il caso $\xbar \in \RR$ ed il suo intorno $J_n = [\xbar - \frac{1}{n}, \xbar + \frac{1}{n}]$: per ogni $n$ si può estrarre $J_n$ un $k \in X \setminus \{\xbar\}$
+		(infatti $\xbar$ è un punto di accumulazione), tale che $f(k) \notin I$. Si ponga allora $x_n = k$.
+		Dal momento che $J_n \tendston \{\xbar\}$, $x_n \tendston \xbar$. Allo stesso tempo, per $n \to \infty$, $f(x_n)$ non può tendere a $L$, dacché per costruzione $f(x_n)$ non appartiene all'intorno
+		$I$. Tuttavia ciò contraddice l'ipotesi, e quindi $\lim_{x \to \xbar} f(x) = L$. \\
+		
+		Altrimenti, se $\xbar = \infty$, si consideri per ogni $n$ l'intorno $J_n = [n, \infty]$, e se ne
+		estragga $k \in X \setminus \{\xbar\}$ tale che $f(k) \notin I$ (come prima, questo deve esistere
+		dacché $\xbar$ è un punto di accumulazione). Si ponga dunque $x_n = k$. Poiché $J_n \tendston \{\infty\}$, $x_n \tendston \xbar$. Tuttavia $f(x_n)$ non può tendere a $L$ per $n \to \infty$,
+		dal momento che $f(x_n)$ per costruzione non appartiene mai all'intorno $I$. Questo contraddice
+		nuovamente l'ipotesi, e quindi $\lim_{x \to \xbar} f(x) = L$.
+	\end{proof}
+	
+	\begin{exercise} Si dimostri che $\overline{\overline{X}} = \overline{X}$.
+	\end{exercise}
+	
+	\begin{exercise} Si mostri che l'ipotesi che la successione $(x_n)$ non abbia elementi uguali
+		a $\xbar$ sia necessaria, riportando un controesempio.
+	\end{exercise}
+
+\end{document}
