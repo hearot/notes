@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage[physics]{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Fisica 1}}
+\author{Gabriel Antonio Videtta}
+\date{22 marzo 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Derivate parziali e integrali di linea}
+	\end{center}
+
+	\begin{definition}
+		Una forza $\vec{F}(\vec{r})$ si dice \textit{conservativa} se
+		il lavoro effettuato da tale forza tra due punti $A$ e $B$ è lo stesso,
+		qualsiasi sia la traiettoria che li congiunge, ordinata da $A$ a
+		$B$.
+	\end{definition}
+	
+	\begin{definition}
+		Data $f : \RR^3 \to \RR$ nelle variabili $x$, $y$ e $z$, si definisce \textit{gradiente} come
+		il vettore $\vec{\nabla}f = (\frac{\del f}{\del x}, \frac{\del f}{\del y}, \frac{\del f}{\del z})$.
+	\end{definition}
+	
+	\begin{remark}
+		Sia $U(x, y, z)$ l'energia potenziale, e sia $\vec{F}$ conservativa.	
+		Poiché $dL = - dU$, $dL = \vec{F} \cdot d\vec{r} =
+		F_x dx + F_y dy + F_z dz$ e $dU = \frac{\del U}{\del x} dx +
+		\frac{\del U}{\del y} dy + \frac{\del U}{\del z} dz$, si
+		ricava che:
+		
+		\[ \vec{F} = - \vec{\nabla} U  \]
+	\end{remark}
+
+	\begin{definition}
+		Si definisce \textit{rotore} di un vettore $\vec{F}$ la seguente quantità:
+		
+		
+		\[\vec{\nabla} \times \vec{F} = \rot \vec{F} = \det \Matrix{\ihat & \jhat & \khat \\ \parx & \pary & \parz \\ \parx F_x & \pary F_y & \parz F_z}.\]
+	\end{definition}
+	
+	\begin{remark}
+		Se la forza è conservativa, per il teorema di Schwarz le
+		derivate parziali miste in $\grad \times \vec{F}$ commutano, e
+		quindi $\grad \times \vec{F} = \vec{0}$
+	\end{remark}
+
+	\begin{remark}
+		In sintesi, sono equivalenti le seguenti affermazioni:
+		
+		\begin{enumerate}[(i)]
+			\item la forza $\vec{F}$ è conservativa,
+			\item $L_{\gamma(A,B)} (\vec{F})$ non dipende da $\gamma$,
+			ma solo da $A$ e $B$,
+			\item $\oint_\gamma \vec{F} \cdot d \vec{r} = 0$.
+		\end{enumerate}
+	\end{remark}
+
+	\begin{remark}
+		Se $\vec{F} = \vec{a} + \vec{b}$, dove $\vec{a}$ è conservativa,
+		allora, per il teorema dell'energia cinetica, $L_{\gamma(P_0, P)} =
+		K_P - K_{P_0}$. Pertanto, grazie all'additività del lavoro,
+		si può ricavare che:
+		
+		\[ L_{\gamma(P_0, P)} \vec{F} = L_{\gamma(P_0, P)} \vec{a} + L_{\gamma(P_0, P)} \vec{b}. \]
+		
+		Poiché $\vec{a}$ è conservativa, $L_{\gamma(P_0, P)} \vec{a} = U_{P_0} - U_P$, e quindi, se $\Delta K = 0$:
+		
+		\[ \Delta U =  L_{\gamma(P_0, P)} \vec{b} \implies U_P = U_{P_0} + L_{\gamma(P_0, P)} \vec{b}. \]
+	\end{remark}
+
+	Supponiamo che $\vec{F} = \sum_{i=1}^N \vec{F_i}$ sia la
+	somma di sole forze conservative su un corpo di massa $m$.
+	Allora ad ogni forza $\vec{F_i}$ possiamo associare un'energia
+	potenziale $U_P^{(i)} - U_{P_0}^{(i)} = - L_{\gamma(P_0, P)} (\vec{F_i})$,
+	da cui $\Delta U = U_P - U_{P_0} = \sum_{i=1}^N \left[U_P^{(i)} - U_{P_0}^{(i)}\right] = -L_{\gamma(P_0, P)} (\vec{F_i}) = K_{P_0} - K_P = -\Delta K$. \\
+	
+	Sia $E = K + U$, detta energia meccanica, allora si ricava che $\Delta E = 0$. Infatti, in presenza di forze conservative, $\frac{dE}{dt} = 0$.
+	Altrimenti $\Delta E = L_{\gamma(P_0, P)} (\vec{b})$.
+
+	\begin{example}
+		Se si è in presenza di un campo uniforme (ossia dove $\vec{F}(\vec{r}) = \vec{f}$, $\forall \vec{r}$), il rotore è nullo, e quindi la
+		forza è conservativa (e.g.~la forza peso).
+	\end{example}
+\end{document}

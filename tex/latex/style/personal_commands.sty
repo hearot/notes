@@ -9,6 +9,7 @@
 \usepackage{stmaryrd}
 \usepackage{marvosym}
 \usepackage{float}
+\usepackage{enumerate}
 
 \hfuzz=\maxdimen
 \tolerance=10000
@@ -25,7 +26,9 @@
 
 \newcommand{\li}[0]{$\blacktriangleright\;\;$}
 
+\newcommand{\tends}[1]{\xrightarrow[\text{$#1$}]{}}
 \newcommand{\tendsto}[1]{\xrightarrow[\text{$x \to #1$}]{}}
+\newcommand{\tendstoy}[1]{\xrightarrow[\text{$y \to #1$}]{}}
 \newcommand{\tendston}[0]{\xrightarrow[\text{$n \to \infty$}]{}}
 
 \setlength\parindent{0pt}
@@ -45,6 +48,18 @@
 \newcommand{\del}{\partial}
 \newcommand{\tendstot}[0]{\xrightarrow[\text{$t \to \infty$}]{}}
 
+\newcommand{\grad}{\vec{\nabla}}
+\DeclareMathOperator{\rot}{rot}
+
+\newcommand{\ihat}{\hat{i}}
+\newcommand{\jhat}{\hat{j}}
+\newcommand{\khat}{\hat{k}}
+
+\newcommand{\der}[1]{\frac{d#1}{dx}}
+\newcommand{\parx}{\frac{\del}{\del x}}
+\newcommand{\pary}{\frac{\del}{\del y}}
+\newcommand{\parz}{\frac{\del}{\del z}}
+
 % Spesso utilizzati al corso di Analisi 1.
 %\newcommand{\liminf}{\lim_{x \to \infty}}
 \newcommand{\liminfty}{\lim_{x \to \infty}}
@@ -55,6 +70,8 @@
 \newcommand{\limzerom}{\lim_{x \to 0^-}}
 
 \newcommand{\xbar}{\overline{x}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\zbar}{\overline{z}}
 \newcommand{\RRbar}{\overline{\RR}}
 
 % Spesso utilizzati al corso di Geometria 1.

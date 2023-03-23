@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Analisi Matematica 1}}
+\author{Gabriel Antonio Videtta}
+\date{21 marzo 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Analogie tra i limiti di funzioni e i limiti di successioni}
+	\end{center}
+	
+	\begin{note} Nel corso del documento, per un insieme $X$, qualora non
+		specificato, si intenderà sempre un sottoinsieme generico dell'insieme
+		dei numeri reali esteso $\RRbar$. Analogamente per $f$ si intenderà
+		sempre una funzione $f : X \to \RRbar$.
+	\end{note}
+	
+	\begin{exercise}
+		Dati $f : X \to \RRbar$, $\xbar$ punto di accumulazione di $X$
+		tale che $\forall \, (x_n) \subseteq X \setminus \{\xbar\}$ vale che
+		$f(x_n)$ converge. Allora il limite di $f(x_n)$ è sempre lo stesso.
+	\end{exercise}
+
+	\begin{exercise}
+		Data $(x_n) \subseteq \RR$, definisco $f : \NN \to \RRbar$ tale
+		che $f(n) := x_n$, $\forall n \in \NN$. Allora $f(n) \tendston L \iff x_n \tendston L$.
+	\end{exercise}
+
+	\begin{proposition}
+		Siano $f : X \to \RRbar$, $\xbar \in X$ punto di accumulazione
+		di $X$. Allora sono fatti equivalenti i seguenti:
+		
+		\begin{enumerate}[(i)]
+			\item $f(x) \tendsto{\xbar} L$,
+			\item $f$ è continua in $\xbar$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Si dimostrano le due implicazioni separatamente.
+	\end{proof}
+
+	\begin{remark}
+		Se $\xbar$ è un punto isolato di $X$, allora $f$ è continua
+		in $\xbar$. Pertanto per rendere la proposizione precedente
+		vera, è necessario ipotizzare che $\xbar$ sia un punto
+		di accumulazione (infatti il limite in un punto isolato
+		non esiste per definizione, mentre in tale punto $f$ è
+		continua).
+	\end{remark}
+
+	\begin{exercise}
+		Siano $f : X \to \RR$  e $\xbar$ punto di accumulazione di $X$.
+		Siano $L \in \RRbar$ e $\tilde{f} : X \cup \{\xbar\} \to \RRbar$ tale
+		che:
+		
+		\[ \tilde{f}(x) = \begin{cases}
+			L & \text{se } x = \xbar, \\
+			f(x) & \text{altrimenti}.
+		\end{cases} \]
+	
+		\vskip 0.05in
+	
+		Allora $f(x) \tendsto{\xbar} L \iff \tilde{f}$ è continua in $\xbar$.
+	\end{exercise}
+
+	\begin{remark}
+		Tutte le funzioni elementari (e.g.~$\sin(x)$, $\cos(x)$, $\exp(x)$, $\ln(x)$, $\abs{x}$, polinomi) sono funzioni continue nel loro insieme
+		di definizione.
+	\end{remark}
+
+	\begin{proposition}
+		Date $f : X \to Y \subseteq \RRbar$ e $g : Y \to \RRbar$. Sia
+		$f$ continua in $\xbar$ e sia $g$ continua in $f(\xbar)$. Allora
+		$g \circ f$ è continua in $\xbar$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $I$ un intorno di $z = g(f(\xbar))$. Allora, poiché $g$ è continua
+		in $f(\xbar)$, $\exists J$ intorno di $f(\xbar)$ $\mid g(J) \subseteq
+		I$. Tuttavia, poiché $f$ è continua in $\xbar$, $\exists K$ intorno
+		di $\xbar$ $\mid f(K) \subseteq J$, da cui si conclude che
+		$g(f(K)) \subseteq g(J) \subseteq I$.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $f : X \to Y \subseteq \RRbar$, sia $\xbar$ punto di
+		accumulazione di $X$ tale che $f(x) \tendsto{\xbar} \ybar$.
+		Se $\ybar$ è un punto di accumulazione di $Y$, $\ybar \in Y \implies
+		g$ continua in $\ybar$ e $g : Y \to \RRbar$
+		è tale che $g(y) \tendstoy{\ybar} \zbar$, allora
+		$g(f(x)) \tendsto{\xbar} \zbar$.
+	\end{proposition}
+
+	\begin{proof}
+		
+	\end{proof}
+
+	\begin{exercise}
+		Mostrare che tutte le ipotesi della proposizione precedente sono necessarie, fornendo alcuni controesempi.
+	\end{exercise}
+
+	\begin{proposition}
+		Date $f_1, f_2 : X \to \RR$ continue in $\xbar$. Allora:
+		
+		\begin{enumerate}[(i)]
+			\item $f_1 + f_2$ è continua in $\xbar$,
+			\item $f_1 f_2$ è continua in $\xbar$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Sia $f := f_1 + f_2$.
+		
+		\begin{enumerate}[(i)]
+			\item Poiché $f_1, f_2$ sono continue in $\xbar$,
+			$\forall \eps > 0$, $\exists \delta > 0 \mid \abs{x - \xbar} < \delta
+			\implies \abs{f_1(x) - f_1(\xbar)}, \abs{f_2(x) - f_2(\xbar)} \leq \eps$ (per ogni $\eps > 0$, si prende $\delta = \min\{\delta_1, \delta_2\}$, ossia il minimo delle semilunghezze degli intorni
+			di $\xbar$). Allora $\abs{f(x) - f(\xbar)} \leq
+			\abs{f_1(x) - f_1(\xbar)} + \abs{f_2(x) - f_2(\xbar)} \leq 2\eps$.
+			Si conclude dunque che $\forall \eps > 0$, $\exists \delta > 0
+			\mid \abs{f(x) - f(\xbar)} \leq 2\eps$, e quindi, poiché
+			$2\eps \tends{\eps \to 0} 0$, che $f$ è continua in $\xbar$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{proposition}
+		Date $f_1, f_2 : X \to \RRbar$, $\xbar$ punto di accumulazione
+		di $X$. Se $\lim_{x \to \xbar} f_1(x) = L_1 \in \RR$ e
+		$\lim_{x \to \xbar} f_2(x) = L_2 \in \RR$, allora valgono
+		i seguenti risultati:
+		
+		\begin{enumerate}[(i)]
+			\item $f_1(x) + f_2(x) \tendsto{\xbar} L_1 + L_2$,
+			\item $f_1(x) f_2(x) \tendsto{\xbar} L_1 L_2$.
+		\end{enumerate}
+	\end{proposition}
+
+\end{document}
