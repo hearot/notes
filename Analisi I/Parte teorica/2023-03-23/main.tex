@@ -20,29 +20,70 @@
 		sempre una funzione $f : X \to \RRbar$.
 	\end{note}
 	
-	\begin{exercise}
+	\begin{proposition}
 		Dati $f : X \to \RRbar$, $\xbar$ punto di accumulazione di $X$
-		tale che $\forall \, (x_n) \subseteq X \setminus \{\xbar\}$ vale che
-		$f(x_n)$ converge. Allora il limite di $f(x_n)$ è sempre lo stesso.
-	\end{exercise}
+		tale che $\forall \, (x_n) \subseteq X \setminus \{\xbar\} \mid x_n \tendston \xbar$ vale che
+		$f(x_n)$ converge. Allora il limite di $f(x_n)$ è sempre lo stesso, indipendentemente
+		dalla scelta di $(x_n)$.
+	\end{proposition}
 
-	\begin{exercise}
+	\begin{proof}
+		Siano per assurdo $(x_n), (y_n) \subseteq X \setminus \{\xbar\}$ due successioni tali che
+		$x_n, y_n \tendston \xbar$ e che $f(x_n) \tendston L$ e $f(y_n) \tendston G$ con $L \neq G$. Si
+		costruisce allora la successione $(z_n) \subseteq X \setminus \{\xbar\}$ nel seguente modo:
+		
+		\[ z_n = \system{x_{\frac{n}{2}} & \text{se } n \text{ è pari}, \\ y_{\frac{n-1}{2}} & \text{altrimenti},} \]
+		
+		\vskip 0.05in
+		
+		ossia unendo le due successioni $(x_n)$ e $(y_n)$ in modo tale che agli indici pari corrispondano gli
+		elementi di $x_n$ e a quelli dispari quelli di $y_n$. \\
+		
+		Si mostra che $z_n \tendston \xbar$. Sia $I$ un intorno di $\xbar$. Allora, dal momento che
+		$(x_n), (y_n) \tendston \xbar$, esistono sicuramente due
+		$n_x, n_y \in \NN$ tali che $n \geq n_x \implies x_n \in I$ e $n \geq n_y \implies y_n \in I$. Pertanto,
+		detto $n_k = \max\{n_x, n_y\}$, $n \geq n_k \implies x_n, y_n \in I$, ossia che per $n \geq 2 n_k$,
+		$z_n \in I$. Si conclude allora che $(z_n) \tendston \xbar$. \\
+		
+		Tuttavia $f(z_n)$ non può convergere a nessun limite, dal momento che le due sottosuccessioni
+		$f(x_n)$ e $f(y_n)$ convergono a valori distinti ed il limite deve essere unico. L'esistenza di
+		tale successione contraddice allora l'ipotesi, \Lightning.
+	\end{proof}
+
+	\begin{proposition}
 		Data $(x_n) \subseteq \RR$, definisco $f : \NN \to \RRbar$ tale
 		che $f(n) := x_n$, $\forall n \in \NN$. Allora $f(n) \tendston L \iff x_n \tendston L$.
-	\end{exercise}
+	\end{proposition}
+
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Sia $I$ un intorno di $L$. Allora, poiché $f(n) \tendston L$,
+		esiste un intorno $J = [a, \infty]$ tale che $f(J \cap \NN \setminus \{\infty\}) \subseteq I$.
+		Poiché $\infty$ è un punto di accumulazione di $\NN$, $A = J \cap \NN \setminus \{\infty\}$ non è mai
+		vuoto. Inoltre, poiché $A \subseteq \NN$, $A$ ammette un minimo\footnote{Non è in realtà necessario che
+		si consideri il minimo di tale insieme, occorre semplicemente che $A$ sia non vuoto.}, detto $m$.
+		Vale in particolare che
+		$f(n) \in I$, $\forall n \geq m$, e quindi che $x_n \in I$, $\forall n \geq m$, ossia che $x_n \tendston L$. \\
+		
+		\leftproof Sia $I$ un intorno di $L$. Dal momento che $x_n \tendston L$, $\exists n_k \in \NN \mid n \geq n_k \implies
+		x_n \in I$. Allora, detto $J = [n_k, \infty]$, vale che $f(J \cap \NN \setminus \{\infty\}) \subseteq I$, ossia
+		che $f(n) \tendston L$.
+	\end{proof}
 
 	\begin{proposition}
 		Siano $f : X \to \RRbar$, $\xbar \in X$ punto di accumulazione
 		di $X$. Allora sono fatti equivalenti i seguenti:
 		
 		\begin{enumerate}[(i)]
-			\item $f(x) \tendsto{\xbar} L$,
+			\item $f(x) \tendsto{\xbar} f(\xbar)$,
 			\item $f$ è continua in $\xbar$.
 		\end{enumerate}
 	\end{proposition}
 
 	\begin{proof}
-		Si dimostrano le due implicazioni separatamente.
+		Sia $I$ un intorno di $f(\xbar)$. Dal momento che $\xbar$ è un punto di accumulazione, si ricava allora da
+		entrambe le ipotesi che esiste un intorno $J$ di $f(\xbar)$ tale che
+		$f(J \cap X \setminus \{\xbar\}) \subseteq I$, e quindi, per definizione, la tesi.
 	\end{proof}
 
 	\begin{remark}
@@ -54,7 +95,7 @@
 		continua).
 	\end{remark}
 
-	\begin{exercise}
+	\begin{proposition}
 		Siano $f : X \to \RR$  e $\xbar$ punto di accumulazione di $X$.
 		Siano $L \in \RRbar$ e $\tilde{f} : X \cup \{\xbar\} \to \RRbar$ tale
 		che:
@@ -67,38 +108,88 @@
 		\vskip 0.05in
 	
 		Allora $f(x) \tendsto{\xbar} L \iff \tilde{f}$ è continua in $\xbar$.
-	\end{exercise}
+	\end{proposition}
+
+	\begin{proof}
+		Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Sia $I$ un intorno di $L$. Si ricava allora dalle ipotesi che esiste sempre un intorno
+		$J$ di $\xbar$ tale che $f(\underbrace{J \cap X \setminus \{\xbar\}}_{A}) \subseteq I$. Dal momento che $\xbar
+		\notin A$, si deduce che $f(J \cap X \setminus \{\xbar\}) = \tilde{f}(J \cap X \setminus \{\xbar\}) \subseteq I$,
+		ossia che $\tilde{f}$ è continua in $\xbar$. \\
+		
+		\leftproof Sia $I$ un intorno di $L$. Poiché $\tilde{f}$ è continua in $\xbar$, esiste un intorno $J$ di $\xbar$
+		tale che $\tilde{f}(\underbrace{J \cap (X \cup \{\xbar\}) \setminus \{\xbar\}}_{A}) \subseteq I$. Poiché $\xbar \notin A$ e $\xbar$ è punto di accumulazione, si deduce che $I \supseteq \tilde{f}(J \cap (X \cup \{\xbar\}) \setminus \{\xbar\})
+		= f(J \cap (X \cup \{\xbar\}) \setminus \{\xbar\}) \supseteq f(J \cap X \setminus \{\xbar\})$, e quindi che
+		$f(x) \tendsto{\xbar} L$.
+	\end{proof}
 
 	\begin{remark}
-		Tutte le funzioni elementari (e.g.~$\sin(x)$, $\cos(x)$, $\exp(x)$, $\ln(x)$, $\abs{x}$, polinomi) sono funzioni continue nel loro insieme
+		Tutte le funzioni elementari (e.g.~$\sin(x)$, $\cos(x)$, $\exp(x)$, $\ln(x)$, $\abs{x}$, $x^a$) sono funzioni continue nel loro insieme
 		di definizione.
 	\end{remark}
 
 	\begin{proposition}
-		Date $f : X \to Y \subseteq \RRbar$ e $g : Y \to \RRbar$. Sia
+		Siano $f : X \to Y \subseteq \RRbar$ e $g : Y \to \RRbar$ e sia $\xbar \in X$. Sia
 		$f$ continua in $\xbar$ e sia $g$ continua in $f(\xbar)$. Allora
 		$g \circ f$ è continua in $\xbar$.
 	\end{proposition}
 
 	\begin{proof}
 		Sia $I$ un intorno di $z = g(f(\xbar))$. Allora, poiché $g$ è continua
-		in $f(\xbar)$, $\exists J$ intorno di $f(\xbar)$ $\mid g(J) \subseteq
+		in $f(\xbar)$, $\exists J$ intorno di $f(\xbar)$ $\mid g(J \cap Y \setminus \{f(\xbar)\}) \subseteq
 		I$. Tuttavia, poiché $f$ è continua in $\xbar$, $\exists K$ intorno
-		di $\xbar$ $\mid f(K) \subseteq J$, da cui si conclude che
-		$g(f(K)) \subseteq g(J) \subseteq I$.
+		di $\xbar$ $\mid f(K \cap X \setminus \{\xbar\}) \subseteq J$, da cui si conclude che
+		$g(f(K \cap X \setminus \{\xbar\})) \subseteq I$, dacché $\forall x \in K \cap X \setminus \{\xbar\}$,
+		o $f(x) = f(\xbar)$, e quindi $g(f(x)) = z$ chiaramente appartiene a $I$, o altrimenti
+		$f(x) \in J \cap Y \setminus \{f(\xbar)\} \implies g(f(x)) \in g(J \cap Y \setminus \{f(\xbar)\}) \subseteq I$.
 	\end{proof}
 
-	\begin{proposition}
+	\begin{theorem}
 		Sia $f : X \to Y \subseteq \RRbar$, sia $\xbar$ punto di
 		accumulazione di $X$ tale che $f(x) \tendsto{\xbar} \ybar$.
-		Se $\ybar$ è un punto di accumulazione di $Y$, $\ybar \in Y \implies
-		g$ continua in $\ybar$ e $g : Y \to \RRbar$
-		è tale che $g(y) \tendstoy{\ybar} \zbar$, allora
+		Se $\ybar$ è un punto di accumulazione di $Y$ e $g : Y \to \RRbar$
+		è tale che $\ybar \in Y \implies
+		g$ continua in $\ybar$ e $g(y) \tendstoy{\ybar} \zbar$, allora
 		$g(f(x)) \tendsto{\xbar} \zbar$.
-	\end{proposition}
+	\end{theorem}
 
 	\begin{proof}
+		Siano $\tilde{f} : X \cup \{\xbar\}$, $\tilde{g} : Y \cup \{\ybar\}$ due funzioni costruite nel seguente
+		modo:
 		
+		\[ \tilde{f}(x) = \begin{cases}
+			\ybar & \text{se } x = \xbar, \\
+			f(x) & \text{altrimenti},
+		\end{cases} \qquad
+			\tilde{g}(y) = \begin{cases}
+				\zbar & \text{se } y = \ybar, \\
+				g(y) & \text{altrimenti}.
+			\end{cases} \]
+		
+		Poiché $f(x) \tendsto{\xbar} \ybar$ e $\xbar$ è un punto di accumulazione di $X$, per una proposizione precedente, $\tilde{f}$ è continua in $\xbar$. Analogamente $\tilde{g}$ è continua in $\ybar$. Dal momento che
+		vale che $\tilde{f}(\xbar) = \ybar$, per la proposizione precedente $\tilde{g} \circ \tilde{f}$ è continua in
+		$\xbar$, e dunque $\lim_{x \to \xbar} \tilde{g}(\tilde{f}(x)) = \tilde{g}(\tilde{f}(\xbar)) = \zbar$. \\
+		
+		Si consideri adesso la funzione $\widetilde{g \circ f} : X \to \RRbar$ definita nel seguente modo:
+		
+		\[ \widetilde{g \circ f}(x) = \begin{cases}
+			\zbar & \text{se } x = \xbar, \\
+			g(f(x)) & \text{altrimenti}.
+		\end{cases} \]
+	
+		Si mostra che $\widetilde{g \circ f} = \tilde{g} \circ \tilde{f}$. Se $x = \xbar$, chiaramente
+		$\widetilde{g \circ f}(x) = \zbar = \tilde{g}(\tilde{f}(\xbar))$. Se $x \neq \xbar$, si
+		considera il caso in cui $\tilde{f}(x) = f(x)$ è uguale a $\ybar$ ed il caso in cui non vi è
+		uguale. \\
+		
+		Se $\tilde{f}(x) \neq \ybar$, $\tilde{g}(\tilde{f}(x)) = \tilde{g}(f(x)) \overbrace{=}^{f(x) \neq \ybar} g(f(x)) = \widetilde{g \circ f}(x)$. Se invece
+		$\tilde{f}(x) = \ybar$, $\ybar \in Y$, e quindi $g$ è continua in $\ybar$, da cui necessariamente
+		deriva che $g(\ybar) = \zbar$. Allora $\widetilde{g \circ f}(x) = g(f(x)) = g(\ybar) = \zbar = \tilde{g}(\tilde{f}(\xbar))$. \\ 
+		
+		Si conclude allora che $\widetilde{g \circ f} = \tilde{g} \circ \tilde{f}$, e
+		quindi che $\widetilde{g \circ f}$ è continua in $\xbar$. Pertanto,
+		dalla proposizione precedente, $g(f(x)) \tendsto{\xbar} \zbar$.
 	\end{proof}
 
 	\begin{exercise}
