@@ -14,6 +14,189 @@
 		\Large \textbf{Forma canonica di Jordan reale e prodotto scalare}
 	\end{center}
 
-
+	%TODO: aggiungere la parte relativa alla forma canonica di Jordan reale
 	
+	\begin{definition}
+		Un \textbf{prodotto scalare} su $V$ è una forma bilineare simmetrica $\varphi$ con argomenti in $V$.
+	\end{definition}
+
+	\begin{example}
+		Sia $\varphi : M(n, \KK)^2 \to \KK$ tale che $\varphi(A, B) = \tr(AB)$. \\
+		
+		\li $\varphi(A + A', B) = \tr((A + A')B) = \tr(AB + A'B) = \tr(AB) + \tr(A'B) = \varphi(A, B) + \varphi(A', B)$ (linearità
+		nel primo argomento), \\
+		\li $\varphi(\alpha A, B) = \tr(\alpha A B) = \alpha \tr(AB) = \alpha \varphi(A, B)$ (omogeneità nel secondo argomento), \\
+		\li $\varphi(A, B) = \tr(AB) = \tr(BA) = \varphi(B, A)$ (simmetria), \\
+		\li poiché $\varphi$ è simmetrica, $\varphi$ è lineare e omogenea anche nel secondo argomento, e quindi è una
+		forma bilineare simmetrica, ossia un prodotto scalare su $M(n, \KK)$.
+	\end{example}
+
+	\begin{definition}
+		Si definisce prodotto scalare \textit{canonico} di $\KK^n$ la forma bilineare simmetrica $\varphi$ con
+		argomenti in $\KK^n$ tale che:
+		
+		\[ \varphi((x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n x_i y_i. \]
+	\end{definition}
+
+	\begin{remark}
+		Si può facilmente osservare che il prodotto scalare canonico di $\KK^n$ è effettivamente un prodotto
+		scalare. \\
+		
+		\li $\varphi((x_1, ..., x_n) + (x_1', ..., x_n'), (y_1, ..., y_n)) = \sum_{i=1}^n (x_i + x_i') y_i =
+		 \sum_{i=1}^n \left[x_iy_i + x_i' y_i\right] = \sum_{i=1}^n x_i y_i + \sum_{i=1}^n x_i' y_i =
+		 \varphi((x_1, ..., x_n), (y_1, ..., y_n)) + \varphi((x_1', ..., x_n'), (y_1, ..., y_n))$ (linearità nel
+		 primo argomento), \\
+		\li $\varphi(\alpha(x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n \alpha x_i y_i = \alpha \sum_{i=1}^n x_i y_i =
+		\alpha \varphi((x_1, ..., x_n), (y_1, ..., y_n))$ (omogeneità nel primo argomento), \\
+		\li $\varphi((x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n x_i y_i = \sum_{i=1}^n y_i x_i = \varphi((y_1, ..., y_n), (x_1, ..., x_n))$ (simmetria), \\
+		\li poiché $\varphi$ è simmetrica, $\varphi$ è lineare e omogenea anche nel secondo argomento, e quindi è una
+forma bilineare simmetrica, ossia un prodotto scalare su $\KK^n$.
+	\end{remark}
+
+	\begin{example}
+		Altri esempi di prodotto scalare sono i seguenti: \\
+		
+		\li $\varphi(A, B) = \tr(A^\top B)$ per $M(n, \KK)$, \\
+		\li $\varphi(p(x), q(x)) = p(a) q(a)$ per $\KK[x]$, con $a \in \KK$, \\
+		\li $\varphi(p(x), q(x)) = \sum_{i=1}^n p(x_i) q(x_i)$ per $\KK[x]$, con $x_1$, ..., $x_n$ distinti, \\
+		\li $\varphi(p(x), q(x)) = \int_a^b p(x)q(x) dx$ per lo spazio delle funzioni integrabili su $\RR$, con $a$, $b$ in $\RR$, \\
+		\li $\varphi(\vec{x}, \vec{y}) = \vec{x}^\top A \vec{y}$ per $\KK^n$, con $A \in M(n, \KK)$ simmetrica.
+	\end{example}
+	
+	\begin{definition}
+		Sia\footnote{In realtà, la definizione è facilmente estendibile a qualsiasi campo, purché esso
+		sia ordinato.} $\KK = \RR$. Allora un prodotto scalare $\varphi$ è \textbf{definito positivo} se $\vec{v} \neq \vec{0} \implies
+		\varphi(\vec{v}, \vec{v}) > 0$.
+	\end{definition}
+
+	\begin{example}
+		Il prodotto scalare canonico di $\RR^n$ è definito positivo: infatti $\varphi((x_1, ..., x_n), (x_1, ..., x_n)) =
+		\sum_{i=1}^n x_i^2  = 0 \iff x_i = 0$, $\forall 1 \leq i \leq n$ $\iff (x_1, ..., x_n) = \vec{0}$. \\
+		
+		Al contrario, il prodotto scalare $\varphi : \RR^2 \to \RR$ tale che $\varphi((x_1, x_2), (y_1, y_2)) = x_1 y_1 - x_2 y_2$ non è definito positivo: $\varphi((x, y), (x, y)) = 0$, $\forall$ $(x, y) \mid x^2 = y^2$, ossia se
+		$y = x$ o $y = -x$.
+	\end{example}
+
+	\begin{definition}
+		Dato un prodotto scalare $\varphi$ di $V$, ad ogni vettore $\vec{v} \in V$ si associa una \textbf{forma quadratica}
+		$q : V \to \KK$ tale che $q(\vec{v}) = \varphi(\vec{v}, \vec{v})$.
+	\end{definition}
+
+	\begin{remark}
+		Si osserva che $q$ non è lineare in generale: infatti $q(\vec{v} + \vec{w}) \neq q(\vec{v}) + q(\vec{w})$ in
+		$\RR^n$.
+	\end{remark}
+
+	\begin{definition}
+		Un vettore $\vec{v} \in V$ si dice \textbf{isotropo} rispetto al prodotto scalare $\varphi$ se $q(\vec{v}) =
+		\varphi(\vec{v}, \vec{v}) = 0$.
+	\end{definition}
+
+	\begin{example}
+		Rispetto al prodotto scalare $\varphi : \RR^3 \to \RR$ tale che $\varphi((x_1, x_2, x_3), (y_1, y_2, y_3)) =
+		x_1 y_1 + x_2 y_2 - x_3 y_3$, i vettori isotropi $(x, y, z)$ sono quelli tali che $x^2 + y^2 = z^2$, ossia
+		i vettori stanti sul cono di eq.~$x^2 + y^2 = z^2$.
+	\end{example}
+
+	\begin{remark}
+		Come già osservato in generale per le app.~multilineari, il prodotto scalare è univocamente determinato
+		dai valori che assume nelle coppie $\vv{i}, \vv{j}$ estraibili da una base $\basis$. Infatti, se
+		$\basis = (\vv1, ..., \vv{k})$, $\vec{v} = \sum_{i=1}^k \alpha_i \vv{i}$ e $\vec{w} = \sum_{i=1}^k \beta_i \vv{i}$,
+		allora:
+		
+		\[ \varphi(\vec{v}, \vec{w}) = \sum_{1 \leq i \leq j \leq k} \alpha_i \beta_j \, \varphi(\vv{i}, \vv{j}). \]
+	\end{remark}
+
+	\begin{definition}
+		Sia $\varphi$ un prodotto scalare di $V$ e sia $\basis = (\vv1, ..., \vv{n})$ una base ordinata di $V$. Allora si denota con \textbf{matrice associata}
+		a $\varphi$ la matrice:
+		
+		\[ M_\basis(\varphi) = (\varphi(\vv{i}, \vv{j}))_{i,\,j = 1\text{---}n} \in M(n, \KK). \] 
+	\end{definition}
+
+	\begin{remark}
+		Si possono fare alcune osservazioni riguardo $M_\basis(\varphi)$. \\
+		
+		\li $M_\basis(\varphi)$ è simmetrica, infatti $\varphi(\vv{i}, \vv{j}) = \varphi(\vv{j}, \vv{i})$ per
+		definizione di prodotto scalare, \\
+		\li $\varphi(\vec{v}, \vec{w}) = [\vec{v}]_\basis^\top M_\basis(\varphi) [\vec{w}]_\basis$.
+	\end{remark}
+
+	\begin{theorem} (di cambiamento di base per matrici di prodotti scalari) Siano $\basis$, $\basis'$ due
+		basi ordinate di $V$. Allora, se $\varphi$ è un prodotto scalare di $V$ e $P = M^{\basis'}_{\basis}(\Id_V)$, vale la seguente identità:
+		
+		\[ \underbrace{M_{\basis'}(\varphi)}_{A'} = P^\top \underbrace{M_{\basis}}_{A} P. \]
+	\end{theorem}
+
+	\begin{proof} Siano $\basis = (\vv{1}, ..., \vv{n})$ e $\basis' = (\vec{w}_1, ..., \vec{w}_n)$. Allora
+		$A'_{ij} = \varphi(\vec{w}_i, \vec{w}_j) = [\vec{w}_i]_{\basis}^\top A [\vec{w}_j]_{\basis} =
+		(P^i)^\top A P^j = P_i^\top (AP)^j = (P^\top AP)_{ij}$, da cui la tesi.
+	\end{proof}
+
+	\begin{definition}
+		Si definisce \textbf{congruenza} la relazione di equivalenza $\sim$ definita nel seguente
+		modo su $A, B \in M(n, \KK)$:
+		
+		\[ A \sim B \iff \exists P \in GL(n, \KK) \mid A = P^\top A P. \]
+	\end{definition}
+
+	\begin{remark}
+		Si può facilmente osserva che la congruenza è in effetti una relazione di equivalenza. \\
+		
+		\li $A = I^\top A I \implies A \sim A$ (riflessione), \\
+		\li $A \sim B \implies A = P^\top B P \implies B = (P^\top)\inv A P\inv = (P\inv)^\top A P\inv \implies B \sim A$ (simmetria), \\
+		\li $A \sim B \implies A = P^\top B P$, $B \sim C \implies B = Q^\top C Q$, quindi $A = P^\top Q^\top C Q P =
+		(QP)^\top C (QP)$ (transitività). 
+	\end{remark}
+
+	\begin{remark}
+		Si osservano alcune proprietà della congruenza. \\
+		
+		\li Per il teorema di cambiamento di base del prodotto scalare, due matrici associate a uno stesso
+		prodotto scalare sono sempre congruenti (esattamente come due matrici associate a uno stesso
+		endomorfismo sono sempre simili).
+		\li Se $A$ e $B$ sono congruenti, $A = P^\top B P \implies \rg(A) = \rg(P^\top B P) = \rg(BP) = \rg(B)$,
+		dal momento che $P$ e $P^\top$ sono invertibili; quindi il rango è un invariante per congruenza. Allora
+		è ben definito il rango $\rg(\varphi)$ di un prodotto scalare come il rango di una sua qualsiasi matrice
+		associata.
+		\li Se $A$ e $B$ sono congruenti, $A = P^\top B P \implies \det(A) = \det(P^\top B P) = \det(P^\top) \det(B) \det(P)=
+		\det(P)^2 \det(B)$. Quindi, per $\KK = \RR$, il segno del determinante è invariante per congruenza.
+	\end{remark}
+
+	\begin{definition}
+		Si dice \textbf{radicale} di un prodotto scalare $\varphi$ lo spazio:
+		
+		\[ V^\perp = \{ \vec{v} \in V \mid \varphi(\vec{v}, \vec{w}) = 0, \forall \vec{w} \in V \} \]
+	\end{definition}
+	
+	\begin{remark}
+		Il radicale di $\RR^n$ con il prodotto scalare canonico ha dimensione nulla, dal momento che $\forall \vec{v} \in \RR^n \setminus \{\vec{0}\}$, $q(\vec{v}) = \varphi(\vec{v}, \vec{v}) > 0$.
+	\end{remark}
+
+	\begin{definition}
+		Un prodotto scalare si dice \textbf{degenere} se il radicale dello spazio su tale prodotto scalare ha
+		dimensione non nulla.
+	\end{definition}
+	
+	%TODO: spiegare perché \alpha_\varphi è lineare e aggiungere esempi nella parte precedente.
+	%TODO: aggiungere osservazioni sul radicale (i.e. che è uno spazio, che ogni suo vettore è isotropo, ...).
+	
+	\begin{remark}
+		Si definisce l'applicazione lineare $\alpha_\varphi : V \to \dual{V}$ in modo tale che
+		$\alpha_\varphi(\vec{v}) = p$, dove $p(\vec{w}) = \varphi(\vec{v}, \vec{w})$. \\
+		
+		Allora $V^\perp$ altro non è che $\Ker \alpha_\varphi$. Se $V$ ha dimensione finita, $\dim V = \dim \dual{V}$,
+		e si può allora concludere che $\dim V^\perp > 0 \iff \Ker \alpha_\varphi \neq \{\vec{0}\} \iff \alpha_\varphi$ non è
+		invertibile (infatti lo spazio di partenza e di arrivo di $\alpha_\varphi$ hanno la stessa dimensione). In
+		particolare, $\alpha_\varphi$ non è invertibile se e solo se $\det(\alpha_\varphi) = 0$. \\
+		
+		Sia $\basis = (\vv{1}, ..., \vv{n})$ una base ordinata di $V$. Si consideri allora la base ordinata del
+		duale costruita su $\basis$, ossia $\dual{\basis} = (\vecdual{v_1}, ..., \vecdual{v_n})$. Allora
+		$M_{\basisdual}^\basis(\alpha_\varphi)^i = [\alpha_\varphi(\vv{i})]_{\basisdual} = \Matrix{\varphi(\vec{v_i}, \vec{v_1}) \\ \vdots \\ \varphi(\vec{v_i}, \vec{v_n})} \underbrace{=}_{\varphi \text{ è simmetrica}}
+		\Matrix{\varphi(\vec{v_1}, \vec{v_i}) \\ \vdots \\ \varphi(\vec{v_n}, \vec{v_i})} = M_\basis(\varphi)^i$. Quindi
+		$M_{\basisdual}^\basis(\alpha_\varphi) = M_\basis(\varphi)$. \\
+		
+		Si conclude allora che $\varphi$ è degenere se e solo se $\det (M_\basis(\varphi)) = 0$ e che
+		$V^\perp \cong \Ker M_\basis(\varphi)$ con l'isomorfismo è il passaggio alle coordinate.
+	\end{remark}
 \end{document}
