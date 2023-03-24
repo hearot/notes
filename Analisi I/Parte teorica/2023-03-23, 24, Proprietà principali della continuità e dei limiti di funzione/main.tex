@@ -244,6 +244,47 @@
 		\end{enumerate}
 	\end{proposition}
 
+	\begin{proof}
+		Si definiscono preliminarmente le funzioni $\tilde{f_1}$, $\tilde{f_2} : X \cup \{\xbar\} \to \RRbar$ in modo tale che:
+		
+		\[ \tilde{f_1}(x) = \begin{cases}
+			L_1 & \text{se } x = \xbar, \\
+			f_1(x) & \text{altrimenti},
+		\end{cases} \qquad
+		\tilde{f_2}(x) = \begin{cases}
+			L_2 & \text{se } x = \xbar, \\
+			f_2(x) & \text{altrimenti}.
+		\end{cases} \]
+		
+		\vskip 0.05in
+	
+		Si dimostrano allora i due risultati separatamente. \\
+		
+		\begin{enumerate}[(i)]
+			\item Si definisce $\widetilde{f_1 + f_2} : X \cup \{\xbar\} \to \RRbar$ nel seguente modo:
+			
+			\[ \widetilde{f_1 + f_2}(x) = \system{L_1 + L_2 & \text{se } x = \xbar, \\ f_1(x) + f_2(x) & \text{altrimenti}.} \]
+			
+			La somma $L_1 + L_2$ è ben definita dacché sia $L_1$ che $L_2$ sono elementi di $\RR$.
+			Poiché da una proposizione precedente $\tilde{f_1}$ e $\tilde{f_2}$ sono continue in $\xbar$, $\tilde{f_1} + \tilde{f_2}$ è continua anch'essa in $\xbar$. È sufficiente allora dimostrare che $\widetilde{f_1 + f_2} =
+			\tilde{f_1} + \tilde{f_2}$. Se $x \neq \xbar$, $\widetilde{f_1 + f_2}(x) = f_1(x) + f_2(x) = \tilde{f_1}(x) + \tilde{f_2}(x) = (\tilde{f_1} + \tilde{f_2})(x)$. Se invece $x = \xbar$, $\widetilde{f_1 + f_2}(x) = L_1 + L_2 =
+			\tilde{f_1}(x) + \tilde{f_2}(x) = (\tilde{f_1} + \tilde{f_2})(x)$. Quindi $\widetilde{f_1 + f_2} =
+			\tilde{f_1} + \tilde{f_2}$, e si conclude che $\widetilde{f_1 + f_2}$ è dunque continua in $\xbar$, ossia
+			che $(f_1 + f_2)(x) = f_1(x) + f_2(x) \tendsto{\xbar} L_1 + L_2$.
+			
+			\item Si definisce, analogamente a prima, $\widetilde{f_1 f_2} : X \cup \{\xbar\} \to \RRbar$ nel seguente modo:
+			
+			\[ \widetilde{f_1 f_2}(x) = \system{L_1 L_2 & \text{se } x = \xbar, \\ f_1(x) f_2(x) & \text{altrimenti}.} \]
+			
+			Il prodotto $L_1 L_2$ è ben definito dacché sia $L_1$ che $L_2$ sono elementi di $\RR$.
+			Poiché da una proposizione precedente $\tilde{f_1}$ e $\tilde{f_2}$ sono continue in $\xbar$, $\tilde{f_1} \tilde{f_2}$ è continua anch'essa in $\xbar$. È sufficiente allora dimostrare che $\widetilde{f_1 f_2} =
+			\tilde{f_1}\tilde{f_2}$. Se $x \neq \xbar$, $\widetilde{f_1 f_2}(x) = f_1(x) f_2(x) = \tilde{f_1}(x) 	\tilde{f_2}(x) = (\tilde{f_1}\tilde{f_2})(x)$. Se invece $x = \xbar$, $\widetilde{f_1 f_2}(x) = L_1 L_2 =
+			\tilde{f_1}(x) \tilde{f_2}(x) = (\tilde{f_1} \tilde{f_2})(x)$. Quindi $\widetilde{f_1 f_2} =
+			\tilde{f_1} \tilde{f_2}$, e si conclude che $\widetilde{f_1 f_2}$ è dunque continua in $\xbar$, ossia
+			che $(f_1 f_2)(x) = f_1(x) f_2(x) \tendsto{\xbar} L_1 L_2$.
+		\end{enumerate}
+	\end{proof}
+
 	\begin{definition}
 		(intorno destro e sinistro) Se $\xbar \in \RR$, si dicono
 		\textbf{intorni destri} gli intervalli della forma $[\xbar, \xbar + \eps]$ con
@@ -288,11 +329,13 @@
 	
 	\begin{theorem} (della permanenza del segno)
 		Data $(x_n) \subseteq \RR$ tale che $x_n \tendston L > 0$, allora
-		$(x_n)$ è positiva definitivamente. Analogamente, se $L < 0$,
+		$(x_n)$ è strettamente positiva definitivamente. Analogamente, se $L < 0$,
 		$(x_n)$ è negativa definitivamente.
 	\end{theorem}
 
 	\begin{proof}
+		Se $L > 0$, allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo (e.g.~$I = [\frac{L}{2}, \frac{3L}{2}]$). Dal momento che $x_n \tendston L$, $\exists n_k \mid n \geq n_k \implies x_n \in I$,
+		ossia, in particolare, $n \geq n_k \implies x_n > 0$, da cui la tesi.
 	\end{proof}
 	
 	\begin{theorem} (degli zeri) Dati $I = [a, b]$ e
@@ -300,17 +343,28 @@
 	\end{theorem}
 
 	\begin{proof}
-		Prendo $E$ insieme dei punti in cui la funzione è negativa e
-		dimostro che il $\sup$ di questo insieme è proprio $0$ (esiste
-		per la completezza di $\RR$ e mostro che $f(\xbar) = 0$). Mostro
-		quest'ultimo concetto facendo vedere che è sia positivo che
-		negativo dalle ipotesi (si può sempre approssimare l'estremo
-		superiore di $E$ con i suoi elementi). $\xbar$ si può approssimare
-		anche da destra (essendo il $\sup$ di $E$, deve valere che le
-		successioni da destra sono positive)
+		Senza alcuna perdita di generalità si pone $f(a) < 0 < f(b)$ (il caso $f(a) > 0 > f(b)$ è
+		infine dimostrato considerando $g(x) = -f(x)$). Si definisce allora l'insieme $E$ in modo tale che:
+		
+		\[ E = \{ a \in I \mid f(a) < 0 \}. \]
+		
+		\vskip 0.05in
+		
+		Si osserva che $E \neq \emptyset$, dacché $a \in E$. Per la completezza dei numeri reali,
+		$E$ ammette un estremo superiore $\xbar := \sup E$. Sia $(x_n) \subseteq E$ una successione
+		tale che $x_n \tendston \xbar$: poiché $f$ è continua in $\xbar$, $\lim_{x \to \xbar} f(x) = f(\xbar) \implies
+		f(x_n) \tendston f(\xbar)$. Allora, poiché $f(x_n) < 0$ $\forall n \in \NN$, $f(\xbar) \leq 0$ (se così non fosse
+		$f(x_n)$ dovrebbe essere definitivamente positiva per il teorema della permanenza del segno, ma questo
+		è assurdo dacché $x_n \in E$ $\forall n \in \NN$, \Lightning). \\
+		
+		Sia ora $(y_n) \in I$ una successione tale che $y_n \tendston \xbar$ e che $y_n > \xbar$ $\forall n \in \NN$ (questo
+		è sempre possibile dal momento che $\xbar \neq b \impliedby f(\xbar) \leq 0$). Allora,
+		poiché $y_n > \xbar = \sup E$, $y_n$ non appartiene ad $E$, e quindi deve valere che $f(y_n) > 0$. Si conclude
+		allora, per il teorema della permanenza del segno, che $f(\xbar) \geq 0$, e quindi che $f(\xbar) = 0$, da cui
+		la tesi.
 	\end{proof}
 
-	\begin{corollary} (dei valori intermedi) Dati $I = (a, b)]$ e
+	\begin{corollary} (dei valori intermedi) Dati $I = (a, b)$ e
 		$f : I \to \RRbar$ continua, allora $y_1$, $y_2 \in f(I) \implies
 		[y_1, y_2] \subseteq f(I)$ (ossia $f$ assume tutti i valori
 		compresi tra $y_1$ e $y_2$).
