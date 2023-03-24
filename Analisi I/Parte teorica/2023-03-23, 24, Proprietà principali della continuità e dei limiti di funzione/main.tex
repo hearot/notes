@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Analisi Matematica 1}}
 \author{Gabriel Antonio Videtta}
-\date{21 marzo 2023}
+\date{23 e 24 marzo 2023}
 
 \begin{document}
 	
@@ -206,10 +206,10 @@
 	\end{proposition}
 
 	\begin{proof}
-		Sia $f := f_1 + f_2$.
+		Si dimostrano i due punti separatamente.
 		
 		\begin{enumerate}[(i)]
-			\item Poiché $f_1, f_2$ sono continue in $\xbar$,
+			\item Sia $f := f_1 + f_2$. Poiché $f_1, f_2$ sono continue in $\xbar$,
 			$\forall \eps > 0$, $\exists \delta > 0 \mid \abs{x - \xbar} < \delta
 			\implies \abs{f_1(x) - f_1(\xbar)}, \abs{f_2(x) - f_2(\xbar)} \leq \eps$ (per ogni $\eps > 0$, si prende $\delta = \min\{\delta_1, \delta_2\}$, ossia il minimo delle semilunghezze degli intorni
 			di $\xbar$). Allora $\abs{f(x) - f(\xbar)} \leq
@@ -217,6 +217,18 @@
 			Si conclude dunque che $\forall \eps > 0$, $\exists \delta > 0
 			\mid \abs{f(x) - f(\xbar)} \leq 2\eps$, e quindi, poiché
 			$2\eps \tends{\eps \to 0} 0$, che $f$ è continua in $\xbar$.
+			
+			\item Dal momento che $f_1, f_2$ sono continue in $\xbar$,
+			$\forall \eps > 0$, $\exists \delta > 0$ tale che $\abs{x - \xbar} < \delta \implies \abs{f_1(x) - f_1(\xbar)} < \eps, \abs{f_2(x)
+			- f_2(\xbar)} < \eps$ (vale lo stesso ragionamento del punto
+			(i)). Allora $f_1(x) = f_1(\xbar) + e_1$ e
+			$f_2(x) = f_2(\xbar) + e_2$, con $\abs{e_1}, \abs{e_2} < \eps$.
+			Dunque $f_1(x)f_2(x) = f_1(\xbar)f_2(\xbar) + \underbrace{e_1 f_2(\xbar) +
+			e_2 f_1(\xbar) + e_1 e_2}_e$. In particolare, per la
+			disuguaglianza triangolare, $\abs{e} \leq \abs{e_1 f_2(\xbar)} +
+			\abs{e_2 f_1(\xbar)} + \abs{e_1 e_2} \leq \underbrace{\eps \abs{f_2(\xbar)} +
+			\eps \abs{f_1(\xbar)} + \eps^2}_{\eps'}$. Poiché $\eps' \tends{\eps \to 0^+} 0$, si conclude che $\abs{f_1(x) f_2(x) - f_1(\xbar) f_2(\xbar)} = \abs{e} \leq \eps' \implies f_1(x)f_2(x)$ continua
+			in $\xbar$.
 		\end{enumerate}
 	\end{proof}
 
@@ -232,4 +244,79 @@
 		\end{enumerate}
 	\end{proposition}
 
+	\begin{definition}
+		(intorno destro e sinistro) Se $\xbar \in \RR$, si dicono
+		\textbf{intorni destri} gli intervalli della forma $[\xbar, \xbar + \eps]$ con
+		$\eps > 0$. Analogamente, gli \textbf{intorni sinistri} sono gli
+		intervalli della forma $[\xbar - \eps, \xbar]$.
+	\end{definition}
+
+	\begin{definition}
+		(punto di accumulazione destro e sinistro) Sia $\xbar \in X$.
+		Si dice che $\xbar$ è un \textbf{punto di accumulazione destro}
+		di $X$ se $\forall I$ intorno destro di $\xbar$, $I \cap X \setminus \{\xbar\} \neq \emptyset$. Analogamente si dice \textbf{punto di
+		accumulazione sinistro} di $X$ se è tale per gli intorni sinistri.
+	\end{definition}
+
+	\begin{definition}
+		(limite destro e sinistro) Sia $\xbar$ un punto di accumulazione
+		destro di $X$. Allora $\lim_{x \to \xbar^+} f(x) = L \defiff \forall I$
+		intorno di $L$, $\exists J$ intorno destro di $\xbar$ tale che
+		$f(J \cap X \setminus \{\xbar\}) \subseteq I$. Analogamente si definisce
+		il limite sinistro.
+	\end{definition}
+
+	\begin{definition}
+		(continuità destra e sinistra) Sia $\xbar \in X$. Allora $f$ è continua
+		a destra in $\xbar$ se e solo se $\forall I$ intorno di $f(\xbar)$,
+		$\exists J$ intorno destro di $\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$. Analogamente si definisce la continuità
+		a sinistra di $f$.
+	\end{definition}
+
+	%TODO: aggiungere osservazioni sulla continuità destra e sinistra.
+	
+	\begin{proposition}
+		Sia $f : X \to \RRbar$ monotona e sia $\xbar$ un punto di
+		accumulazione destro di $X$. Allora esiste $\lim_{x \to \xbar^+} f(x)$.
+		Analogamente esiste da sinistra se $\xbar$ è un punto di
+		accumulazione sinistro di $X$.
+	\end{proposition}
+
+	%TODO: aggiungere funzione discontinua in ogni punto di R.
+	
+	%TODO: l'insieme dei punti di discontinuità per una funzione monotona è al più numerabile (hint: punto medio).
+	
+	\begin{theorem} (della permanenza del segno)
+		Data $(x_n) \subseteq \RR$ tale che $x_n \tendston L > 0$, allora
+		$(x_n)$ è positiva definitivamente. Analogamente, se $L < 0$,
+		$(x_n)$ è negativa definitivamente.
+	\end{theorem}
+
+	\begin{proof}
+	\end{proof}
+	
+	\begin{theorem} (degli zeri) Dati $I = [a, b]$ e
+		$f : I \to \RRbar$ continua tale che $f(a) f(b) < 0$ (i.e.~sono discordi), allora $\exists c \in (a, b) \mid f(c) = 0$.
+	\end{theorem}
+
+	\begin{proof}
+		Prendo $E$ insieme dei punti in cui la funzione è negativa e
+		dimostro che il $\sup$ di questo insieme è proprio $0$ (esiste
+		per la completezza di $\RR$ e mostro che $f(\xbar) = 0$). Mostro
+		quest'ultimo concetto facendo vedere che è sia positivo che
+		negativo dalle ipotesi (si può sempre approssimare l'estremo
+		superiore di $E$ con i suoi elementi). $\xbar$ si può approssimare
+		anche da destra (essendo il $\sup$ di $E$, deve valere che le
+		successioni da destra sono positive)
+	\end{proof}
+
+	\begin{corollary} (dei valori intermedi) Dati $I = (a, b)]$ e
+		$f : I \to \RRbar$ continua, allora $y_1$, $y_2 \in f(I) \implies
+		[y_1, y_2] \subseteq f(I)$ (ossia $f$ assume tutti i valori
+		compresi tra $y_1$ e $y_2$).
+	\end{corollary}
+
+	\begin{proof}
+		
+	\end{proof}
 \end{document}
