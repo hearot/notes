@@ -78,6 +78,12 @@
 \newcommand{\RRbar}{\overline{\RR}}
 
 % Spesso utilizzati al corso di Geometria 1.
+\let\Im\undefined
+\DeclareMathOperator{\Im}{Im}
+\newcommand{\restr}[2]{
+	#1\arrowvert_{#2}
+}
+
 \DeclareMathOperator{\val}{val}
 \DeclareMathOperator{\Span}{Span}
 \newcommand{\charpoly}[1]{p_{#1}}

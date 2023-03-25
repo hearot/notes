@@ -11,16 +11,64 @@
 	\maketitle
 	
 	\begin{center}
-		\Large \textbf{Es. 24/03/2023}
+		\Large \textbf{Esercitazione: la forma canonica di Jordan e gli autospazi generalizzati}
 	\end{center}
+
+	\begin{note}
+		Nel corso del documento, per $f$ si intenderà un generico endomorfismo di $\End(V)$, e per $V$
+		verrà inteso uno spazio vettoriale di dimensione finita $n$ su un campo $\KK$ algebricamente
+		chiuso, qualora non specificato diversamente.
+	\end{note}
 	
-	%TODO: aggiungere matrice compagna di q(x) negli scorsi appunti di es. e calcolare polinomio minimo e caratteristico.
+	Sia $f \in \End(V)$. Si osservino allora le seguenti catene ascendenti:
+	\begin{gather}
+		\{\vec0\} \subsetneq \Ker f \subsetneq \Ker f^2 \subsetneq \cdots \subsetneq \Ker f^{k-1} \subsetneq \Ker f^k = \Ker f^{k+1} = \cdots, \\
+		\{\vec0\} \subsetneq \Im f \subsetneq \Im f^2 \subsetneq \cdots \subsetneq \Im f^{k-1} \subsetneq \Im f^k = \Im f^{k+1} = \cdots,
+	\end{gather}
+
+	Sia la $(1)$ che la $(2)$ devono stabilizzarsi allo stesso $k \in \NN$, per la cosiddetta decomposizione di Fitting.
+	Sempre per tale decomposizione vale in particolare che:
 	
-	%TODO: recuperare la lezione e approfondirla.
+	\[ V = \Ker f^k \oplus \Im f^k. \]
 	
-	\begin{remark}
-		Sia $k$ l'indice della decomposizione di Fitting su $f$. Allora
-		vale che $k = \mu_a(0)$ in $\varphi_f$.
+	\begin{remark} Si possono fare alcune osservazioni riguardo la decomposizione di Fitting. \\
+
+	\li Sia $\Ker f^k$ che $\Im f^k$ sono $f$-invarianti: $\vec v \in \Ker f^k \implies f^k(f(\vec v)) = f(f^k(\vec v)) = \vec0 \implies f(\vec v) \in \Ker f^k$ e $\vec v \in \Im f^k \implies \vec v = f^k(\vec w)$, $f(\vec v) = f(f^k(\vec w)) = f^k(f(\vec w)) \in \Im f^k$. \\ 
+	\li $\restr{f}{\Ker f^k}$ è nilpotente: $(\restr{f}{\Ker f^k})^k = \restr{f^k}{\Ker f^k} = 0$. \\
+	\li $\restr{f}{\Im f^k}$ è invertibile: $\Ker \restr{f}{\Im f^k} = \Ker f \cap \Im f^k \subseteq \Ker f^k \cap \Im f^k = \{\vec 0\}$, e quindi $\restr{f}{\Im f^k}$ è iniettiva; quindi $\restr{f}{\Im f^k}$ è anche invertibile, essendo un endomorfismo. \\
+	\li Poiché $\restr{f}{\Ker f^k}$ è nilpotente, $p_{\restr{f}{\Ker f^k}}(\lambda) = \lambda^d$, dove
+	$d = \dim \Ker f^k$. Inoltre
+	$\varphi_{\restr{f}{\Ker f^k}}(\lambda) = \lambda^k$: se infatti $\varphi_{\restr{f}{\Ker f^k}}(\lambda) = \lambda^t$
+	con $t < k$, varrebbe sicuramente che ${\restr{f}{\Ker f^k}}^{k-1} = \restr{f^{k-1}}{\Ker f^k} = 0$, ossia che
+	$\Ker f^k \subseteq \Ker f^{k-1}$, violando la minimalità di $k$, \Lightning. \\
+	\li Dal momento che vale la decomposizione di Fitting e che $\varphi_{\restr{f}{\Ker f^k}}$ e $\varphi_{\restr{f}{\Im f^k}}$ sono coprimi tra loro (il primo è diviso solo da $t$, mentre il secondo non è diviso da $t$), $\varphi_f = \mcm(\varphi_{\restr{f}{\Ker f^k}}, \varphi_{\restr{f}{\Im f^k}}) = \varphi_{\restr{f}{\Ker f^k}} \varphi_{\restr{f}{\Im f^k}}$. Si conclude quindi che $k = \mu'_a(0)$ rispetto a $\varphi_f$, ossia la molteplicità algebrica di $0$ in
+	tale polinomio. Analogamente si osserva che $t = \mu_a(0)$ rispetto a $p_f$, ossia la molteplicità algebrica
+	dell'autovalore $0$ in $f$, e quindi che $\mu_a(0) \geq k$.
 	\end{remark}
 	
+	Reiterando la decomposizione di Fitting (o applicando il teorema di decomposizione primaria), si ottiene
+	infine la seguente decomposizione di $V$:
+	
+	\[ V = \Ker (f - \lambda_1 \Id)^{\mu_a(\lambda_1)} \oplus \cdots \oplus \Ker (f - \lambda_m \Id)^{\mu_a(\lambda_m)}, \]
+	
+	dove $m$ è il numero di autovalori di $V$. Si può riscrivere questa identità ponendo $n_i := \mu'_a(\lambda_i)$ in
+	$\varphi_f$:
+	
+	\[ V = \Ker (f - \lambda_1 \Id)^{n_1} \oplus \cdots \oplus \Ker (f - \lambda_m \Id)^{n_m}. \]
+	
+	Si deduce da questa identità che $f$ è diagonalizzabile se e solo se $n_i = 1$ $\forall i \leq m$.
+	%TODO: aggiungere come proposizione e approfondire
+	
+	\begin{exercise}
+		Sia $A \in M(n, \CC)$ invertibile. Dimostrare allora che se $A^3$ è diagonalizzabile, anche $A$ lo è. 
+	\end{exercise}
+
+	\begin{solution}
+		Se $A^3$ è diagonalizzabile, per la precedente osservazione, $\varphi_{A^3}(t) = \prod_{i=1}^m (t - \lambda_i)$,
+		dove $m$ è il numero di autovalori distinti di $A^3$. Allora, detto $p(t) = \prod_{i=1}^m (t^3 - \lambda_i)$, vale che
+		$p(A) = 0$, ossia che $\varphi_A \mid p$. Dal momento che $A$ è invertibile, anche $A^3$ lo è, e quindi
+		$\lambda_i \neq 0$ $\forall i \leq m$. Poiché $p$ è allora fattorizzato in soli termini lineari distinti,
+		anche $\varphi_A$ deve esserlo, e quindi $A$ deve essere diagonalizzabile.
+	\end{solution}
+
 \end{document}

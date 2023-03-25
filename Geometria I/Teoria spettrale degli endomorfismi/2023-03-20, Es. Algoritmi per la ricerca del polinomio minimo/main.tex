@@ -70,7 +70,7 @@ Pertanto $\varphi_A(x) = \mcm(\varphi_{A,\Vec{e_1}}(x),\varphi_{A,\Vec{e_2}}(x),
     di $\varphi_f$ e lo divide, deve anche valere che $\varphi_{f,\Vec{v}} = \varphi_f$. \\
     \li Nella base ordinata $\basis$ costituita dai primi $n$ vettori del ciclo di $\Vec{v}$, la matrice associata di $f$ è della forma:
 
-    \[ M_{\basis}(f) =  \begin{pmatrix}
+    \[ M_{\basis}(f) = C_{\varphi_f} = \begin{pmatrix}
         0 & 0 & \ldots & \ldots & 0 & -a_0 \\
         1 & 0 & \ldots & \ldots & 0 & -a_1 \\
         0 & 1 & \ddots & & \vdots & \vdots \\
@@ -79,6 +79,18 @@ Pertanto $\varphi_A(x) = \mcm(\varphi_{A,\Vec{e_1}}(x),\varphi_{A,\Vec{e_2}}(x),
     \end{pmatrix}, \]
 
     dove gli $a_i$ sono i coefficienti di $\varphi_f(x) = \varphi_{f,\Vec{v}} = x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0$.
+    Tale matrice è detta \textbf{matrice compagna} del polinomio $\varphi_f$.
+    \li Ogni polinomio $q \in \KK[x]$ è il polinomio caratteristico, a meno del segno, della propria matrice compagna. In particolare $p_{C_q}(\lambda) = (-1)^n q(\lambda)$, dove $n := \deg q$. Infatti, se $n = 0$, $C_q = (-a_0) \implies p_{C_q}(\lambda)
+    = -\lambda -a_0 = -(\lambda + a_0)$. Altrimenti, assumendo che la tesi sia vera per $i \leq n$, si osservi che:
+    
+    \[ p_{C_q}(\lambda) = (-1)^n a_0 -\lambda p_{C_{q'}}(\lambda), \qquad q'(\lambda) = \frac{q(\lambda) - a_0}{\lambda}, \]
+    
+    ossia, dacché $\deg q' = n - 1 < n \implies p_{C_{q'}}(\lambda) = (-1)^{n-1} q'(\lambda)$,
+    
+    \[ p_{C_q}(\lambda) = (-1)^n a_0 - \lambda (-1)^{n-1} q'(\lambda) = (-1)^n a_0 - \lambda (-1)^{n-1} \frac{q(\lambda) - a_0}{\lambda} = q(\lambda). \]
+    \li Inoltre, osservando che $\basis = (\e1, C_q \e1 = \e2, C_q^2 \e1 = \e3, ..., C_q^{n-1} \e1 = \e n)$ è esattamente
+    la base canonica di $\KK^n$, essendo $\basis$ una base ciclica di $C_q$ su $\KK^n$ deve valere che $\varphi_{C_q}$
+    ha grado $n$, e quindi che $p_{C_q} = \pm \varphi_{C_q}$. Si conclude allora che $\varphi_{C_q} = q$.
 \end{remark}
 
 \begin{proposition}
