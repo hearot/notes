@@ -318,8 +318,10 @@
 		Vi sono chiaramente alcuni collegamenti tra la continuità destra e sinistra e la continuità classica,
 		così come ve ne sono tra il limite destro e sinistro ed il limite classico. \\
 		
+		\li $\xbar$ punto di accumulazione destro o sinistro di $X$ $\iff$ $\xbar$ punto di accumulazione di $X$, \\
 		\li $\xbar$ punto di accumulazione destro e sinistro di $X$ $\implies$ $\xbar$ punto di accumulazione di $X$ (non
-		è però per forza vero il contrario, è sufficiente considerare $0$ in $(0, \infty)$), \\
+		è però per forza vero il contrario, è sufficiente considerare $(0, \infty)$, dove $0$ è solo un punto di
+		accumulazione destro), \\
 		\li $f$ è continua in $\xbar$ $\iff$ $f$ è continua sinistra e destra in $\xbar$, \\
 		\li se $\xbar$ è un punto di accumulazione destro e sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$ e $\lim_{x \to \xbar^-} f(x) = L$, \\
 		\li se $\xbar$ è un punto di accumulazione solo destro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$, \\
@@ -354,17 +356,36 @@
 		
 		\vskip 0.05in
 		
-		ossia la funzione indicatrice dell'insieme $\QQ$ in $\RR$.
+		ossia la funzione indicatrice dell'insieme $\QQ$ in $\RR$. Si dimostra che $f$ non è continua
+		in nessun punto di $\RR$. Sia infatti $\xbar \in \RR \setminus \QQ$. Dal momento che $\QQ$ è denso
+		in $\RR$, $\xbar$ è un punto di accumulazione di $\QQ$, e quindi esiste una successione $(x_n) \subseteq \QQ$
+		tale che $x_n \tendston \xbar$. Se $f$ fosse continua in $\xbar$, $\lim_{n \to \infty} f(x_n) = 0$,
+		ma per l'intorno $I = [-\frac{1}{2}, \frac{1}{2}]$ non esiste alcun $n_k$ tale per cui $f(x_n) \in I$ $\forall n
+		\geq n_k$, dal momento che, per definizione di $f$, $f(x_n) = 1$ $\forall n \in \NN$. Quindi $f$ non è continua
+		in nessun $\xbar \in \RR \setminus \QQ$. \\
 		
-		%TODO: aggiungere dimostrazione.
+		Sia ora $\xbar \in \QQ$. $\xbar$ è un punto di accumulazione di $\RR \setminus \QQ$ (si può infatti
+		considerare la successione $(x_n) \subseteq \RR \setminus \QQ$ definita da $x_n = \xbar + \frac{\sqrt{2}}{n}$,
+		che è tale che $x_n \tendston \xbar$). Analogamente a come visto prima, allora, per l'intorno $I = [\frac{1}{2}, \frac{3}{2}]$, $f(x_n) \notin I$ $\forall n \in \NN$, e quindi $f$ non è continua neanche su $\xbar \in \QQ$.
 	\end{example}
 
 	\begin{exercise}
-		Mostrare che l'insieme dei punti di discontinuità di una funzione $f : X \to \RR$ monotona è al più
-		numerabile.
+		Mostrare che l'insieme dei punti di discontinuità di una funzione $f : I \to \RR$ monotona è al più
+		numerabile, dove $I$ è un intervallo.
 	\end{exercise}
 
-		%TODO: aggiungere risoluzione
+	\begin{solution}
+		Si assuma $f$ crescente, senza perdita di generalità (altrimenti è sufficiente considerare $g(x) = -f(x)$).
+		Sia $E$ l'insieme dei punti di discontinuità di $f$. $\forall \xbar \in E$, $\xbar$ è un punto di accumulazione
+		destro e sinistro di $I$ (infatti $I$ è un intervallo), ed in particolare esistono sempre il limite destro $L^-(\xbar)$
+		ed il limite sinistro $L^+(\xbar)$ in $\xbar$ (dal momento che $f$ è monotona), e sono tali che $L^+(\xbar) > L^-(\xbar)$ (sicuramente
+		sono diversi, altrimenti
+		$f$ sarebbe continua in $\xbar$; inoltre $f$ è crescente). Allora sia $f : E \to \QQ$ tale che $\xbar \mapsto c$, dove $c \in \QQ$ è
+		un punto razionale in $(L^-(\xbar), L^+(\xbar))$ (tale $c$ esiste sempre, per la densità di $\QQ$ in $\RR$).
+		Inoltre, $x < y \implies L^+(x) \leq L^-(y)$, e quindi ogni intervallo da cui è preso $c$ è distinto al variare
+		di $\xbar \in E$. Quindi $f$ è iniettiva, e vale $\abs{E} \leq \abs{\QQ} = \abs{\NN}$. Si conclude allora
+		che $E$ è al più numerabile.
+	\end{solution}
 	
 	\begin{theorem} (della permanenza del segno)
 		Data $(x_n) \subseteq \RR$ tale che $x_n \tendston L > 0$, allora
@@ -414,7 +435,21 @@
 		la tesi.
 	\end{proof}
 
-	%TODO: aggiungere dimostrazione alternativa con il metodo della bisezione.
+	\begin{proof}[Dimostrazione alternativa] (metodo di bisezione per la ricerca degli zeri)
+		Come prima, senza alcuna perdita di generalità, si pone $f(a) < 0 < f(b)$. Si ponga $x_0 = \frac{a+b}{2}$,
+		$I_0 = (a, b)$.
+		Se $f(x_0) = 0$, allora il teorema è dimostrato. Altrimenti, $f(x_0) > 0$ o $f(x_0) < 0$. Nel primo caso,
+		si consideri $I_1 = (a, x_0)$, altrimenti si ponga $I_1 = (x_0, b)$. Si riapplichi allora l'algoritmo con $a := \inf I_1$ e $b := \sup I_1$, definendo la successione $(x_n)$ e gli intervalli $I_n$ per ogni passo $n$ dell'algoritmo. \\
+		
+		Se la successione $(x_n)$ è finita, allora $\exists n \mid f(x_n) = 0$, e quindi il teorema è dimostrato. Altrimenti,
+		si osservi che la successione degli intervalli è decrescente, e che $\abs{I_n} = \frac{b-a}{2^n} \tendston 0$:
+		allora, poiché $x_n \in I_n$ $\forall n \in \NN$, $(x_n)$ ammette limite. In particolare, $I_n \tendston \{c\}$,
+		e quindi $x_n \tendston c \in I_0$. Siano $a_n$, $b_n$ le successioni tali che $I_n = (a_n, b_n)$ $\forall n \in \NN$.
+		Vale in particolare che $a_n, b_n \tendston c$. Allora, per la continuità di $f$ su $(a, b)$, vale che
+		$\lim_{n \to \infty} f(a_n) = f(c)$ e che $\lim_{n \to \infty} f(b_n) = f(c)$: poiché ogni elemento di $(a_n)$ è
+		per costruzione tale che $f(a_n) < 0$, deve valere che $f(x) \leq 0$ per il teorema della permanenza del segno; analogamente deve valere per costruzione di $(b_n)$ che $f(c) \geq 0$. Si conclude allora che $f(c) = 0$, da cui
+		la tesi.
+	\end{proof}
 
 	\begin{corollary} (dei valori intermedi) Dati $I = (a, b)$ e
 		$f : I \to \RRbar$ continua, allora $y_1$, $y_2 \in f(I) \implies
