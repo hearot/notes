@@ -314,7 +314,17 @@
 		a sinistra di $f$.
 	\end{definition}
 
-	%TODO: aggiungere osservazioni sulla continuità destra e sinistra.
+	\begin{remark}
+		Vi sono chiaramente alcuni collegamenti tra la continuità destra e sinistra e la continuità classica,
+		così come ve ne sono tra il limite destro e sinistro ed il limite classico. \\
+		
+		\li $\xbar$ punto di accumulazione destro e sinistro di $X$ $\implies$ $\xbar$ punto di accumulazione di $X$ (non
+		è però per forza vero il contrario, è sufficiente considerare $0$ in $(0, \infty)$), \\
+		\li $f$ è continua in $\xbar$ $\iff$ $f$ è continua sinistra e destra in $\xbar$, \\
+		\li se $\xbar$ è un punto di accumulazione destro e sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$ e $\lim_{x \to \xbar^-} f(x) = L$, \\
+		\li se $\xbar$ è un punto di accumulazione solo destro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$, \\
+		\li se $\xbar$ è un punto di accumulazione solo sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^-} f(x) = L$.
+	\end{remark}
 	
 	\begin{proposition}
 		Sia $f : X \to \RRbar$ monotona e sia $\xbar$ un punto di
@@ -323,9 +333,38 @@
 		accumulazione sinistro di $X$.
 	\end{proposition}
 
-	%TODO: aggiungere funzione discontinua in ogni punto di R.
+	\begin{proof}
+		Senza perdità di generalità, si assuma $f$ crescente (per il caso decrescente è sufficiente considerare
+		$g(x) = -f(x)$) Si consideri l'insieme:
+		
+		\[E = \{ f(x) \mid x > \xbar \text{ e } x \in X \}.\]
+		
+		Si consideri adesso $L = \inf E$ e un suo intorno $I$. Se non
+		esistesse un intorno destro $J$ di $\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$, allora
+		$\sup I$ sarebbe un minorante di $E$ maggiore di $L$, \Lightning. Quindi tale $J$ esiste, da cui la tesi.
+		Analogamente per il caso sinistro.
+	\end{proof}
+
+		%TODO: migliorare dimostrazione
+
+	\begin{example} (funzione discontinua in ogni punto di $\RR$) Si consideri la funzione $f : \RR \to \RR$ definita
+		nel seguente modo:
 	
-	%TODO: l'insieme dei punti di discontinuità per una funzione monotona è al più numerabile (hint: punto medio).
+		\[ f(x) = \system{ 1 & \text{se }x \in \QQ, \\ 0 & \text{altrimenti}, } \]
+		
+		\vskip 0.05in
+		
+		ossia la funzione indicatrice dell'insieme $\QQ$ in $\RR$.
+		
+		%TODO: aggiungere dimostrazione.
+	\end{example}
+
+	\begin{exercise}
+		Mostrare che l'insieme dei punti di discontinuità di una funzione $f : X \to \RR$ monotona è al più
+		numerabile.
+	\end{exercise}
+
+		%TODO: aggiungere risoluzione
 	
 	\begin{theorem} (della permanenza del segno)
 		Data $(x_n) \subseteq \RR$ tale che $x_n \tendston L > 0$, allora
@@ -334,8 +373,19 @@
 	\end{theorem}
 
 	\begin{proof}
-		Se $L > 0$, allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo (e.g.~$I = [\frac{L}{2}, \frac{3L}{2}]$). Dal momento che $x_n \tendston L$, $\exists n_k \mid n \geq n_k \implies x_n \in I$,
+		Senza perdita di generalità si pone $L > 0$. Allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo (e.g.~$I = [\frac{L}{2}, \frac{3L}{2}]$, se $L \in \RR$, altrimenti $[a, \infty]$ con $a > 0$ se $L = +\infty$). Dal momento che $x_n \tendston L$, $\exists n_k \mid n \geq n_k \implies x_n \in I$,
 		ossia, in particolare, $n \geq n_k \implies x_n > 0$, da cui la tesi.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $f : X \to \RRbar$ e sia $\xbar$ un punto di accumulazione di $X$. Se $\lim_{x \to \xbar} f(x) = L > 0$,
+		allora $\exists J$ intorno non vuoto di $\xbar$ tale che $f(x) > 0$ $\forall x \in J \cap X \setminus \{\xbar\}$.
+	\end{proposition}
+
+	\begin{proof}
+		Analogamente a come visto per il teorema del segno, si pone $L > 0$. Allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo. Poiché $\lim_{x \to \xbar} f(x) = L > 0$, deve esistere un intorno $J$ di
+		$\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$. In particolare, $J \cap X \setminus \{\xbar\}$ non
+		è mai vuoto, dal momento che $\xbar$ è un punto di accumulazione di $X$, e vale che $f(x) > 0$ $\forall x \in J \cap X \setminus \{\xbar\}$ (dal momento che $f(x) \in I$, che ha tutti elementi positivi), da cui la tesi.
 	\end{proof}
 	
 	\begin{theorem} (degli zeri) Dati $I = [a, b]$ e
@@ -364,6 +414,8 @@
 		la tesi.
 	\end{proof}
 
+	%TODO: aggiungere dimostrazione alternativa con il metodo della bisezione.
+
 	\begin{corollary} (dei valori intermedi) Dati $I = (a, b)$ e
 		$f : I \to \RRbar$ continua, allora $y_1$, $y_2 \in f(I) \implies
 		[y_1, y_2] \subseteq f(I)$ (ossia $f$ assume tutti i valori
@@ -371,6 +423,9 @@
 	\end{corollary}
 
 	\begin{proof}
-		
+		Supponiamo $y_1 < y_2$: poiché $y_1$, $y_2$ appartengono già a $f(I)$, è sufficiente mostrare che an che ogni $y \in (y_1, y_2)$ appartiene a $f(I)$. Dal momento che $y_1$, $y_2 \in f(I)$, $\exists x_1$, $x_2 \in I \mid f(x_1) = y_1$ e $f(x_2) = y_2$. Si consideri allora $g : I \to \RRbar$ tale che
+		$g(x) = f(x) - y$. Allora $g(x_1) = y_1 - y < 0$, mentre $g(x_2) = y_2 - y > 0$. Pertanto, per il teorema
+		degli zeri, $\exists \xbar \in (x_1, x_2) \mid g(\xbar) = 0 \implies f(\xbar) = y$. Si conclude allora che anche
+		$y \in f(I)$, da cui la tesi. 
 	\end{proof}
 \end{document}
