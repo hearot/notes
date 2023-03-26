@@ -43,7 +43,11 @@
 	$\Ker f^k \subseteq \Ker f^{k-1}$, violando la minimalità di $k$, \Lightning. \\
 	\li Dal momento che vale la decomposizione di Fitting e che $\varphi_{\restr{f}{\Ker f^k}}$ e $\varphi_{\restr{f}{\Im f^k}}$ sono coprimi tra loro (il primo è diviso solo da $t$, mentre il secondo non è diviso da $t$), $\varphi_f = \mcm(\varphi_{\restr{f}{\Ker f^k}}, \varphi_{\restr{f}{\Im f^k}}) = \varphi_{\restr{f}{\Ker f^k}} \varphi_{\restr{f}{\Im f^k}}$. Si conclude quindi che $k = \mu'_a(0)$ rispetto a $\varphi_f$, ossia la molteplicità algebrica di $0$ in
 	tale polinomio. Analogamente si osserva che $t = \mu_a(0)$ rispetto a $p_f$, ossia la molteplicità algebrica
-	dell'autovalore $0$ in $f$, e quindi che $\mu_a(0) \geq k$.
+	dell'autovalore $0$ in $f$, e quindi che $\mu_a(0) \geq k$, \\
+	\li Considerando l'endomorfismo $g = f - \lambda \Id$, si osservano facilmente alcune analogie tra le proprietà
+	determinanti di $g$ e di $f$: $p_g(t) = \det(f - \lambda \Id - t \Id) = \det(f - (\lambda + t) \Id) = p_f(\lambda + t)
+	\implies \mu_{a, g}(0) = \mu_{a, f}(\lambda)$. Si possono dunque riscrive i precedenti risultati in termini delle
+	molteplicità di un generico autovalore di $f$ considerando la molteplicità di $0$ in $g$.
 	\end{remark}
 	
 	Reiterando la decomposizione di Fitting (o applicando il teorema di decomposizione primaria), si ottiene
@@ -56,8 +60,50 @@
 	
 	\[ V = \Ker (f - \lambda_1 \Id)^{n_1} \oplus \cdots \oplus \Ker (f - \lambda_m \Id)^{n_m}. \]
 	
-	Si deduce da questa identità che $f$ è diagonalizzabile se e solo se $n_i = 1$ $\forall i \leq m$.
-	%TODO: aggiungere come proposizione e approfondire
+	\begin{definition}
+		Si definisce \textbf{autospazio generalizzato} relativo all'autovalore $\lambda_i$ di $f$, lo spazio:
+		
+		\[ \widetilde{V_{\lambda_i}} = \Ker (f - \lambda_i \Id)^{\mu_{a, f}(\lambda_i)} = \Ker (f - \lambda_m \Id)^{n_m}. \]
+	\end{definition}
+	
+	\begin{remark} Riguardo alla decomposizione primaria di $V$ e agli autospazio generalizzati di $f$ si possono fare alcune osservazioni aggiuntive. \\
+	
+		\li Si può riscrive la decomposizione primaria di $V$ in termini degli autospazi generalizzati di $f$ come $V = \oplus_{i=1}^m \widetilde{V_{\lambda_i}}$. \\
+		\li Vale in particolare che $\widetilde{V_{\lambda_i}} = \{ \v \in V \mid \exists k \in \NN \mid (f-\lambda_i \Id)^k(\v) = \vec{0} \} = \bigcup_{k=0}^{\infty} \Ker (f - \lambda_i \Id)^k$, tenendo in conto la decomposizione
+		di Fitting e la minimalità di $n_i$. \\
+		\li Considerando la traslazione vista nell'ultima osservazione, si deduce che $\Ker(f - \lambda_i \Id)^{n_i}$ ammette
+		come unico autovalore $\lambda_i$ (separazione degli autovalori). \\
+		\li Poiché $f$ è diagonalizzabile se e solo se $V = \bigoplus_{i=1}^m \Ker(f - \lambda_i \Id)$, si può dedurre
+		un altro criterio per la diagonalizzabilità, ossia $f$ diagonalizzabile $\impliedby n_i = 1$ $\forall i \leq m$. \\
+		\li Del precedente criterio vale anche il viceversa: se $f$ è diagonalizzabile e $\lambda_1$, ..., $\lambda_k$ sono
+		i suoi autovalori, $V$ ammette una base di autovettori; dati allora gli indici $i_p$ che associano ogni vettore
+		$\vv p$ all'indice del suo rispettivo autovalore, allora sia
+		$\vv 1 ^{(\lambda_{i_1})}$, ..., $\vv n ^{(\lambda_{i_n})}$ una base di $V$. Poiché $q(t) = \prod_{i=1}^k (t - \lambda_i)$ è tale che $q(f)$ si annulla in ogni vettore della base e ogni suo fattore lineare è composto da un autovalore di $f$ ed è distinto, deve valere che $\varphi_f = q$.
+	\end{remark}
+
+	\begin{exercise}
+		Si calcoli il polinomio minimo di $A = \Matrix{0 & -2 & 0 & -2 & 1 \\ 1 & 1 & 0 & 2 & 1 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & -1 & 0 \\ 1 & 2 & 0 & 2 & 0}$.
+	\end{exercise}
+
+	\begin{solution}
+		Innanzitutto, si calcola il polinomio caratteristico di $A$, ossia $p_A(t) = (1-t)^3 (1+t)^2$, da cui si ricava
+		che gli autovalori di $A$ sono $1$ e $-1$, con $\mu_a(1) = 3$ e $\mu_a(-1) = 2$. Si può dunque decomporre $V$
+		come:
+		
+		\[ V = \Ker (A - I)^3 \oplus \Ker (A + I)^2, \]
+		
+		\vskip 0.05in
+		
+		e $\varphi_A$ sarà della forma $\varphi_A(t) = (t-1)^{n_1} (t+1)^{n_2}$ con $n_1 \leq 3$ e $n_2 \leq 2$.
+		\begin{enumerate}[(i)]
+			\item $\rg(A - I) = 3 \implies \dim \Ker (A - I) = 2 < 3 = \mu_a(-1)$. Si controlli adesso il rango di
+			$(A-I)^2$: $\rg(A - I)^2 = 2 \implies \dim \Ker (A - I)^2 = 3 = \mu_a(1)$, da cui $n_1 = 2$. 
+			\item $\rg(A + I) = 3 \implies \dim \Ker (A + I) = 2$. Allora, poiché $\dim \Ker (A + I) = 2 = \mu_a(-1)$,
+			si conclude che $n_2 = 1$.
+		\end{enumerate}
+	
+		Quindi $\varphi_A(t) = (t-1)^2(t+1)$.
+	\end{solution}
 	
 	\begin{exercise}
 		Sia $A \in M(n, \CC)$ invertibile. Dimostrare allora che se $A^3$ è diagonalizzabile, anche $A$ lo è. 
@@ -68,7 +114,37 @@
 		dove $m$ è il numero di autovalori distinti di $A^3$. Allora, detto $p(t) = \prod_{i=1}^m (t^3 - \lambda_i)$, vale che
 		$p(A) = 0$, ossia che $\varphi_A \mid p$. Dal momento che $A$ è invertibile, anche $A^3$ lo è, e quindi
 		$\lambda_i \neq 0$ $\forall i \leq m$. Poiché $p$ è allora fattorizzato in soli termini lineari distinti,
-		anche $\varphi_A$ deve esserlo, e quindi $A$ deve essere diagonalizzabile.
+		anche $\varphi_A$ deve esserlo, e quindi $A$ deve essere diagonalizzabile. \\
 	\end{solution}
+
+	\vskip 0.1in
+
+	Nello studio della forma canonica di Jordan è rilevante costruire una base a bandiera tale per cui la matrice
+	associata in tale base sia una matrice a blocchi diagonale formata da blocchi di Jordan. Si consideri
+	allora $g = f - \lambda \Id$, e sia $k$ la molteplicità algebrica di $\lambda$ nel polinomio minimo
+	di $f$ (i.e.~il $k$ minimo già visto precedentemente nella decomposizione di Fitting di $g$). \\
+	
+	Si possono allora definire dei sottospazi $U_i$ secondo le seguenti decomposizioni:
+	
+	\begin{align*}
+		\Ker g^k &= \Ker g^{k-1} \oplus U_1, \\
+		\Ker g^{k-1} &= \Ker g^{k-2} \oplus g(U_1) \oplus U_2, \\
+		\vdots & \qquad \vdots \qquad \vdots \qquad \vdots \qquad \vdots \\
+		\Ker g &= \underbrace{\Ker g^0}_{= \{ \vec 0\}} \oplus \, g^{k-1}(U_1) \oplus \cdots \oplus U_{k}. 
+	\end{align*}
+
+	Si noti che $g$ mantiene la dimensione di $U_i$ ad ogni passo fino a $k-i$ composizioni di $g$ (infatti
+	$\Ker g^{k-i} \cap U_i \subseteq \Ker g^{k-1} \cap U_i = \{\vec 0\}$, per costruzione dei sottospazi
+	supplementari $U_i$). In particolare, $\dim U_i = m_i$ rappresenta il numero di blocchi di Jordan
+	relativi a $\lambda$ di taglia $k-i+1$, e quindi valgono le seguenti identità:
+	
+	\begin{align*}
+		\dim \Ker g^k &= \dim \Ker g^{k-1} + m_1 = \mu_a(\lambda), \\
+		\dim \Ker g^{k-1} &= \dim \Ker g^{k-2} + m_1 + m_2, \\
+		\vdots & \qquad \vdots \qquad \vdots \qquad \vdots \qquad \vdots \\
+		\dim \Ker g &= m_1 + m_2 + \ldots + m_k = \mu_g(\lambda).
+	\end{align*}
+
+	%TODO: aggiungere osservazioni su come trovare una base di Ker g^j seguendo i blocchi di Jordan.
 
 \end{document}
