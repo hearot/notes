@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{27 marzo 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Titolo della lezione}
+	\end{center}
+
+	SIa $V$ uno spazio vettoriale su $\KK$ e sia $\phi : V \times V \to \KK$
+	un suo prodotto scalare.
+	
+	\begin{definition}
+		Due vettori $\vec v$, $\vec w$ si dicono \textbf{ortogonali} se e
+		solo se $\varphi(\vec v, \vec w) = 0$.
+	\end{definition}
+
+	\begin{definition}
+		Preso un sottospazio $W \subseteq V$, si definisce lo spazio:
+		
+		\[ W^\perp = \{ \vec v \in V \mid \varphi(\vec v, \vec w) = 0, \forall \vec w \in W \}, \]
+		
+		detto sottospazio perpendicolare a $W$.
+	\end{definition}
+
+	\begin{note}
+		Tale notazione è valida anche per sottinsiemi generici di $V$,
+		perdendo tuttavia la proprietà di sottospazio di $V$.
+	\end{note}
+
+	\begin{remark}
+		%TODO: da dimostrare.
+		Valgono le seguenti osservazioni. \\
+		
+		\li $S \subseteq T \implies S^\perp \supseteq T^\perp$. \\
+		\li $S^\perp = (\Span(S))^\perp$ (infatti, da sopra,
+		vale l'inclusione $S^\perp \supseteq (\Span(S))^\perp$;
+		l'inclusione vale anche al contrario, dacché ogni vettore
+		ortogonale a $S$ è ortogonale ad ogni combinazione lineare
+		degli elementi di $S$, per la bilinearità di $\varphi$).
+	\end{remark}
+
+	\begin{theorem} (formula della dimensione dello spazio ortogonale)
+		Sia $W \subseteq V$ un sottospazio di $V$. Allora vale la seguente
+		identità:
+		
+		\[ \dim W^\perp = \dim V - \dim W + \dim (W \cap V^\perp), \]
+		
+		da cui, se $\varphi$ è non degenere,
+		
+		\[ \dim W^\perp = \dim V - \dim W. \]
+	\end{theorem}
+
+	\begin{proof}
+		%TODO: dimostra che Im f^\top = Ann(Ker f).
+		
+		Sia $\varphi$ non degenere.
+		Si osserva che $\vec w \in W^\perp$ è tale che
+		$\alpha_\varphi(\vec v)(\vec w) = 0$ $\forall \vec v \in V$,
+		e quindi che $\alpha_\varphi(\vec v) \in \Ann(W)$, che
+		ha dimensione $\dim V - \dim W$. \\
+		
+		Nel caso generale, si consideri l'applicazione
+		$g = i^\top \circ \alpha_\varphi \circ i$, dove
+		$i : W \to V$ è tale che $i(\vec w) = \vec w$.
+		Si osserva allora che $W^\top = \Ker (g)$.
+		
+		%TODO: recupera dimostrazione.
+	\end{proof}
+
+	\begin{proposition}
+		$V = W \oplus W^\perp \iff W \cap W^\perp = \zerovecset \iff \restr{\varphi}{W}$ è non degenere.
+	\end{proposition}
+
+	\begin{proof}
+		%TODO: aggiungere dimostrazione.
+	\end{proof}
+
+	%TODO: riguardare appunti.
+	
+	
+\end{document}
