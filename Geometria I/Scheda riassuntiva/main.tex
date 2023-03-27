@@ -1,0 +1,1207 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{personal_commands}
+\usepackage{multicol,multirow}
+\usepackage{marvosym}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\title{Schede riassuntive di Geometria 1}
+
+\begin{document}
+	
+	\parskip=0.7ex
+	
+	\raggedright
+	\footnotesize
+	
+	\begin{center}
+		\Large{\textbf{Schede riassuntive di Geometria 1}} \\
+	\end{center}
+	\begin{multicols}{3}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\subsection{Alcuni accenni alla geometria di $\RR^3$}
+		
+		Si definisce prodotto scalare la forma
+		bilineare simmetrica unicamente determinata da $\innprod{\vec{e_i}}{\vec{e_j}} = \delta_{ij}$. Vale la seguente identità: $\innprod{(x, y, z)}{(x', y', z')} = xx' + yy' + zz'$.
+		
+		Inoltre $\innprod{\vec{a}}{\vec{b}} = \card{\vec{a}} \card{\vec{b}} \cos(\theta)$, dove $\theta$ è l'angolo compreso tra i due vettori.
+		Due vettori $\vec{a}$, $\vec{b}$ si dicono ortogonali
+		se e solo se $\innprod{\vec{a}}{\vec{b}} = 0$.
+		
+		Si definisce prodotto vettoriale la forma bilineare alternante
+		da $\RR^3 \times \RR^3$
+		in $\RR^3$ tale che $\vec{e_1} \times \vec{e_2} = \vec{e_3}$,
+		$\vec{e_2} \times \vec{e_3} = \vec{e_1}$,
+		$\vec{e_3} \times \vec{e_1} = \vec{e_2}$ e
+		$\vec{e_i} \times \vec{e_i} = \vec{0}$. Dati due
+		vettori $(x, y, z)$ e $(x', y', z')$, si può determinarne
+		il prodotto vettoriale informalmente come:
+		
+		\[ \begin{vmatrix}
+			\vec{e_1} & \vec{e_2} & \vec{e_3} \\
+			x & y & z \\
+			x' & y' & z'
+		\end{vmatrix} . \]
+		
+		Vale l'identità $\card{\vec{a} \times \vec{b}} = \card{\vec{a}} \card{\vec{b}} \sin(\theta)$, dove $\theta$ è l'angolo con cui, ruotando di
+		$\theta$ in senso antiorario $\vec{a}$, si ricade su $\vec{b}$.
+		Due vettori $\vec{a}$, $\vec{b}$ si dicono paralleli se $\exists
+		k \mid \vec{a} = k \vec{b}$, o equivalentemente se
+		$\vec{a} \times \vec{b} = \vec{0}$. Altrettanto si può dire
+		se $\innprod{\vec{a}}{\vec{b}} = \card{\vec{a}} \card{\vec{b}}$ (i.e.
+		$\cos(\theta) = 1 \implies \theta = 0$).
+		
+		Una retta in $\RR^3$ è un sottospazio affine della
+		forma $\vec{v} + \Span(\vec{r})$. Analogamente
+		un piano è della forma $\vec{v} + \Span(\vec{x}, \vec{y})$.
+		
+		Nella forma cartesiana, un piano è della forma $ax+by+cz=d$,
+		dove $(a,b,c)$ è detta normale del piano. Una retta è
+		l'intersezione di due piani, e dunque è un sistema lineare
+		di due equazioni di un piano. Due piani sono perpendicolari
+		fra loro se e solo se le loro normali sono ortogonali. Due
+		piani sono paralleli se e solo se le loro normali sono parallele.
+		Il vettore $\vec{r}$ che genera lo $\Span$ di una retta che è
+		intersezione di due piani può essere computato come
+		prodotto vettoriale delle normali dei due piani.
+		
+		Valgono le seguenti identità:
+		
+		\begin{itemize}
+			\item $\vec{a} \times (\vec{b} \times \vec{c}) =
+			\innprod{\vec{a}}{\vec{c}}\,\vec{b} - \innprod{\vec{a}}{\vec{b}}\,\vec{c}$ (\textit{identità di Lagrange}),
+			\item $\vec{a} \times (\vec{b} \times \vec{c}) + \vec{b} \times (\vec{c} \times \vec{a}) + \vec{c} \times (\vec{a} \times \vec{b}) =
+			\vec{0}$ (\textit{identità di Jacobi}).
+		\end{itemize}
+		
+		Dati tre punti $\vec{a}$, $\vec{b}$, $\vec{c}$, il volume
+		del parallelepipedo individuato da questi punti è:
+		
+		\[\card{\det\begin{pmatrix}\vec{a} \\ \vec{b} \\ \vec{c}\end{pmatrix}} =
+		\card{\innprod{\vec{a}}{\vec{b} \times \vec{c}}}.\]
+		
+		Tre punti sono complanari se e solo se il volume di tale parallelpipedo è nullo
+		(infatti questo è equivalente a dire che almeno uno dei tre punti
+		si scrive come combinazione lineare degli altri due).
+		
+		
+		\subsection{Proprietà generali di uno spazio vettoriale}
+		
+		Uno spazio vettoriale $V$ su un campo $\KK$ soddisfa i seguenti
+		assiomi:
+		
+		\begin{itemize}
+			\item $(V, +)$ è un gruppo abeliano,
+			\item il prodotto esterno da $\KK \times V$ in $V$ è
+			associativo rispetto agli scalari (i.e. $a(b\vec{v}) = (ab)\vec{v}$),
+			\item $1_{\KK} \cdot \vec{v} = \vec{v}$,
+			\item il prodotto esterno è distributivo da ambo i
+			lati (i.e. $(a+b)\vec{v} = a\vec{v} + b\vec{v}$ e
+			$a(\vec{v} + \vec{w}) = a\vec{v} + a\vec{w}$.
+		\end{itemize}
+		
+		Un insieme di vettori $I$ si dice linearmente indipendente se
+		una qualsiasi combinazione lineare di un suo sottinsieme
+		finito è nulla se e solo se i coefficienti dei vettori
+		sono tutti nulli. Si dice linearmente dipendente in caso
+		contrario.
+		
+		Un insieme di vettori $G$ si dice generatore di $V$ se ogni vettore
+		di $V$ si può scrivere come combinazione lineare di un numero
+		finito di elementi di $G$, ossia se $V = \Span(G)$.
+		
+		Una base è un insieme contemporaneamente linearmente indipendente
+		e generatore di $V$. Equivalentemente una base è un insieme generatore
+		minimale rispetto all'inclusione e un insieme linearmente indipendente
+		massimale, sempre rispetto all'inclusione. Ogni spazio vettoriale,
+		anche quelli non finitamente generati,
+		ammettono una base. La dimensione della base è unica ed è il
+		numero di elementi dell'insieme che è base.
+		
+		Dato un insieme linearmente indipendente $I$ in uno spazio di dimensione
+		finita, tale insieme, data una base $\basis$, può essere esteso
+		a una base $T$ che contiene $I$ e che è completato da
+		elementi di $\basis$.
+		
+		Analogamente, dato un insieme generatore finito $G$, da esso
+		si può estrarre sempre una base dello spazio.
+		
+		Uno spazio vettoriale fondato su un campo infinito
+		con un insieme di vettori infinito non
+		è mai unione finita di sottospazi propri. Un insieme linearmente
+		indipendente di $V$ con esattamente $\dim V$ elementi è una
+		base di $V$. Analogamente, un insieme generatore di $V$ con esattamente
+		$\dim V$ elementi è una base di $V$.
+		
+		Sia $\basis = \{\vec{v_1}, \ldots, \vec{v_n}\}$ una base ordinata dello spazio vettoriale $V$.
+		
+		\begin{itemize}
+			\item $\zerovecset$ e $V$ sono detti sottospazi banali,
+			\item lo $\Span$ di $n$ vettori è il più piccolo sottospazio
+			di $V$ contenenti tali vettori,
+			\item $\Span(\basis) = V$,
+			\item $\Span(\emptyset) = \zerovecset$,
+			\item dato $X$ generatore di $V$, $X \setminus \{\vec{x_0}\}$
+			genera $V \iff \vec{x_0} \in \Span(X \setminus \{\vec{x_0}\})$,
+			\item $X \subseteq Y$ è un sottospazio di $Y \iff \Span(X) = X$,
+			\item $\Span(X) \subseteq Y \iff X \subseteq Y$, se $Y$ è uno spazio,
+			\item $\Span(\Span(A)) = \Span(A)$,
+			\item se $I$ è un insieme linearmente indipendente di $V$,
+			allora $\card{I} \leq \dim V$,
+			\item se $G$ è un insieme generatore di $V$, allora
+			$\card{G} \geq \dim V$,
+			\item $[\vec{v}]_\basis$ è la rappresentazione
+			di $\vec{v}$ nella base ordinata $\basis$, ed è
+			un vettore di $\KK^n$ che alla coordinata $i$-esima
+			associa il coefficiente di $\vec{v_i}$ nella combinazione
+			lineare di $\vec{v}$ nella base $\basis$,
+			\item la rappresentazione nella base $\basis$ è sempre
+			unica ed esiste sempre (è quindi un isomorfismo tra $V$ e
+			$\KK^n$),
+			\item si definisce base canonica di $\KK^n$ la base
+			$e = \{\vec{e_1}, \ldots, \vec{e_n}\}$, dove
+			$\vec{e_i}$ è un vettore con tutte le coordinate nulle,
+			eccetto per la $i$-esima, che è pari ad $1$ (pertanto
+			$\dim \KK^n = n$),
+			\item una base naturale di $M(m, n, \KK)$ è data
+			da $\basis = \{E_{11}, E_{12}, \ldots, E_{1n}, \ldots, E_{mn}\}$,
+			dove $E_{ij}$ è una matrice con tutti gli elementi nulli, eccetto
+			quello nel posto $(i, j)$, che è pari ad $1$ (dunque
+			$\dim M(m, n, \KK) = mn$),
+			\item le matrici $A$ di taglia $n$ tali che $A^\top = A$ formano il
+			sottospazio $\Sym(n, \KK)$ di $M(n, \KK)$, detto sottospazio delle matrici
+			simmetriche, la cui base naturale è data da
+			$\basis' = \{E_{ij} + E_{ji} \in \basis \mid i < j\} \cup
+			\{E_{ij} \in \basis \mid i = j\}$, dove $\basis$ è la
+			base naturale di $M(m, n, \KK)$ (dunque $\dim \Sym(n, \KK) = \frac{n(n+1)}{2}$),
+			\item le matrici $A$ di taglia $n$ tali che $A^\top = -A$ formano il
+			sottospazio $\Lambda(n, \KK)$ di $M(n, \KK)$, detto sottospazio delle matrici
+			antisimmetriche, la cui base naturale è data da
+			$\basis' = \{E_{ij} - E_{ji} \in \basis \mid i < j\}$, dove $\basis$ è la
+			base naturale di $M(m, n, \KK)$ (dunque $\dim \Lambda(n, \KK) = \frac{n(n-1)}{2}$),
+			\item poiché $\Sym(n, \KK) \cap \Lambda(n, \KK) = \zerovecset$ e
+			$\dim \Sym(n, \KK) + \dim \Lambda(n, \KK) = \dim M(n, \KK)$,
+			vale che $M(n, \KK) = \Sym(n, \KK) \oplus \Lambda(n, \KK)$,
+			\item una base naturale di $\KK[x]$ è data da $\basis = \{x^n \mid
+			n \in \NN \}$, mentre una di $\KK_t[x]$ è data da $\basis \cap
+			\KK_t[x] = \{x^n \mid n \in \NN \land n \leq t\}$ (quindi
+			$\dim \KK[x] = \infty$ e $\dim \KK_t[x] = t+1$),
+			\item una base naturale di $\KK$ è $1_\KK = \{1_\KK\}$ (quindi
+			$\dim \KK = 1$),
+			\item un sottospazio di dimensione $1$ si definisce \textit{retta},
+			uno di dimensione $2$ \textit{piano}, uno di dimensione $3$
+			\textit{spazio}, e, infine, uno di dimensione $n-1$ un iperpiano,
+			\item un iperpiano $\Pi$ è sempre rappresentabile da un'equazione cartesiana
+			nelle coordinate della rappresentazione della base (infatti ogni
+			iperpiano è il kernel di un funzionale $f \in \dual{V}$, e $M^\basis_{1_\KK}(f) \, [\vec{v}]_\basis = 0$ è l'equazione cartesiana; è sufficiente prendere una base di $\Pi$ e completarla
+			a base di $V$ con un vettore $\vec{t}$, considerando infine
+			$\Ker \dual{\vec{t}}$).
+			
+		\end{itemize}
+		
+		\subsection{Applicazioni lineari, somme dirette, quozienti e
+			prodotti diretti}
+		
+		Un'applicazione da $V$ in $W$ si dice applicazione lineare
+		se:
+		
+		\begin{itemize}
+			\item $f(\vec{v} + \vec{w}) = f(\vec{v}) + f(\vec{w})$,
+			\item $f(\alpha\vec{v}) = \alpha f(\vec{v})$.
+		\end{itemize}
+		
+		Si definisce $\mathcal{L}(V, W) \subseteq W^V$ come lo spazio delle
+		applicazioni lineari da $V$ a $W$. Si definisce
+		$\End(V)$ come lo spazio degli endomorfismi di $V$, ossia
+		delle applicazioni lineari da $V$ in $V$, dette anche
+		operatori. Un'applicazione lineare si dice isomorfismo
+		se è bigettiva. La composizione di funzioni è associativa.
+		
+		Dato un sottospazio $A$ di $V$, si definisce lo spazio
+		quoziente $V/A$ come l'insieme quoziente $V/{\sim}$ della relazione
+		di equivalenza $\vec{a} \sim \vec{b} \iff a-b \in A$ dotato
+		dell'usuale somma e prodotto esterno. Si scrive $[\vec{v}]_A$
+		come $\vec{v} + A$ e vale che $A = \vec{0} + A$. In particolare
+		$\vec{v} + A = A \iff \vec{v} \in A$.
+		
+		Siano $f : V \to W$, $h : V \to W$, $g : W \to Z$ tre
+		applicazioni lineari.
+		$\basis_V$ e $\basis_W$ sono
+		due basi rispettivamente di $V$ e $W$. In particolare
+		sia $\basis_V = \{\vec{v_1}, \ldots, \vec{v_n}\}$. Si
+		ricorda che $\rg(f) = \dim \Im f$. Siano $e$ ed $e'$ le
+		basi canoniche rispettivamente di $\KK^n$ e $\KK^m$.
+		
+		\begin{itemize}
+			\item $f(\vec{0}_V) = \vec{0}_W$,
+			\item $\Ker f = f^{-1}(\vec{0}_W)$ è un sottospazio di $V$,
+			\item $\Im f = f(V)$ è un sottospazio di $W$,
+			\item $\Im f = \Span(f(\vec{v_1}), \ldots, f(\vec{v_n}))$,
+			\item $f$ è iniettiva $\iff \Ker f = \zerovecset$,
+			\item $V/\Ker f \cong \Im f$ (\textit{primo teorema d'isomorfismo}),
+			\item $\dim \Ker f + \dim \Im f = \dim V$ (\textit{teorema del rango}, o formula delle dimensioni,
+			valido se la dimensione di $V$ è finita),
+			\item $g \circ f$ è un'applicazione lineare da $V$ in $Z$,
+			\item la composizione di funzioni è associativa e distributiva
+			da ambo i lati,
+			\item $g \circ (\alpha f) = \alpha (g \circ f) = (\alpha g) \circ f$,
+			se $\alpha \in \KK$,
+			\item $\Ker f \subseteq \Ker (g \circ f)$,
+			\item $\Im (g \circ f) \subseteq \Im g$,
+			\item $\dim \Im (g \circ f) = \dim \Im \restr{g}{\Im f} =
+			\dim \Im f - \dim \Ker \restr{g}{\Im f} = \dim \Im f -
+			\dim (\Ker g \cap \Im f)$ (è sufficiente applicare la formula             delle dimensioni sulla composizione),
+			\item $\dim \Im (g \circ f) \leq \min\{\dim \Im g, \dim \Im f\}$,
+			\item $\dim \Ker (g \circ f) \leq \dim \Ker g + \dim \Ker f$ (è
+			sufficiente applicare la formula delle dimensioni su
+			$\restr{(g \circ f)}{\Ker (g \circ f)}$),
+			\item $f$ iniettiva $\implies \dim V \leq \dim W$,
+			\item $f$ surgettiva $\implies \dim V \geq \dim W$,
+			\item $f$ isomorfismo $\implies \dim V = \dim W$,
+			\item $g \circ f$ iniettiva $\implies f$ iniettiva,
+			\item $g \circ f$ surgettiva $\implies g$ surgettiva,
+			\item $f$ surgettiva $\implies \rg(g \circ f) = \rg(g)$,
+			\item $g$ iniettiva $\implies \rg(g \circ f) = \rg(f)$,
+			\item $M^{\basis_V}_{\basis_W}(f) = \begin{pmatrix} \; [f(\vec{v_1})]_{\basis_W} \, \mid \, \cdots \, \mid \, [f(\vec{v_n})]_{\basis_W} \; \end{pmatrix}$ è la matrice
+			associata a $f$ sulle basi $\basis_V$, $\basis_W$,
+			\item $M^V_W(f + h) = M^V_W(f) + M^V_W(h)$,
+			\item $M^V_Z(g \circ f) = M^W_Z(g) M^V_W(f)$,
+			\item data $A \in M(m, n, \KK)$, sia $f_A : \KK^n \to \KK^m$ tale
+			che $f_A(\vec{x}) = A \vec{x}$, allora $M^{e}_{e'}(f_A) = A$,
+			\item $f$ è completamente determinata dai suoi valori in una
+			qualsiasi base di $V$ ($M^{\basis_V}_{\basis_W}$ è un isomorfismo
+			tra $\mathcal{L}(V, W)$ e $M(\dim W, \dim V, \mathbb{K})$),
+			\item $\dim \mathcal{L}(V, W) = \dim V \cdot \dim W$ (dall'isomorfismo
+			di sopra),
+			\item $[\,]^{-1}_{\basis_W} \circ M^{\basis_V}_{\basis_W}(f) \circ
+			{[\,]_{\basis_V}} = f$,
+			\item $[f(\vec{v})]_{\basis_W} = M^{\basis_V}_{\basis_W}(f) \cdot
+			[\vec{v}]_{\basis_V}$,
+			\item $\Im(f) = [\,]^{-1}_{\basis_W}\left(\Im M^{\basis_V}_{\basis_W}(f)\right)$
+			\item $\rg(f) = \rg\left(M^{\basis_V}_{\basis_W}(f)\right)$,
+			\item $\Ker(f) = [\,]^{-1}_{\basis_V}\left(\Ker M^{\basis_V}_{\basis_W}(f)\right)$,
+			\item $\dim \Ker(f) = \dim \Ker M^{\basis_V}_{\basis_W}(f)$.
+		\end{itemize}
+		
+		Siano $\basis_V'$, $\basis_W'$ altre due basi rispettivamente
+		di $V$ e $W$. Allora vale il \textit{teorema del cambiamento
+			di base}:
+		
+		\[ M^{\basis_V'}_{\basis_W'}(f) = M^{\basis_W}_{\basis_W'}(id_W) \,
+		M^{\basis_V}_{\basis_W}(f) \, M^{\basis_V'}_{\basis_V}(id_V).\]
+		
+		Siano $A$ e $B$ due sottospazi di $V$. $\basis_A$ e $\basis_B$ sono
+		due basi rispettivamente di $A$ e $B$.
+		
+		\begin{itemize}
+			\item $A+B = \{\vec{a}+\vec{b} \in V \mid \vec{a} \in A, \vec{b} \in
+			B\}$ è un sottospazio,
+			\item $\dim (A+B) = \dim A + \dim B - \dim (A \cap B)$
+			(\textit{formula di Grassmann}),
+			\item $A$ e $B$ sono in somma diretta $\iff A \cap B = \zerovecset \iff$ ogni elemento di $A+B$ si scrive in modo unico come somma di
+			$\vec{a} \in A$ e $\vec{b} \in B \iff \dim (A+B) = \dim A + \dim B$
+			(in tal caso si scrive $A+B = A\oplus B$),
+			\item $\dim V/A = \dim V - \dim A$ (è sufficiente applicare il
+			teorema del rango alla proiezione al quoziente),
+			\item $\dim V \times W = \dim V + \dim W$ ($\basis_V \times \{\vec{0}_W\} \cup \{\vec{0}_V\} \times \basis_W$ è una base
+			di $V \times W$).
+		\end{itemize}
+		
+		Si definisce \textit{immersione} da $V$ in $V \times W$
+		l'applicazione lineare $i_V$ tale che $i_V(\vec{v}) = (\vec{v}, \vec{0})$.
+		Si definisce \textit{proiezione} da $V \times W$ in $V$
+		l'applicazione lineare $p_V$ tale che $p_V(\vec{v}, \vec{w}) = \vec{v}$.
+		Analogamente si può fare con gli altri spazi del prodotto cartesiano.
+		
+		Si dice che $B$ è un supplementare di $A$ se $V = A \oplus B \iff
+		\dim A + \dim B = \dim V \land A \cap B = \zerovecset$. Il supplementare
+		non è per forza unico. Per trovare un supplementare di $A$ è sufficiente
+		completare $\basis_A$ ad una base $\basis$ di $V$ e considerare
+		$\Span(\basis \setminus \basis_A)$.
+		
+		\subsection{Proprietà generali delle matrici}
+		
+		Si dice che una matrice $A \in M(n, \KK)$ è singolare se $\det(A) = 0$,
+		o equivalentemente se non è invertibile. Compatibilmente, si
+		dice che una matrice $A \in M(n, \KK)$ è non singolare se $\det(A) \neq
+		0$, ossia se $A$ è invertibile.
+		
+		Si definisce la matrice trasposta di
+		$A \in M(m, n, \KK)$, detta $A^\top$, in modo
+		tale che $A_{ij} = A^\top_{ji}$.
+		
+		\begin{itemize}
+			\item $(AB)^\top = B^\top A^\top$,
+			\item $(A+B)^\top = A^\top + B^\top$,
+			\item $(\lambda A)^\top = \lambda A^\top$,
+			\item $(A^\top)^\top = A$,
+			\item se $A$ è invertibile, $(A^\top)^{-1} = (A^{-1})^\top$,
+			\item $ \begin{pmatrix}
+				A
+				& \rvline & B \\
+				\hline
+				C & \rvline &
+				D
+			\end{pmatrix}\begin{pmatrix}
+				E
+				& \rvline & F \\
+				\hline
+				G & \rvline &
+				H
+			\end{pmatrix}=\begin{pmatrix}
+				AE+BG
+				& \rvline & AF+BH  \\
+				\hline
+				CE+DG & \rvline &
+				CF+DH
+			\end{pmatrix}$.
+		\end{itemize}
+		
+		Siano $A \in M(m, n, \KK)$ e $B \in M(n, m, \KK)$.
+		
+		Si definisce $\GL(n, \KK)$ come il gruppo delle matrici
+		di taglia $n$ invertibili sulla moltiplicazione matriciale. Si definisce
+		triangolare superiore una matrice i cui elementi al di sotto
+		della diagonale sono nulli, mentre si definisce triangolare
+		inferiore una matrice i cui elementi nulli sono quelli al di sopra
+		della diagonale.
+		
+		Si definiscono
+		\[ Z(M(n, \KK)) = \left\{ A \in M(n, \KK) \mid AB=BA \, \forall B \in M(n, \KK) \right\}, \]
+		ossia l'insieme delle matrici che commutano con tutte le altre matrici, e
+		\[ Z_{\GL}(M(n, \KK)) = \left\{ A \in M(n, \KK) \mid AB=BA \, \forall B \in \GL(n, \KK) \right\}, \]
+		ovvero l'insieme delle matrici che commutano con tutte le matrici
+		di $\GL(n, \KK)$.
+		
+		Si definisce $\tr \in M(m, \KK)^*$ come il funzionale che associa
+		ad ogni matrice la somma degli elementi sulla sua diagonale. 
+		
+		\begin{itemize}
+			\item $\tr(A^\top) = \tr(A)$,
+			\item $\tr(AB) = \tr(BA)$,
+			\item $Z(M(n, \KK)) = \Span(I_n)$,
+			\item $Z_{\GL}(M(n, \KK)) = \Span(I_n)$.
+		\end{itemize}
+		
+		Sia $A \in M(n, \KK)$. Sia $C_A \in \End(M(n, \KK))$ definito in modo
+		tale che $C_A(B) = AB - BA$. Allora $\Ker C_A = M(n, \KK)
+		\iff A \in \Span(I_n)$. Siano $I$ un insieme di $n^2$ indici
+		distinti, allora l'insieme
+		
+		\[ T = \left\{ A^i \mid i \in I \right\} \]
+		
+		è linearmente dipendente (è sufficiente notare che
+		se così non fosse, se $A \notin \Span(I_n)$,
+		tale $T$ sarebbe base di $M(n, \KK)$, ma
+		così $\Ker C_A = M(n, \KK) \implies A \in \Span(I_n)$,
+		\Lightning{}, e che se $A \in \Span(I_n)$, $T$
+		è chiaramente linearmente dipendente).
+		
+		In generale esiste sempre un polinomio $p(X) \in \KK[x]$
+		di grado $n$ tale per cui $p(A) = 0$, dove un tale polinomio
+		è per esempio il polinomio caratteristico di $p$, ossia $p(\lambda)=
+		\det(\lambda I_n - A)$ (\textit{teorema di 
+			Hamilton-Cayley}).
+		
+		\subsection{Rango di una matrice}
+		
+		Si definisce rango di una matrice $A$ il numero di colonne linearmente
+		indipendenti di $A$. Siano $A$, $B \in M(m, n, \KK)$.
+		
+		\begin{itemize}
+			\item $\rg(A) = \rg(A^\top)$ (i.e. il rango è lo stesso se calcolato
+			sulle righe invece che sulle colonne),
+			\item $\rg(A) \leq \min\{m, n\}$ (come conseguenza dell'affermazione
+			precedente),
+			\item $\rg(A+B) \leq \rg(A) + \rg(B) \impliedby \Im (A+B) \subseteq
+			\Im(A) + \Im(B)$,
+			\item $\rg(A+B) = \rg(A) + \rg(B) \implies \Im(A+B) = \Im(A) \oplus \Im(B)$ (è sufficiente applicare la formula di Grassmann),
+			\item $\rg(A)$ è il minimo numero di matrici di rango uno che
+			sommate restituiscono $A$ (è sufficiente usare la proposizione
+			precedente per dimostrare che devono essere almeno $\rg(A)$),
+			\item $\rg(A)=1 \implies \exists B \in M(m, 1, \KK)$, $C \in M(1, n, \KK) \mid A=BC$ (infatti $A$ può scriversi come $\begin{pmatrix}[c|c|c]\alpha_1 A^i & \cdots & \alpha_n A^i \end{pmatrix}$ per un certo $i \leq n$ tale che $A^i \neq \vec{0}$).
+		\end{itemize}
+		
+		Siano $A \in M(m, n, \KK)$, $B \in M(n, k, \KK)$ e $C \in M(k, t, \KK)$.
+		
+		\begin{itemize}
+			\item $\rg(AB) \geq \rg(A) + \rg(B) - n$ (\textit{disuguaglianza
+				di Sylvester} -- è sufficiente
+			usare la formula delle dimensioni ristretta alla composizione
+			$f_A \circ f_B$),
+			\item $\rg(ABC) \geq \rg(AB) + \rg(BC) - \rg(B)$ (\textit{disuguaglianza di Frobenius}, di cui la proposizione
+			precedente è un caso particolare con $B = I_n$ e $k=n$),
+			\item $\rg(AB) = \rg(B) \impliedby \Ker A = \zerovecset$ (è
+			sufficiente usare la formula delle dimensioni ristretta
+			alla composizione $f_A \circ f_B$),
+			\item $\rg(AB) = \rg(A) \impliedby f_B$ surgettiva (come sopra).
+		\end{itemize}
+		
+		Sia $A \in M(n, \KK)$.
+		
+		\begin{itemize}
+			\item se $A$ è antisimmetrica e il campo su cui si fonda
+			lo spazio vettoriale non ha caratteristica $2$, allora
+			$\rg(A)$ è pari,
+			\item $\rg(A) = n \iff \dim \Ker A = 0 \iff \det(A) \neq 0 \iff A$ è invertibile,
+		\end{itemize}
+		
+		\subsection{Sistemi lineari, algoritmo di eliminazione di Gauss ed 
+			SD-equivalenza}
+		
+		Un sistema lineare di $m$ equazioni in $n$ variabili può essere
+		rappresentato nella forma $A\vec{x} = B$, dove $A \in M(m, n, \KK)$,
+		$\vec{x} \in \KK^n$ e $B \in \KK^m$. Un sistema lineare si
+		dice omogeneo se $B = \vec{0}$. In tal caso l'insieme delle soluzioni del
+		sistema coincide con $\Ker A = \Ker f_A$, dove $f_A : \KK^n \to \KK^m$ è 
+		l'applicazione lineare indotta dalla matrice $A$. Le soluzioni
+		di un sistema lineare sono raccolte nel sottospazio affine
+		$\vec{s} + \Ker A$, dove $\vec{s}$ è una qualsiasi soluzione
+		del sistema completo.
+		
+		\begin{itemize}
+			\item $A\vec{x} = B$ ammette soluzione se e solo se
+			$B \in \Span(A^1, \ldots, A^n) \iff \Span(A^1, \ldots, A^n, B) =
+			\Span(A^1, \ldots, A^n) \iff \dim \Span(A^1, \ldots, A^n, B) =
+			\dim \Span(A^1, \ldots, A^n) \iff
+			\dim \Im (A \mid B) = \dim \Im A \iff \rg (A \mid B) = \rg (A)$
+			(\textit{teorema di Rouché-Capelli}),
+			\item $A\vec{x} = B$, se la ammette, ha un'unica soluzione
+			se e solo se $\Ker A = \zerovecset \iff \rg A = n$.
+		\end{itemize}
+		
+		Si definiscono tre operazioni sulle righe di una matrice $A$:
+		
+		\begin{enumerate}
+			\item l'operazione di scambio di riga,
+			\item l'operazione di moltiplicazione di una riga
+			per uno scalare non nullo,
+			\item la somma di un multiplo non nullo di una riga
+			ad un'altra riga distinta.
+		\end{enumerate}
+		
+		Queste operazioni non variano né $\Ker A$ né $\rg (A)$. Si possono effettuare le stesse medesime operazioni
+		sulle colonne (variando tuttavia $\Ker A$, ma lasciando
+		invariato $\Im A$ -- e quindi $\rg (A)$). L'algoritmo di eliminazione di Gauss
+		procede nel seguente modo:
+		
+		\begin{enumerate}
+			\item se $A$ ha una riga, l'algoritmo termina;
+			\item altrimenti si prenda la prima riga di $A$ con il primo elemento
+			non nullo e la si scambi con la prima riga di $A$ (in caso
+			non esista, si proceda all'ultimo passo),
+			\item per ogni riga di $A$ con primo elemento non nullo,
+			esclusa la prima, si sottragga un multiplo della prima riga in modo
+			tale che la riga risultante abbia il primo elemento nullo,
+			\item si ripeta l'algoritmo considerando come matrice $A$ la
+			matrice risultante dall'algoritmo senza la prima riga e la
+			prima colonna (in caso tale matrice non possa esistere,
+			l'algoritmo termina).
+		\end{enumerate}
+		
+		Si definiscono \textit{pivot} di una matrice l'insieme dei primi
+		elementi non nulli di ogni riga della matrice.
+		Il rango della matrice iniziale $A$ è pari al numero di \textit{pivot}
+		della matrice risultante dall'algoritmo di eliminazione di Gauss.
+		Una matrice che processata dall'algoritmo di eliminazione di Gauss
+		restituisce sé stessa è detta matrice a scala.
+		
+		Agendo solo attraverso
+		operazioni per riga, l'algoritmo di eliminazione di Gauss non
+		modifica $\Ker A$ (si può tuttavia integrare l'algoritmo con le
+		operazioni per colonna, perdendo quest'ultimo beneficio).
+		
+		Agendo
+		su una matrice a scala con operazioni per riga considerando
+		la matrice riflessa (ossia dove l'elemento $(1, 1)$ e $(m, n)$ sono
+		scambiati), si può ottenere una matrice a scala ridotta,
+		ossia un matrice dove tutti i pivot sono $1$ e dove tutti
+		gli elementi sulle colonne dei pivot, eccetto i pivot stessi,
+		sono nulli.
+		
+		Si definisce:
+		
+		\[I^{m \times n}_r =
+		\begin{pmatrix}
+			I_r
+			& \rvline & \bigzero \\
+			\hline
+			\bigzero & \rvline &
+			\bigzero
+		\end{pmatrix} \in M(m, n, \KK). \]
+		
+		Per ogni applicazione lineare $f : V \to W$, con $\dim V = n$ e
+		$\dim W = m$ esistono due basi $\basis_V$, $\basis_W$ rispettivamente
+		di $V$ e $W$ tale che $M^{\basis_V}_{\basis_W}(f) = I^{m \times n}_r$,
+		dove $r=\rg(f)$ (è sufficiente completare con $I$ a base di $V$ una base
+		di $\Ker f$ e poi prendere come base di $W$ il completamento di $f(I)$
+		su una base di $W$).
+		
+		Si definisce SD-equivalenza la relazione d'equivalenza su
+		$M(m, n, \KK)$ indotta dalla relazione $A \sim_{SD} B \iff \exists P \in
+		\GL(m, \KK)$, $Q \in \GL(n, \KK) \mid A=PBQ$. L'invariante completo
+		della SD-equivalenza è il rango: $\rg(A) = \rg(B) \iff A \sim_{SD} B$
+		(infatti $\rg(A) = r \iff A \sim_{SD} I^{m \times n}_r$ -- è sufficiente
+		applicare il cambio di base e sfruttare il fatto che esistono
+		sicuramente due basi per cui $f_A$ ha $I^{m \times n}_r$ come
+		matrice associata).
+		
+		Poiché $I^{m \times n}_r$ ha sempre rango $r$, l'insieme
+		quoziente della SD-equivalenza su $M(m, n, \KK)$ è il seguente:
+		
+		\[ M(m, n, \KK)/{\sim_{SD}} = \left\{[\vec{0}], \left[I^{m \times n}_1\right], \ldots, \left[I^{m \times n}_{\min\{m, n\}}\right] \right\}, \]
+		
+		contenente esattamente $\min\{m, n\}$ elementi. L'unico elemento
+		di $[\vec{0}]$ è $\vec{0}$ stesso.
+		
+		\subsubsection{La regola di Cramer}
+		
+		Qualora $m=n$ e $A$ fosse invertibile (i.e. $\det(A) \neq 0$),
+		per calcolare il valore di $\vec{x}$ si può applicare
+		la regola di Cramer.
+		
+		Si definisce:
+		
+		\[ A_i^* = \begin{pmatrix}[c|c|c|c|c]
+			A^1 & \cdots & A^i \to B & \cdots & A^n
+		\end{pmatrix}, \]
+		
+		dove si sostituisce alla $i$-esima colonna di $A$ il vettore $B$. Allora
+		vale la seguente relazione:
+		
+		\[ \vec{x} = \frac{1}{\det(A)} \begin{pmatrix}
+			\det(A_1^*) \\ \vdots \\ \det(A_n^*)
+		\end{pmatrix}. \]
+		
+		\subsection{L'inverso (generalizzato e non) di una matrice}
+		
+		Si definisce matrice dei cofattori di una matrice $A \in M(n, \KK)$ la
+		seguente matrice:
+		
+		\[ \Cof A = \begin{pmatrix}
+			\Cof_{1,1}(A) & \ldots & \Cof_{1,n}(A) \\
+			\vdots & \ddots & \vdots \\ 
+			\Cof_{n,1}(A) & \ldots & \Cof_{n,n}(A),
+		\end{pmatrix}, \]
+		
+		dove, detta $A_{i,j}$ il minore di $A$ ottenuto eliminando
+		la $i$-esima riga e la $j$-esima colonna, si definisce il cofattore (o
+		complemento algebrico) nel seguente modo:
+		
+		\[ \Cof_{i,j}(A) = (-1)^{i+j} \det( A_{i, j}). \]
+		
+		Si definisce inoltre l'aggiunta classica:
+		
+		\[ \adj(A) = (\Cof A)^\top. \]
+		
+		Allora, se $A$ ammette un inverso (i.e. se $\det(A) \neq 0$),
+		vale la seguente relazione:
+		
+		\[ A^{-1} = \frac{1}{\det(A)} \adj(A). \]
+		
+		\vskip 0.05in
+		
+		Quindi, per esempio, $A^{-1}$ è a coefficienti
+		interi $\iff \det(A) = \pm 1$.
+		
+		Siano $A$, $B \in M(n, \KK)$.
+		
+		\begin{itemize}
+			\item $\adj(AB) = \adj(B)\adj(A)$,
+			\item $\adj(A^\top) = \adj(A)^\top$.
+		\end{itemize}
+		
+		Si definisce inverso generalizzato di una matrice $A \in M(m, n, \KK)$
+		una matrice $X \in M(n, m, \KK) \mid AXA=A$. Ogni matrice ammette
+		un inverso generalizzato (è sufficiente considerare gli inversi
+		generalizzati di $I^{m \times n}_r$ e la SD-equivalenza di $A$
+		con $I^{m \times n}_r$, dove $\rg(A)=r$). Se $m=n$ ed $A$ è invertibile, allora
+		$A^{-1}$ è l'unico inverso generalizzato di $A$. Gli inversi
+		generalizzati di $I^{m \times n}_r$ sono della forma:
+		
+		\[X =
+		\begin{pmatrix}
+			I_r
+			& \rvline & B \\
+			\hline
+			C & \rvline &
+			D
+		\end{pmatrix} \in M(m, n, \KK). \]
+		
+		\subsection{Endomorfismi e similitudine}
+		
+		Si definisce la similitudine tra matrici su $M(n, \KK)$ come la relazione
+		di equivalenza determinata da $A \sim B \iff \exists P \in \GL(n, \KK)
+		\mid A = PBP^{-1}$. $A \sim B \implies \rg(A)=\rg(B)$, $\tr(A)=\tr(B)$,
+		$\det(A)=\det(B)$, $P_\lambda(A) = P_\lambda(B)$ (invarianti \textit{non completi} della similitudine).
+		Vale inoltre che $A \sim B \iff A$ e $B$ hanno la stessa forma
+		canonica di Jordan, a meno di permutazioni dei blocchi di Jordan
+		(invariante \textit{completo} della similitudine). La matrice
+		identità è l'unica matrice identica a sé stessa.
+		
+		Sia $p \in \End(V)$. Si dice che un endomorfismo è un automorfismo
+		se è un isomorfismo. Siano $\basis$, $\basis'$ due qualsiasi
+		basi di $V$.
+		
+		\begin{itemize}
+			\item $p$ automorfismo $\iff p$ iniettivo $\iff p$ surgettivo (è
+			sufficiente applicare la formula delle dimensioni),
+			\item $M^\basis_{\basis'}(id_V) M^{\basis'}_\basis(id_V)
+			= I_n$ (dunque entrambe le matrici sono invertibili e sono
+			l'una l'inverso dell'altra),
+			\item se $p$ è un automorfismo, $M^\basis_{\basis'}(p^{-1}) =
+			M^{\basis'}_\basis(p)^{-1}$,
+			\item $M^\basis_{\basis}(p) = \underbrace{M^{\basis'}_\basis (id_V)}_{P} \,
+			M^{\basis'}_{\basis'}(p) \,
+			\underbrace{M^{\basis}_{\basis'} (id_V)}_{P^{-1}}$ (ossia
+			$M^\basis_{\basis}(p) \sim M^{\basis'}_{\basis'}(p)$).
+		\end{itemize}
+		
+		$M^\basis_{\basis'}(id_V) M^{\basis'}_\basis(id_V)
+		= I_n$. Dunque entrambe le matrici sono invertibili. Inoltre
+		$M^\basis_\basis(id_V) = I_n$.
+		
+		\subsubsection{Duale, biduale e annullatore}
+		
+		Si definisce duale di uno spazio vettoriale $V$ lo
+		spazio $\dual{V} = \mathcal{L}(V, \KK)$, i cui elementi
+		sono detti funzionali. Analogamente
+		il biduale è il duale del duale di $V$: $\bidual{V} = \dual{(\dual{V})} = \mathcal{L}(\dual{V}, \KK)$.
+		
+		Sia data una base $\basis = \{\vec{v_1}, \ldots, \vec{v_n}\}$ di
+		uno spazio vettoriale $V$ di dimensione $n$. Allora $\dim \dual{V}
+		= \dim \mathcal{L}(V, \KK) = \dim V \cdot \dim \KK = \dim V$. Si definisce
+		il funzionale $\dual{\vec{v_i}}$ come l'applicazione lineare
+		univocamente determinata dalla relazione:
+		
+		\[ \dual{\vec{v_i}}(\vec{v_j}) = \delta_{ij}. \]
+		
+		\vskip 0.05in
+		
+		Sia $\basis^* = \{\vec{v_1}^*, \ldots, \vec{v_n}^*\}$. Allora
+		$\basis^*$ è una base di $\dual{V}$. Poiché $V$ e $\dual{V}$
+		hanno la stesso dimensione, tali spazi sono isomorfi, sebbene
+		non canonicamente. Ciononostante, $V$ e $\bidual{V}$ sono
+		canonicamente isomorfi tramite l'isomorfismo:
+		
+		\[ \bidual{\varphi} : V \to \bidual{V}, \; \vec{v} \mapsto \restr{\val}{\dual{V}}, \]
+		
+		che associa ad ogni vettore $\vec{v}$ la funzione
+		di valutazione in una funzionale in $\vec{v}$, ossia:
+		
+		\[ \restr{\val}{\dual{V}} : \dual{V} \to \KK, \; f \mapsto f(\vec{v}). \]
+		
+		Sia $U \subseteq V$ un sottospazio di $V$.
+		Si definisce il sottospazio di $\mathcal{L}(V, W)$:
+		
+		\[ \Ann_{\mathcal{L}(V, W)}(U) = \left\{ f \in \mathcal{L}(V, W) \mid f(U) = \zerovecset \right\}. \]
+		
+		Se $V$ è a dimensione finita, la dimensione di
+		$\Ann(U)$ è pari a $(\dim V - \dim U) \cdot \dim W$ (è sufficiente
+		prendere una base di $U$, completarla a base di $V$ e
+		notare che $f(U) = \zerovecset \iff$ ogni valutazione
+		in $f$ degli elementi della base di $U$ è nullo $\iff$ la matrice
+		associata di $f$ ha tutte colonne nulle in corrispondenza degli
+		elementi della base di $U$).
+		
+		Si scrive semplicemente $\Ann(U)$ quando $W=\KK$ (ossia
+		quando le funzioni sono funzionali di $V$). In tal
+		caso $\dim \Ann(U) = \dim V - \dim U$.
+		
+		\begin{itemize}
+			\item $\bidual{\varphi}(U) \subseteq \Ann(\Ann(U))$,
+			\item se $V$ è a dimensione finita, $\bidual{\varphi}(U) = \bidual{U} = \Ann(\Ann(U))$ (è sufficiente
+			applicare la formula delle dimensioni $\restr{\bidual{\varphi}}{U}$ e notare l'uguaglianza
+			tra le due dimensioni),
+			\item se $V$ è a dimensione finita e $W$ è un altro
+			sottospazio di $V$,
+			$U = W \iff \Ann(U) = \Ann(W)$ (è sufficiente
+			considerare $\Ann(\Ann(U)) = \Ann(\Ann(W))$ e
+			applicare la proposizione precedente, ricordandosi
+			che $\bidual{\varphi}$ è un isomorfismo, ed è
+			dunque iniettivo).
+		\end{itemize}
+		
+		Si definisce l'applicazione trasposta $^\top$ da $\mathcal{L}(V, W)$ a
+		$\mathcal{L}(\dual{W}, \dual{V})$ in modo tale che $f^\top(g)
+		= g \circ f \in \dual{V}$. Siano $f$, $g \in \mathcal{L}(V,W)$ e
+		sia $h \in \mathcal{L}(W,Z)$.
+		
+		\begin{itemize}
+			\item $(f+g)^\top = f^\top + g^\top$,
+			\item $(\lambda f)^\top = \lambda f^\top$,
+			\item se $f$ è invertibile, $(f^{-1})^\top = (f^\top)^{-1}$,
+			\item $(h \circ f)^\top = f^\top \circ h^\top$.
+		\end{itemize}
+		
+		Siano $\basis_V$, $\basis_W$ due basi rispettivamente di $V$ e
+		di $W$. Allora vale la seguente relazione:
+		
+		\[ M^{\basis_W^*}_{\basis_V^*}(f^\top) = M^{\basis_V}_{\basis_W}(f)^\top. \]
+		
+		\subsection{Applicazioni multilineari}
+		
+		Sia $f : V_1 \times \ldots \times V_n \to W$ un'applicazione, dove
+		$V_i$ è uno spazio vettoriale $\forall i \leq n$, così come $W$. Tale
+		applicazione si dice $n$-lineare ed appartiene allo spazio
+		$\Mult(V_1 \times \ldots \times V_n, W)$, se è lineare in ogni sua coordinata, ossia se:
+		
+		\begin{itemize}
+			\item $f(x_1, \ldots, x_i + y_i, \ldots, x_n) =
+			f(x_1, \ldots, x_i, \ldots, x_n) + f(x_1, \ldots, y_i, \ldots, x_n)$,
+			\item $f(x_1, \ldots, \alpha x_i, \ldots, x_n) = \alpha f(x_1, \ldots, x_i, \ldots, x_n)$.
+		\end{itemize}
+		
+		Sia $W=\KK$, e siano tutti gli spazi $V_i$ fondati su tale campo: allora
+		$\Mult(V_1 \times \ldots \times V_n, \KK)$ si scrive anche come $V_1^* \otimes \ldots \otimes V_n^*$, e tale spazio
+		è detto prodotto tensoriale tra $V_1$, ..., $V_n$.
+		Sia $V_i$ di dimensione finita $\forall i \leq n$. Siano $\basis_{V_i} = \left\{ \vec{v^{(i)}_1}, \ldots,  \vec{v^{(i)}_{k_i}} \right\}$ base
+		di $V_i$, dove $k_i = \dim V_i$.
+		Si definisce l'applicazione $n$-lineare $\dual{\vec{v^{(1)}_{j_1}}}
+		\otimes \cdots \otimes \dual{\vec{v^{(n)}_{j_n}}}\in \Mult(V_1 \times \ldots
+		\times V_n, \KK)$ univocamente determinata dalla relazione:
+		
+		\[ \dual{\vec{v^{(1)}_{j_1}}} \otimes \cdots \otimes \dual{\vec{v^{(n)}_{j_n}}}(\vec{w_1}, \ldots, \vec{w_n}) = \dual{\vec{v^{(1)}_{j_1}}}(\vec{w_1}) \cdots \dual{\vec{v^{(n)}_{j_n}}}(\vec{w_n}).   \]
+		
+		Si definisce l'insieme $\basis_{\otimes}$ nel seguente modo:
+		
+		\[ \basis_{\otimes} = \left\{ \dual{\vec{v^{(1)}_{j_1}}} \otimes \cdots \otimes \dual{\vec{v^{(n)}_{j_n}}} \mid 1 \leq j_1 \leq k_1, \, \ldots, \, 1 \leq j_n \leq k_n \right\}. \]
+		
+		Poiché ogni applicazione $n$-lineare è univocamente determinata
+		dai valori che assume ogni combinazione degli elementi delle basi
+		degli spazi $V_i$, vi è un isomorfismo tra $\Mult(V_1 \times \ldots
+		\times V_n, \KK)$ e $\KK^{\basis_{V_1} \times \cdots \times \basis_{V_n}}$, che ha dimensione $\prod_{i=1}^n k_i = k$. Pertanto
+		anche $\dim \Mult(V_1 \times \ldots \times V_n, \KK) = k$.
+		
+		Poiché $\basis_{\otimes}$ genera $\Mult(V_1 \times \ldots
+		\times V_n, \KK)$ e i suoi elementi sono tanti quanto è la
+		dimensione dello spazio, tale insieme è una base di $\Mult(V_1 \times 
+		\ldots \times V_n, \KK)$.
+		
+		Se $V_i = V_1 = V$ $\forall i \leq n$, si dice che $\Mult(V^n, \KK)$
+		è lo spazio delle forme $n$-lineari di $V$. 
+		
+		\subsubsection{Applicazioni multilineari simmetriche}
+		
+		Sia $V$ uno spazio di dimensione $n$. Una 
+		forma $k$-lineare $f$ si dice simmetrica 
+		ed appartiene allo spazio $\Sym^k(V)$ se:
+		
+		\[ f(\vec{x_1}, \ldots, \vec{x_k}) = f(\vec{x_{\sigma(1)}}, \ldots, \vec{x_{\sigma(k)}}), \quad \forall \sigma \in S_k. \]
+		
+		Poiché ogni applicazione $n$-lineare simmetrica è univocamente
+		determinata dai valori che assume negli elementi della base
+		disposti in modo non decrescente, $\dim \Sym^k(V) = \binom{n+k-1}{k}$.
+		
+		Sia $\basis = \{\vec{v_1}, \ldots, \vec{v_n}\}$ una base
+		di $V$. Dato un insieme di indici non decrescente $I$,
+		si definisce il prodotto simmetrico (o \textit{prodotto vee}) 
+		$\dual{\vec{v_{i_1}}} \vee \cdots \vee \dual{\vec{v_{i_k}}}$
+		tra elementi della base come la forma $k$-lineare simmetrica
+		determinata dalla relazione:
+		
+		\[ \dual{\vec{v_{i_1}}} \vee \cdots \vee \dual{\vec{v_{i_k}}} = \sum_{\sigma \in S_k} \dual{\vec{v_{i_{\sigma(1)}}}} \otimes \cdots \otimes \dual{\vec{v_{i_{\sigma(k)}}}}. \]
+		
+		Si definisce l'insieme:
+		
+		\[\basis_{\Sym} = \left\{  \dual{\vec{v_{i_1}}} \vee \cdots \vee \dual{\vec{v_{i_k}}} \mid 1 \leq i_1 \leq \cdots \leq i_k \leq n \right\}. \]
+		
+		L'insieme $\basis_{\Sym}$ è sia generatore che linearmente
+		indipendente su $\Sym^k(V)$, ed è dunque base. Allora
+		$\dim \Sym^k(V) = \binom{n+k-1}{k}$.
+		
+		\subsubsection{Applicazioni multilineari alternanti}
+		
+		Sia $V$ uno spazio di dimensione $n$. Una forma
+		$k$-lineare $f$ si dice alternante (o antisimmetrica)
+		ed appartiene allo spazio $\Lambda^k(V)$ (talvolta scritto
+		come $\operatorname{Alt}^k(V)$) se:
+		
+		\[ f(x_1, \ldots, x_k) = 0 \impliedby \exists \, i, j \leq k \mid x_i = x_j. \]
+		
+		\vskip 0.05in
+		
+		Questo implica che:
+		
+		\[ f(x_1, \ldots, x_k) = \sgn(\sigma) f(x_{\sigma(1)}, \ldots, x_{\sigma(n)}), \quad \forall \sigma \in S_k \]
+		
+		Se $k > n$, un argomento della base di $V$ si ripete sempre nel
+		computo $f$ negli elementi della base, e quindi ogni alternante è
+		pari a $\vec{0}$, ossia $\dim \Lambda^k(V) = 0$.
+		
+		Sia $\basis = \{\vec{v_1}, \ldots, \vec{v_n}\}$ una base
+		di $V$. Dato un insieme di indici crescente $I$,
+		si definisce il prodotto esterno (o \textit{prodotto wedge}) 
+		$\dual{\vec{v_{i_1}}} \wedge \cdots \wedge \dual{\vec{v_{i_k}}}$
+		tra elementi della base come la forma $k$-lineare alternante
+		determinata dalla relazione:
+		
+		\[ \dual{\vec{v_{i_1}}} \wedge \cdots \wedge \dual{\vec{v_{i_k}}} = \sum_{\sigma \in S_k} \sgn(\sigma) \, \dual{\vec{v_{i_{\sigma(1)}}}} \otimes \cdots \otimes \dual{\vec{v_{i_{\sigma(k)}}}}. \]
+		
+		Si definisce l'insieme:
+		
+		\[\basis_{\Lambda} = \left\{  \dual{\vec{v_{i_1}}} \wedge \cdots \wedge \dual{\vec{v_{i_k}}} \mid 1 \leq i_1 < \cdots < i_k \leq n \right\}. \]
+		
+		L'insieme $\basis_{\Lambda}$ è sia generatore che linearmente
+		indipendente su $\Lambda^k(V)$, ed è dunque base. Allora
+		$\dim \Lambda^k(V) = \binom{n}{k}$. Riassumendo si può scrivere:
+		
+		\[\dim \Lambda^k(V) = \begin{cases} 0 & \text{se } k > n\,, \\ \binom{n}{k} & \text{altrimenti}. \end{cases}\]
+		
+		Quindi è quasi sempre vero che:
+		
+		\[ \underbrace{\dim \Sym^k(V)}_{= \, \binom{n+k-1}{k}} + \underbrace{\dim \Lambda^k(V)}_{\leq \, \binom{n}{k}} < \underbrace{\dim \Mult(V^k, \KK)}_{=\,n^k}, \]
+		
+		e dunque che $\Sym^k(V) + \Lambda^k(V) \neq \Mult(V^k, \KK)$.
+		
+		
+		
+		\subsection{Determinante di una matrice}
+		
+		Si definisce il determinante $\det$ di una matrice di taglia
+		$n \times n$ come l'unica forma $n$-lineare alternante di $(\KK^n)^n$
+		tale che $\det(\vec{e_1}, \ldots, \vec{e_n}) = 1$ (infatti
+		$\dim \Lambda^n (V) = \binom{n}{n} = 1$, e quindi ogni forma
+		alternante è multipla delle altre, eccetto per lo zero).
+		
+		Equivalentemente $\det = \dual{\vec{e_1}} \, \wedge \cdots \wedge \, \dual{\vec{e_n}}$.
+		
+		Siano $A$, $B \in M(n, \KK)$. Si scrive
+		$\det(A)$ per indicare $\det(A_1, \ldots, A_n)$. Vale pertanto la
+		seguente relazione:
+		
+		\[ \det(A) = \sum_{\sigma \in S_n} \sgn(\sigma) \, a_{1\sigma(1)} \cdots a_{n\sigma(n)}. \]
+		
+		\begin{itemize}
+			\item $\det(I_n) = 1$,
+			\item $\det \begin{pmatrix}
+				a & b \\ c & d
+			\end{pmatrix} = ad-bc$,
+			\item $\det \begin{pmatrix}
+				a & b & c \\ d & e & f \\ g & h & i
+			\end{pmatrix} = a(ei-fh) - b(di-fg) + c(dh-eg)$,
+			\item $\det(A) \neq 0 \iff A$ invertibile (ossia non singolare),
+			\item $\det(\lambda A) = \lambda^n A$,
+			\item $\det(A) = \det(A^\top)$ (è sufficiente applicare la definizione
+			di $\det$ e manipolare algebricamente il risultato per evidenziare
+			l'uguaglianza),
+			\item se $A$ è antisimmetrica, $n$ è dispari e $\Char \KK \neq 2$,
+			$\det(A) = \det(-A^\top) = (-1)^n \det(A^\top) = (-1)^n \det(A) = -\det(A) \implies \det(A) = 0$ (quindi ogni matrice antisimmetrica di taglia
+			dispari non è invertibile),
+			\item $\det(AB) = \det(A)\det(B)$ (\textit{teorema di Binet} -- è
+			sufficiente considerare la forma $\frac{\det(AB)}{\det(B)}$ in
+			funzione delle righe di $A$ e determinare che tale forma
+			è alternante e che vale $1$ nell'identità, e che, per l'unicità
+			del determinante, deve obbligatoriamente essere pari a
+			$\det(A)$),
+			\item se $A$ è invertibile, $\det(A^{-1}) = \det(A)^{-1}$,
+			\item $\det   \begin{pmatrix}
+				\lambda_{1} & & \\
+				& \ddots & \\
+				& & \lambda_{n}
+			\end{pmatrix} = \det(\lambda_1 \vec{e_1}, \ldots, \lambda_n \vec{e_n}) = \prod_{i=1}^n \lambda_i$,
+			\item se $A$ è triangolare superiore (o inferiore), allora $\det(A)$ è
+			il prodotto degli elementi sulla sua diagonale principale,
+			\item $\det(A_1, \ldots, A_n) = \sgn(\sigma) \det(A_{\sigma(1)}, \ldots, A_{\sigma(n)})$, $\forall \sigma \in S_n$ (infatti $\det$ è alternante),
+			\item $\det \begin{pmatrix}
+				A
+				& \rvline & B \\
+				\hline
+				C & \rvline &
+				D
+			\end{pmatrix} = \det(AD-BC)$, se $C$ e $D$ commutano e $D$ è invertibile,
+			\item $\det \begin{pmatrix}
+				A
+				& \rvline & B \\
+				\hline
+				0 & \rvline &
+				C
+			\end{pmatrix} = \det(A)\det(C)$,
+			\item se $A$ è nilpotente (ossia se $\exists k \mid A^k = 0$),
+			$\det(A) = 0$,
+			\item se $A$ è idempotente (ossia se $A^2 = A$), allora
+			$\det(A) = 1$ o $\det(A) = 0$,
+			\item se $A$ è ortogonale (ossia se $AA^\top = I_n$), allora
+			$\det(A) = \pm 1$,
+			\item se $A$ è un'involuzione (ossia se $A^2 = I_n$), allora
+			$\det(A) = \pm 1$,
+		\end{itemize}
+		
+		Le operazioni del terzo tipo dell'algoritmo di eliminazione
+		di Gauss (ossia l'aggiunta a una riga di un multiplo di un'altra
+		riga -- a patto che le due righe siano distinte) non alterano il
+		determinante della matrice iniziale, mentre lo scambio di righe
+		ne inverte il segno (corrisponde a una trasposizione di $S_n$).
+		L'operazione del secondo tipo (la moltiplicazione di una riga
+		per uno scalare) altera il determinante moltiplicandolo per
+		tale scalare.
+		
+		Inoltre, se $D$ è invertibile, vale la seguente scomposizione:
+		
+		\[ \begin{pmatrix}
+			A
+			& \rvline & B \\
+			\hline
+			C & \rvline &
+			D
+		\end{pmatrix} = \begin{pmatrix}
+			I_k
+			& \rvline & BD^{-1} \\
+			\hline
+			0 & \rvline &
+			I_k
+		\end{pmatrix}
+		\begin{pmatrix}
+			A-BD^{-1}C
+			& \rvline & 0 \\
+			\hline
+			0 & \rvline &
+			D
+		\end{pmatrix}
+		\begin{pmatrix}
+			I_k
+			& \rvline & 0 \\
+			\hline
+			D^{-1}C & \rvline &
+			I_k
+		\end{pmatrix}, \]
+		
+		dove $k \times k$ è la taglia di $A$. Pertanto vale
+		la seguente relazione, sempre se $D$ è invertibile:
+		
+		\[ \det \begin{pmatrix}
+			A
+			& \rvline & B \\
+			\hline
+			C & \rvline &
+			D
+		\end{pmatrix} = \det(A-BD^{-1}C)\det(D). \]
+		
+		È possibile computare il determinante di $A$, scelta la riga $i$, mediante lo
+		sviluppo di Laplace:
+		
+		\[ \det(A) = \sum_{j=1}^n a_{ij} \Cof_{i,j}(A) = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det(A_{i,j}). \]
+		
+		Si definisce matrice di Vandermonde una matrice $A \in M(n, \KK)$ della
+		forma:
+		
+		\[ A = \begin{pmatrix}
+			1 & x_1 & x_1^2 & \dots & x_1^{n-1}\\
+			1 & x_2 & x_2^2 & \dots & x_2^{n-1}\\
+			\vdots & \vdots & \vdots & \ddots &\vdots \\
+			1 & x_n & x_n^2 & \dots & x_n^{n-1}.
+		\end{pmatrix} \]
+		
+		Vale allora che:
+		
+		\[ \det(A) = \prod_{1 \leq i < j \leq n} (x_j - x_i), \]
+		
+		verificabile notando che $\det(A)$ è di grado $\frac{n(n-1)}{2}$ e
+		che ponendo $x_i = x_j$ per una coppia $(i, j)$, tale matrice
+		ha due righe uguali, e quindi determinante nullo $\implies (x_j - x_i) \mid \det(A) \overbrace{\implies}^{\text{UFD}} \det(A) = \prod_{1 \leq i < j \leq n} (x_j - x_i) $.
+		
+		Pertanto una matrice di Vandermonde è invertibile se e solo se la sua
+		seconda colonna contiene tutti scalari distinti nelle coordinate. Tale
+		matrice risulta utile nello studio dell'interpolazione di Lagrange
+		(ossia nella dimostrazione dell'unicità del polinomio di $n-1$ grado
+		tale che $p(\alpha_i) = \beta_i$ per $i$ coppie ($\alpha_i$, $\beta_i$) con
+		$\alpha_i$ tutti distinti).
+		
+		\subsection{Autovalori e diagonalizzabilità}
+		
+		Sia $f \in \End(V)$. Si dice che $\lambda \in \KK$ è un autovalore
+		di $f$ se e solo se $\exists \vec{v} \neq \vec{0}$, $\vec{v} \in V$
+		tale che $f(\vec{v}) = \lambda \vec{v}$, e in tal caso si dice
+		che $\vec{v}$ è un autovettore relativo a $\lambda$. Un autovalore
+		è tale se esiste una soluzione non nulla a $(f - \lambda \Idv) \vec{v} = \vec{0}$, ossia se e solo se:
+		
+		\[\det(f - \lambda \Idv) = 0. \]
+		
+		Questa relazione è ben definita dacché il determinante è invariante
+		per qualsiasi cambio di base applicato ad una matrice associata
+		di $f$. Si definisce allora $p_f(\lambda) = \det(f - \lambda \Idv)$,
+		detto polinomio caratteristico di $f$, ancora invariante per
+		matrici associate a $f$. Si denota inoltre con
+		spettro di $f$ l'insieme $sp(f)$ degli autovalori di $f$ e con
+		$V_\lambda = \Ker(f - \lambda \Idv)$ lo spazio degli autovettori
+		relativo a $\lambda$, detto autospazio di $\lambda$.
+		
+		Si definisce la molteplicità algebrica $\mu_{a,f}(\lambda)$ di un autovalore
+		$\lambda$ come la molteplicità che assume come radice del polinomio
+		$p_f(\lambda)$. Si definisce la molteplicità geometrica
+		$\mu_{g,f}(\lambda)$ di un autovalore $\lambda$ come la dimensione
+		del suo autospazio $V_\lambda$. Quando è noto l'endomorfismo
+		che si sta considerando si omette la dicitura $f$ nel pedice delle
+		molteplicità.
+		
+		\begin{itemize}
+			\item $p_f(\lambda)$ ha sempre grado $n = \dim V$,
+			\item $p_f(\lambda)$ è sempre monico a meno del segno,
+			\item il coefficiente di $\lambda^n$ è sempre $(-1)^n$,
+			\item il coefficiente di $\lambda^{n-1}$ è $(-1)^{n+1} \tr(f)$,
+			\item il termine noto di $p_f(\lambda)$ è $\det(f - 0 \cdot \Idv) = \det(f)$,
+			\item poiché $p_f(\lambda)$ appartiene all'anello euclideo $\KK[\lambda]$, che è dunque un UFD, esso ammette al più
+			$n$ radici,
+			\item $sp(f)$ ha al più $n$ elementi, ossia esistono al massimo
+			$n$ autovalori (dalla precedente considerazione),
+			\item se $\KK = \CC$ e $\charpoly{f} \in \RR[\lambda]$, $\lambda \in
+			sp(f) \iff \overline{\lambda} \in sp(f)$ (infatti $\lambda$ è
+			soluzione di $\charpoly{f}$, e quindi anche $\overline{\lambda}$
+			deve esserne radice, dacché i coefficienti di $\charpoly{f}$ sono
+			in $\RR$),
+			\item se $\KK$ è un campo algebricamente chiuso, $p_f(\lambda)$
+			ammette sempre almeno un autovalore distinto (o esattamente
+			$n$ se contati con molteplicità),
+			\item $0 \in sp(f) \iff \dim \Ker f > 0 \iff \rg f < 0 \iff \det(f) = 0$,
+			\item autovettori relativi ad autovalori distinti sono sempre
+			linearmente indipendenti,
+			\item dati $\lambda_1$, ..., $\lambda_k$ autovalori di $f$,
+			gli spazi $V_{\lambda_1}$, ..., $V_{\lambda_k}$ sono sempre
+			in somma diretta,
+			\item $\sum_{i=1}^k \mu_a(\lambda_i)$ corrisponde al numero
+			di fattori lineari di $p_f(\lambda)$,
+			\item $\sum_{i=1}^k \mu_a(\lambda_i) = n \iff$ $p_f(\lambda)$
+			è completamente fattorizzabile in $\KK[\lambda]$,
+			\item vale sempre la disuguaglianza $n \geq \mu_a(\lambda) \geq
+			\mu_g(\lambda) \geq 1$ (è sufficiente considerare una
+			base di $V_\lambda$ estesa a base di $V$ e calcolarne il
+			polinomio caratteristico sfruttando i blocchi della matrice
+			associata, notando che $\mu_g(\lambda)$ deve forzatamente essere
+			minore di $\mu_a(\lambda)$),
+			\item vale sempre la disuguaglianza $n \geq \sum_{i=1}^k \mu_a(\lambda_i) \geq \sum_{i=1}^k \mu_g(\lambda_i)$,
+			\item se $W \subseteq V$ è un sottospazio $f$-invariante,
+			allora $\charpolyrestr{f}{W} \mid p_f(\lambda)$\footnote{lavorando
+				su endomorfismi, la notazione $\restr{f}{W}$ è impiegata per
+				considerare $f$ ristretta a $W$ sia sul dominio che sul codominio.} (è sufficiente
+			prendere una base di $W$ ed estenderla a base di $V$, considerando
+			poi la matrice associata in tale base, che è a blocchi),
+			\item se $W \subseteq V$ è un sottospazio $f$-invariante,
+			ed estesa una base $\basis_W$ di $W$ ad una $\basis$ di $V$,
+			detto $U = \Span(\basis \setminus \basis_W)$ il supplementare di $W$ che si ottiene da tale base $\basis$, vale
+			che $\charpoly{f} = \charpolyrestr{f}{W} \cdot \charpoly{\hat{f}}$,
+			dove $\hat{f} : V/W \to V/W$ è tale che $\hat{f}(\vec{u} + W) = f(\vec{u}) + W$ (come prima, è sufficiente considerare una matrice
+			a blocchi),
+			\item se $V = W \oplus U$, dove sia $W$ che $U$ sono $f$-invarianti,
+			allora $\charpoly{f} = \charpolyrestr{f}{W} \cdot \charpolyrestr{f}{U}$ (la matrice associata in un'unione di basi
+			di $W$ e $U$ è infatti diagonale a blocchi).
+		\end{itemize}
+		
+		Si dice che $f$ è diagonalizzabile se $V$ ammette una base per cui
+		la matrice associata di $f$ è diagonale, o equivalentemente se,
+		dati $\lambda_1$, ..., $\lambda_k$ autovalori di $f$, si verifica
+		che:
+		
+		\[ V = V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_k}. \]
+		
+		Ancora in modo equivalente si può dire che $f$ è diagonalizzabile
+		se e solo se:
+		
+		\[ \begin{cases} \sum_{i=1}^k \mu_a(\lambda_i) = n, \\ \mu_g(\lambda_i) = \mu_a(\lambda_i) \; \forall 1 \leq i \leq k, \end{cases} \]
+		
+		ossia se il polinomio caratteristico è completamente fattorizzabile
+		in $\KK[\lambda]$ (se non lo fosse, la somma diretta
+		$V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_k}$ avrebbe
+		forzatamente dimensione minore di $V$, ed esisterebbero altri
+		autovalori in un qualsiasi campo di spezzamento di $p_f(\lambda)$) e se $\sum_{i=1}^k \mu_g(\lambda_i) = n$. Tale condizione, in un
+		campo algebricamente chiuso, si riduce a $\mu_g(\lambda_i) = \mu_a(\lambda_i)$, $\forall 1 \leq i \leq k$.
+		
+		Considerando la forma canonica di Jordan di $f$, si osserva anche
+		che $f$ è diagonalizzabile se e solo se per ogni autovalore la
+		massima taglia di un blocco di Jordan è esattamente $1$, ossia
+		se il polinomio minimo di $f$ è un prodotto di fattori lineari
+		distinti.
+		
+		Data $f$ diagonalizzabile, la matrice diagonale $J$ a cui $f$ è
+		associata è, dati gli autovalori $\lambda_1$, ..., $\lambda_k$,
+		una matrice diagonale dove $\lambda_i$ compare sulla diagonale
+		esattamente $\mu_g(\lambda_i)$ volte.
+		
+		Data $A \in M(n, \KK)$, $A$ è diagonalizzabile se e solo se $f_A$,
+		l'applicazione indotta dalla matrice $A$, è diagonalizzabile,
+		ossia se $A$ è simile ad una matrice diagonale $J$, computabile
+		come prima. Si scrive in particolare $p_A(\lambda)$ per indicare
+		$p_{f_A}(\lambda)$.
+		
+		Una matrice $P \in \GL(M(n, \KK))$
+		tale che $A = P J P\inv$, è tale che $AP = PJ$: presa la $i$-esima
+		colonna, allora, $AP^{(i)} = PJ^{(i)} = P^{(i)}$; ossia è sufficiente
+		costruire una matrice $P$ dove l'$i$-esima colonna è un autovettore
+		relativo all'autovalore presente in $J_{ii}$ linearmente indipendente
+		con gli altri autovettori presenti in $P$ relativi allo stesso
+		autovalore (esattamente nello stesso modo in cui si costruisce in
+		generale tale $P$ con la forma canonica di Jordan).
+		
+		Se $A$ e $B$ sono diagonalizzabili, allora $A \sim B \iff p_A(\lambda) =
+		p_B(\lambda)$ (infatti due matrici diagonali hanno lo stesso polinomio
+		caratteristico se e solo se compaiono gli stessi identici autovalori).
+		
+		Se $f$ è diagonalizzabile, allora ogni spazio $W$ $f$-invariante di
+		$V$ è tale che:
+		
+		\[ W = (W \cap V_{\lambda_1}) \oplus \cdots \oplus (W \cap V_{\lambda_k}), \]
+		
+		dove $\lambda_1$, ..., $\lambda_k$ sono gli autovalori distinti di
+		$f$.
+		
+		Due endomorfismi $f$, $g \in \End(V)$ diagonalizzabili si dicono simultaneamente diagonalizzabili se esiste una base $\basis$ di $V$
+		tale per cui sia la matrice associata di $f$ in $\basis$ che quella
+		di $g$ sono diagonali. Vale in particolare che $f$ e $g$ sono
+		simultaneamente diagonalizzabili se e solo se $f \circ g = g \circ f$.
+		Per trovare tale base è sufficiente, dati $\lambda_1$, ...,
+		$\lambda_k$ autovalori di $f$, considerare $\restr{g}{V_{\lambda_i}}$
+		$\forall 1 \leq i \leq k$ ($V_{\lambda_i}$ è infatti $g$-invariante,
+		dacché, per $\vec{v} \in V_{\lambda_i}$, $f(g(\vec{v})) =
+		g(f(\vec{v})) = g(\lambda_i \vec{v}) = \lambda_i g(\vec{v}) \implies
+		g(\vec{v}) \in V_{\lambda_i}$), che, essendo una restrizione di
+		un endomorfismo diagonalizzabile su un sottospazio invariante, è diagonalizzabile: presa allora
+		una base di autovettori di $\restr{g}{V_{\lambda_i}}$, questi sono
+		anche base di autovettori di $V_{\lambda_i}$; unendo tutti questi
+		autovettori in un'unica base $\basis$ di $V$, si otterrà dunque
+		che una base in cui le matrici associate di $f$ e $g$ sono diagonali.
+
+		%\item vale sempre che $p_f(f) = 0$ (teorema di Hamilton-Cayley --
+		%    data una matrice associata $A$ di $f$, è sufficiente studiare
+		%    l'identità
+		%    $(A-\lambda I_n) \cdot \adj(A-\lambda I_n) = p_f(\lambda) I_n$)
+		
+		\vfill
+		\hrule
+		~\\
+		Gabriel Antonio Videtta, \url{https://poisson.phc.dm.unipi.it/~videtta/}
+	\end{multicols}
+	
+\end{document}

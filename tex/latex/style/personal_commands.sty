@@ -84,12 +84,29 @@
 	#1\arrowvert_{#2}
 }
 
+\newcommand{\innprod}[2]{\langle {#1,#2} \rangle}
+
+\newcommand{\zerovecset}{\{\vec 0\}}
+\newcommand{\bigzero}{\mbox{0}}
+\newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
+
+\newcommand{\Idv}{Id_V}
+\DeclareMathOperator{\Bil}{Bil}
+\DeclareMathOperator{\Mult}{Mult}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Cof}{Cof}
+
+\newcommand{\Eigsp}[1]{V_{\lambda}}
+\newcommand{\Gensp}[1]{\widetilde{V_{\lambda}}}
 \newcommand{\eigsp}[1]{V_{\lambda_{#1}}}
 \newcommand{\gensp}[1]{\widetilde{V_{\lambda_{#1}}}}
 
 \DeclareMathOperator{\val}{val}
 \DeclareMathOperator{\Span}{Span}
 \newcommand{\charpoly}[1]{p_{#1}}
+\newcommand{\charpolyrestr}[2]{p_{#1\arrowvert_#2}\hspace{-1pt}(\lambda)}
 \newcommand{\minpoly}[1]{\varphi_{#1}}
 \newcommand{\valf}{\val_f}
 \newcommand{\valfv}{\val_{f,\V}}
