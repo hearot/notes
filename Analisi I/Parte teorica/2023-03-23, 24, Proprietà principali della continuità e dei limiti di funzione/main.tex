@@ -458,9 +458,46 @@
 	\end{corollary}
 
 	\begin{proof}
-		Supponiamo $y_1 < y_2$: poiché $y_1$, $y_2$ appartengono già a $f(I)$, è sufficiente mostrare che an che ogni $y \in (y_1, y_2)$ appartiene a $f(I)$. Dal momento che $y_1$, $y_2 \in f(I)$, $\exists x_1$, $x_2 \in I \mid f(x_1) = y_1$ e $f(x_2) = y_2$. Si consideri allora $g : I \to \RRbar$ tale che
+		Supponiamo $y_1 < y_2$: poiché $y_1$, $y_2$ appartengono già a $f(I)$, è sufficiente mostrare che anche ogni $y \in (y_1, y_2)$ appartiene a $f(I)$. Dal momento che $y_1$, $y_2 \in f(I)$, $\exists x_1$, $x_2 \in I \mid f(x_1) = y_1$ e $f(x_2) = y_2$. Si consideri allora $g : I \to \RRbar$ tale che
 		$g(x) = f(x) - y$. Allora $g(x_1) = y_1 - y < 0$, mentre $g(x_2) = y_2 - y > 0$. Pertanto, per il teorema
 		degli zeri, $\exists \xbar \in (x_1, x_2) \mid g(\xbar) = 0 \implies f(\xbar) = y$. Si conclude allora che anche
 		$y \in f(I)$, da cui la tesi. 
 	\end{proof}
+
+	\begin{remark}
+		In realtà, la dimostrazione del teorema dei valori intermedi
+		si basa sul fatto che gli unici insiemi convessi di $\RR$ sono
+		gli intervalli (da sopra segue infatti che $f(I)$ è un intervallo).
+		%TODO: dimostrare.
+	\end{remark}
+
+	\begin{theorem} (di Weierstrass) Sia $I$ un intervallo chiuso\footnote{In realtà è sufficiente che $I$ sia chiuso, ossia che contenga i suoi punti
+	di accumulazione} e sia
+		$f : I \to \RRbar$ continua. Allora esistono $x_m$ e $x_M$ punti
+		di massimo e minimo assoluti.
+	\end{theorem}
+
+	\begin{proof}
+		Ci si limita a dimostrare l'esistenza del minimo, dacché l'esistenza
+		del massimo segue dal considerare $g = -f$. Sia $m := \inf f(I)$.
+		Esiste allora una successione $(y_n) \subseteq f(I)$ tale che
+		$y_n \tendston m$. Poiché $y_n \in f(I)$, $\exists x_n \in I \mid
+		y_n = f(x_n)$. Per il teorema di Bolzano-Weierstrass, $\exists \, (x_{n_k})
+		\subseteq I$ sottosuccessione convergente, ossia tale che
+		$x_{n_k} \to \xbar \in \RRbar$. In particolare vale che
+		$\xbar \in I$, dal momento che $I$ è un intervallo chiuso. %TODO: approfondire
+		Per la continuità di $f$ (in particolare in $\xbar$), allora $f(x_{n_k}) \tendston f(\xbar)$.
+		Essendo $f(x_{n_k})$ una sottosuccessione di $(y_n)$, che è
+		convergente, deve valere che $f(\xbar) = m$, ossia
+		$m \in f(I)$, da cui si ricava che $f(I)$ ammette un minimo,
+		ovvverosia la tesi.
+	\end{proof}
+	
+	\begin{remark} (algoritmo max. e min.) Si consideri $\tilde{f} : \tilde{I} \to \RRbar$. Allora, poiché $\tilde{f}$ è continua ed è definita su
+		un intervallo chiuso, per Weierstrass ammette un massimo e un
+		minimo. Preso per esempio il minimo, esso potrebbe essere un
+		estremo di $\tilde{I}$, oppure è un punto derivabile (e quindi è
+			stazionario), oppure non è derivabile.
+	\end{remark}
+	
 \end{document}
