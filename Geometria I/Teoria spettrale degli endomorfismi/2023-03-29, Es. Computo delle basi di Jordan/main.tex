@@ -65,7 +65,7 @@
 		da cui si ottiene anche che $p_A(t) = (t-2)^2 (t-2)$. Si calcola
 		ora una base di Jordan per $A$. \\
 		
-		Sia $\Ker (A - I)^2 = \Ker (A - I) \oplus U_1$. $\dim U_1 = 1$,
+		($\lambda = 1$) Sia $\Ker (A - I)^2 = \Ker (A - I) \oplus U_1$. $\dim U_1 = 1$,
 		e poiché $\e5 \in \Ker (A - I)^2$, ma $\e5 \notin \Ker (A-I)$,
 		vale che $U_1 = \Span(\e5)$. \\
 		
@@ -74,7 +74,7 @@
 		non appartiene a $\Span(A \e5)$, si ottiene che una base
 		relativa al blocco di $1$ è $A \e5, \e5, \e5+\e1-\e3$.
 		
-		Per quanto riguarda invee il blocco relativo a $2$, essendo
+		($\lambda = 2$) Per quanto riguarda invece il blocco relativo a $2$, essendo
 		tale blocco diagonale, è sufficiente ricavare una base
 		di $\Ker (A-2I)$, come $\e4$ e $\e1 + \e3$.
 	\end{example}
@@ -93,7 +93,13 @@
 	\end{proposition}
 
 	\begin{proof}
-		Si osserva che $J_{0,m} B = \Matrix{B_2 \\ \hline B_3 \\ \hline \vdots \\ \hline B_{m} \\ \hline 0}$, mentre $B J_{0,m} = \Matrix{0 & \rvline & B^1 & \rvline & B^2 & \rvline & \cdots & \rvline & B^{m-1} }$.
+		Sia $B \in C(J_{0, m})$. Si osserva che $J_{0,m} B = \Matrix{B_2 \\ \hline B_3 \\ \hline \vdots \\ \hline B_{m} \\ \hline 0}$, mentre $B J_{0,m} = \Matrix{0 & \rvline & B^1 & \rvline & B^2 & \rvline & \cdots & \rvline & B^{m-1} }$. Per ipotesi deve valere che $J_{0,m} B = B J_{0,m}$, e quindi, uguagliando le matrici colonna a colonna, si osserva
+		la colonna $B^1$ è tutta nulla eccetto per il primo elemento; si osserva poi che la colonna $B^2$ è composta
+		da elementi di $B^1$ traslata in basso di una posizione; e così via ciclando sulle colonne, ottenendo che,
+		data $B^m = \Vector{ a_0 \\ a_1 \\ \vdots \\ a_{m-1} }$, $B = a_0 I + a_1 J_{0,m} + \ldots + a_{m-1} J_{0, m}^{m-1}$,
+		quindi $B \in \Span(I, J_{0, m}, J_{0, m}^2, ..., J_{0, m}^{m-1})$. Dal momento che ogni elemento generatore di
+		$\Span(I, J_{0, m}, J_{0, m}^2, ..., J_{0, m}^{m-1})$ commuta con $J_{0,m}$, vale la doppia inclusione, da cui
+		la tesi.
 	\end{proof}
 
 	\begin{remark}
