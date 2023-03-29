@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Esercitazione: computo della basi di Jordan}
+	\end{center}
+
+	\begin{example}
+		Sia $A = \Matrix{0 & 1 & 0 & 1 & 2 \\ 0 & -1 & 1 & -1 & -2 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & -1 & -2 \\ 0 & 1 & 0 & 1 & 2}$ e se ne ricerchi
+		la forma canonica di Jordan e una base in cui assume tale base. \\
+		
+		Si noti che $A^2 = \Matrix{0 & 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0}$, e quindi
+		che $A^3 = 0$. Allora $\varphi_A(t) = t^3$ e $p_A(t) = t^5$. \\
+		
+		Poiché $A$ ha ordine di nilpotenza $3$, la sua forma canonica
+		di Jordan ammette sicuramente un solo blocco
+		di ordine $3$. Inoltre, $\dim \Ker A = 3$, e quindi
+		devono esservi obbligatoriamente $2$ blocchi di ordine $1$.
+		Pertanto la sua forma canonica è la seguente:
+		
+		\[ J=\Matrix{0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0}. \]
+		
+		\vskip 0.05in
+		
+		Si consideri l'identità $\RR^5 = \Ker A^3 = \Ker A^2 \oplus U_1$.
+		Poiché $\dim \Ker A^2 = 4$, vale che $\dim U_1 = \dim \Ker A^3
+		- \dim \Ker A^2 = 1$. Dacché $\e3$ si annulla solo con $A^3$,
+		$U_1 = \Span(\e3)$. \\
+		
+		Si consideri invece ora $\Ker A^2 = \Ker A \oplus A(U_1) \oplus U_2$.
+		Si osservi che $\dim U_2$ è il numero dei blocchi di Jordan di
+		ordine $2$, e quindi è $0$. Si deve allora considerare $\Ker A =
+		A^2(U_1) \oplus U_3$, dove $\dim U_3 = 2$. Si osservi anche che $A^2(\e3) = \e1-\e2-\e3+\e4$: è sufficiente trovare due vettori
+		linearmente indipendenti appartenenti al kernel di $A$, ma non
+		nello $\Span$ di $A^2(\e3)$; come per esempio $\e2-\e4$ e $2\e2-\e5$.
+		Allora $U_3 = \Span(\e2-\e4, 2\e2-\e5)$. Una base di Jordan per $A$
+		sarà allora $(A^2 \e3, A \e3, \e3, \e2-\e4, 2\e2-\e5)$.
+	\end{example}
+
+	\begin{example}
+		Sia $A = \Matrix{2 & 0 & 1 & 0 & 0 \\ 1 & 1 & 0 & 0 & -1 \\ 0 & 0 & 1 & 0 & 0 \\ -1 & 1 & 0 & 2 & 1 \\ 1 & 0 & 1 & 0 & 1}$, e se ne calcoli la forma canonica di Jordan. \\
+		
+		Si osserva che $p_A(t) = (1-t)^3 (2-t)^2$, e quindi
+		$\RR^5 = \Ker (A - I)^3 \oplus \Ker (A - 2I)^2$. \\
+		
+		($\lambda = 1$) $\dim \Ker (A - I) = 2$, quindi ci sono due blocchi
+		relativi all'autovalore $1$, uno di ordine $1$ e uno di ordine $2$. \\
+		
+		($\lambda = 2$) $\dim \Ker (A - 2I) = 2$, quindi ci sono due blocchi
+		relativi all'autovalore $2$, entrambi di ordine $1$. \\
+		
+		Quindi la forma canonica di $A$ è la seguente:
+		
+		\[ J = \Matrix{1 & 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 0 & 2 }, \]
+		
+		da cui si ottiene anche che $p_A(t) = (t-2)^2 (t-2)$. Si calcola
+		ora una base di Jordan per $A$. \\
+		
+		Sia $\Ker (A - I)^2 = \Ker (A - I) \oplus U_1$. $\dim U_1 = 1$,
+		e poiché $\e5 \in \Ker (A - I)^2$, ma $\e5 \notin \Ker (A-I)$,
+		vale che $U_1 = \Span(\e5)$. \\
+		
+		Sia ora invece $\Ker (A - I) = g(U_1) \oplus U_2$, dove
+		$\dim U_2 = 1$. Dacché $\e5+\e1-\e3  \in \Ker (A-I)$, ma
+		non appartiene a $\Span(A \e5)$, si ottiene che una base
+		relativa al blocco di $1$ è $A \e5, \e5, \e5+\e1-\e3$.
+		
+		Per quanto riguarda invee il blocco relativo a $2$, essendo
+		tale blocco diagonale, è sufficiente ricavare una base
+		di $\Ker (A-2I)$, come $\e4$ e $\e1 + \e3$.
+	\end{example}
+
+	\begin{definition} (centralizzatore di una matrice)
+		Si definisce \textbf{centralizzatore di una matrice} $A \in M(n, \KK)$
+		l'insieme:
+		
+		\[ C(A) = \{ B \in M(n, \KK) \mid AB = BA\}, \]
+		
+		ossia l'insieme delle matrici che commutano con $A$.
+	\end{definition}
+
+	\begin{proposition}
+		Vale l'identità $C(J_{0, m}) = \Span(I, J_{0, m}, J_{0, m}^2, ..., J_{0, m}^{m-1})$.
+	\end{proposition}
+
+	\begin{proof}
+		Si osserva che $J_{0,m} B = \Matrix{B_2 \\ \hline B_3 \\ \hline \vdots \\ \hline B_{m} \\ \hline 0}$, mentre $B J_{0,m} = \Matrix{0 & \rvline & B^1 & \rvline & B^2 & \rvline & \cdots & \rvline & B^{m-1} }$.
+	\end{proof}
+
+	\begin{remark}
+		Sul centralizzatore di una matrice ed il suo rapporto con la
+		similitudine si possono fare alcune considerazioni. \\
+		
+		\li $A \sim B \implies \dim C(A) = \dim C(B)$: infatti, se
+		$A = PBP\inv$, $AC = CA \implies PBP\inv C = C PBP\inv \implies
+		BP\inv C=P\inv C P B P\inv \implies B (P\inv C P) = (P\inv C P) B$,
+		e quindi il coniugio fornisce un isomorfismo tra i due
+		centralizzatori.
+	\end{remark}
+	
+\end{document}

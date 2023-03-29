@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Geometria 1}}
 \author{Gabriel Antonio Videtta}
-\date{27 marzo 2023}
+\date{27 e 28 marzo 2023}
 
 \begin{document}
 	
@@ -82,5 +82,84 @@
 		è nulla, e quindi il prodotto scalare è nullo per la proposizione precedente.
 	\end{proof}
 
-	%TODO: aggiungere teorema di Sylvester complesso e reale.
+	\begin{theorem} (di Sylvester, caso complesso)
+		Sia $\KK$ un campo i cui elementi sono tutti quadrati di un
+		altro elemento del campo (e.g.~$\CC$). Allora esiste una base
+		ortogonale $\basis$ tale per cui:
+		
+		\[ M_\basis(\varphi) = \Matrix{I_r & \rvline & 0 \\ \hline 0 & \rvline & 0\,}. \]
+	\end{theorem}
+
+	\begin{proof}
+		Per il teorema di Lagrange, esiste una base ortogonale $\basis'$ di $V$.
+		Si riordini la base in modo tale che la forma quadratica valutata nei primi elementi sia sempre diversa da zero. Allora, poiché ogni
+		elemento di $\KK$ è per ipotesi quadrato di un altro elemento
+		di $\KK$, si sostituisca $\basis'$ con una base $\basis$ tale per
+		cui, se $q(\vv i) = 0$, $\vv i \mapsto \vv i$, e altrimenti
+		$\vv i \mapsto \frac{\vv i}{\sqrt{q(\vv i)}}$. Allora $\basis'$
+		è una base tale per cui la matrice associata del prodotto scalare
+		in tale base è proprio come desiderata nella tesi, dove $r$ è
+		il numero di elementi tali per cui la forma quadratica valutata
+		in essi sia diversa da zero.
+	\end{proof}
+
+	\begin{remark}
+		Si possono effettuare alcune considerazioni sul teorema di Sylvester
+		complesso. \\
+		
+		\li Si può immediatamente concludere che il rango è un invariante
+		completo per la congruenza in un campo in cui tutti gli elementi
+		sono quadrati, ossia che $A \cong B \iff \rg(A) = \rg(B)$: infatti
+		ogni matrice simmetrica rappresenta una prodotto scalare, ed è
+		pertanto congruente ad una matrice della forma desiderata
+		nell'enunciato del teorema di Sylvester complesso. Poiché il rango
+		è un invariante della congruenza, si ricava che $r$ nella forma
+		della matrice di Sylvester, rappresentando il rango, è anche
+		il rango di ogni sua matrice congruente. In particolare, se due
+		matrici simmetriche hanno stesso rango, allora sono congruenti
+		alla stessa matrice di Sylvester, e quindi, essendo la congruenza
+		una relazione di congruenza, sono congruenti a loro volta. \\
+		\li Due matrici simmetriche con stesso rango, allora, non solo
+		sono SD-equivalenti, ma sono anche congruenti.
+		\li Ogni base ortogonale deve quindi avere lo stesso numero
+		di elementi nulli.
+	\end{remark}
+	
+	\begin{theorem} (di Sylvester, caso reale) Sia $\KK$ un campo ordinato
+		i cui elementi positivi sono tutti quadrati (e.g.~$\RR$). Allora
+		esiste una base ortogonale $\basis$ tale per cui:
+		
+		\[ M_\basis(\varphi) = \Matrix{I_{i_+} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & -I_{i_-} & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & 0\cdot I_{i_0} }. \]
+	\end{theorem}
+
+	\begin{proof}
+		Per il teorema di Lagrange, esiste una base ortogonale $\basis'$ di $V$.
+		Si riordini la base in modo tale che la forma quadratica valutata nei primi elementi sia strettamente positiva, che nei secondi elementi sia strettamente negativa e che negli ultimi sia nulla. Si sostituisca
+		$\basis'$ con una base $\basis$ tale per cui, se $q(\vv i) > 0$,
+		allora $\vv i \mapsto \frac{\vv i}{\sqrt{q(\vv i)}}$; se
+		$q(\vv i) < 0$, allora $\vv i \mapsto \frac{\vv i}{\sqrt{-q(\vv i)}}$;
+		altrimenti $\vv i \mapsto \vv i$. Si è allora trovata una base
+		la cui matrice associata del prodotto scalare è come desiderata nella
+		tesi, dove $i_+$ è il numero di elementi della base la cui forma
+		quadratica è positiva, $i_-$ il numero di elementi cui tale forma sia
+		negativa e $i_0$ il numeri degli elementi cui tale forma sia nulla.
+	\end{proof}
+
+	\begin{definition}
+		Si definisce \textbf{segnatura} di un prodotto scalare
+		la terna $(i_+, i_-, i_0)$, come vista nella dimostrazione
+		del teorema di Sylvester reale.
+	\end{definition}
+
+	\begin{remark} Riguardo alla segnatura e al caso reale del teorema
+		di Sylvester possono essere fatte alcune considerazioni. \\
+
+		\li La segnatura è un invariante completo per la congruenza nel caso reale. Se infatti due matrici hanno la stessa segnatura, sono
+		entrambe congruenti alla matrice come vista nella dimostrazione
+		della forma reale del teorema di Sylvester, e quindi, essendo
+		la congruenza una relazione di equivalenza, sono congruenti
+		tra loro.
+		
+		%TODO: completare spiegazione.
+	\end{remark}
 \end{document}
