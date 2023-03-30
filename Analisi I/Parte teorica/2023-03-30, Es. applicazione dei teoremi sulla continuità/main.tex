@@ -134,12 +134,12 @@
 		
 		\[ \tilde f = \system{ f(x) & \text{se } x \neq a, b, \\ \ell_a & \text{se } x = a, \\ \ell_b & \text{se } x = b.} \]
 		
-		Allora vale che $\tilde f$ è continua in $\overline I$\footnote{Come
+		Allora\footnote{Come
 			già riscontrato, vale un risultato ancora più forte:
 			data un'estensione $\tilde f$ di $f$ in $\overline I$, $\tilde f$
 			è continua se e solo se i valori estesi sono esattamente i limiti
 			della funzione nei punti di $I \setminus \overline I$; e quindi
-			l'estensione continua è ben definita, e unica del suo genere.}.
+			l'estensione continua è ben definita, e unica del suo genere.} vale che $\tilde f$ è continua in $\overline I$.
 	\end{exercise}
 
 	\begin{solution}
@@ -160,14 +160,32 @@
 	%TODO: dimostrare che se limite sinistro e destro coincidono, allora esiste il limite ed è lo stesso del limite sinistro e destro.
 	
 	\begin{exercise}
-		Si trovi un esempio di $f : X \to \RRbar$, dove, dato $\xbar$ punto
+		Si trovi un esempio di funzione $f : X \to \RRbar$, dove, dato $\xbar$ punto
 		di accumulazione di $X$, $f(x) \tendsto{\xbar} \ell$, ma
-		$\exists (x_n) \subseteq X$ tale che $x_n \tendston \xbar$, ma
+		$\exists \, (x_n) \subseteq X$ tale che $x_n \tendston \xbar$, ma
 		$f(x_n)$ non tende a $\ell$ per $n \to \infty$.
 	\end{exercise}
 
 	\begin{solution}
+		Sia $f : \RR \to \RR$ tale che:
 		
+		\[ f(x) = \system{0 & \text{se } x = 0, \\ 1 & \text{altrimenti}.}\]
+		
+		Si consideri allora la successione $(x_n) \subseteq X$ tale che:
+		
+		\[ x_n = \system{ 0 & \text{se } n \text{ è pari}, \\ \frac{1}{n} & \text{altrimenti}. } \]
+		
+		Si mostra che $x_n \tendston 0$. Infatti, sia $I = [-\eps, \eps]$, con $\eps > 0$, un intorno di $0$.
+		Allora per $n > \frac{1}{\eps}$ vale che $x_n \in I$ (infatti $0$ vi appartiene sempre, e $0 < \frac{1}{n} < \eps$);
+		da cui si ricava proprio che $x_n \tendston 0$. \\
+		
+		Chiaramente $f(x) \tendsto{0} 1$. È sufficiente mostrare allora che $f(x_n)$ non tende a $1$ per
+		$n \to \infty$. Si consideri la sottosuccessione $f(x_{2n})$: poiché $f(x_{2n}) = f(0) = 0$, la
+		sottosuccessione presa in considerazione è costante, e quindi $f(x_{2n}) \tendston 0$.
+		Anche la sottosuccessione $f(x_{2n + 1})$ è costante, e vale che $f(x_{2n + 1}) = f(\frac{1}{n}) = 1$,
+		e quindi $f(x_{2n+1}) \tendston 1$. Poiché allora il limite di $f(x_n)$, se esistesse, dovrebbe essere
+		uguale a quello di ambo le sottosuccessioni considerate, ed il limite è unico, $f(x_n)$ non ammette
+		limite, proprio come volevasi dimostrare.
 	\end{solution}
 
 	\begin{exercise}
@@ -186,7 +204,7 @@
 		da $\xbar$, assurdo dal momento che $I(\xbar)$ non ne contiene uno
 		per costruzione; ma $x$ non può neanche appartenere a $X \setminus J$,
 		dacché in tal modo si può sempre costruire con errore a piacimento
-		un intorno più piccolo di $I(x)$ tale che sia disgiunto con $J$,
+		un intorno più piccolo di $J$ tale che sia disgiunto con $I(x)$,
 		\Lightning. Dal momento che $\QQ$ è denso in $\RRbar$, si può allora
 		sempre associare a $J(\xbar)$ un numero razionale $q$ al suo interno.
 		In questo modo si può costruire una funzione $f : X \to \QQ$,
