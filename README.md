@@ -5,7 +5,7 @@ dell'[Università di Pisa](https://unipi.it). Ogni cartella in particolar modo r
 in cui ho affrontato tale corso, e le informazioni necessarie riguardo questo.
 
 Dal momento che questi appunti sono stati scritti per me, non sono certamente perfetti, e potrebbero dunque contenere alcuni errori.
-Nell'eventualità in cui vogliate segnalarmeli, potete farlo scrivendomi a g.videtta1@studenti.unipi.it, o aprendo un issue su
+Nell'eventualità in cui vogliate segnalarmeli, potete farlo scrivendomi a [g.videtta1@studenti.unipi.it](mailto:g.videtta1@studenti.unipi.it), o aprendo un issue su
 questo repository.
 
 Riguardo la licenza con cui pubblico questi appunti, voglio fare una premessa: il motivo per cui rendo questi appunti pubblici è
