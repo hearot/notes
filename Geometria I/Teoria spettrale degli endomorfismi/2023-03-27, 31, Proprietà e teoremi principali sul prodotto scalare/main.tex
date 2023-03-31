@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Geometria 1}}
 \author{Gabriel Antonio Videtta}
-\date{27 e 28 marzo 2023}
+\date{27 e 31 marzo 2023}
 
 \begin{document}
 	
@@ -61,7 +61,7 @@
 		\impliedby i \neq j$, ossia per cui la matrice associata del prodotto scalare è diagonale. 
 	\end{definition}
 
-	\begin{proposition}
+	\begin{proposition} (formula di polarizzazione)
 		Se $\Char \KK \neq 2$, un prodotto scalare è univocamente determinato dalla sua forma quadratica $q$.
 	\end{proposition}
 
@@ -130,6 +130,11 @@
 		esiste una base ortogonale $\basis$ tale per cui:
 		
 		\[ M_\basis(\varphi) = \Matrix{I_{i_+} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & -I_{i_-} & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & 0\cdot I_{i_0} }. \]
+		
+		Inoltre, per ogni base ortogonale, esistono esattamente
+		$\iota_+(\varphi)$ vettori della base con forma quadratica positiva,
+		$\iota_-(\varphi)$ con forma negativa e $\iota_0(\varphi)$ con
+		forma nulla.
 	\end{theorem}
 
 	\begin{proof}
@@ -140,9 +145,27 @@
 		$q(\vv i) < 0$, allora $\vv i \mapsto \frac{\vv i}{\sqrt{-q(\vv i)}}$;
 		altrimenti $\vv i \mapsto \vv i$. Si è allora trovata una base
 		la cui matrice associata del prodotto scalare è come desiderata nella
-		tesi, dove $i_+$ è il numero di elementi della base la cui forma
-		quadratica è positiva, $i_-$ il numero di elementi cui tale forma sia
-		negativa e $i_0$ il numeri degli elementi cui tale forma sia nulla.
+		tesi. \\
+		
+		In particolare, $\iota_0(\varphi)$ è esattamente il numero di vettori
+		con forma quadratica nulla della base, rappresentando infatti
+		esattamente la dimensione del nucleo di $M_\basis(\varphi)$,
+		ossia di $V^\perp$. \\
+		
+		Siano ora $W_+ = \Span(\vv 1, ... \vv a)$, dove $a$ è il numero
+		di vettori della base con forma quadratica positiva,
+		$W_- = \Span(\vv{a+1}, ... \vv b)$, dove $b$ è il numero di vettori
+		con forma negativa e
+		$W_0 = \Span(\vv{b+1}, ... \vv c)$, dove $c$ è il numero di vettori
+		con forma nulla.
+		Allora chiaramente $V = W_+ \oplus W_- \oplus W_0$. Inoltre,
+		$\restr{\varphi}{W_+} > 0$, $\restr{\varphi}{W_-} > 0$ e
+		$\restr{\varphi}{W_0} = 0$. Pertanto $\iota_+(\varphi) \geq \dim W_+ = a$. Analogamente $\iota_-(\varphi) \geq \dim W_- = b$ e
+		$\iota_0(\varphi) = c$ ($W_0 = V^\perp$). Se lo spazio definito
+		positivo massimo $W$ fosse tale che $\dim W > \dim W_+$, allora,
+		poiché $V = a + b + c$ e $\dim W + b + c > \dim V \implies
+		W \cap W_- \cap W_0 \neq \emptyset$, $\Lightning$. Quindi valgono
+		le uguaglianze, da cui la tesi.
 	\end{proof}
 
 	\begin{definition}
@@ -151,15 +174,149 @@
 		del teorema di Sylvester reale.
 	\end{definition}
 
-	\begin{remark} Riguardo alla segnatura e al caso reale del teorema
-		di Sylvester possono essere fatte alcune considerazioni. \\
-
+	\begin{remark} \nl
 		\li La segnatura è un invariante completo per la congruenza nel caso reale. Se infatti due matrici hanno la stessa segnatura, sono
 		entrambe congruenti alla matrice come vista nella dimostrazione
 		della forma reale del teorema di Sylvester, e quindi, essendo
 		la congruenza una relazione di equivalenza, sono congruenti
-		tra loro.
+		tra loro. Analogamente vale il viceversa, come conseguenza del
+		teorema di Sylvester reale.
+		\li Si dice base di Sylvester una base di $V$ tale per cui la
+		matrice associata di $\varphi$ sia esattamente nella forma
+		vista nella dimostrazione del teorema di Sylvester, e
+		tale matrice si dirà anch'essa matrice di Sylvester.
 		
 		%TODO: completare spiegazione.
 	\end{remark}
+
+	\begin{definition}
+		Si dice \textbf{indice di positività} di $\varphi$ il
+		termine $\iota_+(\varphi) = i_+ = \max \{ \dim W \mid W \subseteq V \mid \restr{\varphi}{W} > 0 \}$. Analogamente $\iota_-(\varphi) = i_- = \max \{ \dim W \mid W \subseteq V \mid \restr{\varphi}{W} < 0 \}$ è detto
+		\textbf{indice di negatività}. Si definisce invece $\iota_0(\varphi) = i_0 = \dim V^\perp$ come \textbf{indice di nullità}.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li I sottospazi la cui dimensione è pari all'indice di positività
+		o di negatività non sono obbligatoriamente unici.
+	\end{remark}
+
+	\begin{definition}
+		Dati due spazi vettoriali con prodotti scalare $(V, \varphi)$ e
+		$(V', \varphi')$ sullo stesso campo $\KK$, si dice che
+		$V$ e $V'$ sono \textbf{isometrici} se esiste un isomorfismo
+		$f$ che preserva i prodotti, ossia tale che:
+		
+		\[ \varphi(\vec v, \vec w) = \varphi'(f(\vec v), f(\vec w)), \]
+		
+		e tale isomorfismo si dirà isometria.
+	\end{definition}
+
+	\begin{exercise}\nl
+		\li $f : V \to V'$ è un isometria $\iff$ per una base $\basis =
+		\{\vv1, ..., \vv k\}$ di $V$, $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\iff$ vale per ogni base.
+	\end{exercise}
+
+	\begin{proposition}
+		Per $(V, \varphi)$ e $(V', \varphi')$ sono equivalenti:
+		
+		\begin{enumerate}[(i)]
+			\item $V$ e $V'$ sono isometrici;
+			\item $\forall$ base $\basis$ di $V$, $\basis'$ di $V'$,
+			$M_\basis(\varphi)$ e $M_\basis'(\varphi')$ sono congruenti;
+			\item lo stesso ma per una base.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		(1-2)
+		
+		 \rightproof Sia $\basis'' = f(\basis)$. Allora $M_{\basis''}(\varphi')=
+		 (\varphi'(f(\vv i), f(\vv j))) = (\varphi(\vv i, \vv j))$. Allora,
+		 per la formula di cambiamento di base, le matrici
+		 $M_{\basis'}(\varphi')$ e $M_{\basis'}(\varphi')$ sono congruenti.
+		 
+		 \leftproof Sia $A = M_\basis(\varphi) = P^\top B P$ e
+		 $B = M_{\basis'}(\varphi')$. Allora $a_{ij} = \varphi(\vv i, \vv j) =
+		 ... = \varphi'(\vec{v_i^{ii}}, \vec{v_j^{ii}})$, dove
+		 $\vec{v_i^{ii}}$ è base perché $P$ è invertibile. Allora
+		 l'applicazione $f : V \to V'$ che manda $\vv i \mapsto \vec{v_{i}^{''}}$ è un isometria.
+		 
+		 (2-3) esercizio.
+	\end{proof}
+
+	\begin{proposition} $(V, \varphi)$ e $(V', \varphi')$ spazi vettoriali
+		su $\RR$ sono
+		isometrici $\iff$ $\varphi$ e $\varphi'$ hanno la stessa segnatura.
+	\end{proposition}
+
+	\begin{proof}
+		\rightproof Basta che prendi la solita base. \\
+		\leftproof Siano $\basis$, $\basis'$ basi di Sylvester di $V$
+		e di $V'$. Si definisce allora l'applicazione $f : V \to V'$ tale
+		che $f(\vv i) = \ww i$: essa è un isometria.
+	\end{proof}
+
+	\begin{corollary}
+		Due matrici simmetriche sono congruenti se e solo se hanno
+		la stessa segnatura.
+	\end{corollary}
+
+	\begin{definition} (somma diretta ortogonale)
+		$V = U \oplusperp W$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li se $V = U \oplusperp W$, allora $\iota_+(\varphi) = \iota_+(\restr{\varphi}{V}) + \iota_+(\restr{\varphi}{W})$, e
+		analogamente per gli altri indici.
+	\end{remark}
+
+	\begin{example}
+		Per $\varphi = x_1 y_1 + x_2 y_2 - x_3 y_3$. %TODO: guarda dalle slide.
+	\end{example}
+
+	\begin{definition}
+		Sia $\KK$ qualunque. $W \subseteq V$ si dice sottospazio isotropo
+		se $\restr{\varphi}{W} = 0$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li $V^\perp$ è isotropo, \\
+		\li $\vec{v}$ è un vettore isotropo $\iff$ $W = \Span(\vec v)$ è sottospazio isotropo, \\
+		\li $W \subseteq V$ è isotropo $\iff$ $W \subseteq W^\perp$.
+	\end{remark}
+
+	\begin{proposition}
+		Sia $\varphi$ non degenere. $W \subseteq V$ isotropo, allora
+		$\dim W \leq \frac{1}{2} \dim V$.
+	\end{proposition}
+
+	\begin{proof}
+		$W \subseteq W^\perp \implies \dim W \leq \dim W^\perp \implies
+		\dim W \leq \dim V - \dim W \implies \dim W \leq \frac{1}{2} \dim V$.
+	\end{proof}
+
+	\begin{definition}
+		Si definisce \textbf{indice di Witt} $W(\varphi)$ di $(V, \varphi)$
+		come la massima dimensione di un sottospazio isotropo. 
+	\end{definition}
+
+	\begin{remark}\nl
+		\li Se $\varphi > 0$, $W(\varphi) = 0$.
+	\end{remark}
+
+	\begin{proposition}
+		Per $\KK = \RR$ e $\sigma(\varphi) = (\iota_+(\varphi), \iota_-(\varphi), \iota_0(\varphi))$, con $\varphi$ non degenere,
+		$W(\varphi) = \min\{\iota_+(\varphi), \iota_-(\varphi)\}$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia ad esempio $\iota_-(\varphi) \leq \iota_+(\varphi)$. Se $W$
+		è un sottospazio con $\dim W > \iota_-(\phi)$, e $W^+$ è
+		un sottospazio con $\dim W^+ = \iota_+(\varphi)$ e $\restr{\varphi}{W^+} > 0 \implies \dim (W \cap W^+) > 0$,
+		e quindi $W$ non è isotropo (quindi $W(\varphi) < \iota_-(\varphi)$). \\
+		
+		Sia $\basis$ una base di Sylvester. Per costruirlo prendi
+		coppie della base originale facendo la differenza e nota
+		che ne prendi esattamente quante iota-.
+	\end{proof}
 \end{document}
