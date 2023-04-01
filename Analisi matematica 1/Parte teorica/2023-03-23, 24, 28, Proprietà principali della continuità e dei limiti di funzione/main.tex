@@ -32,28 +32,28 @@
 	\begin{proof}
 		Siano per assurdo $(x_n), (y_n) \subseteq X \setminus \{\xbar\}$ due successioni tali che
 		$x_n, y_n \tendston \xbar$ e che $f(x_n) \tendston L$ e $f(y_n) \tendston G$ con $L \neq G$. Si
-		costruisce allora la successione $(z_n) \subseteq X \setminus \{\xbar\}$ nel seguente modo:
+		costruisce allora la successione $(z_n)_{n \in \NN} \subseteq X \setminus \{\xbar\}$ nel seguente modo:
 		
-		\[ z_n = \system{x_{\frac{n}{2}} & \text{se } n \text{ è pari}, \\ y_{\frac{n-1}{2}} & \text{altrimenti},} \]
+		\[ z_n = \system{x_n & \se n \epari, \\ y_n & \altrimenti,} \]
 		
 		\vskip 0.05in
 		
 		ossia unendo le due successioni $(x_n)$ e $(y_n)$ in modo tale che agli indici pari corrispondano gli
-		elementi di $x_n$ e a quelli dispari quelli di $y_n$. \\
+		elementi di $x_{2n}$ e a quelli dispari quelli di $y_{2n+1}$. \\
 		
-		Si mostra che $z_n \tendston \xbar$. Sia $I$ un intorno di $\xbar$. Allora, dal momento che
-		$(x_n), (y_n) \tendston \xbar$, esistono sicuramente due
-		$n_x, n_y \in \NN$ tali che $n \geq n_x \implies x_n \in I$ e $n \geq n_y \implies y_n \in I$. Pertanto,
-		detto $n_k = \max\{n_x, n_y\}$, $n \geq n_k \implies x_n, y_n \in I$, ossia che per $n \geq 2 n_k$,
+		Si mostra che $z_n \tendston \xbar$. Sia $I$ un intorno di $\xbar$. Allora, dal momento che le due sottosuccessioni
+		$(x_{2n}), (y_{2n+1}) \tendston \xbar$, esistono sicuramente due
+		$n_x, n_y \in \NN$ tali che $n \geq n_x \implies x_{2n} \in I$ e $n \geq n_y \implies y_{2n+1} \in I$. Pertanto,
+		detto $n_k = \max\{n_x, n_y\}$, $n \geq n_k \implies x_{2n}, y_{2n+1} \in I$, ossia che per $n \geq 2 n_k$,
 		$z_n \in I$. Si conclude allora che $(z_n) \tendston \xbar$. \\
 		
 		Tuttavia $f(z_n)$ non può convergere a nessun limite, dal momento che le due sottosuccessioni
-		$f(x_n)$ e $f(y_n)$ convergono a valori distinti ed il limite deve essere unico. L'esistenza di
+		$f(x_{2n})$ e $f(y_{2n+1})$ convergono per ipotesi a valori distinti ed il limite deve essere unico. L'esistenza di
 		tale successione contraddice allora l'ipotesi, \Lightning.
 	\end{proof}
 
 	\begin{proposition}
-		Data $(x_n) \subseteq \RR$, definisco $f : \NN \to \RRbar$ tale
+		Data $(x_n) \subseteq \RR$, sia $f : \NN \to \RRbar$ tale
 		che $f(n) := x_n$, $\forall n \in \NN$. Allora $f(n) \tendston L \iff x_n \tendston L$.
 	\end{proposition}
 
@@ -63,9 +63,9 @@
 		esiste un intorno $J = [a, \infty]$ tale che $f(J \cap \NN \setminus \{\infty\}) \subseteq I$.
 		Poiché $\infty$ è un punto di accumulazione di $\NN$, $A = J \cap \NN \setminus \{\infty\}$ non è mai
 		vuoto. Inoltre, poiché $A \subseteq \NN$, $A$ ammette un minimo\footnote{Non è in realtà necessario che
-		si consideri il minimo di tale insieme, occorre semplicemente che $A$ sia non vuoto.}, detto $m$.
+		si consideri il minimo di tale insieme, occorre semplicemente che $A$ sia non vuoto e che sia infinito.}, detto $m$.
 		Vale in particolare che
-		$f(n) \in I$, $\forall n \geq m$, e quindi che $x_n \in I$, $\forall n \geq m$, ossia che $x_n \tendston L$. \\
+		$f(n) \in I$, $\forall n \geq m$, e quindi che $x_n \in I$, ossia che $x_n \tendston L$. \\
 		
 		\leftproof Sia $I$ un intorno di $L$. Dal momento che $x_n \tendston L$, $\exists n_k \in \NN \mid n \geq n_k \implies
 		x_n \in I$. Allora, detto $J = [n_k, \infty]$, vale che $f(J \cap \NN \setminus \{\infty\}) \subseteq I$, ossia
@@ -84,7 +84,7 @@
 
 	\begin{proof}
 		Sia $I$ un intorno di $f(\xbar)$. Dal momento che $\xbar$ è un punto di accumulazione, si ricava allora da
-		entrambe le ipotesi che esiste un intorno $J$ di $f(\xbar)$ tale che
+		entrambe le ipotesi che esiste un intorno $J$ di $\xbar$ tale che
 		$f(J \cap X \setminus \{\xbar\}) \subseteq I$, e quindi, per definizione, la tesi.
 	\end{proof}
 
@@ -93,8 +93,7 @@
 		in $\xbar$. Pertanto per rendere la proposizione precedente
 		vera, è necessario ipotizzare che $\xbar$ sia un punto
 		di accumulazione (infatti il limite in un punto isolato
-		non esiste per definizione, mentre in tale punto $f$ è
-		continua).
+		non esiste per definizione).
 	\end{remark}
 
 	\begin{proposition}
@@ -129,7 +128,9 @@
 
 	\begin{remark}
 		Tutte le funzioni elementari (e.g.~$\sin(x)$, $\cos(x)$, $\exp(x)$, $\ln(x)$, $\abs{x}$, $x^a$) sono funzioni continue nel loro insieme
-		di definizione.
+		di definizione\footnote{Tale fatto è una mera conseguenza della
+		derivabilità delle funzioni elementari nel proprio insieme di
+		definizione.}.
 	\end{remark}
 
 	\begin{proposition}
@@ -145,10 +146,10 @@
 		di $\xbar$ $\mid f(K \cap X \setminus \{\xbar\}) \subseteq J$, da cui si conclude che
 		$g(f(K \cap X \setminus \{\xbar\})) \subseteq I$, dacché $\forall x \in K \cap X \setminus \{\xbar\}$,
 		o $f(x) = f(\xbar)$, e quindi $g(f(x)) = z$ chiaramente appartiene a $I$, o altrimenti
-		$f(x) \in J \cap Y \setminus \{f(\xbar)\} \implies g(f(x)) \in g(J \cap Y \setminus \{f(\xbar)\}) \subseteq I$.
+		$f(x) \in J \cap Y \setminus \{f(\xbar)\} \implies g(f(x)) \in g(J \cap Y \setminus \{f(\xbar)\}) \subseteq I$, da cui la tesi.
 	\end{proof}
 
-	\begin{theorem}
+	\begin{theorem} (di sostituzione nel limite)
 		Sia $f : X \to Y \subseteq \RRbar$, sia $\xbar$ punto di
 		accumulazione di $X$ tale che $f(x) \tendsto{\xbar} \ybar$.
 		Se $\ybar$ è un punto di accumulazione di $Y$ e $g : Y \to \RRbar$
@@ -196,8 +197,28 @@
 	\end{proof}
 
 	\begin{exercise}
-		Mostrare che tutte le ipotesi della proposizione precedente sono necessarie, fornendo alcuni controesempi.
+		Si mostri che tutte le ipotesi della proposizione precedente sono necessarie, fornendo un controesempio.
 	\end{exercise}
+
+	\begin{solution}
+		Chiaramente $\xbar$ e $\ybar$ devono essere punti di
+		accumulazione dei propri insiemi di appartenenza, altrimenti
+		non sarebbe possibile calcolarne il limite. \\
+		
+		Inoltre, se $\ybar \in Y$ è necessario che $g$ sia anche continua in
+		$\ybar$ (nella dimostrazione della proposizione si è infatti
+		utilizzato il fatto che $g(\ybar) = \zbar$). Se così non dovesse
+		essere, si potrebbero definire
+		due funzioni $f$ e $g$ in modo tale che:
+		
+		\[ f(x) = 0, \qquad  g(y) = \system{ 0 & \se y = 0, \\ 1 & \altrimenti.} \]
+		
+		\vskip 0.05in
+		
+		Si osserva subito che $g(y)$ non è continua in $0$. Inoltre
+		$f(x) \tendsto{0} 0$ e $g(y) \tends{y \to 0} 1$. Tuttavia
+		$g(f(x)) = g(0) = 0 \tendsto{0} 0 \neq 1$, da cui il controesempio. 
+	\end{solution}
 
 	\begin{proposition}
 		Date $f_1, f_2 : X \to \RR$ continue in $\xbar$. Allora:
@@ -214,23 +235,25 @@
 		\begin{enumerate}[(i)]
 			\item Sia $f := f_1 + f_2$. Poiché $f_1, f_2$ sono continue in $\xbar$,
 			$\forall \eps > 0$, $\exists \delta > 0 \mid \abs{x - \xbar} < \delta
-			\implies \abs{f_1(x) - f_1(\xbar)}, \abs{f_2(x) - f_2(\xbar)} \leq \eps$ (per ogni $\eps > 0$, si prende $\delta = \min\{\delta_1, \delta_2\}$, ossia il minimo delle semilunghezze degli intorni
-			di $\xbar$). Allora $\abs{f(x) - f(\xbar)} \leq
+			\implies \abs{f_1(x) - f_1(\xbar)}$, $\abs{f_2(x) - f_2(\xbar)} \leq \eps$ (per ogni $\eps > 0$, è infatti sufficiente considerare $\delta = \min\{\delta_1, \delta_2\}$, ossia il minimo delle semilunghezze degli intorni
+			di $\xbar$ rispetto a $f_1$ ed $f_2$). Allora, per la
+			disuguaglianza triangolare, $\abs{f(x) - f(\xbar)} \leq
 			\abs{f_1(x) - f_1(\xbar)} + \abs{f_2(x) - f_2(\xbar)} \leq 2\eps$.
-			Si conclude dunque che $\forall \eps > 0$, $\exists \delta > 0
+			Si ricava dunque che $\forall \eps > 0$, $\exists \delta > 0
 			\mid \abs{f(x) - f(\xbar)} \leq 2\eps$, e quindi, poiché
-			$2\eps \tends{\eps \to 0} 0$, che $f$ è continua in $\xbar$.
+			$2\eps \tends{\eps \to 0^+} 0$, si conclude anche che $f$ è continua in $\xbar$.
 			
 			\item Dal momento che $f_1, f_2$ sono continue in $\xbar$,
-			$\forall \eps > 0$, $\exists \delta > 0$ tale che $\abs{x - \xbar} < \delta \implies \abs{f_1(x) - f_1(\xbar)} < \eps, \abs{f_2(x)
+			$\forall \eps > 0$, $\exists \delta > 0$ tale che $\abs{x - \xbar} < \delta \implies \abs{f_1(x) - f_1(\xbar)}$, $\abs{f_2(x)
 			- f_2(\xbar)} < \eps$ (vale lo stesso ragionamento del punto
-			(i)). Allora $f_1(x) = f_1(\xbar) + e_1$ e
-			$f_2(x) = f_2(\xbar) + e_2$, con $\abs{e_1}, \abs{e_2} < \eps$.
+			precedente). Allora $f_1(x) = f_1(\xbar) + e_1$ e
+			$f_2(x) = f_2(\xbar) + e_2$, con $\abs{e_1}, \abs{e_2} < \eps$
+			e $\abs{x - \xbar} < \delta$.
 			Dunque $f_1(x)f_2(x) = f_1(\xbar)f_2(\xbar) + \underbrace{e_1 f_2(\xbar) +
 			e_2 f_1(\xbar) + e_1 e_2}_e$. In particolare, per la
 			disuguaglianza triangolare, $\abs{e} \leq \abs{e_1 f_2(\xbar)} +
 			\abs{e_2 f_1(\xbar)} + \abs{e_1 e_2} \leq \underbrace{\eps \abs{f_2(\xbar)} +
-			\eps \abs{f_1(\xbar)} + \eps^2}_{\eps'}$. Poiché $\eps' \tends{\eps \to 0^+} 0$, si conclude che $\abs{f_1(x) f_2(x) - f_1(\xbar) f_2(\xbar)} = \abs{e} \leq \eps' \implies f_1(x)f_2(x)$ continua
+			\eps \abs{f_1(\xbar)} + \eps^2}_{\eps'}$. Poiché $\eps' \tends{\eps \to 0^+} 0$, si ricava che $\forall \eps > 0$, $\exists \delta > 0 \mid \abs{x - \xbar} < \delta \implies \abs{f_1(x) f_2(x) - f_1(\xbar) f_2(\xbar)} = \abs{e} \leq \eps'$, ossia si conclude che $f_1 f_2$ è continua
 			in $\xbar$.
 		\end{enumerate}
 	\end{proof}
@@ -259,38 +282,38 @@
 			f_2(x) & \text{altrimenti}.
 		\end{cases} \]
 		
-		\vskip 0.05in
+		\vskip 0.1in
 	
-		Si dimostrano allora i due risultati separatamente. \\
+		Si dimostrano ora i due risultati separatamente. \\
 		
 		\begin{enumerate}[(i)]
 			\item Si definisce $\widetilde{f_1 + f_2} : X \cup \{\xbar\} \to \RRbar$ nel seguente modo:
 			
 			\[ \widetilde{f_1 + f_2}(x) = \system{L_1 + L_2 & \text{se } x = \xbar, \\ f_1(x) + f_2(x) & \text{altrimenti}.} \]
 			
-			La somma $L_1 + L_2$ è ben definita dacché sia $L_1$ che $L_2$ sono elementi di $\RR$.
+			Si osserva che la somma $L_1 + L_2$ è ben definita dacché sia $L_1$ che $L_2$ sono elementi di $\RR$.
 			Poiché da una proposizione precedente $\tilde{f_1}$ e $\tilde{f_2}$ sono continue in $\xbar$, $\tilde{f_1} + \tilde{f_2}$ è continua anch'essa in $\xbar$. È sufficiente allora dimostrare che $\widetilde{f_1 + f_2} =
 			\tilde{f_1} + \tilde{f_2}$. Se $x \neq \xbar$, $\widetilde{f_1 + f_2}(x) = f_1(x) + f_2(x) = \tilde{f_1}(x) + \tilde{f_2}(x) = (\tilde{f_1} + \tilde{f_2})(x)$. Se invece $x = \xbar$, $\widetilde{f_1 + f_2}(x) = L_1 + L_2 =
 			\tilde{f_1}(x) + \tilde{f_2}(x) = (\tilde{f_1} + \tilde{f_2})(x)$. Quindi $\widetilde{f_1 + f_2} =
-			\tilde{f_1} + \tilde{f_2}$, e si conclude che $\widetilde{f_1 + f_2}$ è dunque continua in $\xbar$, ossia
+			\tilde{f_1} + \tilde{f_2}$, e dunque si conclude che $\widetilde{f_1 + f_2}$ è continua in $\xbar$, ossia
 			che $(f_1 + f_2)(x) = f_1(x) + f_2(x) \tendsto{\xbar} L_1 + L_2$.
 			
 			\item Si definisce, analogamente a prima, $\widetilde{f_1 f_2} : X \cup \{\xbar\} \to \RRbar$ nel seguente modo:
 			
 			\[ \widetilde{f_1 f_2}(x) = \system{L_1 L_2 & \text{se } x = \xbar, \\ f_1(x) f_2(x) & \text{altrimenti}.} \]
 			
-			Il prodotto $L_1 L_2$ è ben definito dacché sia $L_1$ che $L_2$ sono elementi di $\RR$.
+			Come prima, si osserva che il prodotto $L_1 L_2$ è ben definito dacché sia $L_1$ che $L_2$ sono elementi di $\RR$.
 			Poiché da una proposizione precedente $\tilde{f_1}$ e $\tilde{f_2}$ sono continue in $\xbar$, $\tilde{f_1} \tilde{f_2}$ è continua anch'essa in $\xbar$. È sufficiente allora dimostrare che $\widetilde{f_1 f_2} =
 			\tilde{f_1}\tilde{f_2}$. Se $x \neq \xbar$, $\widetilde{f_1 f_2}(x) = f_1(x) f_2(x) = \tilde{f_1}(x) 	\tilde{f_2}(x) = (\tilde{f_1}\tilde{f_2})(x)$. Se invece $x = \xbar$, $\widetilde{f_1 f_2}(x) = L_1 L_2 =
 			\tilde{f_1}(x) \tilde{f_2}(x) = (\tilde{f_1} \tilde{f_2})(x)$. Quindi $\widetilde{f_1 f_2} =
-			\tilde{f_1} \tilde{f_2}$, e si conclude che $\widetilde{f_1 f_2}$ è dunque continua in $\xbar$, ossia
+			\tilde{f_1} \tilde{f_2}$, da cui si conclude che $\widetilde{f_1 f_2}$ è anch'essa continua in $\xbar$, ossia
 			che $(f_1 f_2)(x) = f_1(x) f_2(x) \tendsto{\xbar} L_1 L_2$.
 		\end{enumerate}
 	\end{proof}
 
 	\begin{definition}
 		(intorno destro e sinistro) Se $\xbar \in \RR$, si dicono
-		\textbf{intorni destri} gli intervalli della forma $[\xbar, \xbar + \eps]$ con
+		\textbf{intorni destri} di $\xbar$ gli intervalli della forma $[\xbar, \xbar + \eps]$ con
 		$\eps > 0$. Analogamente, gli \textbf{intorni sinistri} sono gli
 		intervalli della forma $[\xbar - \eps, \xbar]$.
 	\end{definition}
@@ -304,17 +327,20 @@
 
 	\begin{definition}
 		(limite destro e sinistro) Sia $\xbar$ un punto di accumulazione
-		destro di $X$. Allora $\lim_{x \to \xbar^+} f(x) = L \defiff \forall I$
+		destro di $X$. Allora si dice che $f$ ammette un \textbf{limite destro} $L$ in $\xbar$, $\lim_{x \to \xbar^+} f(x) = L$, se e solo se $\forall I$
 		intorno di $L$, $\exists J$ intorno destro di $\xbar$ tale che
 		$f(J \cap X \setminus \{\xbar\}) \subseteq I$. Analogamente si definisce
-		il limite sinistro.
+		il \textbf{limite sinistro}: $\lim_{x \to \xbar^-} f(x) = L \defiff \forall I$
+		intorno di $L$, $\exists J$ intorno sinistro di $\xbar$ tale che
+		$f(J \cap X \setminus \{\xbar\}) \subseteq I$.
 	\end{definition}
 
 	\begin{definition}
-		(continuità destra e sinistra) Sia $\xbar \in X$. Allora $f$ è continua
-		a destra in $\xbar$ se e solo se $\forall I$ intorno di $f(\xbar)$,
-		$\exists J$ intorno destro di $\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$. Analogamente si definisce la continuità
-		a sinistra di $f$.
+		(continuità destra e sinistra) Sia $\xbar \in X$. Allora $f$ è \textbf{continua
+		a destra} in $\xbar$ se e solo se $\forall I$ intorno di $f(\xbar)$,
+		$\exists J$ intorno destro di $\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$. Analogamente si dice che $f$ è \textbf{continua a sinistra} su $\xbar$ se e solo se $\forall I$ intorno
+		di $f(\xbar)$, $\exists J$ intorno sinistro di $\xbar$ tale che
+		$f(J \cap X \setminus \{\xbar\}) \subseteq I$.
 	\end{definition}
 
 	\begin{remark}
@@ -334,25 +360,29 @@
 	\begin{proposition}
 		Sia $f : X \to \RRbar$ monotona e sia $\xbar$ un punto di
 		accumulazione destro di $X$. Allora esiste $\lim_{x \to \xbar^+} f(x)$.
-		Analogamente esiste da sinistra se $\xbar$ è un punto di
+		Analogamente esiste il limite sinistro se $\xbar$ è invece un punto di
 		accumulazione sinistro di $X$.
 	\end{proposition}
 
 	\begin{proof}
 		Senza perdità di generalità, si assuma $f$ crescente (per il caso decrescente è sufficiente considerare
-		$g(x) = -f(x)$) Si consideri l'insieme:
+		$g = -f$). Si consideri allora l'insieme:
 		
-		\[E = \{ f(x) \mid x > \xbar \text{ e } x \in X \}.\]
+		\[E = \{ f(x) \mid x > \xbar \E x \in X \}.\]
+		
+		\vskip 0.05in
 		
 		Si consideri adesso $L = \inf E$ e un suo intorno $I$. Se non
-		esistesse un intorno destro $J$ di $\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$, allora
-		$\sup I$ sarebbe un minorante di $E$ maggiore di $L$, \Lightning. Quindi tale $J$ esiste, da cui la tesi.
-		Analogamente per il caso sinistro.
+		esistesse $x > \xbar$ tale che $f(x) \in I$, $\sup I$ sarebbe
+		un minorante di $E$ maggiore\footnote{Infatti $f(x) \geq L$ dacché è $L$ è un minorante di $E$, da cui $f(x) \notin I \implies
+		f(x) > \sup I$.} di $L$, \Lightning. Quindi esiste
+		$x > \xbar \mid f(x) \in I$, e dal momento che $f$ è
+		crescente, l'intorno destro $J$ di $\xbar$ di raggio $x - \xbar$ sarebbe
+		tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$, da cui la tesi.
 	\end{proof}
 
-		%TODO: migliorare dimostrazione
-
-	\begin{example} (funzione discontinua in ogni punto di $\RR$) Si consideri la funzione $f : \RR \to \RR$ definita
+	\begin{example} (funzione discontinua in ogni punto di $\RR$) Si consideri la funzione\footnote{Tale funzione è detta \textit{funzione di Dirichlet},
+			in onore al matematico tedesco Peter Dirichlet (1805 -- 1859).} $f : \RR \to \RR$ definita
 		nel seguente modo:
 	
 		\[ f(x) = \system{ 1 & \text{se }x \in \QQ, \\ 0 & \text{altrimenti}, } \]
@@ -363,13 +393,13 @@
 		in nessun punto di $\RR$. Sia infatti $\xbar \in \RR \setminus \QQ$. Dal momento che $\QQ$ è denso
 		in $\RR$, $\xbar$ è un punto di accumulazione di $\QQ$, e quindi esiste una successione $(x_n) \subseteq \QQ$
 		tale che $x_n \tendston \xbar$. Se $f$ fosse continua in $\xbar$, $\lim_{n \to \infty} f(x_n) = 0$,
-		ma per l'intorno $I = [-\frac{1}{2}, \frac{1}{2}]$ non esiste alcun $n_k$ tale per cui $f(x_n) \in I$ $\forall n
+		ma per l'intorno $I = [0-\frac{1}{2}, 0+\frac{1}{2}]$ di $0$ non esiste alcun $n_k$ tale per cui $f(x_n) \in I$ $\forall n
 		\geq n_k$, dal momento che, per definizione di $f$, $f(x_n) = 1$ $\forall n \in \NN$. Quindi $f$ non è continua
 		in nessun $\xbar \in \RR \setminus \QQ$. \\
 		
 		Sia ora $\xbar \in \QQ$. $\xbar$ è un punto di accumulazione di $\RR \setminus \QQ$ (si può infatti
 		considerare la successione $(x_n) \subseteq \RR \setminus \QQ$ definita da $x_n = \xbar + \frac{\sqrt{2}}{n}$,
-		che è tale che $x_n \tendston \xbar$). Analogamente a come visto prima, allora, per l'intorno $I = [\frac{1}{2}, \frac{3}{2}]$, $f(x_n) \notin I$ $\forall n \in \NN$, e quindi $f$ non è continua neanche su $\xbar \in \QQ$.
+		che è tale che $x_n \tendston \xbar$). Analogamente a come visto prima, allora, per l'intorno $I = [1-\frac{1}{2}, 1+\frac{1}{2}]$ di $1$, $f(x_n) \notin I$ $\forall n \in \NN$, e quindi $f$ non è continua neanche su $\xbar \in \QQ$, ossia è discontinua ovunque.
 	\end{example}
 
 	\begin{exercise}
@@ -378,7 +408,7 @@
 	\end{exercise}
 
 	\begin{solution}
-		Si assuma $f$ crescente, senza perdita di generalità (altrimenti è sufficiente considerare $g(x) = -f(x)$).
+		Si assuma $f$ crescente, senza perdita di generalità (altrimenti è sufficiente considerare $g = -f$).
 		Sia $E$ l'insieme dei punti di discontinuità di $f$. $\forall \xbar \in E$, $\xbar$ è un punto di accumulazione
 		destro e sinistro di $I$ (infatti $I$ è un intervallo), ed in particolare esistono sempre il limite destro $L^-(\xbar)$
 		ed il limite sinistro $L^+(\xbar)$ in $\xbar$ (dal momento che $f$ è monotona), e sono tali che $L^+(\xbar) > L^-(\xbar)$ (sicuramente
