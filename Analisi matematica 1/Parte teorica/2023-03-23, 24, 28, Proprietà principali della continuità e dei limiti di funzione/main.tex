@@ -352,9 +352,9 @@
 		è però per forza vero il contrario, è sufficiente considerare $(0, \infty)$, dove $0$ è solo un punto di
 		accumulazione destro), \\
 		\li $f$ è continua in $\xbar$ $\iff$ $f$ è continua sinistra e destra in $\xbar$, \\
-		\li se $\xbar$ è un punto di accumulazione destro e sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$ e $\lim_{x \to \xbar^-} f(x) = L$, \\
-		\li se $\xbar$ è un punto di accumulazione solo destro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$, \\
-		\li se $\xbar$ è un punto di accumulazione solo sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^-} f(x) = L$.
+		\li Se $\xbar$ è un punto di accumulazione destro e sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$ e $\lim_{x \to \xbar^-} f(x) = L$, \\
+		\li Se $\xbar$ è un punto di accumulazione solo destro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^+} f(x) = L$, \\
+		\li Se $\xbar$ è un punto di accumulazione solo sinistro, $\lim_{x \to \xbar} f(x) = L \iff \lim_{x \to \xbar^-} f(x) = L$.
 	\end{remark}
 	
 	\begin{proposition}
@@ -403,20 +403,25 @@
 	\end{example}
 
 	\begin{exercise}
-		Mostrare che l'insieme dei punti di discontinuità di una funzione $f : I \to \RR$ monotona è al più
+		Mostrare\footnote{La tesi altro non è che un caso particolare del cosiddetto \textit{teorema di Froda}.} che l'insieme dei punti di discontinuità di una funzione $f : I \to \RR$ monotona è al più
 		numerabile, dove $I$ è un intervallo.
 	\end{exercise}
 
 	\begin{solution}
 		Si assuma $f$ crescente, senza perdita di generalità (altrimenti è sufficiente considerare $g = -f$).
 		Sia $E$ l'insieme dei punti di discontinuità di $f$. $\forall \xbar \in E$, $\xbar$ è un punto di accumulazione
-		destro e sinistro di $I$ (infatti $I$ è un intervallo), ed in particolare esistono sempre il limite destro $L^-(\xbar)$
-		ed il limite sinistro $L^+(\xbar)$ in $\xbar$ (dal momento che $f$ è monotona), e sono tali che $L^+(\xbar) > L^-(\xbar)$ (sicuramente
-		sono diversi, altrimenti
+		destro e sinistro di $I$ (infatti $I$ è un intervallo), ed in particolare, per la proposizione precedente, esistono sempre il limite sinistro $L^-(\xbar)$
+		ed il limite destro $L^+(\xbar)$ in $\xbar$ (dal momento che $f$ è monotona), e sono tali che\footnote{Detti
+		$A = \{f(x) \mid x < \xbar \E x \in X\}$ e $B = \{f(x) \mid x > \xbar \E x \in X\}$, vale che $L^-(\xbar) = \sup A$ e $L^+(\xbar) = \inf B$. Dal momento che $f$ è crescente, vale che $B \geq A$. Se $\inf B < \sup A$, esisterebbe un $b \in B$ tale che $\sup A > b$, da cui ancora
+		esisterebbe un $a \in A$ tale che $a > b$, \Lightning. Quindi
+		$\inf B = L^+(\xbar) \geq \sup A = L^-(\xbar)$.}  $L^+(\xbar) > L^-(\xbar)$ (infatti
+		sono sicuramente diversi, altrimenti
 		$f$ sarebbe continua in $\xbar$; inoltre $f$ è crescente). Allora sia $f : E \to \QQ$ tale che $\xbar \mapsto c$, dove $c \in \QQ$ è
 		un punto razionale in $(L^-(\xbar), L^+(\xbar))$ (tale $c$ esiste sempre, per la densità di $\QQ$ in $\RR$).
-		Inoltre, $x < y \implies L^+(x) \leq L^-(y)$, e quindi ogni intervallo da cui è preso $c$ è distinto al variare
-		di $\xbar \in E$. Quindi $f$ è iniettiva, e vale $\abs{E} \leq \abs{\QQ} = \abs{\NN}$. Si conclude allora
+		Inoltre\footnote{Sia $C = \{f(a) \mid x < a < y \}$. Allora $L^+(x) = \inf C$ e $L^-(y) = \sup C$.
+		Dal momento che $\sup C \geq \inf C$, deve allora valere anche
+		che $L^+(x) \leq L^-(y)$.}, $x < y \implies L^+(x) \leq L^-(y)$, e quindi ogni intervallo da cui $c$ è estratto è distinto al variare
+		di $\xbar \in E$. Pertanto $f$ è iniettiva, e vale che $\abs{E} \leq \abs{\QQ} = \abs{\NN}$. Si conclude allora
 		che $E$ è al più numerabile.
 	\end{solution}
 	
