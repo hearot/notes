@@ -10,8 +10,6 @@
 	
 	\maketitle
 	
-	\wip
-	
 	\begin{center}
 		\Large \textbf{Proprietà principali della continuità e dei limiti di funzione}
 	\end{center}
@@ -425,75 +423,77 @@
 		che $E$ è al più numerabile.
 	\end{solution}
 	
-	\begin{theorem} (della permanenza del segno)
+	\begin{theorem} (della permanenza del segno, per le successioni)
 		Data $(x_n) \subseteq \RR$ tale che $x_n \tendston L > 0$, allora
 		$(x_n)$ è strettamente positiva definitivamente. Analogamente, se $L < 0$,
 		$(x_n)$ è negativa definitivamente.
 	\end{theorem}
 
 	\begin{proof}
-		Senza perdita di generalità si pone $L > 0$. Allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo (e.g.~$I = [\frac{L}{2}, \frac{3L}{2}]$, se $L \in \RR$, altrimenti $[a, \infty]$ con $a > 0$ se $L = +\infty$). Dal momento che $x_n \tendston L$, $\exists n_k \mid n \geq n_k \implies x_n \in I$,
-		ossia, in particolare, $n \geq n_k \implies x_n > 0$, da cui la tesi.
+		Senza perdita di generalità si pone $L > 0$. Allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo (e.g.~$I = \left[L - \frac{L}{2}, L + \frac{L}{2}\right]$, se $L \in \RR$, altrimenti $[a, \infty]$ con $a > 0$ se $L = +\infty$). Dal momento che $x_n \tendston L$, $\exists n_k \mid n \geq n_k \implies x_n \in I$,
+		ossia, in particolare, $n \geq n_k \implies x_n > 0$, da cui la tesi. Analogamente per il caso di $L < 0$.
 	\end{proof}
 
-	\begin{proposition}
+	\begin{theorem} (della permanenza del segno, per le funzioni)
 		Sia $f : X \to \RRbar$ e sia $\xbar$ un punto di accumulazione di $X$. Se $\lim_{x \to \xbar} f(x) = L > 0$,
 		allora $\exists J$ intorno non vuoto di $\xbar$ tale che $f(x) > 0$ $\forall x \in J \cap X \setminus \{\xbar\}$.
-	\end{proposition}
-
-	\begin{proof}
-		Analogamente a come visto per il teorema del segno, si pone $L > 0$. Allora esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo. Poiché $\lim_{x \to \xbar} f(x) = L > 0$, deve esistere un intorno $J$ di
-		$\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$. In particolare, $J \cap X \setminus \{\xbar\}$ non
-		è mai vuoto, dal momento che $\xbar$ è un punto di accumulazione di $X$, e vale che $f(x) > 0$ $\forall x \in J \cap X \setminus \{\xbar\}$ (dal momento che $f(x) \in I$, che ha tutti elementi positivi), da cui la tesi.
-	\end{proof}
-	
-	\begin{theorem} (degli zeri) Dati $I = [a, b]$ e
-		$f : I \to \RRbar$ continua tale che $f(a) f(b) < 0$ (i.e.~sono discordi), allora $\exists c \in (a, b) \mid f(c) = 0$.
+		Analogamente se $L < 0$, $\exists J$ intorno non vuoto di $\xbar$ tale che $f(x) < 0$ $\forall x \in J \cap X \setminus \{\xbar\}$.
 	\end{theorem}
 
 	\begin{proof}
-		Senza alcuna perdita di generalità si pone $f(a) < 0 < f(b)$ (il caso $f(a) > 0 > f(b)$ è
-		infine dimostrato considerando $g(x) = -f(x)$). Si definisce allora l'insieme $E$ in modo tale che:
+		Senza perdita di generalità si pone $L > 0$.
+		Similmente a come visto per l'analogo teorema per le successioni, deve esiste sicuramente un intorno $I$ di $L$ tale che ogni suo elemento è positivo. Poiché $\lim_{x \to \xbar} f(x) = L > 0$, deve in particolare esistere un intorno $J$ di
+		$\xbar$ tale che $f(J \cap X \setminus \{\xbar\}) \subseteq I$. Inoltre, $J \cap X \setminus \{\xbar\}$ non può
+		essere mai vuoto, dal momento che $\xbar$ è un punto di accumulazione di $X$. Infine vale anche che $f(x) > 0$ $\forall x \in J \cap X \setminus \{\xbar\}$ (dal momento che $f(x) \in I$, che ha tutti elementi positivi).
+		Si conclude allora che $J$ è l'intorno desiderato, da cui la tesi. Analogamente per il caso di $L < 0$.
+	\end{proof}
+	
+	\begin{theorem} (degli zeri) Sia $I = [a, b]$ e sia
+		$f : I \to \RRbar$ continua tale che $f(a) f(b) < 0$ (i.e.~$f(a)$ e $f(b)$ sono discordi). Allora $\exists c \in (a, b) \mid f(c) = 0$.
+	\end{theorem}
+
+	\begin{proof}
+		Senza alcuna perdita di generalità si pone $f(a) < 0 < f(b)$ (il caso $f(a) > 0 > f(b)$ si dimostra
+		considerando $g = -f$). Si definisce allora l'insieme $E$ in modo tale che:
 		
-		\[ E = \{ a \in I \mid f(a) < 0 \}. \]
+		\[ E = \{ x \in I \mid f(x) < 0 \}. \]
 		
 		\vskip 0.05in
 		
-		Si osserva che $E \neq \emptyset$, dacché $a \in E$. Per la completezza dei numeri reali,
-		$E$ ammette un estremo superiore $\xbar := \sup E$. Sia $(x_n) \subseteq E$ una successione
+		Si osserva che $E \neq \emptyset$, dacché $a \in E$. Allora, per la completezza dei numeri reali,
+		$E$ ammette un estremo superiore $\xbar := \sup E$. Sia dunque $(x_n) \subseteq E \setminus \{\xbar\}$ una successione
 		tale che $x_n \tendston \xbar$: poiché $f$ è continua in $\xbar$, $\lim_{x \to \xbar} f(x) = f(\xbar) \implies
-		f(x_n) \tendston f(\xbar)$. Allora, poiché $f(x_n) < 0$ $\forall n \in \NN$, $f(\xbar) \leq 0$ (se così non fosse
+		f(x_n) \tendston f(\xbar)$. Dal momento che $f(x_n) < 0$ $\forall n \in \NN$, $f(\xbar) \leq 0$ (se così non fosse
 		$f(x_n)$ dovrebbe essere definitivamente positiva per il teorema della permanenza del segno, ma questo
 		è assurdo dacché $x_n \in E$ $\forall n \in \NN$, \Lightning). \\
 		
 		Sia ora $(y_n) \in I$ una successione tale che $y_n \tendston \xbar$ e che $y_n > \xbar$ $\forall n \in \NN$ (questo
 		è sempre possibile dal momento che $\xbar \neq b \impliedby f(\xbar) \leq 0$). Allora,
 		poiché $y_n > \xbar = \sup E$, $y_n$ non appartiene ad $E$, e quindi deve valere che $f(y_n) > 0$. Si conclude
-		allora, per il teorema della permanenza del segno, che $f(\xbar) \geq 0$, e quindi che $f(\xbar) = 0$, da cui
-		la tesi.
+		allora, per il teorema della permanenza del segno, che $f(\xbar) \geq 0$. Pertanto $f(\xbar) \leq 0$ e $f(\xbar) \geq 0$ $\implies f(\xbar) = 0$, da cui la tesi.
 	\end{proof}
 
 	\begin{proof}[Dimostrazione alternativa] (metodo di bisezione per la ricerca degli zeri)
-		Come prima, senza alcuna perdita di generalità, si pone $f(a) < 0 < f(b)$. Si ponga $x_0 = \frac{a+b}{2}$,
+		Come prima, senza alcuna perdita di generalità, si pone $f(a) < 0 < f(b)$. Si ponga $x_0 = \frac{a+b}{2} \in I$ e
 		$I_0 = (a, b)$.
 		Se $f(x_0) = 0$, allora il teorema è dimostrato. Altrimenti, $f(x_0) > 0$ o $f(x_0) < 0$. Nel primo caso,
-		si consideri $I_1 = (a, x_0)$, altrimenti si ponga $I_1 = (x_0, b)$. Si riapplichi allora l'algoritmo con $a := \inf I_1$ e $b := \sup I_1$, definendo la successione $(x_n)$ e gli intervalli $I_n$ per ogni passo $n$ dell'algoritmo. \\
+		si consideri $I_1 = (a, x_0)$, altrimenti si ponga $I_1 = (x_0, b)$. Si riapplichi allora l'algoritmo con $a := \inf I_1$ e $b := \sup I_1$, definendo le due successioni $(x_n)$ e $I_n$ per ogni passo $n$ dell'algoritmo. \\
 		
 		Se la successione $(x_n)$ è finita, allora $\exists n \mid f(x_n) = 0$, e quindi il teorema è dimostrato. Altrimenti,
 		si osservi che la successione degli intervalli è decrescente, e che $\abs{I_n} = \frac{b-a}{2^n} \tendston 0$:
 		allora, poiché $x_n \in I_n$ $\forall n \in \NN$, $(x_n)$ ammette limite. In particolare, $I_n \tendston \{c\}$,
-		e quindi $x_n \tendston c \in I_0$. Siano $a_n$, $b_n$ le successioni tali che $I_n = (a_n, b_n)$ $\forall n \in \NN$.
-		Vale in particolare che $a_n, b_n \tendston c$. Allora, per la continuità di $f$ su $(a, b)$, vale che
+		e quindi $x_n \tendston c \in I_0$. Siano $a_n$, $b_n$ le successioni di numeri reali tali che $I_n = (a_n, b_n)$ $\forall n \in \NN$.
+		Vale in particolare che $a_n$, $b_n \tendston c$. Allora, per la continuità di $f$ su $(a, b)$, vale che
 		$\lim_{n \to \infty} f(a_n) = f(c)$ e che $\lim_{n \to \infty} f(b_n) = f(c)$: poiché ogni elemento di $(a_n)$ è
 		per costruzione tale che $f(a_n) < 0$, deve valere che $f(x) \leq 0$ per il teorema della permanenza del segno; analogamente deve valere per costruzione di $(b_n)$ che $f(c) \geq 0$. Si conclude allora che $f(c) = 0$, da cui
 		la tesi.
 	\end{proof}
 
-	\begin{corollary} (dei valori intermedi) Dati $I = (a, b)$ e
+	\begin{theorem} (dei valori intermedi) Dati $I = (a, b)$ e
 		$f : I \to \RRbar$ continua, allora $y_1$, $y_2 \in f(I) \implies
 		[y_1, y_2] \subseteq f(I)$ (ossia $f$ assume tutti i valori
 		compresi tra $y_1$ e $y_2$; e quindi $f(I)$ è un insieme convesso di $\RR$).
-	\end{corollary}
+	\end{theorem}
 
 	\begin{proof}
 		Supponiamo $y_1 < y_2$: poiché $y_1$, $y_2$ appartengono già a $f(I)$, è sufficiente mostrare che anche ogni $y \in (y_1, y_2)$ appartiene a $f(I)$. Dal momento che $y_1$, $y_2 \in f(I)$, $\exists x_1$, $x_2 \in I \mid f(x_1) = y_1$ e $f(x_2) = y_2$. Si consideri allora $g : I \to \RRbar$ tale che
@@ -507,7 +507,7 @@
 	\end{proposition}
 
 	\begin{proof}
-		La dimostrazione del fatto che gli intervalli siano convessi è banale. Si dimostra piuttosto
+		La dimostrazione del fatto che gli intervalli siano insiemi convessi è banale. Si dimostra piuttosto
 		che ogni insieme convesso di $\RR$ è un intervallo. Sia $A$ dunque un insieme convesso di $\RR$,
 		e si considerino $a := \inf A$ e $b := \sup A$. Sia $x \in (a, b)$. Se non esistesse un punto $c \in A$
 		tale che $a < c < x$, $x$ sarebbe un estremo inferiore di $A$, \Lightning. Pertanto tale punto $c$ esiste.
@@ -515,7 +515,7 @@
 		$[c, d] \subseteq A$, e in particolare $x \in A$. Pertanto vale che $(a, b) \subseteq A$. Poiché
 		$a$ e $b$ sono, rispettivamente, estremo inferiore e superiore di $A$, non possono esistere altri punti
 		non appartenenti a $[a, b]$, ma appartenenti ad $A$. Quindi $A$ può variare a seconda dell'appartenenza
-		o meno di questi estremi tra questi insiemi:
+		o meno di questi estremi nei seguenti modi:
 		
 		\begin{enumerate}[(i)]
 			\item $A = (a, b)$, se $a$, $b \notin A$,
@@ -540,8 +540,8 @@
 
 	\begin{proof}
 		Ci si limita a dimostrare l'esistenza del minimo, dacché l'esistenza
-		del massimo segue dal considerare $g = -f$. Sia $m := \inf f(I)$.
-		Esiste allora una successione $(y_n) \subseteq f(I)$ tale che
+		del massimo segue dal considerare $g = -f$. Sia $m := \inf f(I)$. Esiste
+		allora una successione $(y_n) \subseteq f(I)$ tale che
 		$y_n \tendston m$. Poiché $y_n \in f(I)$, $\exists x_n \in I \mid
 		y_n = f(x_n)$. Per il teorema di Bolzano-Weierstrass, $\exists \, (x_{n_k})
 		\subseteq I$ sottosuccessione convergente, ossia tale che
@@ -561,7 +561,7 @@
 	\end{remark}
 	
 	\begin{remark} (algoritmo di ricerca dei massimi e dei minimi) Sia $f : I \to \RRbar$ la funzione continua di cui si
-		ricerca i massimi e i minimi. Si ipotizzi\footnote{Non è infatti sempre possibile considerarne un'estensione continua (e.g.~$\sin(\frac1{x})$, il seno del topologo); ciò accade qualora non esista almeno uno dei limiti negli estremi dell'intervallo di $I$.} di poter considerare $\tilde{f} : \overline{I} \to \RRbar$, ossia l'estensione
+		ricerca i massimi e i minimi. Si ipotizzi\footnote{Non è infatti sempre possibile considerarne un'estensione continua (e.g.~$\sin\left(\frac1{x}\right)$, il seno del topologo); ciò accade qualora non esista almeno uno dei limiti negli estremi dell'intervallo di $I$.} di poter considerare $\tilde{f} : \overline{I} \to \RRbar$, ossia l'estensione
 		continua di $f$. Allora, poiché $\tilde{f}$ è continua ed è definita su
 		un intervallo chiuso, per Weierstrass ammette un massimo e un
 		minimo. Preso per esempio il minimo, esso potrebbe essere un
