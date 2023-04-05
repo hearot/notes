@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Esercitazione: forma canonica di Jordan reale}
+	\end{center}
+
+	\begin{exercise}
+		Sia $M \in M(n, \RR)$ tale che $\exists a_1$, ..., $a_k \in \RR$ distinti
+		tale che:
+		
+		\[ (M^2 + a_1^2 I) \cdots (M^2 + a_k^2 I) = 0. \]
+		
+		Dimostrare allora che esistono $S$, $A \in M(n, \RR)$ tale che
+		$M = SA$ con $S$ simmetrica e $A$ antisimmetrica.
+	\end{exercise}
+
+	\begin{solution}
+		Per ipotesi, $p(x) = (x^2+a_1^2) \cdots (x^2 + a_k^2) \in \Ker \sigma_M$.
+		Dal momento che $p(x)$ si scompone in fattori lineari distinti in
+		$\CC$, $p(x)$ è anche il polinomio minimo di $M$. Si deduce
+		allora che $M$ è diagonalizzabile, e che i suoi autovalori sono
+		esattamente $\pm a_1 i$, ..., $\pm a_k i$. Allora la forma
+		canonica di Jordan reale di $M$ è:
+		
+		\[ J = \Matrix{} \]
+	\end{solution}
+\end{document}

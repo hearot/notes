@@ -165,4 +165,129 @@
 		Dimostrare che la derivata sinistra è negativa, e che quella
 		destra è positiva nei casi che hai capito.
 	\end{example}
+
+	\begin{theorem} (di Rolle)
+		Sia $I = [a, b] \subset \RR$ e sia $f : I \to \RR$ tale che
+		$f$ sia continua su $I$, che $f(a) = f(b)$ e che $f$ sia derivabile
+		in $[a, b]$. Allora $\exists \xbar \in (a, b)$ tale che $f'(\xbar) = 0$.
+	\end{theorem}
+
+	\begin{proof}
+		Per il teorema di Weierstrass $f$ ammette un punto di massimo $M$ e uno di minimo $m$ in $I$. Se $f(a) = M$ e $f(b) = m$ o viceversa, la
+		funzione $f$ è costante in $I$, e quindi per ogni punto in $(a, b)$
+		la derivata è nulla, dacché $f$ è sempre derivabile. Altrimenti,
+		sicuramente uno tra il punto di massimo e quello di minimo appartiene
+		a $(a, b)$. Senza perdita di generalità, si assuma che $\exists x_M \in (a, b)$ tale che $f(x_M) = M$: per
+		il teorema di Fermat $f'(x_M) = 0$. Analogamente per il caso in cui
+		$\exists x_m \in (a, b)$ tale che $f(x_m) = m$, da cui la tesi.
+	\end{proof}
+
+	\begin{theorem} (di Cauchy)
+		Sia $I = [a, b] \subset \RR$ e siano $f$, $g: I \to \RR$
+		continue su $I$ e derivabili in $(a, b)$, con $g'$ non nulla
+		in $(a, b)$ e $g(a) \neq g(b)$. Allora
+		$\exists \xbar \in (a, b)$ tale che $\frac{f'(\xbar)}{g'(\xbar)} = \frac{f(b) - f(a)}{g(b)-g(a)}$.
+	\end{theorem}
+
+	\begin{proof}
+		Si consideri la funzione $h : I \to \RR$ tale che $h(x) = f(x) - \left(\frac{f(b) - f(a)}{g(b) - g(a)} (g(x) - g(a)) + f(a)\right)$.
+		Si osserva che $h$,
+		essendo una somma di funzioni continue su $I$ e derivabili in $(a, b)$,
+		è anch'essa continua su $I$ e derivabile in $(a, b)$. Inoltre
+		$h(a) = h(b) = 0$. Quindi, per il teorema di Rolle, $\exists \xbar \in (a, b) \mid h'(\xbar) = 0 \implies \frac{f'(\xbar)}{g'(\xbar)} = \frac{f(b)-f(a)}{g(b)-g(a)}$,
+		da cui la tesi.
+	\end{proof}
+
+	\begin{theorem} (di Lagrange)
+		Sia $I = [a, b] \subset \RR$ e sia $f: I \to \RR$ tale che $f$
+		sia continua su $I$ e che $f$ sia derivabile in $(a, b)$. Allora
+		$\exists \xbar \in (a, b)$ tale che $f'(\xbar) = \frac{f(b) - f(a)}{b-a}$, ossia la cui retta tangente è parallela alla secante
+		che passa per $(a, f(a))$ e $(b, f(b))$.
+	\end{theorem}
+
+	\begin{proof}
+		Si consideri $g(x) = x$, $g$ è continua in $[a, b]$ e derivabile
+		in $(a, b)$, con derivata sempre non nulla in tale intervallo.
+		Allora, per il teorema di Cauchy, $\exists \xbar \in (a, b) \mid
+		f'(\xbar) = \frac{f(b)-f(a)}{b-a}$, da cui la tesi.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $I = [a, b] \subset \RR$ e sia $f : I \to \RR$ tale che $f$
+		sia continua su $I$ e che $f$ sia derivabile in $(a, b)$, con
+		derivata non negativa. Allora $f$ è crescente in $[a, b]$.
+		Analogamente, se la derivata è non positiva, $f$ è decrescente.
+	\end{proposition}
+
+	\begin{proof}
+		Senza perdita di generalità si dimostra il caso in cui la derivata
+		di $f$ in $(a, b)$ è non negativa (altrimenti è sufficiente considerare
+		$g = -f$).
+		Si considerino $c < d \in I$. Allora, per il teorema di Lagrange,
+		$\exists \xbar \in (c, d) \mid f'(c) = \frac{f(d) - f(c)}{d-c}
+		\implies f(d) - f(c) = \underbrace{f'(c) (d-c)}_{\geq 0} \implies
+		f(d) \geq f(c)$, ossia che $f$ è crescente in $I$.
+	\end{proof}
+
+	\begin{remark}\nl
+		\li L'interpretazione geometrica del teorema di Cauchy, rispetto
+		a quella di Lagrange, è leggermente più complicata. Si consideri
+		la curva $\gamma : \RR \to \RR^2$ tale che
+		$\gamma(t) =(g(t), f(t))$. Si osserva che il coefficiente della
+		retta tangente in $\xbar$ per $\gamma$ è dato da $\lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{g(\xbar + h) - g(\xbar)}$, che,
+		sotto le ipotesi del teorema di Cauchy, può essere riscritto
+		come $\frac{f'(\xbar)}{g'(\xbar)}$. Allora, il teorema di Cauchy
+		asserisce che esiste un punto della curva $\gamma$ tale per cui
+		la retta tangente alla curva in quel punto è parallela alla secante
+		passante per $(g(a), f(a))$ e $(g(b), f(b))$.
+	\end{remark}
+
+	\begin{exercise}
+		Dare un esempio di una funzione $f : \RR \to \RR$ crescente e
+		discontinua $\forall x \in \ZZ$.
+	\end{exercise}
+
+	\begin{solution}
+		Si consideri $f(x) = \lfloor x \rfloor$.
+	\end{solution}
+
+	\begin{exercise}
+		Si descriva un insieme $X$ tale che i suoi punti di accumulazione
+		sono $\{\pm 1\}$.
+	\end{exercise}
+
+	\begin{solution}
+		Si consideri $X = \{1 + \frac{1}{n}\} \cup \{-1 + \frac{1}{n}\}$.
+	\end{solution}
+
+	\begin{exercise}
+		Sia $f : X \to \RRbar$ continua in $\xbar$ e sia $a < f(\xbar)$.
+		Allora esiste $J$ intorno di $\xbar$ tale che $a < f(x)$ $\forall
+		x \in J$.
+	\end{exercise}
+
+	\begin{exercise}
+		Sia $X \subseteq \RRbar$ e sia $\xbar$ punto di accumulazione di $X$,
+		$f_1$, $f_2 : X \to \RRbar$. Allora:
+		
+	\begin{enumerate}[(i)]
+		\item Se $f_1 \tendsto{\xbar} +\infty$ e $f_2$ è limitata inferiormente
+		in un intorno $J$ di $\xbar$, allora $f_1(x) + f_2(x) \tendsto{\xbar} +\infty$.
+		\item Se $f_1 \tendsto{\xbar} 0$ e $f_2$ è limitata in un intorno
+		di $\xbar$, allora $f_1 f_2(x) \tendsto{\xbar} 0$.
+		\item Se $f_1 \tendsto{\xbar} +\infty$ è limitata inferiormente
+		da una costante positiva $m$ in un intorno $J$ di $\xbar$, allora
+		$f_1 f_2 \tendsto{\xbar} +\infty$. 
+	\end{enumerate}
+	\end{exercise}
+
+	\begin{exercise}
+		Sia $f: \RR \to \RR$ tale che:
+		
+		\[ f(x) = \system{x + 2x^2 \sin\left(\frac{1}{x}\right) & \se x \neq 0, \\ 0 & \altrimenti.} \]
+		
+		\vskip 0.05in
+		
+		Mostrare che $f$ è continua, che $f'(0) = 1$ e che $f'$ non è continua in zero.
+	\end{exercise}
 \end{document}
