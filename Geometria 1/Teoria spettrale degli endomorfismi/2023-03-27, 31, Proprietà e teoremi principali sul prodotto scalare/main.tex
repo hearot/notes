@@ -84,6 +84,11 @@
 		è nulla, e quindi il prodotto scalare è nullo per la proposizione precedente.
 	\end{proof}
 
+
+	\begin{note}
+		D'ora in poi, nel corso del documento, si assumerà $\Char \KK \neq 2$.
+	\end{note}
+
 	\begin{theorem} (di Sylvester, caso complesso)
 		Sia $\KK$ un campo i cui elementi sono tutti quadrati di un
 		altro elemento del campo (e.g.~$\CC$). Allora esiste una base
@@ -111,7 +116,8 @@
 		
 		\li Si può immediatamente concludere che il rango è un invariante
 		completo per la congruenza in un campo in cui tutti gli elementi
-		sono quadrati, ossia che $A \cong B \iff \rg(A) = \rg(B)$: infatti
+		sono quadrati, ossia che $A \cong B \iff \rg(A) = \rg(B)$, se $A$ e
+		$B$ sono matrici simmetriche: infatti
 		ogni matrice simmetrica rappresenta una prodotto scalare, ed è
 		pertanto congruente ad una matrice della forma desiderata
 		nell'enunciato del teorema di Sylvester complesso. Poiché il rango
@@ -122,20 +128,44 @@
 		alla stessa matrice di Sylvester, e quindi, essendo la congruenza
 		una relazione di congruenza, sono congruenti a loro volta. \\
 		\li Due matrici simmetriche con stesso rango, allora, non solo
-		sono SD-equivalenti, ma sono anche congruenti.
+		sono SD-equivalenti, ma sono anche congruenti. \\
 		\li Ogni base ortogonale deve quindi avere lo stesso numero
 		di elementi nulli.
 	\end{remark}
+
+	\begin{note}
+		La notazione $\varphi > 0$ indica che $\varphi$ è definito positivo.
+		Analogamente $\varphi < 0$ indica che $\varphi$ è definito negativo.
+	\end{note}
+
+	\begin{definition}
+		Data una base ortogonale $\basis$ di $V$ rispetto al prodotto
+		scalare $\varphi$,
+		si definiscono i seguenti indici:
+		
+		\begin{align*}
+			\iota_+(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} > 0 \}, &\text{(}\textbf{indice di positività}\text{)} \\
+			\iota_-(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} < 0 \}, &\text{(}\textbf{indice di negatività}\text{)}\\
+			\iota_0(\varphi). &= \dim V^\perp &\text{(}\textbf{indice di nullità}\text{)}
+		\end{align*}
+	
+		Quando il prodotto scalare $\varphi$ è noto dal contesto, si omette
+		e si scrive solo $\iota_+$, $\iota_-$ e $\iota_0$. In particolare,
+		la terna $\sigma = (i_+, i_-, i_0)$ è detta \textbf{segnatura} del
+		prodotto $\varphi$.
+	\end{definition}
 	
 	\begin{theorem} (di Sylvester, caso reale) Sia $\KK$ un campo ordinato
 		i cui elementi positivi sono tutti quadrati (e.g.~$\RR$). Allora
 		esiste una base ortogonale $\basis$ tale per cui:
 		
-		\[ M_\basis(\varphi) = \Matrix{I_{i_+} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & -I_{i_-} & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & 0\cdot I_{i_0} }. \]
+		\[ M_\basis(\varphi) = \Matrix{I_{\iota_+} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & -I_{\iota_-} & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & 0\cdot I_{\iota_0} }. \]
+		
+		\vskip 0.05in
 		
 		Inoltre, per ogni base ortogonale, esistono esattamente
-		$\iota_+(\varphi)$ vettori della base con forma quadratica positiva,
-		$\iota_-(\varphi)$ con forma negativa e $\iota_0(\varphi)$ con
+		$\iota_+$ vettori della base con forma quadratica positiva,
+		$\iota_-$ con forma negativa e $\iota_0$ con
 		forma nulla.
 	\end{theorem}
 
@@ -149,68 +179,61 @@
 		la cui matrice associata del prodotto scalare è come desiderata nella
 		tesi. \\
 		
-		In particolare, $\iota_0(\varphi)$ è esattamente il numero di vettori
-		con forma quadratica nulla della base, rappresentando infatti
-		esattamente la dimensione del nucleo di $M_\basis(\varphi)$,
-		ossia di $V^\perp$. \\
+		Sia ora $a$ il numero di vettori della base con forma quadratica
+		positiva, $b$ il numero di vettori con forma negativa e $c$ quello
+		dei vettori con forma nulla. Si consideri $W_+ = \Span(\vv 1, ..., \vv a)$, $W_- = \Span(\vv{a+1}, ..., \vv b)$, $W_0 = \Span(\vv{b+1}, ..., \vv c)$. \\
 		
-		Siano ora $W_+ = \Span(\vv 1, ... \vv a)$, dove $a$ è il numero
-		di vettori della base con forma quadratica positiva,
-		$W_- = \Span(\vv{a+1}, ... \vv b)$, dove $b$ è il numero di vettori
-		con forma negativa e
-		$W_0 = \Span(\vv{b+1}, ... \vv c)$, dove $c$ è il numero di vettori
-		con forma nulla.
-		Allora chiaramente $V = W_+ \oplus W_- \oplus W_0$. Inoltre,
-		$\restr{\varphi}{W_+} > 0$, $\restr{\varphi}{W_-} > 0$ e
-		$\restr{\varphi}{W_0} = 0$. Pertanto $\iota_+(\varphi) \geq \dim W_+ = a$. Analogamente $\iota_-(\varphi) \geq \dim W_- = b$ e
-		$\iota_0(\varphi) = c$ ($W_0 = V^\perp$). Se lo spazio definito
-		positivo massimo $W$ fosse tale che $\dim W > \dim W_+$, allora,
-		poiché $V = a + b + c$ e $\dim W + b + c > \dim V \implies
-		W \cap W_- \cap W_0 \neq \emptyset$, $\Lightning$. Quindi valgono
-		le uguaglianze, da cui la tesi.
+		Sia $M = M_\basis(\varphi)$. Si osserva che $c = n - \rg(M) = \dim \Ker(M) = \dim V^\perp = \iota_0$. Inoltre $\forall \v \in W_+$, dacché
+		$\basis$ è ortogonale,
+		$q(\v) = q(\sum_{i=1}^a \alpha_i \vv i) = \sum_{i=1}^a \alpha_i^2 q(\vv i) > 0$, e quindi $\restr{\varphi}{W_+} > 0$, da cui $\iota_+ \geq a$.
+		Analogamente $\iota_- \geq b$. \\
+		
+		Si mostra ora che è impossibile che $\iota_+ > a$. Se così infatti
+		fosse, sia $W$ tale che $\dim W = \iota_+$ e che $\restr{\varphi}{W} > 0$. $\iota_+ + b + c$ sarebbe maggiore di $a + b + c = n := \dim V$. Quindi, per la formula di Grassman, $\dim(W + W_- + W_0) = \dim W +
+		\dim(W_- + W_0) - \dim (W \cap (W_- + W_0)) \implies \dim (W \cap (W_- + W_0)) =  \dim W +
+		\dim(W_- + W_0) - \dim(W + W_- + W_0) > 0$, ossia esisterebbe
+		$\v \neq \{\vec 0\} \mid \v \in W \cap (W_- + W_0)$. Tuttavia
+		questo è assurdo, dacché dovrebbe valere sia $q(\v) > 0$ che
+		$q(\v) < 0$, \Lightning. Quindi $\iota_+ = a$, e analogamente
+		$\iota_- = b$.
 	\end{proof}
 
 	\begin{definition}
-		Si definisce \textbf{segnatura} di un prodotto scalare
-		la terna $(i_+, i_-, i_0)$, come vista nella dimostrazione
-		del teorema di Sylvester reale.
+		Si dice \textbf{base di Sylvester} una base di $V$ tale per cui la
+		matrice associata di $\varphi$ sia esattamente nella forma
+		vista nella dimostrazione del teorema di Sylvester. Analogamente
+		si definisce tale matrice come \textbf{matrice di Sylvester}.
 	\end{definition}
 
 	\begin{remark} \nl
+		\li Si può dunque definire la segnatura di una matrice simmetrica
+		come la segnatura di una qualsiasi sua base ortogonale, dal
+		momento che tale segnatura è invariante per cambiamento di base. \\
 		\li La segnatura è un invariante completo per la congruenza nel caso reale. Se infatti due matrici hanno la stessa segnatura, sono
 		entrambe congruenti alla matrice come vista nella dimostrazione
 		della forma reale del teorema di Sylvester, e quindi, essendo
 		la congruenza una relazione di equivalenza, sono congruenti
-		tra loro. Analogamente vale il viceversa, come conseguenza del
-		teorema di Sylvester reale.
-		\li Si dice base di Sylvester una base di $V$ tale per cui la
-		matrice associata di $\varphi$ sia esattamente nella forma
-		vista nella dimostrazione del teorema di Sylvester, e
-		tale matrice si dirà anch'essa matrice di Sylvester.
-		
-		%TODO: completare spiegazione.
+		tra loro. Analogamente vale il viceversa, dal momento che ogni
+		base ortogonale di due matrici congruenti devono contenere gli
+		stessi numeri $\iota_+$, $\iota_-$ e $\iota_0$ di vettori
+		di base con forma quadratica positiva, negativa e nulla. \\
+		\li Se $\ww 1$, ..., $\ww k$ sono tutti i vettori di una base
+		ortogonale $\basis$ con forma quadratica nulla, si osserva che $W = \Span(\ww 1, ..., \ww k)$ altro non è che $V^\perp$ stesso. Infatti, come
+		visto anche nella dimostrazione del teorema di Sylvester reale, vale
+		che	$\dim W = \dim \Ker (M_\basis(\varphi)) = \dim V^\perp$. Inoltre,
+		se $\w \in W$ e $\v \in V$, $\varphi(\w, \v) = \varphi(\sum_{i=1}^k \alpha_i \ww i, \sum_{i=1}^k \beta_i \ww i + \sum_{i=k+1}^n \beta_i \vv i) = \sum_{i=1}^k \alpha_i \beta_i q(\ww i) = 0$, e quindi
+		$W \subseteq V^\perp$, da cui si conclude che $W = V^\perp$. \\
+		\li Vale in particolare che $\rg(\varphi) = \iota_+ + \iota_-$, mentre
+		$\dim \Ker(\varphi) = \iota_0$, e quindi $n = \iota_+ + \iota_- + \iota_0$.
 	\end{remark}
 
 	\begin{definition}
-		Si dice \textbf{indice di positività} di $\varphi$ il
-		termine $\iota_+(\varphi) = i_+ = \max \{ \dim W \mid W \subseteq V \mid \restr{\varphi}{W} > 0 \}$. Analogamente $\iota_-(\varphi) = i_- = \max \{ \dim W \mid W \subseteq V \mid \restr{\varphi}{W} < 0 \}$ è detto
-		\textbf{indice di negatività}. Si definisce invece $\iota_0(\varphi) = i_0 = \dim V^\perp$ come \textbf{indice di nullità}.
-	\end{definition}
-
-	\begin{remark}\nl
-		\li I sottospazi la cui dimensione è pari all'indice di positività
-		o di negatività non sono obbligatoriamente unici.
-	\end{remark}
-
-	\begin{definition}
-		Dati due spazi vettoriali con prodotti scalare $(V, \varphi)$ e
-		$(V', \varphi')$ sullo stesso campo $\KK$, si dice che
+		Dati due spazi vettoriali $(V, \varphi)$ e
+		$(V', \varphi')$ dotati di prodotto scalare sullo stesso campo $\KK$, si dice che
 		$V$ e $V'$ sono \textbf{isometrici} se esiste un isomorfismo
-		$f$ che preserva i prodotti, ossia tale che:
+		$f$, detto isometria, che preserva tali che prodotti, ossia tale che:
 		
-		\[ \varphi(\vec v, \vec w) = \varphi'(f(\vec v), f(\vec w)), \]
-		
-		e tale isomorfismo si dirà isometria.
+		\[ \varphi(\vec v, \vec w) = \varphi'(f(\vec v), f(\vec w)). \]
 	\end{definition}
 
 	\begin{exercise}\nl
