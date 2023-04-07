@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Analisi Matematica 1}}
 \author{Gabriel Antonio Videtta}
-\date{\today}
+\date{4 aprile 2023}
 
 \begin{document}
 	
@@ -16,35 +16,61 @@
 		\Large \textbf{Teoria sulle derivate}
 	\end{center}
 
-	\begin{definition}
+	\begin{definition} (derivata)
 		Sia $f : X \subseteq \RR \to \RR$. Si definisce allora \textbf{derivata}
 		di $f$ in $\xbar \in X$ punto di accumulazione, se esiste, il seguente limite:
 		
-		\[f'(\xbar) = \lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{h} = \lim_{x \to \xbar} \frac{f(x) - f(\xbar)}{x - \xbar}.\]
+		\[Df(\xbar) = f'(\xbar) = \lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{h} = \lim_{x \to \xbar} \frac{f(x) - f(\xbar)}{x - \xbar}.\]
 		
-		Si definisce anche $f' : D \subseteq X \to \RR$ come la funzione derivata,
-		la quale associa ogni punto in cui la derivata di $f$ esiste a
-		tale derivata, dove $D$ è proprio l'insieme dei punti in cui questa esiste.
+		\vskip 0.05in
+		
+		Qualora tale limite non esista, si dirà che non esiste la derivata
+		di $f$ in $\xbar$. Si definisce anche $f' : D \subseteq X \to \RRbar$ come la funzione derivata,
+		la quale associa ogni punto $\xbar$ in cui la derivata di $f$ esiste al
+		valore del limite computato in $\xbar$.
 	\end{definition}
-
-	%TODO: spiegare il perché dei domini
 	
 	\begin{definition}
-		$\xbar \in X$ si dice \textbf{derivabile} se e solo se $f'(\xbar)$ esiste ed è finito.
+		$\xbar \in X$ si dice \textbf{derivabile} se e solo se esiste la
+		derivata di $f$ in $\xbar$ e $f'(\xbar)$ è finito.
 	\end{definition}
 	
 	\begin{remark}\nl
 		\li L'insieme $D$ può essere vuoto. \\
 		\li Si definisce $f^{(n)}(\xbar)$ come la derivata $n$-esima
 		di $f$ in $\xbar$. \\
-		\li Si definisce $f^{(0)}(x) = f(x)$. \\
+		\li Si definisce per convenzione $f^{(0)}(x) = f(x)$. \\
 		\li L'operazione di derivata è un operatore lineare. \\
-		\li Si può definire la derivata sinistra e destra.
+	\end{remark}
+
+	\begin{definition} (derivata destra e sinistra)
+		Dato $\xbar$ punto di accumulazione destro di $X$, si definisce
+		allora \textbf{derivata destra} di $f$ in $\xbar \in X$, se
+		esiste, il seguente limite:
+		
+		\[D_+ f(\xbar) = f_+'(\xbar) = \lim_{h \to 0^+} \frac{f(\xbar + h) - f(\xbar)}{h} = \lim_{x \to \xbar^+} \frac{f(x) - f(\xbar)}{x - \xbar}.\]
+		
+		\vskip 0.05in
+		
+		Qualora tale limite non esista, si dirà che non esiste la derivata destra di $f$ in $\xbar$. Analogamente, per un punto di accumulazione sinistro $\xbar \in X$, si definisce
+		la \textbf{derivata sinistra} di $f$ in $\xbar \in X$, se esiste, il seguente
+		limite:
+		
+		\[D_- f(\xbar) = f_-'(\xbar) = \lim_{h \to 0^-} \frac{f(\xbar + h) - f(\xbar)}{h} = \lim_{x \to \xbar^-} \frac{f(x) - f(\xbar)}{x - \xbar}.\]
+	\end{definition}
+
+	\begin{remark}\nl
+		\li Se esistono sia la derivata sinistra che destra di $f$ in $\xbar$
+		e coincidono, allora la derivata di $f$ in $\xbar$ esiste e
+		coincide con il valore di entrambe le due derivate. \\
+		\li Vale anche il viceversa, se $\xbar$ è un punto di accumulazione
+		sia destro che sinistro: se esiste la derivata di $f$ in $\xbar$,
+		allora sia la derivata sinistra che destra esistono e coincidono
+		con la derivata.
 	\end{remark}
 
 	\begin{definition}
-		Si dice che $f : X \to \RR$ è derivabile se è derivabile in ogni
-		suo punto.
+		Si dice che $f : X \to \RR$ è derivabile se è derivabile $\forall x \in X$.
 	\end{definition}
 	
 	\begin{definition}
@@ -66,19 +92,21 @@
 	\end{proposition}
 
 	\begin{proof}
-		Se $f$ è derivabile in $\xbar$, allora $\lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar) - f'(\xbar) h}{h} = \lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{h} - f'(\xbar) = 0$, da cui la prima tesi. \\
+		Se $f$ è derivabile in $\xbar$, allora $\lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar) - f'(\xbar) h}{h} = \lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{h} - f'(\xbar) = f'(\xbar) - f'(\xbar) = 0$, da cui la prima tesi. \\
 		
-		Inoltre, se esiste $a$ come nelle ipotesi, $\lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{h} =\lim_{h \to 0} \frac{ah + o(h)}{h} = 0$, quindi $f$ è derivabile in $\xbar$ e $f'(\xbar) = a$.
+		Inoltre, se esiste $a$ come nelle ipotesi, $\lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{h} =\lim_{h \to 0} \frac{ah + o(h)}{h} = a + \lim_{h \to 0} \frac{o(h)}{h} = a + 0 = a$, quindi $f$ è derivabile in $\xbar$ e $f'(\xbar) = a$.
 	\end{proof}
 
 	\begin{corollary}
-		Se $f$ è derivabile in $\xbar$, allora è anche continua in $\xbar$.
+		Se $f$ è derivabile in $\xbar$, allora $f$ è anche continua in $\xbar$.
 	\end{corollary}
 
 	\begin{proof}
 		Infatti, poiché $f(x) = f(\xbar) + f'(\xbar) (x - \xbar) + o(x-\xbar)$,
-		$\lim_{x \to \xbar} f(x) = f(\xbar)$, e quindi $f$ è continua in $\xbar$. %TODO: trovare esempio di derivabilità infinita e non continuità
+		$\lim_{x \to \xbar} f(x) = \lim_{x \to \xbar} f(\xbar) + \lim_{x \to \xbar} f'(\xbar)(x-\xbar) + \lim_{x \to \xbar} o(x - \xbar) = \lim_{x \to \xbar} f(\xbar) = f(\xbar)$, e quindi $f$ è continua in $\xbar$.
 	\end{proof}
+
+	%TODO: trovare esempio di derivabilità infinita e non continuità
 
 	\begin{proposition}
 		Siano $f_1$, $f_2 : X \to \RR$ entrambe derivabili in
@@ -86,35 +114,40 @@
 		
 		\begin{enumerate}[(i)]
 			\item $(f_1 + f_2)'(\xbar) = f_1'(\xbar) + f_2'(\xbar)$,
-			\item $(f_1f_2)'(\xbar) f_1(\xbar) f_2'(\xbar) + f_1'(\xbar) f_2(\xbar)$.
+			\item $(f_1f_2)'(\xbar)=  f_1(\xbar) f_2'(\xbar) + f_1'(\xbar) f_2(\xbar)$.
 		\end{enumerate}
 	\end{proposition}
 
-	\begin{proof}
+	\begin{proof}Poiché $f_1$ ed $f_2$ sono derivabili in $\xbar$, vale
+		che:
+		
+		\[ f_1(\xbar + h) = f_1(\xbar) + f_1'(\xbar) h + o(h), \qquad f_2(\xbar + h) = f_2(\xbar) + f_2'(\xbar) h + o(h). \]
+
 		\begin{enumerate}[(i)]
-			\item $\lim_{h \to 0} \frac{(f_1 + f_2)'(\xbar + h) - (f_1 + f_2)'(\xbar)(\xbar)}{h} = \lim_{h \to 0} \frac{f_1(x+h) - f_1(x)}{h} + \lim_{h \to 0} \frac{f_2(x+h) - f_2(x)}{h} =
+			\item $(f_1 + f_2)(\xbar + h) = (f_1 + f_2)(\xbar) +
+			(f_1' + f_2')(\xbar) h + o(h)$. Quindi, per la proposizione precedente, $(f_1 + f_2)'(\xbar) = (f_1' + f_2')(\xbar) =
 			f_1'(\xbar) + f_2'(\xbar)$.
-			\item Poiché $f_1$ ed $f_2$ sono derivabili in $\xbar$,
-			$f_1(\xbar + h) = f_1(\xbar) + f_1'(\xbar) h + o(h)$ e
-			$f_2(\xbar + h) = f_2(\xbar) + f_2'(\xbar) h + o(h)$,
-			da cui $(f_1 f_2)(\xbar + h) = (f_1f_2)(\xbar) + (f_1f_2'(\xbar) +
-			f_1'(\xbar) f_2(\xbar))h + o(h) \implies (f_1 f_2)'(\xbar) = (f_1f_2'(\xbar) +
-			f_1'(\xbar) f_2(\xbar)$.
+			\item $(f_1 f_2)(\xbar + h) = (f_1 f_2)(\xbar) + (f_1(\xbar)f_2'(\xbar) + f_1'(\xbar) f_2(\xbar)) h + \underbrace{(f_1(\xbar) + f_2(\xbar)) o(h) + (f_1'f_2')(\xbar) h^2 + (f_1'(\xbar) + f_2'(\xbar))h \cdot o(h) + o^2(h))}_{=o(h)} =
+			(f_1 f_2)(\xbar) + (f_1(\xbar)f_2'(\xbar) + f_1'(\xbar) f_2(\xbar)) h + o(h)$. Quindi, per la proposizione precedente, $(f_1 f_2)'(\xbar) = f_1(\xbar)f_2'(\xbar) + f_1'(\xbar) f_2(\xbar)$.
 		\end{enumerate}
 	\end{proof}
 
 	\begin{proposition}
-		Siano $f : X \to Y$ e $g : Y \to \RR$, con $f$ derivabile in $\xbar$ e $g$ tale che
-		sia derivabile in $\ybar = f(\xbar)$. Allora $g \circ f$ è
+		Siano $f : X \to Y$ e $g : Y \to \RR$, con $f$ derivabile in $\xbar$ e $g$ derivabile in $\ybar := f(\xbar)$. Allora $g \circ f$ è
 		derivabile in $\xbar$ e $(g \circ f)'(\xbar) = f'(\xbar) g'(\ybar)$.
 	\end{proposition}
 
 	\begin{proof}
-		Vale che $f(\xbar + h) = \ybar + f'(\xbar) h + o(h)$, e quindi
-		che $g(f(\xbar + h)) = g(\ybar + f'(\xbar) h + o(h))$. In particolare,
-		$g(\ybar + h) = g(\ybar) + g'(\ybar) h + o(h)$, e quindi
-		$g(f(\xbar + h)) = g(\ybar) + g'(\ybar) (f'(\xbar)h + o(h)) +
-		o(f'(\xbar) h + o(h)) = g(\ybar) + g'(\ybar) + g'(\ybar) f'(\xbar) h + o(h) \implies (g \circ f)'(\xbar) = g'(\ybar) f'(\xbar)$.
+		Poiché $f'(\xbar)$ è finito, $f(\xbar + h) = \ybar + f'(\xbar) h + o(h)$. Analogamente, $g(\ybar + h) = g(\ybar) + g'(\ybar) h + o(h)$.
+		Allora $g(f(\xbar + h)) = g(\ybar + (f'(\xbar) h + o(h))) =
+		g(\ybar) + g'(\ybar) (f'(\xbar) h + o(h)) + o(f'(\xbar) h + o(h)) =
+		g(\ybar) + g'(\ybar) f'(\xbar) h + o(h) + o(f'(\xbar) h + o(h))$. \\
+		
+		Si osserva che $\lim_{h \to 0} \frac{o(f'(\xbar) h + o(h))}{h} =
+		\lim_{h \to 0} \frac{o(f'(\xbar) h + o(h))}{f'(\xbar) h + o(h)} \frac{f'(\xbar) h + o(h)}{h} = \lim_{h \to 0} \frac{o(f'(\xbar) h + o(h))}{f'(\xbar) h + o(h)} \lim_{h \to 0} \frac{f'(\xbar) h + o(h)}{h} =
+		0 \cdot f'(\xbar) = 0$, e quindi che $o(f'(\xbar) h + o(h)) = o(h)$.
+		Allora $g(f(\xbar + h)) = g(\ybar) + g'(\ybar) f'(\xbar) h + o(h)$,
+		da cui si conclude che $(g \circ f)'(\xbar) = g'(\ybar) f'(\xbar)$.
 	\end{proof}
 
 	\begin{proposition}
@@ -132,16 +165,20 @@
 		\begin{enumerate}[(i)]
 			\item Poichè $f$ è derivabile in $\xbar$, $f$ è continua
 			in $\xbar$. Quindi per ogni intorno $I$ di $\ybar$, esiste
-			un intorno $J$ di $\xbar$ tale per cui $f(I \cap X \setminus \{ \xbar \}) \subseteq J$, e poiché $I \cap X \setminus \{\xbar\}$ non
-			è mai vuoto perché $\xbar$ è un punto di accumulazione di $X$ a causa della derivabilità di $f$ in $\xbar$, $J$ contiene in particolare un immagine di $f$ in esso, e quindi un punto di $Y$;
-			inoltre, tale punto è diverso da $\ybar$ dacché $f$ è
-			iniettiva. Quindi $\ybar$ è un punto di accumulazione.
-			\item e (iii) Vale\footnote{Nel dire che $h \to 0$, si è usato che $g$ è
-			continua in $\ybar$.} che $\ybar + k = f(g(\ybar + k)) = f(g(\ybar) + (\underbrace{g(\ybar + k) - g(\ybar)}_h)) = f(\xbar + h) =
-			f(\xbar) + f'(\xbar) h + o(h) = \ybar + f'(\xbar) h + o(h)$. Quindi $k = f'(\xbar) h + o(h)$. Dal momento che $f'(\xbar) \neq 0$
-			per ipotesi, $h \sim \frac{k}{f'(\xbar)}$. Quindi
-			$\lim_{k \to 0} \frac{g(\ybar + k) - g(\ybar)}{k} = \lim_{k \to 0} \frac{h}{k} = \frac{1}{f'(\xbar)}$. Quindi la derivata esiste
-			ed è proprio come desiderata nella tesi.
+			un intorno $J$ di $\xbar$ tale per cui $f(I \cap X \setminus \{ \xbar \}) \subseteq J$. Inoltre, $I \cap X \setminus \{\xbar\}$ non
+			è mai vuoto, dacché, essendo $f$ derivabile in $\xbar$, $\xbar$ è un punto di accumulazione di $X$. Quindi $J$ contiene in particolare un immagine di $f$ in esso, e quindi un punto di $Y$;
+			inoltre, tale punto è diverso da $\ybar$ dal momento che $f$ è
+			iniettiva, essendo bigettiva. Quindi $\ybar$ è un punto di accumulazione.
+			\item e \!(iii) Poiché $f$ è derivabile in $g(\ybar)$,
+			$\ybar + h = f(g(\ybar + h)) = f(g(\ybar) + (\underbrace{g(\ybar + h) - g(\ybar)}_k)) = \ybar + f'(\xbar) k +
+			o(k)$, ossia vale che:
+			
+			\[ h = f'(\xbar) k + o(k). \]
+			
+			Dal momento che $g$ è continua in $\ybar$, $k \tends{h \to 0} 0$, e
+			quindi $o(k) \tends{h \to 0} 0$. Quindi, per $h \to 0$, $k \sim \frac{h}{f'(\xbar)}$. Si conclude
+			dunque che $\lim_{h \to 0} \frac{g(\ybar + h) - g(\ybar)}{h} =
+			\lim_{h \to 0} \frac{k}{h} = \frac{1}{f'(\xbar)}$.
  		\end{enumerate}
 	\end{proof}
 
@@ -152,7 +189,7 @@
 		\[ f(x) = \system{x & \se x \geq 0, \\ -(x+2) & \se -2 < x \leq -1.} \]
 		
 		dove $f'(0) = 1$, $f$ è invertibile, ma la derivata di $g$ in $0$ non
-		esiste ($D_+ g(0) = 1)$, ma $D_- g(0) = +\infty$).
+		esiste ($D_+ g(0) = 1$, ma $D_- g(0) = +\infty$).
 	\end{example}
 
 	\begin{theorem} (di Fermat)
