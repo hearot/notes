@@ -10,8 +10,6 @@
 	
 	\maketitle
 	
-	\wip
-	
 	\begin{center}
 		\Large \textbf{Teoria sulle derivate}
 	\end{center}
@@ -120,7 +118,6 @@
 
 	\begin{proof}Poiché $f_1$ ed $f_2$ sono derivabili in $\xbar$, vale
 		che:
-		
 		\[ f_1(\xbar + h) = f_1(\xbar) + f_1'(\xbar) h + o(h), \qquad f_2(\xbar + h) = f_2(\xbar) + f_2'(\xbar) h + o(h). \]
 
 		\begin{enumerate}[(i)]
@@ -156,12 +153,11 @@
 		
 		\begin{enumerate}[(i)]
 			\item $\ybar$ è un punto di accumulazione di $Y$,
-			\item $g$ è derivabile in $\ybar$,
-			\item $g'(\ybar) = \frac{1}{f'(\xbar)}$.
+			\item $g$ è derivabile in $\ybar$ e $g'(\ybar) = \frac{1}{f'(\xbar)}$.
 		\end{enumerate}
 	\end{proposition}
 
-	\begin{proof}\nl
+	\begin{proof} Si dimostrano i due risultati separatamente.
 		\begin{enumerate}[(i)]
 			\item Poichè $f$ è derivabile in $\xbar$, $f$ è continua
 			in $\xbar$. Quindi per ogni intorno $I$ di $\ybar$, esiste
@@ -169,7 +165,7 @@
 			è mai vuoto, dacché, essendo $f$ derivabile in $\xbar$, $\xbar$ è un punto di accumulazione di $X$. Quindi $J$ contiene in particolare un immagine di $f$ in esso, e quindi un punto di $Y$;
 			inoltre, tale punto è diverso da $\ybar$ dal momento che $f$ è
 			iniettiva, essendo bigettiva. Quindi $\ybar$ è un punto di accumulazione.
-			\item e \!(iii) Poiché $f$ è derivabile in $g(\ybar)$,
+			\item Poiché $f$ è derivabile in $g(\ybar)$,
 			$\ybar + h = f(g(\ybar + h)) = f(g(\ybar) + (\underbrace{g(\ybar + h) - g(\ybar)}_k)) = \ybar + f'(\xbar) k +
 			o(k)$, ossia vale che:
 			
@@ -188,6 +184,8 @@
 		
 		\[ f(x) = \system{x & \se x \geq 0, \\ -(x+2) & \se -2 < x \leq -1.} \]
 		
+		\vskip 0.05in
+		
 		dove $f'(0) = 1$, $f$ è invertibile, ma la derivata di $g$ in $0$ non
 		esiste ($D_+ g(0) = 1$, ma $D_- g(0) = +\infty$).
 	\end{example}
@@ -198,10 +196,34 @@
 		$f'(\xbar) = 0$.
 	\end{theorem}
 
-	\begin{example}
-		Dimostrare che la derivata sinistra è negativa, e che quella
-		destra è positiva nei casi che hai capito.
-	\end{example}
+	\begin{proof}
+		Poiché $I$ è un intervallo e $\xbar$ è interno a $I$, $\xbar$ è sia punto di accumulazione
+		sinistro che punto di accumulazione destro di $I$. Dal momento che $f$ è derivabile
+		in $\xbar$, esistono sia la derivata destra che la derivata sinistra in $\xbar$. \\
+		
+		Si assuma che $\xbar$ è un punto di massimo locale (altrimenti è sufficiente considerare $g = -f$).
+		Allora esiste un intorno $J$ di $\xbar$ tale per cui $x \in J \implies f(x) - f(\xbar) \leq 0$. Sia dunque
+		$J_+$ l'intorno destro relativo a $J$, e sia $J_-$ quello sinistro. \\
+		
+		Poiché $\xbar = \inf J_+$, esiste una successione $\{x_n\} \subseteq J_+ \setminus \{\xbar\}$ tale
+		per cui $x_n \tendston \xbar$. Dal momento che allora $f$ è derivabile in $\xbar$, $f$ è anche
+		continua in $\xbar$, e quindi si ricava che $f(x_n) \tendston f(\xbar)$. Si osserva dunque
+		che $f(x_n) - f(\xbar) \leq 0$ e $x_n - \xbar > 0 \implies \frac{f(x_n) - f(\xbar)}{x_n - \xbar} \leq 0$,
+		da cui, per il teorema della permanenza del segno, si ricava che $L_+ = \lim_{n \to \infty} \frac{f(x_n) - f(\xbar)}{x_n - \xbar} \leq 0$. \\
+		
+		Allora, dal momento che $f$ è derivabile in $\xbar$ e che la derivata destra
+		deve coincidere con la derivata classica, $f'(\xbar) =
+		\lim_{x \to \xbar^+} \frac{f(x) - f(\xbar)}{x-\xbar} = \lim_{n \to \infty} \frac{f(x_n) - f(\xbar)}{x-\xbar} = L_+ \leq 0$. \\
+		
+		Analogamente si ricava che $f'(\xbar) \geq 0$, e quindi che $f'(\xbar)$ è necessariamente pari a zero, da cui la
+		tesi.
+	\end{proof}
+
+	\begin{remark} \nl
+		\li Si può facilmente generalizzare il teorema di Fermat assumendo ipotesi più deboli. Sia infatti $x_M$ un punto di massimo locale e sia $f$ continua in $x_M$,
+		allora, qualora esistano, $D_+ f(x_M) \leq 0$ e $D_- f(x_M) \geq 0$. Analogamente
+		si estende la proposizione a $x_m$ punto di minimo locale. 
+	\end{remark}
 
 	\begin{theorem} (di Rolle)
 		Sia $I = [a, b] \subset \RR$ e sia $f : I \to \RR$ tale che
@@ -212,11 +234,10 @@
 	\begin{proof}
 		Per il teorema di Weierstrass $f$ ammette un punto di massimo $M$ e uno di minimo $m$ in $I$. Se $f(a) = M$ e $f(b) = m$ o viceversa, la
 		funzione $f$ è costante in $I$, e quindi per ogni punto in $(a, b)$
-		la derivata è nulla, dacché $f$ è sempre derivabile. Altrimenti,
+		la derivata è nulla. Altrimenti,
 		sicuramente uno tra il punto di massimo e quello di minimo appartiene
-		a $(a, b)$. Senza perdita di generalità, si assuma che $\exists x_M \in (a, b)$ tale che $f(x_M) = M$: per
-		il teorema di Fermat $f'(x_M) = 0$. Analogamente per il caso in cui
-		$\exists x_m \in (a, b)$ tale che $f(x_m) = m$, da cui la tesi.
+		a $(a, b)$. Sia $\xbar$ tale punto. Allora, per il teorema di Fermat, $f'(\xbar) = 0$, da cui
+		la tesi.
 	\end{proof}
 
 	\begin{theorem} (di Cauchy)
@@ -238,12 +259,12 @@
 	\begin{theorem} (di Lagrange)
 		Sia $I = [a, b] \subset \RR$ e sia $f: I \to \RR$ tale che $f$
 		sia continua su $I$ e che $f$ sia derivabile in $(a, b)$. Allora
-		$\exists \xbar \in (a, b)$ tale che $f'(\xbar) = \frac{f(b) - f(a)}{b-a}$, ossia la cui retta tangente è parallela alla secante
+		$\exists \xbar \in (a, b)$ tale che $f'(\xbar) = \frac{f(b) - f(a)}{b-a}$, ossia tale per cui la retta tangente a $f$ in $\xbar$ è parallela alla secante
 		che passa per $(a, f(a))$ e $(b, f(b))$.
 	\end{theorem}
 
 	\begin{proof}
-		Si consideri $g(x) = x$, $g$ è continua in $[a, b]$ e derivabile
+		Si consideri $g(x) = x$. $g$ è continua in $[a, b]$ e derivabile
 		in $(a, b)$, con derivata sempre non nulla in tale intervallo.
 		Allora, per il teorema di Cauchy, $\exists \xbar \in (a, b) \mid
 		f'(\xbar) = \frac{f(b)-f(a)}{b-a}$, da cui la tesi.
@@ -263,13 +284,13 @@
 		Si considerino $c < d \in I$. Allora, per il teorema di Lagrange,
 		$\exists \xbar \in (c, d) \mid f'(c) = \frac{f(d) - f(c)}{d-c}
 		\implies f(d) - f(c) = \underbrace{f'(c) (d-c)}_{\geq 0} \implies
-		f(d) \geq f(c)$, ossia che $f$ è crescente in $I$.
+		f(d) \geq f(c)$, e quindi $f$ è crescente in $I$, da cui la tesi.
 	\end{proof}
 
 	\begin{remark}\nl
 		\li L'interpretazione geometrica del teorema di Cauchy, rispetto
 		a quella di Lagrange, è leggermente più complicata. Si consideri
-		la curva $\gamma : \RR \to \RR^2$ tale che
+		la curva continua $\gamma : \RR \to \RR^2$ tale che
 		$\gamma(t) =(g(t), f(t))$. Si osserva che il coefficiente della
 		retta tangente in $\xbar$ per $\gamma$ è dato da $\lim_{h \to 0} \frac{f(\xbar + h) - f(\xbar)}{g(\xbar + h) - g(\xbar)}$, che,
 		sotto le ipotesi del teorema di Cauchy, può essere riscritto
@@ -280,43 +301,68 @@
 	\end{remark}
 
 	\begin{exercise}
-		Dare un esempio di una funzione $f : \RR \to \RR$ crescente e
-		discontinua $\forall x \in \ZZ$.
+		Si descriva un insieme $X$ tale che i suoi unici punti di accumulazione
+		siano $\pm 1$.
 	\end{exercise}
 
 	\begin{solution}
-		Si consideri $f(x) = \lfloor x \rfloor$.
-	\end{solution}
-
-	\begin{exercise}
-		Si descriva un insieme $X$ tale che i suoi punti di accumulazione
-		sono $\{\pm 1\}$.
-	\end{exercise}
-
-	\begin{solution}
-		Si consideri $X = \{1 + \frac{1}{n}\} \cup \{-1 + \frac{1}{n}\}$.
+		Si consideri $X = \{1 + \frac{1}{n}\} \cup \{-1 - \frac{1}{n}\}$, al variare di $n \in \NN$. Sia
+		$J = [1 - \eps, 1 + \eps]$ un intorno di $1$. Allora $1 + \frac{1}{n} \in J$ per $n > \frac{1}{\eps}$,
+		da cui si ricava che $1$ è un punto di accumulazione di $X$; analogamente si verifica che $-1$ è
+		un punto di accumulazione di $X$. Si consideri adesso l'intorno $J = \left[1 + \frac{1}{n} - \frac{1}{2} \left( \frac{1}{n} - \frac{1}{n+1} \right), 1 + \frac{1}{n} + \frac{1}{2} \left( \frac{1}{n} - \frac{1}{n+1} \right) \right]$. Si verifica che nessun punto di $X$, oltre $1 + \frac{1}{n}$ appartiene a $J$, e quindi
+		$1 + \frac{1}{n}$ non è punto di accumulazione di $X$. Analogamente non lo è alcun numero della forma
+		$-1 - \frac{1}{n}$.
 	\end{solution}
 
 	\begin{exercise}
 		Sia $f : X \to \RRbar$ continua in $\xbar$ e sia $a < f(\xbar)$.
 		Allora esiste $J$ intorno di $\xbar$ tale che $a < f(x)$ $\forall
-		x \in J$.
+		x \in J \cap X \setminus \{\xbar\}$.
 	\end{exercise}
 
+	\begin{solution}
+		Si consideri $g : X \to \RRbar$ tale che $g(x) = f(x) - a$. Poiché $g$ è una somma di
+		funzioni continue in $\xbar$, anch'essa è continua in $g$. Allora, poiché $g(\xbar) > 0$,
+		per il teorema della permanenza del segno, esiste un intorno $J$ di $\xbar$ tale per cui
+		$g(x) > 0$ $\forall x \in J$, ossia tale per cui $f(x) > a$ $\forall x \in J$, da cui la tesi.
+	\end{solution}
+
 	\begin{exercise}
-		Sia $X \subseteq \RRbar$ e sia $\xbar$ punto di accumulazione di $X$,
-		$f_1$, $f_2 : X \to \RRbar$. Allora:
+		Sia $X \subseteq \RRbar$ e sia $\xbar$ punto di accumulazione di $X$. Siano
+		$f_1$, $f_2 : X \to \RRbar$. Si dimostri allora che:
 		
-	\begin{enumerate}[(i)]
-		\item Se $f_1 \tendsto{\xbar} +\infty$ e $f_2$ è limitata inferiormente
-		in un intorno $J$ di $\xbar$, allora $f_1(x) + f_2(x) \tendsto{\xbar} +\infty$.
-		\item Se $f_1 \tendsto{\xbar} 0$ e $f_2$ è limitata in un intorno
-		di $\xbar$, allora $f_1 f_2(x) \tendsto{\xbar} 0$.
-		\item Se $f_1 \tendsto{\xbar} +\infty$ è limitata inferiormente
-		da una costante positiva $m$ in un intorno $J$ di $\xbar$, allora
-		$f_1 f_2 \tendsto{\xbar} +\infty$. 
-	\end{enumerate}
+		\begin{enumerate}[(i)]
+			\item se $f_1 \tendsto{\xbar} +\infty$ e $f_2$ è limitata inferiormente
+			in un intorno $J$ di $\xbar$, allora $f_1(x) + f_2(x) \tendsto{\xbar} +\infty$;
+			\item se $f_1 \tendsto{\xbar} 0$ e $f_2$ è limitata in un intorno $J$
+			di $\xbar$, allora $f_1 f_2(x) \tendsto{\xbar} 0$;
+			\item se $f_1 \tendsto{\xbar} +\infty$ è limitata inferiormente
+			da una costante positiva $c$ in un intorno $J$ di $\xbar$, allora
+			$f_1 f_2 \tendsto{\xbar} +\infty$. 
+		\end{enumerate}
 	\end{exercise}
+
+	\begin{solution} Si dimostrano i tre risultati separatamente.
+		
+		\begin{enumerate}[(i)]
+			\item Sia $c$ la costante tale per cui $f_2(x) \geq c$ $\forall x \in J \cap X$. Sia $I = [a, \infty]$ un intorno di $+\infty$. Se $c < 0$, poiché $f_1 \tendsto{\xbar} +\infty$, esiste un intorno $J'$ tale per cui $f_1(J' \cap X \setminus \{ \xbar \}) \subseteq [a-c, \infty] \subseteq I$. Sia dunque $Z = J \cap J'$. Allora
+			$(f_1 + f_2)(x) = f_1(x) + f_2(x) \geq a-c+c = a$ $\forall x \in Z$, da cui si conclude che
+			$(f_1 + f_2)(Z \cap X \setminus \{\xbar\}) \subseteq I$. Se invece $c \geq 0$, è sufficiente considerare
+			un intorno $J'$ di $\xbar$ tale per cui $f_1(J' \cap X \setminus \{\xbar\}) \subseteq I$, da cui
+			$(f_1 + f_2)(x) = f_1(x) + f_2(x) \geq a+c \geq a$ $\forall x \in Z \implies (f_1+f_2)(Z \cap X \setminus \{\xbar\}) \subseteq I$, da cui la tesi.
+			
+			\item Poiché $f_2$ è limitata in $J$, esistono delle costanti finite $a$, $b \in \RR$ tali per cui $a \leq f_2(x) \leq b$ $\forall x \in J$. Sia
+			$I = [-\eps, \eps]$ un intorno di $0$, con $\eps > 0$. Si consideri $c := \max\{\abs a, \abs b\}$.
+			Allora vale che $-c \leq f_2(x) \leq c$ $\forall x \in J$. Poiché $f_1 \tendsto{\xbar} 0$, esiste
+			un intorno $J'$ di $\xbar$ tale per cui $f(J' \cap X \setminus \{\xbar\}) \subseteq \left[-\frac{\eps}{c}, \frac{\eps}{c}\right]$. Si consideri ora $Z := J \cap J'$: vale allora che $\abs{(f_1 f_2)(x)} = \abs{f_1(x) f_2(x)} \leq c \frac{\eps}{c} = \eps$ $\forall x \in Z \cap X \setminus \{\xbar\}$. Si conclude
+			dunque che $(f_1f_2)(Z \cap X \setminus \{\xbar\}) \subseteq I$, da cui la tesi.
+			
+			\item Sia $I = [a, \infty]$ un intorno di $+\infty$. Allora, poiché $f_1 \tendsto{\xbar} +\infty$,
+			esiste un intorno $J'$ di $\xbar$ tale per cui $f_1(J' \cap X \setminus \{\xbar\}) \subseteq [\abs a, \infty] \subseteq I$. Si
+			consideri dunque $Z := J \cap J'$: vale dunque che $(f_1f_2)(x) = f_1(x) f_2(x) \geq \abs{a}c \geq a$ $\forall x \in Z \cap X \setminus \{\xbar\}$. Si conclude allora che $(f_1f_2)(Z \cap X \setminus \{\xbar\}) \subseteq I$, da cui la tesi.
+		\end{enumerate}
+		
+	\end{solution}
 
 	\begin{exercise}
 		Sia $f: \RR \to \RR$ tale che:
@@ -325,6 +371,26 @@
 		
 		\vskip 0.05in
 		
-		Mostrare che $f$ è continua, che $f'(0) = 1$ e che $f'$ non è continua in zero.
+		Si mostri che $f$ è continua ovunque e che $D_+ f(0) = 1$.
 	\end{exercise}
+
+	\begin{solution}
+		Poiché somma di funzioni elementari, $f$ è continua in $(0, \infty)$. Analogamente è continua in
+		$(-\infty, 0)$ dacché è costante in tale intervallo. Affinché allora $f$ sia continua ovunque è
+		sufficiente che si dimostri che è continua anche in $0$. Dal momento che $0$ è un punto di accumulazione
+		sia destro che sinistro di $\RR$, questo equivale a mostrare che il limite destro e sinistro di $f$
+		esistono in $0$ e coincidono. \\
+		
+		Si verifica dunque che
+		\[ \lim_{x \to 0^-} f(x) = 0, \qquad \lim_{x \to 0^+} f(x) = \lim_{x \to 0^+} x + \lim_{x \to 0^+} 2x^2 \sin\left(\frac{1}{x}\right) = 0, \]
+		
+		dove si è impiegato il fatto che $\sin\left(\frac{1}{x}\right)$ è limitata in ogni intorno di $0$ e che
+		$2x^2 \tendsto{0^+} 0$; quindi $f$ è continua in $0$, e lo è allora ovunque. \\
+		
+		Si computa allora la derivata destra di $f$ in $0$:
+		
+		\[ D_+ f(0) =  \lim_{h \to 0^+} \frac{h + 2h^2 \sin\left(\frac{1}{h}\right)}{h} = 1 + \lim_{h \to 0^+} 2 h \sin\left(\frac{1}{h}\right) = 1,   \]
+		
+		dove si è usato lo stesso argomento di prima per computare $\lim_{h \to 0^+} 2 h \sin\left(\frac{1}{h}\right) = 0$. \\
+	\end{solution}
 \end{document}
