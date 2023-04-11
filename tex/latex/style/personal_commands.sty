@@ -23,6 +23,8 @@
 \newcommand{\wip}{\begin{center}\textit{Questo avviso sta ad indicare che questo documento è ancora una bozza e non è
 			da intendersi né completo, né revisionato.}\end{center}}
 
+\newcommand\hr{\vskip 0.05in \par\vspace{-.5\ht\strutbox}\noindent\hrulefill\par}
+
 % Modalità matematica/fisica
 \let\oldvec\vec
 \renewcommand{\vec}[1]{\underline{#1}}
@@ -92,6 +94,9 @@
 \newcommand{\RRbar}{\overline{\RR}}
 
 % Spesso utilizzati al corso di Geometria 1.
+\newcommand{\conj}[1]{\overline{#1}}
+
+\let\imm\Im
 \let\Im\undefined
 \DeclareMathOperator{\Im}{Im}
 \DeclareMathOperator{\Rad}{Rad}
@@ -113,10 +118,11 @@
 \DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\Cof}{Cof}
 
-\newcommand{\Eigsp}[1]{V_{\lambda}}
-\newcommand{\Gensp}[1]{\widetilde{V_{\lambda}}}
+\newcommand{\Eigsp}[0]{V_{\lambda}}
+\newcommand{\Gensp}[0]{\widetilde{V_{\lambda}}}
 \newcommand{\eigsp}[1]{V_{\lambda_{#1}}}
 \newcommand{\gensp}[1]{\widetilde{V_{\lambda_{#1}}}}
+\newcommand{\genspC}[1]{\widetilde{V_{#1}}}
 
 \DeclareMathOperator{\val}{val}
 \DeclareMathOperator{\Span}{Span}
