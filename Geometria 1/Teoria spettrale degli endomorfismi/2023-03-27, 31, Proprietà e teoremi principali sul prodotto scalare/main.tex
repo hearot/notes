@@ -18,7 +18,8 @@
 	
 	\begin{note}
 		Nel corso del documento, per $V$ si intenderà uno spazio vettoriale di dimensione
-		finita $n$ e per $\varphi$ un suo prodotto scalare.
+		finita $n$ e per $\varphi$ un suo prodotto scalare. Analogamente si intenderà lo stesso
+		per $V'$ e $\varphi'$.
 	\end{note}
 	
 	\begin{proposition} (formula delle dimensioni del prodotto scalare)
@@ -133,10 +134,92 @@
 		di elementi nulli.
 	\end{remark}
 
+	\begin{definition} (somma diretta ortogonale)
+		Siano i sottospazi $U$ e $W \subseteq V$ in somma diretta. Allora si dice che $U$ e $W$ sono in \textbf{somma
+		diretta ortogonale rispetto al prodotto scalare} $\varphi$ di $V$, ossia che $U \oplus W = U \oplus^\perp W$, se $\varphi(\vec u, \vec w) = 0$ $\forall \vec u \in U$, $\vec w \in W$.
+	\end{definition}
+
+	\begin{definition} (cono isotropo)
+		Si definisce \textbf{cono isotropo} di $V$ rispetto al prodotto scalare $\varphi$ il seguente insieme:
+		
+		\[ \CI(\varphi) = \{ \v \in V \mid \varphi(\v, \v) = 0 \}, \]
+		
+		\vskip 0.05in
+		
+		ossia l'insieme dei vettori isotropi di $V$.
+	\end{definition}
+
 	\begin{note}
-		La notazione $\varphi > 0$ indica che $\varphi$ è definito positivo.
-		Analogamente $\varphi < 0$ indica che $\varphi$ è definito negativo.
+		La notazione $\varphi > 0$ indica che $\varphi$ è definito positivo (si scrive $\varphi \geq 0$ se invece è semidefinito
+		positivo).
+		Analogamente $\varphi < 0$ indica che $\varphi$ è definito negativo (e $\varphi \leq 0$ indica che è semidefinito negativo).
 	\end{note}
+
+	\begin{exercise} Sia $\Char \KK \neq 2$.
+		Siano $\vv1$, ..., $\vv k \in V$ e sia $M = \left( \varphi(\vv i, \vv j) \right)_{i, j = 1\textrm{---}k} \in M(k, \KK)$,
+		dove $\varphi$ è un prodotto scalare di $V$. Sia inoltre $W = \Span(\vv 1, ..., \vv k)$. Si dimostrino
+		allora le seguenti affermazioni.
+		
+		\begin{enumerate}[(i)]
+			\item Se $M$ è invertibile, allora $\vv 1$, ..., $\vv k$ sono linearmente indipendenti.
+			
+			\item Siano $\vv 1$, ..., $\vv k$ linearmente indipendenti. Allora $M$ è invertibile $\iff$ $\restr{\varphi}{W}$ è non degenere $\iff$ $W \cap W^\perp = \zerovecset$.
+			
+			\item Siano $\vv1$, ..., $\vv k$ a due a due ortogonali tra loro. Allora $M$ è invertibile $\iff$ nessun
+			vettore $\vv i$ è isotropo.
+			
+			\item Siano $\vv1$, ..., $\vv k$ a due a due ortogonali tra loro e siano anche linearmente indipendenti.
+			Allora $M$ è invertibile $\implies$ si può estendere $\basis_W = \{\vv 1, \ldots, \vv k\}$ a una base ortogonale di $V$.
+			
+			\item Sia $\KK = \RR$. Sia inoltre $\varphi > 0$. Allora $\vv 1$, ..., $\vv k$ sono linearmente
+			indipendenti $\iff$ $M$ è invertibile.
+			
+			\item Sia $\KK = \RR$. Sia ancora $\varphi > 0$. Allora se $\vv 1$, ..., $\vv k$ sono a due a due
+			ortogonali e sono tutti non nulli, sono anche linearmente indipendenti.
+		\end{enumerate}
+	\end{exercise}
+
+	\begin{solution}
+		\begin{enumerate}[(i)]
+			\item Siano $a_1$, ..., $a_k \in \KK$ tali che $a_1 \vv 1 + \ldots + a_k \vv k = 0$. Vale in
+			particolare che $\vec 0 = \varphi(\vv i, \vec 0) = \varphi(\vv i, a_1 \vv 1 + \ldots + a_k \vv k) =
+			\sum_{j=1}^k a_j \varphi(\vv i, \vv j)$ $\forall 1 \leq i \leq k$. Allora $\sum_{j=1}^k a_j M^j = 0$.
+			Dal momento che $M$ è invertibile, $\rg(M) = k$, e quindi l'insieme delle colonne di $M$ è linearmente
+			indipendente, da cui si ricava che $a_j = 0$ $\forall 1 \leq j \leq k$, e quindi che $\vv 1$, ...,
+			$\vv k$ sono linearmente indipendenti.
+			
+			\item Poiché $\vv 1$, ..., $\vv k$ sono linearmente indipendenti, tali vettori formano una base di
+			$W$, detta $\basis$. In particolare, allora, vale che $M = M_\basis(\restr{\varphi}{W})$. Pertanto,
+			se $M$ è invertibile, $\Rad(\restr{\varphi}{W}) = \Ker M = \zerovecset$, e dunque $\restr{\varphi}{W}$
+			è non degenere. Se invece $\restr{\varphi}{W}$ è non degenere, $\zerovecset = \Rad(\restr{\varphi}{W}) = W \cap W^\perp$. Infine, se $W \cap W^\perp = \zerovecset$, $\zerovecset = W \cap W^\perp = \Rad(\restr{\varphi}{W}) = \Ker M$, e quindi $M$ è iniettiva, e dunque invertibile.
+			
+			\item Dal momento che $\vv 1$, ..., $\vv k$ sono ortogonali tra loro, $M$ è una matrice diagonale.
+			Pertanto $M$ è invertibile se e solo se ogni suo elemento diagonale è diverso da $0$, ossia
+			se $\varphi(\vv i, \vv i) \neq 0$ $\forall 1 \leq i \leq k$, e dunque se e solo se nessun vettore
+			$\vv i$ è isotropo.
+			
+			\item Se $M$ è invertibile, da (ii) si deduce che $\Rad(\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$,
+			e quindi che $W$ e $W^\perp$ sono in somma diretta. Inoltre, per la formula delle dimensioni del prodotto
+			scalare, $\dim W + \dim W^\perp = \dim V + \underbrace{\dim (W \cap V^\perp)}_{\leq \dim (W \cap W^\perp) = 0} = \dim V$. Pertanto $V = W \oplus^\perp W^\perp$. \\ 
+			
+			Allora, dacché $\Char \KK \neq 2$, per il teorema di Lagrange, $W^\perp$ ammette una base ortogonale $\basis_{W^\perp}$. Si conclude
+			dunque che $\basis = \basis_W \cup \basis_{W^\perp}$ è una base ortogonale di $V$.
+			
+			\item Se $M$ è invertibile, da (i) $\vv1$, ..., $\vv k$ sono linearmente indipendenti. Siano ora
+			invece $\vv 1$, ..., $\vv k$ linearmente indipendenti per ipotesi. Siano $a_1$, ..., $a_k \in \KK$ tali
+			che $a_1 M^1 + \ldots + a_k M^k = 0$, allora $a_1 \varphi(\vv i, \vv 1) + \ldots + a_k \varphi(\vv i, \vv k) = 0$ $\forall 1 \leq i \leq k$. Pertanto, detto $\v = a_1 \vv 1 + \ldots + a_k \vv k$, si ricava che:
+			
+			\[ \varphi(\v, \v) = \sum_{i=1}^k \sum_{j=1}^k a_j \, \varphi(\vv i, \vv j) = 0. \]
+			
+			Tuttavia questo è possibile solo se $\v = a_1 \vv 1 + \ldots + a_k \vv k = 0$. Dal momento che
+			$\vv 1$, ..., $\vv k$ sono linearmente indipendenti, si conclude che $a_1 = \cdots = a_k = 0$, ossia
+			che le colonne di $M$ sono tutte linearmente indipendenti e quindi che $\rg(M) = k \implies$ $M$ è invertibile.
+			
+			\item Poiché $\vv 1$, ..., $\vv k$ sono ortogonali a due a due tra loro, $M$ è una matrice diagonale.
+			Inoltre, dacché $\varphi > 0$ e $\vv i \neq \vec 0$ $\forall 1 \leq i \leq k$, gli elementi diagonali di $M$ sono sicuramente tutti diversi da zero, e quindi $\det (M) \neq 0$ $\implies$ $M$ è invertibile. Allora,
+			per il punto (v), $\vv 1$, ..., $\vv k$ sono linearmente indipendenti.
+		\end{enumerate}
+	\end{solution}
 
 	\begin{definition}
 		Data una base ortogonale $\basis$ di $V$ rispetto al prodotto
@@ -146,7 +229,7 @@
 		\begin{align*}
 			\iota_+(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} > 0 \}, &\text{(}\textbf{indice di positività}\text{)} \\
 			\iota_-(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} < 0 \}, &\text{(}\textbf{indice di negatività}\text{)}\\
-			\iota_0(\varphi). &= \dim V^\perp &\text{(}\textbf{indice di nullità}\text{)}
+			\iota_0(\varphi) &= \dim V^\perp &\text{(}\textbf{indice di nullità}\text{)}
 		\end{align*}
 	
 		Quando il prodotto scalare $\varphi$ è noto dal contesto, si omette
@@ -221,52 +304,67 @@
 		ortogonale $\basis$ con forma quadratica nulla, si osserva che $W = \Span(\ww 1, ..., \ww k)$ altro non è che $V^\perp$ stesso. Infatti, come
 		visto anche nella dimostrazione del teorema di Sylvester reale, vale
 		che	$\dim W = \dim \Ker (M_\basis(\varphi)) = \dim V^\perp$. Inoltre,
-		se $\w \in W$ e $\v \in V$, $\varphi(\w, \v) = \varphi(\sum_{i=1}^k \alpha_i \ww i, \sum_{i=1}^k \beta_i \ww i + \sum_{i=k+1}^n \beta_i \vv i) = \sum_{i=1}^k \alpha_i \beta_i q(\ww i) = 0$, e quindi
+		se $\w \in W$ e $\v \in V$, $\varphi(\w, \v) = \varphi(\sum_{i=1}^k
+		\alpha_i \ww i, \sum_{i=1}^k \beta_i \ww i + \sum_{i=k+1}^n \beta_i \vv i)
+		= \sum_{i=1}^k \alpha_i \beta_i q(\ww i) = 0$, e quindi
 		$W \subseteq V^\perp$, da cui si conclude che $W = V^\perp$. \\
 		\li Vale in particolare che $\rg(\varphi) = \iota_+ + \iota_-$, mentre
 		$\dim \Ker(\varphi) = \iota_0$, e quindi $n = \iota_+ + \iota_- + \iota_0$.
 	\end{remark}
 
-	\begin{definition}
+	\begin{definition} (isometria)
 		Dati due spazi vettoriali $(V, \varphi)$ e
 		$(V', \varphi')$ dotati di prodotto scalare sullo stesso campo $\KK$, si dice che
 		$V$ e $V'$ sono \textbf{isometrici} se esiste un isomorfismo
-		$f$, detto isometria, che preserva tali che prodotti, ossia tale che:
+		$f$, detto \textit{isometria}, che preserva tali che prodotti, ossia tale che:
 		
 		\[ \varphi(\vec v, \vec w) = \varphi'(f(\vec v), f(\vec w)). \]
 	\end{definition}
 
-	\begin{exercise}\nl
-		\li $f : V \to V'$ è un isometria $\iff$ per una base $\basis =
-		\{\vv1, ..., \vv k\}$ di $V$, $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\iff$ vale per ogni base.
+	\begin{exercise} Sia $f : V \to V'$ un isomorfismo. Allora $f$ è un'isometria $\iff$ $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$ $\iff$ $\exists$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$ tale che $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
 	\end{exercise}
 
-	\begin{proposition}
-		Per $(V, \varphi)$ e $(V', \varphi')$ sono equivalenti:
+	\begin{solution} Se $f$ è un'isometria, detta $\basis$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$
+		dal momento che $f$ è anche un isomorfismo. Inoltre, dacché $f$ è un'isometria, vale sicuramente che
+		$\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. \\
+		
+		Sia ora assunto per ipotesi che $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Allora, analogamente a prima, detta $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$, e in quanto tale,
+		per ipotesi, è tale che $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. \\
+		
+		Sia infine assunto per ipotesi che $\exists$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$ tale che $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Siano $\v$, $\w \in V$. Allora $\exists a_1$, ..., $a_n$, $b_1$, ..., $b_n \in \KK$
+		tali che $\v = a_1 \vv 1 + \ldots + a_n \vv n$ e $\w = b_1 \vv 1 + \ldots + b_n \vv n$. Si ricava pertanto
+		che:
+		
+		\[ \varphi'(f(\v), f(\w)) = \sum_{i=1}^n \sum_{j=1}^n a_i b_j \, \varphi'(f(\vv i), f(\vv j)) =
+		\sum_{i=1}^n \sum_{j=1}^n a_i b_j \, \varphi(\vv i, \vv j) = \varphi(\v, \w), \]
+		
+		da cui la tesi.
+	\end{solution}
+
+	\begin{proposition} Sono equivalenti le seguenti affermazioni:
 		
 		\begin{enumerate}[(i)]
 			\item $V$ e $V'$ sono isometrici;
-			\item $\forall$ base $\basis$ di $V$, $\basis'$ di $V'$,
-			$M_\basis(\varphi)$ e $M_\basis'(\varphi')$ sono congruenti;
-			\item lo stesso ma per una base.
+			\item $\forall$ base $\basis$ di $V$, base $\basis'$ di $V'$,
+			$M_\basis(\varphi)$ e $M_{\basis'}(\varphi')$ sono congruenti;
+			\item $\exists$ base $\basis$ di $V$, base $\basis'$ di $V'$ tale che
+			$M_\basis(\varphi)$ e $M_{\basis'}(\varphi')$ sono congruenti.
 		\end{enumerate}
 	\end{proposition}
 
-	\begin{proof}
-		(1-2)
+	\begin{proof} Se $V$ e $V'$ sono isometrici, sia $f : V \to V'$ un'isometria. Sia $\basisC = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Allora, poiché $f$ è anche un isomorfismo, $\basisC' = f(\basisC)$ è una base di $V$ tale che
+		$\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Pertanto $M_\basisC(\varphi) = M_{\basisC'}(\varphi')$. Si conclude allora che, cambiando base in $V$ (o in $V'$), la matrice associata
+		al prodotto scalare varia per congruenza dalla formula di cambiamento di base per il prodotto scalare, da cui si ricava che per ogni scelta di $\basis$ base di $V$ e di $\basis'$ base di $V'$, $M_\basis(\varphi) \cong M_{\basis'}(\varphi')$. Inoltre, se tale risultato è vero per ogni $\basis$ base di $V$ e di $\basis'$ base di $V'$, dal momento che sicuramente esistono due basi $\basis$, $\basis'$ di $V$ e $V'$, vale anche (ii) $\implies$ (iii). \\
 		
-		 \rightproof Sia $\basis'' = f(\basis)$. Allora $M_{\basis''}(\varphi')=
-		 (\varphi'(f(\vv i), f(\vv j))) = (\varphi(\vv i, \vv j))$. Allora,
-		 per la formula di cambiamento di base, le matrici
-		 $M_{\basis'}(\varphi')$ e $M_{\basis'}(\varphi')$ sono congruenti.
-		 
-		 \leftproof Sia $A = M_\basis(\varphi) = P^\top B P$ e
-		 $B = M_{\basis'}(\varphi')$. Allora $a_{ij} = \varphi(\vv i, \vv j) =
-		 ... = \varphi'(\vec{v_i^{ii}}, \vec{v_j^{ii}})$, dove
-		 $\vec{v_i^{ii}}$ è base perché $P$ è invertibile. Allora
-		 l'applicazione $f : V \to V'$ che manda $\vv i \mapsto \vec{v_{i}^{''}}$ è un isometria.
-		 
-		 (2-3) esercizio.
+		Si dimostra ora (iii) $\implies$ (i). Per ipotesi $M_\basis(\varphi) \cong M_{\basis'}(\varphi')$, quindi
+		$\exists P \in \GL(n, \KK) \mid M_{\basis'}(\varphi') = P^\top M_\basis(\varphi) P$. Allora $\exists$ $\basis''$
+		base di $V'$ tale che $P = M_{\basis''}^{\basis'}(\Idv)$, da cui $P\inv = M_{\basis'}^{\basis''}(\varphi)$. Per la formula di cambiamento di base del prodotto
+		scalare, $M_{\basis''}(\varphi) = (P\inv)^\top M_{\basis'} P\inv = M_\basis(\varphi)$. Detta
+		$\basis'' = \{ \ww 1, \ldots, \ww n \}$, si costruisce allora l'isomorfismo $f : V \to V'$ tale
+		che $f(\vv i) = \ww i$ $\forall 1 \leq i \leq n$.. Dal momento che per costruzione $M_\basis(\varphi) = M_{\basis''}(\varphi')$,
+		$\varphi(\vv i, \vv j) = \varphi'(\ww i, \ww j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
+		Si conclude dunque che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v, \w \in V$, e dunque
+		che $f$ è un'isometria, come desiderato dalla tesi. 
 	\end{proof}
 
 	\begin{proposition} $(V, \varphi)$ e $(V', \varphi')$ spazi vettoriali
@@ -274,8 +372,11 @@
 		isometrici $\iff$ $\varphi$ e $\varphi'$ hanno la stessa segnatura.
 	\end{proposition}
 
-	\begin{proof}
-		\rightproof Basta che prendi la solita base. \\
+	\begin{proof}\nl\nl
+		\rightproof Per la precedente proposizione, esistono due basi $\basis$ e $\basis'$, una di $V$ e una di $V'$,
+		tali che $M_\basis(\varphi) \cong M_{\basis'}(\varphi)$. Allora queste due matrici condividono la stessa
+		segnatura. \\
+
 		\leftproof Siano $\basis$, $\basis'$ basi di Sylvester di $V$
 		e di $V'$. Si definisce allora l'applicazione $f : V \to V'$ tale
 		che $f(\vv i) = \ww i$: essa è un isometria.
@@ -285,10 +386,6 @@
 		Due matrici simmetriche sono congruenti se e solo se hanno
 		la stessa segnatura.
 	\end{corollary}
-
-	\begin{definition} (somma diretta ortogonale)
-		$V = U \oplusperp W$.
-	\end{definition}
 
 	\begin{remark}\nl
 		\li se $V = U \oplusperp W$, allora $\iota_+(\varphi) = \iota_+(\restr{\varphi}{V}) + \iota_+(\restr{\varphi}{W})$, e

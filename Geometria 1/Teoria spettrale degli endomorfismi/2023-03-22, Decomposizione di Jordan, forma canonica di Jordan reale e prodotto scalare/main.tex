@@ -252,19 +252,19 @@ forma bilineare simmetrica, ossia un prodotto scalare su $\KK^n$.
 	\end{proof}
 
 	\begin{definition}
-		Si definisce \textbf{congruenza} la relazione di equivalenza $\sim$ definita nel seguente
+		Si definisce \textbf{congruenza} la relazione di equivalenza $\cong$ definita nel seguente
 		modo su $A, B \in M(n, \KK)$:
 		
-		\[ A \sim B \iff \exists P \in GL(n, \KK) \mid A = P^\top A P. \]
+		\[ A \cong B \iff \exists P \in GL(n, \KK) \mid A = P^\top A P. \]
 	\end{definition}
 
 	\begin{remark}
-		Si può facilmente osserva che la congruenza è in effetti una relazione di equivalenza. \\
+		Si può facilmente osservare che la congruenza è in effetti una relazione di equivalenza. \\
 		
-		\li $A = I^\top A I \implies A \sim A$ (riflessione), \\
-		\li $A \sim B \implies A = P^\top B P \implies B = (P^\top)\inv A P\inv = (P\inv)^\top A P\inv \implies B \sim A$ (simmetria), \\
-		\li $A \sim B \implies A = P^\top B P$, $B \sim C \implies B = Q^\top C Q$, quindi $A = P^\top Q^\top C Q P =
-		(QP)^\top C (QP)$ (transitività). 
+		\li $A = I^\top A I \implies A \cong A$ (riflessione), \\
+		\li $A \cong B \implies A = P^\top B P \implies B = (P^\top)\inv A P\inv = (P\inv)^\top A P\inv \implies B \cong A$ (simmetria), \\
+		\li $A \cong B \implies A = P^\top B P$, $B \cong C \implies B = Q^\top C Q$, quindi $A = P^\top Q^\top C Q P =
+		(QP)^\top C (QP) \implies A \cong C$ (transitività). 
 	\end{remark}
 
 	\begin{remark}
