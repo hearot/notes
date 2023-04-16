@@ -10,8 +10,6 @@
 	
 	\maketitle
 	
-	\wip
-	
 	\begin{center}
 		\Large \textbf{Proprietà e teoremi principali sul prodotto scalare}
 	\end{center}
@@ -234,7 +232,7 @@
 	
 		Quando il prodotto scalare $\varphi$ è noto dal contesto, si omette
 		e si scrive solo $\iota_+$, $\iota_-$ e $\iota_0$. In particolare,
-		la terna $\sigma = (i_+, i_-, i_0)$ è detta \textbf{segnatura} del
+		la terna $\sigma(\varphi) = \sigma = (i_+, i_-, i_0)$ è detta \textbf{segnatura} del
 		prodotto $\varphi$.
 	\end{definition}
 	
@@ -309,7 +307,9 @@
 		= \sum_{i=1}^k \alpha_i \beta_i q(\ww i) = 0$, e quindi
 		$W \subseteq V^\perp$, da cui si conclude che $W = V^\perp$. \\
 		\li Vale in particolare che $\rg(\varphi) = \iota_+ + \iota_-$, mentre
-		$\dim \Ker(\varphi) = \iota_0$, e quindi $n = \iota_+ + \iota_- + \iota_0$.
+		$\dim \Ker(\varphi) = \iota_0$, e quindi $n = \iota_+ + \iota_- + \iota_0$. \\
+		\li Se $V = U \oplusperp W$, allora $\iota_+(\varphi) = \iota_+(\restr{\varphi}{V}) + \iota_+(\restr{\varphi}{W})$, e
+			analogamente per gli altri indici.
 	\end{remark}
 
 	\begin{definition} (isometria)
@@ -375,46 +375,40 @@
 	\begin{proof}\nl\nl
 		\rightproof Per la precedente proposizione, esistono due basi $\basis$ e $\basis'$, una di $V$ e una di $V'$,
 		tali che $M_\basis(\varphi) \cong M_{\basis'}(\varphi)$. Allora queste due matrici condividono la stessa
-		segnatura. \\
+		segnatura, e così quindi anche $\varphi$ e $\varphi'$. \\
 
-		\leftproof Siano $\basis$, $\basis'$ basi di Sylvester di $V$
-		e di $V'$. Si definisce allora l'applicazione $f : V \to V'$ tale
-		che $f(\vv i) = \ww i$: essa è un isometria.
+		\leftproof Se $\varphi$ e $\varphi'$ hanno la stessa segnatura, esistono due basi $\basis = \{ \vv 1, \ldots, \vv n \}$ e $\basis' = \{ \ww 1, \ldots, \ww n \}$, una
+		di $V$ e una di $V'$, tali che $M = M_\basis(\varphi) = M_{\basis'}(\varphi')$ e che $M$ è una matrice di
+		Sylvester. Allora si costruisce $f : V \to V'$ tale che $f(\vv i) = \ww i$. Esso è un isomorfismo, e per
+		costruzione $\varphi(\vv i, \vv j) = \varphi'(\ww i, \ww j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$, da cui
+		si conclude che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v$, $\w \in V$, e quindi che $V$ e
+		$V'$ sono isometrici.
 	\end{proof}
 
-	\begin{corollary}
-		Due matrici simmetriche sono congruenti se e solo se hanno
-		la stessa segnatura.
-	\end{corollary}
+	% \begin{example}
+	% 	Per $\varphi = x_1 y_1 + x_2 y_2 - x_3 y_3$. %TODO: guarda dalle slide.
+	% \end{example}
 
-	\begin{remark}\nl
-		\li se $V = U \oplusperp W$, allora $\iota_+(\varphi) = \iota_+(\restr{\varphi}{V}) + \iota_+(\restr{\varphi}{W})$, e
-		analogamente per gli altri indici.
-	\end{remark}
-
-	\begin{example}
-		Per $\varphi = x_1 y_1 + x_2 y_2 - x_3 y_3$. %TODO: guarda dalle slide.
-	\end{example}
-
-	\begin{definition}
-		Sia $\KK$ qualunque. $W \subseteq V$ si dice sottospazio isotropo
+	\begin{definition} (sottospazio isotropo)
+		Sia $W$ un sottospazio di $V$. Allora $W$ si dice \textbf{sottospazio isotropo} di $V$
 		se $\restr{\varphi}{W} = 0$.
 	\end{definition}
 
 	\begin{remark}\nl
-		\li $V^\perp$ è isotropo, \\
-		\li $\vec{v}$ è un vettore isotropo $\iff$ $W = \Span(\vec v)$ è sottospazio isotropo, \\
+		\li $V^\perp$ è un sottospazio isotropo di $V$. \\
+		\li $\vec{v}$ è un vettore isotropo $\iff$ $W = \Span(\vec v)$ è un sottospazio isotropo di $V$. \\
 		\li $W \subseteq V$ è isotropo $\iff$ $W \subseteq W^\perp$.
 	\end{remark}
 
 	\begin{proposition}
-		Sia $\varphi$ non degenere. $W \subseteq V$ isotropo, allora
+		Sia $\varphi$ non degenere. Se $W$ è un sottospazio isotropo di $V$, allora
 		$\dim W \leq \frac{1}{2} \dim V$.
 	\end{proposition}
 
 	\begin{proof}
-		$W \subseteq W^\perp \implies \dim W \leq \dim W^\perp \implies
-		\dim W \leq \dim V - \dim W \implies \dim W \leq \frac{1}{2} \dim V$.
+		Poiché $W$ è un sottospazio isotropo di $V$, $W \subseteq W^\perp \implies \dim W \leq \dim W^\perp$.
+		Allora, poiché $\varphi$ è non degenere, $\dim W + \dim W^\perp = \dim V$, $\dim W \leq \dim V - \dim W$,
+		da cui $\dim W \leq \frac{1}{2} \dim V$.
 	\end{proof}
 
 	\begin{definition}
@@ -423,22 +417,29 @@
 	\end{definition}
 
 	\begin{remark}\nl
-		\li Se $\varphi > 0$, $W(\varphi) = 0$.
+		\li Se $\varphi > 0$ o $\varphi < 0$, $W(\varphi) = 0$.
 	\end{remark}
 
 	\begin{proposition}
-		Per $\KK = \RR$ e $\sigma(\varphi) = (\iota_+(\varphi), \iota_-(\varphi), \iota_0(\varphi))$, con $\varphi$ non degenere,
+		Sia $\KK = \RR$. Sia $\varphi$ non degenere e sia $\sigma(\varphi) = (\iota_+(\varphi), \iota_-(\varphi), 0)$. Allora
 		$W(\varphi) = \min\{\iota_+(\varphi), \iota_-(\varphi)\}$.
 	\end{proposition}
 
 	\begin{proof}
-		Sia ad esempio $\iota_-(\varphi) \leq \iota_+(\varphi)$. Se $W$
-		è un sottospazio con $\dim W > \iota_-(\phi)$, e $W^+$ è
-		un sottospazio con $\dim W^+ = \iota_+(\varphi)$ e $\restr{\varphi}{W^+} > 0 \implies \dim (W \cap W^+) > 0$,
-		e quindi $W$ non è isotropo (quindi $W(\varphi) < \iota_-(\varphi)$). \\
+		Senza perdità di generalità si assuma $\iota_-(\varphi) \leq \iota_+(\varphi)$ (il caso $\iota_-(\varphi) > \iota_+(\varphi)$ è analogo). Sia $W$ un sottospazio con $\dim W > \iota_-(\varphi)$. Sia $W^+$
+		un sottospazio con $\dim W^+ = \iota_+(\varphi)$ e $\restr{\varphi}{W^+} > 0$. Allora, per la formula
+		di Grassmann, $\dim W + \dim W^+ > n \implies \dim W + \dim W^+ > \dim W + \dim W^+ - \dim (W \cap W^+) \implies \dim (W \cap W^+) > 0$. Quindi $\exists \w \in W$, $\w \neq \vec 0$ tale che $\varphi(\w, \w) > 0$, da cui
+		si ricava che $W$ non è isotropo. Pertanto $W(\varphi) \leq \iota_-(\varphi)$. \\
 		
-		Sia $\basis$ una base di Sylvester. Per costruirlo prendi
-		coppie della base originale facendo la differenza e nota
-		che ne prendi esattamente quante iota-.
+		Sia $a := \iota_+(\varphi)$ e sia $b := \iota_-(\varphi)$.
+		Sia ora $\basis = \{ \vv 1, \ldots, \vv a, \ww 1, \ldots, \ww b \}$ una base tale per cui $M_\basis(\varphi)$ è  la matrice di Sylvester per $\varphi$. Siano $\vv 1$, ..., $\vv a$ tali che $\varphi(\vv i, \vv i) = 1$
+		con $1 \leq i \leq a$. Analogamente siano $\ww 1$, ..., $\ww b$ tali che $\varphi(\ww i, \ww i) = -1$ con
+		$1 \leq i \leq b$. Detta allora $\basis' = \{ \vv 1 ' := \vv 1 + \ww 1, \ldots, \vv b ' := \vv b + \ww b \}$, sia $W = \Span(\basis')$. \\
+		
+		Si osserva che $\basis'$ è linearmente indipendente, e dunque che $\dim W = \iota_-$. Inoltre
+		$\varphi(\vv i ', \vv j ') = \varphi(\vv i + \ww i, \vv j + \ww j)$. Se $i \neq j$, allora
+		$\varphi(\vv i ', \vv j ') = 0$, dal momento che i vettori di $\basis$ sono a due a due ortogonali
+		tra loro. Se invece $i = j$, allora $\varphi(\vv i ', \vv j ') = \varphi(\vv i, \vv i) + \varphi(\ww i, \ww i) = 1-1=0$. Quindi $M_{\basis'}(\restr{\varphi}{W}) = 0$, da cui si conclude che $\restr{\varphi}{W} = 0$.
+		Pertanto $W(\varphi) \geq i_-(\varphi)$, e quindi $W(\varphi) = i_-(\varphi)$, da cui la tesi.
 	\end{proof}
 \end{document}
