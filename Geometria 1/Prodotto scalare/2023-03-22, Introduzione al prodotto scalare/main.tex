@@ -11,129 +11,14 @@
 	\maketitle
 	
 	\begin{center}
-		\Large \textbf{Decomposizione di Jordan, forma canonica di Jordan reale e prodotto scalare}
+		\Large \textbf{Introduzione al prodotto scalare}
 	\end{center}
 
 	\begin{note}
-		Nel corso del documento, qualora non specificato, per $f$ si intenderà un qualsiasi
-		endomorfismo di $V$, dove $V$ è uno spazio vettoriale di dimensione $n \in \NN$. Inoltre
-		per $\KK$ si intenderà, per semplicità, un campo algebricamente chiuso; altrimenti
-		è sufficiente considerare un campo $\KK$ in cui i vari polinomi caratteristici esaminati
-		si scompongono in fattori lineari.
+		Nel corso del documento, per $V$, qualora non specificato, si intenderà uno spazio vettoriale di dimensione
+		finita $n$.
 	\end{note}
 
-	Sia $J$ la forma canonica di Jordan relativa a $f \in \End(V)$ in una base $\basis$. Allora è possibile decomporre
-	tale matrice in una somma di due matrici $D$ e $N$ tali che:
-	
-	\begin{itemize}
-		\item $D$ è diagonale e in particolare contiene tutti gli autovalori di $J$;
-		\item $N$ è nilpotente ed è pari alla matrice ottenuta ignorando la diagonale di $J$;
-		\item $DN = ND$, dacché le due matrici sono a blocchi diagonali.
-	\end{itemize}
-
-	Pertanto è possibile considerare gli endomorfismi $\delta = M_\basis\inv(D)$ (diagonalizzabile) e $\nu = M_\basis\inv(N)$ (nilpotente).
-	Si osserva allora che questi endomorfismi sono tali che $f = \delta + \nu$ (\textbf{decomposizione di Jordan} di $f$).
-	
-	\begin{theorem}
-		La decomposizione di Jordan di $f$ è unica.
-	\end{theorem}
-
-	\begin{proof}
-		Per dimostrare che la decomposizione di Jordan è unica è sufficiente mostrare che, dati $\delta$, $\delta'$
-		diagonalizzabili e $\nu$, $\nu'$ nilpotenti tali che $f = \delta + \nu = \delta' + \nu'$, deve valere
-		necessariamente che $\delta = \delta'$ e che $\nu = \nu'$. In particolare è sufficiente dimostrare
-		che $\restr{\delta}{\Gensp} = \restr{\delta'}{\Gensp}$ per ogni autovalore $\lambda$ di $f$, dal momento
-		che $V = \gensp 1 \oplus \cdots \oplus \gensp k$, dove $k$ è il numero di autovalori distinti di $f$, e
-		così le matrici associate dei due endomorfismi sarebbero uguali in una stessa base, da cui si concluderebbe che
-		$\delta = \delta'$, e quindi che $\nu = \nu'$. \\
-		
-		Si osserva innanzitutto che $\delta$ (e così tutti gli altri tre endomorfismi) commuta con $f$:
-		$\delta \circ f = \delta \circ (\delta + \nu) \underbrace{=}_{\delta \circ \nu = \nu \circ \delta} (\delta + \nu) \circ \delta = f \circ \delta$.
-		Da quest'ultimo risultato consegue che $\Gensp$ è $\delta$-invariante, dacché se $f$ commuta con $\delta$,
-		anche $(f - \lambda \Id)^n$ commuta con $\delta$. Sia infatti
-		$\v \in \Gensp = \Ker (f - \lambda \Id)^n$, allora $(f - \lambda \Id)^n(\delta(\v)) = \delta((f - \lambda \Id)^n(\v)) = \delta(\vec 0) = \vec 0 \implies \delta(\Gensp) \subseteq \Gensp$. \\
-		
-		Si considerano allora gli endomorfismi $\restr{\delta}{\Gensp}$, $\restr{\delta'}{\Gensp}$, $\restr{\nu}{\Gensp}$, $\restr{\nu'}{\Gensp} \in \End(\Gensp)$. Dal momento che $\restr{\delta}{\Gensp}$
-		e $\restr{\nu}{\Gensp}$ commutano, esiste una base $\basis'$ di $\Gensp$ tale per cui i due endomorfismi
-		sono triangolarizzabili simultaneamente. Inoltre, dal momento che $\restr{\delta}{\Gensp}$ è una restrizione
-		su $\delta$, che è diagonalizzabile per ipotesi, anche quest'ultimo endomorfismo è diagonalizzabile;
-		analogamente $\restr{\nu}{\Gensp}$ è ancora nilpotente. \\
-		
-		Si osserva dunque che $M_{\basis'}(\restr{f}{\Gensp}) =
-		M_{\basis'}(\restr{\delta}{\Gensp}) + M_{\basis'}(\restr{\nu}{\Gensp})$: la
-		diagonale di $M_\basis'(\restr{\nu}{\Gensp})$ è nulla, e $M_{\basis'}(\restr{f}{\Gensp})$, poiché somma
-		di due matrici triangolari superiori, è una matrice triangolare superiore. Allora la diagonale di
-		$M_{\basis'}(\restr{f}{\Gensp})$ raccoglie l'unico autovalore $\lambda$ di $\restr{f}{\Gensp}$, che dunque è
-		l'unico autovalore anche di $\restr{\delta}{\Gensp}$. In particolare, poiché $\restr{\delta}{\Gensp}$ è
-		diagonalizzabile, vale che $\restr{\delta}{\Gensp} = \lambda \Id$. Analogamente $\restr{\delta'}{\Gensp} = \lambda \Id$, e quindi $\restr{\delta}{\Gensp} = \restr{\delta'}{\Gensp}$, da cui anche
-		$\restr{\nu}{\Gensp} = \restr{\nu'}{\Gensp}$. Si conclude dunque che le coppie di endomorfismi sono
-		uguali su ogni restrizione, e quindi che $\delta = \delta'$ e $\nu = \nu'$.
-	\end{proof}
-
-	Sia adesso $V = \RR^n$. Si consideri allora la forma canonica di Jordan di $f$ su $\CC$ (ossia estendendo, qualora
-	necessario, il campo a $\CC$) e sia $\basis$ una base di Jordan per $f$.
-	Sia $\alpha$ un autovalore di $f$ in $\CC \setminus \RR$. Allora, dacché $p_f \in \RR[\lambda]$, anche
-	$\conj \alpha$ è un autovalore di $f$. In particolare, vi è un isomorfismo tra $\genspC \alpha$ e $\genspC{\conj{\alpha}}$ (rappresentato proprio dall'operazione di coniugio). Quindi i blocchi di Jordan
-	relativi ad $\alpha$ e ad $\conj \alpha$ sono gli stessi, benché coniugati. \\
-	
-	Sia ora $\basis'$ una base ordinata di Jordan per $\restr{f}{\genspC \alpha}$, allora $\conj{\basis'}$ è anch'essa una base ordinata di Jordan per $\restr{f}{ \genspC{\conj{\alpha}}}$. Si
-	consideri dunque $W = \genspC \alpha \oplus \genspC{\conj{\alpha}}$ e la restrizione
-	$\varphi = \restr{f}{W}$. Si osserva che la forma canonica di $\varphi$ si ottiene estraendo i singoli blocchi relativi
-	ad $\alpha$ e $\conj \alpha$ dalla forma canonica di $f$. Se $\basis' = \{ \vv 1, ..., \vv k \}$,
-	si considera $\basis'' = \{ \Re(\vv 1), \imm(\vv 1), ..., \Re(\vv k), \imm(\vv k) \}$, ossia
-	i vettori tali che $\vv i = \Re(\vv i) + i \imm(\vv i)$. Questi vettori soddisfano due particolari
-	proprietà:
-	
-	\begin{itemize}
-		\item $\Re(\vv i) = \displaystyle \frac{\vv i + \conj{\vv i}}{2}$,
-		\item $\imm(\vv i) = \displaystyle \frac{\vv i - \conj{\vv i}}{2i} \underbrace{=}_{\frac{1}{i}=-i} -\frac{\vv i - \conj{\vv i}}{2} i$.
-	\end{itemize}
-
-	In particolare $\basis''$ è un base di $W$, dal momento che gli elementi di $\basis''$ generano $W$ e sono
-	tanti quanto la dimensione di $W$, ossia $2k$. Si ponga $\alpha = a + bi$. Se $\vv i$ è autovettore si conclude che:\footnote{Si è in seguito utilizzato più volte l'identità $f(\conj{\vv i}) = \conj{f(\vv i)}$.}
-	
-	\begin{itemize}
-		\item $f(\Re(\vv i)) = \frac{1}{2}\left( f(\vv i) + f( \conj{\vv i}) \right) =
-		\frac{1}{2}\left( \alpha \vv i + \conj \alpha \conj{\vv i} \right) =
-		\frac{1}{2}\left( a \vv i + b i \vv i + a \conj{\vv i} - b i \conj{\vv i} \right)
-		= a \frac{\vv i + \conj{\vv i}}{2} + b \frac{\vv i - \conj{\vv i}}{2} i =
-		a \Re(\vv i) - b \imm(\vv i)$,
-		\item $f(\imm(\vv i)) = \frac{1}{2i}\left( f(\vv i) - f( \conj{\vv i}) \right) =
-		\frac{1}{2i}\left( \alpha \vv i - \conj \alpha \conj{\vv i} \right) =
-		\frac{1}{2i}\left( a \vv i + b i \vv i - a \conj{\vv i} + b i \conj{\vv i} \right) 
-		= b \frac{\vv i + \conj{\vv i}}{2} + a \frac{\vv i - \conj{\vv i}}{2i} =
-		b \Re(\vv i) + a \imm(\vv i)$.
-	\end{itemize}
-
-	Altrimenti, se non lo è:
-	
-	\begin{itemize}
-		\item $f(\Re(\vv i)) = \frac{1}{2}\left( f(\vv i) + f( \conj{\vv i}) \right) =
-		\frac{1}{2}\left( \alpha \vv i + \vv{i-1} + \conj \alpha \conj{\vv i} + \conj{\vv{i-1}} \right) =
-		\frac{1}{2}\left( a \vv i + b i \vv i + a \conj{\vv i} - b i \conj{\vv i} \right) + \Re(\vv{i-1})
-		= a \frac{\vv i + \conj{\vv i}}{2} + b \frac{\vv i - \conj{\vv i}}{2} i + \Re(\vv{i-1}) =
-		a \Re(\vv i) - b \imm(\vv i) + \Re(\vv{i-1})$,
-		\item $f(\imm(\vv i)) = \frac{1}{2i}\left( f(\vv i) - f( \conj{\vv i}) \right) =
-		\frac{1}{2i}\left( \alpha \vv i + \vv {i-1} - \conj \alpha \conj{\vv i} - \conj{\vv{i-1}} \right) =
-		\frac{1}{2i}\left( a \vv i + b i \vv i - a \conj{\vv i} + b i \conj{\vv i} \right) + \imm(\vv{i-1})
-		= b \frac{\vv i + \conj{\vv i}}{2} + a \frac{\vv i - \conj{\vv i}}{2i} + \imm(\vv{i-1})=
-		b \Re(\vv i) + a \imm(\vv i) + \imm(\vv{i-1})$.
-	\end{itemize}
-
-	Quindi la matrice associata nella base $\basis''$ è la stessa di $f$ relativa ad $\alpha$ dove
-	si amplifica la matrice sostituendo ad $\alpha$ la matrice\footnote{Si verifica facilmente che lo
-	spazio delle matrici $\left\{\Matrix{a & -b \\ b & a} \in M(2, \RR) \mid a, b \in \RR\right\}$ è isomorfo a $\CC$
-	secondo la mappa $\Matrix{a & -b \\ b & a} \mapsto a + bi$.} $\Matrix{a & -b \\ b & a}$ e ad
-	$1$ la matrice $\Matrix{1 & 0 \\ 0 & 1}$.
-	
-	\begin{example}
-		Si consideri la matrice $M = \Matrix{1+i & 1 & 0 & 0 \\ 0 & 1+i & 0 & 0 \\ 0 & 0 & 1-i & 1 \\ 0 & 0 & 0 & 1-i}$.
-		Si osserva che $M$ è composta da due blocchi che sono uno il blocco coniugato dell'altro. Quindi
-		$M$ è simile alla matrice reale $\Matrix{1 & -1 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 0 & 0 & 1 & -1 \\ 0 & 0 & 1 & 1}$.
-	\end{example}
-
-	\hr
-	
 	\begin{definition}
 		Un \textbf{prodotto scalare} su $V$ è una forma bilineare simmetrica $\varphi$ con argomenti in $V$.
 	\end{definition}
@@ -183,8 +68,11 @@ forma bilineare simmetrica, ossia un prodotto scalare su $\KK^n$.
 	
 	\begin{definition}
 		Sia\footnote{In realtà, la definizione è facilmente estendibile a qualsiasi campo, purché esso
-		sia ordinato.} $\KK = \RR$. Allora un prodotto scalare $\varphi$ è \textbf{definito positivo} se $\vec{v} \neq \vec{0} \implies
-		\varphi(\vec{v}, \vec{v}) > 0$.
+		sia ordinato.} $\KK = \RR$. Allora un prodotto scalare $\varphi$ si dice \textbf{definito positivo} se $\v \in V$, $\vec{v} \neq \vec{0} \implies
+		\varphi(\vec{v}, \vec{v}) > 0$. Analogamente $\varphi$ è \textbf{definito negativo} se $\vec{v} \neq \vec 0 \implies \varphi(\v, \v) < 0$. \\
+		
+		Infine, $\varphi$ è \textbf{semidefinito positivo} se $\varphi(\v, \v) \geq 0$ $\forall \v \in V$ (o
+		\textbf{semidefinito negativo} se invece $\varphi(\v, \v) \leq 0$ $\forall \v \in V$).	
 	\end{definition}
 
 	\begin{example}
@@ -285,6 +173,8 @@ forma bilineare simmetrica, ossia un prodotto scalare su $\KK^n$.
 		Si dice \textbf{radicale} di un prodotto scalare $\varphi$ lo spazio:
 		
 		\[ V^\perp = \{ \vec{v} \in V \mid \varphi(\vec{v}, \vec{w}) = 0, \forall \vec{w} \in V \} \]
+		
+		\vskip 0.05in
 	\end{definition}
 	
 	\begin{remark}
