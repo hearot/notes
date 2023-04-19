@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Geometria 1}}
 \author{Gabriel Antonio Videtta}
-\date{17 aprile 2023}
+\date{17 e 19 aprile 2023}
 
 \begin{document}
 	
@@ -129,10 +129,49 @@
 		Come conseguenza della proposizione appena dimostrata, valgono
 		le principali proprietà già viste per il prodotto scalare. \\
 		
-		\li $\det(M_\basis(\varphi)) = 0 \iff V^\perp \neq \zerovecset \iff \varphi$ è degenere \\
+		\li $\det(M_\basis(\varphi)) = 0 \iff V^\perp \neq \zerovecset \iff \varphi$ è degenere. \\
 	\end{remark}
 
 	% TODO: valgono buona parte delle proprietà del prodotto scalare
 	
 	% TODO: aggiunge restrizione e complessificazione
+	
+	\hr
+	
+	\begin{proposition}
+		Se $V = \RR^n$ con prodotto canonico $\varphi(\vec x, \vec y) = \vec x ^\top \vec y$. Sono allora equivalenti i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\item $A \in O_n$,
+			\item $f_A : V \to V$ con $f_A(\vec x) = A \vec x$ è ortogonale,
+			\item Le colonne (e le righe) di $A$ formano una base ortonormale di $V$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		(1 - 2) ovvio
+		(2 - 3) $f_A$ manda basi ortonormali in basi ortonormali, e quindi
+		così sono ortonormali le colonne di $A$. Analogamente per le righe
+		considerando $A^\top A = I$.
+		(3 - 1) $A^\top A = I$.
+	\end{proof}
+
+	\begin{proposition}
+		Se $V = \CC^n$ con prodotto canonico hermitiano, sono equivalenti
+		i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\item $A \in U_n$,
+			\item $f_A : V \to V$ con $f_A(\vec x) = A \vec x$ è unitaria,
+			\item Le colonne (e le righe) di $A$ formano una base ortonormale
+			di $V$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Come prima.
+	\end{proof}
+
+	
+	
 \end{document}
