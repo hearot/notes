@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{17 aprile 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Introduzione ai prodotti hermitiani}
+	\end{center}
+	
+	\begin{note}
+		Nel corso del documento, per $V$ si intenderà uno spazio vettoriale di dimensione
+		finita $n$ e per $\varphi$ un suo prodotto, hermitiano o scalare
+		dipendentemente dal contesto.
+	\end{note}
+
+	\begin{definition} (prodotto hermitiano) Sia $\KK = \CC$. Una mappa $\varphi : V \times V \to \CC$ si dice \textbf{prodotto hermitiano} se:
+		
+		\begin{enumerate}[(i)]
+			\item $\varphi$ è $\CC$-lineare nel secondo argomento, ossia se $\varphi(\v, \U + \w) = \varphi(\v, \U) + \varphi(\v, \w)$ e
+			$\varphi(\v, a \w) = a \, \varphi(\v, \w)$,
+			\item $\varphi(\U, \w) = \conj{\varphi(\w, \U)}$.
+		\end{enumerate}
+	\end{definition}
+
+	\begin{definition} (prodotto hermitiano canonico in $\CC^n$) Si definisce
+		\textbf{prodotto hermitiano canonico} di $\CC^n$ il prodotto $\varphi : \CC^n \times \CC^n \to \CC$ tale per cui, detti $\v = (z_1 \cdots z_n)^\top$ e $\w = (w_1 \cdots w_n)^\top$, $\varphi(\v, \w) = \sum_{i=1}^n \conj{z_i} w_i$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li $\varphi(\U + \w, \v) = \conj{\varphi(\v, \U + \w)} =
+		\conj{\varphi(\v, \U) + \varphi(\v, \w)} = \conj{\varphi(\v, \U)} + \conj{\varphi(\v, \U)} = \varphi(\w, \v) + \varphi(\U, \v)$, ossia
+		$\varphi$ è additiva anche nel primo argomento. \\
+		\li $\varphi(a \v, \w) = \conj{\varphi(\w, a \v)} = \conj{a} \conj{\varphi(\w, \v)} = \conj{a} \, \varphi(\v, \w)$. \\
+		\li $\varphi(\v, \v) = \conj{\varphi(\v, \v)}$, e quindi $\varphi(\v, \v) \in \RR$. \\
+		\li Sia $\v = \sum_{i=1}^n x_i \vv i$ e sia $\w = \sum_{i=1}^n y_i \vv i$, allora $\varphi(\v, \w) = \sum_{i =1}^n \sum_{j=1}^n \conj{x_i} y_i \varphi(\vv i, \vv j)$. \\
+		\li $\varphi(\v, \w) = 0 \iff \varphi(\w, \v) = 0$.
+	\end{remark}
+
+	\begin{proposition}
+		Data la forma quadratica $q : V \to \RR$  del prodotto hermitiano $\varphi$ tale che $q(\v) = \varphi(\v, \v) \in \RR$, tale
+		forma quadratica individua univocamente il prodotto hermitiano $\varphi$.
+	\end{proposition}
+
+	\begin{proof}
+		Innanzitutto si osserva che:
+		
+		\[ \varphi(\v, \w) = \frac{\varphi(\v, \w) + \conj{\varphi(\v, \w)}}{2} +  \frac{\varphi(\v, \w) . \conj{\varphi(\v, \w)}}{2}. \]
+		
+		\vskip 0.05in
+		
+		Si considerano allora le due identità:
+		
+		\[ q(\v + \w) - q(\v) - q(\w) =
+		\varphi(\v, \w) + \conj{\varphi(\w, \v)} = 2 \, \Re(\varphi(\v, \w)), \]
+		
+		\[ q(i\v + \w) - q(\v) - q(\w) = -i(\varphi(\v, \w) - \conj{\varphi(\v, \w)}) = 2 \, \imm(\varphi(\v, \w)), \]
+		
+		\vskip 0.05in
+		
+		da cui si conclude che il prodotto $\varphi$ è univocamente
+		determinato dalla sua forma quadratica.
+	\end{proof}
+
+	\begin{definition}
+		Si definisce \textbf{matrice aggiunta} di $A \in M(n, \KK)$ la matrice coniugata della trasposta di $A$, ossia:
+		
+		\[ A^* = \conj{A^\top} = \conj{A}^\top. \]
+	\end{definition}
+
+	%TODO: aggiungere tr(conj(A^t) B)
+	
+	\begin{definition} (matrice associata del prodotto hermitiano) Analogamente
+		al caso del prodotto scalare, data una base $\basis = \{\vv 1, \ldots, \vv n\}$ si definisce
+		come \textbf{matrice associata del prodotto hermitiano} $\varphi$
+		la matrice $M_\basis(\varphi) = (\varphi(\vv i, \vv j))_{i,j = 1 \textrm{---} n}$.
+	\end{definition}
+
+	\begin{remark}
+		Si osserva che, analogamente al caso del prodotto scalare, vale
+		la seguente identità:
+		
+		\[ \varphi(\v, \w) = [\v]_\basis^* M_\basis(\varphi) [\w]_\basis. \]
+	\end{remark}
+	
+	\begin{proposition}
+		(formula del cambiamento di base per i prodotto hermitiani) Siano
+		$\basis$, $\basis'$ due basi di $V$. Allora vale la seguente
+		identità:
+		
+		\[ M_{\basis'} = M_{\basis}^{\basis'}(\Idv)^* M_\basis(\varphi) M_{\basis}^{\basis'}(\Idv). \]
+	\end{proposition}
+
+	\begin{proof}
+		Siano $\basis = \{ \vv 1, \ldots, \vv n \}$ e $\basis' = \{ \ww 1, \ldots, \ww n \}$. Allora $\varphi(\ww i, \ww j) = [\ww i]_\basis^* M_\basis(\varphi) [\ww j]_\basis = \left( M_\basis^{\basis'}(\Idv)^i \right)^* M_\basis(\varphi) M_\basis^{\basis'}(\Idv)^j =
+		\left(M_\basis^{\basis'}(\Idv)\right)^*_i M_\basis(\varphi) M_\basis^{\basis'}(\Idv)^j$, da cui si ricava l'identità
+		desiderata.
+	\end{proof}
+
+	\begin{definition} (radicale di un prodotto hermitiano)
+		Analogamente al caso del prodotto scalare, si definisce il \textbf{radicale} del prodotto $\varphi$ come il seguente sottospazio: 
+		
+		\[ V^\perp = \{ \v \in V \mid \varphi(\v, \w) = 0 \, \forall \w \in V \}. \]
+	\end{definition}
+
+	\begin{proposition}
+		Sia $\basis$ una base di $V$ e $\varphi$ un prodotto hermitiano. Allora $V^\perp = [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$\footnote{Stavolta non è sufficiente considerare la mappa $f : V \to V^*$ tale che $f(\v) = \left[ \w \mapsto \varphi(\v, \w) \right]$, dal momento che $f$ non è lineare, bensì antilineare, ossia $f(a \v) = \conj a f(\v)$.}.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ e sia $\v \in V^\perp$.
+		Siano $a_1$, ..., $a_n \in \KK$ tali che $\v = a_1 \vv 1 + \ldots + a_n \vv n$. Allora, poiché $\v \in V$, $0 = \varphi(\vv i, \v) =
+		= a_1 \varphi(\vv i, \vv 1) + \ldots + a_n \varphi(\vv i, \vv n) = M_i [\v]_\basis$, da cui si ricava che $[\v]_\basis \in \Ker M_\basis(\varphi)$, e quindi che $V^\perp \subseteq [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$. \\
+		
+		Sia ora $\v \in V$ tale che $[\v]_\basis \in \Ker M_\basis(\varphi)$.
+		Allora, per ogni $\w \in V$, $\varphi(\w, \v) = [\w]_\basis^* M_\basis(\varphi) [\v]_\basis = [\w]_\basis^* 0 = 0$, da cui si
+		conclude che $\v \in V^\perp$, e quindi che  $V^\perp \supseteq [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$, da cui
+		$V^\perp = [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$, ossia
+		la tesi.
+	\end{proof}
+
+	\begin{remark}
+		Come conseguenza della proposizione appena dimostrata, valgono
+		le principali proprietà già viste per il prodotto scalare. \\
+		
+		\li $\det(M_\basis(\varphi)) = 0 \iff V^\perp \neq \zerovecset \iff \varphi$ è degenere \\
+	\end{remark}
+
+	% TODO: valgono buona parte delle proprietà del prodotto scalare
+	
+	% TODO: aggiunge restrizione e complessificazione
+\end{document}

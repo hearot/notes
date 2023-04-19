@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Analisi Matematica 1}}
 \author{Gabriel Antonio Videtta}
-\date{31 marzo e 4 aprile 2023}
+\date{31 marzo, 4 e 18 aprile 2023}
 
 \begin{document}
 	
@@ -287,6 +287,42 @@
 		f(d) \geq f(c)$, e quindi $f$ è crescente in $I$, da cui la tesi.
 	\end{proof}
 
+	\begin{proposition}
+		Sia $I \subset \RR$ un intervallo e sia $f : I \to \RR$ tale che $f$
+		sia derivabile in $I$. Allora $f$ è convessa
+		se e solo se la derivata è crescente.
+	\end{proposition}
+
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+
+		\rightproof Siano $x_0$, $x_1 \in I$ con $x_0 < x_1$. Sia $h$
+		positivo tale che $x_0 < x_0 + h \leq x_1$. Allora $x_0 + h = (1- \lambda) x_0 + \lambda x_1$ con $\lambda = \frac{h}{x_1 - x_0}$.
+		Allora, poiché $f$ è convessa, $f(x_0 + h) \leq (1- \lambda) f(x_0) + f(x_1) \leq f(x_0) + \frac{h}{x_1 - x_0} \left( f(x_1) - f(x_0) \right)$, da cui si ricava che:
+		
+		\[ \frac{f(x_0 + h) - f(x_0)}{h} \leq \frac{f(x_1) - f(x_0)}{x_1 - x_0}. \]
+		
+		Quindi, passando al limite, $f'(x_0) \leq \frac{f(x_1) - f(x_0)}{x_1 - x_0}$. Analogamente si dimostra che $\frac{f(x_1) - f(x_0)}{x_1 - x_0} \leq f'(x_1)$. Si conclude dunque che $f'(x_1) \geq f'(x_0)$, ossia
+		che $f'$ è crescente. \\
+		
+		\leftproof Siano $x_0$, $x_1 \in I$ con $x_0 < x_1$. Si considera
+		$x = (1 - \lambda) x_0 + \lambda x_1 \in (x_0, x_1)$ con $0 < \lambda < 1$. Per il teorema di Lagrange $\exists \tilde{x_0} \in (x_0, x)$ tale
+		che $f'(\tilde{x_0}) = \frac{f(x) - f(x_0)}{x - x_0}$. Analogamente
+		$\exists \tilde{x_1} \in (x, x_1)$ tale che $f'(\tilde{x_1}) =
+		\frac{f(x_1) - f(x)}{x_1 - x}$. Poiché allora per ipotesi la
+		derivata $f'$ è crescente, si ricava che:
+		
+		\[ \frac{f(x_1) - f(x)}{x_1 - x} \geq \frac{f(x) - f(x_0)}{x - x_0}, \]
+		
+		da cui si conclude che:
+		
+		\[ f(x) \leq (1-\lambda) f(x_0) + \lambda f(x_1), \]
+		
+		\vskip 0.05in
+		
+		ossia che vale la disuguaglianza di Jensen, e quindi che
+		$f$ è convessa, da cui la tesi.
+	\end{proof}
+
 	\begin{remark}\nl
 		\li L'interpretazione geometrica del teorema di Cauchy, rispetto
 		a quella di Lagrange, è leggermente più complicata. Si consideri
@@ -297,7 +333,11 @@
 		come $\frac{f'(\xbar)}{g'(\xbar)}$. Allora, il teorema di Cauchy
 		asserisce che esiste un punto della curva $\gamma$ tale per cui
 		la retta tangente alla curva in quel punto è parallela alla secante
-		passante per $(g(a), f(a))$ e $(g(b), f(b))$.
+		passante per $(g(a), f(a))$ e $(g(b), f(b))$. \\
+		
+		\li Inoltre $f$ è strettamente crescente in $I$ se $f' \geq 0$ e
+		non esistono intervalli di punti stazionari. Analogamente se $f' < 0$ in
+		$I$ e non esistono ancora tali intervalli, $f$ è strettamente decrescente in $I$.
 	\end{remark}
 
 	\begin{exercise}
@@ -336,7 +376,7 @@
 			in un intorno $J$ di $\xbar$, allora $f_1(x) + f_2(x) \tendsto{\xbar} +\infty$;
 			\item se $f_1 \tendsto{\xbar} 0$ e $f_2$ è limitata in un intorno $J$
 			di $\xbar$, allora $f_1 f_2(x) \tendsto{\xbar} 0$;
-			\item se $f_1 \tendsto{\xbar} +\infty$ è limitata inferiormente
+			\item se $f_1 \tendsto{\xbar} +\infty$ ed $f_2$ è limitata inferiormente
 			da una costante positiva $c$ in un intorno $J$ di $\xbar$, allora
 			$f_1 f_2 \tendsto{\xbar} +\infty$. 
 		\end{enumerate}
@@ -391,6 +431,56 @@
 		
 		\[ D_+ f(0) =  \lim_{h \to 0^+} \frac{h + 2h^2 \sin\left(\frac{1}{h}\right)}{h} = 1 + \lim_{h \to 0^+} 2 h \sin\left(\frac{1}{h}\right) = 1,   \]
 		
-		dove si è usato lo stesso argomento di prima per computare $\lim_{h \to 0^+} 2 h \sin\left(\frac{1}{h}\right) = 0$. \\
+		dove si è usato lo stesso argomento di prima per computare $\lim_{h \to 0^+} 2 h \sin\left(\frac{1}{h}\right) = 0$.
 	\end{solution}
+
+	\begin{theorem} (di de l'Hopital) %TODO: sistemare nome
+		Siano $I$ intervallo e $x_0 \in I$. Sia detto $I' := I \setminus \{ x_0 \}$. Siano $f$, $g : I' \to \RR$ derivabili tali che:
+		
+		\begin{enumerate}[(i)]
+			\item esiste $L := \lim_{x \to x_0} \frac{f'(x)}{g'(x)}$,
+			\item $g' \neq 0$ in $I'$,
+			\item vale che (a) $f(x)$, $g(x) \tendsto{x_0} 0$ oppure che (b)
+			$g(x) \tendsto{x_0} \pm \infty$.
+		\end{enumerate}
+	
+		Allora $\frac{f(x)}{g(x)} \tendsto{x_0} L$.
+	\end{theorem}
+
+	\begin{proof}
+		Si consideri il caso (a) per $x_0$ finito. Si ponga $f(x_0) = g(x_0) := 0$. Senza perdità di generalità si
+		assuma che $I$ sia un intorno destro di $x_0$. Sia $x \in I \setminus \{x_0\}$, da cui si ricava che $x > x_0$. \\
+		
+		Si osserva che $\frac{f(x)}{g(x)} = \frac{f(x) - f(x_0)}{g(x)} - g(x_0)$. Per il teorema di Cauchy, esiste allora $\tilde{x} \in (x_0, x)$,
+		in funzione di $x$, tale
+		che $\frac{f(x)}{g(x)} = \frac{f'(\tilde x)}{g'(\tilde x)}$. Allora
+		$\lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(\tilde x)}{g'(\tilde x)} = \lim_{\tilde x \to x_0} \frac{f'(\tilde x)}{g'(\tilde x)} = L$, dove si è utilizzato che $\tilde x \tendsto{x_0} x_0$ per il teorema del confronto applicato sulla
+		relazione $x_0 < \tilde x < x$. \\
+		
+		Si consideri ora il caso (b) per $x_0$ finito. Siano $x_1 > x_0$
+		tali che $x_1 > x > x_0$. Allora vale la seguente identità:
+		
+		\[ \frac{f(x)}{g(x)} = \left( \frac{f(x) - f(x_1)}{g(x) - g(x_1)} + \frac{f(x_1)}{g(x) - g(x_1)} \right) \frac{g(x) - g(x_1)}{g(x)}. \]
+		
+		Si osserva allora che:
+		
+		\[ \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f(x) - f(x_1)}{g(x) - g(x_1)}. \]
+	\end{proof}
+
+	\begin{remark}
+		È essenziale che $I$ sia un intervallo affinché il teorema di de
+		l'Hopital sia vero.
+		% TODO: scrivi esempio di unione infinita di intervalli (tra x e x^2 + x)
+	\end{remark}
+
+	\begin{proposition}
+		Sia $I$ un intervallo, sia $x_0 \in I$ e sia $f : I \to \RR$ continua
+		e derivabile dappertutto tranne che in $x_0$. Se esiste
+		$L := \lim_{x \to x_0} f'(x)$, allora $f'(x_0) = L$.
+	\end{proposition}
+
+	\begin{proof}
+		Si consideri il rapporto incrementale $\frac{f(x) - f(x_0)}{x - x_0}$.
+		Allora, per $x \to x_0$, per il teorema di de l'Hopital, $f'(x_0) = \lim_{x \to x_0} f'(x)$.
+	\end{proof}
 \end{document}
