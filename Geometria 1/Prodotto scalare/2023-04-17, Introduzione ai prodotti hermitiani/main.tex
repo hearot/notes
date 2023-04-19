@@ -11,7 +11,7 @@
 	\maketitle
 	
 	\begin{center}
-		\Large \textbf{Introduzione ai prodotti hermitiani}
+		\Large \textbf{Prodotti hermitiani e teorema spettrale}
 	\end{center}
 	
 	\begin{note}
@@ -74,6 +74,15 @@
 		\[ A^* = \conj{A^\top} = \conj{A}^\top. \]
 	\end{definition}
 
+	\begin{remark}
+		Per quanto riguarda la matrice aggiunta valgono le principali proprietà della matrice trasposta:
+		
+		\begin{itemize}
+			\item $(A + B)^* = A^* + B^*$,
+			\item $(AB)^* = B^* A^*$.
+		\end{itemize}
+	\end{remark}
+
 	%TODO: aggiungere tr(conj(A^t) B)
 	
 	\begin{definition} (matrice associata del prodotto hermitiano) Analogamente
@@ -129,13 +138,276 @@
 		Come conseguenza della proposizione appena dimostrata, valgono
 		le principali proprietà già viste per il prodotto scalare. \\
 		
-		\li $\det(M_\basis(\varphi)) = 0 \iff V^\perp \neq \zerovecset \iff \varphi$ è degenere. \\
+		\li $\det(M_\basis(\varphi)) = 0 \iff V^\perp \neq \zerovecset \iff \varphi$ è degenere, \\
+		\li Vale il teorema di Lagrange, e quindi quello di Sylvester, benché con alcune accortezze: si
+		introduce, come nel caso di $\RR$, il concetto di segnatura, che diventa l'invariante completo
+		della nuova congruenza hermitiana, che ancora una volta si dimostra essere una relazione
+		di equivalenza.
 	\end{remark}
 
-	% TODO: valgono buona parte delle proprietà del prodotto scalare
+	\hr
+
+	\begin{definition} (restrizione ai reali di uno spazio) Sia $V$
+		uno spazio vettoriale su $\CC$ con base $\basis$. Si definisce allora lo spazio $V_\RR$, detto
+		\textbf{spazio di restrizione su $\RR$} di $V$, come uno spazio su $\RR$ generato da
+		$\basis_\RR = \basis \cup i \basis$. 
+	\end{definition}
+
+	\begin{example}
+		Si consideri $V = \CC^3$. Una base di $\CC^3$ è chiaramente $\{ \e1, \e2, \e3 \}$. Allora
+		$V_\RR$ sarà uno spazio vettoriale su $\RR$ generato dai vettori $\{ \e1, \e2, \e3, i\e1, i\e2, i\e3 \}$.
+	\end{example}
+
+	\begin{remark}
+		Si osserva che lo spazio di restrizione su $\RR$ e lo spazio di partenza condividono lo stesso insieme
+		di vettori. Infatti, $\Span_\CC(\basis) = \Span_\RR(\basis \cup i\basis)$. Ciononostante, $\dim V_\RR = 2 \dim V$, se $\dim V \in \NN$.
+	\end{remark}
+
+	\begin{definition} (complessificazione di uno spazio) Sia $V$ uno spazio vettoriale su $\RR$.
+		Si definisce allora lo \textbf{spazio complessificato} $V_\CC = V \times V$ su $\CC$ con le seguenti operazioni:
+		
+		\begin{itemize}
+			\item $(\v, \w) + (\v', \w') = (\v + \v', \w + \w')$,
+			\item $(a+bi)(\v, \w) = (a\v - b\w, a\w + b\v)$.
+		\end{itemize}
+	\end{definition}
+
+	\begin{remark}
+		La costruzione dello spazio complessificato emula in realtà la costruzione di $\CC$ come spazio
+		$\RR \times \RR$. Infatti se $z = (c, d)$, vale che $(a + bi)(c, d) = (ac - bd, ad + bc)$, mentre
+		si mantiene l'usuale operazione di addizione. In particolare si può identificare l'insieme
+		$iV := V \times \zerovecset$ come $V$, mentre $\zerovecset \times V$ viene identificato come l'insieme
+		degli immaginari di $V_\CC$. Infine, moltiplicare per uno scalare reale un elemento di
+		$V \times \zerovecset$ equivale a moltiplicare la sola prima componente con l'usuale operazione
+		di moltiplicazione di $V$. Allora, come accade per $\CC$, si può sostituire la notazione
+		$(\v, \w)$ con la più comoda notazione $\v + i \w$.
+	\end{remark}
+
+	\begin{remark}
+		Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Innanzitutto si osserva che
+		$(a+bi)(\v, \vec 0) = (a\v, b\v)$. Pertanto si può concludere che $\basis \times \zerovecset$ è
+		una base dello spazio complessificato $V_\CC$ su $\CC$. \\
+		
+		Infatti, se $(a_1 + b_1 i)(\vv 1, \vec 0) + \ldots + (a_n + b_n i)(\vv n, \vec 0) = (\vec 0, \vec 0)$,
+		allora $(a_1 \vv 1 + \ldots + a_n \vv n, b_1 \vv 1 + \ldots + b_n \vv n) = (\vec 0, \vec 0)$.
+		Poiché però $\basis$ è linearmente indipendente per ipotesi, l'ultima identità implica che
+		$a_1 = \cdots = a_n = b_1 = \cdots = b_n = 0$, e quindi che $\basis \times \zerovecset$ è linearmente
+		indipendente. \\
+		
+		Inoltre $\basis \times \zerovecset$ genera $V_\CC$. Se infatti $\v = (\U, \w)$, e vale che:
+		
+		\[ \U = a_1 \vv 1 + \ldots + a_n \vv n, \quad \w = b_1 \vv 1 + \ldots + b_n \vv n, \]
+		
+		\vskip 0.1in
+		
+		allora $\v = (a_1 + b_1 i) (\vv 1, \vec 0) + \ldots + (a_n + b_n i) (\vv n, \vec 0)$. Quindi
+		$\dim V_\CC = \dim V$.
+	\end{remark}
+
+	\begin{definition}
+		Sia $f$ un'applicazione $\CC$-lineare di $V$ spazio vettoriale su $\CC$. Allora
+		si definisce la \textbf{restrizione su} $\RR$ di $f$, detta $f_\RR : V_\RR \to V_\RR$,
+		in modo tale che $f_\RR(\v) = f(\v)$.
+	\end{definition}
+
+	\begin{remark}
+		Sia $\basis = \{\vv 1, \ldots, \vv n\}$ una base di $V$ su $\CC$. Sia $A = M_\basis(f)$. Si
+		osserva allora che, se $\basis' = \basis \cup i \basis$ e $A = A' + i A''$ con $A'$, $A'' \in M(n, \RR)$,
+		vale la seguente identità:
+		
+		\[ M_{\basis'}(f_\RR) = \Matrix{ A' & \rvline & -A'' \\ \hline A'' & \rvline & A' }. \]
+		
+		Infatti, se $f(\vv i) = (a_1 + b_1 i) \vv 1 + \ldots + (a_n + b_n i) \vv n$, vale che
+		$f_\RR(\vv i) = a_1 \vv 1 + \ldots + a_n \vv n + b_1 (i \vv 1) + \ldots + b_n (i \vv n)$,
+		mentre $f_\RR(i \vv i) = i f(\vv i) = - b_1 \vv 1 + \ldots - b_n \vv n + a_1 (i \vv 1) + \ldots + a_n (i \vv n)$.
+	\end{remark}
+
+	% TODO: aggiungere ultimi lemmi sulla restrizione e la complessificazione
 	
-	% TODO: aggiunge restrizione e complessificazione
+	\hr	
 	
+	\begin{theorem} (di rappresentazione di Riesz per il prodotto scalare) 
+		Sia $V$ uno spazio vettoriale e sia $\varphi$ un suo prodotto scalare
+		non degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
+		$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
+	\end{theorem}
+
+	\begin{proof}
+		Si consideri l'applicazione $a_\varphi$. Poiché $\varphi$ non è degenere, $\Ker a_\varphi = V^\perp = \zerovecset$, da cui si deduce che $a_\varphi$ è un isomorfismo. Quindi $\forall f \in V^*$ esiste
+		un unico $\v \in V$ tale per cui $a_\varphi(\v) = f$, e dunque tale per cui $\varphi(\v, \w) = a_\varphi(\v)(\w) = f(\w)$ $\forall \w \in V$.
+	\end{proof}
+	
+	\begin{proof}[Dimostrazione costruttiva]
+		Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
+		particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{f(\vv 1)}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{f(\vv n)}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
+		si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
+		la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
+		e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
+	\end{proof}
+
+	\begin{theorem} (di rappresentazione di Riesz per il prodotto hermitiano)
+		Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano non
+		degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
+		$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
+	\end{theorem}
+
+	\begin{proof}
+		Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
+		particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{\conj{f(\vv 1)}}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{\conj{f(\vv n)}}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
+		si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
+		la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
+		e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $V$ uno spazio vettoriale con prodotto scalare $\varphi$ non degenere.
+		Sia $f \in \End(V)$. Allora esiste un unico endomorfismo
+		$g : V \to V$, detto il \textbf{trasposto di} $f$ e indicato con $f^\top$ in assenza
+		di ambiguità\footnote{Si tenga infatti in conto della differenza tra $f^\top : V \to V$, di cui si discute
+		nell'enunciato, e $f^\top : V^* \to V^*$ che invece è tale che $f^top(g) = g \circ f$.}, tale che:
+		
+		\[ a_\varphi \circ g = f^\top \circ a_\varphi, \]
+		
+		\vskip 0.05in
+		
+		ossia che:
+		
+		\[ \varphi(\v, f(\w)) = \varphi(g(\v), \w) \, \forall \v, \w \in V. \]
+	\end{proposition}
+	
+	\begin{proof}
+		Si consideri $(f^\top \circ a_\varphi)(\v) \in V^*$. Per il teorema di rappresentazione di Riesz per
+		il prodotto scalare, esiste un unico $\v'$ tale che $(f^\top \circ a_\varphi)(\v)(\w) = \varphi(\v', \w) \implies \varphi(\v, f(\w)) = \varphi(\v', \w)$ $\forall \w \in V$. Si costruisce allora una mappa
+		$g : V \to V$ che associa a $\v$ tale $\v'$. Si dimostra che $g$ è un'applicazione lineare, e che
+		dunque è un endomorfismo:
+		
+		\begin{enumerate}[(i)]
+			\item Siano $\vv 1$, $\vv 2 \in V$. Si deve dimostrare innanzitutto che $g(\vv 1 + \vv 2) = g(\vv 1) + g(\vv 2)$, ossia che $\varphi(g(\vv 1) + g(\vv 2), \w) = \varphi(\vv 1 + \vv 2, f(\w))$ $\forall \w \in V$. \\
+
+			Si osservano le seguenti identità:			
+			\begin{align*}
+				&\varphi(\vv 1 + \vv 2, f(\w)) = \varphi(\vv 1, f(\w)) + \varphi(\vv 2, f(\w)) = (*), \\
+				&\varphi(g(\vv 1) + g(\vv 2), \w) = \varphi(g(\vv 1), \w) + \varphi(g(\vv 2), \w) = (*),
+			\end{align*}
+		
+			da cui si deduce l'uguaglianza desiderata, essendo $g(\vv 1 + \vv 2)$ l'unico vettore di $V$
+			con la proprietà enunciata dal teorema di rappresentazione di Riesz.
+			
+			\item Sia $\v \in V$. Si deve dimostrare che $g(a \v) = a g(\v)$, ossia che $\varphi(a g(\v), \w) =
+			\varphi(a\v, f(\w))$ $\forall a \in \KK$, $\w \in V$. Se $a = 0$, l'uguaglianza è ovvia; altrimenti è
+			sufficiente moltiplicare per $a$ l'identità $\varphi(g(\v), \w) = \varphi(\v, f(\w))$. Analogamente
+			a prima, si deduce che $g(a \v) = a g(\v)$, essendo $g(a \v)$ l'unico vettore di $V$ con la
+			proprietà enunciata dal teorema di rappresentazione di Riesz.
+		\end{enumerate}
+	
+		Infine si dimostra che $g$ è unico. Sia infatti $g'$ un endomorfismo di $V$ che condivide la stessa
+		proprietà di $g$. Allora $\varphi(g(\v), \w) = \varphi(\v, f(\w)) = \varphi(g'(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(g(\v) - g'(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
+		$g(\v) - g'(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $g(\v) = g'(\v)$ $\forall \v \in V$, ossia
+		$g = g'$.
+	\end{proof}
+	
+	\begin{proposition}
+		Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano. Allora esiste un'unica
+		mappa\footnote{Si osservi che $f^*$ non è un'applicazione lineare, benché sia invece \textit{antilineare}.} $f^* : V \to V$, detta \textbf{aggiunto di} $f$, tale che $\varphi(\v, f(\w)) = \varphi(f^*(\v), \w)$ $\forall \v$, $\w \in V$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\v \in V$. Si consideri il funzionale $\sigma$ tale che $\sigma(\w) = \varphi(\v, f(\w))$. Per il
+		teorema di rappresentazione di Riesz per il prodotto scalare esiste un unico $\v' \in V$ tale per cui
+		$\varphi(\v, f(\w)) = \sigma(\w) = \varphi(\v', \w)$. Si costruisce allora una mappa $f^*$ che associa
+		$\v$ a tale $\v'$. \\
+		
+		Si dimostra infine che la mappa $f^*$ è unica. Sia infatti $\mu : V \to V$ che condivide la stessa
+		proprietà di $f^*$. Allora $\varphi(f^*(\v), \w) = \varphi(\v, f(\w)) = \varphi(\mu(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(f^*(\v) - \mu(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
+		$f^*(\v) - \mu(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $f^*(\v) = \mu(\v)$ $\forall \v \in V$, ossia
+		$f^* = \mu$.
+	\end{proof}
+	
+	\begin{remark}
+		L'operazione di trasposizione di un endomorfismo sul prodotto scalare non degenere $\varphi$ è un'involuzione. Infatti valgono
+		le seguenti identità $\forall \v$, $\w \in V$:
+		
+		\[ \system{\varphi(\w, f^\top(\v)) = \varphi(f^\top(\v), \w) = \varphi(\v, f(\w)), \\ \varphi(\w, f^\top(\v)) = \varphi((f^\top)^\top(\w), \v) =
+			\varphi(\v, (f^\top)^\top(\w)).} \]
+		
+		\vskip 0.05in
+		
+		Si conclude allora, poiché $\varphi$ è non degenere, che
+		$f(\w) = (f^\top)^\top(\w)$ $\forall \w \in V$, ossia che $f = (f^\top)^\top$.
+	\end{remark}
+
+	\begin{remark}
+		Analogamente si può dire per l'operazione di aggiunta per un prodotto hermitiano $\varphi$ non degenere.
+		Valgono infatti le seguenti identità $\forall \v$, $\w \in V$:
+		
+		\[ \system{\conj{\varphi(\w, f^*(\v))} = \varphi(f^*(\v), \w) = \varphi(\v, f(\w)), \\ \conj{\varphi(\w, f^*(\v))} = \conj{\varphi((f^*)^*(\w), \v)} =
+	\varphi(\v, (f^*)^*(\w)),} \]
+
+	\vskip 0.05in
+	
+	da cui si deduce, come prima, che $f = (f^*)^*$.
+	\end{remark}
+
+	\begin{note}
+		D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) di $V$.
+	\end{note}
+
+	\begin{definition}
+		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{simmetrico} se $f = f^\top$.
+	\end{definition}
+
+	\begin{definition}
+		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{ortogonale} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$.
+	\end{definition}
+
+	\begin{definition}
+		Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
+		$f$ è \textbf{hermitiano} se $f = f^*$.
+	\end{definition}
+
+	\begin{definition}
+		Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
+		$f$ è \textbf{unitario} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$.
+	\end{definition}
+
+	\begin{definition} (spazio euclideo reale)
+		Si definisce \textbf{spazio euclideo reale} uno spazio vettoriale $V$ su $\RR$ dotato
+		del prodotto scalare standard $\varphi = \innprod{\cdot, \cdot}$.
+	\end{definition}
+
+	\begin{definition} (spazio euclideo complesso)
+		Si definisce \textbf{spazio euclideo complesso} uno spazio vettoriale $V$ su $\CC$ dotato
+		del prodotto scalare standard $\varphi = \innprod{\cdot, \cdot}$.
+	\end{definition}
+
+	\begin{definition} (base ortonormale)
+		Si definisce \textbf{base ortonormale} di uno spazio vettoriale $V$ su un suo prodotto $\varphi$
+		una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n \}$ tale che $\varphi(\vv i, \vv j) = \delta_{ij}$.
+	\end{definition}
+
+	\begin{proposition}
+		Sia $(V, \varphi)$ uno spazio euclideo reale e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è simmetrico $\iff$ $M_\basis(f) = M_\basis(f)^\top$.
+	\end{proposition}
+
+	\begin{proof}
+		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è simmetrico, allora $[\v]_\basis^\top \, M_\basis(f) [\w]_\basis = [\v]_\basis^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(\v, f(\w)) = \varphi(f(\v), \w) = (M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) [\w]_\basis = [\v]_\basis^\top \, M_\basis(f)^\top [\w]_\basis$. \\
+		In particolare, $M_\basis(f)^\top_{ij} = [\vv i]_\basis^\top \, M_\basis(f)^\top [\vv j]_\basis = [\vv i]_\basis^\top \, M_\basis(f) [\vv j]_\basis = M_\basis(f)_{ij}$, e quindi $M_\basis(f)^\top = M_\basis(f)$. \\
+		
+		Se invece $M_\basis(f)^\top = M_\basis(f)$, $\varphi(\v, f(\w)) =$ $[\v]_\basis^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis)$ $= [\v]_\basis^\top M_\basis(f) [\w]_\basis$ $= [\v]_\basis^\top M_\basis(f)^\top [\w]_\basis = (M_\basis(f) [\v]_\basis)^\top [\w]_\basis = (M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) [\w]_\basis = \varphi(f(\v), \w)$, e quindi $f$ è simmetrico.
+	\end{proof}
+
+	% TODO: aggiungere matrici ortogonali, hermitiani e unitari.
+
+	\begin{proposition} Sia $\basis$ una base di $V$. Allora
+		$f \in \End(V)$ è simmetrico $\iff$ $M_\basis(f)$ è una matrice simmetrica.
+	\end{proposition}
+
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Se $f$ è simmetrico, $\varphi(\v, f(\w)) = \varphi(f(\v), \w)$. Quindi
+		$[\v]_\basis M_\basis(\varphi)$
+	\end{proof}
+
 	\hr
 	
 	\begin{proposition}
