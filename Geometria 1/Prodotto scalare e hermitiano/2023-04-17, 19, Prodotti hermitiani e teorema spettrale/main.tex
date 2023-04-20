@@ -350,7 +350,7 @@
 	\end{remark}
 
 	\begin{note}
-		D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) di $V$.
+		D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) non degenere di $V$.
 	\end{note}
 
 	\begin{definition} (operatori simmetrici)
@@ -586,10 +586,51 @@
 		
 		Se $\w = \vec 0$, la disuguaglianza di Cauchy-Schwarz è già dimostrata. Altrimenti, è sufficiente
 		dividere per $\norm{\w}^2$ (dal momento che $\w \neq \vec 0 \iff \norm{\w} \neq 0$) per ottenere
-		la tesi.
+		la tesi. Come prima, is osserva che l'uguaglianza si ottiene se e solo se $\v$ e $\w$ sono
+		linearmente dipendenti.
 	\end{proof}
 
 	\begin{proposition} (disuguaglianza triangolare)
-		
+		$\norm{\v + \w} \leq \norm{\v} + \norm{\w}$.
 	\end{proposition}
+
+	\begin{proof}
+		Si osserva che $\norm{\v + \w}^2 = \norm{\v}^2 + \varphi(\v, \w) + \varphi(\w, \v) + \norm{\w}^2$.
+		Se $\varphi$ è il prodotto scalare standard, si ricava che:
+		\[ \norm{\v + \w}^2 = \norm{\v}^2 + 2 \varphi(\v, \w) + \norm{\w}^2
+		\leq \norm{\v}^2 + 2 \norm{\v} \norm{\w} + \norm{\w}^2 =
+		(\norm{\v} + \norm{\w})^2,\]
+		
+		dove si è utilizzata la disuguaglianza di Cauchy-Schwarz. Da quest'ultima disuguaglianza si ricava, prendendo la radice quadrata, la disuguaglianza
+		desiderata. \\
+		
+		Se invece $\varphi$ è il prodotto hermitiano standard, $\norm{\v + \w}^2 = \norm{\v}^2 + 2 \, \Re(\varphi(\v, \w)) + \norm{\w}^2 \leq \norm{\v}^2 + 2 \abs{\varphi(\v, \w)} + \norm{\w}^2$. Allora, riapplicando
+		la disuguaglianza di Cauchy-Schwarz, si ottiene che:
+		
+		\[ \norm{\v + \w}^2 \leq (\norm{\v} + \norm{\w})^2, \]
+		
+		da cui, come prima, si ottiene la disuguaglianza desiderata.
+	\end{proof}
+
+	\begin{remark}
+		Utilizzando il concetto di norma euclidea, si possono ricavare due teoremi fondamentali della geometria,
+		e già noti dalla geometria euclidea. \\
+		
+		\li Se $\v \perp \w$, allora $\norm{\v + \w}^2 = \norm{\v}^2 + \overbrace{(\varphi(\v, \w) + \varphi(\w, \v))}^{=\,0} + \norm{\w}^2 = \norm{\v}^2 + \norm{\w}^2$ (teorema di Pitagora), \\
+		\li Se $\norm{\v} = \norm{\w}$ e $\varphi$ è un prodotto scalare, allora $\varphi(\v + \w, \v - \w) = \norm{\v}^2 - \varphi(\v, \w) + \varphi(\w, \v) - \norm{\w}^2  = \norm{\v}^2 - \norm{\w}^2 = 0$, e quindi
+		$\v + \w \perp \v - \w$ (le diagonali di un rombo sono ortogonali tra loro).
+	\end{remark}
+
+	\begin{remark}
+		Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ è una base ortogonale di $V$ per $\varphi$. \\
+		
+		\li Se $\v = a_1 \vv 1 + \ldots + a_n \vv n$, con $a_1$, ..., $a_n \in \KK$, si osserva
+		che $\varphi(\v, \vv i) = a_i \varphi(\vv i, \vv i)$. Quindi $\v = \sum_{i=1}^n \frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)} \, \vv i$. In particolare, $\frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)}$ è
+		detto \textbf{coefficiente di Fourier} di $\v$ rispetto a $\vv i$. Se $\basis$ è ortonormale,
+		$\v = \sum_{i=1}^n \varphi(\v, \vv i) \, \vv i$. \\
+		
+		\li Quindi $\norm{\v}^2 = \varphi(\v, \v) = \sum_{i=1}^n \frac{\varphi(\v, \vv i)^2}{\varphi(\vv i, \vv i)}$. In
+		particolare, se $\basis$ è ortonormale, $\norm{\v}^2 = \sum_{i=1}^n \varphi(\v, \vv i)^2$. In tal caso,
+		si può esprimere la disuguaglianza di Bessel: $\norm{\v}^2 \geq \sum_{i=1}^k \varphi(\v, \vv i)^2$ per $k \leq n$.
+	\end{remark}
 \end{document}
