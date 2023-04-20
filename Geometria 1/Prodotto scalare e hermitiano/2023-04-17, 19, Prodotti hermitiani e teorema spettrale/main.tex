@@ -11,7 +11,7 @@
 	\maketitle
 	
 	\begin{center}
-		\Large \textbf{Prodotti hermitiani e teorema spettrale}
+		\Large \textbf{Prodotti hermitiani, spazi euclidei e teorema spettrale}
 	\end{center}
 	
 	\begin{note}
@@ -79,7 +79,8 @@
 		
 		\begin{itemize}
 			\item $(A + B)^* = A^* + B^*$,
-			\item $(AB)^* = B^* A^*$.
+			\item $(AB)^* = B^* A^*$,
+			\item $(A\inv)^* = (A^*)\inv$, se $A$ è invertibile.
 		\end{itemize}
 	\end{remark}
 
@@ -352,23 +353,59 @@
 		D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) di $V$.
 	\end{note}
 
-	\begin{definition}
+	\begin{definition} (operatori simmetrici)
 		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{simmetrico} se $f = f^\top$.
 	\end{definition}
 
-	\begin{definition}
+	\begin{definition} (applicazioni e matrici ortogonali)
 		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{ortogonale} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$.
+		Sia $A \in M(n, \KK)$. Si dice dunque che $A$ è \textbf{ortogonale} se $A^\top A = A A^\top = I_n$.
 	\end{definition}
 
 	\begin{definition}
+		Le matrici ortogonali di $M(n, \KK)$ formano un sottogruppo moltiplicativo di $\GL(n, \KK)$, detto \textbf{gruppo ortogonale},
+		e indicato con $O_n$. Il sottogruppo di $O_n$ contenente solo le matrici con determinante pari a $1$ è
+		detto \textbf{gruppo ortogonale speciale}, e si denota con $SO_n$.
+	\end{definition}
+
+	\begin{remark}
+		Si possono classificare in modo semplice alcuni di questi gruppi ortogonali per $\KK = \RR$. \\
+		
+		\li $A \in O_n \implies 1 = \det(I_n) = \det(A A^\top) = \det(A)^2 \implies \det(A) = \pm 1$.
+		\li $A = (a) \in O_1 \iff A^\top A = I_1 \iff a^2 = 1 \iff a = \pm 1$, da cui si ricava che l'unica matrice
+		di $SO_1$ è $(1)$. Si osserva inoltre che $O_1$ è abeliano di ordine $2$, e quindi che $O_1 \cong \ZZ/2\ZZ$. \\
+		\li $A = \Matrix{a & b \\ c & d} \in O_2 \iff \Matrix{a^2 + b^2 & ab + cd \\ ab + cd & c^2 + d^2} = A^\top A = I_2 \iff \system{a^2 + b^2 = c^2 + d^2 = 1, \\ ab + cd = 0.}$ \\
+		
+		Si ricava pertanto che si può identificare
+		$A$ con le funzioni trigonometriche $\cos(\theta)$ e $\sin(\theta)$ nelle due forme:
+		\begin{align*}
+			&A = \Matrix{\cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta)} \quad &\text{(}\!\det(A) = 1, A \in SO_2\text{)}, \\
+			&A = \Matrix{\cos(\theta) & \sin(\theta) \\ \sin(\theta) & -\cos(\theta)} \quad &\text{(}\!\det(A) = -1\text{)}.
+		\end{align*}
+	\end{remark}
+
+	\begin{definition} (applicazioni e matrici hermitiane)
 		Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
-		$f$ è \textbf{hermitiano} se $f = f^*$.
+		$f$ è \textbf{hermitiano} se $f = f^*$. Sia $A \in M(n, \CC)$. Si dice dunque che $A$
+		è \textbf{hermitiana} se $A = A^*$.
+	\end{definition}
+
+	\begin{definition} (applicazioni e matrici unitarie)
+		Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
+		$f$ è \textbf{unitario} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$. Sia $A \in M(n, \CC)$.
+		Si dice dunque che $A$ è \textbf{unitaria} se $A^* A = A A^* = I_n$.
 	\end{definition}
 
 	\begin{definition}
-		Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
-		$f$ è \textbf{unitario} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$.
+		Le matrici unitarie di $M(n, \CC)$ formano un sottogruppo moltiplicativo di $\GL(n, \CC)$, detto \textbf{gruppo unitario},
+		e indicato con $U_n$. Il sottogruppo di $U_n$ contenente solo le matrici con determinante pari a $1$ è
+		detto \textbf{gruppo unitario speciale}, e si denota con $SU_n$.
 	\end{definition}
+
+	\begin{remark}\nl		
+		\li $A \in U_n \implies 1 = \det(I_n) = \det(A A^*) = \det(A) \conj{\det(A)} = \abs{\det(A)}^2 = 1$.
+		\li $A = (a) \in U_1 \iff A^* A = I_1 \iff \abs{a}^2 = 1 \iff a = e^{i\theta}$, $\theta \in [0, 2\pi)$, ossia il numero complesso $a$ appartiene alla circonferenza di raggio unitario.
+	\end{remark}
 
 	\begin{definition} (spazio euclideo reale)
 		Si definisce \textbf{spazio euclideo reale} uno spazio vettoriale $V$ su $\RR$ dotato
@@ -386,7 +423,7 @@
 	\end{definition}
 
 	\begin{proposition}
-		Sia $(V, \varphi)$ uno spazio euclideo reale e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è simmetrico $\iff$ $M_\basis(f) = M_\basis(f)^\top$.
+		Sia $(V, \varphi)$ uno spazio euclideo reale e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è simmetrico $\iff$ $M_\basis(f) = M_\basis(f)^\top$ $\iff$ $M_\basis(f)$ è simmetrica.
 	\end{proposition}
 
 	\begin{proof}
@@ -396,54 +433,163 @@
 		Se invece $M_\basis(f)^\top = M_\basis(f)$, $\varphi(\v, f(\w)) =$ $[\v]_\basis^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis)$ $= [\v]_\basis^\top M_\basis(f) [\w]_\basis$ $= [\v]_\basis^\top M_\basis(f)^\top [\w]_\basis = (M_\basis(f) [\v]_\basis)^\top [\w]_\basis = (M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) [\w]_\basis = \varphi(f(\v), \w)$, e quindi $f$ è simmetrico.
 	\end{proof}
 
-	% TODO: aggiungere matrici ortogonali, hermitiani e unitari.
-
-	\begin{proposition} Sia $\basis$ una base di $V$. Allora
-		$f \in \End(V)$ è simmetrico $\iff$ $M_\basis(f)$ è una matrice simmetrica.
+	\begin{proposition}
+		Sia $(V, \varphi)$ uno spazio euclideo reale e sia $\basis$ una base ortonormale di $V$. Allora
+		$f \in \End(V)$ è ortogonale $\iff$ $M_\basis(f) M_\basis(f)^\top = M_\basis(f)^\top M_\basis(f) = I_n$ $\defiff$ $M_\basis(f)$ è ortogonale.
 	\end{proposition}
 
-	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+	\begin{proof}
+		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è ortogonale, allora
+		$[\v]_\basis^\top \, [\w]_\basis = [\v]_\basis^\top \, M_\basis(\varphi) [\w]_\basis = \varphi(\v, \w) =
+		\varphi(f(\v), f(\w)) = (M_\basis(f) [\v]_\basis)^\top \, M_\basis(\varphi) (M_\basis(f) [\w]_\basis) =
+		[\v]_\basis^\top M_\basis(f)^\top M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis$. Allora, come visto nella proposizione precedente, si ricava che $M_\basis(f)^\top M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$. \\
 		
-		\rightproof Se $f$ è simmetrico, $\varphi(\v, f(\w)) = \varphi(f(\v), \w)$. Quindi
-		$[\v]_\basis M_\basis(\varphi)$
+		Se invece $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$, $\varphi(\v, \w) = [\v]_\basis^\top [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis =
+		(M_\basis(f) [\v]_\basis)^\top (M_\basis(f) [\w]_\basis) =$ $(M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(f(\v), f(\w))$, e quindi
+		$f$ è ortogonale.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $(V, \varphi)$ uno spazio euclideo complesso e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è hermitiano $\iff$ $M_\basis(f) = M_\basis(f)^*$ $\defiff$ $M_\basis(f)$ è hermitiana.
+	\end{proposition}
+
+	\begin{proof}
+		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è hermitiano, allora $[\v]_\basis^* \, M_\basis(f) [\w]_\basis = [\v]_\basis^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(\v, f(\w)) = \varphi(f(\v), \w) = (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) [\w]_\basis = [\v]_\basis^* \, M_\basis(f)^* [\w]_\basis$.  Allora, come visto nella proposizione precedente, si ricava che $M_\basis(f) = M_\basis(f)^*$.
+		
+		Se invece $M_\basis(f)^* = M_\basis(f)$, $\varphi(\v, f(\w)) =$ $[\v]_\basis^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis)$ $= [\v]_\basis^* M_\basis(f) [\w]_\basis$ $= [\v]_\basis^* M_\basis(f)^* [\w]_\basis = (M_\basis(f) [\v]_\basis)^* [\w]_\basis = (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) [\w]_\basis = \varphi(f(\v), \w)$, e quindi $f$ è hermitiano.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $(V, \varphi)$ uno spazio euclideo complesso e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è unitario $\iff$ $M_\basis(f) M_\basis(f)^* = M_\basis(f)^* M_\basis(f) = I_n$ $\defiff$ $M_\basis(f)$ è unitaria.
+	\end{proposition}
+
+	\begin{proof}
+		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è unitario, allora
+		$[\v]_\basis^* \, [\w]_\basis = [\v]_\basis^* \, M_\basis(\varphi) [\w]_\basis = \varphi(\v, \w) =
+		\varphi(f(\v), f(\w)) = (M_\basis(f) [\v]_\basis)^* \, M_\basis(\varphi) (M_\basis(f) [\w]_\basis) =
+		[\v]_\basis^* M_\basis(f)^* M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$. Allora, come visto nella proposizione precedente, si ricava che $M_\basis(f)^* M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$. \\
+		
+		Se invece $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$, $\varphi(\v, \w) = [\v]_\basis^* [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$ $=
+		(M_\basis(f) [\v]_\basis)^* (M_\basis(f) [\w]_\basis)$ $= (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(f(\v), f(\w))$, e quindi
+		$f$ è unitario.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $V = \RR^n$ uno spazio vettoriale col prodotto scalare standard $\varphi$. Allora sono equivalenti i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\item $A \in O_n$,
+			\item $f_A$ è un operatore ortogonale,
+			\item le colonne e le righe di $A$ formano una base ortonormale di $V$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\basis$ la base canonica di $V$. Allora $M_\basis(f_A) = A$, e quindi, per una proposizione
+		precedente, $f_A$ è un operatore ortogonale. Viceversa si deduce che se $f_A$ è un operatore ortogonale,
+		$A \in O_n$. Dunque è sufficiente dimostrare che $A \in O_n \iff$ le colonne e le righe di $A$ formano una
+		base ortonormale di $V$. \\
+		
+		\rightproof Se $A \in O_n$, in particolare $A \in \GL(n, \RR)$, e quindi $A$ è invertibile. Allora le
+		sue colonne e le sue righe formano già una base di $V$, essendo $n$ vettori di $V$ linearmente indipendenti.
+		Inoltre, poiché $A \in O_n$, $\varphi(\e i, \e j) = \varphi(A \e i, A \e j)$, e quindi le colonne di $A$ si mantengono a due a due ortogonali tra di loro, mentre $\varphi(A \e i, A \e i) = \varphi(\e i, \e i) = 1$.
+		Pertanto le colonne di $A$ formano una base ortonormale di $V$. \\
+
+		Si osserva che anche $A^\top \in O_n$. Allora le righe di $A$, che non sono altro che
+		le colonne di $A^\top$, formano anch'esse una base ortonormale di $V$. \\
+		
+		\leftproof Nel moltiplicare $A^\top$ con $A$ altro non si sta facendo che calcolare il prodotto
+		scalare $\varphi$ tra ogni riga di $A^\top$ e ogni colonna di $A$	, ossia $(A^* A)_{ij} = \varphi((A^\top)_i, A^j) = \varphi(A^i, A^j) = \delta_{ij}$.
+		Quindi $A^\top A = A A^\top = I_n$, da cui si deduce che $A \in O_n$.
+	\end{proof}
+	
+	\begin{proposition}
+		Sia $V = \CC^n$ uno spazio vettoriale col prodotto hermitiano standard $\varphi$. Allora sono equivalenti i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\item $A \in U_n$,
+			\item $f_A$ è un operatore unitario,
+			\item le colonne e le righe di $A$ formano una base ortonormale di $V$.
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+		Sia $\basis$ la base canonica di $V$. Allora $M_\basis(f_A) = A$, e quindi, per una proposizione
+		precedente, $f_A$ è un operatore unitario. Viceversa si deduce che se $f_A$ è un operatore unitario,
+		$A \in U_n$. Dunque è sufficiente dimostrare che $A \in U_n \iff$ le colonne e le righe di $A$ formano una
+		base ortonormale di $V$. \\
+		
+		\rightproof Se $A \in U_n$, in particolare $A \in \GL(n, \RR)$, e quindi $A$ è invertibile. Allora le
+		sue colonne e le sue righe formano già una base di $V$, essendo $n$ vettori di $V$ linearmente indipendenti.
+		Inoltre, poiché $A \in U_n$, $\varphi(\e i, \e j) = \varphi(A \e i, A \e j)$, e quindi le colonne di $A$ si mantengono a due a due ortogonali tra di loro, mentre $\varphi(A \e i, A \e i) = \varphi(\e i, \e i) = 1$.
+		Pertanto le colonne di $A$ formano una base ortonormale di $V$. \\
+		
+		Si osserva che anche $A^\top \in U_n$. Allora le righe di $A$, che non sono altro che
+		le colonne di $A^\top$, formano anch'esse una base ortonormale di $V$. \\
+		
+		\leftproof Nel moltiplicare $A^*$ con $A$ altro non si sta facendo che calcolare il prodotto
+		hermitiano $\varphi$ tra ogni riga coniugata di $A^*$ e ogni colonna di $A$, ossia $(A^* A)_{ij} = \varphi((A^\top)_i, A^j) = \varphi(A^i, A^j) = \delta_{ij}$.
+		Quindi $A^* A = A A^* = I_n$, da cui si deduce che $A \in U_n$.
 	\end{proof}
 
 	\hr
 	
-	\begin{proposition}
-		Se $V = \RR^n$ con prodotto canonico $\varphi(\vec x, \vec y) = \vec x ^\top \vec y$. Sono allora equivalenti i seguenti fatti:
-		
-		\begin{enumerate}[(i)]
-			\item $A \in O_n$,
-			\item $f_A : V \to V$ con $f_A(\vec x) = A \vec x$ è ortogonale,
-			\item Le colonne (e le righe) di $A$ formano una base ortonormale di $V$.
-		\end{enumerate}
+	\begin{note}
+		D'ora in poi, qualora non specificato diversamente, si assumerà che $V$ sia uno spazio
+		euclideo, reale o complesso.
+	\end{note}
+	
+	\begin{definition} (norma)
+		Sia $(V, \varphi)$ un qualunque spazio euclideo. Si definisce \textbf{norma} la mappa
+		$\norm{\cdot} : V \to \RR^+$ tale che $\norm{\v} = \sqrt{\varphi(\v, \v)}$.
+	\end{definition}
+
+	\begin{definition} (distanza tra due vettori)
+		Sia $(V, \varphi)$ un qualunque spazio euclideo. Si definisce \textbf{distanza} la mappa
+		$d : V \times V \to \RR^+$ tale che $d(\v, \w) = \norm{\v - \w}$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li Si osserva che in effetti $\varphi(\v, \v) \in \RR^+$ $\forall \v \in V$. Infatti, sia
+		per il caso reale che per il caso complesso, $\varphi$ è definito positivo. \\
+		\li Vale che $\norm{\v} = 0 \iff \v = \vec 0$. Infatti, se $\v = \vec 0$, chiaramente
+		$\varphi(\v, \v) = 0 \implies \norm{\v} = 0$; se invece $\norm{\v} = 0$,
+		$\varphi(\v, \v) = 0$, e quindi $\v = \vec 0$, dacché $V^\perp = \zerovecset$, essendo
+		$\varphi$ definito positivo. \\
+		\li Inoltre, vale chiaramente che $\norm{\alpha \v} = \abs{\alpha} \norm{\v}$.
+	\end{remark}
+
+	\begin{proposition} (disuguaglianza di Cauchy-Schwarz)
+		Vale che $\norm{\v} \norm{\w} \geq \abs{\varphi(\v, \w)}$, $\forall \v$, $\w \in V$, dove
+		l'uguaglianza è raggiunta soltanto se $\v$ e $\w$ sono linearmente dipendenti.
 	\end{proposition}
 
 	\begin{proof}
-		(1 - 2) ovvio
-		(2 - 3) $f_A$ manda basi ortonormali in basi ortonormali, e quindi
-		così sono ortonormali le colonne di $A$. Analogamente per le righe
-		considerando $A^\top A = I$.
-		(3 - 1) $A^\top A = I$.
-	\end{proof}
-
-	\begin{proposition}
-		Se $V = \CC^n$ con prodotto canonico hermitiano, sono equivalenti
-		i seguenti fatti:
+		Si consideri innanzitutto il caso $\KK = \RR$, e quindi il caso in cui $\varphi$ è
+		il prodotto scalare standard. Siano $\v$, $\w \in V$.
+		Si consideri la disuguaglianza $\norm{\v + t\w}^2 \geq 0$, valida
+		per ogni elemento di $V$. Allora $\norm{\v + t \w}^2 = \norm{\v}^2 + 2 \varphi(\v, \w) t + \norm{\w}^2 t^2 \geq 0$. L'ultima disuguaglianza è possibile se e solo se $\frac{\Delta}{4} \leq 0$, e quindi se e solo
+		se $\varphi(\v, \w)^2 - \norm{\v}^2 \norm{\w}^2 \leq 0 \iff \norm{\v} \norm{\w} \geq \varphi(\v, \w)$.
+		Vale in particolare l'equivalenza se e solo se $\norm{\v + t\w} = 0$, ossia se $\v + t\w = \vec 0$, da cui
+		la tesi. \\
 		
-		\begin{enumerate}[(i)]
-			\item $A \in U_n$,
-			\item $f_A : V \to V$ con $f_A(\vec x) = A \vec x$ è unitaria,
-			\item Le colonne (e le righe) di $A$ formano una base ortonormale
-			di $V$.
-		\end{enumerate}
-	\end{proposition}
-
-	\begin{proof}
-		Come prima.
+		Si consideri ora il caso $\KK = \CC$, e dunque il caso in cui $\varphi$ è il prodotto hermitiano
+		standard. Siano $\v$, $\w \in V$, e siano $\alpha$, $\beta \in \CC$. Si consideri allora
+		la disuguaglianza $\norm{\alpha \v + \beta \w}^2 \geq 0$, valida per ogni elemento di $V$. Allora
+		$\norm{\alpha \v + \beta \w}^2 = \norm{\alpha \v}^2 + \varphi(\alpha \v, \beta \w) + \varphi(\beta \w, \alpha \v) + \norm{\beta \w}^2 = \abs{\alpha}^2 \norm{\v}^2 + \conj{\alpha} \beta \, \varphi(\v, \w) +
+		\alpha \conj{\beta} \, \varphi(\w, \v) + \abs{\beta}^2 \norm{\w}^2 \geq 0$. Ponendo allora
+		$\alpha = \norm{\w}^2$ e $\beta = -\varphi(\w, \v) = \conj{-\varphi(\v, \w)}$, si deduce che:
+		
+		\[ \norm{\v}^2 \norm{\w}^4 - \norm{\w}^2 \abs{\varphi(\v, \w)} \geq 0. \]
+		
+		\vskip 0.05in
+		
+		Se $\w = \vec 0$, la disuguaglianza di Cauchy-Schwarz è già dimostrata. Altrimenti, è sufficiente
+		dividere per $\norm{\w}^2$ (dal momento che $\w \neq \vec 0 \iff \norm{\w} \neq 0$) per ottenere
+		la tesi.
 	\end{proof}
 
-	
-	
+	\begin{proposition} (disuguaglianza triangolare)
+		
+	\end{proposition}
 \end{document}
