@@ -626,11 +626,78 @@
 		
 		\li Se $\v = a_1 \vv 1 + \ldots + a_n \vv n$, con $a_1$, ..., $a_n \in \KK$, si osserva
 		che $\varphi(\v, \vv i) = a_i \varphi(\vv i, \vv i)$. Quindi $\v = \sum_{i=1}^n \frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)} \, \vv i$. In particolare, $\frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)}$ è
-		detto \textbf{coefficiente di Fourier} di $\v$ rispetto a $\vv i$. Se $\basis$ è ortonormale,
+		detto \textbf{coefficiente di Fourier} di $\v$ rispetto a $\vv i$, e si indica con $C(\v, \vv i)$. Se $\basis$ è ortonormale,
 		$\v = \sum_{i=1}^n \varphi(\v, \vv i) \, \vv i$. \\
-		
 		\li Quindi $\norm{\v}^2 = \varphi(\v, \v) = \sum_{i=1}^n \frac{\varphi(\v, \vv i)^2}{\varphi(\vv i, \vv i)}$. In
 		particolare, se $\basis$ è ortonormale, $\norm{\v}^2 = \sum_{i=1}^n \varphi(\v, \vv i)^2$. In tal caso,
 		si può esprimere la disuguaglianza di Bessel: $\norm{\v}^2 \geq \sum_{i=1}^k \varphi(\v, \vv i)^2$ per $k \leq n$.
 	\end{remark}
+
+	\begin{remark} (algoritmo di ortogonalizzazione di Gram-Schmidt)
+		Se $\varphi$ è non degenere (o in generale, se $\CI(\varphi) = \zerovecset$) ed è
+		data una base $\basis = \{ \vv 1, \ldots, \vv n \}$ per $V$ (dove si ricorda che deve valere
+		$\Char \KK \neq 2$), è possibile
+		applicare l'\textbf{algoritmo di ortogonalizzazione di Gram-Schmidt} per ottenere
+		da $\basis$ una nuova base $\basis' = \{ \vv 1', \ldots, \vv n' \}$ con le seguenti proprietà:
+		
+		\begin{enumerate}[(i)]
+			\item $\basis'$ è una base ortogonale,
+			\item $\basis'$ mantiene la stessa bandiera di $\basis$ (ossia $\Span(\vv 1, \ldots, \vv i) = \Span(\vv 1', \ldots, \vv i')$ per ogni $1 \leq i \leq n$).
+		\end{enumerate}
+	
+		L'algoritmo si applica nel seguente modo: si prenda in considerazione $\vv 1$ e sottragga ad ogni altro vettore
+		della base il vettore $C(\vv 1, \vv i) \vv 1 = \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv 1$,
+		rendendo ortogonale ogni altro vettore della base con $\vv 1$. Pertanto si applica la mappa
+		$\vv i \mapsto \vv i - \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i = \vv i ^{(1)}$.
+		Si verifica infatti che $\vv 1$ e $\vv i ^{(1)}$ sono ortogonali per $2 \leq i \leq n$:
+		
+		\[ \varphi(\vv 1, \vv i^{(1)}) = \varphi(\vv 1, \vv i) - \varphi\left(\vv 1, \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i\right) = \varphi(\vv 1, \vv i) - \varphi(\vv 1, \vv i) = 0. \]
+		
+		Poiché $\vv 1$ non è isotropo, si deduce la decomposizione $V = \Span(\vv 1) \oplus \Span(\vv 1)^\perp$.
+		In particolare $\dim \Span(\vv 1)^\perp = n-1$: essendo allora i vettori $\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}$
+		linearmente indipendenti e appartenenti a $\Span(\vv 1)^\perp$, ne sono una base. Si conclude quindi
+		che vale la seguente decomposizione:
+		
+		\[ V = \Span(\vv 1) \oplus^\perp \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}). \]
+		
+		\vskip 0.05in
+
+		Si riapplica dunque l'algoritmo di Gram-Schmidt prendendo come spazio vettoriale lo spazio generato dai
+		vettori a cui si è applicato precedentemente l'algoritmo, ossia $V' = \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)})$,
+		fino a che non si ottiene $V' = \zerovecset$. \\
+		
+		Si può addirittura ottenere una base ortonormale a partire da $\basis'$ normalizzando ogni vettore (ossia
+		dividendo per la propria norma), se si sta considerando uno spazio euclideo.
+	\end{remark}
+
+	\begin{remark}
+		Poiché la base ottenuta tramite Gram-Schmidt mantiene la stessa bandiera della base di partenza,
+		ogni matrice triangolabile è anche triangolabile mediante una base ortogonale.
+	\end{remark}
+
+	\begin{example}
+		Si consideri $V = (\RR^3, \innprod{\cdot})$, ossia di $\RR^3$ dotato del prodotto scalare standard, e
+		si applichi l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
+		
+		\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\} \]
+		
+		\vskip 0.05in
+		
+		Alla prima iterazione dell'algoritmo si ottengono i seguenti vettori:
+
+		\begin{itemize}
+			\item $\vv 2 ^{(1)} = \vv 2 -  \frac{\varphi(\vv 1, \vv 2)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 2 - \vv 1 = \Vector{0 \\ 1 \\ 0} = \e 2$,
+			\item $\vv 3 ^{(1)} = \vv 3 - \frac{\varphi(\vv 1, \vv 3)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 3 - \vv 1 = \Vector{0 \\ 1 \\ 1}$.
+		\end{itemize}
+	
+		Si considera ora $V' = \Span(\vv 2 ^{(1)}, \vv 3 ^{(1)})$. Alla seconda iterazione dell'algoritmo si
+		ottiene allora il seguente vettore:
+		
+		\begin{itemize}
+			\item $\vv 3 ^{(2)} = \vv 3 ^{(1)} - \frac{\varphi(\vv 2 ^{(1)},  \vv 3 ^{(1)})}{\varphi(\vv 2 ^{(1)}, \vv 2 ^{(1)})} \vv 2 ^{(1)} = \vv 3 ^{(1)} - \vv 2 ^{(1)} = \Vector{0 \\ 0 \\ 1} = \e 3$.
+		\end{itemize}
+	
+		Quindi la base ottenuta è $\basis' = \{\e1, \e2, \e3\}$, ossia la base canonica di $\RR^3$, già
+		ortonormale.
+	\end{example}
 \end{document}
