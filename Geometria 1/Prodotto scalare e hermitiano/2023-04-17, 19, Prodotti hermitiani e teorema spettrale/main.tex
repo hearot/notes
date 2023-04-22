@@ -161,7 +161,7 @@
 
 	\begin{remark}
 		Si osserva che lo spazio di restrizione su $\RR$ e lo spazio di partenza condividono lo stesso insieme
-		di vettori. Infatti, $\Span_\CC(\basis) = \Span_\RR(\basis \cup i\basis)$. Ciononostante, $\dim V_\RR = 2 \dim V$, se $\dim V \in \NN$.
+		di vettori. Infatti, $\Span_\CC(\basis) = \Span_\RR(\basis \cup i\basis)$. Ciononostante, $\dim V_\RR = 2 \dim V$\footnote{Si sarebbe potuto ottenere lo stesso risultato utilizzando il teorema delle torri algebriche: $[V_\RR : \RR] = [V: \CC] [\CC: \RR] = 2 [V : \CC]$.}, se $\dim V \in \NN$.
 	\end{remark}
 
 	\begin{definition} (complessificazione di uno spazio) Sia $V$ uno spazio vettoriale su $\RR$.
@@ -177,8 +177,8 @@
 		La costruzione dello spazio complessificato emula in realtà la costruzione di $\CC$ come spazio
 		$\RR \times \RR$. Infatti se $z = (c, d)$, vale che $(a + bi)(c, d) = (ac - bd, ad + bc)$, mentre
 		si mantiene l'usuale operazione di addizione. In particolare si può identificare l'insieme
-		$iV := V \times \zerovecset$ come $V$, mentre $\zerovecset \times V$ viene identificato come l'insieme
-		degli immaginari di $V_\CC$. Infine, moltiplicare per uno scalare reale un elemento di
+		$V \times \zerovecset$ come $V$, mentre $\zerovecset \times V$ viene identificato come l'insieme
+		degli immaginari $iV$ di $V_\CC$. Infine, moltiplicare per uno scalare reale un elemento di
 		$V \times \zerovecset$ equivale a moltiplicare la sola prima componente con l'usuale operazione
 		di moltiplicazione di $V$. Allora, come accade per $\CC$, si può sostituire la notazione
 		$(\v, \w)$ con la più comoda notazione $\v + i \w$.
@@ -223,8 +223,121 @@
 		mentre $f_\RR(i \vv i) = i f(\vv i) = - b_1 \vv 1 + \ldots - b_n \vv n + a_1 (i \vv 1) + \ldots + a_n (i \vv n)$.
 	\end{remark}
 
-	% TODO: aggiungere ultimi lemmi sulla restrizione e la complessificazione
+	\begin{definition}
+		Sia $f$ un'applicazione $\RR$-lineare di $V$ spazio vettoriale su $\RR$. Allora
+		si definisce la \textbf{complessificazione} di $f$, detta $f_\CC : V_\CC \to V_\CC$,
+		in modo tale che $f_\CC(\v + i \w) = f(\v) + i f(\w)$.
+	\end{definition}
+
+	\begin{remark}
+		Si verifica infatti che $f_\CC$ è $\CC$-lineare.
+		\begin{itemize}
+			\item $f_\CC((\vv1 + i \ww1) + (\vv2 + i \ww2)) = f_\CC((\vv1 + \vv2) + i (\ww1 + \ww2)) =
+			f(\vv1 + \vv2) + i f(\ww1 + \ww2) = (f(\vv1) + i f(\ww1)) + (f(\vv2) + i f(\ww2)) =
+			f_\CC(\vv1 + i\ww1) + f_\CC(\vv2 + i\ww2)$.
+			
+			\item $f_\CC((a+bi)(\v + i\w)) = f_\CC(a\v-b\w + i(a\w+b\v)) = f(a\v - b\w) + i f(a\w + b\v) =
+			af(\v) - bf(\w) + i(af(\w) + bf(\v)) = (a+bi)(f(\v) + if(\w)) = (a+bi) f_\CC(\v + i\w)$.
+		\end{itemize}
+	\end{remark}
+
+	\begin{proposition}
+		Sia $f_\CC$ la complessificazione di $f \in \End(V)$, dove $V$ è uno spazio vettoriale su $\RR$.
+		Sia inoltre $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Valgono allora i seguenti risultati:
+		
+		\begin{enumerate}[(i)]
+			\item $\restr{(f_\CC)_\RR}{V}$ assume gli stessi valori di $f$,
+			\item $M_\basis(f_\CC) = M_\basis(f) \in M(n, \RR)$,
+			\item $M_{\basis \cup i \basis}((f_\CC)_\RR) = \Matrix{M_\basis(f) & \rvline & 0 \\ \hline 0 & \rvline & M_\basis(f)}$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}Si dimostrano i risultati separatamente.
+		\begin{enumerate}[(i)]
+			\item Si osserva che $(f_\CC)_\RR(\vv i) = f_\CC(\vv i) = f(\vv i)$. Dal momento che
+			$(f_\CC)_\RR$ è $\RR$-lineare, si conclude che $(f_\CC)_\RR$ assume gli stessi valori
+			di $f$.
+			
+			\item Dal momento che $\basis$, nell'identificazione di $(\v, \vec 0)$ come $\v$, è
+			sempre una base di $V_\CC$, e $f_\CC(\vv i) = f(\vv i)$, chiaramente
+			$[f_\CC(\vv i)]_\basis = [f(\vv i)]_\basis$, e quindi $M_\basis(f_\CC) = M_\basis(f)$,
+			dove si osserva anche che $M_\basis(f) \in M(n, \RR)$, essendo $V$ uno spazio vettoriale
+			su $\RR$.
+			
+			\item Sia $f(\vv i) = a_1 \vv 1 + \ldots + a_n \vv n$ con $a_1$, ..., $a_n \in \RR$. Come
+			osservato in (i), $\restr{(f_\CC)_\RR}{\basis} = \restr{(f_\CC)_\RR}{\basis}$, e quindi
+			la prima metà di $M_{\basis \cup i \basis}((f_\CC)_\RR)$ è formata da due blocchi: uno
+			verticale coincidente con $M_\basis(f)$ e un altro completamente nullo, dal momento che
+			non compare alcun termine di $i \basis$ nella scrittura di $(f_\CC)_\RR(\vv i)$. Al
+			contrario, per $i \basis$, $(f_\CC)_\RR(i \vv i) = f_\CC(i \vv i) = i f(\vv i) = a_1 (i \vv 1) +
+			\ldots + a_n (i \vv n)$; pertanto la seconda metà della matrice avrà i due blocchi della prima metà,
+			benché scambiati.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{remark}
+		Dal momento che $M_\basis(f_\CC) = M_\basis(f)$, $f_\CC$ e $f$ condividono lo stesso polinomio caratteristico
+		e vale che $sp(f) \subseteq sp(f_\CC)$, dove vale l'uguaglianza se e solo se tale polinomio caratteristico
+		è completamente riducibile in $\RR$. Inoltre, se $V_\lambda$ è l'autospazio su $V$ dell'autovalore $\lambda$, l'autospazio
+		su $V_\CC$, rispetto a $f_\CC$, è invece ${V_\CC}_\lambda = V_\lambda + i V_\lambda$, la cui
+		dimensione rimane invariata rispetto a $V_\lambda$, ossia $\dim V_\lambda = \dim {V_\CC}_\lambda$
+		(infatti, analogamente a prima, una base di $V_\lambda$ può essere identificata come base
+		anche per ${V_\CC}_\lambda$).
+	\end{remark}
+
+	\begin{proposition}
+		Sia $f_\CC$ la complessificazione di $f \in \End(V)$, dove $V$ è uno spazio vettoriale su $\RR$.
+		Sia inoltre $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Allora un endomorfismo
+		$\tilde g : V_\CC \to V_\CC$ complessifica un endomorfismo $g \in \End(V)$ $\iff$ $M_\basis(\tilde g) \in M(n, \RR)$.
+	\end{proposition}
+
+	\begin{proof}
+		Se $\tilde g$ complessifica $g \in \End(V)$, allora, per la proposizione precedente,
+		$M_\basis(\tilde g) = M_\basis(g) \in M(n, \RR)$. Se invece $A = M_\basis(\tilde g) \in M(n, \RR)$,
+		si considera $g = M_\basis\inv(A) \in \End(V)$. Si verifica facilemente che $\tilde g$ non è altro che
+		il complessificato di tale $g$:
+		
+		\begin{itemize}
+			\item $\tilde g (\vv i) = g(\vv i)$, dove l'uguaglianza è data dal confronto delle matrici associate,
+			e quindi $\restr{\tilde g}{V} = g$;
+			\item $\tilde g(\v + i\w) = \tilde g(\v) + i \tilde g(\w) = g(\v) + i g(\w)$, da cui la tesi.
+		\end{itemize}
+	\end{proof}
+
+	\begin{proposition}
+		Sia $\varphi$ un prodotto scalare di $V$ spazio vettoriale su $\RR$. Allora esiste un
+		unico prodotto hermitiano $\varphi_\CC : V_\CC \times V_\CC \to \CC$ che estende $\varphi$ (ossia tale che
+		$\restr{\varphi_\CC}{V \times V} = \varphi$), il quale assume la stessa segnatura
+		di $\varphi$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\basis$ una base di Sylvester per $\varphi$. Si consideri allora il prodotto
+		$\varphi_\CC$ tale che:
+		
+		\[ \varphi_\CC(\vv1 + i\ww1, \vv2 + i\ww2) = \varphi(\vv1, \vv2) + \varphi(\ww1, \ww2) + i(\varphi(\vv1, \ww1) - \varphi(\ww1, \vv2)). \]
+		
+		Chiaramente $\restr{\varphi_\CC}{V \times V} = \varphi$. Si verifica allora che $\varphi_\CC$ è hermitiano:
+		
+		\begin{itemize}
+			\item $\varphi_\CC(\v + i\w, (\vv1 + i\ww1) + (\vv2 + i\ww2))$ $= \varphi(\v, \vv1 + \vv2) + \varphi(\w, \ww1 + \ww2)$ $+ i(\varphi(\v, \ww1 + \ww2)$ $- \varphi(\w, \vv1 + \vv2))$ $= [\varphi(\v, \vv1) + \varphi(\w, \ww1) + i(\varphi(\v, \ww1) - \varphi(\w, \vv1))]$ $+ [\varphi(\v, \vv2) + \varphi(\w, \ww2) + i(\varphi(\v, \ww2) - \varphi(\w, \vv2))] = \varphi_\CC(\v + i\w, \vv1 + i\ww1) +
+			\varphi_\CC(\v + i\w, \vv2 + i\ww2)$ (additività nel secondo argomento),
+			
+			\item $\varphi_\CC(\v + i\w, (a+bi)(\vv1 + i\ww1)) = \varphi_\CC(\v + i\w, a\vv1-b\ww1 + i(b\vv1+a\ww1)) =
+			\varphi(\v, a\vv1-b\ww1) + \varphi(\w, b\vv1+a\ww1) + i(\varphi(\v, b\vv1+a\ww1) - \varphi(\w, a\vv1-b\ww1))=
+			a\varphi(\v, \vv1) - b\varphi(\v, \ww1) + b\varphi(\w, \vv1) + a\varphi(\w, \ww1) + i(b\varphi(\v, \vv1) + a\varphi(\v, \ww1) - a\varphi(\w, \vv1) + b\varphi(\w, \ww1)) = a(\varphi(\v, \vv1) + \varphi(\w, \ww1)) -
+			b(\varphi(\v, \ww1) - \varphi(\w, \vv1)) + i(a(\varphi(\v, \ww1) - \varphi(\w, \vv1)) + b(\varphi(\v, \vv1) + \varphi(\w, \ww1))) = (a+bi)(\varphi(\v, \vv1) + \varphi(\w, \ww1) + i(\varphi(\v, \ww1) - \varphi(\w, \vv1))) = (a+bi) \varphi_\CC(\v + \w, \vv1 + i\ww1)$ (omogeneità nel secondo argomento),
+			
+			\item $\varphi_\CC(\vv1 + i\ww1, \vv2 + i\ww2) = \varphi(\vv1, \vv2) + \varphi(\ww1, \ww2) + i(\varphi(\vv1, \ww2) - \varphi(\ww1, \vv2)) = \conj{\varphi(\vv1, \vv2) + \varphi(\ww1, \ww2) + i(\varphi(\ww1, \vv2) - \varphi(\vv1, \ww2))} = \conj{\varphi(\vv2, \vv1) + \varphi(\ww2, \ww1) + i(\varphi(\vv2, \ww1) - \varphi(\ww2, \vv1))} = \conj{\varphi_\CC(\vv2 + \ww2, \vv1 + \ww1)}$ (coniugio nello scambio degli argomenti).
+		\end{itemize}
 	
+		Ogni prodotto hermitiano $\tau$ che estende il prodotto scalare $\varphi$ ha la stessa matrice associata nella
+		base $\basis$, essendo $\tau(\vv i, \vv i) = \varphi(\vv i, \vv i)$ vero per ipotesi. Pertanto $\tau$ è
+		unico, e vale che $\tau = \varphi_\CC$. Dal momento che $M_\basis(\varphi_\CC) = M_\basis(\varphi)$ è
+		una matrice di Sylvester, $\varphi_\CC$ mantiene anche la stessa segnatura di $\varphi$.
+	\end{proof}
+
+	% TODO: aggiungere ultimi lemmi sulla restrizione e la complessificazione
 	\hr	
 	
 	\begin{theorem} (di rappresentazione di Riesz per il prodotto scalare) 
@@ -354,7 +467,7 @@
 	\end{note}
 
 	\begin{definition} (operatori simmetrici)
-		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{simmetrico} se $f = f^\top$.
+		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{simmetrico} (o \textit{autoaggiunto}) se $f = f^\top$.
 	\end{definition}
 
 	\begin{definition} (applicazioni e matrici ortogonali)
@@ -676,7 +789,7 @@
 	\end{remark}
 
 	\begin{example}
-		Si consideri $V = (\RR^3, \innprod{\cdot})$, ossia di $\RR^3$ dotato del prodotto scalare standard, e
+		Si consideri $V = (\RR^3, \innprod{\cdot})$, ossia $\RR^3$ dotato del prodotto scalare standard, e
 		si applichi l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
 		
 		\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\} \]
