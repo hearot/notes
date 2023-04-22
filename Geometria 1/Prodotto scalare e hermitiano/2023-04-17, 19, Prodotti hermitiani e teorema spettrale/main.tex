@@ -277,7 +277,7 @@
 
 	\begin{remark}
 		Dal momento che $M_\basis(f_\CC) = M_\basis(f)$, $f_\CC$ e $f$ condividono lo stesso polinomio caratteristico
-		e vale che $sp(f) \subseteq sp(f_\CC)$, dove vale l'uguaglianza se e solo se tale polinomio caratteristico
+		e vale che $\Sp(f) \subseteq \Sp(f_\CC)$, dove vale l'uguaglianza se e solo se tale polinomio caratteristico
 		è completamente riducibile in $\RR$. Inoltre, se $V_\lambda$ è l'autospazio su $V$ dell'autovalore $\lambda$, l'autospazio
 		su $V_\CC$, rispetto a $f_\CC$, è invece ${V_\CC}_\lambda = V_\lambda + i V_\lambda$, la cui
 		dimensione rimane invariata rispetto a $V_\lambda$, ossia $\dim V_\lambda = \dim {V_\CC}_\lambda$
@@ -577,10 +577,14 @@
 		\li $A \in O_n \implies 1 = \det(I_n) = \det(A A^\top) = \det(A)^2 \implies \det(A) = \pm 1$.
 		\li $A = (a) \in O_1 \iff A^\top A = I_1 \iff a^2 = 1 \iff a = \pm 1$, da cui si ricava che l'unica matrice
 		di $SO_1$ è $(1)$. Si osserva inoltre che $O_1$ è abeliano di ordine $2$, e quindi che $O_1 \cong \ZZ/2\ZZ$. \\
-		\li $A = \Matrix{a & b \\ c & d} \in O_2 \iff \Matrix{a^2 + b^2 & ab + cd \\ ab + cd & c^2 + d^2} = A^\top A = I_2 \iff \system{a^2 + b^2 = c^2 + d^2 = 1, \\ ab + cd = 0.}$ \\
+		\li $A = \Matrix{a & b \\ c & d} \in O_2 \iff \Matrix{a^2 + b^2 & ab + cd \\ ab + cd & c^2 + d^2} = A^\top A = I_2.$ \\
 		
-		Si ricava pertanto che si può identificare
-		$A$ con le funzioni trigonometriche $\cos(\theta)$ e $\sin(\theta)$ nelle due forme:
+		Pertanto deve essere soddisfatto il seguente sistema di equazioni:
+		
+		\[ \system{a^2 + b^2 = c^2 + d^2 = 1, \\ ac + bd = 0.} \]
+		
+		Si ricava dunque che si può identificare
+		$A$ con le funzioni trigonometriche $\cos(\theta)$ e $\sin(\theta)$ con $\theta \in [0, 2\pi)$ nelle due forme:
 		\begin{align*}
 			&A = \Matrix{\cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta)} \quad &\text{(}\!\det(A) = 1, A \in SO_2\text{)}, \\
 			&A = \Matrix{\cos(\theta) & \sin(\theta) \\ \sin(\theta) & -\cos(\theta)} \quad &\text{(}\!\det(A) = -1\text{)}.
@@ -605,9 +609,20 @@
 		detto \textbf{gruppo unitario speciale}, e si denota con $SU_n$.
 	\end{definition}
 
-	\begin{remark}\nl		
+	\begin{remark}\nl
+		Si possono classificare in modo semplice alcuni di questi gruppi unitari.
+		
 		\li $A \in U_n \implies 1 = \det(I_n) = \det(A A^*) = \det(A) \conj{\det(A)} = \abs{\det(A)}^2 = 1$.
 		\li $A = (a) \in U_1 \iff A^* A = I_1 \iff \abs{a}^2 = 1 \iff a = e^{i\theta}$, $\theta \in [0, 2\pi)$, ossia il numero complesso $a$ appartiene alla circonferenza di raggio unitario.
+		\li $A = \Matrix{a & b \\ c & d} \in SU_2 \iff A A^* = \Matrix{\abs{a}^2 + \abs{b}^2 & a\conj c + b \conj d \\ \conj a c + \conj b d & \abs{c}^2 + \abs{d}^2} = I_2$, $\det(A) = 1$, ossia se il seguente
+		sistema di equazioni è soddisfatto:
+		
+		\[ \system{\abs{a}^2 + \abs{b}^2 = \abs{c}^2 + \abs{d}^2 = 1, \\ a\conj c + b \conj d = 0, \\ ad-bc=1,} \]
+		
+		le cui soluzioni riassumono il gruppo $SU_2$ nel seguente modo:
+		
+		\[ SU_2 = \left\{ \Matrix{x & -y \\ \conj y & \conj x} \in M(2, \CC) \;\middle\vert\; \abs{x}^2 + \abs{y}^2 = 1 \right\}. \]
+
 	\end{remark}
 
 	\begin{definition} (spazio euclideo reale)
@@ -967,4 +982,75 @@
 		Quindi la base ottenuta è $\basis' = \{\e1, \e2, \e3\}$, ossia la base canonica di $\RR^3$, già
 		ortonormale.
 	\end{example}
+
+	\begin{remark}
+		Si osserva adesso che se $(V, \varphi)$ è uno spazio euclideo (e quindi $\varphi > 0$), e $W$ è
+		un sottospazio di $V$, vale la seguente decomposizione:
+		
+		\[ V = W \oplus^\perp W^\perp. \]
+		
+		Pertanto ogni vettore $\v \in V$ può scriversi come $\w + \w'$ dove $\w \in W$ e $\w' \in W^\perp$,
+		dove $\varphi(\w, \w') = 0$.
+	\end{remark}
+
+	\begin{definition} (proiezione ortogonale)
+		Si definisce l'applicazione $\pr_W : V \to V$, detta \textbf{proiezione ortogonale} su $W$,
+		in modo tale che $\pr_W(\v) = \w$, dove $\v = \w + \w'$, con $\w \in W$ e $\w' \in W^\perp$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li Dacché la proiezione ortogonale è un caso particolare della classica applicazione lineare
+		di proiezione su un sottospazio di una somma diretta, $\pr_W$ è un'applicazione lineare. \\
+		\li Vale chiaramente che $\pr_W^2 = \pr_W$, da cui si ricava, se $W^\perp \neq \zerovecset$, che
+		$\varphi_{\pr_W}(\lambda) = \lambda (\lambda -1)$, ossia che $\Sp(\pr_W) = \{0, 1\}$. Infatti
+		$\pr_W(\v)$ appartiene già a $W$, ed essendo la scrittura in somma di due elementi, uno di $W$ e
+		uno di $W'$, unica, $\pr_W(\pr_W(\v)) = \pr_W(\v)$, da cui l'identità $\pr_W^2 = \pr_W$. \\
+		\li Seguendo il ragionamento di prima, vale anche che $\restr{\pr_W}{W} = \Idw$ e che
+		$\restr{\pr_W}{W^\perp} = 0$. \\
+		\li Inoltre, vale la seguente riscrittura di $\v \in V$: $\v = \pr_W(\v) + \pr_{W^\perp}(\v)$. \\
+		\li Se $\basis = \{ \vv1, \ldots, \vv n \}$ è una base ortogonale di $W$, allora
+		$\pr_W(\v) = \sum_{i=1}^n \frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)} \vv i = \sum_{i=1}^n C(\v, \vv i) \vv i$. Infatti $\v -\sum_{i=1}^n C(\v, \vv i) \vv i \in W^\perp$. \\
+		\li $\pr_W$ è un operatore simmetrico (o hermitiano se lo spazio è complesso). Infatti $\varphi(\pr_W(\v), \w) =
+		\varphi(\pr_W(\v), \pr_W(\w) + \pr_{W^\perp}(\w)) = \varphi(\pr_W(\v), \pr_W(\w)) = \varphi(\pr_W(\v) + \pr_{W^\perp}(\v), \pr_W(\w)) = \varphi(\v, \pr_W(\w))$.
+	\end{remark}
+
+	\begin{proposition}
+		Sia $(V, \varphi)$ uno spazio euclideo. Allora valgono i seguenti risultati:
+		
+		\begin{enumerate}[(i)]
+			\item Siano $U$, $W \subseteq V$ sono sottospazi di $V$, allora $U \perp W$, ossia\footnote{È sufficiente che valga $U \subseteq W^\perp$ affinché valga anche $W \subseteq U^\perp$. Infatti $U \subseteq W^\perp \implies W = W^\dperp \subseteq U^\perp$. Si osserva che in generale vale che $W \subseteq W^\dperp$, dove vale l'uguaglianza nel caso di un prodotto $\varphi$ non degenere, com'è nel caso di uno spazio euclideo,
+			essendo $\varphi > 0$ per ipotesi.} $U \subseteq W^\perp$, $\iff \pr_U \circ \pr_W = \pr_W \circ \pr_U = 0$.
+			
+			\item Sia $V = W_1 \oplus \cdots \oplus W_n$. Allora $\v = \sum_{i=1}^n \pr_{W_i}(\v)$ $\iff$ $W_i \perp W_j$ $\forall i \neq j$, $1 \leq i, j \leq n$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Si dimostrano i due risultati separatamente.
+		
+		\begin{enumerate}[(i)]
+			\item Sia $\v \in V$. Allora $\pr_W(\v) \in W = W^\dperp \subseteq U^\perp$. Pertanto
+			$\pr_U(\pr_W(\v)) = \vec 0$. Analogamente $\pr_W(\pr_U(\v)) = \vec 0$, da cui la tesi.
+			
+			\item Sia vero che $\v = \sum_{i=1}^n \pr_{W_i}(\v)$ $\forall \v \in V$. Sia $\w \in W_j$. Allora $\w = \sum_{i=1}^n \pr_{W_i}(\w) = \w + \sum_{\substack{i=1 \\ i \neq j}} \pr_{W_i}(\w) \implies \pr_{W_i}(\w) = \vec 0$ $\forall i \neq j$. Quindi $\w \in W_i^\perp$ $\forall i \neq j$, e si conclude che $W_i \subseteq W_j^\perp
+			\implies W_i \perp W_j$. Se invece $W_i \perp W_j$ $\forall i \neq j$, sia $\basis_i = \left\{ \w_i^{(1)}, \ldots, \w_i^{(k_i)} \right\}$ una base ortogonale di $W_i$. Allora $\basis = \cup_{i=1}^n \basis_i$ è anch'essa
+			una base ortogonale di $V$, essendo $\varphi\left(\w_i^{(t_i)}, \w_j^{(t_j)}\right) = 0$ per ipotesi.
+			Pertanto $\v = \sum_{i=1}^n \sum_{j=1}^{k_i} C\left(\v, \w_i^{(j)}\right)  \w_i^{(j)} = \sum_{i=1}^n \pr_{W_i}(\v)$,
+			da cui la tesi. \qedhere
+		\end{enumerate}
+	\end{proof}
+
+	\begin{definition} (inversione ortogonale)
+		Si definisce l'applicazione $\rho_W : V \to V$, detta \textbf{inversione ortogonale}, in modo tale che, detto $\v = \w + \w' \in V$ con $\w \in W$, $\w \in W^\perp$, $\rho_W(\v) = \w - \w'$. Se $\dim W = \dim V - 1$,
+		si dice che $\rho_W$ è una \textbf{riflessione}.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li Si osserva che $\rho_W$ è un'applicazione lineare. \\
+		\li Vale l'identità $\rho_W^2 = \Idv$, da cui si ricava che $\varphi_{\rho_W}(\lambda) \mid (\lambda-1)(\lambda+1)$. In particolare, se $W^\perp \neq \zerovecset$, vale proprio
+		che $\Sp(\rho_W) = \{\pm1\}$, dove $V_1 = W$ e $V_{-1} = W^\perp$. \\
+		\li $\rho_W$ è ortogonale (o unitaria, se $V$ è uno spazio euclideo complesso). Infatti se $\vv 1 = \ww 1 + \ww 1'$ e $\vv 2 = \ww 2 + \ww 2 '$, con $\ww 1$, $\ww 2 \in W$ e $\ww 1'$, $\ww 2' \in W$, $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1 - \ww 1', \ww 2 - \ww 2') = \varphi(\ww 1, \ww 2) \underbrace{- \varphi(\ww 1', \ww 2) - \varphi(\ww 1, \ww 2')}_{=\,0} + \varphi(\ww 1', \ww 2') =  \varphi(\ww 1 - \ww 1', \ww 2 - \ww 2')$. \\
+		
+		Quindi $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1, \ww 2) + \varphi(\ww 1', \ww 2) + \varphi(\ww 1, \ww 2') + \varphi(\ww 1', \ww 2') = \varphi(\vv 1, \vv 2)$.
+	\end{remark}
 \end{document}
