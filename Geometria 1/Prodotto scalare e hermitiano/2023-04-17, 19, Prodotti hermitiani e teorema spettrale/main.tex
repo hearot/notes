@@ -322,7 +322,7 @@
 		\begin{itemize}
 			\item $\varphi_\CC(\v + i\w, (\vv1 + i\ww1) + (\vv2 + i\ww2))$ $= \varphi(\v, \vv1 + \vv2) + \varphi(\w, \ww1 + \ww2)$ $+ i(\varphi(\v, \ww1 + \ww2)$ $- \varphi(\w, \vv1 + \vv2))$ $= [\varphi(\v, \vv1) + \varphi(\w, \ww1) + i(\varphi(\v, \ww1) - \varphi(\w, \vv1))]$ $+ [\varphi(\v, \vv2) + \varphi(\w, \ww2) + i(\varphi(\v, \ww2) - \varphi(\w, \vv2))] = \varphi_\CC(\v + i\w, \vv1 + i\ww1) +
 			\varphi_\CC(\v + i\w, \vv2 + i\ww2)$ (additività nel secondo argomento),
-			
+
 			\item $\varphi_\CC(\v + i\w, (a+bi)(\vv1 + i\ww1)) = \varphi_\CC(\v + i\w, a\vv1-b\ww1 + i(b\vv1+a\ww1)) =
 			\varphi(\v, a\vv1-b\ww1) + \varphi(\w, b\vv1+a\ww1) + i(\varphi(\v, b\vv1+a\ww1) - \varphi(\w, a\vv1-b\ww1))=
 			a\varphi(\v, \vv1) - b\varphi(\v, \ww1) + b\varphi(\w, \vv1) + a\varphi(\w, \ww1) + i(b\varphi(\v, \vv1) + a\varphi(\v, \ww1) - a\varphi(\w, \vv1) + b\varphi(\w, \ww1)) = a(\varphi(\v, \vv1) + \varphi(\w, \ww1)) -
@@ -337,7 +337,6 @@
 		una matrice di Sylvester, $\varphi_\CC$ mantiene anche la stessa segnatura di $\varphi$.
 	\end{proof}
 
-	% TODO: aggiungere ultimi lemmi sulla restrizione e la complessificazione
 	\hr	
 	
 	\begin{theorem} (di rappresentazione di Riesz per il prodotto scalare) 
@@ -376,8 +375,8 @@
 	\begin{proposition}
 		Sia $V$ uno spazio vettoriale con prodotto scalare $\varphi$ non degenere.
 		Sia $f \in \End(V)$. Allora esiste un unico endomorfismo
-		$g : V \to V$, detto il \textbf{trasposto di} $f$ e indicato con $f^\top$ in assenza
-		di ambiguità\footnote{Si tenga infatti in conto della differenza tra $f^\top : V \to V$, di cui si discute
+		$f_\varphi^\top : V \to V$, detto il \textbf{trasposto di} $f$ e indicato con $f^\top$ in assenza
+		di ambiguità\footnote{Si tenga infatti in conto della differenza tra $f_\varphi^\top : V \to V$, di cui si discute
 		nell'enunciato, e $f^\top : V^* \to V^*$ che invece è tale che $f^top(g) = g \circ f$.}, tale che:
 		
 		\[ a_\varphi \circ g = f^\top \circ a_\varphi, \]
@@ -392,32 +391,32 @@
 	\begin{proof}
 		Si consideri $(f^\top \circ a_\varphi)(\v) \in V^*$. Per il teorema di rappresentazione di Riesz per
 		il prodotto scalare, esiste un unico $\v'$ tale che $(f^\top \circ a_\varphi)(\v)(\w) = \varphi(\v', \w) \implies \varphi(\v, f(\w)) = \varphi(\v', \w)$ $\forall \w \in V$. Si costruisce allora una mappa
-		$g : V \to V$ che associa a $\v$ tale $\v'$. Si dimostra che $g$ è un'applicazione lineare, e che
+		$f_\varphi^\top : V \to V$ che associa a $\v$ tale $\v'$. Si dimostra che $f_\varphi^\top$ è un'applicazione lineare, e che
 		dunque è un endomorfismo:
 		
 		\begin{enumerate}[(i)]
-			\item Siano $\vv 1$, $\vv 2 \in V$. Si deve dimostrare innanzitutto che $g(\vv 1 + \vv 2) = g(\vv 1) + g(\vv 2)$, ossia che $\varphi(g(\vv 1) + g(\vv 2), \w) = \varphi(\vv 1 + \vv 2, f(\w))$ $\forall \w \in V$. \\
+			\item Siano $\vv 1$, $\vv 2 \in V$. Si deve dimostrare innanzitutto che $f_\varphi^\top(\vv 1 + \vv 2) = f_\varphi^\top(\vv 1) + f_\varphi^\top(\vv 2)$, ossia che $\varphi(f_\varphi^\top(\vv 1) + f_\varphi^\top(\vv 2), \w) = \varphi(\vv 1 + \vv 2, f(\w))$ $\forall \w \in V$. \\
 
 			Si osservano le seguenti identità:			
 			\begin{align*}
 				&\varphi(\vv 1 + \vv 2, f(\w)) = \varphi(\vv 1, f(\w)) + \varphi(\vv 2, f(\w)) = (*), \\
-				&\varphi(g(\vv 1) + g(\vv 2), \w) = \varphi(g(\vv 1), \w) + \varphi(g(\vv 2), \w) = (*),
+				&\varphi(f_\varphi^\top(\vv 1) + f_\varphi^\top(\vv 2), \w) = \varphi(f_\varphi^\top(\vv 1), \w) + \varphi(f_\varphi^\top(\vv 2), \w) = (*),
 			\end{align*}
 		
-			da cui si deduce l'uguaglianza desiderata, essendo $g(\vv 1 + \vv 2)$ l'unico vettore di $V$
+			da cui si deduce l'uguaglianza desiderata, essendo $f_\varphi^\top(\vv 1 + \vv 2)$ l'unico vettore di $V$
 			con la proprietà enunciata dal teorema di rappresentazione di Riesz.
 			
-			\item Sia $\v \in V$. Si deve dimostrare che $g(a \v) = a g(\v)$, ossia che $\varphi(a g(\v), \w) =
-			\varphi(a\v, f(\w))$ $\forall a \in \KK$, $\w \in V$. Se $a = 0$, l'uguaglianza è ovvia; altrimenti è
-			sufficiente moltiplicare per $a$ l'identità $\varphi(g(\v), \w) = \varphi(\v, f(\w))$. Analogamente
-			a prima, si deduce che $g(a \v) = a g(\v)$, essendo $g(a \v)$ l'unico vettore di $V$ con la
+			\item Sia $\v \in V$. Si deve dimostrare che $f_\varphi^\top(a \v) = a f_\varphi^\top(\v)$, ossia che $\varphi(a f_\varphi^\top(\v), \w) =
+			\varphi(a\v, f(\w))$ $\forall a \in \KK$, $\w \in V$. È
+			sufficiente moltiplicare per $a$ l'identità $\varphi(f_\varphi^\top(\v), \w) = \varphi(\v, f(\w))$. Analogamente
+			a prima, si deduce che $f_\varphi^\top(a \v) = a f_\varphi^\top(\v)$, essendo $f_\varphi^\top(a \v)$ l'unico vettore di $V$ con la
 			proprietà enunciata dal teorema di rappresentazione di Riesz.
 		\end{enumerate}
 	
-		Infine si dimostra che $g$ è unico. Sia infatti $g'$ un endomorfismo di $V$ che condivide la stessa
-		proprietà di $g$. Allora $\varphi(g(\v), \w) = \varphi(\v, f(\w)) = \varphi(g'(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(g(\v) - g'(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
-		$g(\v) - g'(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $g(\v) = g'(\v)$ $\forall \v \in V$, ossia
-		$g = g'$.
+		Infine si dimostra che $f_\varphi^\top$ è unico. Sia infatti $g$ un endomorfismo di $V$ che condivide la stessa
+		proprietà di $f_\varphi^\top$. Allora $\varphi(f_\varphi^\top(\v), \w) = \varphi(\v, f(\w)) = \varphi(g(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(f_\varphi^\top(\v) - '(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
+		$f_\varphi^\top(\v) - g(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $f_\varphi^\top(\v) = g(\v)$ $\forall \v \in V$, ossia
+		$g = f_\varphi^\top$.
 	\end{proof}
 	
 	\begin{proposition}
@@ -434,7 +433,7 @@
 		Si dimostra infine che la mappa $f^*$ è unica. Sia infatti $\mu : V \to V$ che condivide la stessa
 		proprietà di $f^*$. Allora $\varphi(f^*(\v), \w) = \varphi(\v, f(\w)) = \varphi(\mu(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(f^*(\v) - \mu(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
 		$f^*(\v) - \mu(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $f^*(\v) = \mu(\v)$ $\forall \v \in V$, ossia
-		$f^* = \mu$.
+		$\mu = f^*$.
 	\end{proof}
 	
 	\begin{remark}
@@ -461,6 +460,97 @@
 	
 	da cui si deduce, come prima, che $f = (f^*)^*$.
 	\end{remark}
+
+	\begin{definition} (base ortonormale)
+		Si definisce \textbf{base ortonormale} di uno spazio vettoriale $V$ su un suo prodotto $\varphi$
+		una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n \}$ tale che $\varphi(\vv i, \vv j) = \delta_{ij}$.
+	\end{definition}
+
+	\begin{proposition}
+		Sia $\varphi$ un prodotto scalare non degenere di $V$. Sia $f \in \End(V)$. Allora
+		vale la seguente identità:
+		
+		\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
+		
+		dove $\basis$ è una base di $V$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\basis^*$ la base relativa a $\basis$ in $V^*$. Per la proposizione precedente vale la seguente identità:
+		
+		\[ a_\varphi \circ f_\varphi^\top = f^\top \circ a_\varphi. \]
+		
+		Pertanto, passando alle matrici associate, si ricava che:
+		
+		\[ M_{\basis^*}^\basis(a_\varphi) M_\basis(f_\varphi^\top) = M_{\basis^*}(f^\top) M_{\basis^*}^\basis(a_\varphi). \]
+		
+		Dal momento che valgono le seguenti due identità:
+		
+		\[ M_{\basis^*}^\basis(a_\varphi) = M_\basis(\varphi), \qquad M_{\basis^*}(f^\top) = M_\basis(f)^\top, \]
+		
+		e $a_\varphi$ è invertibile (per cui anche $M_\basis(\varphi)$ lo è), si conclude che:
+		
+		\[ M_\basis(\varphi) M_\basis(f_\varphi^\top) = M_\basis(f)^\top M_\basis(\varphi) \implies M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
+		
+		da cui la tesi.
+	\end{proof}
+
+	\begin{corollary} Sia $\varphi$ un prodotto scalare di $V$.
+		Se $\basis$ è una base ortonormale, $\varphi$ è non degenere e $M_\basis(f_\varphi^\top) = M_\basis(f)^\top$.
+	\end{corollary}
+
+	\begin{proof}
+		Se $\basis$ è una base ortonormale, $M_\basis(\varphi) = I_n$. Pertanto $\varphi$ è
+		non degenere. Allora, per la proposizione precedente:
+		
+		\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi) = M_\basis(f)^\top. \]
+	\end{proof}
+
+	\begin{proposition}
+		Sia $\varphi$ un prodotto hermitiano non degenere di $V$. Sia $f \in \End(V)$. Allora
+		vale la seguente identità:
+		
+		\[ M_\basis(f_\varphi^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi), \]
+		
+		dove $\basis$ è una base di $V$.
+	\end{proposition}
+
+	\begin{proof} Sia $\basis = \{ \vv 1, \ldots, \vv n\}$.
+		Dal momento che $\varphi$ è non degenere, $\Ker M_\basis(\varphi) = V^\perp = \zerovecset$, e quindi
+		$M_\basis(\varphi)$ è invertibile. \\
+		
+		Dacché allora $\varphi(f^*(\v), \w) = \varphi(\v, f(\w))$ $\forall \v$, $\w \in V$,
+		vale la seguente identità:
+		
+		\[ [f^*(\v)]_\basis^* M_\basis(\varphi) [\w]_\basis = [\v]_\basis^* M_\basis(\varphi) [f(\w)]_\basis, \]
+		
+		ossia si deduce che:
+		
+		\[ [\v]_\basis^* M_\basis(f^*)^* M_\basis(\varphi) [\w]_\basis = [\v]_\basis^* M_\basis(\varphi) M_\basis(f) [\w]_\basis. \]
+		
+		Sostituendo allora a $\v$ e $\w$ i vettori della base $\basis$, si ottiene che:
+		
+		\begin{gather*}
+			(M_\basis(f^*)^* M_\basis(\varphi))_{ij} = [\vv i]_\basis^* M_\basis(f^*)^* M_\basis(\varphi) [\vv j]_\basis = \\ = [\vv i]_\basis^* M_\basis(\varphi) M_\basis(f) [\vv j]_\basis = (M_\basis(\varphi) M_\basis(f))_{ij},
+		\end{gather*}
+	
+		e quindi che $M_\basis(f^*)^* M_\basis(\varphi) = M_\basis(\varphi) M_\basis(f)$. Moltiplicando
+		a destra per l'inversa di $M_\basis(\varphi)$ e prendendo l'aggiunta di ambo i membri (ricordando
+		che $M_\basis(\varphi)^* = M_\basis(\varphi)$, essendo $\varphi$ un prodotto hermitiano), si ricava
+		l'identità desiderata.
+
+	\end{proof}
+
+	\begin{corollary} Sia $\varphi$ un prodotto hermitiano di $V$ spazio vettoriale su $\CC$.
+		Se $\basis$ è una base ortonormale, $\varphi$ è non degenere e $M_\basis(f_\varphi^*) = M_\basis(f)^*$.
+	\end{corollary}
+	
+	\begin{proof}
+		Se $\basis$ è una base ortonormale, $M_\basis(\varphi) = I_n$. Pertanto $\varphi$ è
+		non degenere. Allora, per la proposizione precedente:
+		
+		\[ M_\basis(f_\varphi^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi) = M_\basis(f)^*. \]
+	\end{proof}
 
 	\begin{note}
 		D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) non degenere di $V$.
@@ -527,12 +617,7 @@
 
 	\begin{definition} (spazio euclideo complesso)
 		Si definisce \textbf{spazio euclideo complesso} uno spazio vettoriale $V$ su $\CC$ dotato
-		del prodotto scalare standard $\varphi = \innprod{\cdot, \cdot}$.
-	\end{definition}
-
-	\begin{definition} (base ortonormale)
-		Si definisce \textbf{base ortonormale} di uno spazio vettoriale $V$ su un suo prodotto $\varphi$
-		una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n \}$ tale che $\varphi(\vv i, \vv j) = \delta_{ij}$.
+		del prodotto hermitiano standard $\varphi = \innprod{\cdot, \cdot}$.
 	\end{definition}
 
 	\begin{proposition}
@@ -540,10 +625,8 @@
 	\end{proposition}
 
 	\begin{proof}
-		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è simmetrico, allora $[\v]_\basis^\top \, M_\basis(f) [\w]_\basis = [\v]_\basis^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(\v, f(\w)) = \varphi(f(\v), \w) = (M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) [\w]_\basis = [\v]_\basis^\top \, M_\basis(f)^\top [\w]_\basis$. \\
-		In particolare, $M_\basis(f)^\top_{ij} = [\vv i]_\basis^\top \, M_\basis(f)^\top [\vv j]_\basis = [\vv i]_\basis^\top \, M_\basis(f) [\vv j]_\basis = M_\basis(f)_{ij}$, e quindi $M_\basis(f)^\top = M_\basis(f)$. \\
-		
-		Se invece $M_\basis(f)^\top = M_\basis(f)$, $\varphi(\v, f(\w)) =$ $[\v]_\basis^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis)$ $= [\v]_\basis^\top M_\basis(f) [\w]_\basis$ $= [\v]_\basis^\top M_\basis(f)^\top [\w]_\basis = (M_\basis(f) [\v]_\basis)^\top [\w]_\basis = (M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) [\w]_\basis = \varphi(f(\v), \w)$, e quindi $f$ è simmetrico.
+		Per il corollario precedente, $f$ è simmetrico $\iff f = f^\top \iff M_\basis(f) = M_\basis(f^\top) =
+		M_\basis(f)^\top$.
 	\end{proof}
 
 	\begin{proposition}
@@ -555,7 +638,7 @@
 		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è ortogonale, allora
 		$[\v]_\basis^\top \, [\w]_\basis = [\v]_\basis^\top \, M_\basis(\varphi) [\w]_\basis = \varphi(\v, \w) =
 		\varphi(f(\v), f(\w)) = (M_\basis(f) [\v]_\basis)^\top \, M_\basis(\varphi) (M_\basis(f) [\w]_\basis) =
-		[\v]_\basis^\top M_\basis(f)^\top M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis$. Allora, come visto nella proposizione precedente, si ricava che $M_\basis(f)^\top M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$. \\
+		[\v]_\basis^\top M_\basis(f)^\top M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis$. Allora, come visto nel corollario precedente, si ricava che $M_\basis(f)^\top M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$. \\
 		
 		Se invece $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$, $\varphi(\v, \w) = [\v]_\basis^\top [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis =
 		(M_\basis(f) [\v]_\basis)^\top (M_\basis(f) [\w]_\basis) =$ $(M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(f(\v), f(\w))$, e quindi
@@ -567,9 +650,7 @@
 	\end{proposition}
 
 	\begin{proof}
-		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è hermitiano, allora $[\v]_\basis^* \, M_\basis(f) [\w]_\basis = [\v]_\basis^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(\v, f(\w)) = \varphi(f(\v), \w) = (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) [\w]_\basis = [\v]_\basis^* \, M_\basis(f)^* [\w]_\basis$.  Allora, come visto nella proposizione precedente, si ricava che $M_\basis(f) = M_\basis(f)^*$.
-		
-		Se invece $M_\basis(f)^* = M_\basis(f)$, $\varphi(\v, f(\w)) =$ $[\v]_\basis^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis)$ $= [\v]_\basis^* M_\basis(f) [\w]_\basis$ $= [\v]_\basis^* M_\basis(f)^* [\w]_\basis = (M_\basis(f) [\v]_\basis)^* [\w]_\basis = (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) [\w]_\basis = \varphi(f(\v), \w)$, e quindi $f$ è hermitiano.
+		Per il corollario precedente, $f$ è hermitiana $\iff$ $f = f^*$ $\iff M_\basis(f) = M_\basis(f^*) = M_\basis(f)^*$.
 	\end{proof}
 
 	\begin{proposition}
@@ -580,12 +661,19 @@
 		Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è unitario, allora
 		$[\v]_\basis^* \, [\w]_\basis = [\v]_\basis^* \, M_\basis(\varphi) [\w]_\basis = \varphi(\v, \w) =
 		\varphi(f(\v), f(\w)) = (M_\basis(f) [\v]_\basis)^* \, M_\basis(\varphi) (M_\basis(f) [\w]_\basis) =
-		[\v]_\basis^* M_\basis(f)^* M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$. Allora, come visto nella proposizione precedente, si ricava che $M_\basis(f)^* M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$. \\
+		[\v]_\basis^* M_\basis(f)^* M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$. Allora, come visto nel corollario precedente, si ricava che $M_\basis(f)^* M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$. \\
 		
 		Se invece $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$, $\varphi(\v, \w) = [\v]_\basis^* [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$ $=
 		(M_\basis(f) [\v]_\basis)^* (M_\basis(f) [\w]_\basis)$ $= (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(f(\v), f(\w))$, e quindi
 		$f$ è unitario.
 	\end{proof}
+
+	\begin{remark}
+		Se $\basis$ è una base ortonormale di $(V, \varphi)$, ricordando che $M_\basis(f^\top) = M_\basis(f)^\top$ e che $M_\basis(f^*) = M_\basis(f)^*$, sono equivalenti allora i seguenti fatti: \\
+		
+		\li $f \circ f^\top = f^\top \circ f = \Idv$ $\iff$ $M_\basis(f)$ è ortogonale $\iff$ $f$ è ortogonale, \\ 
+		\li $f \circ f^* = f^* \circ f = \Idv$ $\iff$ $M_\basis(f)$ è unitaria $\iff$ $f$ è unitario (se $V$ è uno spazio vettoriale su $\CC$).
+	\end{remark}
 
 	\begin{proposition}
 		Sia $V = \RR^n$ uno spazio vettoriale col prodotto scalare standard $\varphi$. Allora sono equivalenti i seguenti fatti:
@@ -645,6 +733,72 @@
 		Quindi $A^* A = A A^* = I_n$, da cui si deduce che $A \in U_n$.
 	\end{proof}
 
+	\begin{proposition}
+		Sia $(V, \varphi)$ uno spazio euclideo reale. Allora valgono i seguenti tre risultati:
+		
+		\begin{enumerate}[(i)]
+			\item $(V_\CC, \varphi_\CC)$ è uno spazio euclideo complesso.
+			
+			\item Se $f \in \End(V)$ è simmetrico, allora $f_\CC \in \End(V)$ è hermitiano.
+			
+			\item Se $f \in \End(V)$ è ortogonale, allora $f_\CC \in \End(V)$ è unitario.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Dacché $\varphi$ è il prodotto scalare standard dello spazio euclideo reale $V$, esiste una base ortnormale di $V$. Sia allora $\basis$ una base ortonormale di $V$. Si dimostrano i tre risultati separatamente.
+		
+		\begin{itemize}
+			\item È sufficiente dimostrare che $\varphi_\CC$ altro non è che il prodotto hermitiano standard.
+			Come si è già osservato precedentemente, $M_\basis(\varphi_\CC) = M_\basis(\varphi)$, e quindi,
+			dacché $M_\basis(\varphi) = I_n$, essendo $\basis$ ortonormale, vale anche che $M_\basis(\varphi_\CC) = I_n$,
+			ossia $\varphi_\CC$ è proprio il prodotto hermitiano standard.
+			
+			\item Poiché $f$ è simmetrico, $M_\basis(f) = M_\basis(f)^\top$, e quindi anche
+			$M_\basis(f_\CC) = M_\basis(f_\CC)^\top$. Dal momento che $M_\basis(f) \in M(n, \RR)$,
+			$M_\basis(f) = \conj{M_\basis(f)} \implies M_\basis(f_\CC)^\top = M_\basis(f_\CC)^*$.
+			Quindi $M_\basis(f_\CC) = M_\basis(f_\CC)^*$, ossia $M_\basis(f_\CC)$ è hermitiana,
+			e pertanto anche $f_\CC$ è hermitiano.
+			
+			\item Poiché $f$ è ortogonale, $M_\basis(f) M_\basis(f)^\top = I_n$, e quindi
+			anche $M_\basis(f_\CC) M_\basis(f_\CC)^\top = I_n$. Allora, come prima, si deduce
+			che $M_\basis(f_\CC)^\top = M_\basis(f_\CC)^*$, essendo $M_\basis(f_\CC) = M_\basis(f) \in M(n, \RR)$,
+			da cui
+			si ricava che $M_\basis(f_\CC) M_\basis(f_\CC)^* = M_\basis(f_\CC) M_\basis(f_\CC)^\top = I_n$, ossia che $f_\CC$ è unitario. \\ \qedhere
+		\end{itemize}
+	\end{proof}
+
+	\begin{exercise}
+		Sia $(V, \varphi)$ uno spazio euclideo reale. Allora valgono i seguenti risultati:
+		
+		\begin{itemize}
+			\item Se $f$, $g \in \End(V)$ commutano, allora anche $f_\CC$, $g_\CC \in \End(V_\CC)$ commutano.
+			\item Se $f \in \End(V)$, $(f^\top)_\CC = (f_\CC)^*$.
+			\item Se $f \in \End(V)$, $f$ diagonalizzabile $\iff$ $f^\top$ diagonalizzabile.
+		\end{itemize}
+	\end{exercise}
+
+	\begin{solution}
+		Dacché $\varphi$ è il prodotto scalare standard dello spazio euclideo reale $V$, esiste una base ortonormale $\basis = \{ \vv 1, \ldots, \vv n\}$ di $V$. Si dimostrano allora separatamente i tre risultati.
+		
+		\begin{itemize}
+			\item Si osserva che $M_\basis(f_\CC) M_\basis(g_\CC) = M_\basis(f) M_\basis(g) =
+			M_\basis(g) M_\basis(f) = M_\basis(g_\CC) M_\basis(f_\CC)$, e quindi
+			che $f_\CC \circ g_\CC = g_\CC \circ f_\CC$.
+			
+			\item Si osserva che $M_\basis(f) \in M(n, \RR) \implies M_\basis(f)^\top = M_\basis(f)^*$, e quindi che $M_\basis((f^\top)_\CC) = M_\basis(f^\top) = M_\basis(f)^\top = M_\basis(f)^* = M_\basis(f_\CC)^* = M_\basis((f_\CC)^*)$. Allora
+			$(f^\top)_\CC= (f_\CC)^*$.
+			
+			\item Poiché $\basis$ è ortonormale, $M_\basis(f^\top) = M_\basis(f)^\top$. Allora, se
+			$f$ è diagonalizzabile, anche $M_\basis(f)$ lo è, e quindi $\exists P \in \GL(n, \KK)$,
+			$D \in M(n, \KK)$ diagonale tale che $M_\basis(f) = P D P\inv$. Allora $M_\basis(f^\top) =
+			M_\basis(f)^\top = (P^\top)\inv D^\top P^\top$ è simile ad una matrice diagonale, e
+			pertanto $M_\basis(f^\top)$ è diagonalizzabile. Allora anche $f^\top$ è diagonalizzabile.
+			Vale anche il viceversa considerando l'identità $f = (f^\top)^\top$ e l'implicazione
+			appena dimostrata.
+		\end{itemize}
+	\end{solution}
+
 	\hr
 	
 	\begin{note}
@@ -652,12 +806,12 @@
 		euclideo, reale o complesso.
 	\end{note}
 	
-	\begin{definition} (norma)
+	\begin{definition} (norma euclidea)
 		Sia $(V, \varphi)$ un qualunque spazio euclideo. Si definisce \textbf{norma} la mappa
 		$\norm{\cdot} : V \to \RR^+$ tale che $\norm{\v} = \sqrt{\varphi(\v, \v)}$.
 	\end{definition}
 
-	\begin{definition} (distanza tra due vettori)
+	\begin{definition} (distanza euclidea tra due vettori)
 		Sia $(V, \varphi)$ un qualunque spazio euclideo. Si definisce \textbf{distanza} la mappa
 		$d : V \times V \to \RR^+$ tale che $d(\v, \w) = \norm{\v - \w}$.
 	\end{definition}
