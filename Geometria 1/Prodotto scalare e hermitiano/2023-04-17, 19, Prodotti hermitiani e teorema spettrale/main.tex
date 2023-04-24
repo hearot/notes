@@ -1053,4 +1053,127 @@
 		
 		Quindi $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1, \ww 2) + \varphi(\ww 1', \ww 2) + \varphi(\ww 1, \ww 2') + \varphi(\ww 1', \ww 2') = \varphi(\vv 1, \vv 2)$.
 	\end{remark}
+	
+	\begin{theorem}
+		Ogni isometria è prodotto di al più $n+1$ riflessioni.
+	\end{theorem}
+	
+	\hr
+	
+	\begin{lemma}
+		Sia $f \in \End(V)$ simmetrico (o hermitiano). Allora $f$ ha solo autovalori reali\footnote{Nel caso
+		di $f$ simmetrico, si intende in particolare che tutte le radici del suo polinomio caratteristico
+		sono reali.}.
+	\end{lemma}
+	
+	\begin{proof}
+		Si assuma che $V$ è uno spazio euclideo complesso, e quindi che $\varphi$ è un prodotto hermitiano. Allora,
+		se $f$ è hermitiano, sia $\lambda \in \CC$ un suo autovalore\footnote{Tale autovalore esiste sicuramente dal momento
+		che $\KK = \CC$ è un campo algebricamente chiuso.} e sia $\v \in \lambda$. Allora $\varphi(\v, f(\v)) =
+		\varphi(f(\v), \v) = \conj{\varphi(\v, f(\v))} \implies \varphi(\v, f(\v)) \in \RR$. Inoltre vale
+		la seguente identità:
+		
+		\[ \varphi(\v, f(\v)) = \varphi(\v, \lambda \v) = \lambda \varphi(\v, \v), \]
+		
+		da cui, ricordando che $\varphi$ è non degenere e che $\varphi(\v, \v) \in \RR$, si ricava che:
+		
+		\[ \lambda = \frac{\varphi(\v, f(\v))}{\varphi(\v, \v)} \in \RR. \]
+		
+		\vskip 0.05in
+		
+		Sia ora invece $V$ è uno spazio euclideo reale e $\varphi$ è un prodotto scalare. Allora, $(V_\CC, \varphi_\CC)$
+		è uno spazio euclideo complesso, e $f_\CC$ è hermitiano. Sia $\basis$ una base di $V$. Allora, come visto all'inizio di questa
+		dimostrazione, $f_\CC$ ha solo autovalori reali, da cui si ricava che il polinomio caratteristico
+		di $f_\CC$ è completamente riducibile in $\RR$. Si osserva inoltre che $p_f(\lambda) = \det(M_\basis(f) - \lambda I_n) = \det(M_\basis(f_\CC) - \lambda I_n) = p_{f_\CC}(\lambda)$. Si conclude dunque che
+		anche $p_f$ è completamente riducibile in $\RR$.
+	\end{proof}
+	
+	\begin{remark}
+		Dal lemma precedente consegue immediatamente che se $A \in M(n, \RR)$ è simmetrica (o se appartiene a
+		$M(n, \CC)$ ed è hermitiana), considerando l'operatore simmetrico $f_A$ indotto da $A$ in $\RR^n$ (o $\CC^n$),
+		$f_A$ ha tutti autovalori reali, e dunque così anche $A$. 
+	\end{remark}
+	
+	\begin{lemma}
+		Sia $f \in \End(V)$ simmetrico (o hermitiano). Allora se $\lambda$, $\mu$ sono due autovalori distinti
+		di $f$, $V_\lambda \perp V_\mu$.
+	\end{lemma}
+	
+	\begin{proof}
+		Siano $\v \in V_\lambda$ e $\w \in V_\mu$. Allora\footnote{Si osserva che non è stato coniugato $\lambda$
+		nei passaggi algebrici, valendo $\lambda \in \RR$ dallo scorso lemma.} $\lambda \varphi(\v, \w) = \varphi(\lambda \v, \w) = \varphi(f(\v), \w) = \varphi(\v, f(\w)) = \varphi(\v, \mu \w) = \mu \varphi(\v, \w)$.
+		Pertanto vale la seguente identità:
+		
+		\[ (\lambda - \mu) \varphi(\v, \w) = 0. \]
+		
+		\vskip 0.05in
+		
+		In particolare, valendo $\lambda - \mu \neq 0$ per ipotesi, $\varphi(\v, \w) = 0 \implies V_\lambda \perp V_\mu$,
+		da cui la tesi.
+	\end{proof}
+	
+	\begin{lemma}
+		Sia $f \in \End(V)$ simmetrico (o hermitiano). Se $W \subseteq V$ è $f$-invariante, allora anche
+		$W^\perp$ lo è.
+	\end{lemma}
+	
+	\begin{proof}
+		Siano $\w \in W$ e $\v \in W^\perp$. Allora $\varphi(\w, f(\v)) = \varphi(\underbrace{f(\w)}_{\in \, W}, \v) = 0$, da cui si ricava che $f(\v) \in W^\perp$, ossia la tesi.
+	\end{proof}
+	
+	\begin{theorem} [spettrale reale]
+		Sia $(V, \varphi)$ uno spazio euclideo reale (o complesso) e sia $f \in \End(V)$ simmetrico (o hermitiano). Allora esiste una base ortogonale $\basis$ di $V$ composta di autovettori per $f$.
+	\end{theorem}
+	
+	\begin{proof}
+		Siano $\lambda_1$, ..., $\lambda_k$ tutti gli autovalori reali di $f$. Sia inoltre
+		$W = V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_k}$. Per i lemmi precedenti,
+		vale che:
+		
+		\[ W = V_{\lambda_1} \oplus^\perp \cdots \oplus^\perp V_{\lambda_k}. \]
+		
+		\vskip 0.05in
+		
+		Sicuramente $W \subset V$. Si assuma però che $W \subsetneq V$. Allora $V = W \oplus^\perp W^\perp$. In particolare, per il lemma
+		precedente, $W^\perp$ è $f$-invariante. Quindi $\restr{f}{W^\perp}$ è un endomorfismo
+		di uno spazio di dimensione non nulla. Si osserva che $\restr{f}{W^\perp}$ è chiaramente
+		simmetrico (o hermitiano), essendo solo una restrizione di $f$. Allora $\restr{f}{W^\perp}$ ammette
+		autovalori reali per i lemmi precedenti; tuttavia questo è un assurdo, dal momento che ogni autovalore di $\restr{f}{W^\perp}$ è anche autovalore di $f$ e si era supposto che\footnote{Infatti tale autovalore $\lambda$
+		non può già comparire tra questi autovalori, altrimenti, detto $i \in \NN$ tale che $\lambda = \lambda_i$,  $V_{\lambda_i} \cap W^\perp \neq \zerovecset$, violando la somma diretta supposta.} $\lambda_1$, ..., $\lambda_k$ fossero
+		tutti gli autovalori di $f$, \Lightning. Quindi $W = V$. Pertanto, detta $\basis_i$ una base ortonormale
+		di $V_{\lambda_i}$, $\basis = \cup_{i=1}^k \basis_i$ è una base ortonormale di $V$, da cui la tesi.
+	\end{proof}
+	
+	\begin{corollary} [teorema spettrale per le matrici]
+		Sia $A \in M(n, \RR)$ simmetrica (o appartenente a $M(n, \CC)$ ed hermitiana). Allora
+		$\exists P \in O_n$ (o $P \in U_n$) tale che $P\inv A P = P^\top A P$ (o $P\inv A P = P^* A P$ nel caso hermitiano)
+		sia una matrice diagonale reale.
+	\end{corollary}
+	
+	\begin{proof}
+		Si consideri $f_A$, l'operatore indotto dalla matrice $A$ in $\RR^n$ (o $\CC^n$). Allora
+		$f_A$ è un operatore simmetrico (o hermitiano) sul prodotto scalare (o hermitiano) standard.
+		Pertanto, per il teorema spettrale reale, esiste una base ortonormale $\basis = \{ \vv 1, \ldots, \vv n\}$ composta di autovettori
+		di $f_A$. In particolare, detta $\basis'$ la base canonica di $\RR^n$ (o $\CC^n$), vale
+		la seguente identità:
+		
+		\[ M_\basis(f) = M_{\basis'}^{\basis}(\Id)\inv M_{\basis'}(f) M_{\basis'}^{\basis}(\Id), \]
+		
+		dove $M_{\basis'}(f) = A$, $M_\basis(f)$ è diagonale, essendo $\basis$ composta di autovettori, e $P = M_{\basis'}^{\basis}$
+		si configura nel seguente modo:
+		
+		\[ M_{\basis'}^{\basis}(f) = \Matrix{ \vv 1 & \rvline & \cdots & \rvline & \vv n }. \]
+		
+		Dacché $\basis$ è ortogonale, $P$ è anch'essa ortogonale, da cui la tesi.
+	\end{proof}
+	
+	\begin{remark}\nl
+		\li Un importante risultato che consegue direttamente dal teorema spettrale per le matrici riguarda
+		la segnatura di un prodotto scalare (o hermitiano). Infatti, detta $A = M_\basis(\varphi)$,
+		$D = P^\top A P$, e dunque $D \cong A$. Allora, essendo $D$ diagonale, l'indice di positività
+		è esattamente il numero di valori positivi sulla diagonale, ossia il numero di autovalori
+		positivi di $A$. Analogamente l'indice di negatività è il numero di autovalori negativi,
+		e quello di nullità è la molteplicità algebrica di $0$ come autovalore (ossia esattamente
+		la dimensione di $V^\perp_\varphi = \Ker a_\varphi$).
+	\end{remark}
 \end{document}
