@@ -1054,9 +1054,18 @@
 		Quindi $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1, \ww 2) + \varphi(\ww 1', \ww 2) + \varphi(\ww 1, \ww 2') + \varphi(\ww 1', \ww 2') = \varphi(\vv 1, \vv 2)$.
 	\end{remark}
 	
+	% TODO: dimostrare sia il lemma che il teorema
+	
+	\begin{lemma}
+		Siano $\U$, $\w \in V$. Se $\norm{\U} = \norm{\w}$, allora esiste un sottospazio $W$ di dimensione
+		$n-1$ per cui la riflessione $\rho_W$ è tale che $\rho_W(\U) = \w$.
+	\end{lemma}
+	
 	\begin{theorem}
 		Ogni isometria è prodotto di al più $n+1$ riflessioni.
 	\end{theorem}
+	
+	\setcounter{lemma}{0}
 	
 	\hr
 	
@@ -1176,4 +1185,145 @@
 		e quello di nullità è la molteplicità algebrica di $0$ come autovalore (ossia esattamente
 		la dimensione di $V^\perp_\varphi = \Ker a_\varphi$).
 	\end{remark}
+	
+	\begin{theorem} [di triangolazione con base ortonormale]
+		Sia $f \in \End(V)$, dove $(V, \varphi)$ è uno spazio euclideo su $\KK$. Allora,
+		se $p_f$ è completamente riducibile in $\KK$, esiste una base ortonormale $\basis$
+		tale per cui $M_\basis(f)$ è triangolare superiore (ossia esiste una base ortonormale
+		a bandiera per $f$).
+	\end{theorem}
+	
+	\begin{proof}
+		Per il teorema di triangolazione, esiste una base $\basis$ a bandiera per $f$. Allora,
+		applicando l'algoritmo di ortogonalizzazione di Gram-Schmidt, si può ottenere da $\basis$
+		una nuova base $\basis'$ ortonormale e che mantenga le stesse bandiere. Allora,
+		se $\basis' = \{ \vv1, \ldots, \vv n \}$ è ordinata, dacché $\Span(\vv 1, \ldots, \vv i)$ è $f$-invariante,
+		$f(\vv i) \in \Span(\vv 1, \ldots, \vv i)$, e quindi $M_{\basis'}(f)$ è triangolare superiore, da cui la tesi.
+	\end{proof}
+	
+	\begin{corollary}
+		Sia $A \in M(n, \RR)$ (o $M(n, \CC)$) tale per cui $p_A$ è completamente riducibile.
+		Allora $\exists P \in O_n$ (o $U_n$) tale per cui
+		$P\inv A P = P^\top A P$ (o $P\inv A P = P^* A P$) è triangolare superiore.
+	\end{corollary}
+	
+	\begin{proof}
+		Si consideri l'operatore $f_A$ indotto da $A$ in $\RR^n$ (o $\CC^n$). Sia $\basis$ la base canonica di $\RR^n$ (o di $\CC^n$). Allora, per il teorema
+		di triangolazione con base ortonormale, esiste una base ortonormale $\basis' = \{ \vv1, \ldots, \vv n \}$ di $\RR^n$ (o di $\CC^n$)
+		tale per cui $T = M_{\basis'}(f_A)$ è triangolare superiore. Si osserva inoltre che $M_{\basis}(f_A) = A$ e che $P = M_{\basis}^{\basis'} (f_A) = \Matrix{\vv 1 & \rvline & \cdots & \rvline & \vv n}$ è ortogonale (o unitaria), dacché le sue colonne
+		formano una base ortonormale. Allora, dalla formula del cambiamento di base per la applicazioni lineari,
+		si ricava che:
+		
+		\[ A = P T P\inv \implies T = P\inv T P, \]
+		
+		da cui, osservando che $P\inv = P^\top$ (o $P\inv = P^*$), si ricava la tesi.
+	\end{proof}
+	
+	\begin{definition} [operatore normale]
+		Sia $(V, \varphi)$ uno spazio euclideo reale. Allora $f \in \End(V)$ si dice \textbf{normale}
+		se commuta con il suo trasposto (i.e.~se $f f^\top = f^\top f$). Analogamente,
+		se $(V, \varphi)$ è uno spazio euclideo complesso, allora $f$ si dice normale se commuta con il suo
+		aggiunto (i.e.~se $f f^* = f^* f$).
+	\end{definition}
+	
+	\begin{definition} [matrice normale]
+		Una matrice $A \in M(n, \RR)$ (o $M(n, \CC)$) si dice \textbf{normale} se $A A^\top = A^\top A$ (o $A A^* = A^* A$).
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Se $A \in M(n, \RR)$ e $A$ è simmetrica ($A = A^\top$), antisimmetrica ($A = -A^\top$) o
+		ortogonale ($A A^\top = A^\top A = I_n$), sicuramente $A$ è normale. \\
+		\li Se $A \in M(n, \CC)$ e $A$ è hermitiana ($A = A^*$), antihermitiana ($A = -A^*$) o
+		unitaria ($A A^* = A^* A = I_n$), sicuramente $A$ è normale. \\
+		\li $f$ è normale $\iff$ $M_\basis(f)$ è normale, con $\basis$ ortonormale di $V$. \\
+		\li $A$ è normale $\iff$ $f_A$ è normale, considerando che la base canonica di $\CC^n$ è già
+		ortonormale rispetto al prodotto hermitiano standard. \\
+		\li Se $V$ è euclideo reale, $f$ è normale $\iff$ $f_\CC$ è normale. Infatti, se $f$ è normale, $f$ e $f^\top$
+		commutano. Allora anche $f_\CC$ e $(f^\top)_\CC = (f_\CC)^*$ commutano, e quindi $f_\CC$ è normale.
+		Ripercorrendo i passaggi al contrario, si osserva infine che vale anche il viceversa.
+	\end{remark}
+	
+	\setcounter{lemma}{0}
+	
+	\begin{lemma}
+		Sia $A \in M(n, \CC)$ triangolare superiore e normale (i.e.~$A A^* = A^* A$). Allora
+		$A$ è diagonale.
+	\end{lemma}
+	
+	\begin{proof}
+		Se $A$ è normale, allora $(A^*)_i A^i = \conj{A}\,^i A^i$ deve essere uguale a
+		$A_i (A^*)^i = A_i \conj{A}_i$ $\forall 1 \leq i \leq n$. Si dimostra per induzione
+		su $i$ da $1$ a $n$ che tutti gli elementi, eccetto per quelli diagonali, delle
+		righe $A_1$, ..., $A_i$ sono nulli. \\
+		
+		\basestep Si osserva che valgono le seguenti identità:
+		
+		\begin{gather*}
+			\conj{A}\,^1 A^1 = \abs{a_{11}}^2, \\
+			A_1 \conj{A}_1 = \abs{a_{11}}^2 + \abs{a_{12}}^2 + \ldots + \abs{a_{1n}}^2.
+		\end{gather*}
+		
+		Dovendo vale l'uguaglianza, si ricava che $\abs{a_{12}}^2 \ldots + \abs{a_{1n}}^2$,
+		e quindi che $\abs{a_{1i}}^2 = 0 \implies a_{1i} = 0$ \, $\forall 2 \leq i \leq n$,
+		dimostrando il passo base\footnote{Gli altri elementi sono infatti già nulli per ipotesi, essendo
+		$A$ triangolare superiore}. \\
+		
+		\inductivestep Analogamente a prima, si considerano le seguenti identità:
+		
+		\begin{gather*}
+			\conj{A}\,^i A^i = \abs{a_{1i}}^2 + \ldots +  \abs{a_{ii}}^2 = \abs{a_{ii}}^2, \\
+			A_i \conj{A}_i = \abs{a_{ii}}^2 + \abs{a_{i(i+1)}}^2 + \ldots + \abs{a_{in}}^2,
+		\end{gather*}
+		
+		dove si è usato che, per il passo induttivo, tutti gli elementi, eccetto per quelli diagonali, delle
+		righe $A_1$, ..., $A_{i-1}$ sono nulli. Allora, analogamente a prima, si ricava che
+		$a_{ij} = 0$ \, $\forall i < j \leq n$, dimostrando il passo induttivo, e quindi la tesi.
+	\end{proof}
+	
+	\begin{remark}
+		Chiaramente vale anche il viceversa del precedente lemma: se infatti $A \in M(n, \CC)$ è diagonale,
+		$A$ è anche normale, dal momento che commuta con $A^*$.
+	\end{remark}
+	
+	\begin{theorem}
+		Sia $(V, \varphi)$ uno spazio euclideo complesso. Allora $f$ è un operatore normale $\iff$ esiste
+		una base ortonormale $\basis$ di autovettori per $f$.
+	\end{theorem}
+	
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Poiché $\CC$ è algebricamente chiuso, $p_f$ è sicuramente riducibile. Pertanto,
+		per il teorema di triangolazione con base ortonormale, esiste una base ortonormale $\basis$
+		a bandiera per $f$. In particolare, $M_\basis(f)$ è sia normale che triangolare superiore.
+		Allora, per il \textit{Lemma 1}, $M_\basis(f)$ è diagonale, e dunque $\basis$ è anche una
+		base di autovettori per $f$. \\
+		
+		\leftproof Se esiste una base ortonormale $\basis$ di autovettori per $f$, $M_\basis(f)$ è
+		diagonale, e dunque anche normale. Allora, poiché $\basis$ è ortonormale, anche $f$
+		è normale.
+	\end{proof}
+	
+	\begin{corollary}
+		Sia $A \in M(n, \CC)$. Allora $A$ è normale $\iff$ $\exists U \in U_n$ tale che $U\inv A U = U^* A U$
+		è diagonale.
+	\end{corollary}
+	
+	\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+		
+		\rightproof Sia $\basis$ la base canonica di $\CC^n$.
+		Si consideri l'applicazione lineare $f_A$ indotta da $A$ su $\CC^n$. Se $A$ è normale, allora
+		anche $f_A$ lo è. Pertanto, per il precedente teorema, esiste una base ortonormale $\basis' = \{ \vv 1, \ldots, \vv n \}$ di
+		autovettori per $f_A$. In particolare, $U = M_{\basis}^{\basis'}(\Id) = \Matrix{\vv 1 & \rvline & \cdots & \rvline & \vv n}$ è unitaria ($U \in U_n$), dacché le colonne di $U$ sono ortonormali. Si osserva inoltre che
+		$M_{\basis}(f_A) = A$ e che $D = M_{\basis'}(f_A)$ è diagonale. Allora, per la formula del cambiamento di base per le applicazioni lineari,
+		si conclude che:
+		
+		\[ A = U D U\inv \implies D = U\inv A U = U^* A U, \]
+		
+		ossia che $U^* A U$ è diagonale. \\
+		
+		\leftproof Sia $D = U^* A U$. Dacché $D$ è diagonale, $D$ è anche normale. Pertanto $D D^* = D^* D$.
+		Sostituendo, si ottiene che $U^* A U U^* A^* U = U^* A^* U U^* A U$. Ricordando che $U^* U = I_n$ e
+		che $U \in U_n$ è sempre invertibile, si conclude che $A A^* = A^* A$, ossia che $A$ è normale a
+		sua volta, da cui la tesi. 
+	\end{proof}
 \end{document}
