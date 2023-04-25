@@ -561,7 +561,8 @@
 	\end{definition}
 
 	\begin{definition} (applicazioni e matrici ortogonali)
-		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{ortogonale} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$.
+		Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{ortogonale} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$,
+		ossia se è un'isometria in $V$.
 		Sia $A \in M(n, \KK)$. Si dice dunque che $A$ è \textbf{ortogonale} se $A^\top A = A A^\top = I_n$.
 	\end{definition}
 
@@ -838,7 +839,11 @@
 		$\varphi(\v, \v) = 0 \implies \norm{\v} = 0$; se invece $\norm{\v} = 0$,
 		$\varphi(\v, \v) = 0$, e quindi $\v = \vec 0$, dacché $V^\perp = \zerovecset$, essendo
 		$\varphi$ definito positivo. \\
-		\li Inoltre, vale chiaramente che $\norm{\alpha \v} = \abs{\alpha} \norm{\v}$.
+		\li Inoltre, vale chiaramente che $\norm{\alpha \v} = \abs{\alpha} \norm{\v}$. \\
+		\li Se $f$ è un operatore ortogonale (o unitario), allora $f$ mantiene sia le
+		norme che le distanze tra vettori. Infatti $\norm{\v - \w}^2 = \varphi(\v - \w, \v - \w) =
+		\varphi(f(\v - \w), f(\v - \w)) = \varphi(f(\v) - f(\w), f(\v) - f(\w)) = \norm{f(\v) - f(\w)}^2$,
+		da cui segue che $\norm{\v - \w} = \norm{f(\v) - f(\w)}$.
 	\end{remark}
 
 	\begin{proposition} (disuguaglianza di Cauchy-Schwarz)
@@ -958,10 +963,10 @@
 	\end{remark}
 
 	\begin{example}
-		Si consideri $V = (\RR^3, \innprod{\cdot})$, ossia $\RR^3$ dotato del prodotto scalare standard, e
-		si applichi l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
+		Si consideri $V = (\RR^3, \innprod{\cdot, \cdot})$, ossia $\RR^3$ dotato del prodotto scalare standard.
+		Si applica l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
 		
-		\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\} \]
+		\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\}. \]
 		
 		\vskip 0.05in
 		
@@ -1054,16 +1059,66 @@
 		Quindi $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1, \ww 2) + \varphi(\ww 1', \ww 2) + \varphi(\ww 1, \ww 2') + \varphi(\ww 1', \ww 2') = \varphi(\vv 1, \vv 2)$.
 	\end{remark}
 	
-	% TODO: dimostrare sia il lemma che il teorema
-	
-	\begin{lemma}
+	\begin{lemma} Sia $(V, \varphi)$ uno spazio euclideo reale.
 		Siano $\U$, $\w \in V$. Se $\norm{\U} = \norm{\w}$, allora esiste un sottospazio $W$ di dimensione
-		$n-1$ per cui la riflessione $\rho_W$ è tale che $\rho_W(\U) = \w$.
+		$n-1$ per cui la riflessione $\rho_W$ relativa a $\varphi$ è tale che $\rho_W(\U) = \w$.
 	\end{lemma}
 	
-	\begin{theorem}
-		Ogni isometria è prodotto di al più $n+1$ riflessioni.
+	\begin{proof} Se $\v$ e $\w$ sono linearmente dipendenti, dal momento che $\norm{v} = \norm{w}$, deve valere anche
+		che $\v = \w$. Sia $\U \neq \vec 0$, $\U \in \Span(\v)^\perp$. Si consideri $U = \Span(\U)$: si osserva che
+		$\dim U = 1$ e che, essendo $\varphi$ non degenere, $\dim U^\perp = n-1$. Posto allora $W = U^\perp$, si ricava,
+		sempre perché $\varphi$ è non degenere, che $U = U^\dperp = W^\perp$. Si conclude pertanto che $\rho_W(\v) =
+		\v = \w$. \\
+
+		Siano adesso $\v$ e $\w$ linearmente indipendenti e sia $U = \Span(\v - \w)$. Dal momento che $\dim U = 1$ e $\varphi$ è non degenere, $\dim U^\perp = n-1$. Sia allora $W = U^\perp$. Allora, come prima, $U = U^\dperp = W^\perp$. Si consideri dunque la riflessione $\rho_W$: dacché $\v = \frac{\v + \w}{2} + \frac{\v - \w}{2}$, e $\varphi(\frac{\v + \w}{2}, \frac{\v - \w}{2}) = \frac{\norm{\v} - \norm{\w}}{4} = 0$, $\v$ è già decomposto in un elemento di $W$ e in uno di $W^\perp$, per cui si conclude che $\rho_W(\v) =
+	\frac{\v + \w}{2} - \frac{\v - \w}{2} = \w$, ottenendo la tesi.
+	
+	\end{proof}
+	
+	\begin{theorem} [di Cartan–Dieudonné] Sia $(V, \varphi)$ uno spazio euclideo reale.
+		Ogni isometria di $V$ è allora prodotto di al più $n$ riflessioni.
 	\end{theorem}
+	
+	\begin{proof}
+		Si dimostra la tesi applicando il principio di induzione sulla dimensione $n$
+		di $V$. \\
+		
+		\basestep Sia $n = 1$ e sia inoltre $f$ un'isometria di $V$. Sia $\vv 1$ l'unico elemento di una base ortonormale $\basis$ di $V$. Allora $\norm{f(\vv 1)} = \norm{\vv 1} = 1$, da cui si ricava che\footnote{Infatti, detto $\lambda \in \RR$ tale che $f(\vv 1) = \lambda \vv 1$, $\norm{\vv 1} = \norm{f(\vv 1)} = \lambda^2 \norm{\vv 1} \implies \lambda = \pm 1$, ossia $f = \pm \Id$, come volevasi dimostrare.} $f(\vv 1) = \pm \vv 1$,
+		ossia che $f = \pm \Idv$. Se $f = \Idv$, $f$ è un prodotto vuoto, e già verifica la tesi; altrimenti
+		$f = \rho_{\zerovecset}$, dove si considera $V = V \oplus^\perp \zerovecset$. Pertanto $f$ è prodotto
+		di al più una riflessione. \\
+		
+		\inductivestep Sia $\basis = \{ \vv1, \ldots, \vv n \}$ una base di $V$. Sia $f$ un'isometria di $V$. Si
+		assuma inizialmente l'esistenza di $\vv i$ tale per cui $f(\vv i) = \vv i$. Allora, detto $W = \Span(\vv i)$, si può decomporre $V$ come $W \oplus^\perp W^\perp$. Si osserva che $W^\perp$ è $f$-invariante: infatti,
+		se $\U \in W^\perp$, $\varphi(\vv i, f(\U)) = \varphi(f(\vv i), f(\U)) = \varphi(\vv i, \U) = 0 \implies
+		f(\U) \in W^\perp$. Pertanto si può considerare l'isometria $\restr{f}{W^\perp}$. Dacché $\dim W^\perp = n - 1$,
+		per il passo induttivo esistono $W_1$, ..., $W_k$ sottospazi di $W^\perp$ con $k \leq n-1$ per cui $\rho_{W_1}$, ..., $\rho_{W_k} \in \End(W^\perp)$ sono tali che $\restr{f}{W^\perp} = \rho_{W_1} \circ \cdots \circ \rho_{W_k}$. \\
+		
+		Si considerino allora le riflessioni $\rho_{W_1 \oplus^\perp W}$, ..., $\rho_{W_k \oplus^\perp W}$.
+		Si mostra che $\restr{\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}}{W} = \Idw = \restr{f}{W}$.
+		Affinché si faccia ciò è sufficiente mostrare che $(\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W})(\vv i) = \vv i$. Si osserva che $\vv i \in W_i \oplus^\perp W$ $\forall 1 \leq i \leq k$, e
+		quindi che $\rho_{W_k \oplus^\perp W}(\vv i) = \vv i$. Reiterando l'applicazione di questa identità nel prodotto,
+		si ottiene infine il risultato desiderato. Infine, si dimostra che $\restr{\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}}{W^\perp} = \rho_{W_1} \circ \cdots \circ \rho_{W_k} = \restr{f}{W^\perp}$. Analogamente a prima,
+		è sufficiente mostrare che $\rho_{W_k \oplus^\perp W}(\U) = \rho_{W_k}(\U)$ $\forall \U \in W^\perp$.
+		Sia $\U = \rho_{W_k}(\U) + \U'$ con $\U' \in W_k^\perp \cap W^\perp \subseteq (W_k \oplus^\perp W)^\perp$,
+		ricordando che $W^\perp = W_k \oplus^\perp (W^\perp \cap W_k^\perp)$.
+		Allora, poiché $\rho_{W_k}(\U) \in W_k \subseteq (W_k \oplus^\perp W)$, si conclude che
+		$\rho_{W_k \oplus^\perp W}(\U) = \rho_{W_k}(\U)$. Pertanto, dacché vale che $V = W \oplus^\perp W^\perp$ e che $\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}$ e $f$, ristretti su $W$ o su $W^\perp$, sono le stesse identiche mappe, allora
+		in particolare vale l'uguaglianza più generale:
+			
+		\[ f = \rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}, \]
+			
+		\vskip 0.05in
+				
+		e quindi $f$ è prodotto di $k \leq n-1$ riflessioni. \\
+		
+		Se invece non esiste alcun $\vv i$ tale per cui $f(\vv i) = \vv i$, per il \textit{Lemma 1} esiste
+		una riflessione $\tau$ tale per cui $\tau(f(\vv i)) = \vv i$. In particolare $\tau \circ f$ è anch'essa
+		un'isometria, essendo composizione di due isometrie. Allora, da prima, esistono $U_1$, ..., $U_k$ sottospazi
+		di $V$ con $k \leq n-1$ tali per cui $\tau \circ f = \rho_{U_1} \circ \cdots \circ \rho_{U_k}$, da
+		cui $f = \tau \circ \rho_{U_1} \circ \cdots \circ \rho_{U_k}$, ossia $f$ è prodotto di al più
+		$n$ riflessioni, concludendo il passo induttivo.
+	\end{proof}
 	
 	\setcounter{lemma}{0}
 	
@@ -1078,7 +1133,7 @@
 	\begin{proof}
 		Si assuma che $V$ è uno spazio euclideo complesso, e quindi che $\varphi$ è un prodotto hermitiano. Allora,
 		se $f$ è hermitiano, sia $\lambda \in \CC$ un suo autovalore\footnote{Tale autovalore esiste sicuramente dal momento
-		che $\KK = \CC$ è un campo algebricamente chiuso.} e sia $\v \in \lambda$. Allora $\varphi(\v, f(\v)) =
+		che $\KK = \CC$ è un campo algebricamente chiuso.} e sia $\v \in V_\lambda$. Allora $\varphi(\v, f(\v)) =
 		\varphi(f(\v), \v) = \conj{\varphi(\v, f(\v))} \implies \varphi(\v, f(\v)) \in \RR$. Inoltre vale
 		la seguente identità:
 		
