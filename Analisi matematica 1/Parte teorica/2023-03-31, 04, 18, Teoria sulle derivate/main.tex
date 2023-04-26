@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Analisi Matematica 1}}
 \author{Gabriel Antonio Videtta}
-\date{31 marzo, 4 e 18 aprile 2023}
+\date{31 marzo, 4, 18 e 20 aprile 2023}
 
 \begin{document}
 	
@@ -482,5 +482,52 @@
 	\begin{proof}
 		Si consideri il rapporto incrementale $\frac{f(x) - f(x_0)}{x - x_0}$.
 		Allora, per $x \to x_0$, per il teorema di de l'Hopital, $f'(x_0) = \lim_{x \to x_0} f'(x)$.
+	\end{proof}
+
+	\begin{theorem} (sullo sviluppo di Taylor)
+		Sia $I$ un intervallo e sia $\xbar \in I$. Sia $f : I \to \RR$ e
+		sia $d \in \NN$. Sia $f$ derivabile $d-1$ dappertutto e sia derivabile
+		$d$ volte in $\xbar$. Allora, detti
+		
+		\[ P_d(h) = f(\xbar) + f'(\xbar) h + \ldots + \frac{f^{(d)}(\xbar)}{d!} h^d, \]
+		
+		\[ R_d(h) = f(\xbar + h) - P_d(h), \]
+		
+		\begin{enumerate}[(a)]
+			\item $R_d(h) = o(h^d)$ per $h \to 0$,
+			
+			\item se $f$ è derivabile $d$ volte su $I$ e $d+1$ volte in $\xbar$, allora $R_d(h) = O(h^{d+1})$ per $h \to 0$ e $\frac{R_d(h)}{h^{d+1}} \to \frac{f^{(d+1)}(\xbar)}{(d+1)!}$,
+			
+			\item se $f$ è derivabile $d+1$ volte su $I$, allora
+			$\forall h \mid \xbar + h \in I$, $\exists \tilde x \in [\xbar, \xbar + h] \mid R_d(h) = \frac{f^{(d+1)}(\tilde x)}{(d+1)!}$ (\textit{formula del resto di Lagrange}),
+			
+			\item se $f \in C^{d+1}$, allora $R_d(h) = \frac{1}{d!} \int_0^h (h-t)^d f^{(d+1)}(\xbar + t) \, dt$ (\textit{formula integrale}).
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{proof} % TODO: dimostrazione farlocca, migliorarla
+		(d) Si assuma $\xbar = 0$ e $f \in C^{d+1}$. Innanzitutto
+		si osserva che la tesi è equivalente a mostrare che $f(h) = P_d(h) + \frac{1}{d!} \int_0^h (h-t)^d f^{(d+1)}(t) \, dt$. \\
+		
+		Se $d=0$, $f(h) = f(0) + \int_0^h f'(t) \,dt$ (teorema fondamentale
+		del calcolo integrale). $f(h) = f(0) + \abs{-(h-t) f'(h)}_0^h + \int_0^h (h-t) f''(t) \, dt$. [...] % TODO: si continua per induzione 
+	\end{proof}
+
+	\begin{proposition}
+		Sia $f : I \to \RR$ derivabile. Sia $\xbar \in I$ tale che
+		$f'(\xbar) = 0$ ed esista $f''(\xbar)$. Allora:
+		
+		\begin{enumerate}[(i)]
+			\item $f''(\xbar) > 0 \implies \xbar$ è un punto di minimo locale stretto,
+			\item $f''(\xbar) < 0 \implies \xbar$ è un punto di massimo locale.stretto,
+			\item $\xbar$ è un punto di minimo locale $\implies f''(\xbar) \geq 0$,
+			\item $\xbar$ è un punto di massimo locale $\implies f''(\xbar) \leq 0$. 
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Per lo sviluppo di Taylor, $f(\xbar + h) = f(\xbar) + f'(\xbar) h + \frac{1}{2} f''(\xbar) h^2 + o(h^2) \implies \frac{f(\xbar + h) - f(\xbar)}{h^2} = \frac{1}{2} f''(\xbar) + o(1)$ (infinitesimo).
+		Allora $\frac{f(\xbar + h) - f(\xbar)}{h^2} \tendsto{h} L > 0$.
+		Quindi permanenza del segno.
 	\end{proof}
 \end{document}
