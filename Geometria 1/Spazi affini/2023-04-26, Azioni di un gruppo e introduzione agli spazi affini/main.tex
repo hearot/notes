@@ -4,78 +4,103 @@
 
 \title{\textbf{Note del corso di Geometria 1}}
 \author{Gabriel Antonio Videtta}
-\date{\today}
+\date{26 aprile 2023}
 
 \begin{document}
 	
 	\maketitle
 	
 	\begin{center}
-		\Large \textbf{Titolo della lezione}
+		\Large \textbf{Azioni di un gruppo e introduzione agli spazi affini}
 	\end{center}
-
+	
+	\wip
+	
 	\begin{note}
-		Nel corso del documento, per $V$ si intenderà uno spazio vettoriale di dimensione
-		finita $n$ e per $\varphi$ un suo prodotto, hermitiano o scalare
-		dipendentemente dal contesto.
+		Nel corso delle lezioni si è impiegata la notazione $g.x$ per indicare
+		l'azione di un gruppo su un dato elemento $x \in X$. Tuttavia si è
+		preferito indicare $g.x$ con $g \cdot x$ nel corso del documento. \\
+		
+		Inoltre, con $G$ si indicherà un generico gruppo, e con $X$ un
+		generico insieme, sul quale $G$ agisce, qualora non indicato diversamente.
 	\end{note}
 
-	\begin{definition} [azione di un gruppo]
-		Sia $G$ un gruppo e sia $X$ un insieme. Un'\textbf{azione} di $G$
-		su $X$ (a sinistra) è un'applicazione $G \times V \to X$ tale
-		che $(g, x) \mapsto g.x$ e che:
+	\begin{definition} [azione di un gruppo su un insieme]
+		Sia $G$ un gruppo e sia $X$ un insieme. Un'azione sinistra, comunemente detta solo \textbf{azione}, di $G$
+		su $X$ è un'applicazione da $G \times X$ in $X$ tale
+		che $(g, x) \mapsto g \cdot x$ e che:
 		
 		\begin{enumerate}[(i)]
-			\item $e.x = x$ $\forall x \in X$,
-			\item $g.(h.x) = (gh).x$ $\forall x \in X$, $\forall g$, $h \in G$.
+			\item $e \cdot x = x$ $\forall x \in X$,
+			\item $g \cdot (h \cdot x) = (gh) \cdot x$ $\forall x \in X$, $\forall g$, $h \in G$.
 		\end{enumerate}
 	\end{definition}
 
-	Si può dunque definire un'applicazione $f_g$, che, dato $g \in X$,
-	è tale che $f_g(x) = g.x$ $\forall x \in X$. Tale applicazione è
-	bigettiva, dacché $f_{g\inv}$ è una sua inversa, sia destra che sinistra.
-	La definizione equivale a dare un omomorfismo da $G$ a $S_X$ associando
-	a $g$ l'applicazione $f_g$, dove $S_X$ è il gruppo delle bigezioni
-	di $X$ con la composizione. \\
-	
-	L'azione di $G$ si dice \textit{fedele} se $g \mapsto f_g$ è iniettivo
-	(ossia se $f_g(x) = x \forall x \in X \implies g=e$).
-	
-	\begin{enumerate}[(i)]
-		\item Per ogni insieme $X$, $G = S_X$ agisce su $X$ in modo tale
-		che $g.x = g(x)$ $\forall x \in X$,
-		
-		\item $\forall$ gruppo $G$, $G$ agisce su $X = G$ tramite
-		$g.g' = gg'$,
-		
-		\item Si può chiaramente definire un'azione destra in modo
-		analogo, con la notazione $(g, x) \mapsto x.g$.
-	\end{enumerate}
+	\begin{remark}\nl
+		\li Data un'azione di $G$ su $X$, si può definire un'applicazione
+		$f_g : X \to X$ tale che, dato $g \in G$, $f_g(x) = g \cdot x$. \\
+		\li Tale applicazione $f_g$ è bigettiva, dal momento che $f_{g\inv}$ è una sua
+		inversa, sia destra che sinistra. Infatti $(f_g \circ f_{g\inv})(x) =
+		g \cdot (g\inv \cdot x) = (g g\inv) \cdot x = e \cdot x = x$, e così il viceversa. 
+	\end{remark}
 
-	Se $X$ subisce un'azione di $G$, si dice che $X$ è un $G$-insieme.
-	Si introduce la relazione di equivalenza $x \sim_G y \defiff \exists g \in G \mid g.x = y$. Le classi di equivalenza si chiamano \textbf{orbite}
-	di $G$ (i.e.~$O_X = \{ g.x \mid g \in G \}$). \\
+	\begin{definition}
+		L'azione di un gruppo $G$ su un insieme $X$ si dice \textbf{fedele} se
+		l'omomorfismo $\varphi_G$ da $G$ in $S(G)$, ossia nel gruppo delle bigezioni su $G$, che
+		associa $g$ a $f_g$ è iniettiva.
+	\end{definition}
+	
+	\begin{remark}
+		Si osserva che dire che un'azione di un gruppo è fedele è equivalente
+		a dire che $\Ker \varphi_G = \{ e \}$, ossia che $f_g = \Id \iff g = e$.
+	\end{remark}
 	
 	\begin{example}
+		Si possono fare alcuni esempi di azioni classiche su alcuni gruppi.
 		\begin{enumerate}[(i)]
-			\item Se $G = \GL(n, \KK)$, $G$ opera su $M(n, \KK)$ tramite
-			la similitudine. Le orbite sono le classi di similitudine
-			della matrici.
+			\item $S(X)$ agisce su $X$ in modo tale che $f \cdot x = f(x)$ $\forall f \in S(X), x \in X$.
 			
-			\item Se $G = \GL(n, \KK)$, $G$ opera su $\Sym(n, \KK)$
-			tramite la congruenza. Le orbite sono le classi di congruenza
-			delle matrici simmetriche. Analogamente si può fare per la
+			\item $G$ agisce su $G$ stesso tramite l'operazione del gruppo, ossia $g \cdot g' = gg'$ $\forall g$, $g' \in G$.
+			
+			\item Data un'azione sinistra di $G$ su $X$ tale che $(g, x) \mapsto g \cdot x$, si può definire
+			naturalmente un'azione destra da $X \times G$ in $X$ in modo tale che $(x, g) \mapsto x \cdot g = g\inv \cdot x$.
+			Infatti $x \cdot e = e\inv \cdot x = e \cdot x = x$, e $(x \cdot g) \cdot g' = (g\inv \cdot x) \cdot g' =
+			{g'}\inv \cdot (g\inv \cdot x) = ({g'}\inv g\inv) \cdot x = (g g')\inv \cdot x = x \cdot (g g')$.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{definition} [$G$-insieme]
+		Se esiste un azione di $G$ su $X$, si dice che $X$ è un $G$\textit{-insieme}.
+	\end{definition}
+	
+	\begin{definition} [orbita di $x$]
+		Sia $\sim_G$ la relazione d'equivalenza tale che $x \sim_G y \defiff \exists g \in G \mid g \cdot x = y$.
+		Allora le classi di equivalenza si dicono \textbf{orbite}, ed in particolare si indica l'orbita a cui
+		appartiene un dato $x \in X$ come $\Orb(x) = O_x$, ed è detta \textit{orbita di} $x$.
+	\end{definition}
+	
+	\begin{example} Si possono individuare facilmente alcune orbite per alcune azioni classiche.
+		\begin{enumerate}[(i)]
+			\item Se $G = \GL(n, \KK)$ è il gruppo delle matrici invertibili su $\KK$ di taglia $n$ rispetto
+			all'operazione di moltiplicazione matriciale, $G$ opera naturalmente su $M(n, \KK)$ tramite
+			la similitudine, ossia $G$ agisce in modo tale che $P \cdot M = P M P\inv$ $\forall P \in \GL(n, \KK)$,
+			$M \in M(n, \KK)$. In particolare, data $M \in M(n, \KK)$, $\Orb(M)$ coincide esattamente
+			con la classe di similitudine di $M$.
+			
+			\item Se $G = \GL(n, \KK)$, $G$ opera naturalmente anche su $\Sym(n, \KK)$
+			tramite la congruenza, ossia tramite la mappa $(P, A) \mapsto P^\top A P$. L'orbita $\Orb(A)$ è la classe di congruenza delle matrice simmetria $A \in \Sym(n, \KK)$. Analogamente si può costruire un'azione per le
 			matrici hermitiane.
 			
-			\item Se $G = O_n$, esso opera su $\RR^n$ tramite la
-			moltiplicazione. Le orbite sono le sfere di raggio $\norm x$.
+			\item Se $G = O_n$, il gruppo delle matrici ortogonali di taglia $n$ su $\KK$, $G$ opera su $\RR^n$ tramite la mappa $O \cdot \vec v \mapsto O \vec v$. L'orbita $\Orb(\vec v)$ è in particolare la sfera $n$-dimensionale di raggio $\norm{x}$.
 		\end{enumerate}
 	\end{example}
 
-	\begin{definition}
-		Lo \textbf{stabilizzatore} di un punto $x \in X$ è
-		$\Stab_G(X) = \{g \in G \mid g.x = x \}$, sottogruppo
-		di $G$.
+	\begin{definition} [stabilizzatore di $x$]
+		Lo \textbf{stabilizzatore} di un punto $x \in X$ è l'insieme degli elementi di $G$ che
+		agiscono su $x$ lasciandolo invariato, ossia lo stabilizzatore $\Stab_G(X)$ è il sottogruppo
+		di $G$ tale che:
+		
+		\[ \Stab_G(X) = \{g \in G \mid g \cdot x = x \}. \]
 	\end{definition}
 
 	\begin{example}
