@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Titolo della lezione}
+	\end{center}
+
+	\begin{note}
+		Nel corso del documento, per $V$ si intenderà uno spazio vettoriale di dimensione
+		finita $n$ e per $\varphi$ un suo prodotto, hermitiano o scalare
+		dipendentemente dal contesto.
+	\end{note}
+
+	\begin{definition} [azione di un gruppo]
+		Sia $G$ un gruppo e sia $X$ un insieme. Un'\textbf{azione} di $G$
+		su $X$ (a sinistra) è un'applicazione $G \times V \to X$ tale
+		che $(g, x) \mapsto g.x$ e che:
+		
+		\begin{enumerate}[(i)]
+			\item $e.x = x$ $\forall x \in X$,
+			\item $g.(h.x) = (gh).x$ $\forall x \in X$, $\forall g$, $h \in G$.
+		\end{enumerate}
+	\end{definition}
+
+	Si può dunque definire un'applicazione $f_g$, che, dato $g \in X$,
+	è tale che $f_g(x) = g.x$ $\forall x \in X$. Tale applicazione è
+	bigettiva, dacché $f_{g\inv}$ è una sua inversa, sia destra che sinistra.
+	La definizione equivale a dare un omomorfismo da $G$ a $S_X$ associando
+	a $g$ l'applicazione $f_g$, dove $S_X$ è il gruppo delle bigezioni
+	di $X$ con la composizione. \\
+	
+	L'azione di $G$ si dice \textit{fedele} se $g \mapsto f_g$ è iniettivo
+	(ossia se $f_g(x) = x \forall x \in X \implies g=e$).
+	
+	\begin{enumerate}[(i)]
+		\item Per ogni insieme $X$, $G = S_X$ agisce su $X$ in modo tale
+		che $g.x = g(x)$ $\forall x \in X$,
+		
+		\item $\forall$ gruppo $G$, $G$ agisce su $X = G$ tramite
+		$g.g' = gg'$,
+		
+		\item Si può chiaramente definire un'azione destra in modo
+		analogo, con la notazione $(g, x) \mapsto x.g$.
+	\end{enumerate}
+
+	Se $X$ subisce un'azione di $G$, si dice che $X$ è un $G$-insieme.
+	Si introduce la relazione di equivalenza $x \sim_G y \defiff \exists g \in G \mid g.x = y$. Le classi di equivalenza si chiamano \textbf{orbite}
+	di $G$ (i.e.~$O_X = \{ g.x \mid g \in G \}$). \\
+	
+	\begin{example}
+		\begin{enumerate}[(i)]
+			\item Se $G = \GL(n, \KK)$, $G$ opera su $M(n, \KK)$ tramite
+			la similitudine. Le orbite sono le classi di similitudine
+			della matrici.
+			
+			\item Se $G = \GL(n, \KK)$, $G$ opera su $\Sym(n, \KK)$
+			tramite la congruenza. Le orbite sono le classi di congruenza
+			delle matrici simmetriche. Analogamente si può fare per la
+			matrici hermitiane.
+			
+			\item Se $G = O_n$, esso opera su $\RR^n$ tramite la
+			moltiplicazione. Le orbite sono le sfere di raggio $\norm x$.
+		\end{enumerate}
+	\end{example}
+
+	\begin{definition}
+		Lo \textbf{stabilizzatore} di un punto $x \in X$ è
+		$\Stab_G(X) = \{g \in G \mid g.x = x \}$, sottogruppo
+		di $G$.
+	\end{definition}
+
+	\begin{example}
+		Sia $H \subseteq G$ e sia $X = G/H$. $X$ è un $G$-insieme
+		tramite l'azione $g'.(gH) = g'gH$. Vale in particolare
+		che $\Stab_G(eH) = H$.
+	\end{example}
+
+	\begin{proposition}
+		Sia $X$ un $G$-insieme. Sia $x \in X$. $H = \Stab_G(x)$ e sia
+		$O_x$ l'orbita di $x$. Allora esiste un'applicazione bigettiva
+		naturale $G/H \to O_x$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\varphi$ tale che $\varphi(gH) = g.x$. Si mostra che
+		$\varphi$ è ben definita: $g' = gh$, $\varphi(g'H) = (gh).x =
+		g.(h.x) = g.x$. Chiaramente $\varphi$ è anche surgettiva.
+		Inoltre, $g.x = g'.x \implies x = (g\inv g').x \implies g\inv g' = h \in H \implies gH = g'H$, e pertanto $\varphi$ è iniettiva.
+		Allora $\varphi$ è bigettiva.
+	\end{proof}
+
+	\begin{definition}
+		Si dice che $G$ opera \textit{liberamente} su $X$ se
+		$\forall x \in X$, l'applicazione $G \to O_x$ tale che
+		$g \mapsto g.x$, ossia se $\Stab_G(x) = \{e\}$:
+	\end{definition}
+	
+	\begin{definition}
+		$G$ opera \textit{transitivamente} su $X$ se $x \sim_G y$ $\forall x$, $y \in X$, cioè se c'è un'unica orbita, che coincide con $X$. In
+		tal caso si dice che $X$ è \textbf{omogeneo} per l'azione di $G$.
+	\end{definition}
+
+	\begin{example}
+		\begin{enumerate}[(i)]
+			\item $O_n$ opera su $S^{n-1} \subseteq \RR^n$ transitivamente.
+			%TODO: aggiunge che lo stabilizzatore è isomorfo alle ortogonali
+			%TODO: di dimensioni n-1
+			
+			\item $\Gr_k(\RR^n) = \{ W \subseteq \RR^n \mid \dim W = k \}$ (Grassmanniana). $O_n$ opera transitivamente su $\Gr_K(\RR^n)$.
+		\end{enumerate}
+	\end{example}
+
+	\begin{definition}
+		$G$ opera in maniera \textit{semplicemente transitiva} su $X$
+		se $\exists x \in X$ tale che $g \mapsto g.x$ è una bigezione,
+		ossia se $G$ opera transitivamente e liberamente.
+	\end{definition}
+
+	\begin{definition}
+		Un insieme $X$ con un'azione semplicemente transitiva di $G$ è
+		detto un $G$-insieme omogeneo \textit{principale}.
+	\end{definition}
+
+	\begin{example}
+		\begin{enumerate}[(i)]
+			\item $X = G$. L'azione naturale di $G$ su $X$ per moltiplicazione
+			è semplicemente transitivo (per $g$, $g' \in G$, esiste un
+			unico $h \in G$ tale che $g = h.g' = hg'$). Quindi $X$
+			è $G$-omogeneo principale.
+			
+			\item Se $X$ è $G$-omogeneo principale, l'azione è fedele.
+			
+			\item Se $X$ è omogeneo per un gruppo $G$ commutativo, allora
+			$G$ agisce fedelmente su $X$ $\implies$ $X$ è un $G$-insieme
+			omogeneo principale.
+		\end{enumerate}
+	\end{example}
+
+	\begin{definition} [spazio affine]
+		Sia $V$ uno spazio vettoriale su un campo $\KK$ qualsiasi.
+		Allora uno spazio affine $E$ associato a $V$ è un qualunque
+		$V$-insieme omogeneo principale.
+	\end{definition}
+
+	Pertanto, $\forall P, Q \in E$, esiste un unico vettore $\v \in V$
+	tale che $Q = \v . P $, denotato come $Q = P + \v = \v + P$. Si
+	osserva che $\v + (\w + P) = (\v + \w) + P$. Essendo $\v$ unico,
+	si scrive $\v = Q - P = \vvec{PQ}$.
+	
+	%TODO: aggiunge applicazione bigettiva
+	
+	Fissato $O \in E$, l'applicazione $\v \mapsto \v + O$, $V \to E$
+	è una bigezione.
+	
+	\begin{remark}\nl
+		\li $P-P = \vec 0 \in V$, $P-Q = -(Q-P)$, $(P_3 - P_2) + (P_2 - P_1) = P_3 - P_1$. \\
+		
+		\li $O \in E$ l'applicazione $P \mapsto P-O$ è una bigezione di $E$
+		su $V$.
+	\end{remark}
+
+	Siano $P_1$, ..., $P_n \in E$. $\forall \lambda_1$, ..., $\lambda_k \in \KK$. $\forall O \in E$ possiamo individuare il punto $P = O + \sum_{i=1}^n \lambda_i (P_i - O)$.
+	
+	$P = P' = \iff O + \sum_{i=1}^n \lambda_i (P_i - O) = O' + \sum_{i=1}^n \lambda_i (P_i - O') \iff O + \sum_{i=1}^n \lambda_i (O' - O) = O' \iff
+	(\sum \lambda_i) (O' - O) = O' - O \iff \sum \lambda_i = 1$.
+	
+	\begin{definition}
+		Un punto $P \in E$ è \textbf{combinazione affine} dei punti
+		$P_1$, ..., $P_k$ se $P = O + \sum \lambda_i (P_i - O)$ se
+		$\sum \lambda_i = 1$. Si scriverà, in particolare, che
+		$P = \sum \lambda_i P_i$.
+	\end{definition}
+
+	Si chiama retta affine l'insieme dei punti che sono combinazione affine di
+	due punti. Analogamente si fa per un piano e uno spazio.
+	
+	\begin{definition}
+		Un sottoinsieme $D \subseteq E$ si dirà \textbf{sottospazio affine}
+		se è chiuso per combinazioni affini (finite).
+	\end{definition}
+
+	\begin{definition}
+		Il sottospazio affine $D \subseteq E$ generato da un sottoinsieme $S \subseteq E$ è l'insieme delle combinazioni affini (finite) di punti
+		di $S$, detto $D = \Aff(S)$. %TODO: mostrare che è chiuso per combinazioni affini.
+	\end{definition}
+\end{document}

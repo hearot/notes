@@ -1381,4 +1381,42 @@
 		che $U \in U_n$ è sempre invertibile, si conclude che $A A^* = A^* A$, ossia che $A$ è normale a
 		sua volta, da cui la tesi. 
 	\end{proof}
+
+	\begin{remark}\nl
+		\li Si può osservare mediante l'ultimo corollario che $A$ hermitiana
+		$\implies$ $U^* A U = D$ è reale. \\
+		\li Si può estendere il teorema ad una matrice generica
+		$A \in M(n, \RR)$ normale, a patto che $A$ ha tutti autovalori
+		reali. Infatti, in tal caso, esiste $O \in O_n$ tale che
+		$O^\top A O = D$ con $D$ diagonale. Inoltre, $A^\top = (O D O^\top)^\top
+		= O D^\top O^\top = O D O^\top = A$. Quindi $A$ è necessariamente
+		anche simmetrica.
+	\end{remark}
+
+	\begin{exercise}\nl
+		\begin{enumerate}[(i)]
+			\item $(V, \varphi)$ con $\varphi$ non degenere.
+			$W \subseteq V$ sottospazio. Sia $\ww 1$, ..., $\ww k$
+			una base di $W$ e sia $\basis = \{ \ww 1, ..., \ww k, ..., \vv n \}$ una base di $V$. Allora $W^\top = \{ \v \in V \mid \varphi(\v, \ww i) = 0 \} = \{ \v \in V \mid A_{1,\ldots,k} [\v]_\basis = 0 \}$ con $A = M_\basis(\varphi)$. Pertanto $\dim W^\top = n - \rg(A_{1,...,k})$.
+
+			\item Sia $U \subseteq V$ sottospazio. Dimostrare che
+			nel quoziente $V/U$ il prodotto induce il prodotto $\tilde \varphi([\v], [\v']) = \varphi(\v, \v')$ se e soltanto se
+			$U \subseteq V^\perp$ ($U \perp V$).
+			
+			\item Dimostrare che il prodotto $\tilde \varphi$ è
+			non degenere.
+			
+			\item Sia $\pi : V \to V/V^\perp$ la proiezione al
+			quoziente. Sia $W \subseteq V$ sottospazio. Dimostrare
+			che $W^\perp = \{ \v \in V \mid \tilde \varphi(\pi(\v), \varphi(\w)) = 0 \forall \w \in W \} = \pi\inv(\pi(W)^\perp)$.
+			
+			\item Dedurre dai precedenti punti la formula della dimensione
+			dell'ortogonale.
+			
+			\item Dimostrare che $(W^\perp)^\perp = W + V^\perp$.
+			
+			\item Dimostrare che $A$ anti-hermitiana è normale e ha tutti autovalori
+			immaginari.
+		\end{enumerate}
+	\end{exercise}
 \end{document}
