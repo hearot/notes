@@ -4,7 +4,7 @@
 
 \title{\textbf{Note del corso di Geometria 1}}
 \author{Gabriel Antonio Videtta}
-\date{17 e 19 aprile 2023}
+\date{17, 19 e 26 aprile 2023}
 
 \begin{document}
 	
@@ -143,7 +143,9 @@
 		\li Vale il teorema di Lagrange, e quindi quello di Sylvester, benché con alcune accortezze: si
 		introduce, come nel caso di $\RR$, il concetto di segnatura, che diventa l'invariante completo
 		della nuova congruenza hermitiana, che ancora una volta si dimostra essere una relazione
-		di equivalenza.
+		di equivalenza. \\
+		\li Come mostrato nei momenti finali del documento (vd.~\textit{Esercizio 3}), vale
+		la formula delle dimensioni anche nel caso del prodotto hermitiano.
 	\end{remark}
 
 	\hr
@@ -1335,9 +1337,10 @@
 		$a_{ij} = 0$ \, $\forall i < j \leq n$, dimostrando il passo induttivo, e quindi la tesi.
 	\end{proof}
 	
-	\begin{remark}
-		Chiaramente vale anche il viceversa del precedente lemma: se infatti $A \in M(n, \CC)$ è diagonale,
-		$A$ è anche normale, dal momento che commuta con $A^*$.
+	\begin{remark}\nl
+		\li Chiaramente vale anche il viceversa del precedente lemma: se infatti $A \in M(n, \CC)$ è diagonale,
+		$A$ è anche normale, dal momento che commuta con $A^*$. \\
+		\li Reiterando la stessa dimostrazione del precedente lemma per $A \in M(n, \RR)$ triangolare superiore e normale reale (i.e.~$AA^\top = A^\top A$) si può ottenere una tesi analoga.
 	\end{remark}
 	
 	\begin{theorem}
@@ -1383,40 +1386,150 @@
 	\end{proof}
 
 	\begin{remark}\nl
-		\li Si può osservare mediante l'ultimo corollario che $A$ hermitiana
-		$\implies$ $U^* A U = D$ è reale. \\
-		\li Si può estendere il teorema ad una matrice generica
-		$A \in M(n, \RR)$ normale, a patto che $A$ ha tutti autovalori
-		reali. Infatti, in tal caso, esiste $O \in O_n$ tale che
-		$O^\top A O = D$ con $D$ diagonale. Inoltre, $A^\top = (O D O^\top)^\top
-		= O D^\top O^\top = O D O^\top = A$. Quindi $A$ è necessariamente
-		anche simmetrica.
+		\li Si può osservare mediante l'applicazione dell'ultimo corollario che, se $A$ è hermitiana (ed è dunque
+		anche normale),
+		$\exists U \in U_n \mid U^* A U = D$, dove $D \in M(n, \RR)$, ossia tale
+		corollario implica il teorema spettrale in forma complessa. Infatti
+		$\conj{D} = D^* = U^* A^* U = U^* A U = D \implies D \in M(n, \RR)$. \\
+		
+		\li Se $A \in M(n, \RR)$ è una matrice normale reale (i.e.~$A A^\top = A^\top A$) con
+		$p_A$ completamente riducibile in $\RR$, allora è possibile reiterare la dimostrazione
+		del precedente teorema per concludere che $\exists O \in O_n \mid O^\top A O = D$ con
+		$D \in M(n, \RR)$, ossia che $A = O D O^\top$.
+		Tuttavia questo implica che $A^\top = (O D O^\top) = O D^\top O^\top = O D O^\top = A$,
+		ossia che $A$ è simmetrica. In particolare, per il teorema spettrale reale, vale
+		anche il viceversa. Pertanto, se $A \in M(n, \RR)$, $A$ è una matrice normale reale con $p_A$ completamente
+		riducibile in $\RR$ $\iff$ $A = A^\top$.
 	\end{remark}
-
-	\begin{exercise}\nl
+	
+	\begin{exercise}
+		Sia $V$ uno spazio dotato del prodotto $\varphi$. Sia
+		$W \subseteq V$ un sottospazio di $V$. Sia $\basis_W= \{ \ww 1, \ldots, \ww k \}$
+		una base di $W$ e sia $\basis = \{ \ww 1, ..., \ww k, \vv{k+1}, ..., \vv n \}$ una base di $V$.
+		Sia $A = M_\basis(\varphi)$. Si dimostrino allora i seguenti risultati.
+		
 		\begin{enumerate}[(i)]
-			\item $(V, \varphi)$ con $\varphi$ non degenere.
-			$W \subseteq V$ sottospazio. Sia $\ww 1$, ..., $\ww k$
-			una base di $W$ e sia $\basis = \{ \ww 1, ..., \ww k, ..., \vv n \}$ una base di $V$. Allora $W^\top = \{ \v \in V \mid \varphi(\v, \ww i) = 0 \} = \{ \v \in V \mid A_{1,\ldots,k} [\v]_\basis = 0 \}$ con $A = M_\basis(\varphi)$. Pertanto $\dim W^\top = n - \rg(A_{1,...,k})$.
-
-			\item Sia $U \subseteq V$ sottospazio. Dimostrare che
-			nel quoziente $V/U$ il prodotto induce il prodotto $\tilde \varphi([\v], [\v']) = \varphi(\v, \v')$ se e soltanto se
-			$U \subseteq V^\perp$ ($U \perp V$).
-			
-			\item Dimostrare che il prodotto $\tilde \varphi$ è
-			non degenere.
-			
-			\item Sia $\pi : V \to V/V^\perp$ la proiezione al
-			quoziente. Sia $W \subseteq V$ sottospazio. Dimostrare
-			che $W^\perp = \{ \v \in V \mid \tilde \varphi(\pi(\v), \varphi(\w)) = 0 \forall \w \in W \} = \pi\inv(\pi(W)^\perp)$.
-			
-			\item Dedurre dai precedenti punti la formula della dimensione
-			dell'ortogonale.
-			
-			\item Dimostrare che $(W^\perp)^\perp = W + V^\perp$.
-			
-			\item Dimostrare che $A$ anti-hermitiana è normale e ha tutti autovalori
-			immaginari.
+			\item $W^\perp = \{ \v \in V \mid \varphi(\v, \ww i) = 0 \}$,
+			\item $W^\perp = \{ \v \in V \mid A_{1,\ldots,k} [\v]_\basis = 0 \} = [\cdot]_\basis\inv (\Ker A_{1,\ldots,k})$,
+			\item $\dim W^\top = \dim V - \rg(A_{1,\ldots,k})$,
+			\item Se $\varphi$ è non degenere, $\dim W + \dim W^\perp = \dim V$.
 		\end{enumerate}
 	\end{exercise}
+	
+	\begin{proof}[Soluzione]
+		Chiaramente vale l'inclusione $W^\perp \subseteq \{ \v \in V \mid \varphi(\v, \ww i) = 0 \}$. Sia
+		allora $\v \in V \mid \varphi(\v, \ww i) = 0$ $\forall 1 \leq i \leq k$ e sia $\w \in W$. Allora esistono $\alpha_1$, ..., $\alpha_k$ tali
+		che $\w = \alpha_1 \ww 1 + \ldots + \alpha_k \ww k$. Pertanto si conclude che $\varphi(\v, \alpha_1 \ww 1 + \ldots + \alpha_k \ww k) = \alpha_1 \varphi(\v, \ww 1) + \ldots + \alpha_k \varphi(\v, \ww k) = 0 \implies \v \in W^\top$. Pertanto $W^\top = \{ \v \in V \mid \varphi(\v, \ww i) = 0 \}$, dimostrando (i). \\
+		
+		Si osserva che $\varphi(\v, \ww i) = 0 \iff \varphi(\ww i, \v) = 0$. Se $\varphi$ è scalare, allora
+		$\varphi(\ww i, \v) = 0 \defiff [\ww i]_\basis^\top A [\v]_\basis = (\e i)^\top A [\v]_\basis = A_i [\v]_\basis = 0$. Pertanto $\v \in W^\top \iff A_i [\v]_\basis = 0$ $\forall 1 \leq i \leq k$, ossia se
+		$A_{1, \ldots, k} [\v]_\basis = 0$ e $[\v]_\basis \in \Ker A_{1, \ldots, k}$, dimostrando (ii). Analogamente
+		si ottiene la tesi se $\varphi$ è hermitiano.
+		Applicando la formula delle dimensioni, si ricava dunque che $\dim W^\top = \dim \Ker A_{1, \ldots, k} =
+		\dim V - \rg A_{1, \ldots, k}$, dimostrando (iii). \\
+		
+		Se $\varphi$ è non degenere, $A$ è invertibile, dacché $\dim V^\perp = \dim \Ker A = 0$. Allora
+		ogni minore di taglia $k$ di $A$ ha determinante diverso da zero. Dacché ogni minore di taglia $k$
+		di $A_{1,\ldots,k}$ è anche un minore di taglia $k$ di $A$, si ricava che anche ogni minore di taglia
+		$k$ di $A_{1, \ldots, k}$ ha determinante diverso da zero, e quindi che $\rg(A_{1,\ldots,k}) \geq k$.
+		Dacché deve anche valere $\rg(A_{1,\ldots,k}) \leq \min\{k,n\} = k$, si conclude che $\rg(A_{1,\ldots,k})$
+		vale esattamente $k = \dim W$. Allora, dal punto (iii), vale che $\dim W^\perp + \dim W = \dim W^\perp + \rg(A_{1,\ldots,k}) = \dim V$, dimostrando il punto (iv).
+	\end{proof}
+	
+	\begin{exercise}
+		Sia $V$ uno spazio dotato del prodotto $\varphi$. Sia
+		$U \subseteq V$ un sottospazio di $V$. Si dimostrino allora i seguenti due
+		risultati.
+		
+		\begin{enumerate}[(i)]
+			\item Il prodotto $\varphi$
+			induce un prodotto $\tilde \varphi : V/U \times V/U \to \KK$ tale che
+			$\tilde \varphi(\v + U, \v' + U) = \varphi(\v, \v')$ se e soltanto se $U \subseteq V^\perp$, ossia
+			se e solo se $U \perp V$.
+			
+			%TODO: controllare che debba valere $U = V^\perp$
+			\item Se $U = V^\perp$, allora il prodotto $\tilde \varphi$ è non degenere.
+			
+			\item Sia $\pi : V \to V/V^\perp$ l'applicazione lineare di proiezione al quoziente. Allora
+			$U^\perp = \{ \v \in V \mid \tilde \varphi(\pi(\v), \pi(\U)) = 0 \, \forall \U \in U \} = \pi\inv(\pi(U)^\perp)$.
+			
+			\item Vale la formula delle dimensioni per il prodotto $\varphi$: $\dim U + \dim U^\perp = \dim V + \dim (U \cap V^\perp)$.   
+		\end{enumerate}
+	\end{exercise}
+	
+	\begin{proof}[Soluzione]
+		Sia $\w = \v + \uu 1 \in \v + U$, con $\uu 1 \in U$.
+		Se $\tilde \varphi$ è ben definito, allora deve valere l'uguaglianza $\varphi(\v, \v') = \varphi(\w, \v') =
+		\varphi(\v + \uu 1, \v') = \varphi(\v, \v') + \varphi(\uu 1, \v')$, ossia $\varphi(\uu 1, \v') = 0$ $\forall \v' \in V \implies \uu 1 \in V^\perp \implies U \subseteq V^\perp$. Viceversa, se $U \subseteq V^\perp$,
+		sia $\w' = \v' + \uu 2 \in \v' + U$, con $\uu 2 \in U$. Allora vale la seguente identità:
+		
+		\[ \varphi(\w, \w') = \varphi(\v + \uu 1, \v' + \uu 2) = \varphi(\v, \v') + \underbrace{\varphi(\v, \uu 2) + \varphi(\uu 1, \v') + \varphi(\uu 1, \uu 2)}_{=\,0}. \]
+
+		Pertanto $\tilde \varphi$ è ben definito, dimostrando (i). \\
+		
+		Sia ora $U = V/V^\perp$. Sia $\v + U \in (V/U)^\perp = \Rad(\tilde \varphi)$. Allora, $\forall \v' + U \in V/U$,
+		$\tilde \varphi(\v + U, \v' + U) = \varphi(\v, \v') = 0$, ossia $\v \in V^\perp = U$. Pertanto
+		$\v + U = U \implies \Rad(\tilde \varphi) = \{ V^\perp \}$, e quindi $\tilde \varphi$ è non degenere,
+		dimostrando (ii). \\
+		
+		Si dimostra adesso l'uguaglianza $U^\perp = \pi\inv(\pi(U)^\perp)$. Sia $\v \in U^\perp$. Allora
+		$\tilde \varphi(\pi(\v), \pi(\U)) = \tilde \varphi(\v + V^\perp, \U + V^\perp) = \varphi(\v, \U) = 0$ $\forall
+		\U \in U$, da cui si ricava che vale l'inclusione $U^\perp \subseteq \pi\inv(\pi(U)^\perp)$. Sia
+		ora $\v \in \pi\inv(\pi(U)^\perp)$, e sia $\U \in U$. Allora $\varphi(\v, \U) = \tilde \varphi(\v + V^\perp, \U + V^\perp) = \tilde \varphi(\pi(\v), \pi(\U)) = 0$, da cui vale la doppia inclusione, e dunque l'uguaglianza
+		desiderata, dimostrando (iii). \\
+		
+		Dall'uguaglianza del punto (iii), l'applicazione della formula delle dimensioni e l'identità
+		ottenuta dal punto (iv) dell'\textit{Esercizio 2} rispetto al prodotto $\tilde \varphi$ non degenere, si ricavano
+		le seguenti identità:
+		
+		\[ \system{ \dim \pi(U) = \dim U - \dim (U \cap \Ker \pi) = \dim U - \dim (U \cap V^\perp), \\ \dim \pi(U)^\perp = \dim V/V^\perp - \dim \pi(U) = \dim V - \dim V^\perp - \dim \pi(U), \\ \dim U^\perp = \dim \pi(U)^\perp + \dim \Ker \pi = \dim \pi(U)^\perp + \dim V^\perp, } \]
+		
+		dalle quali si ricava la seguente identità:
+		
+		\[ \dim U^\perp = \dim V - \dim V^\perp - (\dim U - \dim(U \cap V^\perp)) + \dim V^\perp, \]
+		
+		\vskip 0.05in
+		
+		da cui si ricava che $\dim U + \dim U^\perp = \dim V + \dim(U \cap V^\perp)$, dimostrando (iv).
+	\end{proof}
+
+	\begin{exercise} Sia $V$ uno spazio vettoriale dotato del prodotto $\varphi$. Si dimostri allora che $(W^\perp)^\perp = W + V^\perp$.
+	\end{exercise}
+	
+	\begin{proof}[Soluzione]
+		Sia $\v = \w' + \v' \in W + V^\perp$, con $\w' \in W$ e $\v' \in V^\perp$. Sia inoltre $\w \in W^\perp$.
+		Allora $\varphi(\v, \w) = \varphi(\w' + \v', \w) = \varphi(\w', \w) + \varphi(\v', \w) = 0$,
+		dove si è usato che $\w' \perp \w$ dacché $\w \in W^\perp$ e $\w' \in W$ e che $\v' \in V^\perp$. Allora
+		vale l'inclusione $W + V^\perp \subseteq (W^\perp)^\perp$. \\
+		
+		Applicando le rispettive formule delle dimensioni a $W^\perp$, $(W^\perp)^\perp$ e $W + V^\perp$ si ottengono le seguenti identità:
+		
+		\[ \system{ \dim W^\perp = \dim V + \dim (W \cap V^\perp) - \dim W, \\ \dim (W^\perp)^\perp = \dim V + \dim (W^\perp \cap V^\perp) - \dim W^\perp, \\ \dim (W + V^\perp) = \dim W + \dim V^\perp - \dim (W \cap V^\perp), } \]
+		
+		\vskip 0.05in
+		
+		da cui si ricava che:
+		
+		\[ \dim (W^\perp)^\perp = \dim W + \dim V^\perp - \dim (W \cap V^\perp) = \dim (W + V^\perp). \]
+		
+		Dal momento che vale un'inclusione e l'uguaglianza dimensionale, si conclude che $(W^\perp)^\perp = W + V^\perp$,
+		da cui la tesi.
+	\end{proof}
+	
+	\begin{exercise} Sia $A \in M(n, \CC)$ anti-hermitiana (i.e.~$A = -A^*$). Si dimostri allora che $A$
+		è normale e che ammette solo autovalori immaginari.
+	\end{exercise}
+	
+	\begin{proof}[Soluzione]
+		Si mostra facilmente che $A$ è normale. Infatti $A A^* = A(-A) = -A^2 = (-A)A = A^* A$. Sia allora
+		$\lambda \in \CC$ un autovalore di $A$ e sia $\v \neq \vec 0$, $\v \in V_\lambda$. Si consideri il prodotto hermitiano
+		standard $\varphi$ su $\CC^n$. Allora vale la seguente identità:
+		\begin{gather*}
+			\lambda \, \varphi(\v, \v) = \varphi(\v, \lambda \v) = \varphi(\v, A \v) = \varphi(A^* \v, \v) = \\
+			\varphi(-A\v, \v) = \varphi(-\lambda \v, \v) = -\conj{\lambda} \, \varphi(\v, \v).
+		\end{gather*}
+		
+		Dacché $\varphi$ è definito positivo, $\varphi(\v, \v) \neq 0 \implies \lambda = -\conj{\lambda}$. Allora
+		$\Re(\lambda) = \frac{\lambda + \conj{\lambda}}{2} = 0$, e quindi $\lambda$ è immaginario, da cui la tesi.
+	\end{proof}
 \end{document}
