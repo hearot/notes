@@ -76,7 +76,7 @@
 	\begin{definition} [orbita di $x$]
 		Sia $\sim_G$ la relazione d'equivalenza tale che $x \sim_G y \defiff \exists g \in G \mid g \cdot x = y$.
 		Allora le classi di equivalenza si dicono \textbf{orbite}, ed in particolare si indica l'orbita a cui
-		appartiene un dato $x \in X$ come $\Orb(x) = O_x$, ed è detta \textit{orbita di} $x$.
+		appartiene un dato $x \in X$ come $\Orb_G(x) = O_x$ (o come $\Orb(x)$, quando $G$ è noto), ed è detta \textit{orbita di} $x$.
 	\end{definition}
 	
 	\begin{example} Si possono individuare facilmente alcune orbite per alcune azioni classiche.
@@ -97,56 +97,76 @@
 
 	\begin{definition} [stabilizzatore di $x$]
 		Lo \textbf{stabilizzatore} di un punto $x \in X$ è l'insieme degli elementi di $G$ che
-		agiscono su $x$ lasciandolo invariato, ossia lo stabilizzatore $\Stab_G(X)$ è il sottogruppo
+		agiscono su $x$ lasciandolo invariato, ossia lo stabilizzatore $\Stab_G(x)$ (scritto semplicemente come $\Stab(x)$ se $G$ è noto) è il sottogruppo
 		di $G$ tale che:
 		
 		\[ \Stab_G(X) = \{g \in G \mid g \cdot x = x \}. \]
 	\end{definition}
 
 	\begin{example}
-		Sia $H \subseteq G$ e sia $X = G/H$. $X$ è un $G$-insieme
-		tramite l'azione $g'.(gH) = g'gH$. Vale in particolare
-		che $\Stab_G(eH) = H$.
+		Sia $H \subseteq G$ un sottogruppo di $G$ e sia $X = G/H$. Allora $X$ è un $G$-insieme tramite l'azione $g' \cdot (gH) = g'gH$. In particolare
+		vale che $\Stab(gH) = gH$, e quindi che $\Stab(eH) = H$.
 	\end{example}
 
-	\begin{proposition}
-		Sia $X$ un $G$-insieme. Sia $x \in X$. $H = \Stab_G(x)$ e sia
-		$O_x$ l'orbita di $x$. Allora esiste un'applicazione bigettiva
-		naturale $G/H \to O_x$.
-	\end{proposition}
+	\begin{theorem} [di orbita-stabilizzatore]
+		Sia $X$ un $G$-insieme e sia $x \in X$. Allora esiste un'applicazione
+		bigettiva da $G/\Stab(x)$ a $\Orb(x)$.
+	\end{theorem}
 
 	\begin{proof}
-		Sia $\varphi$ tale che $\varphi(gH) = g.x$. Si mostra che
-		$\varphi$ è ben definita: $g' = gh$, $\varphi(g'H) = (gh).x =
-		g.(h.x) = g.x$. Chiaramente $\varphi$ è anche surgettiva.
-		Inoltre, $g.x = g'.x \implies x = (g\inv g').x \implies g\inv g' = h \in H \implies gH = g'H$, e pertanto $\varphi$ è iniettiva.
-		Allora $\varphi$ è bigettiva.
+		Sia $\tau$ l'applicazione da $G/\Stab(x)$ a $\Orb(x)$ tale
+		che $\tau(g\Stab(x)) = g \cdot x$. Si dimostra innanzitutto che $\tau$ è
+		ben definita. Sia infatti $g' = g s \in G$, con $g \in G$ e $s \in \Stab(x)$, allora $\tau(g' \Stab(x)) = g' \cdot x = g \cdot (s \cdot x) = g \cdot x = \tau(g \Stab(x))$, per cui $\tau$ è ben definita.  \\ 
+		
+		Chiaramente $\tau$ è surgettiva: sia infatti $y \in \Orb(x)$, allora
+		$\exists g \in G \mid g \cdot x = y \implies \tau(g \Stab(x)) = g \cdot x = y$. Siano ora $g$, $g' \in G$ tali che $\tau(g \Stab(x)) = \tau(g' \Stab(x))$, allora $g \cdot x = g' \cdot x \implies (g' g\inv) \cdot x = x \implies g' g\inv \in \Stab(x)$. Pertanto $g \Stab(x) = g' \Stab(x)$, e $\tau$ è allora iniettiva, da cui la tesi.
 	\end{proof}
 
+	\begin{remark} Come conseguenza del teorema di orbita-stabilizzatore,
+		si osserva che $\abs{G/\Stab(x)} = \abs{\Orb(x)}$, se $\Orb(x)$ è
+		finito, e quindi si conclude, per il teorema di Lagrange, che
+		$\abs{G} = \abs{\Stab(x)} \abs{\Orb(x)}$.
+	\end{remark}
+
 	\begin{definition}
-		Si dice che $G$ opera \textit{liberamente} su $X$ se
-		$\forall x \in X$, l'applicazione $G \to O_x$ tale che
-		$g \mapsto g.x$, ossia se $\Stab_G(x) = \{e\}$:
+		Si dice che $G$ \textbf{opera liberamente} su $X$ se
+		$\forall x \in X$, l'applicazione da $G$ in $\Orb(x)$ tale che
+		$g \mapsto g \cdot x$ è iniettiva, ossia se $\Stab(x) = \{e\}$.
 	\end{definition}
 	
 	\begin{definition}
-		$G$ opera \textit{transitivamente} su $X$ se $x \sim_G y$ $\forall x$, $y \in X$, cioè se c'è un'unica orbita, che coincide con $X$. In
+		Si dice che $G$ \textbf{opera transitivamente} su $X$ se $x \sim_G y$ $\forall x$, $y \in X$, cioè se c'è un'unica orbita, che coincide con $X$. In
 		tal caso si dice che $X$ è \textbf{omogeneo} per l'azione di $G$.
 	\end{definition}
 
-	\begin{example}
+	\begin{example} Si possono fare alcuni esempi classici di insiemi $X$
+		omogenei per la propria azione.
 		\begin{enumerate}[(i)]
-			\item $O_n$ opera su $S^{n-1} \subseteq \RR^n$ transitivamente.
-			%TODO: aggiunge che lo stabilizzatore è isomorfo alle ortogonali
-			%TODO: di dimensioni n-1
+			\item $O_n$ opera sulla sfera $n$-dimensione di $\RR^n$ transitivamente. In particolare, si può trovare un'analogia per lo stabilizzatore di una coordinata di un vettore $\v$ di $\RR^n$.
+			Per esempio, se si vuole fissare il vettore $\e n$,
+			$\forall O \in \Stab(\e n)$ deve valere che $O \e n = \e n$,
+			ossia l'ultima colonna di $O$ deve essere esattamente
+			$\e n$. Dal momento però che $O$ è ortogonale, le sue
+			colonne devono formare una base ortonormale di $\RR^n$,
+			e quindi tutta l'ultima riga di $O$, eccetto per il suo
+			ultimo elemento, deve essere nulla. Allora $O$ deve
+			essere della seguente forma:
 			
-			\item $\Gr_k(\RR^n) = \{ W \subseteq \RR^n \mid \dim W = k \}$ (Grassmanniana). $O_n$ opera transitivamente su $\Gr_K(\RR^n)$.
+			\[ O = \Matrix{A & \rvline & 0 \\ \hline 0 & \rvline & 1}, \]
+			
+			\vskip 0.05in			
+			
+			dove $A \in M(n-1, \RR)$. Affinché allora $O$ sia ortogonale,
+			anche $A$ deve esserlo. Pertanto vi è una bigezione tra
+			$\Stab(\e n)$ e $O_{n-1}$.
+			
+			\item Sia $\Gr_k(\RR^n) = \{ W \subseteq \RR^n \mid \dim W = k \}$, detto la Grassmanniana di $\RR^n$ di ordine $k$. $O_n$ opera transitivamente su $\Gr_K(\RR^n)$.
 		\end{enumerate}
 	\end{example}
 
 	\begin{definition}
-		$G$ opera in maniera \textit{semplicemente transitiva} su $X$
-		se $\exists x \in X$ tale che $g \mapsto g.x$ è una bigezione,
+		Si dice che $G$ \textbf{opera in maniera semplicemente transitiva} su $X$
+		se $\exists x \in X$ tale che l'applicazione da $G$ in $X$ $g \mapsto g \cdot x$ è una bigezione,
 		ossia se $G$ opera transitivamente e liberamente.
 	\end{definition}
 
