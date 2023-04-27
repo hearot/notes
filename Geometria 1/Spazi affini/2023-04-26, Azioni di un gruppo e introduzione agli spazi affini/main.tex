@@ -13,13 +13,12 @@
 	\begin{center}
 		\Large \textbf{Azioni di un gruppo e introduzione agli spazi affini}
 	\end{center}
-	
-	\wip
+
 	
 	\begin{note}
 		Nel corso delle lezioni si è impiegata la notazione $g.x$ per indicare
 		l'azione di un gruppo su un dato elemento $x \in X$. Tuttavia si è
-		preferito indicare $g.x$ con $g \cdot x$ nel corso del documento. \\
+		preferito utilizzare la notazione $g \cdot x$ nel corso del documento. \\
 		
 		Inoltre, con $G$ si indicherà un generico gruppo, e con $X$ un
 		generico insieme, sul quale $G$ agisce, qualora non indicato diversamente.
@@ -122,21 +121,44 @@
 		$\exists g \in G \mid g \cdot x = y \implies \tau(g \Stab(x)) = g \cdot x = y$. Siano ora $g$, $g' \in G$ tali che $\tau(g \Stab(x)) = \tau(g' \Stab(x))$, allora $g \cdot x = g' \cdot x \implies (g' g\inv) \cdot x = x \implies g' g\inv \in \Stab(x)$. Pertanto $g \Stab(x) = g' \Stab(x)$, e $\tau$ è allora iniettiva, da cui la tesi.
 	\end{proof}
 
-	\begin{remark} Come conseguenza del teorema di orbita-stabilizzatore,
+	\begin{remark}\nl
+		\li Come conseguenza del teorema di orbita-stabilizzatore,
 		si osserva che $\abs{G/\Stab(x)} = \abs{\Orb(x)}$, se $\Orb(x)$ è
 		finito, e quindi si conclude, per il teorema di Lagrange, che
-		$\abs{G} = \abs{\Stab(x)} \abs{\Orb(x)}$.
+		$\abs{G} = \abs{\Stab(x)} \abs{\Orb(x)}$. \\
+		
+		\li Il teorema di orbita-stabilizzatore implica il primo teorema di omomorfismo. Siano infatti
+		$G$, $H$ due gruppi e sia $f$ un omomorfismo da $G$ in $H$. Si può allora costruire un azione
+		di $G$ in $H$ in modo tale che $g \cdot h = f(g) h$ $\forall g \in G$, $h \in H$. Infatti
+		$e_G \cdot h = f(e_G) h = e_H h = h$ e $g \cdot (g' \cdot h) = g \cdot (f(g') h) = f(g) f(g') h =
+		f(g g') h = (g g') \cdot h$, $\forall g$, $g' \in G$, $h \in H$. \\
+		
+		Si osserva che $\Stab(e_H) = \Ker f$:
+		infatti $\Stab(e_H) = \{ g \in G \mid g \cdot e_H = f(g) e_H = f(g) = e_H \} = \Ker f$. Inoltre,
+		$\Orb(e_H) = \Im f$, dal momento che $\Orb(e_H) = \{ h \in H \mid \exists g \in G \tc g \cdot h = f(g) h = e_H \iff f(g) = h\inv \} = \{ h \in H \mid \exists g \in G \text{ t.c. } f(g) = h \} = \Im f$, dove
+		si è usato che $h\inv \in \Im f \iff h \in \Im f$. \\
+		
+		Dal momento allora che $\Stab(e_H)$ è il kernel di $f$, vale che $\Stab(e_H) \nsg G$, e quindi
+		che $G/\Stab(e_H)$ è un gruppo.
+		Si verifica allora che l'applicazione $\tau$ costruita nella dimostrazione del teorema di orbita-stabilizzatore
+		è un omomorfismo. Siano infatti $g \Stab(e_H)$, $g' \Stab(e_H) \in G/\Stab(e_H)$, allora
+		$\tau(g \Stab(e_H) \, g' \Stab(e_H)) = \tau((g g') \Stab(e_H)) = (g g') \cdot e_H = f(g g') e_H =
+		f(g) e_H f(g') e_H = \tau(g \Stab(e_H)) \, \tau(g' \Stab(e_H))$. \\
+		
+		Si conclude dunque, per il teorema di orbita-stabilizzatore, che $\tau$ è bigettiva, e dunque
+		che $G/\Ker f = G/\Stab(e_H) \cong \Orb(e_H) = \Im f$, ossia si ottiene la tesi del primo
+		teorema di omomorfismo.
 	\end{remark}
 
 	\begin{definition}
-		Si dice che $G$ \textbf{opera liberamente} su $X$ se
-		$\forall x \in X$, l'applicazione da $G$ in $\Orb(x)$ tale che
+		Si dice che $G$ \textbf{opera liberamente} su $X$ se, dato $x \in X$, l'applicazione da $G$ in $X$ tale che
 		$g \mapsto g \cdot x$ è iniettiva, ossia se $\Stab(x) = \{e\}$.
 	\end{definition}
 	
 	\begin{definition}
-		Si dice che $G$ \textbf{opera transitivamente} su $X$ se $x \sim_G y$ $\forall x$, $y \in X$, cioè se c'è un'unica orbita, che coincide con $X$. In
-		tal caso si dice che $X$ è \textbf{omogeneo} per l'azione di $G$.
+		Si dice che $G$ \textbf{opera transitivamente} su $X$ se, dato $x \in X$, l'applicazione da $G$ in $X$ tale che $g \mapsto g \cdot x$ è surgettiva, ossia se $x \sim_G y$ $\forall x$, $y \in X$, cioè se c'è un'unica orbita, che coincide con $X$. In
+		tal caso si dice che $X$ è un insieme \textbf{omogeneo} per l'azione di $G$ (o semplicemente che è
+		un \textit{$G$-insieme omogeneo}).
 	\end{definition}
 
 	\begin{example} Si possono fare alcuni esempi classici di insiemi $X$
@@ -152,8 +174,8 @@
 			ultimo elemento, deve essere nulla. Allora $O$ deve
 			essere della seguente forma:
 			
-			\[ O = \Matrix{A & \rvline & 0 \\ \hline 0 & \rvline & 1}, \]
-			
+			\[ O = \Matrix{& & & & & & \rvline & 0 \, \\  & & & & & & \rvline & \vdots \, \\ & & & \mbox{\normalfont\Large $A$} & & &  \rvline & \vdots \, \\ & & & & & & \rvline & \vdots \, \\ & & & & & & \rvline & \vdots \, \\ \hline & 0 & \cdots & \cdots & \cdots & \cdots & \rvline & 1 \,}, \]
+
 			\vskip 0.05in			
 			
 			dove $A \in M(n-1, \RR)$. Affinché allora $O$ sia ortogonale,
@@ -166,75 +188,129 @@
 
 	\begin{definition}
 		Si dice che $G$ \textbf{opera in maniera semplicemente transitiva} su $X$
-		se $\exists x \in X$ tale che l'applicazione da $G$ in $X$ $g \mapsto g \cdot x$ è una bigezione,
+		se, dato $x \in X$, l'applicazione da $G$ in $X$ tale che $g \mapsto g \cdot x$ è una bigezione,
 		ossia se $G$ opera transitivamente e liberamente.
 	\end{definition}
 
 	\begin{definition}
-		Un insieme $X$ con un'azione semplicemente transitiva di $G$ è
-		detto un $G$-insieme omogeneo \textit{principale}.
+		Un insieme $X$ che subisce un'azione del gruppo $G$ che opera in maniera
+		semplicemente transitiva è
+		detto un \textbf{$G$-insieme omogeneo principale}.
 	\end{definition}
-
+	
 	\begin{example}
-		\begin{enumerate}[(i)]
-			\item $X = G$. L'azione naturale di $G$ su $X$ per moltiplicazione
-			è semplicemente transitivo (per $g$, $g' \in G$, esiste un
-			unico $h \in G$ tale che $g = h.g' = hg'$). Quindi $X$
-			è $G$-omogeneo principale.
-			
-			\item Se $X$ è $G$-omogeneo principale, l'azione è fedele.
-			
-			\item Se $X$ è omogeneo per un gruppo $G$ commutativo, allora
-			$G$ agisce fedelmente su $X$ $\implies$ $X$ è un $G$-insieme
-			omogeneo principale.
-		\end{enumerate}
+		Se $X = G$ e l'azione considerata è quella naturale dell'operazione di $G$,
+		tale azione opera in maniera semplicemente transitiva. Dato $x \in X$, si consideri infatti l'applicazione $\tau$
+		da $G$ in $G$ tale che
+		$g \mapsto g \cdot x = gx$. Si osserva che $\tau$ è surgettiva, dacché, dato $h \in G$,
+		$h = h x\inv x = \tau(h x\inv)$. Inoltre $\tau$ è iniettiva, dal momento che, dati $g$, $g'$
+		tali che $\tau(g) = \tau(g')$, allora $gx = g' x \implies g = g'$. Pertanto $\tau$ è bigettiva, e
+		l'azione opera allora in maniera semplicemente transitiva.
 	\end{example}
+	
+	\begin{remark}\nl
+		\li Se $X$ è $G$-omogeneo principale, l'azione di $G$ su $X$ è fedele. Infatti, $f_g = \Id \implies g \cdot x = x$ $\forall x \in X$. Dal momento però che $X$ è $G$-omogeneo principale, $G$ opera liberamente su $X$,
+		e quindi $\Stab(x) = \{e\}$ $\forall x \in X \implies g = e$. \\
+
+		\li Se $X$ è $G$-omogeneo e $G$ è abeliano, allora $G$ agisce fedelmente su $X$ $\iff$ $X$ è $G$-omogeneo principale. \\
+		
+		Se $G$ agisce fedelmente su $X$, dato $x \in X$, si può considerare infatti $g \in \Stab(x) \implies g \cdot x = x$. Si osserva allora
+		che $f_g = \Id$. Dato infatti $y \in X$, dacché $X$ è $G$-omogeneo, $\exists g' \in G \mid y = g' \cdot x$,
+		da cui si ricava che $f_g(y) = g \cdot y = g \cdot (g' \cdot x) = (gg') \cdot x = (g'g) \cdot x = g' \cdot (g \cdot x) = g' \cdot x = y$, ossia proprio che $f_g = \Id$. Dal momento però che l'azione di $G$ su $X$ è fedele,
+		$f_g = \Id \implies g = e$, ossia $\Stab(x) = \{e\}$ $\forall x \in X$, per cui si conclude che l'azione
+		di $G$ opera in maniera semplicemente transitiva su $X$, e dunque che $X$ è $G$-omogeneo principale. \\
+		
+		Viceversa, se $X$ è $G$-omogeneo principale, $\Stab(x) = \{ e \}$ $\forall x \in X$. Allora, se $f_g = \Id$,
+		per ogni $x \in X$ deve valere che $g \in \Stab(x) = \{ e \} \implies g = e$.
+	\end{remark}
+	
+	\hr
 
 	\begin{definition} [spazio affine]
 		Sia $V$ uno spazio vettoriale su un campo $\KK$ qualsiasi.
 		Allora uno spazio affine $E$ associato a $V$ è un qualunque
-		$V$-insieme omogeneo principale.
+		$V$-insieme omogeneo principale\footnote{Per gruppo $V$ si intende il gruppo abeliano $(V, +)$.}.
+		In particolare si indica l'azione di $V$ su $E$ $(\v, P) \mapsto \v \cdot P$ come $P + \v$ (o
+		analogamente come $\v + P$). Inoltre, gli elementi di $E$ si
+		diranno \textit{punti di} $E$.
 	\end{definition}
-
-	Pertanto, $\forall P, Q \in E$, esiste un unico vettore $\v \in V$
-	tale che $Q = \v . P $, denotato come $Q = P + \v = \v + P$. Si
-	osserva che $\v + (\w + P) = (\v + \w) + P$. Essendo $\v$ unico,
-	si scrive $\v = Q - P = \vvec{PQ}$.
 	
-	%TODO: aggiunge applicazione bigettiva
-	
-	Fissato $O \in E$, l'applicazione $\v \mapsto \v + O$, $V \to E$
-	è una bigezione.
-	
-	\begin{remark}\nl
-		\li $P-P = \vec 0 \in V$, $P-Q = -(Q-P)$, $(P_3 - P_2) + (P_2 - P_1) = P_3 - P_1$. \\
+	\begin{remark}
+		Dal momento che $E$ è un $V$-insieme omogeneo principale, valgono le seguenti proprietà.
 		
-		\li $O \in E$ l'applicazione $P \mapsto P-O$ è una bigezione di $E$
-		su $V$.
+		\begin{enumerate}[(i)]
+			\item Poiché $E$ è omogeneo, per ogni $P \in E$, $Q \in E$ esiste $\v \in V$ tale che $P + \v = Q$.
+			Inoltre, dal momento che $V$ opera liberamente su $E$, tale $\v$ è unico, e si indica come
+			$Q - P$ o come $\vvec{PQ}$.
+			
+			\item Vale l'identità $P + \vec 0 = P$, dal momento che $\vec 0$ è l'identità del gruppo $(V, +)$
+			e l'applicazione $P + \v$ è un azione di $V$. Allo stesso modo, vale che $(P + \v) + \w = P + (\v + \w) =
+			P + (\w + \v) = (P + \w) + \v$, pertanto si può scrivere, senza alcuna ambiguità, $P + \v + \w$.
+			
+			\item Fissato $O \in E$, l'applicazione da $V$ in $E$ tale che $\v \mapsto O + \v$ è una bigezione,
+			dal momento che $V$ opera su $E$ in maniera semplicemente transitiva.
+			
+			\item Analogamente, fissato $O \in E$, l'applicazione $\tau$ da $E$ in $V$ tale che $P \mapsto P - O = \vvec{OP}$
+			è una bigezione. Infatti $\tau$ è surgettiva: $\forall \v \in V$, $\tau(O + \v) = (O + \v) - O = \v$,
+			coerentemente con le operazioni aritmetiche. Infine, $\tau$ è iniettiva: siano $P$, $Q \in E$ tali che
+			$\tau(P) = \tau(Q)$, allora $P = O + (P - O) = O + \tau(P) = O + \tau(Q) = O + (Q - O) = Q$, per
+			cui $\tau$ è bigettiva.
+			
+			\item Dati $P$, $Q \in E$, vale l'identità $P - Q = -(Q - P)$. Infatti $P = Q + (P-Q) = P + (Q-P) + (P-Q) =
+			P + ((Q-P) + (P-Q))$. Allora, essendo l'azione di $V$ libera su $E$ (ovvero, come osservato prima,
+			essendo $\vvec{PP}$ unicamente zero), $(Q-P) + (P-Q) = \vec 0 \implies P-Q = -(Q-P)$.
+			
+			\item Dati $P_1$, $P_2$, $P_3 \in E$, vale l'identità $(P_3 - P_2) + (P_2 - P_1) = P_3 - P_1$. Infatti
+			$P_1 + (P_2 - P_1) + (P_3 - P_2) = P_2 + (P_3 - P_2) = P_3 \implies (P_2 - P_1) + (P_3 - P_2) = P_3 - P_1$.
+		\end{enumerate}
 	\end{remark}
 
-	Siano $P_1$, ..., $P_n \in E$. $\forall \lambda_1$, ..., $\lambda_k \in \KK$. $\forall O \in E$ possiamo individuare il punto $P = O + \sum_{i=1}^n \lambda_i (P_i - O)$.
+	Siano adesso $P_1$, ..., $P_n$ punti di $E$. Dati $\lambda_1$, ..., $\lambda_n \in \KK$ e $O \in E$ si può allora individuare il punto $P = O + \sum_{i=1}^n \lambda_i (P_1 - O) \in E$.
 	
-	$P = P' = \iff O + \sum_{i=1}^n \lambda_i (P_i - O) = O' + \sum_{i=1}^n \lambda_i (P_i - O') \iff O + \sum_{i=1}^n \lambda_i (O' - O) = O' \iff
-	(\sum \lambda_i) (O' - O) = O' - O \iff \sum \lambda_i = 1$.
+	\begin{proposition}
+		Dati $P_1$, ..., $P_n$ punti di $E$ e $\lambda_1$, ..., $\lambda_n \in \KK$, il punto
+		$P(O) = O + \sum_{i=1}^n \lambda_i (P_i - O)$ rappresenta lo stesso identico punto al
+		variare del punto $O$ se e solo se $\sum_{i=1}^n \lambda_i = 1$.
+	\end{proposition}
 	
-	\begin{definition}
+	\begin{proof}
+		Siano $O$, $O'$ due punti distinti di $E$. Allora $P(O) = P(O') \iff O + \sum_{i=1}^n \lambda_i (P_i - O) =
+		O' + \sum_{i=1}^n \lambda_i (P_i - O') = O + (O' - O) + \sum_{i=1}^n \lambda_i (P_i - O') \iff \sum_{i=1}^n \lambda_i (P_i - O) = (O' - O) + \sum_{i=1}^n \lambda_i ((P_i - O) + (O - O'))$. Distribuendo
+		la somma e utilizzando l'identità dell'\textit{Osservazione} (v), si ottiene allora che $P(O) = P(O') \iff
+		\sum_{i=1}^n \lambda_i = 1$. 
+	\end{proof}
+	
+	\begin{definition} [combinazione affine di punti]
 		Un punto $P \in E$ è \textbf{combinazione affine} dei punti
-		$P_1$, ..., $P_k$ se $P = O + \sum \lambda_i (P_i - O)$ se
-		$\sum \lambda_i = 1$. Si scriverà, in particolare, che
-		$P = \sum \lambda_i P_i$.
+		$P_1$, ..., $P_n$ se $\exists \lambda_1$, ..., $\lambda_n \in \KK$, $O \in E$ tali che $P = O + \sum_{i=1}^n \lambda_i (P_i - O)$ e che
+		$\sum_{i=1}^n \lambda_i = 1$. Dal momento che per la precedente proposizione $P$ è invariante al variare di $O \in E$, si scriverà, senza alcuna ambiguità, che
+		$P = \sum_{i=1}^n \lambda_i P_i$.
 	\end{definition}
-
-	Si chiama retta affine l'insieme dei punti che sono combinazione affine di
-	due punti. Analogamente si fa per un piano e uno spazio.
 	
-	\begin{definition}
-		Un sottoinsieme $D \subseteq E$ si dirà \textbf{sottospazio affine}
-		se è chiuso per combinazioni affini (finite).
+	\begin{definition} [sottospazio affine]
+		Un sottoinsieme $D \subseteq E$ si dice \textbf{sottospazio affine} di $E$ se ogni combinazione
+		affine di finiti termini di $D$ appartiene a $D$.
 	\end{definition}
-
-	\begin{definition}
-		Il sottospazio affine $D \subseteq E$ generato da un sottoinsieme $S \subseteq E$ è l'insieme delle combinazioni affini (finite) di punti
-		di $S$, detto $D = \Aff(S)$. %TODO: mostrare che è chiuso per combinazioni affini.
+	
+	\begin{definition} [sottospazio affine generato da alcuni punti]
+		Dati $S \subseteq E$, si dice \textbf{sottospazio affine generato da $S$}
+		l'insieme delle combinazioni affini di finiti termini dei punti di $S$, denotato con $\Aff(S)$.
 	\end{definition}
+	
+	\begin{remark}\nl
+		\li Come avviene per $\Span$ nel caso degli spazi vettoriali, dati $P_1$, ..., $P_n \in E$, si usa scrivere $\Aff(P_1, \ldots, P_n)$
+		per indicare $\Aff(\{P_1, \ldots, P_n\})$. \\
+		
+		\li Si osserva che in effetti, dato $S \subseteq E$, $\Aff(S)$ è un sottospazio affine, ossia è
+		chiuso per combinazioni affini dei propri punti. Siano infatti $P_1$, ..., $P_n$ punti di $\Aff(S)$
+		e siano $\lambda_1$, ..., $\lambda_n \in \KK$ tali che $\sum_{i=1}^n \lambda_i = 1$. Si deve
+		mostrare dunque che $\sum_{i=1}^n \lambda_i P_i \in \Aff(S)$. Dal momento che $P_i \in \Aff(S)$ esiste $k_i \in \NN^+$ tale per cui esistano
+		$S_{i,1}$, ..., $S_{i,k_i} \in S$ e $\lambda_{i,1}$, ..., $\lambda_{i,k_i} \in \KK$ tali per cui
+		$P_i = \sum_{j=1}^{k_i} \lambda_{i,j} S_{i,j}$ e $\sum_{j=1}^{k_i} \lambda_{i,j} = 1$. Allora
+		$\sum_{i=1}^n \lambda_i P_i = \sum_{i=1}^n \lambda_i (\sum_{j=1}^{k_i} \lambda_{i,j} S_{i,j}) =
+		\sum_{i=1}^n \sum_{j=1}^{k_i} \lambda_i \lambda_{i,j} S_{i,j}$. Inoltre $\sum_{i=1}^n \sum_{j=1}^{k_i} \lambda_i \lambda_{i,j} = \sum_{i=1}^n \lambda_i (\sum_{j=1}^{k_i}  \lambda_{i,j}) = \sum_{i=1}^n \lambda_i = 1$.
+		Pertanto $\sum_{i=1}^n \lambda_i P_i$ è combinazione affine di elementi di $S$, e quindi $\sum_{i=1}^n \lambda_i P_i \in \Aff(S)$. \\
+		
+		\li Siano $P_1$, $P_2 \in E$. Allora il sottospazio affine $\Aff(P_1, P_2) = \{ \lambda_1 P_1 + \lambda_2 P_2 \mid \lambda_1 + \lambda_2 = 1, \lambda_1, \lambda_2 \in \KK \} = \{ (1-\lambda) P_1 + \lambda P_2 \mid \lambda \in \KK \} = \{ P_1 + \lambda (P_2 - P_1) \mid \lambda \in \KK \}$ è detto \textit{retta affine passante per $P_1$ e $P_2$}. Analogamente il sottospazio affine generato da tre elementi è detto \textit{piano affine}.
+	\end{remark}
 \end{document}

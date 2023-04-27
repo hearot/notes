@@ -1532,4 +1532,34 @@
 		Dacché $\varphi$ è definito positivo, $\varphi(\v, \v) \neq 0 \implies \lambda = -\conj{\lambda}$. Allora
 		$\Re(\lambda) = \frac{\lambda + \conj{\lambda}}{2} = 0$, e quindi $\lambda$ è immaginario, da cui la tesi.
 	\end{proof}
+	
+	\begin{exercise}
+		Sia $V$ uno spazio vettoriale dotato del prodotto $\varphi$. Siano $U$, $W \subseteq V$ due sottospazi
+		di $V$. Si dimostrino allora le due seguenti
+		identità.
+		
+		\begin{enumerate}[(i)]
+			\item $(U + W)^\perp = U^\perp \cap W^\perp$,
+			\item $(U \cap W)^\perp \supseteq U^\perp + W^\perp$, dove vale l'uguaglianza insiemistica se $\varphi$
+			è non degenere.
+		\end{enumerate}
+	\end{exercise}
+	
+	\begin{proof}[Soluzione]
+		Sia $\v \in (U + W)^\perp$ e siano $\U \in U \subseteq U + W$, $\w \in W \subseteq U + W$. Allora
+		$\varphi(\v, \U) = 0 \implies \v \in U^\perp$ e $\varphi(\v, \w) = 0 \implies \v \in W^\perp$,
+		da cui si conclude che $(U + W)^\perp \subseteq U^\perp \cap W^\perp$. Sia adesso
+		$\v \in U^\perp \cap W^\perp$ e $\v' = \U + \w \in U + W$ con $\U \in V$ e $\w \in W$. Allora
+		$\varphi(\v, \v') = \varphi(\v, \U) + \varphi(\v, \w) = 0 \implies \v \in (U + W)^\perp$, da cui
+		si deduca che vale la doppia inclusione, e quindi che $(U + W)^\perp = U^\perp \cap W^\perp$,
+		dimostrando (i). \\
+		
+		Sia ora $\v' = \U' + \w' \in U^\perp + W^\perp$ con $\U' \in U^\perp$ e $\w' \in W^\perp$. Sia
+		$\v \in U \cap W$. Allora $\varphi(\v, \v') = \varphi(\v, \U') + \varphi(\v, \w') = 0 \implies
+		\v' \in (U \cap W)^\perp$, da cui si deduce che $(U \cap W)^\perp \supseteq U^\perp + W^\perp$.
+		Se $\varphi$ è non degenere, $\dim (U^\perp + W^\perp) = \dim U^\perp + \dim W^\perp - \dim (U^\perp \cap W^\perp) = 2 \dim V - \dim U - \dim W - \dim (U+W)^\perp = \dim V - \dim U - \dim W + \dim (U + W) =
+		\dim V - \dim (U + W) = \dim (U + W)^\perp$. Valendo pertanto l'uguaglianza dimensionale, si
+		conclude che in questo caso $(U \cap W)^\perp = U^\perp + W^\perp$, dimostrando (ii).
+		
+	\end{proof}
 \end{document}
