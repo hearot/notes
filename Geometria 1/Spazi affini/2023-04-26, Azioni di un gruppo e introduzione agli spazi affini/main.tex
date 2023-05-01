@@ -311,6 +311,10 @@
 		\sum_{i=1}^n \sum_{j=1}^{k_i} \lambda_i \lambda_{i,j} S_{i,j}$. Inoltre $\sum_{i=1}^n \sum_{j=1}^{k_i} \lambda_i \lambda_{i,j} = \sum_{i=1}^n \lambda_i (\sum_{j=1}^{k_i}  \lambda_{i,j}) = \sum_{i=1}^n \lambda_i = 1$.
 		Pertanto $\sum_{i=1}^n \lambda_i P_i$ è combinazione affine di elementi di $S$, e quindi $\sum_{i=1}^n \lambda_i P_i \in \Aff(S)$. \\
 		
-		\li Siano $P_1$, $P_2 \in E$. Allora il sottospazio affine $\Aff(P_1, P_2) = \{ \lambda_1 P_1 + \lambda_2 P_2 \mid \lambda_1 + \lambda_2 = 1, \lambda_1, \lambda_2 \in \KK \} = \{ (1-\lambda) P_1 + \lambda P_2 \mid \lambda \in \KK \} = \{ P_1 + \lambda (P_2 - P_1) \mid \lambda \in \KK \}$ è detto \textit{retta affine passante per $P_1$ e $P_2$}. Analogamente il sottospazio affine generato da tre elementi è detto \textit{piano affine}.
+		\li Siano $P_1$, $P_2 \in E$. Allora il sottospazio affine $\Aff(P_1, P_2) = \{ \lambda_1 P_1 + \lambda_2 P_2 \mid \lambda_1 + \lambda_2 = 1, \lambda_1, \lambda_2 \in \KK \} = \{ (1-\lambda) P_1 + \lambda P_2 \mid \lambda \in \KK \} = \{ P_1 + \lambda (P_2 - P_1) \mid \lambda \in \KK \}$ è detto \textit{retta affine passante per $P_1$ e $P_2$}. Analogamente il sottospazio affine generato da tre elementi è detto \textit{piano affine}. \\
+		
+		\li Dato un insieme di punti $S \subseteq E$, $\Aff(S)$ è il più piccolo sottospazio affine, per inclusione,
+		contenente $S$. Infatti, se $T$ è un sottospazio affine contenente $S$, per definizione $T$ deve
+		contenere tutte le combinazioni affini di $S$, e quindi $\Aff(S)$.
 	\end{remark}
 \end{document}
