@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{28 aprile 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Spazi affini (parte due)}
+	\end{center}
+
+	%TODO: aggiungere che V spazio vettoriale è anche spazio affine con l'usuale somma e prodotto esterno.
+	
+	Se $E$ è affine su $V$ di dimensione $n$ su $\KK$, allora ogni scelta
+	di un punto $O \in E$ di una base $\basis$ di $V$ dà una bigezione
+	$\varphi_{O, \basis} : E \to A_n(\KK) : O + \v \mapsto [\v]_{\basis}$. \\
+	
+	%TODO: aggiungere che Aff(S) è il più piccolo sottospazio affine che contiene S.
+	
+	\begin{proposition}
+		Un sottoinsieme $D \subseteq E$ è un sottospazio affine
+		$\iff$ $\forall P_0 \in D$, l'insieme di vettori $D_0 = \{P - P_0 \mid P \in D\} \subseteq V$ è un sottospazio vettoriale. 
+	\end{proposition}
+
+	\begin{proof}
+		$P = \sum \lambda_i P_i \in D$ combinazione affine
+		di $P_i \in D$ $\iff$ $\forall P_0 \in D$, $P-P_0 = \sum \lambda_i (P_i - P_0) \in D_0$. \\
+		
+		\rightproof $P = P_0 + \sum \lambda_i (P_i - P_0) = \sum \lambda_i P_i + (1- \sum \lambda_i) P_0$ %TODO: sistemare
+		
+		\leftproof Sia $\sum \lambda_i P_i = P_0 + \sum \lambda_i (P_i - P_0) = P_0 + (P - P_0) = P$ %TODO: sistemare
+	\end{proof}
+
+	$D$ si dice la direzione del sottospazio affine $D$. In $A_n(\KK)$,
+	i sottospazi affini corrispondono ai traslati dei sottospazi vettoriali.
+	
+	\begin{exercise}\nl
+		\begin{enumerate}[(i)]
+			\item $D_0$ è unico
+			\item $D_0 = \{ Q - P \mid P, Q \in D \}$
+		\end{enumerate}
+	\end{exercise}
+
+	\begin{definition} [dimensione un sottospazio affine]
+		Dato $D$ sottospazio affine di $E$, si dice dimensione di $D$,
+		indicata con $\dim D$, la dimensione di $D_0$, ossia
+		$\dim D_0$. IN particolare $\dim E = \dim V$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li I sottospazi affini di dimensione zero sono tutti i punti di $E$,
+		quelli di dimensione uno retta, due piano, $n-1$ iperpiano affine
+		(ossia con codimensione $1$) %TODO: affini
+	\end{remark}
+
+	\begin{definition} [punti affinemente indipendenti]
+		I punti $P_1$, ..., $P_n \in E$ si dicono affinemente indipendenti se l'espressione $P = \sum \lambda_i P_i$ con $\sum \lambda_i = 1$
+		è unica $\forall P \in \Aff(P_1, \ldots, P_n)$. Analogamente
+		un sottoinsieme $S \subseteq E$ si dice affinemente indipendente
+		se ogni suo sottoinsieme finito lo è.
+	\end{definition}
+
+	\begin{proposition}
+		$P_1$, ..., $P_n$ sono affinemente indipendenti $\iff$
+		$\forall i = 1, \ldots, k$ i vettori $P_j - P_i$ con $j \neq i$
+		sono linearmente indipendenti $\iff$ $\exists i = 1, \ldots, k$ i vettori $P_j - P_i$ con $j \neq i$
+		sono linearmente indipendenti $\forall i P_i \notin \Aff\{P_1, \ldots, P_n\}$ con $P_i$ escluso.
+	\end{proposition}
+
+	\begin{proof}
+		%TODO: considerare il passaggio ai vettori spostamento
+	\end{proof}
+
+	\begin{remark}\nl
+		\li Il numero massimo di punti affinemente indipendenti in $E$ è $\dim E + 1$. \\
+		
+		\li Se $E = A_n(\KK)$ e $V = \KK^n$. Allora $\ww 1$, ...,
+		$\ww k \in E$ sono aff. indip. $\iff$ i vettori $\ww1$, ...,
+		$\ww k$ immersi in $\KK^{n+1}$ aggiungendo una coordinata $1$
+		in fondo sono linearmente indipendenti.
+	\end{remark}
+
+	\begin{remark} Sia $E$ spazio affine con $V$ di dimensione $n$. Si
+		scelgano $n+1$ punti affinemente indipendenti $P_0$, ..., $P_n$.
+		Allora $\Aff(P_0, ..., P_n) = E$. Quindi $P \in E$ si scrive
+		in modo unico come $P = \sum \lambda_i P_i$ con $\sum \lambda_i = 1$.
+		Le $\lambda_i$ si diranno allora le coordinate affini di $P$
+		nel riferimento $P_0$, ..., $P_n$.
+	\end{remark}
+
+	Se si impone $\lambda_i \geq 0$, si definisce che la
+	combinazione è una combinazione convessa. Si definisce
+	baricentro il punto con $\lambda_i = \frac{1}{n}$.
+	
+	\begin{definition} [inviluppo convesso] Si dice $IC(S)$ di un insieme
+		$S \subseteq E$ l'insieme delle combinazioni convesse di $S$ (finite).
+		%TODO: dimostrare che è un insieme convesso
+	\end{definition}
+
+	% TODO: aggiungere baricentro
+	
+	\begin{definition} Sia $E$ uno spazio affine su $V$, $E'$ spazio
+		affine su $V'$ (sullo stesso $\KK$) un'applicazione $f : E \to E'$
+		si dice app. affine se conserva le combinazioni affini
+		($f(\sum \lambda_i P_i) = \sum \lambda_i f(P_i)$, $\sum \lambda_i = 1$).
+	\end{definition}
+
+	\begin{theorem} Sia $f : E \to E'$ affine. Allora $\exists$ unica
+		app. lineare $g : V \to V'$ lineare tale che valga
+		$f(O + \v) = f(O) + g(\v)$, per ogni scelta di $O \in E$.
+	\end{theorem}
+
+	\begin{proof}
+		Sia $O \in E$. L'applicazione $g_O : V \to V'$ data da
+		$g_O(\v) = f(O + \v) - f(O)$. Si dimostra che $g_O$ è
+		lineare.
+	\end{proof}
+\end{document}

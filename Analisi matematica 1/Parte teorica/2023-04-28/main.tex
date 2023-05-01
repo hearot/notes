@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Analisi matematica 1}}
+\author{Gabriel Antonio Videtta}
+\date{28 aprile 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Criterio di confronto per gli integrali}
+	\end{center}
+
+	\wip
+	
+	Siano $\int_a^b f(x) \, dx$ e $\int_a^b g(x) \, dx$ due integrali
+	impropri semplici in $b$.
+	
+	\begin{proposition}
+		Se $o \leq f \leq g$ in un intorno di $b$, allora:
+		
+		\begin{enumerate}[(i)]
+			\item Se $\int_a^b f(x) \, dx = +\infty$, allora
+			$\int_a^b g(x) \, dx = +\infty$.
+			
+			\item Se $\int_a^b g(x) \, dx < +\infty$, allora
+			$\int_a^b f(x) \, dx < +\infty$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proposition} [confronto asintotico debole]
+		Se $f$, $g \geq 0$ in un intorno di $b$ e $f(x) = O(g(x))$
+		per $x \to b^-$, allora:
+		
+		\begin{enumerate}[(i)]
+			\item Se $\int_a^b f(x) \, dx = +\infty$, allora
+			$\int_a^b g(x) \, dx = +\infty$.
+			
+			\item Se $\int_a^b g(x) \, dx < +\infty$, allora
+			$\int_a^b f(x) \, dx < +\infty$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proposition} [confronto asintotico forte]
+		Se $f$, $g \geq 0$ in un intorno di $b$ e esiste $0 < m < +\infty$ tale
+		che $f(x) \sim m g(x)$ per $x \to b^-$, allora i due integrali
+		impropri hanno lo stesso comportamento.
+	\end{proposition}
+\end{document}
