@@ -14,6 +14,14 @@
 		\Large \textbf{Indipendenza e applicazioni affini}
 	\end{center}
 	
+	\wip
+	
+	\begin{note} Qualora non specificato diversamente, si intenderà per
+		$E$ uno spazio affine sullo spazio vettoriale $V$ e
+		per $E'$ uno spazio affine sullo spazio vettoriale $V'$, dove sia $V$ che $V'$ sono costruiti
+		sul campo $\KK$.
+	\end{note}
+	
 	Fissato un origine $O$ dello spazio affine, si possono sempre considerare due
 	bigezioni:
 	
@@ -180,6 +188,26 @@
 		sé stesso.
 	\end{remark}
 	
+	\begin{definition} [riferimento affine] Sia $D \subseteq E$ un sottospazio affine di $E$ di dimensione $k-1$.
+		Siano i punti $P_1$, ..., $P_k$ dei punti affinemente indipendenti. Allora
+		si dice che tali punti formano un \textbf{riferimento affine} di $D$.
+	\end{definition}
+	
+	\begin{definition} [coordinate affini] Sia $D \subseteq E$ un sottospazio affine di $E$ di dimensione $k-1$
+		e siano i punti $P_1$, ..., $P_k$ un riferimento affine $R$ di $D$. Allora, se $P = \lambda_1 P_1 + \ldots + \lambda_k P_k \in D$ con $\lambda_1 + \ldots + \lambda_k = 1$, si dice che le \textbf{coordinate affine}
+		di $P$ sono rappresentate dal punto $[P]_\basis$, dove:
+		
+		\[ [P]_R = \Vector{\lambda_1 \\ \vdots \\ \lambda_k} \in \AnK. \]
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Esiste sempre un riferimento affine di un sottospazio affine $D$ di $E$. Infatti, dato un punto $P_1$
+		di $E$, e una base $\basis = \{\vv 1, \ldots, \vv k\}$ della direzione $D_0$, i punti $P_1$, $P_1 + \vv 1$, ...,
+		$P_1 + \vv k$ formano un riferimento affine. \\
+		\li Dalla definizione sopra si deduce che, scelto un riferimento affine $R$, esiste una mappa iniettiva $[\cdot]_R : D \to \AnK$, dove l'immagine di $P$ mediante $[\cdot]_R$ è esattamente il vettore
+		contenente le coordinate affini di $P$.  
+	\end{remark}
+	
 	\begin{proposition}
 		Sia $E = \AnK$. Allora i punti $P_1$, ..., $P_k$ sono affinemente indipendenti se e solo
 		se i vettori $\hat P_1 = \Vector{P_1 \\ \hline 1}$, ..., $\hat P_k = \Vector{P_k \\ \hline 1}$ sono
@@ -198,6 +226,8 @@
 		
 		\[ \lambda_2 (P_2 - P_1) + \ldots + \lambda_k (P_k - P_1) = 0. \]
 		
+		\vskip 0.05in
+		
 		Poiché i punti $P_1$, ..., $P_k$ sono affinemente indipendenti, per la proposizione precedente,
 		allora i vettori $P_2 - P_1$, ..., $P_k - P_1$ sono linearmente indipendenti, per cui $\lambda_2 = \cdots = \lambda_k = 0$. Pertanto anche $\lambda_1 = 0$, e quindi i vettori $\hat P_1$, ..., $\hat P_k$ sono
 		linearmente indipendenti. \\
@@ -208,34 +238,90 @@
 		che $\lambda_1 + \ldots + \lambda_k = 0$ e che $\lambda_1 P_1 + \ldots + \lambda_k P_k = 0$,
 		da cui si deduce che $\lambda_1 \hat P_1 + \ldots + \lambda_k \hat P_k = 0$. Dal momento
 		però che $\hat P_1$, ..., $\hat P_k$ sono linearmente indipendenti, $\lambda_2 = \cdots = \lambda_k = 0$,
-		da cui la tesi.
+		da cui la tesi, per la proposizione precedente.
 	\end{proof}
-
-	Se si impone $\lambda_i \geq 0$, si definisce che la
-	combinazione è una combinazione convessa. Si definisce
-	baricentro il punto con $\lambda_i = \frac{1}{n}$.
-
-	\begin{definition} [inviluppo convesso] Si dice $\IC(S)$ di un insieme
-		$S \subseteq E$ l'insieme delle combinazioni convesse di $S$ (finite).
-		%TODO: dimostrare che è un insieme convesso
-	\end{definition}
-
-	% TODO: aggiungere baricentro
 	
-	\begin{definition} Sia $E$ uno spazio affine su $V$, $E'$ spazio
-		affine su $V'$ (sullo stesso $\KK$) un'applicazione $f : E \to E'$
-		si dice app. affine se conserva le combinazioni affini
-		($f(\sum \lambda_i P_i) = \sum \lambda_i f(P_i)$, $\sum \lambda_i = 1$).
+	\begin{definition} [combinazione convessa]
+		Si dice che una combinazione affine $\sum_{i=1}^k \lambda_i P_i$ nei punti $P_1$, ..., $P_k$ con
+		$\sum_{i=1}^k \lambda_i = 1$ è
+		una \textbf{combinazione convessa} se $\lambda_i \geq 0$ $\forall 1 \leq i \leq k$.
+	\end{definition}
+	
+	\begin{definition} [baricentro]
+		Si definisce \textbf{baricentro} dei punti $P_1$, ..., $P_k$ la combinazione convessa
+		$\sum_{i=1}^k \frac{1}{k} P_i$.
 	\end{definition}
 
-	\begin{theorem} Sia $f : E \to E'$ affine. Allora $\exists$ unica
-		app. lineare $g : V \to V'$ lineare tale che valga
-		$f(O + \v) = f(O) + g(\v)$, per ogni scelta di $O \in E$.
-	\end{theorem}
+	\begin{definition} [inviluppo convesso] Si definisce l'\textbf{inviluppo complesso} $\IC(S)$ di un insieme
+		$S \subseteq E$ l'insieme delle combinazioni convesse finite di $S$.
+	\end{definition}
 
+	\begin{remark}\nl
+		\li L'insieme $\IC(S)$ è, effettivamente, un insieme convesso, se $S \subseteq E$. Se infatti $P$, $Q \in \IC(S)$,
+		allora $\lambda_1 P + \lambda_2 Q \in \IC(S)$, con $\lambda_1$, $\lambda_2 \geq 0$, e quindi
+		$[P, Q] \subseteq \IC(S)$. \\
+		\li Se $E = \Aa_2(\RR)$, e $P_1$, $P_2$, $P_3$ sono tre punti di $E$, l'inviluppo convesso dei
+		tre punti è esattamente il triangolo costruito sui tre punti. Analogamente, presi quattro
+		punti di $\Aa_3(\RR)$, l'inviluppo convesso dei quattro punti è un tetraedro. 
+	\end{remark}
+	
+	\begin{definition} [applicazione affine] Si definisce \textbf{applicazione affine} da $E$ a $E'$ un'applicazione $\varphi : E \to E'$
+		che conservi le combinazioni affini, ossia tale che:
+		
+		\[ \varphi\left( \sum_{i=1}^k \lambda_i P_i \right) = \sum_{i=1}^k \lambda_i \varphi(P_i), \quad \se \sum_{i=1}^k \lambda_i = 0. \]
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Come per le applicazioni lineari, la somma e la composizione di più applicazioni affini è
+		ancora una applicazione affine. \\
+		\li Se si sceglie un riferimento affine di $E$, $\varphi$ è univocamente determinata
+		da come agisce su tale riferimento.
+	\end{remark}
+	
+	\begin{theorem}
+		Sia $\varphi : E \to E'$ un'applicazione affine. Allora esiste un'unica applicazione lineare $g : V \to V'$
+		tale per cui $\varphi(P) = \varphi(O) + g(P-O)$ $\forall P \in E$, invariante per la scelta di $O \in E$.
+	\end{theorem}
+	
 	\begin{proof}
-		Sia $O \in E$. L'applicazione $g_O : V \to V'$ data da
-		$g_O(\v) = f(O + \v) - f(O)$. Si dimostra che $g_O$ è
-		lineare.
+		Sia $O \in E$. Si consideri l'applicazione $g : V \to V'$ tale per cui $g(\v) = \varphi(O + \v) - \varphi(O)$.
+		Si verifica che $g$ è lineare:
+		
+		\begin{itemize}
+			\item $g(\v + \w) = \varphi(O + \v + \w) - \varphi(O) = \varphi((O + \v) + (O + \w) - O) - \varphi(O) =
+			\varphi(O + \v) - \varphi(O) + \varphi(O + \w) - \varphi(O) = g(\v) + g(\w)$ (additività),
+			\item $g(a\v) = \varphi(O + a\v) - \varphi(O) = \varphi(a(O + \v) + (1-a)O) - \varphi(O) =
+			a\varphi(O + \v) + (1-a)\varphi(O) - \varphi(O) = ag(\v)$ (omogeneità).
+		\end{itemize}
+		
+		Inoltre, $\varphi(P) = \varphi(O + P - O) = \varphi(O) + \varphi(P) - \varphi(O) = \varphi(O) + g(P-O)$. Si
+		osserva infine che $g$ è unica per costruzione. Si
+		verifica allora che scegliendo $O' \in E$ al posto di $O$, la costruzione di $g$ è invariante, ossia
+		che $\varphi(O' + \v) - \varphi(O') = \varphi(O + \v) - \varphi(O)$ $\forall \v \in V$. Infatti
+		$\varphi(O' + \v) - \varphi(O') = \varphi(O' - O + (O + \v)) - \varphi(O') =
+		\varphi(O') - \varphi(O) + \varphi(O + \v) - \varphi(O') = \varphi(O + \v) - \varphi(O)$, da cui
+		la tesi.
 	\end{proof}
+	
+	\begin{remark}
+		Data un'applicazione lineare $g$ da $V$ in $V'$ e dati $O \in E$, $O' \in E$, si può sempre costruire un'applicazione affine $\varphi$ tale che $\varphi(P) = O' + g(P - O)$. Infatti, se $\sum_{i=1}^n \lambda_i = 1$,
+		$\varphi\left( \sum_{i=1}^n \lambda_i P_i \right) = O' + g\left( \sum_{i=1}^n \lambda_i (P_i - O) ) \right) =
+		O' + \sum_{i=1}^n \lambda_i \, g(P_i - O) = O' + \sum_{i=1}^n \lambda_i \, (\varphi(P_i) - O') = \sum_{i=1}^n \lambda_i \, \varphi(P_i)$.
+	\end{remark}
+	
+	\begin{definition} [applicazione lineare associata ad un'applicazione affine]
+		Data un'applicazione affine $\varphi : E \to E'$ e dato $O \in E$, si definisce $g : V \to V'$ tale che
+		$g(\v) = \varphi(O + \v) - \varphi(O)$ come l'\textbf{applicazione lineare associata a $\varphi$}.
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Siano $E = \AnK$ ed $E' = \Aa_m(\KK)$. Allora, se $\varphi$ è un'applicazione affine da $E$ a $E'$,
+		$\varphi(\vec x) = \varphi(\vec 0) + g(\vec x - \vec 0) = A \vec x + \vec b$ $\forall \vec x \in E$, dove $A$ è la matrice associata
+		di $g$ nelle basi canoniche di $\KK^n$ e $\KK^m$ e $\vec b = \varphi(\vec 0)$. \\
+
+		\li Se $g$ e $g'$ sono le applicazioni lineari associate alle applicazioni affini $\varphi : E \to E'$ e $\varphi' : E' \to E''$,
+		allora $g \circ g'$ è l'applicazione lineare associata a $\varphi \circ \varphi'$ e
+		$\varphi + \varphi'$. Infatti, se $O \in E$, $\varphi(\varphi'(P)) = \varphi(\varphi'(O) + g'(P-O)) =
+		\varphi(\varphi'(O)) + g(g'(P-O))$.
+	\end{remark}
 \end{document}
