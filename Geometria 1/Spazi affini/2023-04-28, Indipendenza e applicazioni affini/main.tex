@@ -324,4 +324,30 @@
 		$\varphi + \varphi'$. Infatti, se $O \in E$, $\varphi(\varphi'(P)) = \varphi(\varphi'(O) + g'(P-O)) =
 		\varphi(\varphi'(O)) + g(g'(P-O))$.
 	\end{remark}
+	
+	\begin{definition} [affinità] Un'applicazione affine da $E$ in $E$ si dice \textbf{affinità} se è bigettiva.
+	\end{definition}
+	
+	\begin{remark}
+		Affinché un'applicazione affine sia un'affinità è necessario e sufficiente che la sua applicazione
+		lineare sia invertibile. Infatti, se $\varphi : E \to E$ è un'applicazione affine e l'applicazione
+		lineare associata $g : V \to V'$ è invertibile, allora $\varphi(P) = \varphi(Q) \implies \varphi(O) + g(P - O) = \varphi(O) + g(Q - O) \implies g(P-O) = g(Q-O) \implies P-O = Q-O \implies P=Q$ (iniettività), e $\forall P \in E$,
+		$\varphi(O + g\inv(P-\varphi(O))) = \varphi(O) + g(g\inv(P-\varphi(O))) = P$ (surgettività). Analogamente
+		si dimostra il viceversa.
+	\end{remark}
+	
+	\begin{definition} [gruppo delle affinità di uno spazio affine] Si indica con $A(E)$ il gruppo,
+		mediante l'operazione di composizione, delle affinità di $E$.
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Un esempio notevole di affinità è la \textbf{traslazione} $\tau_{\v} : E \to E$ tale che
+		$\tau_{\v}(Q) = Q + \v$, dove $\v \in V$. In particolare l'applicazione associata a tale
+		affinità è l'identità. Infatti, se $O \in E$, $g(\v) = \tau_{\v}(O + \v) - \tau_{\v}(O) = (O + 2\v) - (O + \v) = \v$. \\
+		\li L'applicazione $\zeta : A(E) \to \GL(V)$ che associa ad un'affinità l'applicazione ad essa
+		associata è un epimorfismo di gruppi. Infatti, dato un endomorfismo invertibile di $V$, vi
+		si può costruire sopra, come visto prima, un'affinità. Inoltre vale che $\zeta(f \circ f') = \zeta(f) \circ \zeta(f')$, per $f$, $f' \in A(E)$. \\
+		\li Vale che $\Ker \zeta$ è esattamente il sottogruppo normale di $A(E)$ delle traslazioni, dal momento
+		che sono le uniche affinità la cui applicazione lineare associata è l'identità.
+	\end{remark}
 \end{document}
