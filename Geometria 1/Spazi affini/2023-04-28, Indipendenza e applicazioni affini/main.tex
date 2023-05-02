@@ -88,7 +88,7 @@
 	\end{remark}
 	
 	\begin{definition} [direzione di un sottospazio affine]
-		Si definisce $D_0$ come la \textbf{direzione} del sottospazio affine $D$.
+		Si definisce $D_0 = \Giac(D) = \{ P - Q \mid P, Q \in D \} \subseteq V$ come la \textbf{direzione} (o \textit{giacitura}) del sottospazio affine $D$.
 	\end{definition}
 
 	\begin{definition} [dimensione un sottospazio affine]
@@ -109,46 +109,112 @@
 		\li Si dice \textit{iperpiano affine} un sottospazio affine di codimensione $1$,
 		ossia di dimensione $n-1$.
 	\end{remark}
-
+	
 	\begin{definition} [punti affinemente indipendenti]
-		I punti $P_1$, ..., $P_n \in E$ si dicono affinemente indipendenti se l'espressione $P = \sum \lambda_i P_i$ con $\sum \lambda_i = 1$
-		è unica $\forall P \in \Aff(P_1, \ldots, P_n)$. Analogamente
-		un sottoinsieme $S \subseteq E$ si dice affinemente indipendente
-		se ogni suo sottoinsieme finito lo è.
+		Un insieme di punti $P_1$, ..., $P_k$ di $E$ si dice \textbf{affinemente indipendente} se ogni
+		combinazione affine di tali punti è unica. Analogamente un sottoinsieme $S \subseteq E$ si dice
+		affinemente indipendente se ogni suo sottoinsieme finito lo è.
 	\end{definition}
-
+	
 	\begin{proposition}
-		$P_1$, ..., $P_n$ sono affinemente indipendenti $\iff$
-		$\forall i = 1, \ldots, k$ i vettori $P_j - P_i$ con $j \neq i$
-		sono linearmente indipendenti $\iff$ $\exists i = 1, \ldots, k$ i vettori $P_j - P_i$ con $j \neq i$
-		sono linearmente indipendenti $\forall i P_i \notin \Aff\{P_1, \ldots, P_n\}$ con $P_i$ escluso.
-	\end{proposition}
+		Dati i punti $P_1$, ..., $P_k \in E$, sono equivalenti le seguenti affermazioni.
+		
+		\begin{enumerate}[(i)]
+			\item $P_1$, ..., $P_k$ sono affinemente indipendenti,
+				
+			\item $\forall i \in \NN^+ \mid 1 \leq i \leq k$, $P_i \notin \Aff(P_1, \ldots, P_k)$,
+				con $P_i$ escluso,
 
+			\item $\forall i \in \NN^+ \mid 1 \leq i \leq k$ l'insieme di vettori
+				$\{ P_j - P_i \mid 1 \leq j \leq k, j \neq i \}$ è linearmente indipendente,
+				
+			\item $\exists i \in \NN^+ \mid 1 \leq i \leq k$ per il quale l'insieme di vettori
+				$\{ P_j - P_i \mid 1 \leq j \leq k, j \neq i \}$ è linearmente indipendente.
+		\end{enumerate}
+	\end{proposition}
+	
 	\begin{proof}
-		%TODO: considerare il passaggio ai vettori spostamento
+		Siano $P_1$, ..., $P_k$ affinemente indipendenti. Sia $i \in \NN^+ \mid 1 \leq i \leq k$.
+		Allora chiaramente (i) $\iff$ (ii), dacché se $P_i$ appartenesse a $\Aff(P_1, \ldots, P_k)$, con
+		$P_i$ escluso, si violerebbe l'unicità della combinazione affine di $P_i$, e analogamente se
+		esistessero due combinazioni affini in diversi scalari dello stesso punto si potrebbe
+		un punto $P_j$ con $1 \leq j \leq k$ come combinazione affine degli altri punti. \\
+		
+		Siano allora $\lambda_1$, ..., $\lambda_k \in \KK$, con $\lambda_i$ escluso, tali che:
+		
+		\[ \sum_{\substack{j = 1 \\ j \neq i}}^n \lambda_j (P_j - P_i) = \vec 0. \]
+		
+		Allora si può riscrivere $P_i$ nel seguente modo:
+		
+		\[ P_i = \left(1 - \sum_{\substack{j = 1 \\ j \neq i}}^n \lambda_j\right) P_i + \sum_{\substack{j = 1 \\ j \neq i}}^n \lambda_j P_j. \]
+		
+		\vskip 0.05in
+		
+		Dal momento che la scrittura di $P_i$ è unica per ipotesi, $\lambda_j = 0$ $\forall 1 \leq j \leq k$ con $j \neq i$, e dunque l'insieme di vettori $\{ P_j - P_i \mid 1 \leq j \leq k, j \neq i \}$ è linearmente
+		indipendente, per cui (ii) \mbox{$\implies$} (iii). Analogamente si deduce anche che (iii) \mbox{$\implies$} (i) e che (iii) \mbox{$\implies$} (iv). Pertanto (i) \mbox{$\iff$} (ii) \mbox{$\iff$} (iii). \\
+		
+		Si assuma ora l'ipotesi (iv) e sia $t \in \NN^+ \mid 1 \leq t \leq k$ tale che $t \neq i$. Siano
+		dunque $\lambda_1$, ..., $\lambda_k$, con $\lambda_t$ escluso, tale che:
+		
+		\[ \sum_{\substack{j = 1 \\ j \neq t}}^k \lambda_j (P_j - P_t) = \vec 0. \]
+		
+		Allora si può riscrivere la somma come:
+		
+		\[ \sum_{\substack{j = 1 \\ j \neq t}}^k \lambda_j (P_j - P_i) - \sum_{\substack{j = 1 \\ j \neq t}}^k \lambda_j (P_t - P_i) = \vec 0, \]
+		
+		\vskip 0.05in
+		ossia come combinazione lineare dei vettori della forma $P_j - P_i$. Allora, poiché per ipotesi tali
+		vettori sono linearmente indipendenti, vale che:
+		
+		\[ \system{\lambda_j = 0 & \se j \neq t \E j \neq i, \\  \sum_{\substack{j = 1 \\ j \neq t}}^k \lambda_j = 0 & \implies \lambda_i = 0.} \]
+		
+		Pertanto l'insieme di vettori $\{ P_j - P_t \mid 1 \leq j \leq k, j \neq t \}$ è linearmente indipendente,
+		da cui vale che (iv) \mbox{$\implies$} (iii). Si conclude dunque che
+		(i) \mbox{$\iff$} (ii) \mbox{$\iff$} (iii) \mbox{$\iff$} (iv), ossia la tesi.
 	\end{proof}
 
 	\begin{remark}\nl
-		\li Il numero massimo di punti affinemente indipendenti in $E$ è $\dim E + 1$. \\
+		\li Si osserva che il numero massimo di punti affinemente indipendenti di un sottospazio affine $D$
+		di dimensione $k$ è $k+1$, dacché, fissato un punto, vi possono essere al più $k$ vettori linearmente indipendenti. \\
+		\li Un punto di $E$ è sempre affinemente indipendente, dacché la sua unica combinazione affine è
+		sé stesso.
+	\end{remark}
+	
+	\begin{proposition}
+		Sia $E = \AnK$. Allora i punti $P_1$, ..., $P_k$ sono affinemente indipendenti se e solo
+		se i vettori $\hat P_1 = \Vector{P_1 \\ \hline 1}$, ..., $\hat P_k = \Vector{P_k \\ \hline 1}$ sono
+		linearmente indipendenti.
+	\end{proposition}
+	
+	\begin{proof}
+		Si dimostrano le due implicazioni separatamente. \\
 		
-		\li Se $E = A_n(\KK)$ e $V = \KK^n$. Allora $\ww 1$, ...,
-		$\ww k \in E$ sono aff. indip. $\iff$ i vettori $\ww1$, ...,
-		$\ww k$ immersi in $\KK^{n+1}$ aggiungendo una coordinata $1$
-		in fondo sono linearmente indipendenti.
-	\end{remark}
-
-	\begin{remark} Sia $E$ spazio affine con $V$ di dimensione $n$. Si
-		scelgano $n+1$ punti affinemente indipendenti $P_0$, ..., $P_n$.
-		Allora $\Aff(P_0, ..., P_n) = E$. Quindi $P \in E$ si scrive
-		in modo unico come $P = \sum \lambda_i P_i$ con $\sum \lambda_i = 1$.
-		Le $\lambda_i$ si diranno allora le coordinate affini di $P$
-		nel riferimento $P_0$, ..., $P_n$.
-	\end{remark}
+		\rightproof Siano $\lambda_1$, ..., $\lambda_k \in \KK$ tali che
+		$\lambda_1 \hat P_1 + \ldots + \lambda_k \hat P_k = \vec 0$. Allora
+		$\sum_{i=1}^k \lambda_i = 0$ e $\lambda_1 P_1 + \ldots + \lambda_k P_k = 0$. \\
+		
+		Pertanto, sapendo che $\lambda_1 = - \lambda_2 + \ldots - \lambda_k$, vale
+		la seguente identità:
+		
+		\[ \lambda_2 (P_2 - P_1) + \ldots + \lambda_k (P_k - P_1) = 0. \]
+		
+		Poiché i punti $P_1$, ..., $P_k$ sono affinemente indipendenti, per la proposizione precedente,
+		allora i vettori $P_2 - P_1$, ..., $P_k - P_1$ sono linearmente indipendenti, per cui $\lambda_2 = \cdots = \lambda_k = 0$. Pertanto anche $\lambda_1 = 0$, e quindi i vettori $\hat P_1$, ..., $\hat P_k$ sono
+		linearmente indipendenti. \\
+		
+		\leftproof Siano $\lambda_2$, ..., $\lambda_k \in \KK$ tali che
+		$\lambda_2 (P_2 - P_1) + \ldots + \lambda_k (P_k - P_1) = 0$. Sia allora
+		$\lambda_1 = - \lambda_2 + \ldots - \lambda_k$. Si osserva dunque
+		che $\lambda_1 + \ldots + \lambda_k = 0$ e che $\lambda_1 P_1 + \ldots + \lambda_k P_k = 0$,
+		da cui si deduce che $\lambda_1 \hat P_1 + \ldots + \lambda_k \hat P_k = 0$. Dal momento
+		però che $\hat P_1$, ..., $\hat P_k$ sono linearmente indipendenti, $\lambda_2 = \cdots = \lambda_k = 0$,
+		da cui la tesi.
+	\end{proof}
 
 	Se si impone $\lambda_i \geq 0$, si definisce che la
 	combinazione è una combinazione convessa. Si definisce
 	baricentro il punto con $\lambda_i = \frac{1}{n}$.
-	
+
 	\begin{definition} [inviluppo convesso] Si dice $\IC(S)$ di un insieme
 		$S \subseteq E$ l'insieme delle combinazioni convesse di $S$ (finite).
 		%TODO: dimostrare che è un insieme convesso
