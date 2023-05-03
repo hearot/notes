@@ -7,9 +7,9 @@
 
 \section{Prime definizioni}
 
-\subsection{Prodotto scalare}
+\subsection{Prodotto scalare e vettori ortogonali rispetto a \texorpdfstring{$\varphi$}{φ}}
 
-\begin{definition}
+\begin{definition} [prodotto scalare]
 	Un \textbf{prodotto scalare} su $V$ è una forma bilineare simmetrica $\varphi$ con argomenti in $V$.
 \end{definition}
 
@@ -23,6 +23,10 @@
 	\li poiché $\varphi$ è simmetrica, $\varphi$ è lineare e omogenea anche nel secondo argomento, e quindi è una
 	forma bilineare simmetrica, ossia un prodotto scalare su $M(n, \KK)$.
 \end{example}
+
+\begin{definition} [vettori ortogonali]
+	Due vettori $\v$, $\w \in V$ si dicono \textbf{ortogonali} rispetto al prodotto scalare $\varphi$, ossia $\v \perp \w$, se $\varphi(\v, \w) = 0$.
+\end{definition}
 
 \begin{definition}
 	Si definisce prodotto scalare \textit{canonico} di $\KK^n$ la forma bilineare simmetrica $\varphi$ con
@@ -39,7 +43,7 @@
 	\sum_{i=1}^n \left[x_iy_i + x_i' y_i\right] = \sum_{i=1}^n x_i y_i + \sum_{i=1}^n x_i' y_i =
 	\varphi((x_1, ..., x_n), (y_1, ..., y_n)) + \varphi((x_1', ..., x_n'), (y_1, ..., y_n))$ (linearità nel
 	primo argomento), \\
-	\li $\varphi(\alpha(x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n \alpha x_i y_i = \alpha \sum_{i=1}^n x_i y_i =
+	\li $\varphi(\alpha(x_1, ..., x_n), (y_1, ..., y_n))$ $= \sum_{i=1}^n \alpha x_i y_i = \alpha \sum_{i=1}^n x_i y_i$ $=
 	\alpha \varphi((x_1, ..., x_n), (y_1, ..., y_n))$ (omogeneità nel primo argomento), \\
 	\li $\varphi((x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n x_i y_i = \sum_{i=1}^n y_i x_i = \varphi((y_1, ..., y_n), (x_1, ..., x_n))$ (simmetria), \\
 	\li poiché $\varphi$ è simmetrica, $\varphi$ è lineare e omogenea anche nel secondo argomento, e quindi è una

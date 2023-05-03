@@ -43,18 +43,15 @@
 			\underbrace{M_{\dual \basis_V}^{\basis_V}(a_\varphi)}_B \underbrace{M_{\basis_V}^{\basis_W}(i)}_{A^\top} = BA^\top \overbrace{=}^{B^\top = B} (AB)^\top$.
 		\end{enumerate}
 	
-		Poiché $\rg(A) = \rg(A^\top)$, si deduce che $\rg(f) = \rg(g) \implies \rg(i^\top \circ a_\varphi) = \rg(a_\varphi \circ i) = \rg(\restr{a_\varphi}{W}) = \dim W - \dim \Ker \restr{a_\varphi}{W} = \dim W - \dim (W \cap \underbrace{\Ker a_\varphi}_{V^\perp}) = \dim W - \dim (W \cap V^\perp)$. Si conclude allora, sostituendo quest'ultima
+		Poiché $\rg(A) = \rg(A^\top)$, si deduce che $\rg(f) = \rg(g) \implies \rg(i^\top \circ a_\varphi) = \rg(a_\varphi \circ i) = \rg(\restr{a_\varphi}{W}) = \dim W - \dim \Ker \restr{a_\varphi}{W} = \dim W - \dim (W \cap \underbrace{\Ker a_\varphi}_{V^\perp}) = \dim W - \dim (W \cap V^\perp)$. \\
+		
+		Si conclude allora, sostituendo quest'ultima
 		identità nell'identità ricavata a inizio dimostrazione che $\dim V = \dim W^\top + \dim W - \dim (W \cap V^\perp)$,
 		ossia la tesi.
 	\end{proof}
 
-	\begin{remark}
-		Si possono fare alcune osservazioni sul radicale di un solo elemento $\vec w$ e su quello del suo sottospazio
-		generato $W = \Span(\vec w)$: \\
-		
-		\li $\vec w ^\perp = W^\perp$, \\
-		\li $\vec w \notin W^\perp \iff \Rad (\restr{\varphi}{W}) = W \cap W^\perp \iff \vec w \text{ non è isotropo } = \zerovecset \iff
-		V = W \oplus W^\perp$.
+	\begin{remark} Si identifica $\w^\perp$ come il sottospazio di tutti i vettori di $V$ ortogonali a $\w$.
+		In particolare, se $W = \Span(\vec w)$ è il sottospazio generato da $\vec w \neq \vec 0$, $\vec w \in V$, allora $W^\perp = \w^\perp$. Inoltre valgono le seguenti equivalenze: $\vec w \notin W^\perp \iff$ $\Rad (\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$ $\iff \vec w \text{ non è isotropo } \iff$ $V = W \oplus W^\perp$.
 	\end{remark}
 
 	\begin{definition}
