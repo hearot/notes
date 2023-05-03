@@ -1,0 +1,1550 @@
+\chapter{Prodotti hermitiani, spazi euclidei e teorema spettrale}
+
+\begin{note}
+	Nel corso del documento, per $V$ si intenderà uno spazio vettoriale di dimensione
+	finita $n$ e per $\varphi$ un suo prodotto, hermitiano o scalare
+	dipendentemente dal contesto.
+\end{note}
+
+\begin{definition} (prodotto hermitiano) Sia $\KK = \CC$. Una mappa $\varphi : V \times V \to \CC$ si dice \textbf{prodotto hermitiano} se:
+	
+	\begin{enumerate}[(i)]
+		\item $\varphi$ è $\CC$-lineare nel secondo argomento, ossia se $\varphi(\v, \U + \w) = \varphi(\v, \U) + \varphi(\v, \w)$ e
+		$\varphi(\v, a \w) = a \, \varphi(\v, \w)$,
+		\item $\varphi(\U, \w) = \conj{\varphi(\w, \U)}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition} (prodotto hermitiano canonico in $\CC^n$) Si definisce
+	\textbf{prodotto hermitiano canonico} di $\CC^n$ il prodotto $\varphi : \CC^n \times \CC^n \to \CC$ tale per cui, detti $\v = (z_1 \cdots z_n)^\top$ e $\w = (w_1 \cdots w_n)^\top$, $\varphi(\v, \w) = \sum_{i=1}^n \conj{z_i} w_i$.
+\end{definition}
+
+\begin{remark}\nl
+	\li $\varphi(\U + \w, \v) = \conj{\varphi(\v, \U + \w)} =
+	\conj{\varphi(\v, \U) + \varphi(\v, \w)} = \conj{\varphi(\v, \U)} + \conj{\varphi(\v, \U)} = \varphi(\w, \v) + \varphi(\U, \v)$, ossia
+	$\varphi$ è additiva anche nel primo argomento. \\
+	\li $\varphi(a \v, \w) = \conj{\varphi(\w, a \v)} = \conj{a} \conj{\varphi(\w, \v)} = \conj{a} \, \varphi(\v, \w)$. \\
+	\li $\varphi(\v, \v) = \conj{\varphi(\v, \v)}$, e quindi $\varphi(\v, \v) \in \RR$. \\
+	\li Sia $\v = \sum_{i=1}^n x_i \vv i$ e sia $\w = \sum_{i=1}^n y_i \vv i$, allora $\varphi(\v, \w) = \sum_{i =1}^n \sum_{j=1}^n \conj{x_i} y_i \varphi(\vv i, \vv j)$. \\
+	\li $\varphi(\v, \w) = 0 \iff \varphi(\w, \v) = 0$.
+\end{remark}
+
+\begin{proposition}
+	Data la forma quadratica $q : V \to \RR$  del prodotto hermitiano $\varphi$ tale che $q(\v) = \varphi(\v, \v) \in \RR$, tale
+	forma quadratica individua univocamente il prodotto hermitiano $\varphi$.
+\end{proposition}
+
+\begin{proof}
+	Innanzitutto si osserva che:
+	
+	\[ \varphi(\v, \w) = \frac{\varphi(\v, \w) + \conj{\varphi(\v, \w)}}{2} +  \frac{\varphi(\v, \w) . \conj{\varphi(\v, \w)}}{2}. \]
+	
+	\vskip 0.05in
+	
+	Si considerano allora le due identità:
+	
+	\[ q(\v + \w) - q(\v) - q(\w) =
+	\varphi(\v, \w) + \conj{\varphi(\w, \v)} = 2 \, \Re(\varphi(\v, \w)), \]
+	
+	\[ q(i\v + \w) - q(\v) - q(\w) = -i(\varphi(\v, \w) - \conj{\varphi(\v, \w)}) = 2 \, \imm(\varphi(\v, \w)), \]
+	
+	\vskip 0.05in
+	
+	da cui si conclude che il prodotto $\varphi$ è univocamente
+	determinato dalla sua forma quadratica.
+\end{proof}
+
+\begin{definition}
+	Si definisce \textbf{matrice aggiunta} di $A \in M(n, \KK)$ la matrice coniugata della trasposta di $A$, ossia:
+	
+	\[ A^* = \conj{A^\top} = \conj{A}^\top. \]
+\end{definition}
+
+\begin{remark}
+	Per quanto riguarda la matrice aggiunta valgono le principali proprietà della matrice trasposta:
+	
+	\begin{itemize}
+		\item $(A + B)^* = A^* + B^*$,
+		\item $(AB)^* = B^* A^*$,
+		\item $(A\inv)^* = (A^*)\inv$, se $A$ è invertibile.
+	\end{itemize}
+\end{remark}
+
+%TODO: aggiungere tr(conj(A^t) B)
+
+\begin{definition} (matrice associata del prodotto hermitiano) Analogamente
+	al caso del prodotto scalare, data una base $\basis = \{\vv 1, \ldots, \vv n\}$ si definisce
+	come \textbf{matrice associata del prodotto hermitiano} $\varphi$
+	la matrice $M_\basis(\varphi) = (\varphi(\vv i, \vv j))_{i,j = 1 \textrm{---} n}$.
+\end{definition}
+
+\begin{remark}
+	Si osserva che, analogamente al caso del prodotto scalare, vale
+	la seguente identità:
+	
+	\[ \varphi(\v, \w) = [\v]_\basis^* M_\basis(\varphi) [\w]_\basis. \]
+\end{remark}
+
+\begin{proposition}
+	(formula del cambiamento di base per i prodotto hermitiani) Siano
+	$\basis$, $\basis'$ due basi di $V$. Allora vale la seguente
+	identità:
+	
+	\[ M_{\basis'} = M_{\basis}^{\basis'}(\Idv)^* M_\basis(\varphi) M_{\basis}^{\basis'}(\Idv). \]
+\end{proposition}
+
+\begin{proof}
+	Siano $\basis = \{ \vv 1, \ldots, \vv n \}$ e $\basis' = \{ \ww 1, \ldots, \ww n \}$. Allora $\varphi(\ww i, \ww j) = [\ww i]_\basis^* M_\basis(\varphi) [\ww j]_\basis = \left( M_\basis^{\basis'}(\Idv)^i \right)^* M_\basis(\varphi) M_\basis^{\basis'}(\Idv)^j =
+	\left(M_\basis^{\basis'}(\Idv)\right)^*_i M_\basis(\varphi) M_\basis^{\basis'}(\Idv)^j$, da cui si ricava l'identità
+	desiderata.
+\end{proof}
+
+\begin{definition} (radicale di un prodotto hermitiano)
+	Analogamente al caso del prodotto scalare, si definisce il \textbf{radicale} del prodotto $\varphi$ come il seguente sottospazio: 
+	
+	\[ V^\perp = \{ \v \in V \mid \varphi(\v, \w) = 0 \, \forall \w \in V \}. \]
+\end{definition}
+
+\begin{proposition}
+	Sia $\basis$ una base di $V$ e $\varphi$ un prodotto hermitiano. Allora $V^\perp = [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$\footnote{Stavolta non è sufficiente considerare la mappa $f : V \to V^*$ tale che $f(\v) = \left[ \w \mapsto \varphi(\v, \w) \right]$, dal momento che $f$ non è lineare, bensì antilineare, ossia $f(a \v) = \conj a f(\v)$.}.
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ e sia $\v \in V^\perp$.
+	Siano $a_1$, ..., $a_n \in \KK$ tali che $\v = a_1 \vv 1 + \ldots + a_n \vv n$. Allora, poiché $\v \in V$, $0 = \varphi(\vv i, \v)
+	= a_1 \varphi(\vv i, \vv 1) + \ldots + a_n \varphi(\vv i, \vv n) = M_i [\v]_\basis$, da cui si ricava che $[\v]_\basis \in \Ker M_\basis(\varphi)$, e quindi che $V^\perp \subseteq [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$. \\
+	
+	Sia ora $\v \in V$ tale che $[\v]_\basis \in \Ker M_\basis(\varphi)$.
+	Allora, per ogni $\w \in V$, $\varphi(\w, \v) = [\w]_\basis^* M_\basis(\varphi) [\v]_\basis = [\w]_\basis^* 0 = 0$, da cui si
+	conclude che $\v \in V^\perp$, e quindi che  $V^\perp \supseteq [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$, da cui
+	$V^\perp = [\cdot]_\basis \inv (\Ker M_\basis(\varphi))$, ossia
+	la tesi.
+\end{proof}
+
+\begin{remark}
+	Come conseguenza della proposizione appena dimostrata, valgono
+	le principali proprietà già viste per il prodotto scalare. \\
+	
+	\li $\det(M_\basis(\varphi)) = 0 \iff V^\perp \neq \zerovecset \iff \varphi$ è degenere, \\
+	\li Vale il teorema di Lagrange, e quindi quello di Sylvester, benché con alcune accortezze: si
+	introduce, come nel caso di $\RR$, il concetto di segnatura, che diventa l'invariante completo
+	della nuova congruenza hermitiana, che ancora una volta si dimostra essere una relazione
+	di equivalenza. \\
+	\li Come mostrato nei momenti finali del documento (vd.~\textit{Esercizio 3}), vale
+	la formula delle dimensioni anche nel caso del prodotto hermitiano.
+\end{remark}
+
+\hr
+
+\begin{definition} (restrizione ai reali di uno spazio) Sia $V$
+	uno spazio vettoriale su $\CC$ con base $\basis$. Si definisce allora lo spazio $V_\RR$, detto
+	\textbf{spazio di restrizione su $\RR$} di $V$, come uno spazio su $\RR$ generato da
+	$\basis_\RR = \basis \cup i \basis$. 
+\end{definition}
+
+\begin{example}
+	Si consideri $V = \CC^3$. Una base di $\CC^3$ è chiaramente $\{ \e1, \e2, \e3 \}$. Allora
+	$V_\RR$ sarà uno spazio vettoriale su $\RR$ generato dai vettori $\{ \e1, \e2, \e3, i\e1, i\e2, i\e3 \}$.
+\end{example}
+
+\begin{remark}
+	Si osserva che lo spazio di restrizione su $\RR$ e lo spazio di partenza condividono lo stesso insieme
+	di vettori. Infatti, $\Span_\CC(\basis) = \Span_\RR(\basis \cup i\basis)$. Ciononostante, $\dim V_\RR = 2 \dim V$\footnote{Si sarebbe potuto ottenere lo stesso risultato utilizzando il teorema delle torri algebriche: $[V_\RR : \RR] = [V: \CC] [\CC: \RR] = 2 [V : \CC]$.}, se $\dim V \in \NN$.
+\end{remark}
+
+\begin{definition} (complessificazione di uno spazio) Sia $V$ uno spazio vettoriale su $\RR$.
+	Si definisce allora lo \textbf{spazio complessificato} $V_\CC = V \times V$ su $\CC$ con le seguenti operazioni:
+	
+	\begin{itemize}
+		\item $(\v, \w) + (\v', \w') = (\v + \v', \w + \w')$,
+		\item $(a+bi)(\v, \w) = (a\v - b\w, a\w + b\v)$.
+	\end{itemize}
+\end{definition}
+
+\begin{remark}
+	La costruzione dello spazio complessificato emula in realtà la costruzione di $\CC$ come spazio
+	$\RR \times \RR$. Infatti se $z = (c, d)$, vale che $(a + bi)(c, d) = (ac - bd, ad + bc)$, mentre
+	si mantiene l'usuale operazione di addizione. In particolare si può identificare l'insieme
+	$V \times \zerovecset$ come $V$, mentre $\zerovecset \times V$ viene identificato come l'insieme
+	degli immaginari $iV$ di $V_\CC$. Infine, moltiplicare per uno scalare reale un elemento di
+	$V \times \zerovecset$ equivale a moltiplicare la sola prima componente con l'usuale operazione
+	di moltiplicazione di $V$. Allora, come accade per $\CC$, si può sostituire la notazione
+	$(\v, \w)$ con la più comoda notazione $\v + i \w$.
+\end{remark}
+
+\begin{remark}
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Innanzitutto si osserva che
+	$(a+bi)(\v, \vec 0) = (a\v, b\v)$. Pertanto si può concludere che $\basis \times \zerovecset$ è
+	una base dello spazio complessificato $V_\CC$ su $\CC$. \\
+	
+	Infatti, se $(a_1 + b_1 i)(\vv 1, \vec 0) + \ldots + (a_n + b_n i)(\vv n, \vec 0) = (\vec 0, \vec 0)$,
+	allora $(a_1 \vv 1 + \ldots + a_n \vv n, b_1 \vv 1 + \ldots + b_n \vv n) = (\vec 0, \vec 0)$.
+	Poiché però $\basis$ è linearmente indipendente per ipotesi, l'ultima identità implica che
+	$a_1 = \cdots = a_n = b_1 = \cdots = b_n = 0$, e quindi che $\basis \times \zerovecset$ è linearmente
+	indipendente. \\
+	
+	Inoltre $\basis \times \zerovecset$ genera $V_\CC$. Se infatti $\v = (\U, \w)$, e vale che:
+	
+	\[ \U = a_1 \vv 1 + \ldots + a_n \vv n, \quad \w = b_1 \vv 1 + \ldots + b_n \vv n, \]
+	
+	\vskip 0.1in
+	
+	allora $\v = (a_1 + b_1 i) (\vv 1, \vec 0) + \ldots + (a_n + b_n i) (\vv n, \vec 0)$. Quindi
+	$\dim V_\CC = \dim V$.
+\end{remark}
+
+\begin{definition}
+	Sia $f$ un'applicazione $\CC$-lineare di $V$ spazio vettoriale su $\CC$. Allora
+	si definisce la \textbf{restrizione su} $\RR$ di $f$, detta $f_\RR : V_\RR \to V_\RR$,
+	in modo tale che $f_\RR(\v) = f(\v)$.
+\end{definition}
+
+\begin{remark}
+	Sia $\basis = \{\vv 1, \ldots, \vv n\}$ una base di $V$ su $\CC$. Sia $A = M_\basis(f)$. Si
+	osserva allora che, se $\basis' = \basis \cup i \basis$ e $A = A' + i A''$ con $A'$, $A'' \in M(n, \RR)$,
+	vale la seguente identità:
+	
+	\[ M_{\basis'}(f_\RR) = \Matrix{ A' & \rvline & -A'' \\ \hline A'' & \rvline & A' }. \]
+	
+	Infatti, se $f(\vv i) = (a_1 + b_1 i) \vv 1 + \ldots + (a_n + b_n i) \vv n$, vale che
+	$f_\RR(\vv i) = a_1 \vv 1 + \ldots + a_n \vv n + b_1 (i \vv 1) + \ldots + b_n (i \vv n)$,
+	mentre $f_\RR(i \vv i) = i f(\vv i) = - b_1 \vv 1 + \ldots - b_n \vv n + a_1 (i \vv 1) + \ldots + a_n (i \vv n)$.
+\end{remark}
+
+\begin{definition}
+	Sia $f$ un'applicazione $\RR$-lineare di $V$ spazio vettoriale su $\RR$. Allora
+	si definisce la \textbf{complessificazione} di $f$, detta $f_\CC : V_\CC \to V_\CC$,
+	in modo tale che $f_\CC(\v + i \w) = f(\v) + i f(\w)$.
+\end{definition}
+
+\begin{remark}
+	Si verifica infatti che $f_\CC$ è $\CC$-lineare.
+	\begin{itemize}
+		\item $f_\CC((\vv1 + i \ww1) + (\vv2 + i \ww2)) = f_\CC((\vv1 + \vv2) + i (\ww1 + \ww2)) =
+		f(\vv1 + \vv2) + i f(\ww1 + \ww2) = (f(\vv1) + i f(\ww1)) + (f(\vv2) + i f(\ww2)) =
+		f_\CC(\vv1 + i\ww1) + f_\CC(\vv2 + i\ww2)$.
+		
+		\item $f_\CC((a+bi)(\v + i\w)) = f_\CC(a\v-b\w + i(a\w+b\v)) = f(a\v - b\w) + i f(a\w + b\v) =
+		af(\v) - bf(\w) + i(af(\w) + bf(\v)) = (a+bi)(f(\v) + if(\w)) = (a+bi) f_\CC(\v + i\w)$.
+	\end{itemize}
+\end{remark}
+
+\begin{proposition}
+	Sia $f_\CC$ la complessificazione di $f \in \End(V)$, dove $V$ è uno spazio vettoriale su $\RR$.
+	Sia inoltre $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Valgono allora i seguenti risultati:
+	
+	\begin{enumerate}[(i)]
+		\item $\restr{(f_\CC)_\RR}{V}$ assume gli stessi valori di $f$,
+		\item $M_\basis(f_\CC) = M_\basis(f) \in M(n, \RR)$,
+		\item $M_{\basis \cup i \basis}((f_\CC)_\RR) = \Matrix{M_\basis(f) & \rvline & 0 \\ \hline 0 & \rvline & M_\basis(f)}$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}Si dimostrano i risultati separatamente.
+	\begin{enumerate}[(i)]
+		\item Si osserva che $(f_\CC)_\RR(\vv i) = f_\CC(\vv i) = f(\vv i)$. Dal momento che
+		$(f_\CC)_\RR$ è $\RR$-lineare, si conclude che $(f_\CC)_\RR$ assume gli stessi valori
+		di $f$.
+		
+		\item Dal momento che $\basis$, nell'identificazione di $(\v, \vec 0)$ come $\v$, è
+		sempre una base di $V_\CC$, e $f_\CC(\vv i) = f(\vv i)$, chiaramente
+		$[f_\CC(\vv i)]_\basis = [f(\vv i)]_\basis$, e quindi $M_\basis(f_\CC) = M_\basis(f)$,
+		dove si osserva anche che $M_\basis(f) \in M(n, \RR)$, essendo $V$ uno spazio vettoriale
+		su $\RR$.
+		
+		\item Sia $f(\vv i) = a_1 \vv 1 + \ldots + a_n \vv n$ con $a_1$, ..., $a_n \in \RR$. Come
+		osservato in (i), $\restr{(f_\CC)_\RR}{\basis} = \restr{(f_\CC)_\RR}{\basis}$, e quindi
+		la prima metà di $M_{\basis \cup i \basis}((f_\CC)_\RR)$ è formata da due blocchi: uno
+		verticale coincidente con $M_\basis(f)$ e un altro completamente nullo, dal momento che
+		non compare alcun termine di $i \basis$ nella scrittura di $(f_\CC)_\RR(\vv i)$. Al
+		contrario, per $i \basis$, $(f_\CC)_\RR(i \vv i) = f_\CC(i \vv i) = i f(\vv i) = a_1 (i \vv 1) +
+		\ldots + a_n (i \vv n)$; pertanto la seconda metà della matrice avrà i due blocchi della prima metà,
+		benché scambiati.
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Dal momento che $M_\basis(f_\CC) = M_\basis(f)$, $f_\CC$ e $f$ condividono lo stesso polinomio caratteristico
+	e vale che $\Sp(f) \subseteq \Sp(f_\CC)$, dove vale l'uguaglianza se e solo se tale polinomio caratteristico
+	è completamente riducibile in $\RR$. Inoltre, se $V_\lambda$ è l'autospazio su $V$ dell'autovalore $\lambda$, l'autospazio
+	su $V_\CC$, rispetto a $f_\CC$, è invece ${V_\CC}_\lambda = V_\lambda + i V_\lambda$, la cui
+	dimensione rimane invariata rispetto a $V_\lambda$, ossia $\dim V_\lambda = \dim {V_\CC}_\lambda$
+	(infatti, analogamente a prima, una base di $V_\lambda$ può essere identificata come base
+	anche per ${V_\CC}_\lambda$).
+\end{remark}
+
+\begin{proposition}
+	Sia $f_\CC$ la complessificazione di $f \in \End(V)$, dove $V$ è uno spazio vettoriale su $\RR$.
+	Sia inoltre $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Allora un endomorfismo
+	$\tilde g : V_\CC \to V_\CC$ complessifica un endomorfismo $g \in \End(V)$ $\iff$ $M_\basis(\tilde g) \in M(n, \RR)$.
+\end{proposition}
+
+\begin{proof}
+	Se $\tilde g$ complessifica $g \in \End(V)$, allora, per la proposizione precedente,
+	$M_\basis(\tilde g) = M_\basis(g) \in M(n, \RR)$. Se invece $A = M_\basis(\tilde g) \in M(n, \RR)$,
+	si considera $g = M_\basis\inv(A) \in \End(V)$. Si verifica facilemente che $\tilde g$ non è altro che
+	il complessificato di tale $g$:
+	
+	\begin{itemize}
+		\item $\tilde g (\vv i) = g(\vv i)$, dove l'uguaglianza è data dal confronto delle matrici associate,
+		e quindi $\restr{\tilde g}{V} = g$;
+		\item $\tilde g(\v + i\w) = \tilde g(\v) + i \tilde g(\w) = g(\v) + i g(\w)$, da cui la tesi.
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Sia $\varphi$ un prodotto scalare di $V$ spazio vettoriale su $\RR$. Allora esiste un
+	unico prodotto hermitiano $\varphi_\CC : V_\CC \times V_\CC \to \CC$ che estende $\varphi$ (ossia tale che
+	$\restr{\varphi_\CC}{V \times V} = \varphi$), il quale assume la stessa segnatura
+	di $\varphi$.
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis$ una base di Sylvester per $\varphi$. Si consideri allora il prodotto
+	$\varphi_\CC$ tale che:
+	
+	\[ \varphi_\CC(\vv1 + i\ww1, \vv2 + i\ww2) = \varphi(\vv1, \vv2) + \varphi(\ww1, \ww2) + i(\varphi(\vv1, \ww1) - \varphi(\ww1, \vv2)). \]
+	
+	Chiaramente $\restr{\varphi_\CC}{V \times V} = \varphi$. Si verifica allora che $\varphi_\CC$ è hermitiano:
+	
+	\begin{itemize}
+		\item $\varphi_\CC(\v + i\w, (\vv1 + i\ww1) + (\vv2 + i\ww2))$ $= \varphi(\v, \vv1 + \vv2) + \varphi(\w, \ww1 + \ww2)$ $+ i(\varphi(\v, \ww1 + \ww2)$ $- \varphi(\w, \vv1 + \vv2))$ $= [\varphi(\v, \vv1) + \varphi(\w, \ww1) + i(\varphi(\v, \ww1) - \varphi(\w, \vv1))]$ $+ [\varphi(\v, \vv2) + \varphi(\w, \ww2) + i(\varphi(\v, \ww2) - \varphi(\w, \vv2))] = \varphi_\CC(\v + i\w, \vv1 + i\ww1) +
+		\varphi_\CC(\v + i\w, \vv2 + i\ww2)$ (additività nel secondo argomento),
+		
+		\item $\varphi_\CC(\v + i\w, (a+bi)(\vv1 + i\ww1)) = \varphi_\CC(\v + i\w, a\vv1-b\ww1 + i(b\vv1+a\ww1)) =
+		\varphi(\v, a\vv1-b\ww1) + \varphi(\w, b\vv1+a\ww1) + i(\varphi(\v, b\vv1+a\ww1) - \varphi(\w, a\vv1-b\ww1))=
+		a\varphi(\v, \vv1) - b\varphi(\v, \ww1) + b\varphi(\w, \vv1) + a\varphi(\w, \ww1) + i(b\varphi(\v, \vv1) + a\varphi(\v, \ww1) - a\varphi(\w, \vv1) + b\varphi(\w, \ww1)) = a(\varphi(\v, \vv1) + \varphi(\w, \ww1)) -
+		b(\varphi(\v, \ww1) - \varphi(\w, \vv1)) + i(a(\varphi(\v, \ww1) - \varphi(\w, \vv1)) + b(\varphi(\v, \vv1) + \varphi(\w, \ww1))) = (a+bi)(\varphi(\v, \vv1) + \varphi(\w, \ww1) + i(\varphi(\v, \ww1) - \varphi(\w, \vv1))) = (a+bi) \varphi_\CC(\v + \w, \vv1 + i\ww1)$ (omogeneità nel secondo argomento),
+		
+		\item $\varphi_\CC(\vv1 + i\ww1, \vv2 + i\ww2) = \varphi(\vv1, \vv2) + \varphi(\ww1, \ww2) + i(\varphi(\vv1, \ww2) - \varphi(\ww1, \vv2)) = \conj{\varphi(\vv1, \vv2) + \varphi(\ww1, \ww2) + i(\varphi(\ww1, \vv2) - \varphi(\vv1, \ww2))} = \conj{\varphi(\vv2, \vv1) + \varphi(\ww2, \ww1) + i(\varphi(\vv2, \ww1) - \varphi(\ww2, \vv1))} = \conj{\varphi_\CC(\vv2 + \ww2, \vv1 + \ww1)}$ (coniugio nello scambio degli argomenti).
+	\end{itemize}
+	
+	Ogni prodotto hermitiano $\tau$ che estende il prodotto scalare $\varphi$ ha la stessa matrice associata nella
+	base $\basis$, essendo $\tau(\vv i, \vv i) = \varphi(\vv i, \vv i)$ vero per ipotesi. Pertanto $\tau$ è
+	unico, e vale che $\tau = \varphi_\CC$. Dal momento che $M_\basis(\varphi_\CC) = M_\basis(\varphi)$ è
+	una matrice di Sylvester, $\varphi_\CC$ mantiene anche la stessa segnatura di $\varphi$.
+\end{proof}
+
+\hr	
+
+\begin{theorem} (di rappresentazione di Riesz per il prodotto scalare) 
+	Sia $V$ uno spazio vettoriale e sia $\varphi$ un suo prodotto scalare
+	non degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
+	$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
+\end{theorem}
+
+\begin{proof}
+	Si consideri l'applicazione $a_\varphi$. Poiché $\varphi$ non è degenere, $\Ker a_\varphi = V^\perp = \zerovecset$, da cui si deduce che $a_\varphi$ è un isomorfismo. Quindi $\forall f \in V^*$ esiste
+	un unico $\v \in V$ tale per cui $a_\varphi(\v) = f$, e dunque tale per cui $\varphi(\v, \w) = a_\varphi(\v)(\w) = f(\w)$ $\forall \w \in V$.
+\end{proof}
+
+\begin{proof}[Dimostrazione costruttiva]
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
+	particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{f(\vv 1)}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{f(\vv n)}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
+	si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
+	la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
+	e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
+\end{proof}
+
+\begin{theorem} (di rappresentazione di Riesz per il prodotto hermitiano)
+	Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano non
+	degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
+	$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
+\end{theorem}
+
+\begin{proof}
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
+	particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{\conj{f(\vv 1)}}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{\conj{f(\vv n)}}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
+	si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
+	la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
+	e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
+\end{proof}
+
+\begin{proposition}
+	Sia $V$ uno spazio vettoriale con prodotto scalare $\varphi$ non degenere.
+	Sia $f \in \End(V)$. Allora esiste un unico endomorfismo
+	$f_\varphi^\top : V \to V$, detto il \textbf{trasposto di} $f$ e indicato con $f^\top$ in assenza
+	di ambiguità\footnote{Si tenga infatti in conto della differenza tra $f_\varphi^\top : V \to V$, di cui si discute
+		nell'enunciato, e $f^\top : V^* \to V^*$ che invece è tale che $f^top(g) = g \circ f$.}, tale che:
+	
+	\[ a_\varphi \circ g = f^\top \circ a_\varphi, \]
+	
+	\vskip 0.05in
+	
+	ossia che:
+	
+	\[ \varphi(\v, f(\w)) = \varphi(g(\v), \w) \, \forall \v, \w \in V. \]
+\end{proposition}
+
+\begin{proof}
+	Si consideri $(f^\top \circ a_\varphi)(\v) \in V^*$. Per il teorema di rappresentazione di Riesz per
+	il prodotto scalare, esiste un unico $\v'$ tale che $(f^\top \circ a_\varphi)(\v)(\w) = \varphi(\v', \w) \implies \varphi(\v, f(\w)) = \varphi(\v', \w)$ $\forall \w \in V$. Si costruisce allora una mappa
+	$f_\varphi^\top : V \to V$ che associa a $\v$ tale $\v'$. Si dimostra che $f_\varphi^\top$ è un'applicazione lineare, e che
+	dunque è un endomorfismo:
+	
+	\begin{enumerate}[(i)]
+		\item Siano $\vv 1$, $\vv 2 \in V$. Si deve dimostrare innanzitutto che $f_\varphi^\top(\vv 1 + \vv 2) = f_\varphi^\top(\vv 1) + f_\varphi^\top(\vv 2)$, ossia che $\varphi(f_\varphi^\top(\vv 1) + f_\varphi^\top(\vv 2), \w) = \varphi(\vv 1 + \vv 2, f(\w))$ $\forall \w \in V$. \\
+		
+		Si osservano le seguenti identità:			
+		\begin{align*}
+			&\varphi(\vv 1 + \vv 2, f(\w)) = \varphi(\vv 1, f(\w)) + \varphi(\vv 2, f(\w)) = (*), \\
+			&\varphi(f_\varphi^\top(\vv 1) + f_\varphi^\top(\vv 2), \w) = \varphi(f_\varphi^\top(\vv 1), \w) + \varphi(f_\varphi^\top(\vv 2), \w) = (*),
+		\end{align*}
+		
+		da cui si deduce l'uguaglianza desiderata, essendo $f_\varphi^\top(\vv 1 + \vv 2)$ l'unico vettore di $V$
+		con la proprietà enunciata dal teorema di rappresentazione di Riesz.
+		
+		\item Sia $\v \in V$. Si deve dimostrare che $f_\varphi^\top(a \v) = a f_\varphi^\top(\v)$, ossia che $\varphi(a f_\varphi^\top(\v), \w) =
+		\varphi(a\v, f(\w))$ $\forall a \in \KK$, $\w \in V$. È
+		sufficiente moltiplicare per $a$ l'identità $\varphi(f_\varphi^\top(\v), \w) = \varphi(\v, f(\w))$. Analogamente
+		a prima, si deduce che $f_\varphi^\top(a \v) = a f_\varphi^\top(\v)$, essendo $f_\varphi^\top(a \v)$ l'unico vettore di $V$ con la
+		proprietà enunciata dal teorema di rappresentazione di Riesz.
+	\end{enumerate}
+	
+	Infine si dimostra che $f_\varphi^\top$ è unico. Sia infatti $g$ un endomorfismo di $V$ che condivide la stessa
+	proprietà di $f_\varphi^\top$. Allora $\varphi(f_\varphi^\top(\v), \w) = \varphi(\v, f(\w)) = \varphi(g(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(f_\varphi^\top(\v) - '(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
+	$f_\varphi^\top(\v) - g(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $f_\varphi^\top(\v) = g(\v)$ $\forall \v \in V$, ossia
+	$g = f_\varphi^\top$.
+\end{proof}
+
+\begin{proposition}
+	Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano. Allora esiste un'unica
+	mappa\footnote{Si osservi che $f^*$ non è un'applicazione lineare, benché sia invece \textit{antilineare}.} $f^* : V \to V$, detta \textbf{aggiunto di} $f$, tale che $\varphi(\v, f(\w)) = \varphi(f^*(\v), \w)$ $\forall \v$, $\w \in V$.
+\end{proposition}
+
+\begin{proof}
+	Sia $\v \in V$. Si consideri il funzionale $\sigma$ tale che $\sigma(\w) = \varphi(\v, f(\w))$. Per il
+	teorema di rappresentazione di Riesz per il prodotto scalare esiste un unico $\v' \in V$ tale per cui
+	$\varphi(\v, f(\w)) = \sigma(\w) = \varphi(\v', \w)$. Si costruisce allora una mappa $f^*$ che associa
+	$\v$ a tale $\v'$. \\
+	
+	Si dimostra infine che la mappa $f^*$ è unica. Sia infatti $\mu : V \to V$ che condivide la stessa
+	proprietà di $f^*$. Allora $\varphi(f^*(\v), \w) = \varphi(\v, f(\w)) = \varphi(\mu(\v), \w)$ $\forall \v$, $\w \in V$, da cui si deduce che $\varphi(f^*(\v) - \mu(\v), \w) = 0$ $\forall \v$, $\w \in V$, ossia che
+	$f^*(\v) - \mu(\v) \in V^\perp$ $\forall \v \in V$. Tuttavia $\varphi$ è non degenere, e quindi $V^\perp = \zerovecset$, da cui si deduce che deve valere l'identità $f^*(\v) = \mu(\v)$ $\forall \v \in V$, ossia
+	$\mu = f^*$.
+\end{proof}
+
+\begin{remark}
+	L'operazione di trasposizione di un endomorfismo sul prodotto scalare non degenere $\varphi$ è un'involuzione. Infatti valgono
+	le seguenti identità $\forall \v$, $\w \in V$:
+	
+	\[ \system{\varphi(\w, f^\top(\v)) = \varphi(f^\top(\v), \w) = \varphi(\v, f(\w)), \\ \varphi(\w, f^\top(\v)) = \varphi((f^\top)^\top(\w), \v) =
+		\varphi(\v, (f^\top)^\top(\w)).} \]
+	
+	\vskip 0.05in
+	
+	Si conclude allora, poiché $\varphi$ è non degenere, che
+	$f(\w) = (f^\top)^\top(\w)$ $\forall \w \in V$, ossia che $f = (f^\top)^\top$.
+\end{remark}
+
+\begin{remark}
+	Analogamente si può dire per l'operazione di aggiunta per un prodotto hermitiano $\varphi$ non degenere.
+	Valgono infatti le seguenti identità $\forall \v$, $\w \in V$:
+	
+	\[ \system{\conj{\varphi(\w, f^*(\v))} = \varphi(f^*(\v), \w) = \varphi(\v, f(\w)), \\ \conj{\varphi(\w, f^*(\v))} = \conj{\varphi((f^*)^*(\w), \v)} =
+		\varphi(\v, (f^*)^*(\w)),} \]
+	
+	\vskip 0.05in
+	
+	da cui si deduce, come prima, che $f = (f^*)^*$.
+\end{remark}
+
+\begin{definition} (base ortonormale)
+	Si definisce \textbf{base ortonormale} di uno spazio vettoriale $V$ su un suo prodotto $\varphi$
+	una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n \}$ tale che $\varphi(\vv i, \vv j) = \delta_{ij}$.
+\end{definition}
+
+\begin{proposition}
+	Sia $\varphi$ un prodotto scalare non degenere di $V$. Sia $f \in \End(V)$. Allora
+	vale la seguente identità:
+	
+	\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
+	
+	dove $\basis$ è una base di $V$.
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis^*$ la base relativa a $\basis$ in $V^*$. Per la proposizione precedente vale la seguente identità:
+	
+	\[ a_\varphi \circ f_\varphi^\top = f^\top \circ a_\varphi. \]
+	
+	Pertanto, passando alle matrici associate, si ricava che:
+	
+	\[ M_{\basis^*}^\basis(a_\varphi) M_\basis(f_\varphi^\top) = M_{\basis^*}(f^\top) M_{\basis^*}^\basis(a_\varphi). \]
+	
+	Dal momento che valgono le seguenti due identità:
+	
+	\[ M_{\basis^*}^\basis(a_\varphi) = M_\basis(\varphi), \qquad M_{\basis^*}(f^\top) = M_\basis(f)^\top, \]
+	
+	e $a_\varphi$ è invertibile (per cui anche $M_\basis(\varphi)$ lo è), si conclude che:
+	
+	\[ M_\basis(\varphi) M_\basis(f_\varphi^\top) = M_\basis(f)^\top M_\basis(\varphi) \implies M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
+	
+	da cui la tesi.
+\end{proof}
+
+\begin{corollary} Sia $\varphi$ un prodotto scalare di $V$.
+	Se $\basis$ è una base ortonormale, $\varphi$ è non degenere e $M_\basis(f_\varphi^\top) = M_\basis(f)^\top$.
+\end{corollary}
+
+\begin{proof}
+	Se $\basis$ è una base ortonormale, $M_\basis(\varphi) = I_n$. Pertanto $\varphi$ è
+	non degenere. Allora, per la proposizione precedente:
+	
+	\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi) = M_\basis(f)^\top. \]
+\end{proof}
+
+\begin{proposition}
+	Sia $\varphi$ un prodotto hermitiano non degenere di $V$. Sia $f \in \End(V)$. Allora
+	vale la seguente identità:
+	
+	\[ M_\basis(f_\varphi^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi), \]
+	
+	dove $\basis$ è una base di $V$.
+\end{proposition}
+
+\begin{proof} Sia $\basis = \{ \vv 1, \ldots, \vv n\}$.
+	Dal momento che $\varphi$ è non degenere, $\Ker M_\basis(\varphi) = V^\perp = \zerovecset$, e quindi
+	$M_\basis(\varphi)$ è invertibile. \\
+	
+	Dacché allora $\varphi(f^*(\v), \w) = \varphi(\v, f(\w))$ $\forall \v$, $\w \in V$,
+	vale la seguente identità:
+	
+	\[ [f^*(\v)]_\basis^* M_\basis(\varphi) [\w]_\basis = [\v]_\basis^* M_\basis(\varphi) [f(\w)]_\basis, \]
+	
+	ossia si deduce che:
+	
+	\[ [\v]_\basis^* M_\basis(f^*)^* M_\basis(\varphi) [\w]_\basis = [\v]_\basis^* M_\basis(\varphi) M_\basis(f) [\w]_\basis. \]
+	
+	Sostituendo allora a $\v$ e $\w$ i vettori della base $\basis$, si ottiene che:
+	
+	\begin{gather*}
+		(M_\basis(f^*)^* M_\basis(\varphi))_{ij} = [\vv i]_\basis^* M_\basis(f^*)^* M_\basis(\varphi) [\vv j]_\basis = \\ = [\vv i]_\basis^* M_\basis(\varphi) M_\basis(f) [\vv j]_\basis = (M_\basis(\varphi) M_\basis(f))_{ij},
+	\end{gather*}
+	
+	e quindi che $M_\basis(f^*)^* M_\basis(\varphi) = M_\basis(\varphi) M_\basis(f)$. Moltiplicando
+	a destra per l'inversa di $M_\basis(\varphi)$ e prendendo l'aggiunta di ambo i membri (ricordando
+	che $M_\basis(\varphi)^* = M_\basis(\varphi)$, essendo $\varphi$ un prodotto hermitiano), si ricava
+	l'identità desiderata.
+	
+\end{proof}
+
+\begin{corollary} Sia $\varphi$ un prodotto hermitiano di $V$ spazio vettoriale su $\CC$.
+	Se $\basis$ è una base ortonormale, $\varphi$ è non degenere e $M_\basis(f_\varphi^*) = M_\basis(f)^*$.
+\end{corollary}
+
+\begin{proof}
+	Se $\basis$ è una base ortonormale, $M_\basis(\varphi) = I_n$. Pertanto $\varphi$ è
+	non degenere. Allora, per la proposizione precedente:
+	
+	\[ M_\basis(f_\varphi^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi) = M_\basis(f)^*. \]
+\end{proof}
+
+\begin{note}
+	D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) non degenere di $V$.
+\end{note}
+
+\begin{definition} (operatori simmetrici)
+	Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{simmetrico} (o \textit{autoaggiunto}) se $f = f^\top$.
+\end{definition}
+
+\begin{definition} (applicazioni e matrici ortogonali)
+	Sia $f \in \End(V)$. Si dice allora che $f$ è \textbf{ortogonale} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$,
+	ossia se è un'isometria in $V$.
+	Sia $A \in M(n, \KK)$. Si dice dunque che $A$ è \textbf{ortogonale} se $A^\top A = A A^\top = I_n$.
+\end{definition}
+
+\begin{definition}
+	Le matrici ortogonali di $M(n, \KK)$ formano un sottogruppo moltiplicativo di $\GL(n, \KK)$, detto \textbf{gruppo ortogonale},
+	e indicato con $O_n$. Il sottogruppo di $O_n$ contenente solo le matrici con determinante pari a $1$ è
+	detto \textbf{gruppo ortogonale speciale}, e si denota con $SO_n$.
+\end{definition}
+
+\begin{remark}
+	Si possono classificare in modo semplice alcuni di questi gruppi ortogonali per $\KK = \RR$. \\
+	
+	\li $A \in O_n \implies 1 = \det(I_n) = \det(A A^\top) = \det(A)^2 \implies \det(A) = \pm 1$.
+	\li $A = (a) \in O_1 \iff A^\top A = I_1 \iff a^2 = 1 \iff a = \pm 1$, da cui si ricava che l'unica matrice
+	di $SO_1$ è $(1)$. Si osserva inoltre che $O_1$ è abeliano di ordine $2$, e quindi che $O_1 \cong \ZZ/2\ZZ$. \\
+	\li $A = \Matrix{a & b \\ c & d} \in O_2 \iff \Matrix{a^2 + b^2 & ab + cd \\ ab + cd & c^2 + d^2} = A^\top A = I_2.$ \\
+	
+	Pertanto deve essere soddisfatto il seguente sistema di equazioni:
+	
+	\[ \system{a^2 + b^2 = c^2 + d^2 = 1, \\ ac + bd = 0.} \]
+	
+	Si ricava dunque che si può identificare
+	$A$ con le funzioni trigonometriche $\cos(\theta)$ e $\sin(\theta)$ con $\theta \in [0, 2\pi)$ nelle due forme:
+	\begin{align*}
+		&A = \Matrix{\cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta)} \quad &\text{(}\!\det(A) = 1, A \in SO_2\text{)}, \\
+		&A = \Matrix{\cos(\theta) & \sin(\theta) \\ \sin(\theta) & -\cos(\theta)} \quad &\text{(}\!\det(A) = -1\text{)}.
+	\end{align*}
+\end{remark}
+
+\begin{definition} (applicazioni e matrici hermitiane)
+	Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
+	$f$ è \textbf{hermitiano} se $f = f^*$. Sia $A \in M(n, \CC)$. Si dice dunque che $A$
+	è \textbf{hermitiana} se $A = A^*$.
+\end{definition}
+
+\begin{definition} (applicazioni e matrici unitarie)
+	Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
+	$f$ è \textbf{unitario} se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$. Sia $A \in M(n, \CC)$.
+	Si dice dunque che $A$ è \textbf{unitaria} se $A^* A = A A^* = I_n$.
+\end{definition}
+
+\begin{definition}
+	Le matrici unitarie di $M(n, \CC)$ formano un sottogruppo moltiplicativo di $\GL(n, \CC)$, detto \textbf{gruppo unitario},
+	e indicato con $U_n$. Il sottogruppo di $U_n$ contenente solo le matrici con determinante pari a $1$ è
+	detto \textbf{gruppo unitario speciale}, e si denota con $SU_n$.
+\end{definition}
+
+\begin{remark}\nl
+	Si possono classificare in modo semplice alcuni di questi gruppi unitari.
+	
+	\li $A \in U_n \implies 1 = \det(I_n) = \det(A A^*) = \det(A) \conj{\det(A)} = \abs{\det(A)}^2 = 1$.
+	\li $A = (a) \in U_1 \iff A^* A = I_1 \iff \abs{a}^2 = 1 \iff a = e^{i\theta}$, $\theta \in [0, 2\pi)$, ossia il numero complesso $a$ appartiene alla circonferenza di raggio unitario.
+	\li $A = \Matrix{a & b \\ c & d} \in SU_2 \iff A A^* = \Matrix{\abs{a}^2 + \abs{b}^2 & a\conj c + b \conj d \\ \conj a c + \conj b d & \abs{c}^2 + \abs{d}^2} = I_2$, $\det(A) = 1$, ossia se il seguente
+	sistema di equazioni è soddisfatto:
+	
+	\[ \system{\abs{a}^2 + \abs{b}^2 = \abs{c}^2 + \abs{d}^2 = 1, \\ a\conj c + b \conj d = 0, \\ ad-bc=1,} \]
+	
+	le cui soluzioni riassumono il gruppo $SU_2$ nel seguente modo:
+	
+	\[ SU_2 = \left\{ \Matrix{x & -y \\ \conj y & \conj x} \in M(2, \CC) \;\middle\vert\; \abs{x}^2 + \abs{y}^2 = 1 \right\}. \]
+	
+\end{remark}
+
+\begin{definition} (spazio euclideo reale)
+	Si definisce \textbf{spazio euclideo reale} uno spazio vettoriale $V$ su $\RR$ dotato
+	del prodotto scalare standard $\varphi = \innprod{\cdot, \cdot}$.
+\end{definition}
+
+\begin{definition} (spazio euclideo complesso)
+	Si definisce \textbf{spazio euclideo complesso} uno spazio vettoriale $V$ su $\CC$ dotato
+	del prodotto hermitiano standard $\varphi = \innprod{\cdot, \cdot}$.
+\end{definition}
+
+\begin{proposition}
+	Sia $(V, \varphi)$ uno spazio euclideo reale e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è simmetrico $\iff$ $M_\basis(f) = M_\basis(f)^\top$ $\iff$ $M_\basis(f)$ è simmetrica.
+\end{proposition}
+
+\begin{proof}
+	Per il corollario precedente, $f$ è simmetrico $\iff f = f^\top \iff M_\basis(f) = M_\basis(f^\top) =
+	M_\basis(f)^\top$.
+\end{proof}
+
+\begin{proposition}
+	Sia $(V, \varphi)$ uno spazio euclideo reale e sia $\basis$ una base ortonormale di $V$. Allora
+	$f \in \End(V)$ è ortogonale $\iff$ $M_\basis(f) M_\basis(f)^\top = M_\basis(f)^\top M_\basis(f) = I_n$ $\defiff$ $M_\basis(f)$ è ortogonale.
+\end{proposition}
+
+\begin{proof}
+	Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è ortogonale, allora
+	$[\v]_\basis^\top \, [\w]_\basis = [\v]_\basis^\top \, M_\basis(\varphi) [\w]_\basis = \varphi(\v, \w) =
+	\varphi(f(\v), f(\w)) = (M_\basis(f) [\v]_\basis)^\top \, M_\basis(\varphi) (M_\basis(f) [\w]_\basis) =
+	[\v]_\basis^\top M_\basis(f)^\top M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis$. Allora, come visto nel corollario precedente, si ricava che $M_\basis(f)^\top M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$. \\
+	
+	Se invece $M_\basis(f)^\top M_\basis(f) = M_\basis(f) M_\basis(f)^\top = I_n$, $\varphi(\v, \w) = [\v]_\basis^\top [\w]_\basis = [\v]_\basis^\top M_\basis(f)^\top M_\basis(f) [\w]_\basis =
+	(M_\basis(f) [\v]_\basis)^\top (M_\basis(f) [\w]_\basis) =$ $(M_\basis(f) [\v]_\basis)^\top M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(f(\v), f(\w))$, e quindi
+	$f$ è ortogonale.
+\end{proof}
+
+\begin{proposition}
+	Sia $(V, \varphi)$ uno spazio euclideo complesso e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è hermitiano $\iff$ $M_\basis(f) = M_\basis(f)^*$ $\defiff$ $M_\basis(f)$ è hermitiana.
+\end{proposition}
+
+\begin{proof}
+	Per il corollario precedente, $f$ è hermitiana $\iff$ $f = f^*$ $\iff M_\basis(f) = M_\basis(f^*) = M_\basis(f)^*$.
+\end{proof}
+
+\begin{proposition}
+	Sia $(V, \varphi)$ uno spazio euclideo complesso e sia $\basis$ una base ortonormale di $V$. Allora $f \in \End(V)$ è unitario $\iff$ $M_\basis(f) M_\basis(f)^* = M_\basis(f)^* M_\basis(f) = I_n$ $\defiff$ $M_\basis(f)$ è unitaria.
+\end{proposition}
+
+\begin{proof}
+	Si osserva che $M_\basis(\varphi) = I_n$. Sia $\basis = \{ \vv 1, \ldots, \vv n\}$. Se $f$ è unitario, allora
+	$[\v]_\basis^* \, [\w]_\basis = [\v]_\basis^* \, M_\basis(\varphi) [\w]_\basis = \varphi(\v, \w) =
+	\varphi(f(\v), f(\w)) = (M_\basis(f) [\v]_\basis)^* \, M_\basis(\varphi) (M_\basis(f) [\w]_\basis) =
+	[\v]_\basis^* M_\basis(f)^* M_\basis(\varphi) M_\basis(f) [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$. Allora, come visto nel corollario precedente, si ricava che $M_\basis(f)^* M_\basis(f) = I_n$. Dal momento che gli inversi sinistri sono anche inversi destri, $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$. \\
+	
+	Se invece $M_\basis(f)^* M_\basis(f) = M_\basis(f) M_\basis(f)^* = I_n$, $\varphi(\v, \w) = [\v]_\basis^* [\w]_\basis = [\v]_\basis^* M_\basis(f)^* M_\basis(f) [\w]_\basis$ $=
+	(M_\basis(f) [\v]_\basis)^* (M_\basis(f) [\w]_\basis)$ $= (M_\basis(f) [\v]_\basis)^* M_\basis(\varphi) (M_\basis(f) [\w]_\basis) = \varphi(f(\v), f(\w))$, e quindi
+	$f$ è unitario.
+\end{proof}
+
+\begin{remark}
+	Se $\basis$ è una base ortonormale di $(V, \varphi)$, ricordando che $M_\basis(f^\top) = M_\basis(f)^\top$ e che $M_\basis(f^*) = M_\basis(f)^*$, sono equivalenti allora i seguenti fatti: \\
+	
+	\li $f \circ f^\top = f^\top \circ f = \Idv$ $\iff$ $M_\basis(f)$ è ortogonale $\iff$ $f$ è ortogonale, \\ 
+	\li $f \circ f^* = f^* \circ f = \Idv$ $\iff$ $M_\basis(f)$ è unitaria $\iff$ $f$ è unitario (se $V$ è uno spazio vettoriale su $\CC$).
+\end{remark}
+
+\begin{proposition}
+	Sia $V = \RR^n$ uno spazio vettoriale col prodotto scalare standard $\varphi$. Allora sono equivalenti i seguenti fatti:
+	
+	\begin{enumerate}[(i)]
+		\item $A \in O_n$,
+		\item $f_A$ è un operatore ortogonale,
+		\item le colonne e le righe di $A$ formano una base ortonormale di $V$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis$ la base canonica di $V$. Allora $M_\basis(f_A) = A$, e quindi, per una proposizione
+	precedente, $f_A$ è un operatore ortogonale. Viceversa si deduce che se $f_A$ è un operatore ortogonale,
+	$A \in O_n$. Dunque è sufficiente dimostrare che $A \in O_n \iff$ le colonne e le righe di $A$ formano una
+	base ortonormale di $V$. \\
+	
+	\rightproof Se $A \in O_n$, in particolare $A \in \GL(n, \RR)$, e quindi $A$ è invertibile. Allora le
+	sue colonne e le sue righe formano già una base di $V$, essendo $n$ vettori di $V$ linearmente indipendenti.
+	Inoltre, poiché $A \in O_n$, $\varphi(\e i, \e j) = \varphi(A \e i, A \e j)$, e quindi le colonne di $A$ si mantengono a due a due ortogonali tra di loro, mentre $\varphi(A \e i, A \e i) = \varphi(\e i, \e i) = 1$.
+	Pertanto le colonne di $A$ formano una base ortonormale di $V$. \\
+	
+	Si osserva che anche $A^\top \in O_n$. Allora le righe di $A$, che non sono altro che
+	le colonne di $A^\top$, formano anch'esse una base ortonormale di $V$. \\
+	
+	\leftproof Nel moltiplicare $A^\top$ con $A$ altro non si sta facendo che calcolare il prodotto
+	scalare $\varphi$ tra ogni riga di $A^\top$ e ogni colonna di $A$	, ossia $(A^* A)_{ij} = \varphi((A^\top)_i, A^j) = \varphi(A^i, A^j) = \delta_{ij}$.
+	Quindi $A^\top A = A A^\top = I_n$, da cui si deduce che $A \in O_n$.
+\end{proof}
+
+\begin{proposition}
+	Sia $V = \CC^n$ uno spazio vettoriale col prodotto hermitiano standard $\varphi$. Allora sono equivalenti i seguenti fatti:
+	
+	\begin{enumerate}[(i)]
+		\item $A \in U_n$,
+		\item $f_A$ è un operatore unitario,
+		\item le colonne e le righe di $A$ formano una base ortonormale di $V$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis$ la base canonica di $V$. Allora $M_\basis(f_A) = A$, e quindi, per una proposizione
+	precedente, $f_A$ è un operatore unitario. Viceversa si deduce che se $f_A$ è un operatore unitario,
+	$A \in U_n$. Dunque è sufficiente dimostrare che $A \in U_n \iff$ le colonne e le righe di $A$ formano una
+	base ortonormale di $V$. \\
+	
+	\rightproof Se $A \in U_n$, in particolare $A \in \GL(n, \RR)$, e quindi $A$ è invertibile. Allora le
+	sue colonne e le sue righe formano già una base di $V$, essendo $n$ vettori di $V$ linearmente indipendenti.
+	Inoltre, poiché $A \in U_n$, $\varphi(\e i, \e j) = \varphi(A \e i, A \e j)$, e quindi le colonne di $A$ si mantengono a due a due ortogonali tra di loro, mentre $\varphi(A \e i, A \e i) = \varphi(\e i, \e i) = 1$.
+	Pertanto le colonne di $A$ formano una base ortonormale di $V$. \\
+	
+	Si osserva che anche $A^\top \in U_n$. Allora le righe di $A$, che non sono altro che
+	le colonne di $A^\top$, formano anch'esse una base ortonormale di $V$. \\
+	
+	\leftproof Nel moltiplicare $A^*$ con $A$ altro non si sta facendo che calcolare il prodotto
+	hermitiano $\varphi$ tra ogni riga coniugata di $A^*$ e ogni colonna di $A$, ossia $(A^* A)_{ij} = \varphi((A^\top)_i, A^j) = \varphi(A^i, A^j) = \delta_{ij}$.
+	Quindi $A^* A = A A^* = I_n$, da cui si deduce che $A \in U_n$.
+\end{proof}
+
+\begin{proposition}
+	Sia $(V, \varphi)$ uno spazio euclideo reale. Allora valgono i seguenti tre risultati:
+	
+	\begin{enumerate}[(i)]
+		\item $(V_\CC, \varphi_\CC)$ è uno spazio euclideo complesso.
+		
+		\item Se $f \in \End(V)$ è simmetrico, allora $f_\CC \in \End(V)$ è hermitiano.
+		
+		\item Se $f \in \End(V)$ è ortogonale, allora $f_\CC \in \End(V)$ è unitario.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Dacché $\varphi$ è il prodotto scalare standard dello spazio euclideo reale $V$, esiste una base ortnormale di $V$. Sia allora $\basis$ una base ortonormale di $V$. Si dimostrano i tre risultati separatamente.
+	
+	\begin{itemize}
+		\item È sufficiente dimostrare che $\varphi_\CC$ altro non è che il prodotto hermitiano standard.
+		Come si è già osservato precedentemente, $M_\basis(\varphi_\CC) = M_\basis(\varphi)$, e quindi,
+		dacché $M_\basis(\varphi) = I_n$, essendo $\basis$ ortonormale, vale anche che $M_\basis(\varphi_\CC) = I_n$,
+		ossia $\varphi_\CC$ è proprio il prodotto hermitiano standard.
+		
+		\item Poiché $f$ è simmetrico, $M_\basis(f) = M_\basis(f)^\top$, e quindi anche
+		$M_\basis(f_\CC) = M_\basis(f_\CC)^\top$. Dal momento che $M_\basis(f) \in M(n, \RR)$,
+		$M_\basis(f) = \conj{M_\basis(f)} \implies M_\basis(f_\CC)^\top = M_\basis(f_\CC)^*$.
+		Quindi $M_\basis(f_\CC) = M_\basis(f_\CC)^*$, ossia $M_\basis(f_\CC)$ è hermitiana,
+		e pertanto anche $f_\CC$ è hermitiano.
+		
+		\item Poiché $f$ è ortogonale, $M_\basis(f) M_\basis(f)^\top = I_n$, e quindi
+		anche $M_\basis(f_\CC) M_\basis(f_\CC)^\top = I_n$. Allora, come prima, si deduce
+		che $M_\basis(f_\CC)^\top = M_\basis(f_\CC)^*$, essendo $M_\basis(f_\CC) = M_\basis(f) \in M(n, \RR)$,
+		da cui
+		si ricava che $M_\basis(f_\CC) M_\basis(f_\CC)^* = M_\basis(f_\CC) M_\basis(f_\CC)^\top = I_n$, ossia che $f_\CC$ è unitario. \\ \qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{exercise}
+	Sia $(V, \varphi)$ uno spazio euclideo reale. Allora valgono i seguenti risultati:
+	
+	\begin{itemize}
+		\item Se $f$, $g \in \End(V)$ commutano, allora anche $f_\CC$, $g_\CC \in \End(V_\CC)$ commutano.
+		\item Se $f \in \End(V)$, $(f^\top)_\CC = (f_\CC)^*$.
+		\item Se $f \in \End(V)$, $f$ diagonalizzabile $\iff$ $f^\top$ diagonalizzabile.
+	\end{itemize}
+\end{exercise}
+
+\begin{solution}
+	Dacché $\varphi$ è il prodotto scalare standard dello spazio euclideo reale $V$, esiste una base ortonormale $\basis = \{ \vv 1, \ldots, \vv n\}$ di $V$. Si dimostrano allora separatamente i tre risultati.
+	
+	\begin{itemize}
+		\item Si osserva che $M_\basis(f_\CC) M_\basis(g_\CC) = M_\basis(f) M_\basis(g) =
+		M_\basis(g) M_\basis(f) = M_\basis(g_\CC) M_\basis(f_\CC)$, e quindi
+		che $f_\CC \circ g_\CC = g_\CC \circ f_\CC$.
+		
+		\item Si osserva che $M_\basis(f) \in M(n, \RR) \implies M_\basis(f)^\top = M_\basis(f)^*$, e quindi che $M_\basis((f^\top)_\CC) = M_\basis(f^\top) = M_\basis(f)^\top = M_\basis(f)^* = M_\basis(f_\CC)^* = M_\basis((f_\CC)^*)$. Allora
+		$(f^\top)_\CC= (f_\CC)^*$.
+		
+		\item Poiché $\basis$ è ortonormale, $M_\basis(f^\top) = M_\basis(f)^\top$. Allora, se
+		$f$ è diagonalizzabile, anche $M_\basis(f)$ lo è, e quindi $\exists P \in \GL(n, \KK)$,
+		$D \in M(n, \KK)$ diagonale tale che $M_\basis(f) = P D P\inv$. Allora $M_\basis(f^\top) =
+		M_\basis(f)^\top = (P^\top)\inv D^\top P^\top$ è simile ad una matrice diagonale, e
+		pertanto $M_\basis(f^\top)$ è diagonalizzabile. Allora anche $f^\top$ è diagonalizzabile.
+		Vale anche il viceversa considerando l'identità $f = (f^\top)^\top$ e l'implicazione
+		appena dimostrata.
+	\end{itemize}
+\end{solution}
+
+\hr
+
+\begin{note}
+	D'ora in poi, qualora non specificato diversamente, si assumerà che $V$ sia uno spazio
+	euclideo, reale o complesso.
+\end{note}
+
+\begin{definition} (norma euclidea)
+	Sia $(V, \varphi)$ un qualunque spazio euclideo. Si definisce \textbf{norma} la mappa
+	$\norm{\cdot} : V \to \RR^+$ tale che $\norm{\v} = \sqrt{\varphi(\v, \v)}$.
+\end{definition}
+
+\begin{definition} (distanza euclidea tra due vettori)
+	Sia $(V, \varphi)$ un qualunque spazio euclideo. Si definisce \textbf{distanza} la mappa
+	$d : V \times V \to \RR^+$ tale che $d(\v, \w) = \norm{\v - \w}$.
+\end{definition}
+
+\begin{remark}\nl
+	\li Si osserva che in effetti $\varphi(\v, \v) \in \RR^+$ $\forall \v \in V$. Infatti, sia
+	per il caso reale che per il caso complesso, $\varphi$ è definito positivo. \\
+	\li Vale che $\norm{\v} = 0 \iff \v = \vec 0$. Infatti, se $\v = \vec 0$, chiaramente
+	$\varphi(\v, \v) = 0 \implies \norm{\v} = 0$; se invece $\norm{\v} = 0$,
+	$\varphi(\v, \v) = 0$, e quindi $\v = \vec 0$, dacché $V^\perp = \zerovecset$, essendo
+	$\varphi$ definito positivo. \\
+	\li Inoltre, vale chiaramente che $\norm{\alpha \v} = \abs{\alpha} \norm{\v}$. \\
+	\li Se $f$ è un operatore ortogonale (o unitario), allora $f$ mantiene sia le
+	norme che le distanze tra vettori. Infatti $\norm{\v - \w}^2 = \varphi(\v - \w, \v - \w) =
+	\varphi(f(\v - \w), f(\v - \w)) = \varphi(f(\v) - f(\w), f(\v) - f(\w)) = \norm{f(\v) - f(\w)}^2$,
+	da cui segue che $\norm{\v - \w} = \norm{f(\v) - f(\w)}$.
+\end{remark}
+
+\begin{proposition} [disuguaglianza di Cauchy-Schwarz]
+	Vale che $\norm{\v} \norm{\w} \geq \abs{\varphi(\v, \w)}$, $\forall \v$, $\w \in V$, dove
+	l'uguaglianza è raggiunta soltanto se $\v$ e $\w$ sono linearmente dipendenti.
+\end{proposition}
+
+\begin{proof}
+	Si consideri innanzitutto il caso $\KK = \RR$, e quindi il caso in cui $\varphi$ è
+	il prodotto scalare standard. Siano $\v$, $\w \in V$.
+	Si consideri la disuguaglianza $\norm{\v + t\w}^2 \geq 0$, valida
+	per ogni elemento di $V$. Allora $\norm{\v + t \w}^2 = \norm{\v}^2 + 2 \varphi(\v, \w) t + \norm{\w}^2 t^2 \geq 0$. L'ultima disuguaglianza è possibile se e solo se $\frac{\Delta}{4} \leq 0$, e quindi se e solo
+	se $\varphi(\v, \w)^2 - \norm{\v}^2 \norm{\w}^2 \leq 0 \iff \norm{\v} \norm{\w} \geq \varphi(\v, \w)$.
+	Vale in particolare l'equivalenza se e solo se $\norm{\v + t\w} = 0$, ossia se $\v + t\w = \vec 0$, da cui
+	la tesi. \\
+	
+	Si consideri ora il caso $\KK = \CC$, e dunque il caso in cui $\varphi$ è il prodotto hermitiano
+	standard. Siano $\v$, $\w \in V$, e siano $\alpha$, $\beta \in \CC$. Si consideri allora
+	la disuguaglianza $\norm{\alpha \v + \beta \w}^2 \geq 0$, valida per ogni elemento di $V$. Allora
+	$\norm{\alpha \v + \beta \w}^2 = \norm{\alpha \v}^2 + \varphi(\alpha \v, \beta \w) + \varphi(\beta \w, \alpha \v) + \norm{\beta \w}^2 = \abs{\alpha}^2 \norm{\v}^2 + \conj{\alpha} \beta \, \varphi(\v, \w) +
+	\alpha \conj{\beta} \, \varphi(\w, \v) + \abs{\beta}^2 \norm{\w}^2 \geq 0$. Ponendo allora
+	$\alpha = \norm{\w}^2$ e $\beta = -\varphi(\w, \v) = \conj{-\varphi(\v, \w)}$, si deduce che:
+	
+	\[ \norm{\v}^2 \norm{\w}^4 - \norm{\w}^2 \abs{\varphi(\v, \w)} \geq 0. \]
+	
+	\vskip 0.05in
+	
+	Se $\w = \vec 0$, la disuguaglianza di Cauchy-Schwarz è già dimostrata. Altrimenti, è sufficiente
+	dividere per $\norm{\w}^2$ (dal momento che $\w \neq \vec 0 \iff \norm{\w} \neq 0$) per ottenere
+	la tesi. Come prima, is osserva che l'uguaglianza si ottiene se e solo se $\v$ e $\w$ sono
+	linearmente dipendenti.
+\end{proof}
+
+\begin{proposition} [disuguaglianza triangolare]
+	$\norm{\v + \w} \leq \norm{\v} + \norm{\w}$.
+\end{proposition}
+
+\begin{proof}
+	Si osserva che $\norm{\v + \w}^2 = \norm{\v}^2 + \varphi(\v, \w) + \varphi(\w, \v) + \norm{\w}^2$.
+	Se $\varphi$ è il prodotto scalare standard, si ricava che:
+	\[ \norm{\v + \w}^2 = \norm{\v}^2 + 2 \varphi(\v, \w) + \norm{\w}^2
+	\leq \norm{\v}^2 + 2 \norm{\v} \norm{\w} + \norm{\w}^2 =
+	(\norm{\v} + \norm{\w})^2,\]
+	
+	dove si è utilizzata la disuguaglianza di Cauchy-Schwarz. Da quest'ultima disuguaglianza si ricava, prendendo la radice quadrata, la disuguaglianza
+	desiderata. \\
+	
+	Se invece $\varphi$ è il prodotto hermitiano standard, $\norm{\v + \w}^2 = \norm{\v}^2 + 2 \, \Re(\varphi(\v, \w)) + \norm{\w}^2 \leq \norm{\v}^2 + 2 \abs{\varphi(\v, \w)} + \norm{\w}^2$. Allora, riapplicando
+	la disuguaglianza di Cauchy-Schwarz, si ottiene che:
+	
+	\[ \norm{\v + \w}^2 \leq (\norm{\v} + \norm{\w})^2, \]
+	
+	da cui, come prima, si ottiene la disuguaglianza desiderata.
+\end{proof}
+
+\begin{remark}
+	Utilizzando il concetto di norma euclidea, si possono ricavare due teoremi fondamentali della geometria,
+	e già noti dalla geometria euclidea. \\
+	
+	\li Se $\v \perp \w$, allora $\norm{\v + \w}^2 = \norm{\v}^2 + \overbrace{(\varphi(\v, \w) + \varphi(\w, \v))}^{=\,0} + \norm{\w}^2 = \norm{\v}^2 + \norm{\w}^2$ (teorema di Pitagora), \\
+	\li Se $\norm{\v} = \norm{\w}$ e $\varphi$ è un prodotto scalare, allora $\varphi(\v + \w, \v - \w) = \norm{\v}^2 - \varphi(\v, \w) + \varphi(\w, \v) - \norm{\w}^2  = \norm{\v}^2 - \norm{\w}^2 = 0$, e quindi
+	$\v + \w \perp \v - \w$ (le diagonali di un rombo sono ortogonali tra loro).
+\end{remark}
+
+\begin{remark}
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ è una base ortogonale di $V$ per $\varphi$. \\
+	
+	\li Se $\v = a_1 \vv 1 + \ldots + a_n \vv n$, con $a_1$, ..., $a_n \in \KK$, si osserva
+	che $\varphi(\v, \vv i) = a_i \varphi(\vv i, \vv i)$. Quindi $\v = \sum_{i=1}^n \frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)} \, \vv i$. In particolare, $\frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)}$ è
+	detto \textbf{coefficiente di Fourier} di $\v$ rispetto a $\vv i$, e si indica con $C(\v, \vv i)$. Se $\basis$ è ortonormale,
+	$\v = \sum_{i=1}^n \varphi(\v, \vv i) \, \vv i$. \\
+	\li Quindi $\norm{\v}^2 = \varphi(\v, \v) = \sum_{i=1}^n \frac{\varphi(\v, \vv i)^2}{\varphi(\vv i, \vv i)}$. In
+	particolare, se $\basis$ è ortonormale, $\norm{\v}^2 = \sum_{i=1}^n \varphi(\v, \vv i)^2$. In tal caso,
+	si può esprimere la disuguaglianza di Bessel: $\norm{\v}^2 \geq \sum_{i=1}^k \varphi(\v, \vv i)^2$ per $k \leq n$.
+\end{remark}
+
+\begin{remark} (algoritmo di ortogonalizzazione di Gram-Schmidt)
+	Se $\varphi$ è non degenere (o in generale, se $\CI(\varphi) = \zerovecset$) ed è
+	data una base $\basis = \{ \vv 1, \ldots, \vv n \}$ per $V$ (dove si ricorda che deve valere
+	$\Char \KK \neq 2$), è possibile
+	applicare l'\textbf{algoritmo di ortogonalizzazione di Gram-Schmidt} per ottenere
+	da $\basis$ una nuova base $\basis' = \{ \vv 1', \ldots, \vv n' \}$ con le seguenti proprietà:
+	
+	\begin{enumerate}[(i)]
+		\item $\basis'$ è una base ortogonale,
+		\item $\basis'$ mantiene la stessa bandiera di $\basis$ (ossia $\Span(\vv 1, \ldots, \vv i) = \Span(\vv 1', \ldots, \vv i')$ per ogni $1 \leq i \leq n$).
+	\end{enumerate}
+	
+	L'algoritmo si applica nel seguente modo: si prenda in considerazione $\vv 1$ e sottragga ad ogni altro vettore
+	della base il vettore $C(\vv 1, \vv i) \vv 1 = \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv 1$,
+	rendendo ortogonale ogni altro vettore della base con $\vv 1$. Pertanto si applica la mappa
+	$\vv i \mapsto \vv i - \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i = \vv i ^{(1)}$.
+	Si verifica infatti che $\vv 1$ e $\vv i ^{(1)}$ sono ortogonali per $2 \leq i \leq n$:
+	
+	\[ \varphi(\vv 1, \vv i^{(1)}) = \varphi(\vv 1, \vv i) - \varphi\left(\vv 1, \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i\right) = \varphi(\vv 1, \vv i) - \varphi(\vv 1, \vv i) = 0. \]
+	
+	Poiché $\vv 1$ non è isotropo, si deduce la decomposizione $V = \Span(\vv 1) \oplus \Span(\vv 1)^\perp$.
+	In particolare $\dim \Span(\vv 1)^\perp = n-1$: essendo allora i vettori $\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}$
+	linearmente indipendenti e appartenenti a $\Span(\vv 1)^\perp$, ne sono una base. Si conclude quindi
+	che vale la seguente decomposizione:
+	
+	\[ V = \Span(\vv 1) \oplus^\perp \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}). \]
+	
+	\vskip 0.05in
+	
+	Si riapplica dunque l'algoritmo di Gram-Schmidt prendendo come spazio vettoriale lo spazio generato dai
+	vettori a cui si è applicato precedentemente l'algoritmo, ossia $V' = \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)})$,
+	fino a che non si ottiene $V' = \zerovecset$. \\
+	
+	Si può addirittura ottenere una base ortonormale a partire da $\basis'$ normalizzando ogni vettore (ossia
+	dividendo per la propria norma), se si sta considerando uno spazio euclideo.
+\end{remark}
+
+\begin{remark}
+	Poiché la base ottenuta tramite Gram-Schmidt mantiene la stessa bandiera della base di partenza,
+	ogni matrice triangolabile è anche triangolabile mediante una base ortogonale.
+\end{remark}
+
+\begin{example}
+	Si consideri $V = (\RR^3, \innprod{\cdot, \cdot})$, ossia $\RR^3$ dotato del prodotto scalare standard.
+	Si applica l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
+	
+	\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\}. \]
+	
+	\vskip 0.05in
+	
+	Alla prima iterazione dell'algoritmo si ottengono i seguenti vettori:
+	
+	\begin{itemize}
+		\item $\vv 2 ^{(1)} = \vv 2 -  \frac{\varphi(\vv 1, \vv 2)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 2 - \vv 1 = \Vector{0 \\ 1 \\ 0} = \e 2$,
+		\item $\vv 3 ^{(1)} = \vv 3 - \frac{\varphi(\vv 1, \vv 3)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 3 - \vv 1 = \Vector{0 \\ 1 \\ 1}$.
+	\end{itemize}
+	
+	Si considera ora $V' = \Span(\vv 2 ^{(1)}, \vv 3 ^{(1)})$. Alla seconda iterazione dell'algoritmo si
+	ottiene allora il seguente vettore:
+	
+	\begin{itemize}
+		\item $\vv 3 ^{(2)} = \vv 3 ^{(1)} - \frac{\varphi(\vv 2 ^{(1)},  \vv 3 ^{(1)})}{\varphi(\vv 2 ^{(1)}, \vv 2 ^{(1)})} \vv 2 ^{(1)} = \vv 3 ^{(1)} - \vv 2 ^{(1)} = \Vector{0 \\ 0 \\ 1} = \e 3$.
+	\end{itemize}
+	
+	Quindi la base ottenuta è $\basis' = \{\e1, \e2, \e3\}$, ossia la base canonica di $\RR^3$, già
+	ortonormale.
+\end{example}
+
+\begin{remark}
+	Si osserva adesso che se $(V, \varphi)$ è uno spazio euclideo (e quindi $\varphi > 0$), e $W$ è
+	un sottospazio di $V$, vale la seguente decomposizione:
+	
+	\[ V = W \oplus^\perp W^\perp. \]
+	
+	Pertanto ogni vettore $\v \in V$ può scriversi come $\w + \w'$ dove $\w \in W$ e $\w' \in W^\perp$,
+	dove $\varphi(\w, \w') = 0$.
+\end{remark}
+
+\begin{definition} (proiezione ortogonale)
+	Si definisce l'applicazione $\pr_W : V \to V$, detta \textbf{proiezione ortogonale} su $W$,
+	in modo tale che $\pr_W(\v) = \w$, dove $\v = \w + \w'$, con $\w \in W$ e $\w' \in W^\perp$.
+\end{definition}
+
+\begin{remark}\nl
+	\li Dacché la proiezione ortogonale è un caso particolare della classica applicazione lineare
+	di proiezione su un sottospazio di una somma diretta, $\pr_W$ è un'applicazione lineare. \\
+	\li Vale chiaramente che $\pr_W^2 = \pr_W$, da cui si ricava, se $W^\perp \neq \zerovecset$, che
+	$\varphi_{\pr_W}(\lambda) = \lambda (\lambda -1)$, ossia che $\Sp(\pr_W) = \{0, 1\}$. Infatti
+	$\pr_W(\v)$ appartiene già a $W$, ed essendo la scrittura in somma di due elementi, uno di $W$ e
+	uno di $W'$, unica, $\pr_W(\pr_W(\v)) = \pr_W(\v)$, da cui l'identità $\pr_W^2 = \pr_W$. \\
+	\li Seguendo il ragionamento di prima, vale anche che $\restr{\pr_W}{W} = \Idw$ e che
+	$\restr{\pr_W}{W^\perp} = 0$. \\
+	\li Inoltre, vale la seguente riscrittura di $\v \in V$: $\v = \pr_W(\v) + \pr_{W^\perp}(\v)$. \\
+	\li Se $\basis = \{ \vv1, \ldots, \vv n \}$ è una base ortogonale di $W$, allora
+	$\pr_W(\v) = \sum_{i=1}^n \frac{\varphi(\v, \vv i)}{\varphi(\vv i, \vv i)} \vv i = \sum_{i=1}^n C(\v, \vv i) \vv i$. Infatti $\v -\sum_{i=1}^n C(\v, \vv i) \vv i \in W^\perp$. \\
+	\li $\pr_W$ è un operatore simmetrico (o hermitiano se lo spazio è complesso). Infatti $\varphi(\pr_W(\v), \w) =
+	\varphi(\pr_W(\v), \pr_W(\w) + \pr_{W^\perp}(\w)) = \varphi(\pr_W(\v), \pr_W(\w)) = \varphi(\pr_W(\v) + \pr_{W^\perp}(\v), \pr_W(\w)) = \varphi(\v, \pr_W(\w))$.
+\end{remark}
+
+\begin{proposition}
+	Sia $(V, \varphi)$ uno spazio euclideo. Allora valgono i seguenti risultati:
+	
+	\begin{enumerate}[(i)]
+		\item Siano $U$, $W \subseteq V$ sono sottospazi di $V$, allora $U \perp W$, ossia\footnote{È sufficiente che valga $U \subseteq W^\perp$ affinché valga anche $W \subseteq U^\perp$. Infatti $U \subseteq W^\perp \implies W = W^\dperp \subseteq U^\perp$. Si osserva che in generale vale che $W \subseteq W^\dperp$, dove vale l'uguaglianza nel caso di un prodotto $\varphi$ non degenere, com'è nel caso di uno spazio euclideo,
+			essendo $\varphi > 0$ per ipotesi.} $U \subseteq W^\perp$, $\iff \pr_U \circ \pr_W = \pr_W \circ \pr_U = 0$.
+		
+		\item Sia $V = W_1 \oplus \cdots \oplus W_n$. Allora $\v = \sum_{i=1}^n \pr_{W_i}(\v)$ $\iff$ $W_i \perp W_j$ $\forall i \neq j$, $1 \leq i, j \leq n$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Si dimostrano i due risultati separatamente.
+	
+	\begin{enumerate}[(i)]
+		\item Sia $\v \in V$. Allora $\pr_W(\v) \in W = W^\dperp \subseteq U^\perp$. Pertanto
+		$\pr_U(\pr_W(\v)) = \vec 0$. Analogamente $\pr_W(\pr_U(\v)) = \vec 0$, da cui la tesi.
+		
+		\item Sia vero che $\v = \sum_{i=1}^n \pr_{W_i}(\v)$ $\forall \v \in V$. Sia $\w \in W_j$. Allora $\w = \sum_{i=1}^n \pr_{W_i}(\w) = \w + \sum_{\substack{i=1 \\ i \neq j}} \pr_{W_i}(\w) \implies \pr_{W_i}(\w) = \vec 0$ $\forall i \neq j$. Quindi $\w \in W_i^\perp$ $\forall i \neq j$, e si conclude che $W_i \subseteq W_j^\perp
+		\implies W_i \perp W_j$. Se invece $W_i \perp W_j$ $\forall i \neq j$, sia $\basis_i = \left\{ \w_i^{(1)}, \ldots, \w_i^{(k_i)} \right\}$ una base ortogonale di $W_i$. Allora $\basis = \cup_{i=1}^n \basis_i$ è anch'essa
+		una base ortogonale di $V$, essendo $\varphi\left(\w_i^{(t_i)}, \w_j^{(t_j)}\right) = 0$ per ipotesi.
+		Pertanto $\v = \sum_{i=1}^n \sum_{j=1}^{k_i} C\left(\v, \w_i^{(j)}\right)  \w_i^{(j)} = \sum_{i=1}^n \pr_{W_i}(\v)$,
+		da cui la tesi. \qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{definition} (inversione ortogonale)
+	Si definisce l'applicazione $\rho_W : V \to V$, detta \textbf{inversione ortogonale}, in modo tale che, detto $\v = \w + \w' \in V$ con $\w \in W$, $\w \in W^\perp$, $\rho_W(\v) = \w - \w'$. Se $\dim W = \dim V - 1$,
+	si dice che $\rho_W$ è una \textbf{riflessione}.
+\end{definition}
+
+\begin{remark}\nl
+	\li Si osserva che $\rho_W$ è un'applicazione lineare. \\
+	\li Vale l'identità $\rho_W^2 = \Idv$, da cui si ricava che $\varphi_{\rho_W}(\lambda) \mid (\lambda-1)(\lambda+1)$. In particolare, se $W^\perp \neq \zerovecset$, vale proprio
+	che $\Sp(\rho_W) = \{\pm1\}$, dove $V_1 = W$ e $V_{-1} = W^\perp$. \\
+	\li $\rho_W$ è ortogonale (o unitaria, se $V$ è uno spazio euclideo complesso). Infatti se $\vv 1 = \ww 1 + \ww 1'$ e $\vv 2 = \ww 2 + \ww 2 '$, con $\ww 1$, $\ww 2 \in W$ e $\ww 1'$, $\ww 2' \in W$, $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1 - \ww 1', \ww 2 - \ww 2') = \varphi(\ww 1, \ww 2) \underbrace{- \varphi(\ww 1', \ww 2) - \varphi(\ww 1, \ww 2')}_{=\,0} + \varphi(\ww 1', \ww 2') =  \varphi(\ww 1 - \ww 1', \ww 2 - \ww 2')$. \\
+	
+	Quindi $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1, \ww 2) + \varphi(\ww 1', \ww 2) + \varphi(\ww 1, \ww 2') + \varphi(\ww 1', \ww 2') = \varphi(\vv 1, \vv 2)$.
+\end{remark}
+
+\begin{lemma} Sia $(V, \varphi)$ uno spazio euclideo reale.
+	Siano $\U$, $\w \in V$. Se $\norm{\U} = \norm{\w}$, allora esiste un sottospazio $W$ di dimensione
+	$n-1$ per cui la riflessione $\rho_W$ relativa a $\varphi$ è tale che $\rho_W(\U) = \w$.
+\end{lemma}
+
+\begin{proof} Se $\v$ e $\w$ sono linearmente dipendenti, dal momento che $\norm{v} = \norm{w}$, deve valere anche
+	che $\v = \w$. Sia $\U \neq \vec 0$, $\U \in \Span(\v)^\perp$. Si consideri $U = \Span(\U)$: si osserva che
+	$\dim U = 1$ e che, essendo $\varphi$ non degenere, $\dim U^\perp = n-1$. Posto allora $W = U^\perp$, si ricava,
+	sempre perché $\varphi$ è non degenere, che $U = U^\dperp = W^\perp$. Si conclude pertanto che $\rho_W(\v) =
+	\v = \w$. \\
+	
+	Siano adesso $\v$ e $\w$ linearmente indipendenti e sia $U = \Span(\v - \w)$. Dal momento che $\dim U = 1$ e $\varphi$ è non degenere, $\dim U^\perp = n-1$. Sia allora $W = U^\perp$. Allora, come prima, $U = U^\dperp = W^\perp$. Si consideri dunque la riflessione $\rho_W$: dacché $\v = \frac{\v + \w}{2} + \frac{\v - \w}{2}$, e $\varphi(\frac{\v + \w}{2}, \frac{\v - \w}{2}) = \frac{\norm{\v} - \norm{\w}}{4} = 0$, $\v$ è già decomposto in un elemento di $W$ e in uno di $W^\perp$, per cui si conclude che $\rho_W(\v) =
+	\frac{\v + \w}{2} - \frac{\v - \w}{2} = \w$, ottenendo la tesi.
+	
+\end{proof}
+
+\begin{theorem} [di Cartan–Dieudonné] Sia $(V, \varphi)$ uno spazio euclideo reale.
+	Ogni isometria di $V$ è allora prodotto di al più $n$ riflessioni.
+\end{theorem}
+
+\begin{proof}
+	Si dimostra la tesi applicando il principio di induzione sulla dimensione $n$
+	di $V$. \\
+	
+	\basestep Sia $n = 1$ e sia inoltre $f$ un'isometria di $V$. Sia $\vv 1$ l'unico elemento di una base ortonormale $\basis$ di $V$. Allora $\norm{f(\vv 1)} = \norm{\vv 1} = 1$, da cui si ricava che\footnote{Infatti, detto $\lambda \in \RR$ tale che $f(\vv 1) = \lambda \vv 1$, $\norm{\vv 1} = \norm{f(\vv 1)} = \lambda^2 \norm{\vv 1} \implies \lambda = \pm 1$, ossia $f = \pm \Id$, come volevasi dimostrare.} $f(\vv 1) = \pm \vv 1$,
+	ossia che $f = \pm \Idv$. Se $f = \Idv$, $f$ è un prodotto vuoto, e già verifica la tesi; altrimenti
+	$f = \rho_{\zerovecset}$, dove si considera $V = V \oplus^\perp \zerovecset$. Pertanto $f$ è prodotto
+	di al più una riflessione. \\
+	
+	\inductivestep Sia $\basis = \{ \vv1, \ldots, \vv n \}$ una base di $V$. Sia $f$ un'isometria di $V$. Si
+	assuma inizialmente l'esistenza di $\vv i$ tale per cui $f(\vv i) = \vv i$. Allora, detto $W = \Span(\vv i)$, si può decomporre $V$ come $W \oplus^\perp W^\perp$. Si osserva che $W^\perp$ è $f$-invariante: infatti,
+	se $\U \in W^\perp$, $\varphi(\vv i, f(\U)) = \varphi(f(\vv i), f(\U)) = \varphi(\vv i, \U) = 0 \implies
+	f(\U) \in W^\perp$. Pertanto si può considerare l'isometria $\restr{f}{W^\perp}$. Dacché $\dim W^\perp = n - 1$,
+	per il passo induttivo esistono $W_1$, ..., $W_k$ sottospazi di $W^\perp$ con $k \leq n-1$ per cui $\rho_{W_1}$, ..., $\rho_{W_k} \in \End(W^\perp)$ sono tali che $\restr{f}{W^\perp} = \rho_{W_1} \circ \cdots \circ \rho_{W_k}$. \\
+	
+	Si considerino allora le riflessioni $\rho_{W_1 \oplus^\perp W}$, ..., $\rho_{W_k \oplus^\perp W}$.
+	Si mostra che $\restr{\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}}{W} = \Idw = \restr{f}{W}$.
+	Affinché si faccia ciò è sufficiente mostrare che $(\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W})(\vv i) = \vv i$. Si osserva che $\vv i \in W_i \oplus^\perp W$ $\forall 1 \leq i \leq k$, e
+	quindi che $\rho_{W_k \oplus^\perp W}(\vv i) = \vv i$. Reiterando l'applicazione di questa identità nel prodotto,
+	si ottiene infine il risultato desiderato. Infine, si dimostra che $\restr{\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}}{W^\perp} = \rho_{W_1} \circ \cdots \circ \rho_{W_k} = \restr{f}{W^\perp}$. Analogamente a prima,
+	è sufficiente mostrare che $\rho_{W_k \oplus^\perp W}(\U) = \rho_{W_k}(\U)$ $\forall \U \in W^\perp$.
+	Sia $\U = \rho_{W_k}(\U) + \U'$ con $\U' \in W_k^\perp \cap W^\perp \subseteq (W_k \oplus^\perp W)^\perp$,
+	ricordando che $W^\perp = W_k \oplus^\perp (W^\perp \cap W_k^\perp)$.
+	Allora, poiché $\rho_{W_k}(\U) \in W_k \subseteq (W_k \oplus^\perp W)$, si conclude che
+	$\rho_{W_k \oplus^\perp W}(\U) = \rho_{W_k}(\U)$. Pertanto, dacché vale che $V = W \oplus^\perp W^\perp$ e che $\rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}$ e $f$, ristretti su $W$ o su $W^\perp$, sono le stesse identiche mappe, allora
+	in particolare vale l'uguaglianza più generale:
+	
+	\[ f = \rho_{W_1 \oplus^\perp W} \circ \cdots \circ \rho_{W_k \oplus^\perp W}, \]
+	
+	\vskip 0.05in
+	
+	e quindi $f$ è prodotto di $k \leq n-1$ riflessioni. \\
+	
+	Se invece non esiste alcun $\vv i$ tale per cui $f(\vv i) = \vv i$, per il \textit{Lemma 1} esiste
+	una riflessione $\tau$ tale per cui $\tau(f(\vv i)) = \vv i$. In particolare $\tau \circ f$ è anch'essa
+	un'isometria, essendo composizione di due isometrie. Allora, da prima, esistono $U_1$, ..., $U_k$ sottospazi
+	di $V$ con $k \leq n-1$ tali per cui $\tau \circ f = \rho_{U_1} \circ \cdots \circ \rho_{U_k}$, da
+	cui $f = \tau \circ \rho_{U_1} \circ \cdots \circ \rho_{U_k}$, ossia $f$ è prodotto di al più
+	$n$ riflessioni, concludendo il passo induttivo.
+\end{proof}
+
+\setcounter{lemma}{0}
+
+\hr
+
+\begin{lemma}
+	Sia $f \in \End(V)$ simmetrico (o hermitiano). Allora $f$ ha solo autovalori reali\footnote{Nel caso
+		di $f$ simmetrico, si intende in particolare che tutte le radici del suo polinomio caratteristico
+		sono reali.}.
+\end{lemma}
+
+\begin{proof}
+	Si assuma che $V$ è uno spazio euclideo complesso, e quindi che $\varphi$ è un prodotto hermitiano. Allora,
+	se $f$ è hermitiano, sia $\lambda \in \CC$ un suo autovalore\footnote{Tale autovalore esiste sicuramente dal momento
+		che $\KK = \CC$ è un campo algebricamente chiuso.} e sia $\v \in V_\lambda$. Allora $\varphi(\v, f(\v)) =
+	\varphi(f(\v), \v) = \conj{\varphi(\v, f(\v))} \implies \varphi(\v, f(\v)) \in \RR$. Inoltre vale
+	la seguente identità:
+	
+	\[ \varphi(\v, f(\v)) = \varphi(\v, \lambda \v) = \lambda \varphi(\v, \v), \]
+	
+	da cui, ricordando che $\varphi$ è non degenere e che $\varphi(\v, \v) \in \RR$, si ricava che:
+	
+	\[ \lambda = \frac{\varphi(\v, f(\v))}{\varphi(\v, \v)} \in \RR. \]
+	
+	\vskip 0.05in
+	
+	Sia ora invece $V$ è uno spazio euclideo reale e $\varphi$ è un prodotto scalare. Allora, $(V_\CC, \varphi_\CC)$
+	è uno spazio euclideo complesso, e $f_\CC$ è hermitiano. Sia $\basis$ una base di $V$. Allora, come visto all'inizio di questa
+	dimostrazione, $f_\CC$ ha solo autovalori reali, da cui si ricava che il polinomio caratteristico
+	di $f_\CC$ è completamente riducibile in $\RR$. Si osserva inoltre che $p_f(\lambda) = \det(M_\basis(f) - \lambda I_n) = \det(M_\basis(f_\CC) - \lambda I_n) = p_{f_\CC}(\lambda)$. Si conclude dunque che
+	anche $p_f$ è completamente riducibile in $\RR$.
+\end{proof}
+
+\begin{remark}
+	Dal lemma precedente consegue immediatamente che se $A \in M(n, \RR)$ è simmetrica (o se appartiene a
+	$M(n, \CC)$ ed è hermitiana), considerando l'operatore simmetrico $f_A$ indotto da $A$ in $\RR^n$ (o $\CC^n$),
+	$f_A$ ha tutti autovalori reali, e dunque così anche $A$. 
+\end{remark}
+
+\begin{lemma}
+	Sia $f \in \End(V)$ simmetrico (o hermitiano). Allora se $\lambda$, $\mu$ sono due autovalori distinti
+	di $f$, $V_\lambda \perp V_\mu$.
+\end{lemma}
+
+\begin{proof}
+	Siano $\v \in V_\lambda$ e $\w \in V_\mu$. Allora\footnote{Si osserva che non è stato coniugato $\lambda$
+		nei passaggi algebrici, valendo $\lambda \in \RR$ dallo scorso lemma.} $\lambda \varphi(\v, \w) = \varphi(\lambda \v, \w) = \varphi(f(\v), \w) = \varphi(\v, f(\w)) = \varphi(\v, \mu \w) = \mu \varphi(\v, \w)$.
+	Pertanto vale la seguente identità:
+	
+	\[ (\lambda - \mu) \varphi(\v, \w) = 0. \]
+	
+	\vskip 0.05in
+	
+	In particolare, valendo $\lambda - \mu \neq 0$ per ipotesi, $\varphi(\v, \w) = 0 \implies V_\lambda \perp V_\mu$,
+	da cui la tesi.
+\end{proof}
+
+\begin{lemma}
+	Sia $f \in \End(V)$ simmetrico (o hermitiano). Se $W \subseteq V$ è $f$-invariante, allora anche
+	$W^\perp$ lo è.
+\end{lemma}
+
+\begin{proof}
+	Siano $\w \in W$ e $\v \in W^\perp$. Allora $\varphi(\w, f(\v)) = \varphi(\underbrace{f(\w)}_{\in \, W}, \v) = 0$, da cui si ricava che $f(\v) \in W^\perp$, ossia la tesi.
+\end{proof}
+
+\begin{theorem} [spettrale reale]
+	Sia $(V, \varphi)$ uno spazio euclideo reale (o complesso) e sia $f \in \End(V)$ simmetrico (o hermitiano). Allora esiste una base ortogonale $\basis$ di $V$ composta di autovettori per $f$.
+\end{theorem}
+
+\begin{proof}
+	Siano $\lambda_1$, ..., $\lambda_k$ tutti gli autovalori reali di $f$. Sia inoltre
+	$W = V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_k}$. Per i lemmi precedenti,
+	vale che:
+	
+	\[ W = V_{\lambda_1} \oplus^\perp \cdots \oplus^\perp V_{\lambda_k}. \]
+	
+	\vskip 0.05in
+	
+	Sicuramente $W \subset V$. Si assuma però che $W \subsetneq V$. Allora $V = W \oplus^\perp W^\perp$. In particolare, per il lemma
+	precedente, $W^\perp$ è $f$-invariante. Quindi $\restr{f}{W^\perp}$ è un endomorfismo
+	di uno spazio di dimensione non nulla. Si osserva che $\restr{f}{W^\perp}$ è chiaramente
+	simmetrico (o hermitiano), essendo solo una restrizione di $f$. Allora $\restr{f}{W^\perp}$ ammette
+	autovalori reali per i lemmi precedenti; tuttavia questo è un assurdo, dal momento che ogni autovalore di $\restr{f}{W^\perp}$ è anche autovalore di $f$ e si era supposto che\footnote{Infatti tale autovalore $\lambda$
+		non può già comparire tra questi autovalori, altrimenti, detto $i \in \NN$ tale che $\lambda = \lambda_i$,  $V_{\lambda_i} \cap W^\perp \neq \zerovecset$, violando la somma diretta supposta.} $\lambda_1$, ..., $\lambda_k$ fossero
+	tutti gli autovalori di $f$, \Lightning. Quindi $W = V$. Pertanto, detta $\basis_i$ una base ortonormale
+	di $V_{\lambda_i}$, $\basis = \cup_{i=1}^k \basis_i$ è una base ortonormale di $V$, da cui la tesi.
+\end{proof}
+
+\begin{corollary} [teorema spettrale per le matrici]
+	Sia $A \in M(n, \RR)$ simmetrica (o appartenente a $M(n, \CC)$ ed hermitiana). Allora
+	$\exists P \in O_n$ (o $P \in U_n$) tale che $P\inv A P = P^\top A P$ (o $P\inv A P = P^* A P$ nel caso hermitiano)
+	sia una matrice diagonale reale.
+\end{corollary}
+
+\begin{proof}
+	Si consideri $f_A$, l'operatore indotto dalla matrice $A$ in $\RR^n$ (o $\CC^n$). Allora
+	$f_A$ è un operatore simmetrico (o hermitiano) sul prodotto scalare (o hermitiano) standard.
+	Pertanto, per il teorema spettrale reale, esiste una base ortonormale $\basis = \{ \vv 1, \ldots, \vv n\}$ composta di autovettori
+	di $f_A$. In particolare, detta $\basis'$ la base canonica di $\RR^n$ (o $\CC^n$), vale
+	la seguente identità:
+	
+	\[ M_\basis(f) = M_{\basis'}^{\basis}(\Id)\inv M_{\basis'}(f) M_{\basis'}^{\basis}(\Id), \]
+	
+	dove $M_{\basis'}(f) = A$, $M_\basis(f)$ è diagonale, essendo $\basis$ composta di autovettori, e $P = M_{\basis'}^{\basis}$
+	si configura nel seguente modo:
+	
+	\[ M_{\basis'}^{\basis}(f) = \Matrix{ \vv 1 & \rvline & \cdots & \rvline & \vv n }. \]
+	
+	Dacché $\basis$ è ortogonale, $P$ è anch'essa ortogonale, da cui la tesi.
+\end{proof}
+
+\begin{remark}\nl
+	\li Un importante risultato che consegue direttamente dal teorema spettrale per le matrici riguarda
+	la segnatura di un prodotto scalare (o hermitiano). Infatti, detta $A = M_\basis(\varphi)$,
+	$D = P^\top A P$, e dunque $D \cong A$. Allora, essendo $D$ diagonale, l'indice di positività
+	è esattamente il numero di valori positivi sulla diagonale, ossia il numero di autovalori
+	positivi di $A$. Analogamente l'indice di negatività è il numero di autovalori negativi,
+	e quello di nullità è la molteplicità algebrica di $0$ come autovalore (ossia esattamente
+	la dimensione di $V^\perp_\varphi = \Ker a_\varphi$).
+\end{remark}
+
+\begin{theorem} [di triangolazione con base ortonormale]
+	Sia $f \in \End(V)$, dove $(V, \varphi)$ è uno spazio euclideo su $\KK$. Allora,
+	se $p_f$ è completamente riducibile in $\KK$, esiste una base ortonormale $\basis$
+	tale per cui $M_\basis(f)$ è triangolare superiore (ossia esiste una base ortonormale
+	a bandiera per $f$).
+\end{theorem}
+
+\begin{proof}
+	Per il teorema di triangolazione, esiste una base $\basis$ a bandiera per $f$. Allora,
+	applicando l'algoritmo di ortogonalizzazione di Gram-Schmidt, si può ottenere da $\basis$
+	una nuova base $\basis'$ ortonormale e che mantenga le stesse bandiere. Allora,
+	se $\basis' = \{ \vv1, \ldots, \vv n \}$ è ordinata, dacché $\Span(\vv 1, \ldots, \vv i)$ è $f$-invariante,
+	$f(\vv i) \in \Span(\vv 1, \ldots, \vv i)$, e quindi $M_{\basis'}(f)$ è triangolare superiore, da cui la tesi.
+\end{proof}
+
+\begin{corollary}
+	Sia $A \in M(n, \RR)$ (o $M(n, \CC)$) tale per cui $p_A$ è completamente riducibile.
+	Allora $\exists P \in O_n$ (o $U_n$) tale per cui
+	$P\inv A P = P^\top A P$ (o $P\inv A P = P^* A P$) è triangolare superiore.
+\end{corollary}
+
+\begin{proof}
+	Si consideri l'operatore $f_A$ indotto da $A$ in $\RR^n$ (o $\CC^n$). Sia $\basis$ la base canonica di $\RR^n$ (o di $\CC^n$). Allora, per il teorema
+	di triangolazione con base ortonormale, esiste una base ortonormale $\basis' = \{ \vv1, \ldots, \vv n \}$ di $\RR^n$ (o di $\CC^n$)
+	tale per cui $T = M_{\basis'}(f_A)$ è triangolare superiore. Si osserva inoltre che $M_{\basis}(f_A) = A$ e che $P = M_{\basis}^{\basis'} (f_A) = \Matrix{\vv 1 & \rvline & \cdots & \rvline & \vv n}$ è ortogonale (o unitaria), dacché le sue colonne
+	formano una base ortonormale. Allora, dalla formula del cambiamento di base per la applicazioni lineari,
+	si ricava che:
+	
+	\[ A = P T P\inv \implies T = P\inv T P, \]
+	
+	da cui, osservando che $P\inv = P^\top$ (o $P\inv = P^*$), si ricava la tesi.
+\end{proof}
+
+\begin{definition} [operatore normale]
+	Sia $(V, \varphi)$ uno spazio euclideo reale. Allora $f \in \End(V)$ si dice \textbf{normale}
+	se commuta con il suo trasposto (i.e.~se $f f^\top = f^\top f$). Analogamente,
+	se $(V, \varphi)$ è uno spazio euclideo complesso, allora $f$ si dice normale se commuta con il suo
+	aggiunto (i.e.~se $f f^* = f^* f$).
+\end{definition}
+
+\begin{definition} [matrice normale]
+	Una matrice $A \in M(n, \RR)$ (o $M(n, \CC)$) si dice \textbf{normale} se $A A^\top = A^\top A$ (o $A A^* = A^* A$).
+\end{definition}
+
+\begin{remark}\nl
+	\li Se $A \in M(n, \RR)$ e $A$ è simmetrica ($A = A^\top$), antisimmetrica ($A = -A^\top$) o
+	ortogonale ($A A^\top = A^\top A = I_n$), sicuramente $A$ è normale. \\
+	\li Se $A \in M(n, \CC)$ e $A$ è hermitiana ($A = A^*$), antihermitiana ($A = -A^*$) o
+	unitaria ($A A^* = A^* A = I_n$), sicuramente $A$ è normale. \\
+	\li $f$ è normale $\iff$ $M_\basis(f)$ è normale, con $\basis$ ortonormale di $V$. \\
+	\li $A$ è normale $\iff$ $f_A$ è normale, considerando che la base canonica di $\CC^n$ è già
+	ortonormale rispetto al prodotto hermitiano standard. \\
+	\li Se $V$ è euclideo reale, $f$ è normale $\iff$ $f_\CC$ è normale. Infatti, se $f$ è normale, $f$ e $f^\top$
+	commutano. Allora anche $f_\CC$ e $(f^\top)_\CC = (f_\CC)^*$ commutano, e quindi $f_\CC$ è normale.
+	Ripercorrendo i passaggi al contrario, si osserva infine che vale anche il viceversa.
+\end{remark}
+
+\setcounter{lemma}{0}
+
+\begin{lemma}
+	Sia $A \in M(n, \CC)$ triangolare superiore e normale (i.e.~$A A^* = A^* A$). Allora
+	$A$ è diagonale.
+\end{lemma}
+
+\begin{proof}
+	Se $A$ è normale, allora $(A^*)_i A^i = \conj{A}\,^i A^i$ deve essere uguale a
+	$A_i (A^*)^i = A_i \conj{A}_i$ $\forall 1 \leq i \leq n$. Si dimostra per induzione
+	su $i$ da $1$ a $n$ che tutti gli elementi, eccetto per quelli diagonali, delle
+	righe $A_1$, ..., $A_i$ sono nulli. \\
+	
+	\basestep Si osserva che valgono le seguenti identità:
+	
+	\begin{gather*}
+		\conj{A}\,^1 A^1 = \abs{a_{11}}^2, \\
+		A_1 \conj{A}_1 = \abs{a_{11}}^2 + \abs{a_{12}}^2 + \ldots + \abs{a_{1n}}^2.
+	\end{gather*}
+	
+	Dovendo vale l'uguaglianza, si ricava che $\abs{a_{12}}^2 \ldots + \abs{a_{1n}}^2$,
+	e quindi che $\abs{a_{1i}}^2 = 0 \implies a_{1i} = 0$ \, $\forall 2 \leq i \leq n$,
+	dimostrando il passo base\footnote{Gli altri elementi sono infatti già nulli per ipotesi, essendo
+		$A$ triangolare superiore}. \\
+	
+	\inductivestep Analogamente a prima, si considerano le seguenti identità:
+	
+	\begin{gather*}
+		\conj{A}\,^i A^i = \abs{a_{1i}}^2 + \ldots +  \abs{a_{ii}}^2 = \abs{a_{ii}}^2, \\
+		A_i \conj{A}_i = \abs{a_{ii}}^2 + \abs{a_{i(i+1)}}^2 + \ldots + \abs{a_{in}}^2,
+	\end{gather*}
+	
+	dove si è usato che, per il passo induttivo, tutti gli elementi, eccetto per quelli diagonali, delle
+	righe $A_1$, ..., $A_{i-1}$ sono nulli. Allora, analogamente a prima, si ricava che
+	$a_{ij} = 0$ \, $\forall i < j \leq n$, dimostrando il passo induttivo, e quindi la tesi.
+\end{proof}
+
+\begin{remark}\nl
+	\li Chiaramente vale anche il viceversa del precedente lemma: se infatti $A \in M(n, \CC)$ è diagonale,
+	$A$ è anche normale, dal momento che commuta con $A^*$. \\
+	\li Reiterando la stessa dimostrazione del precedente lemma per $A \in M(n, \RR)$ triangolare superiore e normale reale (i.e.~$AA^\top = A^\top A$) si può ottenere una tesi analoga.
+\end{remark}
+
+\begin{theorem}
+	Sia $(V, \varphi)$ uno spazio euclideo complesso. Allora $f$ è un operatore normale $\iff$ esiste
+	una base ortonormale $\basis$ di autovettori per $f$.
+\end{theorem}
+
+\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+	
+	\rightproof Poiché $\CC$ è algebricamente chiuso, $p_f$ è sicuramente riducibile. Pertanto,
+	per il teorema di triangolazione con base ortonormale, esiste una base ortonormale $\basis$
+	a bandiera per $f$. In particolare, $M_\basis(f)$ è sia normale che triangolare superiore.
+	Allora, per il \textit{Lemma 1}, $M_\basis(f)$ è diagonale, e dunque $\basis$ è anche una
+	base di autovettori per $f$. \\
+	
+	\leftproof Se esiste una base ortonormale $\basis$ di autovettori per $f$, $M_\basis(f)$ è
+	diagonale, e dunque anche normale. Allora, poiché $\basis$ è ortonormale, anche $f$
+	è normale.
+\end{proof}
+
+\begin{corollary}
+	Sia $A \in M(n, \CC)$. Allora $A$ è normale $\iff$ $\exists U \in U_n$ tale che $U\inv A U = U^* A U$
+	è diagonale.
+\end{corollary}
+
+\begin{proof} Si dimostrano le due implicazioni separatamente. \\
+	
+	\rightproof Sia $\basis$ la base canonica di $\CC^n$.
+	Si consideri l'applicazione lineare $f_A$ indotta da $A$ su $\CC^n$. Se $A$ è normale, allora
+	anche $f_A$ lo è. Pertanto, per il precedente teorema, esiste una base ortonormale $\basis' = \{ \vv 1, \ldots, \vv n \}$ di
+	autovettori per $f_A$. In particolare, $U = M_{\basis}^{\basis'}(\Id) = \Matrix{\vv 1 & \rvline & \cdots & \rvline & \vv n}$ è unitaria ($U \in U_n$), dacché le colonne di $U$ sono ortonormali. Si osserva inoltre che
+	$M_{\basis}(f_A) = A$ e che $D = M_{\basis'}(f_A)$ è diagonale. Allora, per la formula del cambiamento di base per le applicazioni lineari,
+	si conclude che:
+	
+	\[ A = U D U\inv \implies D = U\inv A U = U^* A U, \]
+	
+	ossia che $U^* A U$ è diagonale. \\
+	
+	\leftproof Sia $D = U^* A U$. Dacché $D$ è diagonale, $D$ è anche normale. Pertanto $D D^* = D^* D$.
+	Sostituendo, si ottiene che $U^* A U U^* A^* U = U^* A^* U U^* A U$. Ricordando che $U^* U = I_n$ e
+	che $U \in U_n$ è sempre invertibile, si conclude che $A A^* = A^* A$, ossia che $A$ è normale a
+	sua volta, da cui la tesi. 
+\end{proof}
+
+\begin{remark}\nl
+	\li Si può osservare mediante l'applicazione dell'ultimo corollario che, se $A$ è hermitiana (ed è dunque
+	anche normale),
+	$\exists U \in U_n \mid U^* A U = D$, dove $D \in M(n, \RR)$, ossia tale
+	corollario implica il teorema spettrale in forma complessa. Infatti
+	$\conj{D} = D^* = U^* A^* U = U^* A U = D \implies D \in M(n, \RR)$. \\
+	
+	\li Se $A \in M(n, \RR)$ è una matrice normale reale (i.e.~$A A^\top = A^\top A$) con
+	$p_A$ completamente riducibile in $\RR$, allora è possibile reiterare la dimostrazione
+	del precedente teorema per concludere che $\exists O \in O_n \mid O^\top A O = D$ con
+	$D \in M(n, \RR)$, ossia che $A = O D O^\top$.
+	Tuttavia questo implica che $A^\top = (O D O^\top) = O D^\top O^\top = O D O^\top = A$,
+	ossia che $A$ è simmetrica. In particolare, per il teorema spettrale reale, vale
+	anche il viceversa. Pertanto, se $A \in M(n, \RR)$, $A$ è una matrice normale reale con $p_A$ completamente
+	riducibile in $\RR$ $\iff$ $A = A^\top$.
+\end{remark}
+
+\begin{exercise}
+	Sia $V$ uno spazio dotato del prodotto $\varphi$. Sia
+	$W \subseteq V$ un sottospazio di $V$. Sia $\basis_W= \{ \ww 1, \ldots, \ww k \}$
+	una base di $W$ e sia $\basis = \{ \ww 1, ..., \ww k, \vv{k+1}, ..., \vv n \}$ una base di $V$.
+	Sia $A = M_\basis(\varphi)$. Si dimostrino allora i seguenti risultati.
+	
+	\begin{enumerate}[(i)]
+		\item $W^\perp = \{ \v \in V \mid \varphi(\v, \ww i) = 0 \}$,
+		\item $W^\perp = \{ \v \in V \mid A_{1,\ldots,k} [\v]_\basis = 0 \} = [\cdot]_\basis\inv (\Ker A_{1,\ldots,k})$,
+		\item $\dim W^\top = \dim V - \rg(A_{1,\ldots,k})$,
+		\item Se $\varphi$ è non degenere, $\dim W + \dim W^\perp = \dim V$.
+	\end{enumerate}
+\end{exercise}
+
+\begin{proof}[Soluzione]
+	Chiaramente vale l'inclusione $W^\perp \subseteq \{ \v \in V \mid \varphi(\v, \ww i) = 0 \}$. Sia
+	allora $\v \in V \mid \varphi(\v, \ww i) = 0$ $\forall 1 \leq i \leq k$ e sia $\w \in W$. Allora esistono $\alpha_1$, ..., $\alpha_k$ tali
+	che $\w = \alpha_1 \ww 1 + \ldots + \alpha_k \ww k$. Pertanto si conclude che $\varphi(\v, \alpha_1 \ww 1 + \ldots + \alpha_k \ww k) = \alpha_1 \varphi(\v, \ww 1) + \ldots + \alpha_k \varphi(\v, \ww k) = 0 \implies \v \in W^\top$. Pertanto $W^\top = \{ \v \in V \mid \varphi(\v, \ww i) = 0 \}$, dimostrando (i). \\
+	
+	Si osserva che $\varphi(\v, \ww i) = 0 \iff \varphi(\ww i, \v) = 0$. Se $\varphi$ è scalare, allora
+	$\varphi(\ww i, \v) = 0 \defiff [\ww i]_\basis^\top A [\v]_\basis = (\e i)^\top A [\v]_\basis = A_i [\v]_\basis = 0$. Pertanto $\v \in W^\top \iff A_i [\v]_\basis = 0$ $\forall 1 \leq i \leq k$, ossia se
+	$A_{1, \ldots, k} [\v]_\basis = 0$ e $[\v]_\basis \in \Ker A_{1, \ldots, k}$, dimostrando (ii). Analogamente
+	si ottiene la tesi se $\varphi$ è hermitiano.
+	Applicando la formula delle dimensioni, si ricava dunque che $\dim W^\top = \dim \Ker A_{1, \ldots, k} =
+	\dim V - \rg A_{1, \ldots, k}$, dimostrando (iii). \\
+	
+	Se $\varphi$ è non degenere, $A$ è invertibile, dacché $\dim V^\perp = \dim \Ker A = 0$. Allora
+	ogni minore di taglia $k$ di $A$ ha determinante diverso da zero. Dacché ogni minore di taglia $k$
+	di $A_{1,\ldots,k}$ è anche un minore di taglia $k$ di $A$, si ricava che anche ogni minore di taglia
+	$k$ di $A_{1, \ldots, k}$ ha determinante diverso da zero, e quindi che $\rg(A_{1,\ldots,k}) \geq k$.
+	Dacché deve anche valere $\rg(A_{1,\ldots,k}) \leq \min\{k,n\} = k$, si conclude che $\rg(A_{1,\ldots,k})$
+	vale esattamente $k = \dim W$. Allora, dal punto (iii), vale che $\dim W^\perp + \dim W = \dim W^\perp + \rg(A_{1,\ldots,k}) = \dim V$, dimostrando il punto (iv).
+\end{proof}
+
+\begin{exercise}
+	Sia $V$ uno spazio dotato del prodotto $\varphi$. Sia
+	$U \subseteq V$ un sottospazio di $V$. Si dimostrino allora i seguenti due
+	risultati.
+	
+	\begin{enumerate}[(i)]
+		\item Il prodotto $\varphi$
+		induce un prodotto $\tilde \varphi : V/U \times V/U \to \KK$ tale che
+		$\tilde \varphi(\v + U, \v' + U) = \varphi(\v, \v')$ se e soltanto se $U \subseteq V^\perp$, ossia
+		se e solo se $U \perp V$.
+		
+		%TODO: controllare che debba valere $U = V^\perp$
+		\item Se $U = V^\perp$, allora il prodotto $\tilde \varphi$ è non degenere.
+		
+		\item Sia $\pi : V \to V/V^\perp$ l'applicazione lineare di proiezione al quoziente. Allora
+		$U^\perp = \{ \v \in V \mid \tilde \varphi(\pi(\v), \pi(\U)) = 0 \, \forall \U \in U \} = \pi\inv(\pi(U)^\perp)$.
+		
+		\item Vale la formula delle dimensioni per il prodotto $\varphi$: $\dim U + \dim U^\perp = \dim V + \dim (U \cap V^\perp)$.   
+	\end{enumerate}
+\end{exercise}
+
+\begin{proof}[Soluzione]
+	Sia $\w = \v + \uu 1 \in \v + U$, con $\uu 1 \in U$.
+	Se $\tilde \varphi$ è ben definito, allora deve valere l'uguaglianza $\varphi(\v, \v') = \varphi(\w, \v') =
+	\varphi(\v + \uu 1, \v') = \varphi(\v, \v') + \varphi(\uu 1, \v')$, ossia $\varphi(\uu 1, \v') = 0$ $\forall \v' \in V \implies \uu 1 \in V^\perp \implies U \subseteq V^\perp$. Viceversa, se $U \subseteq V^\perp$,
+	sia $\w' = \v' + \uu 2 \in \v' + U$, con $\uu 2 \in U$. Allora vale la seguente identità:
+	
+	\[ \varphi(\w, \w') = \varphi(\v + \uu 1, \v' + \uu 2) = \varphi(\v, \v') + \underbrace{\varphi(\v, \uu 2) + \varphi(\uu 1, \v') + \varphi(\uu 1, \uu 2)}_{=\,0}. \]
+	
+	Pertanto $\tilde \varphi$ è ben definito, dimostrando (i). \\
+	
+	Sia ora $U = V/V^\perp$. Sia $\v + U \in (V/U)^\perp = \Rad(\tilde \varphi)$. Allora, $\forall \v' + U \in V/U$,
+	$\tilde \varphi(\v + U, \v' + U) = \varphi(\v, \v') = 0$, ossia $\v \in V^\perp = U$. Pertanto
+	$\v + U = U \implies \Rad(\tilde \varphi) = \{ V^\perp \}$, e quindi $\tilde \varphi$ è non degenere,
+	dimostrando (ii). \\
+	
+	Si dimostra adesso l'uguaglianza $U^\perp = \pi\inv(\pi(U)^\perp)$. Sia $\v \in U^\perp$. Allora
+	$\tilde \varphi(\pi(\v), \pi(\U)) = \tilde \varphi(\v + V^\perp, \U + V^\perp) = \varphi(\v, \U) = 0$ $\forall
+	\U \in U$, da cui si ricava che vale l'inclusione $U^\perp \subseteq \pi\inv(\pi(U)^\perp)$. Sia
+	ora $\v \in \pi\inv(\pi(U)^\perp)$, e sia $\U \in U$. Allora $\varphi(\v, \U) = \tilde \varphi(\v + V^\perp, \U + V^\perp) = \tilde \varphi(\pi(\v), \pi(\U)) = 0$, da cui vale la doppia inclusione, e dunque l'uguaglianza
+	desiderata, dimostrando (iii). \\
+	
+	Dall'uguaglianza del punto (iii), l'applicazione della formula delle dimensioni e l'identità
+	ottenuta dal punto (iv) dell'\textit{Esercizio 2} rispetto al prodotto $\tilde \varphi$ non degenere, si ricavano
+	le seguenti identità:
+	
+	\[ \system{ \dim \pi(U) = \dim U - \dim (U \cap \Ker \pi) = \dim U - \dim (U \cap V^\perp), \\ \dim \pi(U)^\perp = \dim V/V^\perp - \dim \pi(U) = \dim V - \dim V^\perp - \dim \pi(U), \\ \dim U^\perp = \dim \pi(U)^\perp + \dim \Ker \pi = \dim \pi(U)^\perp + \dim V^\perp, } \]
+	
+	dalle quali si ricava la seguente identità:
+	
+	\[ \dim U^\perp = \dim V - \dim V^\perp - (\dim U - \dim(U \cap V^\perp)) + \dim V^\perp, \]
+	
+	\vskip 0.05in
+	
+	da cui si ricava che $\dim U + \dim U^\perp = \dim V + \dim(U \cap V^\perp)$, dimostrando (iv).
+\end{proof}
+
+\begin{exercise} Sia $V$ uno spazio vettoriale dotato del prodotto $\varphi$. Si dimostri allora che $(W^\perp)^\perp = W + V^\perp$.
+\end{exercise}
+
+\begin{proof}[Soluzione]
+	Sia $\v = \w' + \v' \in W + V^\perp$, con $\w' \in W$ e $\v' \in V^\perp$. Sia inoltre $\w \in W^\perp$.
+	Allora $\varphi(\v, \w) = \varphi(\w' + \v', \w) = \varphi(\w', \w) + \varphi(\v', \w) = 0$,
+	dove si è usato che $\w' \perp \w$ dacché $\w \in W^\perp$ e $\w' \in W$ e che $\v' \in V^\perp$. Allora
+	vale l'inclusione $W + V^\perp \subseteq (W^\perp)^\perp$. \\
+	
+	Applicando le rispettive formule delle dimensioni a $W^\perp$, $(W^\perp)^\perp$ e $W + V^\perp$ si ottengono le seguenti identità:
+	
+	\[ \system{ \dim W^\perp = \dim V + \dim (W \cap V^\perp) - \dim W, \\ \dim (W^\perp)^\perp = \dim V + \dim (W^\perp \cap V^\perp) - \dim W^\perp, \\ \dim (W + V^\perp) = \dim W + \dim V^\perp - \dim (W \cap V^\perp), } \]
+	
+	\vskip 0.05in
+	
+	da cui si ricava che:
+	
+	\[ \dim (W^\perp)^\perp = \dim W + \dim V^\perp - \dim (W \cap V^\perp) = \dim (W + V^\perp). \]
+	
+	Dal momento che vale un'inclusione e l'uguaglianza dimensionale, si conclude che $(W^\perp)^\perp = W + V^\perp$,
+	da cui la tesi.
+\end{proof}
+
+\begin{exercise} Sia $A \in M(n, \CC)$ anti-hermitiana (i.e.~$A = -A^*$). Si dimostri allora che $A$
+	è normale e che ammette solo autovalori immaginari.
+\end{exercise}
+
+\begin{proof}[Soluzione]
+	Si mostra facilmente che $A$ è normale. Infatti $A A^* = A(-A) = -A^2 = (-A)A = A^* A$. Sia allora
+	$\lambda \in \CC$ un autovalore di $A$ e sia $\v \neq \vec 0$, $\v \in V_\lambda$. Si consideri il prodotto hermitiano
+	standard $\varphi$ su $\CC^n$. Allora vale la seguente identità:
+	\begin{gather*}
+		\lambda \, \varphi(\v, \v) = \varphi(\v, \lambda \v) = \varphi(\v, A \v) = \varphi(A^* \v, \v) = \\
+		\varphi(-A\v, \v) = \varphi(-\lambda \v, \v) = -\conj{\lambda} \, \varphi(\v, \v).
+	\end{gather*}
+	
+	Dacché $\varphi$ è definito positivo, $\varphi(\v, \v) \neq 0 \implies \lambda = -\conj{\lambda}$. Allora
+	$\Re(\lambda) = \frac{\lambda + \conj{\lambda}}{2} = 0$, e quindi $\lambda$ è immaginario, da cui la tesi.
+\end{proof}
+
+\begin{exercise}
+	Sia $V$ uno spazio vettoriale dotato del prodotto $\varphi$. Siano $U$, $W \subseteq V$ due sottospazi
+	di $V$. Si dimostrino allora le due seguenti
+	identità.
+	
+	\begin{enumerate}[(i)]
+		\item $(U + W)^\perp = U^\perp \cap W^\perp$,
+		\item $(U \cap W)^\perp \supseteq U^\perp + W^\perp$, dove vale l'uguaglianza insiemistica se $\varphi$
+		è non degenere.
+	\end{enumerate}
+\end{exercise}
+
+\begin{proof}[Soluzione]
+	Sia $\v \in (U + W)^\perp$ e siano $\U \in U \subseteq U + W$, $\w \in W \subseteq U + W$. Allora
+	$\varphi(\v, \U) = 0 \implies \v \in U^\perp$ e $\varphi(\v, \w) = 0 \implies \v \in W^\perp$,
+	da cui si conclude che $(U + W)^\perp \subseteq U^\perp \cap W^\perp$. Sia adesso
+	$\v \in U^\perp \cap W^\perp$ e $\v' = \U + \w \in U + W$ con $\U \in V$ e $\w \in W$. Allora
+	$\varphi(\v, \v') = \varphi(\v, \U) + \varphi(\v, \w) = 0 \implies \v \in (U + W)^\perp$, da cui
+	si deduca che vale la doppia inclusione, e quindi che $(U + W)^\perp = U^\perp \cap W^\perp$,
+	dimostrando (i). \\
+	
+	Sia ora $\v' = \U' + \w' \in U^\perp + W^\perp$ con $\U' \in U^\perp$ e $\w' \in W^\perp$. Sia
+	$\v \in U \cap W$. Allora $\varphi(\v, \v') = \varphi(\v, \U') + \varphi(\v, \w') = 0 \implies
+	\v' \in (U \cap W)^\perp$, da cui si deduce che $(U \cap W)^\perp \supseteq U^\perp + W^\perp$.
+	Se $\varphi$ è non degenere, $\dim (U^\perp + W^\perp) = \dim U^\perp + \dim W^\perp - \dim (U^\perp \cap W^\perp) = 2 \dim V - \dim U - \dim W - \dim (U+W)^\perp = \dim V - \dim U - \dim W + \dim (U + W) =
+	\dim V - \dim (U + W) = \dim (U + W)^\perp$. Valendo pertanto l'uguaglianza dimensionale, si
+	conclude che in questo caso $(U \cap W)^\perp = U^\perp + W^\perp$, dimostrando (ii).
+
+\end{proof}
