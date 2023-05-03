@@ -1,9 +1,13 @@
-\chapter{Il prodotto scalare}
+\chapter{Introduzione al prodotto scalare}
 
 \begin{note}
 	Nel corso del documento, per $V$, qualora non specificato, si intenderà uno spazio vettoriale di dimensione
 	finita $n$.
 \end{note}
+
+\section{Prime definizioni}
+
+\subsection{Prodotto scalare}
 
 \begin{definition}
 	Un \textbf{prodotto scalare} su $V$ è una forma bilineare simmetrica $\varphi$ con argomenti in $V$.
@@ -52,13 +56,18 @@
 	\li $\varphi(\vec{x}, \vec{y}) = \vec{x}^\top A \vec{y}$ per $\KK^n$, con $A \in M(n, \KK)$ simmetrica.
 \end{example}
 
+\subsection{Prodotto definito o semidefinito}
+
 \begin{definition}
 	Sia\footnote{In realtà, la definizione è facilmente estendibile a qualsiasi campo, purché esso
 		sia ordinato.} $\KK = \RR$. Allora un prodotto scalare $\varphi$ si dice \textbf{definito positivo} se $\v \in V$, $\vec{v} \neq \vec{0} \implies
-	\varphi(\vec{v}, \vec{v}) > 0$. Analogamente $\varphi$ è \textbf{definito negativo} se $\vec{v} \neq \vec 0 \implies \varphi(\v, \v) < 0$. \\
+	\varphi(\vec{v}, \vec{v}) > 0$. Analogamente $\varphi$ è \textbf{definito negativo} se $\vec{v} \neq \vec 0 \implies \varphi(\v, \v) < 0$. In generale si dice che $\varphi$ è \textbf{definito} se è definito positivo o
+	definito negativo. \\
 	
 	Infine, $\varphi$ è \textbf{semidefinito positivo} se $\varphi(\v, \v) \geq 0$ $\forall \v \in V$ (o
-	\textbf{semidefinito negativo} se invece $\varphi(\v, \v) \leq 0$ $\forall \v \in V$).	
+	\textbf{semidefinito negativo} se invece $\varphi(\v, \v) \leq 0$ $\forall \v \in V$). Analogamente ai
+	prodotti definiti, si dice che $\varphi$ è \textbf{semidefinito} se è semidefinito positivo o semidefinito
+	negativo.
 \end{definition}
 
 \begin{example}
@@ -68,6 +77,10 @@
 	Al contrario, il prodotto scalare $\varphi : \RR^2 \to \RR$ tale che $\varphi((x_1, x_2), (y_1, y_2)) = x_1 y_1 - x_2 y_2$ non è definito positivo: $\varphi((x, y), (x, y)) = 0$, $\forall$ $(x, y) \mid x^2 = y^2$, ossia se
 	$y = x$ o $y = -x$.
 \end{example}
+
+\section{Il radicale di un prodotto scalare}
+
+\subsection{La forma quadratica $q$ associata a \texorpdfstring{$\varphi$}{φ} e vettori isotropi}
 
 \begin{definition}
 	Ad un dato prodotto scalare $\varphi$ di $V$ si associa una mappa
@@ -89,6 +102,8 @@
 	x_1 y_1 + x_2 y_2 - x_3 y_3$, i vettori isotropi sono i vettori della forma $(x, y, z)$ tali che $x^2 + y^2 = z^2$, ossia
 	i vettori stanti sul cono di equazione $x^2 + y^2 = z^2$.
 \end{example}
+
+\subsection{Matrice associata a \texorpdfstring{$\varphi$}{φ} e congruenza}
 
 \begin{remark}
 	Come già osservato in generale per le applicazioni multilineari, il prodotto scalare è univocamente determinato
@@ -144,7 +159,7 @@
 	
 	\li Per il teorema di cambiamento di base del prodotto scalare, due matrici associate a uno stesso
 	prodotto scalare sono sempre congruenti (esattamente come due matrici associate a uno stesso
-	endomorfismo sono sempre simili).
+	endomorfismo sono sempre simili). \\
 	\li Se $A$ e $B$ sono congruenti, $A = P^\top B P \implies \rg(A) = \rg(P^\top B P) = \rg(BP) = \rg(B)$,
 	dal momento che $P$ e $P^\top$ sono invertibili; quindi il rango è un invariante per congruenza. Allora
 	si può ben definire il rango $\rg(\varphi)$ di un prodotto scalare come il rango della matrice
@@ -152,6 +167,8 @@
 	\li Se $A$ e $B$ sono congruenti, $A = P^\top B P \implies \det(A) = \det(P^\top B P) = \det(P^\top) \det(B) \det(P)=
 	\det(P)^2 \det(B)$. Quindi, per $\KK = \RR$, il segno del determinante è un altro invariante per congruenza.
 \end{remark}
+
+\subsection{Studio del radicale \texorpdfstring{$V^\perp$}{V⟂} attraverso \texorpdfstring{$M_\basis(\varphi)$}{M\_B(φ)}}
 
 \begin{definition}
 	Si definisce il \textbf{radicale} di un prodotto scalare $\varphi$ come lo spazio:

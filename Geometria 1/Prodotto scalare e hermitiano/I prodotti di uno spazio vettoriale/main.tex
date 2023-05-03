@@ -2,7 +2,10 @@
 \documentclass[11pt]{scrbook}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-\usepackage{recap}
+\usepackage{bookmark}
+\usepackage{personal_commands}
+
+\KOMAoptions{twoside=false}
 
 \begin{document}
 	
@@ -24,6 +27,8 @@
 	
 	\include{1. Introduzione al prodotto scalare}
 
+	\iffalse % TODO: sistemare gli altri due file
+
 	\newpage
 	\thispagestyle{empty}
 	~\newpage
@@ -35,4 +40,6 @@
 	~\newpage
 	
 	\include{3. Prodotti hermitiani, spazi euclidei e teorema spettrale}
+	
+	\fi
 \end{document}
