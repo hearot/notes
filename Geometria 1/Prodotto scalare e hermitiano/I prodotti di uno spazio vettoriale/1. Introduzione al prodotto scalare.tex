@@ -1,4 +1,4 @@
-\chapter{Introduzione al prodotto scalare}
+\chapter{Il prodotto scalare}
 
 \begin{note}
 	Nel corso del documento, per $V$, qualora non specificato, si intenderà uno spazio vettoriale di dimensione
@@ -14,7 +14,7 @@
 	
 	\li $\varphi(A + A', B) = \tr((A + A')B) = \tr(AB + A'B) = \tr(AB) + \tr(A'B) = \varphi(A, B) + \varphi(A', B)$ (linearità
 	nel primo argomento), \\
-	\li $\varphi(\alpha A, B) = \tr(\alpha A B) = \alpha \tr(AB) = \alpha \varphi(A, B)$ (omogeneità nel secondo argomento), \\
+	\li $\varphi(\alpha A, B) = \tr(\alpha A B) = \alpha \tr(AB) = \alpha \varphi(A, B)$ (omogeneità nel primo argomento), \\
 	\li $\varphi(A, B) = \tr(AB) = \tr(BA) = \varphi(B, A)$ (simmetria), \\
 	\li poiché $\varphi$ è simmetrica, $\varphi$ è lineare e omogenea anche nel secondo argomento, e quindi è una
 	forma bilineare simmetrica, ossia un prodotto scalare su $M(n, \KK)$.
@@ -63,15 +63,15 @@
 
 \begin{example}
 	Il prodotto scalare canonico di $\RR^n$ è definito positivo: infatti $\varphi((x_1, ..., x_n), (x_1, ..., x_n)) =
-	\sum_{i=1}^n x_i^2  = 0 \iff x_i = 0$, $\forall 1 \leq i \leq n$ $\iff (x_1, ..., x_n) = \vec{0}$. \\
+	\sum_{i=1}^n x_i^2  > 0$, se $(x_1, ..., x_n) \neq \vec 0$. \\
 	
 	Al contrario, il prodotto scalare $\varphi : \RR^2 \to \RR$ tale che $\varphi((x_1, x_2), (y_1, y_2)) = x_1 y_1 - x_2 y_2$ non è definito positivo: $\varphi((x, y), (x, y)) = 0$, $\forall$ $(x, y) \mid x^2 = y^2$, ossia se
 	$y = x$ o $y = -x$.
 \end{example}
 
 \begin{definition}
-	Dato un prodotto scalare $\varphi$ di $V$, ad ogni vettore $\vec{v} \in V$ si associa una \textbf{forma quadratica}
-	$q : V \to \KK$ tale che $q(\vec{v}) = \varphi(\vec{v}, \vec{v})$.
+	Ad un dato prodotto scalare $\varphi$ di $V$ si associa una mappa
+	$q : V \to \KK$, detta \textbf{forma quadratica}, tale che $q(\vec{v}) = \varphi(\vec{v}, \vec{v})$.
 \end{definition}
 
 \begin{remark}
@@ -86,31 +86,29 @@
 
 \begin{example}
 	Rispetto al prodotto scalare $\varphi : \RR^3 \to \RR$ tale che $\varphi((x_1, x_2, x_3), (y_1, y_2, y_3)) =
-	x_1 y_1 + x_2 y_2 - x_3 y_3$, i vettori isotropi $(x, y, z)$ sono quelli tali che $x^2 + y^2 = z^2$, ossia
-	i vettori stanti sul cono di eq.~$x^2 + y^2 = z^2$.
+	x_1 y_1 + x_2 y_2 - x_3 y_3$, i vettori isotropi sono i vettori della forma $(x, y, z)$ tali che $x^2 + y^2 = z^2$, ossia
+	i vettori stanti sul cono di equazione $x^2 + y^2 = z^2$.
 \end{example}
 
 \begin{remark}
-	Come già osservato in generale per le app.~multilineari, il prodotto scalare è univocamente determinato
+	Come già osservato in generale per le applicazioni multilineari, il prodotto scalare è univocamente determinato
 	dai valori che assume nelle coppie $\vv{i}, \vv{j}$ estraibili da una base $\basis$. Infatti, se
 	$\basis = (\vv1, ..., \vv{k})$, $\vec{v} = \sum_{i=1}^k \alpha_i \vv{i}$ e $\vec{w} = \sum_{i=1}^k \beta_i \vv{i}$,
 	allora:
 	
-	\[ \varphi(\vec{v}, \vec{w}) = \sum_{1 \leq i \leq j \leq k} \alpha_i \beta_j \, \varphi(\vv{i}, \vv{j}). \]
+	\[ \varphi(\vec{v}, \vec{w}) = \sum_{i=1}^k \sum_{j=1}^k \alpha_i \beta_j \, \varphi(\vv{i}, \vv{j}). \]
 \end{remark}
 
 \begin{definition}
-	Sia $\varphi$ un prodotto scalare di $V$ e sia $\basis = (\vv1, ..., \vv{n})$ una base ordinata di $V$. Allora si denota con \textbf{matrice associata}
-	a $\varphi$ la matrice:
+	Sia $\varphi$ un prodotto scalare di $V$ e sia $\basis = (\vv1, ..., \vv{n})$ una base ordinata di $V$. Allora si definisce la \textbf{matrice associata}
+	a $\varphi$ come la matrice:
 	
 	\[ M_\basis(\varphi) = (\varphi(\vv{i}, \vv{j}))_{i,\,j = 1\text{---}n} \in M(n, \KK). \] 
 \end{definition}
 
-\begin{remark}
-	Si possono fare alcune osservazioni riguardo $M_\basis(\varphi)$. \\
-	
-	\li $M_\basis(\varphi)$ è simmetrica, infatti $\varphi(\vv{i}, \vv{j}) = \varphi(\vv{j}, \vv{i})$ per
-	definizione di prodotto scalare, \\
+\begin{remark}\nl
+	\li $M_\basis(\varphi)$ è simmetrica, infatti $\varphi(\vv{i}, \vv{j}) = \varphi(\vv{j}, \vv{i})$,
+	dal momento che il prodotto scalare è simmetrico, \\
 	\li $\varphi(\vec{v}, \vec{w}) = [\vec{v}]_\basis^\top M_\basis(\varphi) [\vec{w}]_\basis$.
 \end{remark}
 
@@ -126,10 +124,10 @@
 \end{proof}
 
 \begin{definition}
-	Si definisce \textbf{congruenza} la relazione di equivalenza $\cong$ definita nel seguente
+	Si definisce \textbf{congruenza} la relazione di equivalenza $\cong$ (denotata anche come $\equiv$) definita nel seguente
 	modo su $A, B \in M(n, \KK)$:
 	
-	\[ A \cong B \iff \exists P \in GL(n, \KK) \mid A = P^\top A P. \]
+	\[ A \cong B \defiff \exists P \in GL(n, \KK) \mid A = P^\top A P. \]
 \end{definition}
 
 \begin{remark}
@@ -137,7 +135,7 @@
 	
 	\li $A = I^\top A I \implies A \cong A$ (riflessione), \\
 	\li $A \cong B \implies A = P^\top B P \implies B = (P^\top)\inv A P\inv = (P\inv)^\top A P\inv \implies B \cong A$ (simmetria), \\
-	\li $A \cong B \implies A = P^\top B P$, $B \cong C \implies B = Q^\top C Q$, quindi $A = P^\top Q^\top C Q P =
+	\li $A \cong B$, $B \cong C$ $\implies A = P^\top B P$, $B = Q^\top C Q$, quindi $A = P^\top Q^\top C Q P =
 	(QP)^\top C (QP) \implies A \cong C$ (transitività). 
 \end{remark}
 
@@ -149,14 +147,14 @@
 	endomorfismo sono sempre simili).
 	\li Se $A$ e $B$ sono congruenti, $A = P^\top B P \implies \rg(A) = \rg(P^\top B P) = \rg(BP) = \rg(B)$,
 	dal momento che $P$ e $P^\top$ sono invertibili; quindi il rango è un invariante per congruenza. Allora
-	è ben definito il rango $\rg(\varphi)$ di un prodotto scalare come il rango di una sua qualsiasi matrice
-	associata.
+	si può ben definire il rango $\rg(\varphi)$ di un prodotto scalare come il rango della matrice
+	associata di $\varphi$ in una qualsiasi base di $V$. \\
 	\li Se $A$ e $B$ sono congruenti, $A = P^\top B P \implies \det(A) = \det(P^\top B P) = \det(P^\top) \det(B) \det(P)=
-	\det(P)^2 \det(B)$. Quindi, per $\KK = \RR$, il segno del determinante è invariante per congruenza.
+	\det(P)^2 \det(B)$. Quindi, per $\KK = \RR$, il segno del determinante è un altro invariante per congruenza.
 \end{remark}
 
 \begin{definition}
-	Si dice \textbf{radicale} di un prodotto scalare $\varphi$ lo spazio:
+	Si definisce il \textbf{radicale} di un prodotto scalare $\varphi$ come lo spazio:
 	
 	\[ V^\perp = \{ \vec{v} \in V \mid \varphi(\vec{v}, \vec{w}) = 0 \, \forall \vec{w} \in V \} \]
 	
@@ -164,7 +162,9 @@
 \end{definition}
 
 \begin{remark}
-	Il radicale di $\RR^n$ con il prodotto scalare canonico ha dimensione nulla, dal momento che $\forall \vec{v} \in \RR^n \setminus \{\vec{0}\}$, $q(\vec{v}) = \varphi(\vec{v}, \vec{v}) > 0$.
+	Il radicale del prodotto scalare canonico su $\RR^n$ ha dimensione nulla, dal momento che $\forall \vec{v} \in \RR^n \setminus \{\vec{0}\}$, $q(\vec{v}) = \varphi(\vec{v}, \vec{v}) > 0 \implies \v \notin V^\perp$. In
+	generale ogni prodotto scalare definito positivo (o negativo) è non degenere, dal momento che ogni vettore
+	non nullo non è isotropo, e dunque non può appartenere a $V^\perp$.
 \end{remark}
 
 \begin{definition}
@@ -172,14 +172,19 @@
 	dimensione non nulla.
 \end{definition}
 
-%TODO: spiegare perché \alpha_\varphi è lineare e aggiungere esempi nella parte precedente.
-%TODO: aggiungere osservazioni sul radicale (i.e. che è uno spazio, che ogni suo vettore è isotropo, ...).
-
 \begin{remark}
-	Si definisce l'applicazione lineare $\alpha_\varphi : V \to \dual{V}$ in modo tale che
-	$\alpha_\varphi(\vec{v}) = p$, dove $p(\vec{w}) = \varphi(\vec{v}, \vec{w})$. \\
+	Sia $\alpha_\varphi : V \to \dual{V}$ la mappa\footnote{In letteratura questa mappa, se invertibile, è nota come \textit{isomorfismo musicale}, ed è in realtà indicata come $\flat$.} tale che
+	$\alpha_\varphi(\vec{v}) = p$, dove $p(\vec{w}) = \varphi(\vec{v}, \vec{w})$ $\forall \v$, $\w \in V$. \\
 	
-	Allora $V^\perp$ altro non è che $\Ker \alpha_\varphi$. Se $V$ ha dimensione finita, $\dim V = \dim \dual{V}$,
+	Si osserva che $\alpha_\varphi$ è un'applicazione lineare. Infatti, $\forall \v$, $\w$, $\U \in V$,
+	$\alpha_\varphi(\v + \w)(\U) = \varphi(\v + \w, \U) = \varphi(\v, \U) + \varphi(\w, \U) =
+	\alpha_\varphi(\v)(\U) + \alpha_\varphi(\w)(\U) \implies \alpha_\varphi(\v + \w) = \alpha_\varphi(\v) + \alpha_\varphi(\w)$. Inoltre $\forall \v$, $\w \in V$, $\lambda \in \KK$, $\alpha_\varphi(\lambda \v)(\w) =
+	\varphi(\lambda \v, \w) = \lambda \varphi(\v, \w) = \lambda \alpha_\varphi(\v)(\w) \implies
+	\alpha_\varphi(\lambda \v) = \lambda \alpha_\varphi(\v)$.
+	
+	Si osserva inoltre che $\Ker \alpha_\varphi$ raccoglie tutti
+	i vettori $\v \in V$ tali che $\varphi(\v, \w) = 0$ $\forall \w \in W$, ossia esattamente i vettori di $V^\perp$, per cui si conclude che $V^\perp = \Ker \alpha_\varphi$ (per cui $V^\perp$ è effettivamente uno
+	spazio vettoriale). Se $V$ ha dimensione finita, $\dim V = \dim \dual{V}$,
 	e si può allora concludere che $\dim V^\perp > 0 \iff \Ker \alpha_\varphi \neq \{\vec{0}\} \iff \alpha_\varphi$ non è
 	invertibile (infatti lo spazio di partenza e di arrivo di $\alpha_\varphi$ hanno la stessa dimensione). In
 	particolare, $\alpha_\varphi$ non è invertibile se e solo se $\det(\alpha_\varphi) = 0$. \\
@@ -191,5 +196,5 @@
 	$M_{\basisdual}^\basis(\alpha_\varphi) = M_\basis(\varphi)$. \\
 	
 	Si conclude allora che $\varphi$ è degenere se e solo se $\det (M_\basis(\varphi)) = 0$ e che
-	$V^\perp \cong \Ker M_\basis(\varphi)$ con l'isomorfismo è il passaggio alle coordinate.
+	$V^\perp \cong \Ker M_\basis(\varphi)$ mediante l'isomorfismo del passaggio alle coordinate.
 \end{remark}
