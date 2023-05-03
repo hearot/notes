@@ -64,12 +64,12 @@
 
 \begin{definition}
 	Sia\footnote{In realtà, la definizione è facilmente estendibile a qualsiasi campo, purché esso
-		sia ordinato.} $\KK = \RR$. Allora un prodotto scalare $\varphi$ si dice \textbf{definito positivo} se $\v \in V$, $\vec{v} \neq \vec{0} \implies
-	\varphi(\vec{v}, \vec{v}) > 0$. Analogamente $\varphi$ è \textbf{definito negativo} se $\vec{v} \neq \vec 0 \implies \varphi(\v, \v) < 0$. In generale si dice che $\varphi$ è \textbf{definito} se è definito positivo o
+		sia ordinato.} $\KK = \RR$. Allora un prodotto scalare $\varphi$ si dice \textbf{definito positivo} ($\varphi > 0$) se $\v \in V$, $\vec{v} \neq \vec{0} \implies
+	\varphi(\vec{v}, \vec{v}) > 0$. Analogamente $\varphi$ è \textbf{definito negativo} ($\varphi < 0$) se $\vec{v} \neq \vec 0 \implies \varphi(\v, \v) < 0$. In generale si dice che $\varphi$ è \textbf{definito} se è definito positivo o
 	definito negativo. \\
 	
-	Infine, $\varphi$ è \textbf{semidefinito positivo} se $\varphi(\v, \v) \geq 0$ $\forall \v \in V$ (o
-	\textbf{semidefinito negativo} se invece $\varphi(\v, \v) \leq 0$ $\forall \v \in V$). Analogamente ai
+	Infine, $\varphi$ è \textbf{semidefinito positivo} ($\varphi \geq 0$) se $\varphi(\v, \v) \geq 0$ $\forall \v \in V$ (o
+	\textbf{semidefinito negativo}, e quindi $\varphi \leq 0$, se invece $\varphi(\v, \v) \leq 0$ $\forall \v \in V$). Analogamente ai
 	prodotti definiti, si dice che $\varphi$ è \textbf{semidefinito} se è semidefinito positivo o semidefinito
 	negativo.
 \end{definition}
@@ -96,18 +96,28 @@
 	$\RR^n$.
 \end{remark}
 
-\begin{definition}
+\begin{definition}[vettore isotropo]
 	Un vettore $\vec{v} \in V$ si dice \textbf{isotropo} rispetto al prodotto scalare $\varphi$ se $q(\vec{v}) =
 	\varphi(\vec{v}, \vec{v}) = 0$.
 \end{definition}
 
+\begin{definition}[cono isotropo]
+	Si definisce \textbf{cono isotropo} di $V$ rispetto al prodotto scalare $\varphi$ il seguente insieme:
+	
+	\[ \CI(\varphi) = \{ \v \in V \mid \varphi(\v, \v) = 0 \}, \]
+	
+	\vskip 0.05in
+	
+	ossia l'insieme dei vettori isotropi di $V$.
+\end{definition}
+
 \begin{example}
 	Rispetto al prodotto scalare $\varphi : \RR^3 \to \RR$ tale che $\varphi((x_1, x_2, x_3), (y_1, y_2, y_3)) =
-	x_1 y_1 + x_2 y_2 - x_3 y_3$, i vettori isotropi sono i vettori della forma $(x, y, z)$ tali che $x^2 + y^2 = z^2$, ossia
-	i vettori stanti sul cono di equazione $x^2 + y^2 = z^2$.
+	x_1 y_1 + x_2 y_2 - x_3 y_3$, i vettori isotropi sono i vettori della forma $(x, y, z)$ tali che $x^2 + y^2 = z^2$, e quindi $\CI(\varphi)$ è l'insieme dei
+	vettori stanti sul cono di equazione $x^2 + y^2 = z^2$.
 \end{example}
 
-\subsection{Matrice associata a \texorpdfstring{$\varphi$}{φ} e congruenza}
+\subsection{Matrice associata a \texorpdfstring{$\varphi$}{φ} e relazione di congruenza}
 
 \begin{remark}
 	Come già osservato in generale per le applicazioni multilineari, il prodotto scalare è univocamente determinato

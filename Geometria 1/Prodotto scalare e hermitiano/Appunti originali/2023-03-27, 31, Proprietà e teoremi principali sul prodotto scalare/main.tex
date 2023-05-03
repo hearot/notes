@@ -20,21 +20,26 @@
 		per $V'$ e $\varphi'$.
 	\end{note}
 	
-	\begin{proposition} (formula delle dimensioni del prodotto scalare)
+	\begin{proposition}[formula delle dimensioni del prodotto scalare]
 		Sia $W \subseteq V$ un sottospazio di $V$. Allora vale la seguente identità:
 		
 		\[ \dim W + \dim W^\perp = \dim V + \dim (W \cap V^\perp). \]
 	\end{proposition}
 
 	\begin{proof}
-		Si consideri l'applicazione lineare $f : V \to \dual W$ tale che $f(\vec v)$ è un funzionale di $\dual W$ tale che
-		$f(\vec v)(\vec w) = \varphi(\vec v, \vec w)$ $\forall \vec w \in W$. Si osserva che $W^\perp = \Ker f$, da cui,
-		per la formula delle dimensioni, $\dim V = \dim W^\perp + \rg f$. Inoltre, si osserva anche che
-		$f = i^\top \circ a_\varphi$, dove $i : W \to V$ è tale che $i(\vec w) = \vec w$, infatti $f(\vec v) = a_\varphi(\vec v) \circ i$ è un funzionale di $\dual W$ tale che $f(\vec v)(\vec w) = \varphi(\vec v, \vec w)$. Pertanto
-		$\rg f = \rg (i^\top \circ a_\varphi)$. \\
+		Si consideri l'applicazione lineare $a_\varphi$ introdotta precedentemente. Si osserva che $W^\perp = \Ker (i^\top \circ a_\varphi)$, dove $i : W \to V$ è tale che $i(\vec w) = \vec w$. Allora,
+		per la formula delle dimensioni, vale la seguente identità: 
 		
-		Si consideri ora l'applicazione $g = a_\varphi \circ i : W \to \dual W$. Sia ora $\basis_W$ una base di $W$ e
-		$\basis_V$ una base di $V$. Allora le matrice associate di $f$ e di $g$ sono le seguenti:
+		\begin{equation}
+			\label{eq:dim_formula_dimensioni_1}
+			\dim V = \dim W^\perp + \rg (i^\top \circ a_\varphi). 
+		\end{equation}
+		
+		\vskip 0.05in
+		
+		Sia allora $f = i^\top \circ a_\varphi$.
+		Si consideri ora l'applicazione $g = a_\varphi \circ i : W \to \dual V$. Sia ora $\basis_W$ una base di $W$ e
+		$\basis_V$ una base di $V$. Allora le matrici associate di $f$ e di $g$ sono le seguenti:
 		
 		\begin{enumerate}[(i)]
 			\item $M_{\dual \basis_W}^{\basis_V}(f) = M_{\dual \basis_W}^{\basis_V}(i^\top \circ a_\varphi) =
@@ -43,11 +48,14 @@
 			\underbrace{M_{\dual \basis_V}^{\basis_V}(a_\varphi)}_B \underbrace{M_{\basis_V}^{\basis_W}(i)}_{A^\top} = BA^\top \overbrace{=}^{B^\top = B} (AB)^\top$.
 		\end{enumerate}
 	
-		Poiché $\rg(A) = \rg(A^\top)$, si deduce che $\rg(f) = \rg(g) \implies \rg(i^\top \circ a_\varphi) = \rg(a_\varphi \circ i) = \rg(\restr{a_\varphi}{W}) = \dim W - \dim \Ker \restr{a_\varphi}{W} = \dim W - \dim (W \cap \underbrace{\Ker a_\varphi}_{V^\perp}) = \dim W - \dim (W \cap V^\perp)$. \\
+		Poiché $\rg(A) = \rg(A^\top)$, si deduce che $\rg(f) = \rg(g) \implies \rg(i^\top \circ a_\varphi) = \rg(a_\varphi \circ i) = \rg(\restr{a_\varphi}{W}) = \dim W - \dim \Ker \restr{a_\varphi}{W}$, ossia che:
 		
-		Si conclude allora, sostituendo quest'ultima
-		identità nell'identità ricavata a inizio dimostrazione che $\dim V = \dim W^\top + \dim W - \dim (W \cap V^\perp)$,
-		ossia la tesi.
+		\begin{equation}
+			\label{eq:dim_formula_dimensioni_2}
+			\rg(i^\top \circ a_\varphi) = \dim W - \dim (W \cap \underbrace{\Ker a_\varphi}_{V^\perp}) = \dim W - \dim (W \cap V^\perp).
+		\end{equation}
+		
+		Si conclude allora, sostituendo l'equazione \eqref{eq:dim_formula_dimensioni_2} nell'equazione \eqref{eq:dim_formula_dimensioni_1}, che $\dim V = \dim W^\top + \dim W - \dim (W \cap V^\perp)$, ossia la tesi.
 	\end{proof}
 
 	\begin{remark} Si identifica $\w^\perp$ come il sottospazio di tutti i vettori di $V$ ortogonali a $\w$.
@@ -56,28 +64,35 @@
 
 	\begin{definition}
 		Si definisce \textbf{base ortogonale} di $V$ una base $\vv 1$, ..., $\vv n$ tale per cui $\varphi(\vv i, \vv j) = 0
-		\impliedby i \neq j$, ossia per cui la matrice associata del prodotto scalare è diagonale. 
+		\impliedby i \neq j$, ossia una base per cui la matrice associata del prodotto scalare è diagonale. 
 	\end{definition}
 
-	\begin{proposition} (formula di polarizzazione)
+	\begin{proposition}[formula di polarizzazione]
 		Se $\Char \KK \neq 2$, un prodotto scalare è univocamente determinato dalla sua forma quadratica $q$.
+		In particolare vale la seguente identità:
+		
+		\[ \varphi(\v, \w) = \frac{q(\v + \w) - q(\v) - q(\w)}{2}. \]
+		
+		\vskip 0.05in
 	\end{proposition}
 
 	\begin{proof}
-		Si nota infatti che $q(\vec v + \vec w) - q(\vec v) - q(\vec w) = 2 \varphi(\vec v, \vec w)$, e quindi,
-		poiché $2$ è invertibile per ipotesi, che $\varphi(\vec v, \vec w) = 2\inv (q(\vec v + \vec w) - q(\vec v) - q(\vec w))$.
+		Si osserva che $q(\vec v + \vec w) - q(\vec v) - q(\vec w) = 2 \varphi(\vec v, \vec w)$, e quindi,
+		poiché $2$ è invertibile per ipotesi, si deduce che $\varphi(\vec v, \vec w) = \frac{q(\vec v + \vec w) - q(\vec v) - q(\vec w)}{2}$.
 	\end{proof}
 
-	\begin{theorem}(di Lagrange)
+	\begin{theorem}[di Lagrange]
 		Ogni spazio vettoriale $V$ su $\KK$ tale per cui $\Char \KK \neq 2$ ammette una base ortogonale.
 	\end{theorem}
 
 	\begin{proof}
-		Sia dimostra il teorema per induzione su $n := \dim V$. Per $n \leq 1$, la dimostrazione è triviale. Sia
-		allora il teorema vero per $i \leq n$. Se $V$ ammette un vettore non isotropo $\vec w$, sia $W = \Span(\vec w)$ e si consideri la decomposizione $V = W \oplus W^\perp$. Poiché $W^\perp$ ha dimensione $n-1$, per ipotesi induttiva
+		Si dimostra il teorema per induzione su $n := \dim V$. Per $n \leq 1$, la tesi è triviale (ogni base è
+		già una base ortogonale). Sia
+		allora il teorema vero per $i \leq n$. Se $V$ ammette un vettore non isotropo $\vec w$, sia $W = \Span(\vec w)$, e si consideri la decomposizione $V = W \oplus W^\perp$. Poiché $W^\perp$ ha dimensione $n-1$, per ipotesi induttiva
 		ammette una base ortogonale. Inoltre, tale base è anche ortogonale a $W$, e quindi l'aggiunta di $\vec w$ a
 		questa base ne fa una base ortogonale di $V$. Se invece $V$ non ammette vettori non isotropi, ogni forma quadratica
-		è nulla, e quindi il prodotto scalare è nullo per la proposizione precedente.
+		è nulla, e quindi il prodotto scalare è nullo per la proposizione precedente. Allora in questo caso
+		ogni base è una base ortogonale, completando il passo induttivo, e dunque la dimostrazione.
 	\end{proof}
 
 
@@ -85,7 +100,7 @@
 		D'ora in poi, nel corso del documento, si assumerà $\Char \KK \neq 2$.
 	\end{note}
 
-	\begin{theorem} (di Sylvester, caso complesso)
+	\begin{theorem}[di Sylvester, caso complesso]
 		Sia $\KK$ un campo i cui elementi sono tutti quadrati di un
 		altro elemento del campo (e.g.~$\CC$). Allora esiste una base
 		ortogonale $\basis$ tale per cui:
@@ -95,11 +110,11 @@
 
 	\begin{proof}
 		Per il teorema di Lagrange, esiste una base ortogonale $\basis'$ di $V$.
-		Si riordini la base in modo tale che la forma quadratica valutata nei primi elementi sia sempre diversa da zero. Allora, poiché ogni
+		Si riordini allora la base $\basis'$ in modo tale che la forma quadratica valutata nei primi elementi sia sempre diversa da zero. Allora, poiché ogni
 		elemento di $\KK$ è per ipotesi quadrato di un altro elemento
 		di $\KK$, si sostituisca $\basis'$ con una base $\basis$ tale per
 		cui, se $q(\vv i) = 0$, $\vv i \mapsto \vv i$, e altrimenti
-		$\vv i \mapsto \frac{\vv i}{\sqrt{q(\vv i)}}$. Allora $\basis'$
+		$\vv i \mapsto \frac{\vv i}{\sqrt{q(\vv i)}}$. Allora $\basis$
 		è una base tale per cui la matrice associata del prodotto scalare
 		in tale base è proprio come desiderata nella tesi, dove $r$ è
 		il numero di elementi tali per cui la forma quadratica valutata
@@ -120,21 +135,21 @@
 		è un invariante della congruenza, si ricava che $r$ nella forma
 		della matrice di Sylvester, rappresentando il rango, è anche
 		il rango di ogni sua matrice congruente. In particolare, se due
-		matrici simmetriche hanno stesso rango, allora sono congruenti
+		matrici simmetriche hanno lo stesso rango, allora sono congruenti
 		alla stessa matrice di Sylvester, e quindi, essendo la congruenza
-		una relazione di congruenza, sono congruenti a loro volta. \\
+		una relazione di equivalenza, sono congruenti a loro volta tra di loro. \\
 		\li Due matrici simmetriche con stesso rango, allora, non solo
 		sono SD-equivalenti, ma sono anche congruenti. \\
 		\li Ogni base ortogonale deve quindi avere lo stesso numero
 		di elementi nulli.
 	\end{remark}
 
-	\begin{definition} (somma diretta ortogonale)
+	\begin{definition}[somma diretta ortogonale]
 		Siano i sottospazi $U$ e $W \subseteq V$ in somma diretta. Allora si dice che $U$ e $W$ sono in \textbf{somma
-		diretta ortogonale rispetto al prodotto scalare} $\varphi$ di $V$, ossia che $U \oplus W = U \oplus^\perp W$, se $\varphi(\vec u, \vec w) = 0$ $\forall \vec u \in U$, $\vec w \in W$.
+		diretta ortogonale} rispetto al prodotto scalare $\varphi$ di $V$, ossia che $U \oplus W = U \oplus^\perp W$, se $\varphi(\vec u, \vec w) = 0$ $\forall \vec u \in U$, $\vec w \in W$.
 	\end{definition}
 
-	\begin{definition} (cono isotropo)
+	\begin{definition}[cono isotropo]
 		Si definisce \textbf{cono isotropo} di $V$ rispetto al prodotto scalare $\varphi$ il seguente insieme:
 		
 		\[ \CI(\varphi) = \{ \v \in V \mid \varphi(\v, \v) = 0 \}, \]
@@ -224,7 +239,7 @@
 		\begin{align*}
 			\iota_+(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} > 0 \}, &\text{(}\textbf{indice di positività}\text{)} \\
 			\iota_-(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} < 0 \}, &\text{(}\textbf{indice di negatività}\text{)}\\
-			\iota_0(\varphi) &= \dim V^\perp &\text{(}\textbf{indice di nullità}\text{)}
+			\iota_0(\varphi) &= \dim V^\perp. &\text{(}\textbf{indice di nullità}\text{)}
 		\end{align*}
 	
 		Quando il prodotto scalare $\varphi$ è noto dal contesto, si omette
@@ -233,7 +248,7 @@
 		prodotto $\varphi$.
 	\end{definition}
 	
-	\begin{theorem} (di Sylvester, caso reale) Sia $\KK$ un campo ordinato
+	\begin{theorem}[di Sylvester, caso reale] Sia $\KK$ un campo ordinato
 		i cui elementi positivi sono tutti quadrati (e.g.~$\RR$). Allora
 		esiste una base ortogonale $\basis$ tale per cui:
 		
@@ -309,7 +324,7 @@
 			analogamente per gli altri indici.
 	\end{remark}
 
-	\begin{definition} (isometria)
+	\begin{definition}[isometria tra due spazi vettoriali]
 		Dati due spazi vettoriali $(V, \varphi)$ e
 		$(V', \varphi')$ dotati di prodotto scalare sullo stesso campo $\KK$, si dice che
 		$V$ e $V'$ sono \textbf{isometrici} se esiste un isomorfismo
@@ -382,11 +397,7 @@
 		$V'$ sono isometrici.
 	\end{proof}
 
-	% \begin{example}
-	% 	Per $\varphi = x_1 y_1 + x_2 y_2 - x_3 y_3$. %TODO: guarda dalle slide.
-	% \end{example}
-
-	\begin{definition} (sottospazio isotropo)
+	\begin{definition}[sottospazio isotropo]
 		Sia $W$ un sottospazio di $V$. Allora $W$ si dice \textbf{sottospazio isotropo} di $V$
 		se $\restr{\varphi}{W} = 0$.
 	\end{definition}
@@ -408,7 +419,7 @@
 		da cui $\dim W \leq \frac{1}{2} \dim V$.
 	\end{proof}
 
-	\begin{definition}
+	\begin{definition}[indice di Witt]
 		Si definisce \textbf{indice di Witt} $W(\varphi)$ di $(V, \varphi)$
 		come la massima dimensione di un sottospazio isotropo. 
 	\end{definition}
