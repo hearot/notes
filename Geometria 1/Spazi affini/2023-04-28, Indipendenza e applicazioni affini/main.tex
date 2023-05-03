@@ -14,8 +14,6 @@
 		\Large \textbf{Indipendenza e applicazioni affini}
 	\end{center}
 	
-	\wip
-	
 	\begin{note} Qualora non specificato diversamente, si intenderà per
 		$E$ uno spazio affine sullo spazio vettoriale $V$ e
 		per $E'$ uno spazio affine sullo spazio vettoriale $V'$, dove sia $V$ che $V'$ sono costruiti
@@ -60,6 +58,8 @@
 		dalla seguente costruzione:
 		
 		\[ \varphi_{O, \basis}(P) = [P-O]_\basis. \]
+		
+		\vskip 0.05in
 	\end{remark}
 	
 	\begin{proposition}
@@ -115,7 +115,15 @@
 		\li I sottospazi affini di dimensione uno sono le \textit{rette affini},
 		mentre quelli di dimensione due sono i \textit{piani affini}. \\
 		\li Si dice \textit{iperpiano affine} un sottospazio affine di codimensione $1$,
-		ossia di dimensione $n-1$.
+		ossia di dimensione $n-1$. \\
+		\li Due sottospazi affini sono paralleli se e solo se uno può
+		essere ottenuto mediante una traslazione dell'altro sottospazio. \\
+		\li Se $D = \Aff(P_1, \ldots, P_k)$ con $P_1$, ..., $P_k \in E$,
+		i vettori $P_2 - P_1$, ..., $P_k - P_1$ generano $D_0$. Infatti,
+		se $P - P_1 \in D_0$, con $P \in D$, esistono $\lambda_1$, ...,
+		$\lambda_k \in \KK$ con $\sum_{i=1}^k \lambda_i = 1$ tali che
+		$P = \sum_{i=1}^k \lambda_i P_i$. Allora $P-P_1 = \sum_{i=1}^k \lambda_i (P_i - P_1)$, da cui si deduce che tali vettori
+		generano $D_0$.
 	\end{remark}
 	
 	\begin{definition} [punti affinemente indipendenti]
@@ -185,7 +193,14 @@
 		\li Si osserva che il numero massimo di punti affinemente indipendenti di un sottospazio affine $D$
 		di dimensione $k$ è $k+1$, dacché, fissato un punto, vi possono essere al più $k$ vettori linearmente indipendenti. \\
 		\li Un punto di $E$ è sempre affinemente indipendente, dacché la sua unica combinazione affine è
-		sé stesso.
+		sé stesso. \\
+		\li Due punti di $E$ sono affinemente indipendenti se e solo
+		se il vettore che li congiunge è non nullo. \\
+		\li Se $P_1$, ..., $P_k$ sono punti affinemente indipendenti,
+		allora $\dim \Aff(P_1, \ldots, P_k) = k-1$. Infatti esistono
+		almeno $k-1$ vettori linearmente indipendenti nella direzione
+		di questo sottospazio affine, ed esattamente $k-1$ vettori
+		generano tale direzione.
 	\end{remark}
 	
 	\begin{definition} [riferimento affine] Sia $D \subseteq E$ un sottospazio affine di $E$ di dimensione $k-1$.
@@ -248,7 +263,8 @@
 	\end{definition}
 	
 	\begin{definition} [baricentro]
-		Si definisce \textbf{baricentro} dei punti $P_1$, ..., $P_k$ la combinazione convessa
+		Si definisce \textbf{baricentro} $G_S$ dei punti $P_1$, ..., $P_k$,
+		che compongono l'insieme $S \subseteq E$, la combinazione convessa
 		$\sum_{i=1}^k \frac{1}{k} P_i$.
 	\end{definition}
 
@@ -262,7 +278,23 @@
 		$[P, Q] \subseteq \IC(S)$. \\
 		\li Se $E = \Aa_2(\RR)$, e $P_1$, $P_2$, $P_3$ sono tre punti di $E$, l'inviluppo convesso dei
 		tre punti è esattamente il triangolo costruito sui tre punti. Analogamente, presi quattro
-		punti di $\Aa_3(\RR)$, l'inviluppo convesso dei quattro punti è un tetraedro. 
+		punti di $\Aa_3(\RR)$, l'inviluppo convesso dei quattro punti è un tetraedro. \\
+		\li Se $A = B \sqcup C \subseteq E$ (ossia se $A = B \cup C$ con
+		$B \cap C = \emptyset$), si osserva che $G_A = \frac{\abs{B}}{\abs{A}} G_B + \frac{\abs{C}}{\abs{A}} G_C$. Infatti, se $B_1$, ..., $B_{\abs B}$ sono i punti di $A$ appartenenti a $B$ e $C_1$, ..., $C_{\abs C}$ sono
+		quelli appartenenti a $C$, $G_A = \sum_{i=1}^{\abs B} \frac{1}{\abs{A}} B_i + \sum_{i=1}^{\abs C} \frac{1}{\abs{A}} C_i = \frac{\abs{B}}{\abs A} \sum_{i=1}^{\abs B} \frac{1}{\abs{B}} B_i + \frac{\abs{C}}{\abs A} \sum_{i=1}^{\abs C} \frac{1}{\abs{C}} C_i = \frac{\abs{B}}{\abs{A}} G_B + \frac{\abs{C}}{\abs{A}} G_C$. \\
+		\li In $\Aa_2(\RR)$, il baricentro tra tre punti affinemente
+		indipendenti è esattamente il baricentro del loro inviluppo
+		convesso, ossia del triangolo formato da questi punti. Infatti,
+		se $S = \{ P_1, P_2, P_3 \}$, $G_S = \frac{1}{3} P_1 + \frac{1}{3} P_2 +
+		\frac{1}{3} P_3$. Inoltre, per l'osservazione precedente, si può
+		scrivere il baricentro di questo triangolo come una combinazione
+		convessa del punto medio di due punti e del terzo punto non
+		considerato, ossia $G_S = \frac{2}{3} \left( \frac{1}{2} P_i + \frac{1}{2} P_j \right) + \frac{1}{3} P_k$. Pertanto il baricentro
+		di un triangolo è l'intersezione di tutte e tre le mediane di
+		tale triangolo. Se si dota il piano della misura euclidea si deduce
+		anche che il segmento che congiunge il baricentro al
+		punto medio è la metà del segmento che congiunge il baricentro
+		al terzo punto.
 	\end{remark}
 	
 	\begin{definition} [applicazione affine] Si definisce \textbf{applicazione affine} da $E$ a $E'$ un'applicazione $\varphi : E \to E'$
@@ -319,7 +351,8 @@
 		$\varphi(\vec x) = \varphi(\vec 0) + g(\vec x - \vec 0) = A \vec x + \vec b$ $\forall \vec x \in E$, dove $A$ è la matrice associata
 		di $g$ nelle basi canoniche di $\KK^n$ e $\KK^m$ e $\vec b = \varphi(\vec 0)$. \\
 
-		\li Se $g$ e $g'$ sono le applicazioni lineari associate alle applicazioni affini $\varphi : E \to E'$ e $\varphi' : E' \to E''$,
+		\li Sia $E''$ un altro spazio affine costruito su un altro spazio
+		vettoriale $V''$, sempre fondato sul campo $\KK$. Se dunque $g$ e $g'$ sono le applicazioni lineari associate alle applicazioni affini $\varphi : E \to E'$ e $\varphi' : E' \to E''$,
 		allora $g \circ g'$ è l'applicazione lineare associata a $\varphi \circ \varphi'$ e
 		$\varphi + \varphi'$. Infatti, se $O \in E$, $\varphi(\varphi'(P)) = \varphi(\varphi'(O) + g'(P-O)) =
 		\varphi(\varphi'(O)) + g(g'(P-O))$.
@@ -334,6 +367,24 @@
 		lineare associata $g : V \to V'$ è invertibile, allora $\varphi(P) = \varphi(Q) \implies \varphi(O) + g(P - O) = \varphi(O) + g(Q - O) \implies g(P-O) = g(Q-O) \implies P-O = Q-O \implies P=Q$ (iniettività), e $\forall P \in E$,
 		$\varphi(O + g\inv(P-\varphi(O))) = \varphi(O) + g(g\inv(P-\varphi(O))) = P$ (surgettività). Analogamente
 		si dimostra il viceversa.
+	\end{remark}
+
+	\begin{remark}
+		Se $\varphi : E \to E$ è un'affinità, anche il suo inverso $\varphi\inv$
+		lo è. Dacché $\varphi\inv$ è già bigettiva, è sufficiente mostra
+		che è anche un'applicazione affine. Siano allora $\lambda_1$, ...,
+		$\lambda_k \in \KK$ tali che $\sum_{i=1}^k \lambda_i = 1$. Siano
+		inoltre $P_1$, ..., $P_k$ punti di $E$. Allora, poiché $\varphi$
+		è un'affinità, esistono $Q_1 = \varphi\inv(P_1)$, ..., $Q_k = \varphi\inv(P_k) \in E$ tali che
+		$\varphi\left( \sum_{i=1}^k \lambda_i Q_i \right) = \sum_{i=1}^k \lambda_i P_i$. Allora $\varphi\inv\left( \sum_{i=1}^k \lambda_i P_i \right) = \varphi\inv\left(\varphi\left( \sum_{i=1}^k \lambda_i Q_i \right)\right) = \sum_{i=1}^k \lambda_i \, \varphi\inv(P_i)$. \\
+		
+		In particolare, se $g \in \End(V)$ è l'applicazione lineare associata
+		a $\varphi$, $g\inv$ è l'applicazione lineare associata a $\varphi\inv$.
+		Sia infatti $f \in \End(V)$ è l'applicazione lineare associata
+		a $\varphi\inv$. Dal momento che $\varphi\inv(\varphi(O + \v)) = O + \v$
+		e che $\varphi\inv(\varphi(O + \v)) = \varphi\inv(\varphi(O) + g(\v)) =
+		\varphi\inv(\varphi(O)) + f(g(\v)) = O + f(g(\v))$, deve valere infatti
+		che $f(g(\v)) = \v$ $\forall \v \in V$, ossia $f \circ g = \Idv \implies f = g\inv$.
 	\end{remark}
 	
 	\begin{definition} [gruppo delle affinità di uno spazio affine] Si indica con $A(E)$ il gruppo,
