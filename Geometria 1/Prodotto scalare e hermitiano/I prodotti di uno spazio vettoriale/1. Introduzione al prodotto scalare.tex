@@ -14,7 +14,7 @@
 \end{definition}
 
 \begin{example}
-	Sia $\varphi : M(n, \KK)^2 \to \KK$ tale che $\varphi(A, B) = \tr(AB)$. \\
+	Sia $\varphi : M(n, \KK) \times M(n, \KK) \to \KK$ tale che $\varphi(A, B) = \tr(AB)$. \\
 	
 	\li $\varphi(A + A', B) = \tr((A + A')B) = \tr(AB + A'B) = \tr(AB) + \tr(A'B) = \varphi(A, B) + \varphi(A', B)$ (linearità
 	nel primo argomento), \\
@@ -84,7 +84,7 @@
 
 \section{Il radicale di un prodotto scalare}
 
-\subsection{La forma quadratica $q$ associata a \texorpdfstring{$\varphi$}{φ} e vettori isotropi}
+\subsection{La forma quadratica $q$ associata a \texorpdfstring{$\varphi$}{φ} e vettori (an)isotropi}
 
 \begin{definition}
 	Ad un dato prodotto scalare $\varphi$ di $V$ si associa una mappa
@@ -96,9 +96,10 @@
 	$\RR^n$.
 \end{remark}
 
-\begin{definition}[vettore isotropo]
+\begin{definition}[vettore (an)isotropo]
 	Un vettore $\vec{v} \in V$ si dice \textbf{isotropo} rispetto al prodotto scalare $\varphi$ se $q(\vec{v}) =
-	\varphi(\vec{v}, \vec{v}) = 0$.
+	\varphi(\vec{v}, \vec{v}) = 0$. Al contrario, $\v$ si dice \textbf{anisotropo} se non è isotropo, ossia
+	se $q(\v) \neq 0$.
 \end{definition}
 
 \begin{definition}[cono isotropo]
@@ -187,7 +188,7 @@
 \begin{definition}
 	Si definisce il \textbf{radicale} di un prodotto scalare $\varphi$ come lo spazio:
 	
-	\[ V^\perp = \{ \vec{v} \in V \mid \varphi(\vec{v}, \vec{w}) = 0 \, \forall \vec{w} \in V \} \]
+	\[ V^\perp = \Rad(\varphi) = \{ \vec{v} \in V \mid \varphi(\vec{v}, \vec{w}) = 0 \, \forall \vec{w} \in V \} \]
 	
 	\vskip 0.05in
 \end{definition}
@@ -229,3 +230,201 @@
 	Si conclude allora che $\varphi$ è degenere se e solo se $\det (M_\basis(\varphi)) = 0$ e che
 	$V^\perp \cong \Ker M_\basis(\varphi)$ mediante l'isomorfismo del passaggio alle coordinate.
 \end{remark}
+
+\subsection{Condizioni per la (semi)definitezza di un prodotto scalare}
+
+\begin{proposition} Sia $\KK = \RR$. Allora
+	$\varphi$ è definito $\iff$ $\CI(\varphi) = \zerovecset$. \label{prop:definitezza_varphi}
+\end{proposition}
+
+\begin{proof}
+	Si dimostrano le due implicazioni separatamente. \\
+	
+	\rightproof Se $\varphi$ è definito, allora $\varphi(\v, \v)$ è sicuramente diverso da zero
+	se $\v \neq \vec 0$. Pertanto $\CI(\varphi) = \zerovecset$. \\
+	
+	\leftproof Sia $\varphi$ non definito. Se non esistono $\v \neq \vec 0$, $\w \neq \vec 0 \in V$ tali che
+	$q(\v) > 0$ e che $q(\w) < 0$, allora $\varphi$ è necessariamente semidefinito. In tal caso,
+	poiché $\varphi$ non è definito, deve anche esistere $\U \in V$, $\U \neq \vec 0 \mid q(\U) = 0 \implies \CI(\varphi) \neq \zerovecset$. \\
+	
+	Se invece tali $\v$, $\w$ esistono, questi sono anche linearmente indipendenti. Se infatti
+	non lo fossero, uno sarebbe il multiplo dell'altro, e quindi le loro due forme quadratiche
+	sarebbero concordi di segno, \Lightning. Si consideri allora la combinazione lineare
+	$\v + \lambda \w$ al variare di $\lambda \in \RR$, imponendo che essa sia isotropa:
+	
+	\[ q(\v + \lambda \w) = 0 \iff \lambda^2 q(\w)+ 2 \lambda q(\v, \w) + q(\v) = 0. \]
+	
+	\vskip 0.05in
+	
+	Dal momento che $\frac{\Delta}{4} = \overbrace{q(\v, \w)^2}^{\geq 0} - \overbrace{q(\w)q(\v)}^{> 0}$ è
+	sicuramente maggiore di zero, tale equazione ammette due soluzioni reali $\lambda_1$, $\lambda_2$.
+	In particolare $\lambda_1$ è tale che $\v + \lambda_1 \w \neq \vec 0$, dal momento che $\v$ e $\w$
+	sono linearmente indipendenti. Allora $\v + \lambda_1 \w$ è un vettore isotropo non nullo
+	di $V$ $\implies \CI(\varphi) \neq \zerovecset$. \\
+	
+	Si conclude allora, tramite la contronominale, che se $\CI(\varphi) = \zerovecset$, $\varphi$
+	è necessariamente definito. 
+\end{proof}
+
+\begin{proposition} Sia $\KK = \RR$. Allora
+	$\varphi$ è semidefinito $\iff$ $\CI(\varphi) = V^\perp$. \label{prop:semidefinitezza_varphi}
+\end{proposition}
+
+\begin{proof}
+	Si dimostrano le due implicazioni separatamente. \\
+	
+	\rightproof Sia $\varphi$ semidefinito. Chiaramente $V^\perp \subseteq \CI(\varphi)$. Si assuma
+	che $V^\perp \subsetneq \CI(\varphi)$. Sia allora $\v$ tale che $\v \in \CI(\varphi)$ e che $\v \notin V^\perp$.
+	Poiché $\v \notin V^\perp$, esiste un vettore $\w \in V$ tale che $\varphi(\v, \w) \neq 0$. Si osserva
+	che $\v$ e $\w$ sono linearmente indipendenti tra loro. Se infatti non lo fossero, esisterebbe $\mu \in \RR$
+	tale che $\w = \mu \v \implies \varphi(\v, \w) = \mu \, \varphi(\v, \v) = 0$, \Lightning. \\
+	
+	Si consideri allora la combinazione lineare $\v + \lambda \w$. Si consideri $\varphi$ semidefinito positivo.
+	In tal caso si può imporre che la valutazione di $q$ in $\v + \lambda \w$ sia strettamente negativa:
+	
+	\[ q(\v + \lambda \w) < 0 \iff \overbrace{q(\v)}^{=0} + \lambda^2 q(\w) + 2 \lambda \, \varphi(\v, \w) < 0. \]
+	
+	\vskip 0.05in
+	
+	In particolare, dal momento che $\frac{\Delta}{4} = \varphi(\v, \w)^2 > 0$, tale disequazione ammette
+	una soluzione $\lambda_1 \neq 0$. Inoltre $\v + \lambda_1 \w \neq \vec 0$, dal momento che $\v$ e
+	$\w$ sono linearmente indipendenti. Allora si è trovato un vettore non nullo per cui la valutazione in esso
+	di $q$ è negativa, contraddicendo l'ipotesi di semidefinitezza positiva di $\varphi$, \Lightning. Analogamente
+	si dimostra la tesi per $\varphi$ semidefinito negativo. \\
+	
+	\leftproof Sia $\varphi$ non semidefinito. Allora devono esistere $\v$, $\w \in V$ tali che
+	$q(\v) > 0$ e che $q(\w) < 0$. In particolare, $\v$ e $\w$ sono linearmente indipendenti
+	tra loro, dal momento che se non lo fossero, uno sarebbe multiplo dell'altro, e le
+	valutazioni in essi di $q$ sarebbero concordi di segno, \Lightning. Si consideri allora
+	la combinazione lineare $\v + \lambda \w$, imponendo che $q$ si annulli in essa:
+	
+	\[ q(\v + \lambda \w) = 0 \iff \lambda^2 q(\w)+ 2 \lambda q(\v, \w) + q(\v) = 0. \]
+	
+	\vskip 0.05in
+	
+	In particolare, dal momento che $\frac{\Delta}{4} = \varphi(\v, \w)^2 > 0$, tale disequazione ammette
+	una soluzione $\lambda_1 \neq 0$. Allora, per tale $\lambda_1$, $\v + \lambda_1 \w \in \CI(\varphi)$.
+	Tuttavia $\varphi(\v + \lambda_1 \w, \v - \lambda_1 \w) = q(\v) - \underbrace{\lambda_1^2 q(\w)}_{<0} > 0 \implies
+	\v + \lambda_1 \w \notin V^\perp \implies \CI(\varphi) \supsetneq V^\perp$. \\
+	
+	Si conclude allora, tramite la contronominale, che se $\CI(\varphi) = V^\perp$, $\varphi$
+	è necessariamente semidefinito. 
+\end{proof}
+
+\section{Formula delle dimensioni e di polarizzazione rispetto a $\varphi$}
+
+\begin{definition}[sottospazio ortogonale a $W$]
+	Sia $W \subseteq V$ un sottospazio di $V$. Si identifica allora come \textbf{sottospazio ortogonale a $W$}
+	il sottospazio $W^\perp = \{ \v \in V \mid \varphi(\v, \w) \, \forall \w \in W \}$.
+\end{definition}
+
+\begin{proposition}[formula delle dimensioni del prodotto scalare]
+	Sia $W \subseteq V$ un sottospazio di $V$. Allora vale la seguente identità:
+	
+	\[ \dim W + \dim W^\perp = \dim V + \dim (W \cap V^\perp). \]
+\end{proposition}
+
+\begin{proof}
+	Si consideri l'applicazione lineare $a_\varphi$ introdotta precedentemente. Si osserva che $W^\perp = \Ker (i^\top \circ a_\varphi)$, dove $i : W \to V$ è tale che $i(\vec w) = \vec w$. Allora,
+	per la formula delle dimensioni, vale la seguente identità: 
+	
+	\begin{equation}
+		\label{eq:dim_formula_dimensioni_1}
+		\dim V = \dim W^\perp + \rg (i^\top \circ a_\varphi). 
+	\end{equation}
+	
+	\vskip 0.05in
+	
+	Sia allora $f = i^\top \circ a_\varphi$.
+	Si consideri ora l'applicazione $g = a_\varphi \circ i : W \to \dual V$. Sia ora $\basis_W$ una base di $W$ e
+	$\basis_V$ una base di $V$. Allora le matrici associate di $f$ e di $g$ sono le seguenti:
+	
+	\begin{enumerate}[(i)]
+		\item $M_{\dual \basis_W}^{\basis_V}(f) = M_{\dual \basis_W}^{\basis_V}(i^\top \circ a_\varphi) =
+		\underbrace{M_{\dual \basis_W}^{\dual \basis_V}(i^\top)}_A \underbrace{M_{\dual \basis_V}^{\basis_V}(a_\varphi)}_B = AB$,
+		\item $M_{\dual \basis_V}^{\basis_W}(g) = M_{\dual \basis_V}^{\basis_W}(a_\varphi \circ i) =
+		\underbrace{M_{\dual \basis_V}^{\basis_V}(a_\varphi)}_B \underbrace{M_{\basis_V}^{\basis_W}(i)}_{A^\top} = BA^\top \overbrace{=}^{B^\top = B} (AB)^\top$.
+	\end{enumerate}
+	
+	Poiché $\rg(A) = \rg(A^\top)$, si deduce che $\rg(f) = \rg(g) \implies \rg(i^\top \circ a_\varphi) = \rg(a_\varphi \circ i) = \rg(\restr{a_\varphi}{W}) = \dim W - \dim \Ker \restr{a_\varphi}{W}$, ossia che:
+	
+	\begin{equation}
+		\label{eq:dim_formula_dimensioni_2}
+		\rg(i^\top \circ a_\varphi) = \dim W - \dim (W \cap \underbrace{\Ker a_\varphi}_{V^\perp}) = \dim W - \dim (W \cap V^\perp).
+	\end{equation}
+	
+	Si conclude allora, sostituendo l'equazione \eqref{eq:dim_formula_dimensioni_2} nell'equazione \eqref{eq:dim_formula_dimensioni_1}, che $\dim V = \dim W^\top + \dim W - \dim (W \cap V^\perp)$, ossia la tesi.
+\end{proof}
+
+\begin{remark} Si identifica $\w^\perp$ come il sottospazio di tutti i vettori di $V$ ortogonali a $\w$.
+	In particolare, se $W = \Span(\vec w)$ è il sottospazio generato da $\vec w \neq \vec 0$, $\vec w \in V$, allora $W^\perp = \w^\perp$. Inoltre valgono le seguenti equivalenze: $\vec w \notin W^\perp \iff$ $\Rad (\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$ $\iff \vec w \text{ non è isotropo } \iff$ $V = W \oplus W^\perp$.
+\end{remark}
+
+\begin{proposition}[formula di polarizzazione]
+	Se $\Char \KK \neq 2$, un prodotto scalare è univocamente determinato dalla sua forma quadratica $q$.
+	In particolare vale la seguente identità:
+	
+	\[ \varphi(\v, \w) = \frac{q(\v + \w) - q(\v) - q(\w)}{2}. \]
+	
+	\vskip 0.05in
+\end{proposition}
+
+\section{Il teorema di Lagrange e basi ortogonali}
+
+\begin{definition}
+	Si definisce \textbf{base ortogonale} di $V$ una base $\vv 1$, ..., $\vv n$ tale per cui $\varphi(\vv i, \vv j) = 0
+	\impliedby i \neq j$, ossia una base per cui la matrice associata del prodotto scalare è diagonale. 
+\end{definition}
+
+\begin{theorem}[di Lagrange]
+	Ogni spazio vettoriale $V$ su $\KK$ tale per cui $\Char \KK \neq 2$ ammette una base ortogonale.
+\end{theorem}
+
+\begin{proof}
+	Si dimostra il teorema per induzione su $n := \dim V$. Per $n \leq 1$, la tesi è triviale (se esiste una base, tale base è
+	già ortogonale). Sia
+	allora il teorema vero per $i \leq n$. Se $V$ ammette un vettore non isotropo $\vec w$, sia $W = \Span(\vec w)$ e si consideri la decomposizione $V = W \oplus W^\perp$. Poiché $W^\perp$ ha dimensione $n-1$, per ipotesi induttiva
+	ammette una base ortogonale. Inoltre, tale base è anche ortogonale a $W$, e quindi l'aggiunta di $\vec w$ a
+	questa base ne fa una base ortogonale di $V$. Se invece $V$ non ammette vettori non isotropi, ogni forma quadratica
+	è nulla, e quindi il prodotto scalare è nullo per la proposizione precedente. Allora in questo caso
+	ogni base è una base ortogonale, completando il passo induttivo, e dunque la dimostrazione.
+\end{proof}
+
+\subsection{L'algoritmo di ortogonalizzazione di Gram-Schmidt}
+
+\begin{definition}[coefficiente di Fourier]
+	Siano $\v \in V$ e $\w \in V \setminus \CI(\varphi)$. Allora si definisce il \textbf{coefficiente di Fourier}
+	di $\v$ rispetto a $\w$ come il rapporto $C(\w, \v) = \frac{\varphi(\v, \w)}{\varphi(\w, \w)}$.
+\end{definition}
+
+Se $\CI(\varphi) = \zerovecset$ (e quindi nel caso di $\KK = \RR$, dalla
+\textit{Proposizione \ref{prop:definitezza_varphi}}, se $\varphi$ è definito) ed è
+data una base $\basis = \{ \vv 1, \ldots, \vv n \}$ per $V$, è possibile
+applicare l'\textbf{algoritmo di ortogonalizzazione di Gram-Schmidt} per ottenere
+da $\basis$ una nuova base $\basis' = \{ \vv 1', \ldots, \vv n' \}$ con le seguenti proprietà:
+
+\begin{enumerate}[(i)]
+	\item $\basis'$ è una base ortogonale,
+	\item $\basis'$ mantiene la stessa bandiera di $\basis$ (ossia $\Span(\vv 1, \ldots, \vv i) = \Span(\vv 1', \ldots, \vv i')$ per ogni $1 \leq i \leq n$).
+\end{enumerate}
+
+L'algoritmo si applica nel seguente modo: si prenda in considerazione $\vv 1$ e si sottragga ad ogni altro vettore
+della base il vettore $C(\vv 1, \vv i) \vv 1 = \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv 1$,
+rendendo ortogonale ogni altro vettore della base con $\vv 1$. Si sta quindi applicando la mappa
+$\vv i \mapsto \vv i - \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i = \vv i ^{(1)}$.
+Si verifica infatti che $\vv 1$ e $\vv i ^{(1)}$ sono ortogonali per $2 \leq i \leq n$:
+
+\[ \varphi(\vv 1, \vv i^{(1)}) = \varphi(\vv 1, \vv i) - \varphi\left(\vv 1, \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i\right) = \varphi(\vv 1, \vv i) - \varphi(\vv 1, \vv i) = 0. \]
+
+Poiché $\vv 1$ non è isotropo, si deduce che vale la decomposizione $V = \Span(\vv 1) \oplus \Span(\vv 1)^\perp$.
+In particolare $\dim \Span(\vv 1)^\perp = n-1$: essendo allora i vettori $\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}$
+linearmente indipendenti e appartenenti a $\Span(\vv 1)^\perp$, ne sono una base. Si conclude quindi
+che vale la seguente decomposizione:
+
+\[ V = \Span(\vv 1) \oplus^\perp \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}). \]
+
+\vskip 0.05in
+
+Si riapplica dunque l'algoritmo di Gram-Schmidt prendendo come spazio vettoriale lo spazio generato dai
+vettori a cui si è applicato precedentemente l'algoritmo, ossia $V' = \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)})$,
+fino a che non si ottiene $V' = \zerovecset$.

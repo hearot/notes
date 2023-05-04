@@ -62,11 +62,6 @@
 		In particolare, se $W = \Span(\vec w)$ è il sottospazio generato da $\vec w \neq \vec 0$, $\vec w \in V$, allora $W^\perp = \w^\perp$. Inoltre valgono le seguenti equivalenze: $\vec w \notin W^\perp \iff$ $\Rad (\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$ $\iff \vec w \text{ non è isotropo } \iff$ $V = W \oplus W^\perp$.
 	\end{remark}
 
-	\begin{definition}
-		Si definisce \textbf{base ortogonale} di $V$ una base $\vv 1$, ..., $\vv n$ tale per cui $\varphi(\vv i, \vv j) = 0
-		\impliedby i \neq j$, ossia una base per cui la matrice associata del prodotto scalare è diagonale. 
-	\end{definition}
-
 	\begin{proposition}[formula di polarizzazione]
 		Se $\Char \KK \neq 2$, un prodotto scalare è univocamente determinato dalla sua forma quadratica $q$.
 		In particolare vale la seguente identità:
@@ -80,6 +75,11 @@
 		Si osserva che $q(\vec v + \vec w) - q(\vec v) - q(\vec w) = 2 \varphi(\vec v, \vec w)$, e quindi,
 		poiché $2$ è invertibile per ipotesi, si deduce che $\varphi(\vec v, \vec w) = \frac{q(\vec v + \vec w) - q(\vec v) - q(\vec w)}{2}$.
 	\end{proof}
+
+	\begin{definition}
+		Si definisce \textbf{base ortogonale} di $V$ una base $\vv 1$, ..., $\vv n$ tale per cui $\varphi(\vv i, \vv j) = 0
+		\impliedby i \neq j$, ossia una base per cui la matrice associata del prodotto scalare è diagonale. 
+	\end{definition}
 
 	\begin{theorem}[di Lagrange]
 		Ogni spazio vettoriale $V$ su $\KK$ tale per cui $\Char \KK \neq 2$ ammette una base ortogonale.
