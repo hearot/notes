@@ -189,6 +189,7 @@
 \let\endabstract\undefined
 
 \newtheorem*{abstract}{Abstract}
+\newtheorem*{algorithm}{Algoritmo}
 \newtheorem*{corollary}{Corollario}
 \newtheorem*{definition}{Definizione}
 \newtheorem*{example}{Esempio}
@@ -336,6 +337,26 @@
 \let\oldlor\lor
 \let\lor\undefined
 \DeclareMathOperator{\lor}{\oldlor}
+
+\DeclareOption{counter}{
+	\let\algorithm\@undefined
+	\let\endalgorithm\@undefined
+	\let\corollary\@undefined
+	\let\endcorollary\@undefined
+	\let\c@lemma\@undefined
+	\let\lemma\@undefined
+	\let\endlemma\@undefined
+	\let\proposition\@undefined
+	\let\endproposition\@undefined
+	\let\theorem\@undefined
+	\let\endtheorem\@undefined
+	
+	\newtheorem{algorithm}{Algoritmo}[chapter]
+	\newtheorem{corollary}{Corollario}[chapter]
+	\newtheorem{lemma}{Lemma}[chapter]
+	\newtheorem{proposition}{Proposizione}[chapter]
+	\newtheorem{theorem}{Teorema}[chapter]
+}
 
 \DeclareOption{physics}{
 	\let\vec\oldvec

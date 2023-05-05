@@ -28,24 +28,25 @@
 	Due vettori $\v$, $\w \in V$ si dicono \textbf{ortogonali} rispetto al prodotto scalare $\varphi$, ossia $\v \perp \w$, se $\varphi(\v, \w) = 0$.
 \end{definition}
 
+\begin{definition}[somma diretta ortogonale]
+	Siano $U$ e $W \subseteq V$ due sottospazi di $V$ in somma diretta. Allora si dice che $U$ e $W$ sono in \textbf{somma diretta ortogonale} rispetto al prodotto scalare $\varphi$ di $V$, ossia che $U \oplus W = U \oplus^\perp W$, se $\varphi(\vec u, \vec w) = 0$ $\forall \vec u \in U$, $\vec w \in W$.
+\end{definition}
+
 \begin{definition}
-	Si definisce prodotto scalare \textit{canonico} di $\KK^n$ la forma bilineare simmetrica $\varphi$ con
+	Si definisce prodotto scalare \textit{canonico} di $\KK^n$ la forma bilineare simmetrica $\varphi = \innprod{\cdot, \cdot}$ con
 	argomenti in $\KK^n$ tale che:
 	
-	\[ \varphi((x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n x_i y_i. \]
+	\[ \varphi(\v, \w) = \innprod{\v, \w} = \vec v ^\top \vec w, \quad \forall \v, \w \in V. \]
 \end{definition}
 
 \begin{remark}
 	Si può facilmente osservare che il prodotto scalare canonico di $\KK^n$ è effettivamente un prodotto
 	scalare. \\
 	
-	\li $\varphi((x_1, ..., x_n) + (x_1', ..., x_n'), (y_1, ..., y_n)) = \sum_{i=1}^n (x_i + x_i') y_i =
-	\sum_{i=1}^n \left[x_iy_i + x_i' y_i\right] = \sum_{i=1}^n x_i y_i + \sum_{i=1}^n x_i' y_i =
-	\varphi((x_1, ..., x_n), (y_1, ..., y_n)) + \varphi((x_1', ..., x_n'), (y_1, ..., y_n))$ (linearità nel
+	\li $\varphi(\vv 1 + \vv 2, \w) = (\vv 1 + \vv 2)^\top \w = (\vv 1 ^\top + \vv 2 ^\top) \w = \vv 1 ^\top \w + \vv 2 ^\top \w = \varphi(\vv 1, \w) + \varphi(\vv 2, \w)$ (linearità nel
 	primo argomento), \\
-	\li $\varphi(\alpha(x_1, ..., x_n), (y_1, ..., y_n))$ $= \sum_{i=1}^n \alpha x_i y_i = \alpha \sum_{i=1}^n x_i y_i$ $=
-	\alpha \varphi((x_1, ..., x_n), (y_1, ..., y_n))$ (omogeneità nel primo argomento), \\
-	\li $\varphi((x_1, ..., x_n), (y_1, ..., y_n)) = \sum_{i=1}^n x_i y_i = \sum_{i=1}^n y_i x_i = \varphi((y_1, ..., y_n), (x_1, ..., x_n))$ (simmetria), \\
+	\li $\varphi(\alpha \v, \w) = (\alpha \v)^\top \w = \alpha \v^\top \w = \alpha \varphi(\v, \w)$ (omogeneità nel primo argomento), \\
+	\li $\varphi(\v, \w) = \v ^\top \w = (\v ^\top \w)^\top = \w^\top \v = \varphi(\w, \v)$ (simmetria), \\
 	\li poiché $\varphi$ è simmetrica, $\varphi$ è lineare e omogenea anche nel secondo argomento, e quindi è una
 	forma bilineare simmetrica, ossia un prodotto scalare su $\KK^n$.
 \end{remark}
@@ -57,7 +58,7 @@
 	\li $\varphi(p(x), q(x)) = p(a) q(a)$ per $\KK[x]$, con $a \in \KK$, \\
 	\li $\varphi(p(x), q(x)) = \sum_{i=1}^n p(x_i) q(x_i)$ per $\KK[x]$, con $x_1$, ..., $x_n$ distinti, \\
 	\li $\varphi(p(x), q(x)) = \int_a^b p(x)q(x) dx$ per lo spazio delle funzioni integrabili su $\RR$, con $a$, $b$ in $\RR$, \\
-	\li $\varphi(\vec{x}, \vec{y}) = \vec{x}^\top A \vec{y}$ per $\KK^n$, con $A \in M(n, \KK)$ simmetrica.
+	\li $\varphi(\vec{x}, \vec{y}) = \vec{x}^\top A \, \vec{y}$ per $\KK^n$, con $A \in M(n, \KK)$ simmetrica, detto anche \textbf{prodotto scalare indotto dalla matrice $A$}, ed indicato con $\varphi_A$.
 \end{example}
 
 \subsection{Prodotto definito o semidefinito}
@@ -273,7 +274,7 @@
 \begin{proof}
 	Si dimostrano le due implicazioni separatamente. \\
 	
-	\rightproof Sia $\varphi$ semidefinito. Chiaramente $V^\perp \subseteq \CI(\varphi)$. Si assuma
+	\rightproof Sia $\varphi$ semidefinito. Chiaramente $V^\perp \subseteq \CI(\varphi)$. Si assuma per assurdo
 	che $V^\perp \subsetneq \CI(\varphi)$. Sia allora $\v$ tale che $\v \in \CI(\varphi)$ e che $\v \notin V^\perp$.
 	Poiché $\v \notin V^\perp$, esiste un vettore $\w \in V$ tale che $\varphi(\v, \w) \neq 0$. Si osserva
 	che $\v$ e $\w$ sono linearmente indipendenti tra loro. Se infatti non lo fossero, esisterebbe $\mu \in \RR$
@@ -357,10 +358,13 @@
 \end{proof}
 
 \begin{remark} Si identifica $\w^\perp$ come il sottospazio di tutti i vettori di $V$ ortogonali a $\w$.
-	In particolare, se $W = \Span(\vec w)$ è il sottospazio generato da $\vec w \neq \vec 0$, $\vec w \in V$, allora $W^\perp = \w^\perp$. Inoltre valgono le seguenti equivalenze: $\vec w \notin W^\perp \iff$ $\Rad (\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$ $\iff \vec w \text{ non è isotropo } \iff$ $V = W \oplus W^\perp$.
+	In particolare, se $W = \Span(\vec w)$ è il sottospazio generato da $\vec w \neq \vec 0$, $\vec w \in V$, allora $W^\perp = \w^\perp$. Inoltre valgono le seguenti equivalenze: $\vec w \notin W^\perp \iff$ $\Rad (\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$ $\iff \vec w \text{ non è isotropo } \iff$ $V = W \oplus^\perp W^\perp$. \\
+	
+	In generale, se $W$ è un sottospazio qualsiasi di $V$ tale che $W \cap W^\perp = \zerovecset$, vale
+	che $V = W \oplus^\perp W^\perp$.
 \end{remark}
 
-\begin{proposition}[formula di polarizzazione]
+\begin{proposition}[formula di polarizzazione] \label{prop:formula_polarizzazione}
 	Se $\Char \KK \neq 2$, un prodotto scalare è univocamente determinato dalla sua forma quadratica $q$.
 	In particolare vale la seguente identità:
 	
@@ -386,7 +390,7 @@
 	allora il teorema vero per $i \leq n$. Se $V$ ammette un vettore non isotropo $\vec w$, sia $W = \Span(\vec w)$ e si consideri la decomposizione $V = W \oplus W^\perp$. Poiché $W^\perp$ ha dimensione $n-1$, per ipotesi induttiva
 	ammette una base ortogonale. Inoltre, tale base è anche ortogonale a $W$, e quindi l'aggiunta di $\vec w$ a
 	questa base ne fa una base ortogonale di $V$. Se invece $V$ non ammette vettori non isotropi, ogni forma quadratica
-	è nulla, e quindi il prodotto scalare è nullo per la proposizione precedente. Allora in questo caso
+	è nulla, e quindi il prodotto scalare è nullo per la \textit{\nameref{prop:formula_polarizzazione}}. Allora in questo caso
 	ogni base è una base ortogonale, completando il passo induttivo, e dunque la dimostrazione.
 \end{proof}
 
@@ -397,34 +401,310 @@
 	di $\v$ rispetto a $\w$ come il rapporto $C(\w, \v) = \frac{\varphi(\v, \w)}{\varphi(\w, \w)}$.
 \end{definition}
 
-Se $\CI(\varphi) = \zerovecset$ (e quindi nel caso di $\KK = \RR$, dalla
-\textit{Proposizione \ref{prop:definitezza_varphi}}, se $\varphi$ è definito) ed è
-data una base $\basis = \{ \vv 1, \ldots, \vv n \}$ per $V$, è possibile
-applicare l'\textbf{algoritmo di ortogonalizzazione di Gram-Schmidt} per ottenere
-da $\basis$ una nuova base $\basis' = \{ \vv 1', \ldots, \vv n' \}$ con le seguenti proprietà:
+\begin{algorithm}[algoritmo di ortogonalizzazione di Gram-Schmidt]
+	Se $\CI(\varphi) = \zerovecset$ (e quindi nel caso di $\KK = \RR$, dalla
+	\textit{Proposizione \ref{prop:definitezza_varphi}}, se $\varphi$ è definito) ed è
+	data una base $\basis = \{ \vv 1, \ldots, \vv n \}$ per $V$, è possibile
+	applicare l'\textbf{algoritmo di ortogonalizzazione di Gram-Schmidt} per ottenere
+	da $\basis$ una nuova base $\basis' = \{ \vv 1', \ldots, \vv n' \}$ con le seguenti proprietà:
+	
+	\begin{enumerate}[(i)]
+		\item $\basis'$ è una base ortogonale,
+		\item $\basis'$ mantiene la stessa bandiera di $\basis$ (ossia $\Span(\vv 1, \ldots, \vv i) = \Span(\vv 1', \ldots, \vv i')$ per ogni $1 \leq i \leq n$).
+	\end{enumerate}
+	
+	L'algoritmo si applica nel seguente modo: si prenda in considerazione $\vv 1$ e si sottragga ad ogni altro vettore
+	della base il vettore $C(\vv 1, \vv i) \, \vv 1 = \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv 1$,
+	rendendo ortogonale ogni altro vettore della base con $\vv 1$. Si sta quindi applicando la mappa
+	$\vv i \mapsto \vv i - \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i = \vv i ^{(1)}$.
+	Si verifica infatti che $\vv 1$ e $\vv i ^{(1)}$ sono ortogonali per $2 \leq i \leq n$:
+	
+	\[ \varphi(\vv 1, \vv i^{(1)}) = \varphi(\vv 1, \vv i) - \varphi\left(\vv 1, \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i\right) = \varphi(\vv 1, \vv i) - \varphi(\vv 1, \vv i) = 0. \]
+	
+	Poiché $\vv 1$ non è isotropo, si deduce che vale la decomposizione $V = \Span(\vv 1) \oplus \Span(\vv 1)^\perp$.
+	In particolare $\dim \Span(\vv 1)^\perp = n-1$: essendo allora i vettori $\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}$
+	linearmente indipendenti e appartenenti a $\Span(\vv 1)^\perp$, ne sono una base. Si conclude quindi
+	che vale la seguente decomposizione:
+	
+	\[ V = \Span(\vv 1) \oplus^\perp \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}). \]
+	
+	\vskip 0.05in
+	
+	Si riapplica dunque l'algoritmo di Gram-Schmidt prendendo come spazio vettoriale lo spazio generato dai
+	vettori a cui si è applicato precedentemente l'algoritmo, ossia $V' = \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)})$,
+	fino a che non si ottiene $V' = \zerovecset$.
+\end{algorithm}
 
-\begin{enumerate}[(i)]
-	\item $\basis'$ è una base ortogonale,
-	\item $\basis'$ mantiene la stessa bandiera di $\basis$ (ossia $\Span(\vv 1, \ldots, \vv i) = \Span(\vv 1', \ldots, \vv i')$ per ogni $1 \leq i \leq n$).
-\end{enumerate}
+\begin{example}
+	Si consideri $V = (\RR^3, \innprod{\cdot, \cdot})$, ossia $\RR^3$ dotato del prodotto scalare standard.
+	Si applica l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
+	
+	\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\}. \]
+	
+	\vskip 0.05in
+	
+	Alla prima iterazione dell'algoritmo si ottengono i seguenti vettori:
+	
+	\begin{itemize}
+		\item $\vv 2 ^{(1)} = \vv 2 -  \frac{\varphi(\vv 1, \vv 2)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 2 - \vv 1 = \Vector{0 \\ 1 \\ 0} = \e 2$,
+		\item $\vv 3 ^{(1)} = \vv 3 - \frac{\varphi(\vv 1, \vv 3)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 3 - \vv 1 = \Vector{0 \\ 1 \\ 1}$.
+	\end{itemize}
+	
+	Si considera ora $V' = \Span(\vv 2 ^{(1)}, \vv 3 ^{(1)})$. Alla seconda iterazione dell'algoritmo si
+	ottiene allora il seguente vettore:
+	
+	\begin{itemize}
+		\item $\vv 3 ^{(2)} = \vv 3 ^{(1)} - \frac{\varphi(\vv 2 ^{(1)},  \vv 3 ^{(1)})}{\varphi(\vv 2 ^{(1)}, \vv 2 ^{(1)})} \vv 2 ^{(1)} = \vv 3 ^{(1)} - \vv 2 ^{(1)} = \Vector{0 \\ 0 \\ 1} = \e 3$.
+	\end{itemize}
+	
+	Quindi la base ottenuta è $\basis' = \{\e1, \e2, \e3\}$, ossia la base canonica di $\RR^3$.
+\end{example}
 
-L'algoritmo si applica nel seguente modo: si prenda in considerazione $\vv 1$ e si sottragga ad ogni altro vettore
-della base il vettore $C(\vv 1, \vv i) \vv 1 = \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv 1$,
-rendendo ortogonale ogni altro vettore della base con $\vv 1$. Si sta quindi applicando la mappa
-$\vv i \mapsto \vv i - \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i = \vv i ^{(1)}$.
-Si verifica infatti che $\vv 1$ e $\vv i ^{(1)}$ sono ortogonali per $2 \leq i \leq n$:
+\section{Il teorema di Sylvester}
 
-\[ \varphi(\vv 1, \vv i^{(1)}) = \varphi(\vv 1, \vv i) - \varphi\left(\vv 1, \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i\right) = \varphi(\vv 1, \vv i) - \varphi(\vv 1, \vv i) = 0. \]
+\subsection{Caso complesso}
 
-Poiché $\vv 1$ non è isotropo, si deduce che vale la decomposizione $V = \Span(\vv 1) \oplus \Span(\vv 1)^\perp$.
-In particolare $\dim \Span(\vv 1)^\perp = n-1$: essendo allora i vettori $\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}$
-linearmente indipendenti e appartenenti a $\Span(\vv 1)^\perp$, ne sono una base. Si conclude quindi
-che vale la seguente decomposizione:
+\begin{note}
+	D'ora in poi, nel corso del documento, si assumerà $\Char \KK \neq 2$.
+\end{note}
 
-\[ V = \Span(\vv 1) \oplus^\perp \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}). \]
+\begin{theorem}[di Sylvester, caso complesso]
+	Sia $\KK$ un campo i cui elementi sono tutti quadrati di un
+	altro elemento del campo (e.g.~$\CC$). Allora esiste una base
+	ortogonale $\basis$ tale per cui:
+	
+	\[ M_\basis(\varphi) = \Matrix{I_r & \rvline & 0 \\ \hline 0 & \rvline & 0\,}. \]
+\end{theorem}
 
-\vskip 0.05in
+\begin{proof}
+	Per il teorema di Lagrange, esiste una base ortogonale $\basis'$ di $V$.
+	Si riordini allora la base $\basis'$ in modo tale che la forma quadratica valutata nei primi elementi sia sempre diversa da zero. Allora, poiché ogni
+	elemento di $\KK$ è per ipotesi quadrato di un altro elemento
+	di $\KK$, si sostituisca $\basis'$ con una base $\basis$ tale per
+	cui, se $q(\vv i) = 0$, $\vv i \mapsto \vv i$, e altrimenti
+	$\vv i \mapsto \frac{\vv i}{\sqrt{q(\vv i)}}$. Allora $\basis$
+	è una base tale per cui la matrice associata del prodotto scalare
+	in tale base è proprio come desiderata nella tesi, dove $r$ è
+	il numero di elementi tali per cui la forma quadratica valutata
+	in essi sia diversa da zero.
+\end{proof}
 
-Si riapplica dunque l'algoritmo di Gram-Schmidt prendendo come spazio vettoriale lo spazio generato dai
-vettori a cui si è applicato precedentemente l'algoritmo, ossia $V' = \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)})$,
-fino a che non si ottiene $V' = \zerovecset$.
+\begin{remark}\nl
+	\li Si può immediatamente concludere che il rango è un invariante
+	completo per la congruenza in un campo $\KK$ in cui tutti gli elementi
+	sono quadrati, ossia che $A \cong B \iff \rg(A) = \rg(B)$, se $A$ e
+	$B$ sono matrici simmetriche con elementi in $\KK$. \\
+	
+	Ogni matrice simmetrica rappresenta infatti un prodotto scalare, ed è
+	pertanto congruente ad una matrice della forma desiderata
+	nell'enunciato del teorema di Sylvester complesso. Poiché il rango
+	è un invariante della congruenza, si ricava che $r$ nella forma
+	della matrice di Sylvester, rappresentando il rango, è anche
+	il rango di ogni sua matrice congruente. \\
+	
+	In particolare, se due
+	matrici simmetriche hanno lo stesso rango, allora sono congruenti
+	alla stessa matrice di Sylvester, e quindi, essendo la congruenza
+	una relazione di equivalenza, sono congruenti a loro volta tra di loro. \\
+	
+	\li Due matrici simmetriche in $\KK$ con stesso rango, allora, non solo
+	sono SD-equivalenti, ma sono anche congruenti. \\
+	
+	\li Ogni base ortogonale deve quindi avere lo stesso numero
+	di vettori isotropi, dal momento che tale numero rappresenta
+	la dimensione del radicale $V^\perp$.
+\end{remark}
+
+\subsection{Caso reale e segnatura di $\varphi$}
+
+\begin{definition} [segnatura di un prodotto scalare]
+	Data una base ortogonale $\basis$ di $V$ rispetto al prodotto
+	scalare $\varphi$,
+	si definiscono i seguenti indici:
+	\begin{align*}
+		\iota_+(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} > 0 \}, &\text{(}\textbf{indice di positività}\text{)} \\
+		\iota_-(\varphi) &= \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} < 0 \}, &\text{(}\textbf{indice di negatività}\text{)}\\
+		\iota_0(\varphi) &= \dim V^\perp. &\text{(}\textbf{indice di nullità}\text{)}
+	\end{align*}
+	
+	Quando il prodotto scalare $\varphi$ è noto dal contesto, si
+	semplifica la notazione
+	scrivendo solo $\iota_+$, $\iota_-$ e $\iota_0$. In particolare,
+	la terna $\sigma(\varphi) = \sigma = (i_+, i_-, i_0)$ è detta \textbf{segnatura} del
+	prodotto $\varphi$.
+\end{definition}
+
+\begin{theorem}[di Sylvester, caso reale] Sia $\KK$ un campo ordinato
+	i cui elementi positivi sono tutti quadrati (e.g.~$\RR$). Allora
+	esiste una base ortogonale $\basis$ tale per cui:
+	
+	\[ M_\basis(\varphi) = \Matrix{I_{\iota_+} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & -I_{\iota_-} & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & 0\cdot I_{\iota_0} }. \]
+	
+	\vskip 0.05in
+	
+	Inoltre, per ogni base ortogonale, esistono esattamente
+	$\iota_+$ vettori della base con forma quadratica positiva,
+	$\iota_-$ con forma negativa e $\iota_0$ con
+	forma nulla.
+\end{theorem}
+
+\begin{proof}
+	Per il teorema di Lagrange, esiste una base ortogonale $\basis'$ di $V$.
+	Si riordini la base in modo tale che la forma quadratica valutata nei primi elementi sia strettamente positiva, che nei secondi elementi sia strettamente negativa e che negli ultimi sia nulla. Si sostituisca
+	$\basis'$ con una base $\basis$ tale per cui, se $q(\vv i) > 0$,
+	allora $\vv i \mapsto \frac{\vv i}{\sqrt{q(\vv i)}}$; se
+	$q(\vv i) < 0$, allora $\vv i \mapsto \frac{\vv i}{\sqrt{-q(\vv i)}}$;
+	altrimenti $\vv i \mapsto \vv i$. Si è allora trovata una base
+	la cui matrice associata del prodotto scalare è come desiderata nella
+	tesi. \\
+	
+	Sia ora $\basis$ una qualsiasi base ortogonale di $V$.
+	Siano inoltre $a$ il numero di vettori della base con forma quadratica
+	positiva, $b$ il numero di vettori con forma negativa e $c$ quello
+	dei vettori con forma nulla. Si consideri $W_+ = \Span(\vv 1, ..., \vv a)$, $W_- = \Span(\vv{a+1}, ..., \vv b)$, $W_0 = \Span(\vv{b+1}, ..., \vv c)$. \\
+	
+	Sia $M = M_\basis(\varphi)$. Si osserva che $c = n - \rg(M) = \dim \Ker(M) = \dim V^\perp = \iota_0$. Inoltre $\forall \v \in W_+$, dacché
+	$\basis$ è ortogonale,
+	$q(\v) = q(\sum_{i=1}^a \alpha_i \vv i) = \sum_{i=1}^a \alpha_i^2 q(\vv i) > 0$, e quindi $\restr{\varphi}{W_+} > 0$, da cui $\iota_+ \geq a$.
+	Analogamente $\iota_- \geq b$. \\
+	
+	Si mostra ora che è impossibile che $\iota_+ > a$. Se così infatti
+	fosse, sia $W$ tale che $\dim W = \iota_+$ e che $\restr{\varphi}{W} > 0$. $\iota_+ + b + c$ sarebbe maggiore di $a + b + c = n := \dim V$. Quindi, per la formula di Grassman, $\dim(W + W_- + W_0) = \dim W +
+	\dim(W_- + W_0) - \dim (W \cap (W_- + W_0)) \implies \dim (W \cap (W_- + W_0)) =  \dim W +
+	\dim(W_- + W_0) - \dim(W + W_- + W_0) > 0$, ossia esisterebbe
+	$\v \neq \{\vec 0\} \mid \v \in W \cap (W_- + W_0)$. Tuttavia
+	questo è assurdo, dacché dovrebbe valere sia $q(\v) > 0$ che
+	$q(\v) < 0$, \Lightning. Quindi $\iota_+ = a$, e analogamente
+	$\iota_- = b$.
+\end{proof}
+
+\begin{definition}
+	Si dice \textbf{base di Sylvester} una base di $V$ tale per cui la
+	matrice associata di $\varphi$ sia esattamente nella forma
+	vista nell'enunciato del teorema di Sylvester. Analogamente
+	si definisce tale matrice come \textbf{matrice di Sylvester}.
+\end{definition}
+
+\begin{remark} \nl
+	\li Come conseguenza del teorema di Sylvester reale, si osserva che la segnatura di una matrice simmetrica reale
+	è invariante per cambiamento di base, se la base è ortogonale. \\
+	
+	\li La segnatura è un invariante completo per la congruenza nel caso reale. Se infatti due matrici hanno la stessa segnatura, queste sono
+	entrambe congruenti alla stessa matrice di Sylvester, e quindi, essendo
+	la congruenza una relazione di equivalenza, sono congruenti
+	tra loro. Analogamente vale il viceversa, dal momento che ogni
+	base ortogonale di due matrici congruenti deve contenere gli
+	stessi numeri $\iota_+$, $\iota_-$ e $\iota_0$ di vettori
+	di base con forma quadratica positiva, negativa e nulla. \\
+	
+	\li Se $\ww 1$, ..., $\ww k$ sono tutti i vettori di una base
+	ortogonale $\basis$ con forma quadratica nulla, si osserva che $W = \Span(\ww 1, ..., \ww k)$ altro non è che $V^\perp$ stesso. \\
+	
+	Infatti, come
+	visto anche nella dimostrazione del teorema di Sylvester reale, vale
+	che	$\dim W = \dim \Ker (M_\basis(\varphi)) = \dim V^\perp$.
+	Sia allora la base $\basis = \{\ww 1, \ldots, \ww k, \vv{k+1}, \ldots, \vv n\}$ un'estensione di $\{\ww 1, \ldots, \ww k\}$. Se $\w \in W$ e $\v \in V$, $\varphi(\w, \v) = \varphi(\sum_{i=1}^k
+	\alpha_i \ww i, \sum_{i=1}^k \beta_i \ww i + \sum_{i=k+1}^n \beta_i \vv i)
+	= \sum_{i=1}^k \alpha_i \beta_i q(\ww i) = 0$ (dove $\alpha_i$ e $\beta_i \in \KK$ rappresentano la $i$-esima coordinata di $\w$ e $\v$ nella base $\basis$), e quindi
+	$W \subseteq V^\perp$. Si conclude allora, tramite l'uguaglianza
+	dimensionale, che $W = V^\perp$. \\
+	
+	\li Poiché $\dim \Ker(\varphi) = \iota_0$, vale in particolare che $\rg(\varphi) = n - \iota_0 = \iota_+ + \iota_-$ (infatti vale che $n = \iota_+ + \iota_- + \iota_0$, dal momento che $n$ rappresenta il numero di elementi di una base ortogonale). \\
+	
+	\li Se $V = U \oplusperp W$, allora $\iota_+(\varphi) = \iota_+(\restr{\varphi}{U}) + \iota_+(\restr{\varphi}{W})$.
+	Analogamente vale la stessa cosa per gli altri indici. Infatti,
+	prese due basi ortogonali $\basis_U$, $\basis_W$ di $U$ e $W$,
+	la loro unione $\basis$ è una base ortogonale di $V$. Pertanto
+	il numero di vettori della base $\basis$ con forma quadratica positiva
+	è esattamente $\iota_+(\restr{\varphi}{U}) + \iota_+(\restr{\varphi}{W})$. \\
+	
+	\li In generale, se $W$ è un sottospazio di $V$, vale che $\iota_+(\varphi) \geq \iota_+(\restr{\varphi}{W})$.
+	Infatti, se $U$ è un sottospazio di $W$ di dimensione $\iota_+(\restr{\varphi}{W})$ tale che
+	$\restr{(\restr{\varphi}{W})}{U} > 0$, allora $U$ è in particolare un sottospazio di $V$ tale che $\restr{\varphi}{U} > 0$. Pertanto, per definizione, essendo $\iota_+(\varphi)$ la dimensione del massimo sottospazio su cui $\varphi$, ristretto ad esso, è definito positivo, deve valere che $\iota_+(\varphi) \geq \iota_+(\restr{\varphi}{W})$. Analogamente, $\iota_-(\varphi) \geq \iota_-(\restr{\varphi}{W})$.
+\end{remark}
+
+\subsubsection{Metodo di Jacobi per il calcolo della segnatura}
+
+\begin{proposition} \label{prop:pre_metodo_jacobi} Sia $\KK$ un campo ordinato
+	i cui elementi positivi sono tutti quadrati (e.g.~$\RR$). 
+	Sia $W$ un sottospazio di $V$ di dimensione $k$. Sia $W'$ un sottospazio di $V$ di dimensione
+	$k+1$. Sia $\sigma(\restr{\varphi}{W}) = (p, q, 0)$, con $p$, $q \in \NN$ e siano $\basis$ e $\basis'$
+	due basi di $W$ e $W'$. Siano $B = M_\basis(\restr{\varphi}{W'})$ e $B' = M_{\basis'}(\restr{\varphi}{W}))$. \\
+	
+	Sia $d := \displaystyle\frac{\det(B')}{\det(B)}$. Allora vale che:
+	
+	\[ \sigma(\restr{\varphi}{W'}) = \system{(p+1, q, 0) & \se d > 0, \\ (p, q+1, 0) & \se d < 0, \\ (p, q, 1) & \altrimenti.} \]
+	
+	\vskip 0.05in
+\end{proposition}
+
+\begin{proof}
+	Dalla precedente osservazione, vale che $\iota_+(\restr{\varphi}{W'}) \geq \iota_+(\restr{\varphi}{W})$
+	e che $\iota_-(\restr{\varphi}{W'}) \geq \iota_-(\restr{\varphi}{W})$. Inoltre $\restr{\varphi}{W}$
+	è non degenere dal momento che $\iota_0(\restr{\varphi}{W}) = 0$, e pertanto
+	$p + q = \rg(\restr{\varphi}{W}) = k$. \\
+	
+	Siano ora $\basis_\perp$ e $\basis_\perp'$ due basi di Sylvester di $W$ e $W'$. Siano $A = M_{\basis_\perp}(\restr{\varphi}{W})$
+	e $A' = M_{\basis_\perp'}(\restr{\varphi}{W})$. Allora $\det(A) = (-1)^p (-1)^q$, mentre $\det(A') = (-1)^p (-1)^q \, d'$,
+	dove $d' \in \{-1, 0, 1\}$. Allora $\det(A') = \det(A) d' \implies d' = \frac{\det(A')}{\det(A)}$, dal
+	momento che $\det(A) \neq 0$, essendo $\restr{\varphi}{W}$ non degenere. \\
+	
+	In particolare, $\sigma(\restr{\varphi}{W'}) = (p, q, 1)$ se e solo se $\det(A') = 0 \implies d' = 0$. Dal
+	momento che $\det(A') = 0 \iff \det(B') = 0$, $d' = 0 \iff d = 0$. Pertanto si conclude che
+	$\sigma(\restr{\varphi}{W'}) = (p, q, 1) \iff d = 0$. \\
+	
+	Al contrario, $\sigma(\restr{\varphi}{W'}) = (p+1, q, 0)$ se e solo se $d' = 1$, ossia se e solo se $\det(A')$
+	e $\det(A)$ sono concordi di segno. Dal momento che il segno è un invariante del cambiamento di base per la
+	matrice associata a $\varphi$, $d' = 1$ se e solo se $\det(B)$ e $\det(B')$ sono concordi di segno, ossia
+	se e solo se $d > 0$. Pertanto $\sigma(\restr{\varphi}{W'}) = (p+1, q, 0) \iff d > 0$. Analogamente si
+	verifica che $\sigma(\restr{\varphi}{W'}) = (p, q+1, 0) \iff d < 0$, da cui la tesi.
+\end{proof}
+
+\begin{algorithm}[metodo di Jacobi] \label{alg:metodo_jacobi}
+	Sia $\basis$ una base di $V$ e sia $A = M_\basis(\varphi)$. Se il determinante di ogni minore di testa\footnote{In realtà il metodo si estende ad ogni successione di minori coerente con un'estensione di base (i.e.~i minori principali di $A$).}
+	di $A$ (ossia dei minori della forma $A^{1, \ldots, i}_{1, \ldots, i}$, con $1 \leq i \leq n-1$) è diverso
+	da zero, è possibile applicare il \textbf{metodo di Jacobi} per il calcolo della segnatura di $\varphi$. \\
+	
+	Sia $d_i = \det\left(A^{1,\ldots,i}_{1,\ldots,i}\right)$ $\forall 1 \leq i \leq n$ e si ponga $d_0 := 1$. Allora, per la \textit{Proposizione \ref{prop:pre_metodo_jacobi}}, $\iota_+$ corrisponde al numero di permanenze del segno
+	tra elementi consecutivi (escludendo $0$) di $(d_i)$, mentre $\iota_-$ corrisponde al numero di variazioni
+	del segno (anche stavolta escludendo $0$). Infine $\iota_0$ può valere solo $0$ o $1$, dove $\iota_0 = 1 \iff \det(A) = 0$.
+\end{algorithm}
+
+\begin{example}
+	Sia $A = \Matrix{1 & 1 & 0 \\ 1 & 2 & -1 \\ 0 & -1 & 4} \in M(3, \RR)$. \\
+	
+	\vskip 0.1in
+	
+	Si calcola la segnatura di $\varphi_A$ mediante
+	il metodo di Jacobi. Poiché $A$ è la matrice associata di $\varphi_A$ nella base canonica di $\RR^3$,
+	si può applicare il metodo di Jacobi direttamente su $A$. \\
+	
+	Si calcola allora la successione dei $d_i$:
+	
+	\begin{enumerate}
+		\item $d_1 = \det(1) = 1$,
+		\item $d_2 = \det\Matrix{1 & 1 \\ 1 & 2} = 2 - 1 = 1$,
+		\item $d_3 = \det(A) = (8 - 1) - 4 = 3$.
+	\end{enumerate}
+	
+	Dal momento che vi sono tre permanenze di segno, si conclude che $\sigma(\varphi_A) = (3, 0, 0)$, ossia
+	che $\varphi_A$ è definito positivo.
+\end{example}
+
+\subsubsection{Criterio di Sylvester per la definitezza di un prodotto scalare}
+
+\begin{proposition}[criterio di Sylvester per i prodotti definiti] Sia $\KK= \RR$.
+	Sia $\basis$ una base di $V$, e sia $A = M_\basis(\varphi)$. Sia $d_i = \det\left(A^{1,\ldots,i}_{1,\ldots,i}\right)$.
+	Allora $\varphi$ è definito positivo se e solo se $d_i > 0$ $\forall 1 \leq i \leq n$. Analogamente
+	$\varphi$ è definito negativo se e solo se $(-1)^i \, d_i > 0$ $\forall 1 \leq i \leq n$. 
+\end{proposition}
+
+\begin{proof}
+	Si osserva che $\varphi$ è definito positivo se e solo se $\iota_+ = n$. Pertanto, per il
+	\textit{\nameref{alg:metodo_jacobi}}, $\varphi$ è definito positivo se e solo se vi sono
+	solo permanenze di segno tra elementi consecutivi nella successione $(d_i)$, e quindi
+	se e solo se $d_i > 0$ $\forall 1 \leq i \leq n$. Analogamente $\varphi$ è definito
+	negativo se e solo se $\iota_- = n$, e quindi se e solo se vi sono solo variazioni
+	di segno $\iff d_i > 0$ se $i$ è pari e $d_i < 0$ se $i$ è dispari $\iff (-1)^i \, d_i > 0$, $\forall 1 \leq i \leq n$.
+	
+\end{proof}
