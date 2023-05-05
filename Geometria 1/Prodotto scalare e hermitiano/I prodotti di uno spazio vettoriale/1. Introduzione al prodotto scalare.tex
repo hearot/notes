@@ -515,7 +515,7 @@
 	la dimensione del radicale $V^\perp$.
 \end{remark}
 
-\subsection{Caso reale e segnatura di $\varphi$}
+\subsection{Caso reale e segnatura di \texorpdfstring{$\varphi$}{φ}}
 
 \begin{definition} [segnatura di un prodotto scalare]
 	Data una base ortogonale $\basis$ di $V$ rispetto al prodotto
@@ -623,6 +623,49 @@
 	$\restr{(\restr{\varphi}{W})}{U} > 0$, allora $U$ è in particolare un sottospazio di $V$ tale che $\restr{\varphi}{U} > 0$. Pertanto, per definizione, essendo $\iota_+(\varphi)$ la dimensione del massimo sottospazio su cui $\varphi$, ristretto ad esso, è definito positivo, deve valere che $\iota_+(\varphi) \geq \iota_+(\restr{\varphi}{W})$. Analogamente, $\iota_-(\varphi) \geq \iota_-(\restr{\varphi}{W})$.
 \end{remark}
 
+\subsubsection{Classificazione delle segnature per $n = 1$, $2$, $3$}
+
+Sia $\basis$ una base di Sylvester per $\varphi$. Sia $A = M_\basis(\varphi)$. Si indica con $x$, $y$ e $z$
+le tre coordinate di $\v \in V$ secondo la base $\basis$. \\
+
+\mbox{($n = 1$)} Vi sono solo tre possibili matrici per $A$:
+
+\begin{itemize}
+	\item $A = (0)$, con $\sigma = (0, 0, 1)$, $\rg(\varphi) = 0$ e $\CI(\varphi) = V$,
+	\item $A = (1)$, con $\sigma = (1, 0, 0)$, $\rg(\varphi) = 1$ e $\CI(\varphi) = \zerovecset$,
+	\item $A = (-1)$, con $\sigma = (0, 1, 0)$, $\rg(\varphi) = 1$ e $\CI(\varphi) = \zerovecset$.
+\end{itemize}
+
+\vskip 0.1in
+
+\mbox{($n = 2$)} Vi sono sei possibili matrici per $A$:
+
+\begin{itemize}
+	\item $A = 0$, con $\sigma = (0, 0, 2)$, $\rg(\varphi) = 0$ e $\CI(\varphi) = V$,
+	\item $A = \Matrix{1 & 0 \\ 0 & 0}$, con $\sigma = (1, 0, 1)$, $\rg(\varphi) = 1$ e $\CI(\varphi) = \{x = 0 \mid \v \in V\} = V^\perp$,
+	\item $A = \Matrix{-1 & 0 \\ 0 & 0}$, con $\sigma = (0, 1, 1)$, $\rg(\varphi) = 1$ e $\CI(\varphi) = \{x = 0 \mid \v \in V\} = V^\perp$,
+	\item $A = \Matrix{1 & 0 \\ 0 & -1}$, con $\sigma = (1, 1, 0)$, $\rg(\varphi) = 2$ e $\CI(\varphi) = \{x^2 = y^2 \mid \v \in V\}$,
+	\item $A = I_2$, con $\sigma = (2, 0, 0)$, $\rg(\varphi) = 2$ e $\CI(\varphi) = \zerovecset$,
+	\item $A = -I_2$, con $\sigma = (0, 2, 0)$, $\rg(\varphi) = 2$ e $\CI(\varphi) = \zerovecset$.
+\end{itemize}
+
+Si osserva in particolare che $\det(A) = -1 \iff \sigma = (1, 1, 0)$. Pertanto se $M$ è una matrice associata
+al prodotto scalare $\varphi$ in una base $\basis'$, $\det(M) < 0 \iff \sigma = (1, 1, 0)$. \\
+
+\mbox{($n = 3$)} Se $A$ contiene almeno uno zero nella diagonale, si può studiare $A$ riconducendosi al caso $n = 2$,
+considerando la matrice $A^{1,2}_{1,2}$, e incrementando di uno l'indice di nullità di $\varphi$ (eventualmente
+considerando anche come varia il cono isotropo). Altrimenti $A$
+può essere rappresentato dalle seguenti quattro matrici:
+
+\begin{itemize}
+	\item $A = I_3$, con $\sigma = (3, 0, 0)$, $\rg(\varphi) = 3$ e $\CI(\varphi) = \zerovecset$,
+	\item $A = -I_3$, con $\sigma = (0, 3, 0)$, $\rg(\varphi) = 3$ e $\CI(\varphi) = \zerovecset$,
+	\item $A = \Matrix{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1}$, con $\sigma = (2, 1, 0)$, $\rg(\varphi) = 3$ e $\CI(\varphi) = \{ x^2 + y^2 = z^2 \mid \v \in V \}$,
+	\item $A = \Matrix{1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -1}$, con $\sigma = (1, 2, 0)$, $\rg(\varphi) = 3$ e $\CI(\varphi) = \{ y^2 + z^2 = x^2 \mid \v \in V \}$.
+\end{itemize}
+
+Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni isotropi delle ultime due matrici rappresentano proprio due coni nello spazio tridimensionale.
+
 \subsubsection{Metodo di Jacobi per il calcolo della segnatura}
 
 \begin{proposition} \label{prop:pre_metodo_jacobi} Sia $\KK$ un campo ordinato
@@ -639,7 +682,7 @@
 \end{proposition}
 
 \begin{proof}
-	Dalla precedente osservazione, vale che $\iota_+(\restr{\varphi}{W'}) \geq \iota_+(\restr{\varphi}{W})$
+	Dalle precedenti osservazioni, vale che $\iota_+(\restr{\varphi}{W'}) \geq \iota_+(\restr{\varphi}{W})$
 	e che $\iota_-(\restr{\varphi}{W'}) \geq \iota_-(\restr{\varphi}{W})$. Inoltre $\restr{\varphi}{W}$
 	è non degenere dal momento che $\iota_0(\restr{\varphi}{W}) = 0$, e pertanto
 	$p + q = \rg(\restr{\varphi}{W}) = k$. \\
