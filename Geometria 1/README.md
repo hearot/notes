@@ -5,7 +5,7 @@
 - [Sito web 🔗](http://people.dm.unipi.it/salvetti/GeometriaI_Matematica/indice1.html)
 
 Il corso di Geometria 1 non è ancora terminato, e per questo motivo questa cartella vedrà ancora aggiornamenti. Gli appunti non sono stati presi con gli stessi strumenti sin dall'inizio: in particolar modo,
-ho alternato prima [Microsoft OneNote](https://www.onenote.com/) a [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it), per poi passare definitivamente a prenderli in LaTeX con [TeXstudio](https://www.texstudio.org/).
+ho iniziato a prendere appunti con [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it), per poi passare definitivamente a prenderli in LaTeX con [TeXstudio](https://www.texstudio.org/).
 
 La cartella contiene in particolar modo una *Scheda riassuntiva*, che, come dice il nome, vorrebbe essere un recap di
 tutti i risultati principali dell'algebra lineare.

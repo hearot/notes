@@ -10,6 +10,4 @@ corso è stato sin da subito suddiviso in due principali parti: quella di *calcu
 dei risultati pratici dell'analisi; e quella di *analysis*, ossia di rifondazione teorica dell'analisi
 moderna, e dunque di rivisitazione in chiave strettamente più formale dei concetti intravisti nella parte di *calculus*.
 
-Inizialmente gli appunti sono stati presi con [Microsoft OneNote](https://www.onenote.com/). Successivamente sono
-passato a [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it),
-e poi a prenderli in LaTeX con [TeXstudio](https://www.texstudio.org/).
+Inizialmente gli appunti sono stati presi con [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it). Successivamente ho finito col prenderli con in LaTeX con [TeXstudio](https://www.texstudio.org/).

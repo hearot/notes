@@ -5,8 +5,8 @@
 - [Appunti di Diego Monaco 📓](https://github.com/diego-unipi/Appunti-Aritmetica)
 
 Tutti i PDF sotto la cartella omonima sono il risultato degli appunti presi in presenza durante le lezioni dei proff. Gaiffi
-e D'Adderio, di cui sopra il programma. Seppur manchi una parte preliminare (circa il primo mese di lezioni), le lezioni
-sono quasi del tutto coperte.
+e D'Adderio, di cui sopra il programma. Seppur manchi una parte preliminare (la quasi totalità di teoria dei gruppi), il resto delle lezioni
+è quasi del tutto coperto.
 
 La cartella dell'*Algebrario* contiene un prototipo di dispense che intendo scrivere sul corso di Aritmetica del primo anno. Al momento
 il lavoro è in pausa, ma potrebbe (e dovrebbe) riprendere in estate, nonostante la presenza di una buona parte delle nozioni della
