@@ -52,14 +52,14 @@
 		\setlength{\multicolsep}{1pt}
 		\setlength{\columnsep}{2pt}
 		
-		\subsection{Alcuni accenni alla geometria di $\RR^3$}
+		\subsection{Alcuni accenni alla geometria di \texorpdfstring{$\RR^3$}{R\^{}3}}
 		
 		Si definisce prodotto scalare la forma
-		bilineare simmetrica unicamente determinata da $\innprod{\vec{e_i}}{\vec{e_j}} = \delta_{ij}$. Vale la seguente identità: $\innprod{(x, y, z)}{(x', y', z')} = xx' + yy' + zz'$.
+		bilineare simmetrica unicamente determinata da $\innprod{\vec{e_i}, \vec{e_j}} = \delta_{ij}$. Vale la seguente identità: $\innprod{(x, y, z), (x', y', z')} = xx' + yy' + zz'$.
 		
-		Inoltre $\innprod{\vec{a}}{\vec{b}} = \card{\vec{a}} \card{\vec{b}} \cos(\theta)$, dove $\theta$ è l'angolo compreso tra i due vettori.
+		Inoltre $\innprod{\vec{a}, \vec{b}} = \card{\vec{a}} \card{\vec{b}} \cos(\theta)$, dove $\theta$ è l'angolo compreso tra i due vettori.
 		Due vettori $\vec{a}$, $\vec{b}$ si dicono ortogonali
-		se e solo se $\innprod{\vec{a}}{\vec{b}} = 0$.
+		se e solo se $\innprod{\vec{a}, \vec{b}} = 0$.
 		
 		Si definisce prodotto vettoriale la forma bilineare alternante
 		da $\RR^3 \times \RR^3$
@@ -81,7 +81,7 @@
 		Due vettori $\vec{a}$, $\vec{b}$ si dicono paralleli se $\exists
 		k \mid \vec{a} = k \vec{b}$, o equivalentemente se
 		$\vec{a} \times \vec{b} = \vec{0}$. Altrettanto si può dire
-		se $\innprod{\vec{a}}{\vec{b}} = \card{\vec{a}} \card{\vec{b}}$ (i.e.
+		se $\innprod{\vec{a}, \vec{b}} = \card{\vec{a}} \card{\vec{b}}$ (i.e.
 		$\cos(\theta) = 1 \implies \theta = 0$).
 		
 		Una retta in $\RR^3$ è un sottospazio affine della
@@ -102,7 +102,7 @@
 		
 		\begin{itemize}
 			\item $\vec{a} \times (\vec{b} \times \vec{c}) =
-			\innprod{\vec{a}}{\vec{c}}\,\vec{b} - \innprod{\vec{a}}{\vec{b}}\,\vec{c}$ (\textit{identità di Lagrange}),
+			\innprod{\vec{a}, \vec{c}}\,\vec{b} - \innprod{\vec{a}, \vec{b}}\,\vec{c}$ (\textit{identità di Lagrange}),
 			\item $\vec{a} \times (\vec{b} \times \vec{c}) + \vec{b} \times (\vec{c} \times \vec{a}) + \vec{c} \times (\vec{a} \times \vec{b}) =
 			\vec{0}$ (\textit{identità di Jacobi}).
 		\end{itemize}
@@ -111,7 +111,7 @@
 		del parallelepipedo individuato da questi punti è:
 		
 		\[\card{\det\begin{pmatrix}\vec{a} \\ \vec{b} \\ \vec{c}\end{pmatrix}} =
-		\card{\innprod{\vec{a}}{\vec{b} \times \vec{c}}}.\]
+		\card{\innprod{\vec{a}, \vec{b} \times \vec{c}}}.\]
 		
 		Tre punti sono complanari se e solo se il volume di tale parallelpipedo è nullo
 		(infatti questo è equivalente a dire che almeno uno dei tre punti
@@ -1202,7 +1202,8 @@
 		
 		Se $\basis = \{ \vv 1, \ldots ,\vv n \}$ è una base di $V$, si definisce $M_\basis(\varphi) = (\varphi(\vv i, \vv j))_{i,j=1\mbox{--}n}$ come la matrice associata al prodotto scalare $\varphi$. In particolare,
 		se $a_\varphi : V \to V^*$ è la mappa lineare che associa a $\v$ il funzionale $\varphi(\v, \cdot) \in V^*$
-		tale che $\varphi(\v, \cdot)(\w) = \varphi(\v, \w)$.
+		tale che $\varphi(\v, \cdot)(\w) = \varphi(\v, \w)$. Si scrive $(V, \varphi)$ per indicare uno
+		spazio vettoriale $V$ dotato del prodotto scalare $\varphi$.
 		
 		Si definisce prodotto scalare \textit{standard} il prodotto $\varphi$ tale che
 		$\varphi(\v, \w) = [\v]_\basis^\top [\w]_\basis$.
@@ -1349,8 +1350,8 @@
 			\item Si ripeta il processo considerando come $\basis$ tutti i vettori di $\basis$ con $\vv 1$ escluso,
 			o si termini l'algoritmo una volta che è rimasto un solo vettore.
 		\end{enumerate}
+
 		\subsubsection{Metodo di Jacobi per il calcolo della segnatura}
-		
 		Sia $A = M_\basis(\varphi)$ una matrice associata a $\varphi$ nella base $\basis$.
 		Sia $d_0 := 1$. Se $d_i = \det(A_{1, \ldots, i}^{1, \ldots, i})$ (è possibile anche
 		prendere un'altra sequenza di minori, a patto che essi siano principali e che siano
@@ -1385,6 +1386,31 @@
 			\item Se $\varphi$ è semidefinito, allora $W(\varphi) = i_0$ (e $W = V^\perp$ è un sottospazio
 			isotropo di tale dimensione).
 		\end{itemize}
+		
+		\subsubsection{Isometrie tra spazi vettoriali}
+
+		Due spazi vettoriali $(V, \varphi)$ e $(W, \psi)$ su $\KK$ si dicono isometrici tra loro se
+		esiste un isomorfismo $f : V \to W$ tale che $\varphi(\vv 1, \vv 2) = \psi(f(\vv 1), f(\vv 2))$.
+
+		Se $f$ è un isomorfismo tra $V$ e $W$, sono equivalenti le seguenti affermazioni:
+
+		\begin{enumerate}[(i)]
+			\item $(V, \varphi)$ e $(W, \psi)$ sono isometrici tra loro tramite $f$,
+			\item $\forall \basis$ base di $V$, $M_\basis(\varphi) = M_{f(\basis)}(\psi)$,
+			\item $\exists \basis$ base di $V$, $M_\basis(\varphi) = M_{f(\basis)}(\psi)$.
+		\end{enumerate}
+		
+		Inoltre, $V$ e $W$ sono isometrici se e solo se hanno la stessa dimensione e le matrici associate
+		a $\varphi$ e $\psi$ in due basi di $V$ e di $W$ sono congruenti (infatti, in tal caso, esistono due
+		basi di $V$ e di $W$ che condividono la stessa matrice associata, ed è possibile associare ad uno
+		ad uno gli elementi di queste basi).
+		
+		Pertanto, se $\basis_V$ e $\basis_W$ sono due basi di $V$ e di $W$, $\KK = \RR$ e $M_{\basis_V}(\varphi)$ e $M_{\basis_W}(\psi)$ condividono la stessa segnatura, allora $V$ e $W$ sono
+		isometrici tra loro (come conseguenza del teorema di Sylvester reale).
+		
+		Analogamente, se $\KK = \CC$ e $M_{\basis_V}(\varphi)$ e $M_{\basis_W}(\psi)$ condividono lo stesso
+		rango, allora $V$ e $W$ sono isometrici tra loro (come conseguenza stavolta del teorema di Sylvester
+		complesso).
 		
 		\vfill
 		\hrule
