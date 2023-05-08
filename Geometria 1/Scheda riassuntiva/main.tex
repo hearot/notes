@@ -1,13 +1,12 @@
 \documentclass[10pt,landscape]{article}
 \usepackage{amssymb,amsmath,amsthm,amsfonts}
-\usepackage{personal_commands}
 \usepackage{multicol,multirow}
 \usepackage{marvosym}
 \usepackage{calc}
 \usepackage{ifthen}
 \usepackage[landscape]{geometry}
 \usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
-
+\usepackage{personal_commands}
 
 \ifthenelse{\lengthtest { \paperwidth = 11in}}
 { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
@@ -1193,10 +1192,199 @@
 		autovettori in un'unica base $\basis$ di $V$, si otterrà dunque
 		che una base in cui le matrici associate di $f$ e $g$ sono diagonali.
 
-		%\item vale sempre che $p_f(f) = 0$ (teorema di Hamilton-Cayley --
-		%    data una matrice associata $A$ di $f$, è sufficiente studiare
-		%    l'identità
-		%    $(A-\lambda I_n) \cdot \adj(A-\lambda I_n) = p_f(\lambda) I_n$)
+		\subsection{Prodotto scalare e congruenza}
+		Si consideri una mappa $\varphi : V \times V \to \KK$. Si dice che
+		$\varphi$ è un prodotto scalare (e quindi che $\varphi \in \PS(V)$, lo spazio dei prodotti scalari) se è una forma bilineare simmetrica.
+		In particolare vale la seguente identità:
+		
+		\[ \varphi\left( \sum_{i=1}^s a_i \vv i, \sum_{j=1}^t b_j \ww j \right) =
+		\sum_{i=1}^s  \sum_{j=1}^t a_i b_j \varphi(\vv i, \ww j). \]
+		
+		Se $\basis = \{ \vv 1, \ldots ,\vv n \}$ è una base di $V$, si definisce $M_\basis(\varphi) = (\varphi(\vv i, \vv j))_{i,j=1\mbox{--}n}$ come la matrice associata al prodotto scalare $\varphi$. In particolare,
+		se $a_\varphi : V \to V^*$ è la mappa lineare che associa a $\v$ il funzionale $\varphi(\v, \cdot) \in V^*$
+		tale che $\varphi(\v, \cdot)(\w) = \varphi(\v, \w)$.
+		
+		Si definisce prodotto scalare \textit{standard} il prodotto $\varphi$ tale che
+		$\varphi(\v, \w) = [\v]_\basis^\top [\w]_\basis$.
+		
+		Si dice che due vettori $\v$, $\w \in V$ sono ortogonali tra loro, scritto come $\v \perp \w$, se
+		$\varphi(\v, \w) = 0$. Dato $W$ sottospazio di $V$, si definisce $W^\perp$ come il sottospazio di $V$ dei vettori ortogonali a tutti i vettori di $W$. Si dice che $\varphi$ è non degenere se $V^\perp = \zerovecset$.
+		Si scrive in particolare che $V^\perp = \Rad(\varphi)$.
+		
+		Si dice che $V = U \oplus^\perp W$ (ossia che $U$ e $W$ sono in somma diretta ortogonale) se $V = U \oplus W$ e $U \subseteq W^\perp$. Sia $i : W \to V$ tale che $\w \mapsto \w$. Si scrive $\restr{\varphi}{W}$ intendendo $\restr{\varphi}{W \times W}$.
+		
+		Ad ogni prodotto scalare si può associare una forma quadratica (e viceversa) $q : V \to \KK$ tale che
+		$q(\v) = \varphi(\v, \v)$. Un vettore $\v \in V$ si dice isotropo se $q(\v) = 0$ (altrimenti si dice
+		anisotropo). Si definisce il cono isotropo $\CI(\varphi)$ come l'insieme dei vettori isotropi di $V$.
+		
+		Se $\KK = \RR$, si dice che $\varphi$ è semidefinito positivo ($\varphi \geq 0$) se $q(\v) \geq 0$ $\forall \v \in V$, e che è semidefinito negativo ($\varphi \leq 0$) se $q(\v) \leq 0$ $\forall \v \in V$. Si dice
+		che $\varphi$ è definito positivo ($\varphi > 0$) se $\varphi \geq 0$ e se $q(\v) = 0 \iff \v = \vec 0$,
+		e che è definito negativo ($\varphi < 0$) se $\varphi \leq 0$ e se $q(\v) = 0 \iff \v = \vec 0$.
+		
+		Si dice che $\varphi$ è definito se è definito positivo o definito negativo. Analogamente $\varphi$
+		è semidefinito se è semidefinito positivo o semidefinito negativo.
+		
+		\begin{itemize}
+			\item $M_\basis(\varphi)$ è simmetrica,
+			\item $\varphi(\v, \w) = [\v]_\basis^\top M_\basis(\varphi) [\w]_\basis$,
+			\item $M_\basis(\varphi) = M^\basis_{\basis^*}(a_\varphi)$,
+			\item $\Ker a_\varphi = V^\perp$,
+			\item $\varphi$ è non degenere se e solo se $M_\basis(\varphi)$ è invertibile,
+			\item $W^\perp = \Ker i^\top \circ a_\varphi$,
+			\item $a_\varphi(W^\perp) = \Ann(W) \cap \Imm a_\varphi$,
+			\item $\dim W + \dim W^\perp = \dim V + \dim (W \cap V^\perp)$ (da sopra),
+			\item $V = W \oplus^\perp W^\perp$ se $\restr{\varphi}{W}$ è non degenere ($\iff W \cap W^\perp = \Rad(\restr{\varphi}{W}) = \zerovecset$),
+			\item $(W^\perp)^\perp = W^\dperp = W + \Rad(\varphi) = W + V^\perp$,
+			\item $(U + W)^\perp = U^\perp \cap W^\perp$,
+			\item $(U \cap W)^\perp \supseteq U^\perp + W^\perp$,
+			\item $(U \cap W)^\perp = U^\perp + W^\perp$, se $\varphi$ è non degenere,
+			\item $\varphi$ è definito $\iff$ $\CI(\varphi) = \zerovecset$,
+			\item $\varphi$ è semidefinito $\iff$ $\CI(\varphi) = V^\perp = \Rad(\varphi)$ (considera l'esistenza
+			di due vettori $\v$, $\w \in V$ con forme quadratiche discordi, osserva che sono linearmente indipendenti
+			e trova un $\lambda \in \KK$ tale per cui $\v + \lambda \w$ crea un assurdo).
+		\end{itemize}
+		
+		Se $\basis'$ è un'altra base di $V$, vale il seguente \textit{teorema di cambiamento di base}:
+		
+		\[ M_{\basis'}(\varphi) = M_{\basis}^{\basis'}(\Idv)^\top \, M_\basis(\varphi) \, M_{\basis}^{\basis'}(\Idv). \]
+		
+		Si definisce relazione di congruenza la relazione di equivalenza $\cong$ (o $\equiv$) definita
+		su $\Sym(n, \KK)$ nel seguente modo:
+		
+		\[ A \cong B \iff \exists P \in \GL(n, \KK) \mid A = P^\top B P. \]
+		
+		
+		\begin{itemize}
+			\item $A \cong B \implies \rg(A) = \rg(B)$ (il rango è invariante per congruenza; e dunque si può
+			definire $\rg(\varphi)$ come il rango di una qualsiasi matrice associata a $\varphi$),
+			\item $A \cong B \implies \det(A) \det(B) \geq 0$ (in $\KK = \RR$ il segno del determinante è invariante per congruenza),
+			\item Due matrici associate a $\varphi$ in basi diverse sono congruenti per la formula
+			di cambiamento di base.
+		\end{itemize}
+		
+		Si definiscono i seguenti tre indici per $\KK = \RR$:
+		
+		\begin{itemize}
+			\item $\iota_+ = \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} > 0 \}$,
+			\item $\iota_- = \max\{ \dim W \mid W \subseteq V \E \restr{\varphi}{W} < 0 \}$,
+			\item $\iota_0 = \dim V^\perp$,
+		\end{itemize}
+		
+		e si definisce segnatura di $\varphi$ la terna $\sigma = (\iota_+, \iota_-, \iota_0)$.
+		
+		Si dice che una base $\basis$ di $V$ è ortogonale se i suoi vettori sono a due a due ortogonali (e
+		quindi la matrice associata in tale base è diagonale). Se $\Char \KK \neq 2$, valgono i seguenti risultati:
+		
+		\begin{itemize}
+			\item $\varphi(\v, \w) = \frac{q(\v + \w) - q(\v) - q(\w)}{2}$ (formula di polarizzazione; $\varphi$ è
+			completamente determinata dalla sua forma quadratica),
+			
+			\item Esiste sempre una base ortogonale $\basis$ di $V$ (teorema di Lagrange; è sufficiente considerare
+			l'esistenza di un vettore anisotropo $\w \in V$ ed osservare che $V = W \oplus^\perp W^\perp$, dove $W = \Span(V)$, concludendo per induzione; o in caso di non esistenza di tale $\w$, concludere per il
+			risultato precedente),
+			
+			\item (se $\KK = \CC$) Esiste sempre una base ortogonale $\basis$ di $V$ tale che:
+			
+			\[ M_\basis(\varphi) = \Matrix{I_r & \rvline & 0 \\ \hline 0 & \rvline & 0\,}, \]
+			
+			\vskip 0.05in
+			
+			dove $r = \rg(\varphi)$ (teorema di Sylvester, caso complesso; si consideri una base ortogonale e se
+			ne normalizzino i vettori anisotropi),
+			
+			\item Due matrici simmetriche con stesso rango allora non solo sono SD-equivalenti, ma sono
+			anche congruenti,
+			
+			\item (se $\KK = \RR$) Esiste sempre una base ortogonale $\basis$ di $V$ tale che:
+			
+			\[ M_\basis(\varphi) = \Matrix{I_{\iota_+} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & -I_{\iota_-} & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & 0\cdot I_{\iota_0} }. \]
+			
+			\vskip 0.05in
+			
+			Inoltre $\sigma$ è un invariante completo per la congruenza, e vale che, su una qualsiasi base ortogonale $\basis'$ di $V$, $\iota_+$ è esattamente il numero
+			di vettori anisotropi di base con forma quadratica positiva, che $\iota_-$ è il numero di vettori con forma
+			negativa e che $\iota_0$ è il numero di vettori isotropi (teorema di Sylvester, caso reale; si consideri
+			una base ortogonale e se ne normalizzino i vettori anisotropi, facendo infine eventuali considerazioni
+			dimensionali per dimostrare la seconda parte dell'enunciato),
+			
+			\item $\varphi > 0 \iff \sigma = (n, 0, 0)$ e $\varphi < 0 \iff \sigma = (0, n, 0)$,
+			\item $\varphi \geq 0 \iff \sigma = (n - k, 0, k)$ e $\varphi \leq 0 \iff \sigma = (0, n - k, k)$,
+			con $0 \leq k \leq n$ tale che $k = \dim V^\perp$,
+			
+			\item I vettori isotropi di una base ortogonale sono una base di $V^\perp$,
+			
+			\item $\rg(\varphi) = \iota_+ + \iota_-$,
+			
+			\item $n = \iota_+ + \iota_- + \iota_0$,
+			
+			\item Se $W$ è un sottospazio di $V$, $\iota_+(\varphi) \geq \iota_+(\restr{\varphi}{W})$ e
+			$\iota_-(\varphi) \geq \iota_-(\restr{\varphi}{W})$,
+			
+			\item Se $V = U \oplus^\perp W$, $\sigma(\varphi) = \sigma(\restr{\varphi}{U}) + \sigma(\restr{\varphi}{W})$,
+			
+			\item Se $\KK = \RR$ e $A = M_\basis(\varphi)$, allora: 
+			\[ \sigma = \textstyle \left( \sum_{\substack{\lambda \in \Sp(\varphi) \\ \lambda > 0}} \mu_a(\lambda), \; \sum_{\substack{\lambda \in \Sp(A) \\ \lambda < 0}} \mu_a(\lambda), \; \mu_0(\lambda) \right), \]			
+			come conseguenza del teorema spettrale reale.
+		\end{itemize}
+		
+		Si chiama matrice di Sylvester una matrice della forma vista nell'enunciato del teorema di Sylvester
+		reale, e si dice che una base $\basis$ è una base di Sylvester se la matrice ad essa associata è di
+		Sylvester. Per il teorema di Sylvester, tale base esiste sempre, e la matrice di Sylvester è unica per
+		ogni prodotto scalare $\varphi$.
+		
+		\subsubsection{Algoritmo di ortogonalizzazione di Gram-Schmidt}
+		
+		Data una base $\basis$ di $V$, se $\abs{\CI(\varphi) \cap \basis} \leq 1$ (ossia se ogni vettore di
+		$\basis$ è anisotropo o al più vi è un vettore isotropo, posto in fondo come $\vv n$), si può
+		trovare una base ortogonale $\basis' = \{ \vv 1', \ldots, \vv n' \}$ a partire da $\basis$ tale che ne mantenga la stessa bandiera, ossia tale che:
+		
+		\[ \Span(\vv 1', \ldots, \vv i') = \Span(\vv 1, \ldots, \vv i) \forall 1 \leq i \leq n. \]
+		
+		Si definisce $C(\w, \v) = \frac{\varphi(\v, \w)}{\varphi(\w, \w)}$ come il coefficiente di Fourier
+		di $\v$ rispetto a $\w$. L'algoritmo allora funziona nel seguente modo:
+		
+		\begin{enumerate}
+			\item Si prenda in considerazione $\vv 1$ e si sottragga ad ogni altro vettore $\vv i$ della base il
+			vettore $C(\vv 1, \vv i) \, \vv 1$,
+			\item Si ripeta il processo considerando come $\basis$ tutti i vettori di $\basis$ con $\vv 1$ escluso,
+			o si termini l'algoritmo una volta che è rimasto un solo vettore.
+		\end{enumerate}
+		\subsubsection{Metodo di Jacobi per il calcolo della segnatura}
+		
+		Sia $A = M_\basis(\varphi)$ una matrice associata a $\varphi$ nella base $\basis$.
+		Sia $d_0 := 1$. Se $d_i = \det(A_{1, \ldots, i}^{1, \ldots, i})$ (è possibile anche
+		prendere un'altra sequenza di minori, a patto che essi siano principali e che siano
+		crescenti per inclusione) è diverso da zero
+		per ogni $1 \leq i \leq n-1$, allora $\iota_+$ è il numero di permanenze di segno
+		di $d_i$ (zero escluso), $\iota_-$ è il numero di variazioni di segno (zero escluso), e $\iota_0$ è $1$ se
+		$d_n = 0$ o $0$ altrimenti.
+		
+		In generale, se $W$ è un sottospazio di $W'$, $W$ ha codimensione $1$ rispetto a $W'$ e $\det(M_{\basis_W}(\restr{\varphi}{W})) \neq 0$ per una base $\basis_W$ di $W$, allora la segnatura
+		di $\restr{\varphi}{W'}$ è la stessa di $\restr{\varphi}{W}$, dove si aggiunge
+		$1$ a $\iota_+$, se i determinanti $\det(M_{\basis_W}(\restr{\varphi}{W}))$ e $\det(M_{\basis_{W'}}(\restr{\varphi}{W}))$ (dove $\basis_{W'}$ è una base di $W'$) concordano di segno, $1$ a $\iota_-$, se
+		sono discordi, o $1$ a $\iota_0$ se l'ultimo di questi due determinanti è nullo.
+		
+		Dal metodo di Jacobi si deduce il criterio di definitezza di Sylvester: $A$ è
+		definita positiva se e solo se $d_i > 0$ $\forall 1 \leq i \leq n$; $A$ è
+		definita negativa se e solo se $(-1)^i d_i > 0$ $\forall 1 \leq i \leq n$.
+		
+		\subsubsection{Sottospazi isotropi e indice di Witt}
+		
+		Si dice che un sottospazio $W$ di $V$ è isotropo se $\restr{\varphi}{W} = 0$, o
+		equivalentemente se $W \subseteq W^\perp$ (i.e.~se $W \cap W^\perp = W$, e quindi
+		se $\Rad(\restr{\varphi}{W}) = W$). Si definisce allora l'indice di Witt $W(\varphi)$ come
+		la dimensione massima di un sottospazio isotropo di $V$.
+		
+		\begin{itemize}
+			\item $V^\perp$ è un sottospazio isotropo,
+			\item Se $W$ è isotropo, allora $\dim W \leq \frac{\dim V + \dim \Rad(\varphi)}{2}$,
+			\item Se $W$ è isotropo e $\varphi$ è non degenere, allora $\dim W \leq \frac{1}{2} \dim V$,
+			\item Se $\KK = \RR$, allora $W(\varphi) = \min\{ i_+, i_- \} + i_0$ (è sufficiente considerare
+			una base di Sylvester e creare una nuova base i cui i vettori sono o isotropi o della forma $\vv i - \ww i$, dove $q(\vv i) = 1$ e $q(\ww i) = 1$, concludendo con discussioni dimensionali),
+			\item Se $\varphi$ è definito, allora $W(\varphi) = 0$,
+			\item Se $\varphi$ è semidefinito, allora $W(\varphi) = i_0$ (e $W = V^\perp$ è un sottospazio
+			isotropo di tale dimensione).
+		\end{itemize}
 		
 		\vfill
 		\hrule
