@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{5 maggio 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Affinità e spazio proiettivo}
+	\end{center}
+	
+	\begin{note}
+		Qualora non specificato diversamente, con $E$ si indicherà un
+		generico spazio affine di dimensione $n$ su cui agisce lo
+		spazio vettoriale $V$.
+	\end{note}
+	
+	Sia $f$ un'applicazione affine di $E$. Allora, per ogni $O \in E$, $\v \in V$,
+	$f(O + \v) = f(O) + g(\v)$, dove $g \in \End(V)$ è l'applicazione lineare
+	associata ad $f$. Pertanto $f(O + \v) = O + (f(O) - O) + g(\v)$, ossia
+	$f$ è una traslazione di vettore $f(O) - O$ composta ad un'applicazione
+	lineare. \\
+	
+	In particolare, passando alle coordinate rispetto al punto $O$ e una
+	base $\basis$ di $V$, si può riscrivere $[f(P)]_{O, \basis}$ secondo
+	la seguente identità:
+	
+	\[ [f(P)]_{O, \basis} = \underbrace{[f(O) - O]_{\basis}}_{\vec b} + \underbrace{[g(P - O)]_{\basis}}_{A [\v]_\basis} = A [P - O]_\basis + \vec b, \]
+	
+	dove $A = M_\basis(g)$. In particolare, in $\AnK$, scegliendo $O = \vec 0$ come origine e la base canonica
+	come base $\basis$, si ottiene che:
+	
+	\[ f(\v) = A \v + \vec b, \]
+	
+	per ogni $\v \in \AnK$. Se $f \in A(E)$, allora vale anche che:
+	\[ f\inv(O + \w) = f\inv(f(O) + (O - f(O)) + \w) = O - g\inv(f(O) - O) + g(\w), \]
+	
+	dove si è usato che $g$ è invariante per cambiamento del punto d'origine $O$. Pertanto,
+	in questo caso, passando alle coordinate, vale che:
+	
+	\[ [f\inv(P)]_{O, \basis} = A\inv [P - O]_\basis - A\inv \vec b. \]
+	
+	Considerando questa identità in $\AnK$, risulta che:
+	
+	\[ f\inv(\vec v) = A\inv \vec v - A\inv \vec b, \]
+	
+	per ogni $\v \in \AnK$.
+	
+	\hr \vskip 0.1in
+
+	Sia $\iota : \AnK \to H_{n+1}$ l'applicazione che associa $\vec x$ a $\Vector{\vec x \\ 1} \in H_{n+1}$,
+	dove vale che:
+	
+	\[ H_{n+1} = \left\{ \Vector{x_1 \\ \vdots \\ x_{n+1}} \;\middle\vert\; x_{n+1} = 1 \right\}, \]
+	
+	\vskip 0.15in
+	
+	ossia l'iperpiano affine di $\Aa_{n+1}(\KK)$ dei vettori con l'ultima coordinata pari a $1$. Per comodità
+	si indica $\iota(\x)$ con $\hat \x$.
+	
+	\begin{proposition}
+		$\iota$ è un'isomorfismo affine.
+	\end{proposition}
+	
+	\begin{proof}
+		Si verifica innanzitutto che $\iota$ è un'applicazione affine. Siano $\lambda_1$, ..., $\lambda_k \in \KK$ tali
+		che $\sum_{i=1}^k \lambda_i = 1$, e siano $\xx 1$, ..., $\xx k \in E$. Allora vale che:
+		
+		\[ \iota\left( \sum_{i=1}^k \lambda_i \xx i \right) = \Vector{\sum_{i=1}^k \lambda_i \xx i \\ 1} = \Vector{\sum_{i=1}^k \lambda_i \xx i \\ \sum_{i=1}^k \lambda_i} = \sum_{i=1}^k \lambda_i \, \iota(\xx i). \]
+		
+		\vskip 0.05in
+		
+		Si consideri\footnote{Per concludere in modo più diretto la dimostrazione è sufficiente anche esibire l'inverso di $g$, ottenuto ignorando l'ultima coordinata di un vettore di $H_{n+1}$.} ora l'applicazione lineare $g$ associata a $\iota$. Allora, posto $O = \vec 0$, $g(\v) = f(O + \v) - f(O) =
+		f(\v) - f(\vec 0) = f(\v) - \Vector{0 & \cdots & 0 & 1}^\top$. Dal momento che la direzione di $H_{n+1}$ è
+		$n$-dimensionale (scegliendo $O$ come origine, tutti i vettori ottenibili scartano l'ultima coordinata, sempre
+		pari a $0$), $g$ mappa due spazi vettoriali di stessa dimensione. \\
+		
+		Pertanto, è sufficiente dimostrare che $g$ è surgettiva affinché sia invertibile (e dunque $\iota$ sia un isomorfismo affine). Chiaramente $g$ è surgettiva, dal momento che ad ogni vettore $\hat \v = \Matrix{\v & 0} \in \Giac(H_{n+1})$ è tale che $g(\v) = \hat \v$. Si conclude dunque che $g$ è invertibile, e che $\iota$ è
+		un isomorfismo affine.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $f \in A(\AnK)$ e sia $f' = \iota \circ f \circ \iota\inv \in A(H_{n+1})$
+		l'identificazione di $f$ in $H_{n+1}$. Allora si può estendere $f'$ ad un'applicazione lineare invertibile $\hat f$ di $\KK^{n+1}$ (ossia ad un'applicazione $\hat f$ tale per cui $\restr{\hat f}{H_{n+1}} = f'$). Viceversa, data un'applicazione lineare invertibile $g \in \End(\KK^{n+1})$ tale che $\restr{g}{H_{n+1}} = H_{n+1}$, allora la restrizione $\restr{g}{H_{n+1}}$ è un'affinità di $H_{n+1}$ ed
+		induce un'affinità $f$ di $\AnK$ in modo tale che $f = \iota\inv \circ \restr{g}{H_{n+1}} \circ \iota$. \\
+		
+		In particolare, una tale $\hat f$ è tale che $\hat f(\x') = A' \x'$ $\forall \x' \in \KK^{n+1}$, dove
+		vale che:
+		
+		\[ A' = \Matrix{ A & \rvline & \vec b \, \\ \hline 0 & \rvline & 1 \, }, \qquad f(\v) = A \v + \vec b \quad \forall \v \in \AnK. \]
+	\end{proposition}
+	
+	\begin{proof}
+		Si consideri $\hat f \in \End(\KK^{n+1})$ tale che $\hat f(\x') = A' \x'$. $\hat f$ è invertibile dal
+		momento che $A'$ lo è. Infatti vale che:
+		
+		\[ (A')\inv = \Matrix{ A\inv & \rvline & -A\inv \, \vec b \, \\ \hline 0 & \rvline & 1 \, }. \]
+		
+		\vskip 0.05in
+		
+		Sia $\hat x = \Vector{\x & 1}^\top \in H_{n+1}$. Sia ora $\hat x \in H_{n+1}$. Allora $\hat f(\hat x) = \Vector{A \x + \vec b & 1}^\top = \Vector{f(\x) & 1}^\top = \iota(f(\vec x)) = \iota(f(\iota\inv(\hat x))) = f'(\hat x) \in H_{n+1}$ $\forall \hat x \in H_{n+1}$. Pertanto $\restr{\hat f}{H_{n+1}} = f'$. \\
+		
+		Si consideri adesso $g \in \GL(\KK^{n+1})$ tale che $\restr{g}{H_{n+1}} = H_{n+1}$. Sia $A'$ tale che
+		$g(\x') = A' \x'$ $\forall \x' \in \KK^{n+1}$. Poiché $\restr{g}{H_{n+1}} = H_{n+1}$, allora
+		$(A')_{n+1,n+1} = g(\e{n+1})_{n+1} = 1$. Poiché $g(\e n + \e{n+1})_{n+1} = 1$, allora $(A')_{n+1,n} = 0$.
+		In particolare, partendo da $j=n$ fino a $j=1$, si deduce, per induzione, che $g(\e j + \ldots + \e{n+1})_{n+1} = 1 \implies (A')_{n+1,j} = 0$. \\
+		
+		Allora $A'$ è della seguente forma:
+		
+		\[ A' = \Matrix{ A & \rvline & \vec b \, \\ \hline 0 & \rvline & 1 \, }, \quad A \in M(n, \KK), \, \vec b \in \KK^n. \]
+		
+		\vskip 0.05in
+		
+		Considerando allora l'applicazione affine $f \in \AnK$ tale che $f(\v) = A \v + \vec b$,
+		$g$ è l'applicazione lineare invertibile che estende $f' = \iota \circ f \circ \iota\inv$, come
+		visto prima, da cui la tesi.
+	\end{proof}
+	
+	\begin{remark}
+		Le matrici della forma:
+		
+		\[ \Matrix{ A & \rvline & \vec b \, \\ \hline 0 & \rvline & 1 \, }, \quad A \in M(n, \KK), \, \vec b \in \KK^n, \]
+		
+		\vskip 0.05in
+		
+		formano un sottogruppo di $(M(n+1, \KK), \cdot)$ canonicamente isomorfo a $A(\AnK)$.
+	\end{remark}
+	
+	\hr
+	
+	\begin{definition} [spazio proiettivo]
+		Si definisce lo \textbf{spazio proiettivo} $\PP(\KK^{n+1}) = \PP^n(\KK)$ come l'insieme
+		dei sottospazi di dimensione unitaria di $\KK^{n+1}$.
+	\end{definition}
+	
+	\begin{remark}
+		Se si definisce la relazione di equivalenza $\sim$ su $V$ in modo tale che $\x \sim \y \defiff \exists \alpha \in \KK^* \mid \x = \alpha \y$, $V \quot \sim$ è in bigezione con lo spazio proiettivo. In particolare,
+		ogni elemento di $V \quot \sim$ è un unico elemento dello spazio proiettivo a cui è stato tolto il vettore $\vec 0$.
+	\end{remark}
+	
+	\begin{remark}
+		Ogni elemento $\hat x = \Vector{\x & 1}^\top$ di $H_{n+1}$ identifica un unico elemento dello spazio proiettivo, ossia $\Span(\hat x)$, dal momento che due vettori di $H_{n+1}$ appartengono alla stessa retta se e solo se
+		sono linearmente dipendenti, ossia se sono uguali. \\
+		
+		Gli elementi di $\PP^n(\KK)$ che non contengono elementi di $H_{n+1}$ sono esattamente i sottospazi
+		contenenti vettori la cui ultima coordinata è nulla. Pertanto questi elementi, detti \textbf{punti all'infinito}
+		di $\PP^n(\KK)$, si possono identificare in particolare come elementi di $\PP^{n+1}(\KK)$. \\
+	\end{remark}
+	
+	\begin{remark}
+		Si può ricoprire $\PP^n(\KK)$ con iperpiani analoghi ad $H_{n+1}$, ossia con gli iperpiani della
+		seguente forma:
+		
+		\[ T_i = \left\{ \Vector{x_1 \\ \vdots \\ x_{n+1}} \;\middle\vert\; x_i = 1 \right\}. \]
+		
+		\vskip 0.1in
+		
+		Ogni elemento di $\PP^n(\KK)$ interseca infatti almeno uno di questi iperpiani, dacché in esso deve
+		esistervi obbligatoriamente un vettore non nullo. In particolare, se esiste un'intersezione tra $T_i$
+		e un elemento di $\PP^n(\KK)$, questa è unica.  
+	\end{remark}
+\end{document}
