@@ -38,7 +38,7 @@
 	\[ f(\v) = A \v + \vec b, \]
 	
 	per ogni $\v \in \AnK$. Se $f \in A(E)$, allora vale anche che:
-	\[ f\inv(O + \w) = f\inv(f(O) + (O - f(O)) + \w) = O - g\inv(f(O) - O) + g(\w), \]
+	\[ f\inv(O + \w) = f\inv(f(O) + (O - f(O)) + \w) = O - g\inv(f(O) - O) + g\inv(\w), \]
 	
 	dove si è usato che $g$ è invariante per cambiamento del punto d'origine $O$. Pertanto,
 	in questo caso, passando alle coordinate, vale che:
@@ -128,7 +128,22 @@
 		
 		\vskip 0.05in
 		
-		formano un sottogruppo di $(M(n+1, \KK), \cdot)$ canonicamente isomorfo a $A(\AnK)$.
+		formano un sottogruppo di $(M(n+1, \KK), \cdot)$ canonicamente isomorfo a $A(\AnK)$. In particolare si osserva che un'affinità dipende
+		da esattamente $n^2 + n$, dove $n^2$ sono i parametri su cui
+		si basa $A$, e $n$ sono i parametri su cui si basa $\vec b$. \\
+		
+		Se $D \subseteq E$ è un sottospazio affine di $E$, l'insieme
+		$T = \{ f \in A(E) \mid f(D) = D \}$ forma un sottogruppo di $(A(E), \circ)$. In particolare, se $\dim D = k$, un'affinità di $T$
+		dipende da esattamente $(k+1)k + (n-k)n$ parametri. \\
+		
+		Infatti in tal caso, scegliendo una base opportuna di $D_0$, estesa
+		poi a base di $E_0$, e riferendosi ad un'origine di $D$,
+		$A$ conterrà un blocco $k^2$ relativo alle immagini della base
+		di $D$ ed un blocco $(n-k)n$ relativo alle immagini degli altri
+		vettori, non appartenenti a $D$. Inoltre dovranno essere scelti
+		i parametri riguardanti il vettore $\vec b$, che, essendo stato
+		scelto come riferimento un punto d'origine appartenente a $D$,
+		richiederà la scelta di $k$ parametri.
 	\end{remark}
 	
 	\hr
@@ -164,4 +179,54 @@
 		esistervi obbligatoriamente un vettore non nullo. In particolare, se esiste un'intersezione tra $T_i$
 		e un elemento di $\PP^n(\KK)$, questa è unica.  
 	\end{remark}
+
+	\hr
+	
+	\begin{theorem}
+		Sia $E$ uno spazio affine sullo spazio $V$ di dimensione $n$. Allora
+		valgono i seguenti due risultati.
+		
+		\begin{enumerate}[(i)]
+			\item Se $f \in A(E)$ e i punti $P_1$, ..., $P_k$ sono affinemente
+			indipendenti, allora anche i punti $f(P_1)$, ..., $f(P_k)$ sono
+			affinemente indipendenti.
+			
+			\item Se i punti $P_1$, ..., $P_{n+1}$ sono affinemente indipendenti, e lo sono anche i punti $Q_1$, ..., $Q_{n+1}$,
+			allora esiste un'unica affinità
+			$f \in A(E)$ tale che $f(P_i) = Q_i$ $\forall 1 \leq i \leq n+1$. 
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{proof}
+		Si dimostrano i due risultati separatamente.
+		
+		\begin{enumerate}[(i)]
+			\item Poiché $f \in A(E)$, allora $g \in \GL(V)$, ed è
+			dunque invertibile. Si considerino i vettori $f(P_i) - f(P_1) = g(P_i - P_1)$
+			con $2 \leq i \leq k$. Dal momento che è invertibile,
+			$g$ mappa vettori linearmente indipendenti a vettori
+			ancora linearmente indipendenti.
+			
+			Allora, poiché i punti
+			$P_1$, ..., $P_k$ sono affinemente indipendenti, i
+			vettori $P_i - P_1$ sono linearmente indipendenti per
+			$2 \leq i \leq k$. Pertanto anche i vettori $g(P_i - P_1) = f(P_i) - f(P_1)$ con $2 \leq i \leq k$ sono linearmente indipendenti, da cui si conclude che i punti $f(P_1)$, ...,
+			$f(P_k)$ sono affinemente indipendenti.
+			
+			\item Dal momento che i punti $P_1$, ..., $P_{n+1}$ sono
+			affinemente indipendenti, allora i vettori $P_i - P_1$ con
+			$2 \leq i \leq n+1$ sono linearmente indipendenti, e formano
+			dunque una base di $V$, essendo tanti quanti la dimensione
+			di $V$. Analogamente anche i vettori $Q_i - Q_1$ con $2 \leq i \leq n+1$ formano una base di $V$.
+
+			In particolare esiste una sola applicazione lineare $g$ che
+			associa a $P_i - P_1$ il vettore $Q_i - Q_1$, con $2 \leq i \leq n+1$. Dacché le immagini formano una base di $V$, $g$ è suriettiva,
+			e dunque, poiché $g \in \End(V)$, $g$ è anche invertibile.
+			Un'affinità $f \in A(E)$ tale che $f(P_i) = Q_i$ con $1 \leq i \leq n+1$ è per esempio $f(P) = Q_1 + g(P - P_1)$. \\
+			
+			Si mostra che tale $f$ è anche unica. Se esistesse $f' \in A(E)$
+			con le stesse proprietà di $f$, varrebbe che $Q_i - Q_1 = f'(P_i) - f'(P_1) =  g'(P_i - P_1)$ $\forall 2 \leq i \leq n+1$. Tuttavia
+			una $g'$ tale che mappi $P_i - P_1$ a $Q_i - P_1$ $\forall 2 \leq i \leq n+1$ è unica, e quindi $g' = g$. Allora $f'(P) = Q_1 + g(P - P_1) = f(P)$ $\forall P \in E$ $\implies f' = f$.
+		\end{enumerate}
+	\end{proof}
 \end{document}
