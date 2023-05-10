@@ -226,7 +226,89 @@
 			
 			Si mostra che tale $f$ è anche unica. Se esistesse $f' \in A(E)$
 			con le stesse proprietà di $f$, varrebbe che $Q_i - Q_1 = f'(P_i) - f'(P_1) =  g'(P_i - P_1)$ $\forall 2 \leq i \leq n+1$. Tuttavia
-			una $g'$ tale che mappi $P_i - P_1$ a $Q_i - P_1$ $\forall 2 \leq i \leq n+1$ è unica, e quindi $g' = g$. Allora $f'(P) = Q_1 + g(P - P_1) = f(P)$ $\forall P \in E$ $\implies f' = f$.
+			una $g'$ tale che mappi $P_i - P_1$ a $Q_i - P_1$ $\forall 2 \leq i \leq n+1$ è unica, e quindi $g' = g$. Allora $f'(P) = Q_1 + g(P - P_1) = f(P)$ $\forall P \in E$ $\implies f' = f$. \qedhere
 		\end{enumerate}
+	\end{proof}
+	
+	\begin{proposition}
+		Sia $f \in A(E)$ e sia $D$ un sottospazio affine di $E$. Allora anche $f(D)$ è un sottospazio affine di $E$ della
+		stessa dimensione di $D$.
+	\end{proposition}
+	
+	\begin{proof}
+		Sia $P_0 \in D$. Allora $(f(D))_0 = \{ f(P) - f(P_0) \forall P \in D \} = \{ g(\v) \forall \v \in D_0 \} =
+		g(D_0)$. Dal momento che $f$ è un'affinità, $g$ è invertibile, e quindi preserva la dimensione di $D_0$.
+		Pertanto $\dim (f(D))_0 = \dim D_0 \implies \dim f(D) = \dim D$.
+	\end{proof}
+	
+	\begin{remark}
+		Siano $D$ e $D'$ due sottospazi affini di $E$. Allora $D \cap D'$ è sempre o vuoto o un sottospazio
+		affine. Se infatti $D \cap D'$ non è vuoto, presa una sua combinazione affine, essa è in particolare
+		una combinazione affine sia di punti di $D$ che di punti di $D'$, per cui appartiene a $D \cap D'$.
+	\end{remark}
+	
+	\begin{proposition}
+		Siano $D$ e $D'$ due sottospazi affini di $E$ con $D \cap D' \neq \emptyset$. Allora
+		valgono i seguenti due risultati:
+		
+		\begin{enumerate}[(i)]
+			\item $\Aff(D \cup D')_0 = D_0 + D'_0$,
+			\item $(D \cap D')_0 = D_0 \cap D_0'$.
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+		Si dimostrano i due risultati separatamente.
+
+		\begin{enumerate}[(i)]
+			\item Si dimostra l'identità mostrando che vale la doppia inclusione dei due spazi vettoriali.
+			Sia innanzitutto $\vec u \in D_0 + D_0'$. Allora esistono $\v \in D_0$, $\w \in D_0'$ tali che
+			$\vec u = \v + \w$. Dal momento che $D \cap D' \neq \emptyset$, esiste un punto $P \in D \cap D'$.
+			
+			Dacché allora $\v \in D_0$, esiste $P_1 \in D$ tale che $\v = P_1 - P$. Analogamente $\exists P_2 \in D'$
+			tale che $\w = P_2 - P$. Allora $\vec u = \v + \w = (P_1 - P) + (P_2 - P) = (P_1 + P_2 - P) - P$,
+			dove $P_1 + P_2 - P$ è una combinazione affine di $\Aff(D \cup D')$. Allora, poiché $P \in \Aff(D \cup D')$,
+			$\vec u \in \Aff(D \cup D')_0$, da cui si deduce che $D_0 + D_0' \subseteq \Aff(D \cup D')$.
+			
+			Sia ora $\vec u \in \Aff(D \cup D')_0$. Allora esistono $P_1$, ..., $P_k$ punti di $D$, $Q_1$, ..., $Q_{k'}$
+			punti di $D'$ e $\lambda_1$, ..., $\lambda_k$, $\mu_1$, ..., $\mu_{k'} \in \KK$ tali che:
+			
+			\[ \vec u = \left( \sum_{i=1}^k \lambda_i P_i + \sum_{j=1}^{k'} \mu_j Q_j \right) - P, \qquad \sum_{i=1}^k \lambda_i + \sum_{j=1}^{k'} \mu_j = 1. \]
+			
+			\vskip 0.05in
+			
+			Allora si può riscrivere $\vec u$ come:
+			\[ \vec u =  \underbrace{\left(\sum_{i=1}^k \lambda_i P_i + \sum_{j=1}^{k'} \mu_j P\right)}_{\in D}  - P +  \underbrace{\left(\sum_{i=1}^k \lambda_i P + \sum_{j=1}^{k'} \mu_j Q_j\right)}_{\in D'} - P, \]
+			
+			dove, ricordando che $P \in D \cap D'$, vale che:
+			\[ \left(\sum_{i=1}^k \lambda_i P_i + \sum_{j=1}^{k'} \mu_j P\right)  - P \in D_0, \quad 
+			\left(\sum_{i=1}^k \lambda_i P + \sum_{j=1}^{k'} \mu_j Q_j\right) - P \in D'_0, \]
+			
+			da cui si conclude che $\vec u \in D_0 + D_0' \implies \Aff(D \cup D')_0 \subseteq D_0 + D'_0$,
+			e quindi che $\Aff(D \cup D')_0 = D_0 + D'_0$.
+			
+			\item Come prima, si dimostra l'identità mostrando che vale la doppia inclusione dei due
+			spazi vettoriali. Sia $\vec u \in D_0 \cap D_0'$. Sia $P \in D \cap D'$. Allora esiste $P_1 \in D$
+			tale che $\vec u = P - P_1$. Analogamente esiste $P_2 \in D'$ tale che $\vec u = P - P_2$. Poiché
+			$E$ è $V$-omogeneo, esiste un solo punto $P'$ tale che $P = P' + \vec u$. Si conclude dunque
+			che $P_1 = P_2$, e dunque che $P_1$ appartiene anche a $D'$. Pertanto $\vec u \in (D \cap D')_0 \implies
+			D_0 \cap D_0' \subseteq (D \cap D')_0$.
+			
+			Sia ora invece $\vec u \in (D \cap D')_0$. Allora esiste $P_1 \in D \cap D'$ tale che
+			$\vec u = P - P_1$. In particolare, dal momento che $P$ e $P_1$ appartengono a $D$,
+			$\vec u \in D_0$. Analogamente $\vec u \in D_0'$. Pertanto $\vec u \in D_0 \cap D_0' \implies
+			(D \cap D')_0 \subseteq D_0 \cap D_0'$, da cui si conclude che $(D \cap D')_0 = D_0 \cap D_0'$. \qedhere
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{proposition} [formula di Grassmann per i sottospazi affini]
+		Siano $D$ e $D'$ due sottospazi affini di $E$ con $D \cap D' \neq \emptyset$. Allora
+		$\dim \Aff(D \cup D') = \dim D + \dim D' - \dim (D \cap D')$.
+	\end{proposition}
+	
+	\begin{proof}
+		Per la proposizione precedente, $\dim \Aff(D \cup D') = \dim (D_0 + D_0')$. Allora, applicando
+		la formula di Grassmann per i sottospazi vettoriali, $\dim (D_0 + D_0') = \dim D_0 + \dim D_0' - \dim (D_0 \cap D_0') = \dim D + \dim D' - \dim (D_0 \cap D_0')$. Sempre per la proposizione precedente,
+		$D_0 \cap D_0' = (D \cap D')_0$, da cui si deduce che $\dim (D_0 \cap D_0') = \dim (D \cap D')_0 = \dim D \cap D'$. Pertanto $\dim \Aff(D \cup D') = \dim D + \dim D' - \dim (D \cap D')$.
 	\end{proof}
 \end{document}
