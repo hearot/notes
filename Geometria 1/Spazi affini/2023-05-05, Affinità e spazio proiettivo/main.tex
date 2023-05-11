@@ -401,4 +401,49 @@
 		modificata, per $D \cap D' \neq \emptyset$) utilizzando questa osservazione, così come si sarebbe
 		potuto dimostrare che $(D + D')_0 = D_0 + D_0'$.
 	\end{remark}
+	
+	\hr
+	
+	\begin{remark} [punti fissi di un'applicazione affine]
+		Si consideri un'applicazione affine $f$ di $\AnK$. Allora esistono $A \in M(n, \KK) \setminus \{0\}$ e $\vec b \in \AnK$ tali
+		per cui $f(\x) = A \x + \vec b$ $\forall \x \in \AnK$. In particolare, $f$ ammette punti fissi se
+		esiste $\x \in \AnK \mid f(\x) = \x \iff A \x + \vec b = \x \iff (A-I) \x = -\vec b \iff \vec b \in \Im(A-I)$. \\
+		
+		Ciò è sicuramente vero se $A$ non ammette $1$ come autovalore (infatti in tal caso $A-I$ è invertibile, e quindi
+		in particolare è surgettiva). 
+	\end{remark}
+	
+	\begin{example}
+		Si consideri $f \in A(\Aa_1(\KK))$. Allora esistono $a$, $b \in \Aa_1(\KK)$ tali per cui $f(x) = ax+b$ $\forall x \in \Aa_1(\KK)$. \\
+		
+		Se $a \neq 1$ (ossia se non ammette $1$ come autovalore), $f$ ammette un punto fisso, ossia
+		$x = -\frac{b}{a-1}$. Altrimenti, se $a = 1$ e $b \neq 0$, $f$ è una traslazione (e quindi non ammette punti fissi).
+		Allora, indicando con $\Fix(f) = \{ x \in \Aa_1(\KK) \mid f(x) = x \}$ l'insieme dei punti fissi
+		di $f$, vale sicuramente che $\abs{\Fix(f)} \leq 1$, escludendo il caso in cui $a = 1$ e $b = 0$. \\
+		
+		Inoltre, vale che $A(\Aa_1(\KK))$ agisce transitivamente su $\Aa_1(\KK)$, ossia esiste sempre un'applicazione
+		affine tale per cui $x \mapsto y$, dati $x$, $y \in \Aa_1(\KK)$. Ciononostante $A(\Aa_1(\KK))$ non agisce
+		liberamente su $\Aa_1(\KK)$, ed in particolare vale che $\Stab(x) \cong \GL(1, \KK)$\footnote{È sufficiente
+		mappare ogni affinità alla propria matrice $A$, dal momento che $\vec b$ è già univocamente determinante.}.
+		Un risultato analogo vale anche per gli altri spazi affini: per esempio vale ancora che
+		$\Stab(\x) \cong \GL(2, \KK)$ $\forall \x \in \Aa_2(\KK)$, sull'azione generata da $A(\Aa_2(\KK))$ su $\Aa_2(\KK)$. \\
+		
+		Infine, date due coppie di punti $(P, P')$ e $(Q, Q')$ con $P$, $P'$, $Q$, $Q' \in \Aa_1(\KK)$,
+		$P \neq P'$ e $Q \neq Q'$, $A(\Aa_1(\KK))$ agisce in maniera semplicemente transitiva mappando una coppia
+		di punti all'altra\footnote{Infatti l'unica applicazione affine che manda una coppia di punti nella stessa coppia di punti è obbligatoriamente l'identità, come visto sopra nello studio di $\Fix(f)$. Infine si osserva che esiste sempre un'applicazione che manda una coppia di punti nell'altra.}.
+	\end{example}
+	
+	\begin{remark} [rapporto semplice] Siano $P_1$, $P_2$, $P_3$, $Q_1$, $Q_2$ e $Q_3$ punti di $\Aa_1(\KK)$ con
+		$P_1$, $P_2$, $P_3$ distinti e $Q_1$, $Q_2$, $Q_3$ distinti. Allora esiste un'unica applicazione affine $f$
+		tale per cui $f(P_1) = Q_1$ e $f(P_2) = Q_2$, dacché $P_1$ e $P_2$ formano un riferimento affine di $\Aa_1(\KK)$. \\
+		
+		In particolare $f$ è tale che $f(P_3) = Q_3$ se e solo se, detto $\lambda \in \KK$ il parametro tale per
+		cui $P_3 = (1-\lambda) P_1 + \lambda P_2$, $Q_3 = f(P_3) = (1-\lambda) f(P_1) + \lambda f(P_2) =
+		(1-\lambda) Q_1 + \lambda Q_2$, ossia se e solo se $\lambda$ è lo stesso parametro con cui si scrive $Q_2$ rispetto
+		al riferimento affine dato da $Q_1$ e $Q_2$. In particolare ciò è vero se e solo se vale che $\frac{P_3 - P_1}{P_2 - P_1} = \lambda = \frac{Q_3 - Q_1}{Q_2 - Q_1}$. \\
+		
+		Il rapporto $\frac{P_3 - P_1}{P_2 - P_1}$ si dice \textbf{rapporto semplice} della terna di punti $P_1$, $P_2$ e $P_3$.
+		Si conclude dunque che tale $f$ esiste (ed è unica) se e solo se i rapporti semplici delle due terne di punti
+		coincidono.
+	\end{remark}
 \end{document}
