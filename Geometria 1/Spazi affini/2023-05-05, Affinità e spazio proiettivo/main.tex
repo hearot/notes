@@ -290,7 +290,7 @@
 			\item Come prima, si dimostra l'identità mostrando che vale la doppia inclusione dei due
 			spazi vettoriali. Sia $\vec u \in D_0 \cap D_0'$. Sia $P \in D \cap D'$. Allora esiste $P_1 \in D$
 			tale che $\vec u = P - P_1$. Analogamente esiste $P_2 \in D'$ tale che $\vec u = P - P_2$. Poiché
-			$E$ è $V$-omogeneo, esiste un solo punto $P'$ tale che $P = P' + \vec u$. Si conclude dunque
+			$V$ agisce liberamente su $E$, esiste un solo punto $P'$ tale che $P = P' + \vec u$. Si conclude dunque
 			che $P_1 = P_2$, e dunque che $P_1$ appartiene anche a $D'$. Pertanto $\vec u \in (D \cap D')_0 \implies
 			D_0 \cap D_0' \subseteq (D \cap D')_0$.
 			
@@ -300,15 +300,105 @@
 			(D \cap D')_0 \subseteq D_0 \cap D_0'$, da cui si conclude che $(D \cap D')_0 = D_0 \cap D_0'$. \qedhere
 		\end{enumerate}
 	\end{proof}
+
+	\begin{definition} [somma affine]
+		Siano $D$ e $D'$ due sottospazi affini di $E$. Si definisce
+		allora la \textbf{somma affine} $D + D'$ come $\Aff(D \cup D')$.
+	\end{definition}
 	
 	\begin{proposition} [formula di Grassmann per i sottospazi affini]
 		Siano $D$ e $D'$ due sottospazi affini di $E$ con $D \cap D' \neq \emptyset$. Allora
-		$\dim \Aff(D \cup D') = \dim D + \dim D' - \dim (D \cap D')$.
+		$\dim (D + D') = \dim D + \dim D' - \dim (D \cap D')$.
 	\end{proposition}
 	
 	\begin{proof}
 		Per la proposizione precedente, $\dim \Aff(D \cup D') = \dim (D_0 + D_0')$. Allora, applicando
 		la formula di Grassmann per i sottospazi vettoriali, $\dim (D_0 + D_0') = \dim D_0 + \dim D_0' - \dim (D_0 \cap D_0') = \dim D + \dim D' - \dim (D_0 \cap D_0')$. Sempre per la proposizione precedente,
-		$D_0 \cap D_0' = (D \cap D')_0$, da cui si deduce che $\dim (D_0 \cap D_0') = \dim (D \cap D')_0 = \dim D \cap D'$. Pertanto $\dim \Aff(D \cup D') = \dim D + \dim D' - \dim (D \cap D')$.
+		$D_0 \cap D_0' = (D \cap D')_0$, da cui si deduce che $\dim (D_0 \cap D_0') = \dim (D \cap D')_0 = \dim D \cap D'$. Pertanto $\dim (D + D') = \dim \Aff(D \cup D') = \dim D + \dim D' - \dim (D \cap D')$.
 	\end{proof}
+
+	\begin{remark}
+		Si definisce $\ell_{P,Q} = \{ \lambda P + (1-\lambda) Q \mid \lambda \in \KK \}$ con $P$, $Q \in E$ come la retta passante per due
+		punti. Allora, in generale, se $D$ e $D'$ sono due sottospazi
+		affini di $E$, $D + D' = \bigcup_{\substack{P \in D \\ Q \in D'}} \ell_{P,Q}$. \\
+		
+		Infatti ogni elemento di $\ell_{P, Q}$ è una combinazione affine
+		di due elementi di $D + D'$, e quindi appartiene a $D + D' \implies
+		D + D' \supseteq \bigcup_{\substack{P \in D \\ Q \in D'}} \ell_{P,Q}$. \\
+		
+		Infine, se $T \in D + D'$, esistono $\lambda_1$, ..., $\lambda_k$,
+		$\mu_1$, ..., $\mu_{k'} \in \KK$, $P_1$, ..., $P_k \in D$ e
+		$Q_1$, ..., $Q_{k'} \in D'$ tali che $T = \sum_{i=1}^k \lambda_i P_i +
+		\sum_{j=1}^{k'} \mu_j Q_j$\footnote{Al più $T$ è un elemento di solo $D$ o $D'$. In tal caso $T$ appartiene già a una qualsiasi retta passante per $T$. Pertanto si può anche assumere successivamente
+		che $\alpha$, $\beta \neq 0$ -- se infatti uno dei due parametri
+		fosse nullo, $T$ apparterrebbe a $D$ o $D'$.}, con $\sum_{i=1}^k \lambda_i + \sum_{j=1}^{k'} \mu_j = 1$. Se $\alpha = \sum_{i=1}^k \lambda_i$ e
+		$\beta = \sum_{j=1}^{k'} \mu_j$, si può riscrivere $T$ nel
+		seguente modo:
+		
+		\[ T = \alpha \underbrace{\sum_{i=1}^k \frac{\lambda_i}{\alpha} P_i}_{=\, P'} +
+		\beta \underbrace{\sum_{j=1}^{k'} \frac{\mu_j}{\beta} Q_j}_{=\, Q'}, \]
+		
+		\vskip 0.05in
+		
+		dove si osserva che $P' \in D$, essendo combinazione affine di
+		elementi di $D$, e che analogamente $Q' \in D'$. Allora
+		$T$ giace sulla retta passante per $P'$ e per $Q'$, ossia
+		$T \in \ell_{P',Q'} \implies D + D' \subseteq \bigcup_{\substack{P \in D \\ Q \in D'}} \ell_{P,Q}$.
+	\end{remark}
+
+	\begin{remark}
+		Siano fissati $P_0 \in D$ e $P_0' \in D'$, e siano $P \in D$ e
+		$Q \in D'$. Allora vale la seguente identità:
+		
+		\[ P - Q = \underbrace{(P - P_0)}_{\in \, D_0} + \underbrace{(P_0 - P_0')}_{\in \, \Span(P_0 - P_0')} + \underbrace{(P_0' - Q)}_{\in \, D_0'}. \]
+		
+		\vskip 0.05in
+		
+		Si osserva che in generale vale che $(D + D')_0 = D_0 + D_0' + \Span(P_0 - P_0')$. Chiaramente vale che $(D + D')_0 \supseteq D_0 + D_0' + \Span(P_0 - P_0')$, dal momento che $D_0$, $D_0'$ e $\Span(P_0 - P_0')$ sono tutti sottospazi vettoriali di $(D + D')_0$. \\
+		
+		Sia ora $P' \in D + D'$. Allora esistono $P'' \in D$, $Q'' \in Q$ tali
+		per cui $P' \in \ell_{P'', Q''}$, e quindi esiste $\lambda \in \KK$
+		per cui $P' = P'' + \lambda (Q'' - P'')$. Poiché $P'' \in D$,
+		esiste $\v \in D_0$ tale per cui $P'' = P_0 + \v$. Allora
+		$P' - P_0 = \v - \lambda (P'' - Q'') \in D_0 + D_0' + \Span(P_0 - P_0')$, pertanto $(D + D')_0 \subseteq D_0 + D_0' + \Span(P_0 - P_0')$,
+		da cui si conclude che $(D + D')_0 = D_0 + D_0' + \Span(P_0 - P_0')$.
+	\end{remark}
+
+	\begin{proposition} [formula di Grassmann modificata]
+		Se $D \cap D' = \emptyset$, allora $\dim (D + D') = \dim D + \dim D' -
+		\dim (D_0 \cap D_0') + 1$.
+	\end{proposition}
+
+	\begin{proof}
+		Dalla precedente osservazione, vale che $(D + D')_0 = D_0 + D_0' + \Span(P_0 - P_0')$. Si dimostra che $P_0 - P_0' \notin D_0 + D_0'$.
+		Se infatti $P_0 - P_0'$ appartenesse a $D_0 + D_0'$, esisterebbero
+		$P \in D$, $Q \in D'$ tali per cui $P_0 - P_0' = (P_0 - P) + (Q - P_0')$. \\
+		
+		Allora, facendo agire questo vettore su $P_0'$,
+		$P_0 = Q + (P_0 - P)$. Tuttavia, poiché l'azione di $V$ su $E$
+		è un'azione di gruppo, esiste un solo punto $P'$ tale per
+		cui $P_0 = P' + (P_0 - P)$, e in particolare $P' = P$. Pertanto
+		$P = Q \implies P \in D'$. Tuttavia $D \cap D' = \emptyset$, \Lightning. Pertanto $P_0 - P_0' \notin D_0 + D_0'$.
+		In particolare questo equivale a constatare che
+		$(D_0 + D_0') \cap \Span(P_0 - P_0') = \zerovecset$,
+		ossia ad osservare che:
+		
+		\[ (D + D')_0 = D_0 + D_0' \oplus \Span(P_0 - P_0'). \]
+		
+		\vskip 0.1in
+		
+		Si conclude dunque che $\dim (D + D') = \dim (D_0 + D_0') + \dim \Span(P_0 - P_0') =
+		\dim D + \dim D' - \dim (D_0 \cap D_0') + 1$, da cui la tesi.
+	\end{proof}
+
+	\begin{remark}
+		In generale vale che $\Span(P_0 - P_0') \subseteq D_0 + D_0' \iff
+		D \cap D' \neq \emptyset$. Infatti $\Span(P_0 - P_0') \subseteq D_0 + D_0' \iff D \cap D' \neq \emptyset$, come appena dimostrato.
+		Inoltre, se $D \cap D' \neq \emptyset$, esiste un punto
+		$P \in D \cap D'$. Allora $P_0 - P_0' = \underbrace{(P_0 - P)}_{\in \, D_0} + \underbrace{(P - P_0')}_{\in \, D_0'} \implies \Span(P_0 - P_0') \subseteq D_0 + D_0'$. \\
+		
+		Si poteva dunque dimostrare la \textit{formula di Grassmann} (non
+		modificata, per $D \cap D' \neq \emptyset$) utilizzando questa osservazione, così come si sarebbe
+		potuto dimostrare che $(D + D')_0 = D_0 + D_0'$.
+	\end{remark}
 \end{document}
