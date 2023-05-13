@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{10 maggio 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Quadriche e classificazione affine delle coniche}
+	\end{center}
+	
+	\wip
+	
+	\begin{note}
+		Si assume che, nel corso del documento, valga che $\Char \KK \neq 2$.
+	\end{note}
+	
+	\begin{definition} [quadriche] Si dice \textbf{quadrica} un qualsiasi luogo di zeri
+		di un polinomio $p \in \KK[x_1, \ldots, x_n]$ con $\deg p = 2$.
+	\end{definition}
+	
+	\begin{definition} [coniche] Si dice \textbf{conica} una quadrica relativa ad un polinomio
+		in due variabili.
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Una quadrica è invariante per la relazione $\sim$ su $\KK[x_1, \ldots, x_n]$, dove
+		$p_1 \sim p_2 \defiff \exists \alpha \in \KK^* \mid p_1 = \alpha p_2$. Infatti
+		il luogo di zeri di un polinomio non varia se esso viene moltiplicato per una costante non nulla di $\KK$. \\
+		\li Una quadrica può essere vuota (come nel caso della conica relativa a $x^2 + y^2 + 1$ in $\RR$). \\
+		\li Si identifica con la notazione $p(\x)$ con $\x \in \KK^n$, la valutazione del polinomio $p$ nelle coordinate
+		di $\x$. Per esempio, se $\x = (1, 2)$ e $p(x, y) = x^2 + y^2$, con $p(\x)$ si identifica il valore
+		$p(1, 2) = 1^2 + 2^2 = 5$.
+	\end{remark}
+	
+	\begin{remark} [riscrittura di $p$ mediante matrici]
+		Sia $p \in \KK[x_1, \ldots, x_n]$ di grado due. Allora $p$ si può sempre scrivere come $p_2 + p_1 + p_0$,
+		dove $p_i$ è un polinomio omogeneo contenente soltanto monomi di grado $i$. \\
+		
+		In particolare, $p_2(x_1, \ldots, x_n)$ può essere sempre riscritto come $\sum_{i=1}^n \sum_{j=1}^n a_{ij}$
+		con $a_{ij} \in \KK$ con $a_{ij} = a_{ji}$.
+		È infatti sufficiente "sdoppiare" il coefficiente $c_{ij}$
+		di $x_i x_j$ in due metà, in modo tale che $c_{ij} x_i x_j = \frac{c_{ij}}{2} x_i x_j + \frac{c_{ij}}{2} x_i x_j = \frac{c_{ij}}{2} x_i x_j + \frac{c_{ij}}{2} x_j x_i$. Inoltre, anche $p_1(x_1, \ldots, x_n)$ può essere  riscritto come $\sum_{i=1}^n b_{ij}$. \\
+		
+		Si possono allora considerare la matrice $A \in M(n, \KK)$ ed il vettore $\vec b \in \KK^n$, definiti in modo tale che:
+		
+		\[ A = (a_{ij})_{i,j=1\mbox{--}n}, \qquad \vec b = (b_i)_{i=1\mbox{--}n} \in \KK^n. \]
+		
+		\vskip 0.05in
+		
+		Infatti, $A$ e $\vec b$ soddisfano la seguente identità:
+		
+		\[ p(\x) = \x^\top A \x + \vec b^\top \x + c, \]
+		
+		\vskip 0.05in
+		
+		che, riscritta tramite l'identificazione di $\AnK$ come l'iperpiano $H_{n+1} \in \Aa_{n+1}(\KK)$,
+		diventa:
+		
+		\[ p(\x) = {\hat \x}^\top \hat A \hat \x, \quad \dove \hat A = \Matrix{A & \rvline & \nicefrac{\vec b}{2} \, \\[1pt] \hline & \rvline & \\[-9pt] \nicefrac{{\vec b}^\top}{2} & \rvline & c }. \]
+		
+		\vskip 0.05in
+		
+		Si osserva che $\hat A$ è una matrice simmetrica di taglia $n+1$ a elementi in $\KK$, e in quanto
+		tale essa induce un prodotto scalare su $\KK^{n+1}$. Pertanto la quadrica relativa $p$ è esattamente
+		l'intersezione tra $H_{n+1}$ e $\CI(\hat A)$, identificando $\KK^{n+1}$ come $H_{n+1}$, ossia
+		la quadrica è esattamente $\iota\inv(H_{n+1} \cap \CI(\hat A))$.
+	\end{remark}
+	
+	\begin{definition}[matrice associata ad una quadrica]
+		Si definisce la costruzione appena fatta di $\hat A$ come la \textbf{matrice associata alla quadrica relativa a $p$}, e si indica con $\MM(p)$. In particolare, $A$ è detta la matrice che rappresenta la \textit{parte quadratica}, e si indica con $\AA(p)$, mentre $\nicefrac{\vec b}2$ rappresenta la \textit{parte lineare}, indicata con $\Ll(p)$,
+		e $c = c(p)$ è detto \textit{termine noto}.
+	\end{definition}
+	
+	\begin{definition}[azione di $A(\Aa_n(\KK))$ su $\KKxn$]
+		Sia $f \in A(\Aa_n(\KK))$. Allora $A(\Aa_n(\KK))$ agisce su $\KKxn$ in modo tale che
+		$p' = p \circ f$ è un polinomio per cui $p'(\x) = p(f(\x))$.
+	\end{definition}
+
+	\begin{definition}[equivalenza affine tra polinomi]
+		Si dice che due polinomi $p_1$, $p_2 \in \KKxn$ sono affinemente equivalenti se e solo se $\exists f \in A(\AnK) \mid p_1 = p_2 \circ f$.
+		In tal caso si scrive che $p_1 \sim p_2$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li L'equivalenza affine è una relazione di equivalenza. \\
+		\li Sia $Z(p)$ il luogo di zeri di $p$. Allora, $p_1 \sim p_2 \implies
+		\exists f \in A(\AnK) \mid Z(p_2) = f(Z(p_1))$. \\
+		\li In generale, se $p_1 = p_2 \circ f$, vale che $Z(p_2) = f(Z(p_1))$.
+	\end{remark}
+	
+	\begin{proposition} [formula del cambiamento della matrice associata su azione di $A(\Aa_n(\KK))$]
+		Sia $f \in A(\Aa_n(\KK))$ e sia $p \in \KK[x_1, \ldots, x_n]$ di grado due. Allora vale
+		la seguente identità:
+		
+		\begin{multline*}
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\[1pt] \hline & \rvline & \\[-9pt] \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)}, \\[0.1in]
+			\con \hat M = \Matrix{ M & \rvline & \vec t \, \\ \hline 0 & \rvline & 1 \, },
+		\end{multline*}
+		
+		\vskip 0.05in
+		
+		dove $f(\x) = M \x + \vec t$ $\forall \x \in \KK^n$ con $M \in \GL(n, \KK)$ e $\vec t \in \KK^n$.
+	\end{proposition}
+	
+	\begin{proof}
+		Per definizione, $p \circ f$ è tale che $(p \circ f)(\x) = p(f(\x)) =
+		p(M\x + \vec t)$. In particolare, $(p \circ f)(\x) = \widehat{\left( M \x + \vec t \right)^\top} \MM(p) \widehat{\left( M \x + \vec t \right)} = \left( \hat M \hat x \right)^\top \!\! \MM(p) \left( \hat M \hat x \right)$. Pertanto vale che:
+		
+		\[ (p \circ f)(\x) = \hat x^\top \hat M^\top \MM(p) \hat M \hat x \implies \MM(p \circ f) = {\hat M}^\top \MM(p) \hat M, \]
+		
+		\vskip 0.05in
+		
+		da cui la tesi.
+	\end{proof}
+
+	\begin{remark}\nl
+		\li Per la proposizione precedente, due matrici, associate a due
+		polinomi di secondo grado affinemente equivalenti, variano
+		per congruenza, così come le matrici della parte quadratica. \\
+		
+		Pertanto $\rg(\MM(p \circ f)) = \rg(\MM(p))$, come $\rg(\AA(p \circ f))
+		= \rg(\AA(p))$ (così come, per $\KK=\RR$, non variano i segni
+		dei vari determinanti). Allo stesso
+		tempo, la classe di equivalenza di $\MM(p)$ è rappresentata completamente per $\KK = \CC$ (tramite il rango) e per $\KK = \RR$
+		(tramite la segnatura), per il teorema di Sylvester. \\
+
+		\li Se $f$ è una traslazione, $M = I_n$, e dunque la formula
+		si riduce alla seguente:
+		
+		\[ \MM(p \circ f) = \Matrix{\AA(p) & \rvline & \AA(p) \vec t + \Ll(p) \, \\[1pt] \hline & \rvline & \\[-9pt] \, \left(\AA(p) \vec t + \Ll(p)\right)^\top & \rvline & p(\vec t)}. \]
+		
+		\vskip 0.05in
+		
+		In particolare, non varia la matrice relativa alla parte quadratica,
+		ossia vale che $\AA(p \circ f) = \AA(p)$. \\
+		
+		\li Se $\lambda \in \KK^*$, $\MM(\lambda p) = \lambda \MM(p)$, dal
+		momento che $\AA(\lambda p) = \lambda \AA(p)$, così come
+		$\Ll(\lambda p) = \lambda \Ll(p)$ e $c(\lambda p) = \lambda c(p)$.
+		Tuttavia, a differenza del cambio di matrice per equivalenza
+		affine, per $\KK=\RR$ la segnatura non è più un invariante (infatti, in generale $\sigma(-S) = (\iota_-(S), \iota_+(S), \iota_0(S))$, se $S \in \Sym(n, \RR)$). Ciononostante non varia, in valore assoluto, la differenza tra l'indice di positività
+		e quello di negatività, ossia $S(\MM(p)) := \abs{\iota_+ - \iota_-}$ continua ad essere invariante.
+	\end{remark}
+
+	\begin{definition} [quadrica non degenere]
+		Una quadrica relativa a $p \in \KKxn$ si dice \textbf{non degenere} se $\rg(\MM(p)) = n+1$ (ossia se $\det(\MM(p)) \neq 0$), e altrimenti
+		si dice degenere. In particolare, una conica si dice \textit{non degenere} se $\rg(\MM(p)) = 3$ e degenere altrimenti.
+	\end{definition}
+
+	\begin{definition} [quadrica a centro]
+		Una quadrica $C$ relativa a $p \in \KKxn$ (o $p$ stesso) si dice \textbf{a centro} se
+		$\exists \x_0 \in \KK^n \mid p(\x_0 + \x) = p(\x_0 - \x)$ $\forall \x \in \KK^n$. In particolare, si dice che tale $\x_0$ è un \textbf{centro di simmetria} per $C$.
+	\end{definition}
+
+	\begin{remark}\nl
+		\li Si osserva che $\vec 0$ è un centro di simmetria per $p$ se
+		$p(\x) = p(-\x)$, ossia se e solo se la parte lineare $\Ll(p)$ è
+		nulla. \\
+		
+		\li Allora $\x_0$ è un centro di simmetria per $p$ se e solo se $\vec 0$
+		è un centro di simmetria per $p \circ f$, dove $f$ è la traslazione
+		che manda $\vec 0$ in $\x_0$. Infatti, in tal caso, vale che $f(\x) = \x + \x_0$ e che:
+		
+		\[ (p \circ f)(\x) = p(\x + \x_0) = p(\x - \x_0) = (p \circ f)(-\x). \]
+		
+		\vskip 0.05in
+		
+		\li Per le osservazioni precedenti, vale allora che $\x_0$ è un centro
+		di simmetria per $p$ se e solo se la parte lineare di $p \circ f$
+		è nulla, ossia se e solo se $\x_0$ è tale che $\AA(p) \x_0 + \Ll(p)$.
+		Pertanto $p$ è a centro se e solo se il sistema $\AA(p) \x = - \Ll(p)$
+		è risolvibile, e quindi se e solo se $\rg\!\Matrix{\AA(p) & \rvline & \Ll(p)} = \rg(\AA(p))$ $\iff \Ll(p) \in \Im(\AA(p))$, per il teorema di Rouché-Capelli. Vale
+		dunque che $p$ è sempre a centro, se $\AA(p)$ è invertibile. \\
+		
+		Poiché i centri di una conica sono esattamente le soluzioni del
+		sistema lineare $\AA(p) \x = - \Ll(p)$, essi formano un sottospazio
+		affine. In particolare, se $\x_0$ è un centro, vale che tale sottospazio
+		è esattamente $\x_0 + \Ker \AA(p)$. Pertanto, se $\AA(p)$ è invertibile
+		(ossia se è iniettiva), il centro è unico.
+	\end{remark}
+\end{document}
