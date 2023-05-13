@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage{personal_commands}
+\usepackage[italian]{babel}
+
+\title{\textbf{Note del corso di Geometria 1}}
+\author{Gabriel Antonio Videtta}
+\date{10 maggio 2023}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\Large \textbf{Classificazione delle coniche}
+	\end{center}
+	
+	\wip
+	
+	\begin{note}
+		Si assume che, nel corso del documento, valga che $\Char \KK \neq 2$.
+	\end{note}
+	
+	\begin{definition} [quadriche] Si dice \textbf{quadrica} un qualsiasi luogo di zeri
+		di un polinomio $p \in \KK[x_1, \ldots, x_n]$ con $\deg p = 2$.
+	\end{definition}
+	
+	\begin{definition} [coniche] Si dice \textbf{conica} una quadrica relativa ad un polinomio
+		in due variabili.
+	\end{definition}
+	
+	\begin{remark}\nl
+		\li Una quadrica è invariante per la relazione $\sim$ su $\KK[x_1, \ldots, x_n]$, dove
+		$p_1 \sim p_2 \defiff \exists \alpha \in \KK^* \mid p_1 = \alpha p_2$. Infatti
+		il luogo di zeri di un polinomio non varia se esso viene moltiplicato per una costante non nulla di $\KK$. \\
+		\li Una quadrica può essere vuota (come nel caso della conica relativa a $x^2 + y^2 + 1$ in $\RR$). \\
+		\li Si identifica con la notazione $p(\x)$ con $\x \in \KK^n$, la valutazione del polinomio $p$ nelle coordinate
+		di $\x$. Per esempio, se $\x = (1, 2)$ e $p(x, y) = x^2 + y^2$, con $p(\x)$ si identifica il valore
+		$p(1, 2) = 1^2 + 2^2 = 5$.
+	\end{remark}
+	
+	\begin{remark} [riscrittura di $p$ mediante matrici]
+		Sia $p \in \KK[x_1, \ldots, x_n]$ di grado due. Allora $p$ si può sempre scrivere come $p_2 + p_1 + p_0$,
+		dove $p_i$ è un polinomio omogeneo contenente soltanto monomi di grado $i$. \\
+		
+		In particolare, $p_2(x_1, \ldots, x_n)$ può essere sempre riscritto come $\sum_{i=1}^n \sum_{j=1}^n a_{ij}$
+		con $a_{ij} \in \KK$ con $a_{ij} = a_{ji}$.
+		È infatti sufficiente "sdoppiare" il coefficiente $c_{ij}$
+		di $x_i x_j$ in due metà, in modo tale che $c_{ij} x_i x_j = \frac{c_{ij}}{2} x_i x_j + \frac{c_{ij}}{2} x_i x_j = \frac{c_{ij}}{2} x_i x_j + \frac{c_{ij}}{2} x_j x_i$. Inoltre, anche $p_1(x_1, \ldots, x_n)$ può essere  riscritto come $\sum_{i=1}^n b_{ij}$. \\
+		
+		Si possono allora considerare la matrice $A \in M(n, \KK)$ ed il vettore $\vec b \in \KK^n$, definiti in modo tale che:
+		
+		\[ A = (a_{ij})_{i,j=1\mbox{--}n}, \qquad \vec b = (b_i)_{i=1\mbox{--}n} \in \KK^n. \]
+		
+		\vskip 0.05in
+		
+		Infatti, $A$ e $\vec b$ soddisfano la seguente identità:
+		
+		\[ p(\x) = \x^\top A \x + \vec b^\top \x + c, \]
+		
+		\vskip 0.05in
+		
+		che, riscritta tramite l'identificazione di $\AnK$ come l'iperpiano $H_{n+1} \in \Aa_{n+1}(\KK)$,
+		diventa:
+		
+		\[ p(\x) = {\hat \x}^\top \hat A \hat \x, \quad \dove \hat A = \Matrix{A & \rvline & \nicefrac{\vec b}{2} \, \\[1pt] \hline & \rvline & \\[-9pt] \nicefrac{{\vec b}^\top}{2} & \rvline & c }. \]
+		
+		\vskip 0.05in
+		
+		Si osserva che $\hat A$ è una matrice simmetrica di taglia $n+1$ a elementi in $\KK$, e in quanto
+		tale essa induce un prodotto scalare su $\KK^{n+1}$. Pertanto la quadrica relativa $p$ è esattamente
+		l'intersezione tra $H_{n+1}$ e $\CI(\hat A)$, identificando $\KK^{n+1}$ come $H_{n+1}$, ossia
+		la quadrica è esattamente $\iota\inv(H_{n+1} \cap \CI(\hat A))$.
+	\end{remark}
+	
+	\begin{definition}[matrice associata ad una quadrica]
+		Si definisce la costruzione appena fatta di $\hat A$ come la \textbf{matrice associata alla quadrica relativa a $p$}, e si indica con $\MM(p)$. In particolare, $A$ è detta la matrice che rappresenta la \textit{parte quadratica}, e si indica con $\AA(p)$, mentre $\nicefrac{\vec b}2$ rappresenta la \textit{parte lineare}, indicata con $\Ll(p)$,
+		e $c = c(p)$ è detto \textit{termine noto}.
+	\end{definition}
+	
+	\begin{definition}[azione di $A(\Aa_n(\KK))$ su $\KKxn$]
+		Sia $f \in A(\Aa_n(\KK))$. Allora $A(\Aa_n(\KK))$ agisce su $\KKxn$ in modo tale che
+		$p' = p \circ f$ è un polinomio per cui $p'(\x) = p(f(\x))$.
+	\end{definition}
+	
+	\begin{proposition} [formula del cambiamento della matrice associata su azione di $A(\Aa_n(\KK))$]
+		Sia $f \in A(\Aa_n(\KK))$ e sia $p \in \KK[x_1, \ldots, x_n]$ di grado due. Allora vale
+		la seguente identità:
+		
+		\begin{multline*}
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \Matrix{M^\top \AA(p) \vec t M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\[1pt] \hline & \rvline & \\[-9pt] \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)}, \\[0.1in]
+			\con \hat M = \Matrix{ M & \rvline & \vec t \, \\ \hline 0 & \rvline & 1 \, },
+		\end{multline*}
+		
+		\vskip 0.05in
+		
+		dove $f(\x) = M \x + \vec t$ $\forall \x \in \KK^n$ con $M \in \GL(n, \KK)$ e $\vec t \in \KK^n$.
+	\end{proposition}
+	
+\end{document}

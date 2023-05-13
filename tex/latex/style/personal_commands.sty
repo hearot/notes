@@ -6,6 +6,7 @@
 \usepackage{amssymb}
 \usepackage{amsopn}
 \usepackage{mathtools}
+\usepackage{nicefrac}
 \usepackage{stmaryrd}
 \usepackage{marvosym}
 \usepackage{float}
@@ -29,6 +30,8 @@
 \let\oldvec\vec
 \renewcommand{\vec}[1]{\underline{#1}}
 
+\newcommand{\con}{\text{con }}
+\newcommand{\dove}{\text{dove }}
 \newcommand{\E}{\text{ e }}
 \newcommand{\altrimenti}{\text{altrimenti}}
 \newcommand{\se}{\text{se }}
@@ -97,6 +100,11 @@
 \newcommand{\RRbar}{\overline{\RR}}
 
 % Spesso utilizzati al corso di Geometria 1.
+\let\AA\undefined
+\newcommand{\AA}{\mathcal{A}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\KKxn}{\KK[x_1, \ldots, x_n]}
+
 \newcommand{\quot}[1]{/{#1}}
 \newcommand{\PP}{\mathbb{P}}
 
@@ -242,6 +250,7 @@
 \newcommand{\bidual}[1]{#1^{**}}
 \newcommand{\dual}[1]{#1^{*}}
 \newcommand{\LL}[2]{\mathcal{L} \left(#1, \, #2\right)} % L(V, W)
+\newcommand{\Ll}{\mathcal{L}}
 
 \newcommand{\nsg}{\mathrel{\unlhd}} % sottogruppo normale
 
