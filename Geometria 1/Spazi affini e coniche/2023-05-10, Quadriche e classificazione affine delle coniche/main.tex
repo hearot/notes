@@ -62,7 +62,7 @@
 		che, riscritta tramite l'identificazione di $\AnK$ come l'iperpiano $H_{n+1} \in \Aa_{n+1}(\KK)$,
 		diventa:
 		
-		\[ p(\x) = {\hat \x}^\top \hat A \hat \x, \quad \dove \hat A = \Matrix{A & \rvline & \nicefrac{\vec b}{2} \, \\[1pt] \hline & \rvline & \\[-9pt] \nicefrac{{\vec b}^\top}{2} & \rvline & c }. \]
+		\[ p(\x) = {\hat \x}^\top \hat A \hat \x, \quad \dove \hat A = \Matrix{A & \rvline & \nicefrac{\vec b}{2} \, \\ \hline \nicefrac{{\vec b}^\top}{2} & \rvline & c }. \]
 		
 		\vskip 0.05in
 		
@@ -78,20 +78,24 @@
 	\end{definition}
 	
 	\begin{definition}[azione di $A(\Aa_n(\KK))$ su $\KKxn$]
-		Sia $f \in A(\Aa_n(\KK))$. Allora $A(\Aa_n(\KK))$ agisce su $\KKxn$ in modo tale che
+		Sia $f \in A(\Aa_n(\KK))$. Allora $A(\Aa_n(\KK))$ agisce (a destra) su $\KKxn$ in modo tale che
 		$p' = p \circ f$ è un polinomio per cui $p'(\x) = p(f(\x))$.
 	\end{definition}
 
-	\begin{definition}[equivalenza affine tra polinomi]
+	\begin{definition}[equivalenza affine tra polinomi e quadriche]
 		Si dice che due polinomi $p_1$, $p_2 \in \KKxn$ sono affinemente equivalenti se e solo se $\exists f \in A(\AnK) \mid p_1 = p_2 \circ f$.
-		In tal caso si scrive che $p_1 \sim p_2$.
+		In tal caso si scrive che $p_1 \sim p_2$. Analogamente due quadriche
+		si dicono affinemente equivalenti se i relativi polinomi sono
+		affinemente equivalenti.
 	\end{definition}
 
 	\begin{remark}\nl
 		\li L'equivalenza affine è una relazione di equivalenza. \\
 		\li Sia $Z(p)$ il luogo di zeri di $p$. Allora, $p_1 \sim p_2 \implies
 		\exists f \in A(\AnK) \mid Z(p_2) = f(Z(p_1))$. \\
-		\li In generale, se $p_1 = p_2 \circ f$, vale che $Z(p_2) = f(Z(p_1))$.
+		\li In generale, se $p_1 = p_2 \circ f$, vale che $Z(p_2) = f(Z(p_1))$. \\
+		\li Dal momento che $A(\AnK)$ su $\KKxn$ è un azione (destra)
+		di gruppo, vale che $(p \circ f_1) \circ f_2 = p \circ (f_1 \circ f_2)$ $\forall f_1$, $f_2 \in A(\AnK)$, $p \in \KKxn$.
 	\end{remark}
 	
 	\begin{proposition} [formula del cambiamento della matrice associata su azione di $A(\Aa_n(\KK))$]
@@ -99,7 +103,7 @@
 		la seguente identità:
 		
 		\begin{multline*}
-			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\[1pt] \hline & \rvline & \\[-9pt] \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)}, \\[0.1in]
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)}, \\[0.1in]
 			\con \hat M = \Matrix{ M & \rvline & \vec t \, \\ \hline 0 & \rvline & 1 \, },
 		\end{multline*}
 		
@@ -133,7 +137,7 @@
 		\li Se $f$ è una traslazione, $M = I_n$, e dunque la formula
 		si riduce alla seguente:
 		
-		\[ \MM(p \circ f) = \Matrix{\AA(p) & \rvline & \AA(p) \vec t + \Ll(p) \, \\[1pt] \hline & \rvline & \\[-9pt] \, \left(\AA(p) \vec t + \Ll(p)\right)^\top & \rvline & p(\vec t)}. \]
+		\[ \MM(p \circ f) = \Matrix{\AA(p) & \rvline & \AA(p) \vec t + \Ll(p) \, \\ \hline \, \left(\AA(p) \vec t + \Ll(p)\right)^\top & \rvline & p(\vec t)}. \]
 		
 		\vskip 0.05in
 		
@@ -145,7 +149,12 @@
 		$\Ll(\lambda p) = \lambda \Ll(p)$ e $c(\lambda p) = \lambda c(p)$.
 		Tuttavia, a differenza del cambio di matrice per equivalenza
 		affine, per $\KK=\RR$ la segnatura non è più un invariante (infatti, in generale $\sigma(-S) = (\iota_-(S), \iota_+(S), \iota_0(S))$, se $S \in \Sym(n, \RR)$). Ciononostante non varia, in valore assoluto, la differenza tra l'indice di positività
-		e quello di negatività, ossia $S(\MM(p)) := \abs{\iota_+ - \iota_-}$ continua ad essere invariante.
+		e quello di negatività, ossia $S(\MM(p)) := \abs{\iota_+ - \iota_-}$ continua ad essere invariante. \\
+		
+		\li Vale sempre la disuguaglianza $\rg(\MM(p)) \geq \rg(\AA(p)) \geq 1$, dal momento che $\AA(p)$ è
+		una sottomatrice di $\MM(p)$ e che $p$, per definizione
+		di quadrica, contiene sempre un termine quadratico
+		(e dunque la matrice $\AA(p)$ non è mai nulla).
 	\end{remark}
 
 	\begin{definition} [quadrica non degenere]
@@ -184,4 +193,165 @@
 		è esattamente $\x_0 + \Ker \AA(p)$. Pertanto, se $\AA(p)$ è invertibile
 		(ossia se è iniettiva), il centro è unico.
 	\end{remark}
+
+	\hr
+	
+	\begin{theorem} [classificazione delle coniche su $\CC$]
+		Sia $\KK=\CC$. Allora ogni conica è affinemente equivalente ad
+		un'equazione canonica della seguente tabella, unicamente
+		determinata dagli invarianti $\rg(\MM(p))$ e $\rg(\AA(p))$.
+		
+		\begin{center}
+			\begin{tabular}{|l|l|l|l|l|}
+				\hline
+				& $\rg(\MM(p))$ & $\rg(\AA(p))$ & Equazione canonica & A centro \\ \hline
+				$\mathcal{C}_1$ & 3             & 2             & $x^2+y^2=1$        & Sì       \\ \hline
+				$\mathcal{C}_2$ & 3             & 1             & $x^2=y$            & No       \\ \hline
+				$\mathcal{C}_3$ & 2             & 2             & $x^2+y^2=0$        & Sì       \\ \hline
+				$\mathcal{C}_4$ & 2             & 1             & $x^2=1$          & Sì       \\ \hline
+				$\mathcal{C}_5$ & 1             & 1             & $x^2=0$            & Sì       \\ \hline
+			\end{tabular}
+		\end{center}
+	\end{theorem}
+
+	\vskip 0.01in
+
+	\begin{proof}
+		La classificazione è completa perché sono comprese tutte le possibili
+		scelte di rango. Inoltre tale classificazione è ben definita, dal momento che due coniche distinte della tabella differiscono di almeno un'invariante, e pertanto non possono essere affinemente
+		equivalenti. Pertanto, se esiste, una conica è affinemente equivalente
+		ad una sola delle coniche presenti nella tabella. \\
+		
+		Sia allora $\mathcal{C}$ una conica relativa al polinomio $p \in \CC[x, y]$. Se $\rg(\AA(p)) = 2$, allora, per il teorema di Sylvester
+		complesso, esiste una matrice $M \in \GL(2, \CC)$ tale per
+		cui $M^\top \AA(p) M = I_2$. \\
+		
+		Si consideri allora l'affinità $f_1 \in A(\Aa_2(\CC))$ tale per cui $f_1(\x) = M\x + \vec t$, dove $\vec t = - \AA(p)\inv \vec b$. Se $p_1 = p \circ f_1$, allora, per la formula
+		di cambiamento della matrice associata, vale che:
+		
+		\[ \MM(p_1) = \MM(p \circ f_1) = \Matrix{I_2 & \rvline & 0 \, \\ \hline \, 0 & \rvline & p(\vec t)}. \]
+		
+		\vskip 0.05in
+		
+		Se $\rg(\MM(p)) = 2$, $c(p_1) = p(\vec t)$ è nullo (altrimenti i ranghi di $\MM(p)$ e $\MM(p_1)$ sarebbero diversi; assurdo, dal momento che il rango di $\MM(p)$ è invariante per equivalenza affine, \Lightning).
+		In tal caso $p_1$ è il polinomio $x^2 + y^2$, e
+		dunque $\mathcal{C}$ è affinemente equivalente a $\mathcal{C}_3$ tramite
+		l'identità $p_1 = p \circ f_1$. \\
+		
+		Se invece $\rg(\MM(p)) = 3$, $c' := c(p_1)$ non è nullo,
+		e dunque $p_1$ è il polinomio $x^2 + y^2 + c'$. Considerando
+		allora $f_2 \in A(\Aa_2(\CC))$ tale che $f_2(\x) = \sqrt{-c\,'} \, \x$, si ottiene che $p_2 = p_1 \circ f_2$ è tale per cui:
+		
+		\[ \MM(p_2) = -c' \Matrix{ I_2 & \rvline & 0 \\ \hline 0 & \rvline & -1 }, \]
+		
+		\vskip 0.05in
+		
+		ossia $p_2$ è il polinomio $c'(x^2 + y^2 - 1) = 0$. Poiché
+		$c'$ è diverso da zero, $p_2$ ha lo stesso luogo di zeri
+		di $x^2 + y^2 - 1$, ossia $p_2$ è legato alla conica
+		$\mathcal{C}_1$. Si conclude dunque che $p$ e $p_2$
+		sono affinemente equivalenti tramite l'identità
+		$p_2 = p \circ \, (f_1 \circ f_2)$. \\
+		
+		Sia ora invece $\rg(\AA(p)) = 1$. Allora, sempre per
+		il teorema di Sylvester complesso, esiste $M \in \GL(2, \CC)$
+		tale per cui:
+		
+		\[ B := M^\top \AA(p) M = \Matrix{1 & 0 \\ 0 & 0}. \]
+		
+		\vskip 0.05in
+		
+		Si consideri allora l'affinità $f_1 \in A(\Aa_2(\CC))$ tale
+		per cui $f_1(\x) = M \x$. Allora, se $p_1 = p \circ f_1$, vale che:
+		
+		\[ \MM(p_1) = \MM(p \circ f_1) = \Matrix{ 1 & 0 & b_1 \\ 0 & 0 & b_2 \\ b_1 & b_2 & c(p) }, \]
+		
+		\vskip 0.05in
+		
+		dove $(b_1, b_2)^\top = M^\top \Ll(p)$. Se $\rg(\MM(p)) = 3$, $b_2$ è necessariamente non nullo (altrimenti
+		$\rg(\MM(p \circ f_1)) \leq 2$, \Lightning). Si consideri
+		allora l'affinità $f_2 \in A(\Aa_2(\CC))$ tale che
+		$f_2(\x) = \x - \vec t_1$, dove $\vec t_1 = (-b_1, 0)^\top$.
+		Allora, se $p_2 = p_1 \circ f_2$, vale che:
+		
+		\[ \MM(p_2) = \MM(p_1 \circ f_2) = \Matrix{1 & 0 & 0 \\ 0 & 0 & b_2 \\ 0 & b_2 & c'}, \]
+		
+		\vskip 0.05in
+		
+		dove $c' := p_1(\vec t_1)$. Pertanto $p_2$ è il polinomio
+		$x^2 + 2b_2 y + c'$. Si cerca adesso di eliminare il termine
+		noto considerando una traslazione di vettore $\vec t_2$ in
+		modo tale che $p_2(\vec t_2) = 0$ e che rimanga invariata
+		la parte lineare. Se $\vec t_2 = (x', y')^\top$, si considera
+		$x' = 0$ in modo tale da lasciare invariata la parte lineare
+		e si cerca $y'$ in modo tale che:
+		
+		\[ 2b_2 y' + c' = 0 \implies y' = -\frac{c'}{2 b_2}. \]
+		
+		\vskip 0.05in
+		
+		Sia dunque $f_3 \in A(\Aa_2(\CC))$ tale che $f_3(\x) = \x + \vec t_3$. Se $p_3 = p_2 \circ f_3$, vale allora che:
+		
+		\[ \MM(p_3) = \MM(p_2 \circ f_3) = \Matrix{1 & 0 & 0 \\ 0 & 0 & b_2 \\ 0 & b_2 & 0}. \]
+		
+		\vskip 0.05in
+		
+		Pertanto $p_3$ è il polinomio $x^2 + 2b_2 y$. Sostituendo
+		allora $y \mapsto -\nicefrac{y}{2b_2}$, si può normalizzare il
+		coefficiente di $y$. Si considera allora $f_4 \in A(\Aa_2(\CC))$ tale che:
+		
+		\[ f_4(\x) = \Matrix{1 & 0 \\ 0 & \nicefrac{-y}{2b_2}} \x. \]
+		
+		\vskip 0.05in
+		
+		Se si pone allora $p_4 = p_3 \circ f_4$, si ottiene
+		finalmente che:
+		
+		\[ \MM(p_4) = \MM(p_3 \circ f_4) = \Matrix{1 & 0 & 0 \\ 0 & 0 & -\nicefrac{1}{2} \\ 0 & -\nicefrac{1}{2} & 0}, \]
+		
+		\vskip 0.05in
+		
+		e dunque $p_4$ rappresenta il polinomio $x^2 - y$,
+		legato alla conica $\mathcal{C}_2$. Si conclude dunque
+		che $\mathcal{C}$ è affinemente equivalente a $\mathcal{C}_2$
+		tramite l'identità $p_4 = p \circ \, (f_1 \circ f_2 \circ f_3 \circ f_4)$. \\
+		
+		Se invece $\rg(\MM(p)) \leq 2$, $b_2$ è necessariamente
+		nullo (altrimenti $\rg(\MM(p \circ f_1)) = 3$, \Lightning).
+		Si cerca adesso una traslazione di vettore $\vec t = (t_1, t_2)^\top$
+		tale che annulli la parte lineare del polinomio, ossia
+		un vettore per cui $\AA(p_1) \vec t + (b_1, 0)^\top = \vec 0$. Un vettore di questo tipo è $\vec t = (-b_1, 0)^\top$. \\
+		
+		Sia allora $f_2 \in \Aa_2(\CC)$ per cui $f_2(\x) = \x + \vec t$, e sia $p_2 = p_1 \circ f_2$. Vale allora che:
+		
+		\[ \MM(p_2) = \Matrix{1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & c'}, \]
+		
+		\vskip 0.05in
+		
+		dove $c' := p_1(\vec t)$. Se $\rg(\MM(p)) = 1$,
+		$c'$ è necessariamente nullo (altrimenti $\MM(p_2)$ non
+		sarebbe congruente a $\MM(p)$, \Lightning), e dunque
+		$p_2$ è il polinomio $x^2 = 0$, legato alla conica $\mathcal{C}_5$ (quindi $\mathcal{C}$ è affinemente equivalente a $\mathcal{C}_5$ tramite l'identità $p_2 = p \circ \, (f_1 \circ f_2)$). \\
+		
+		Altrimenti, se $\rg(\MM(p)) = 2$, $c' \neq 0$. Sia
+		allora $f_3 \in A(\Aa_2(\CC))$ tale che:
+		
+		\[ f_3(\x) = \Matrix{\sqrt{-c'\,} & 0 \\ 0 & 1} \x. \]
+		
+		\vskip 0.05in
+		
+		Se $p_3 = p_2 \circ f_3$, allora risulta che:
+		
+		\[ \MM(p_3) = \MM(p_2 \circ f_3) = -c' \Matrix{1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1}, \]
+		
+		\vskip 0.05in
+		
+		e dunque $p_3$ è il polinomio $-c'(x^2 - 1)$. Poiché
+		$c' \neq 0$, $p_3$ ha lo stesso luogo di zeri di
+		$x^2 - 1$, e dunque è legato alla conica $\mathcal{C}_4$.
+		Allora $\mathcal{C}$ è affinemente equivalente a
+		$\mathcal{C}_4$ mediante l'identità $p_3 = p \circ (f_1 \circ f_2 \circ f_3)$, concludendo la classificazione
+		delle coniche complesse.
+		
+	\end{proof}
 \end{document}
