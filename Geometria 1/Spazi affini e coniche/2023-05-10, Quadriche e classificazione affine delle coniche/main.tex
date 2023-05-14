@@ -2,6 +2,8 @@
 \usepackage{personal_commands}
 \usepackage[italian]{babel}
 
+\usepackage[a4paper, total={7in, 8in}]{geometry}
+
 \title{\textbf{Note del corso di Geometria 1}}
 \author{Gabriel Antonio Videtta}
 \date{10 maggio 2023}
@@ -102,14 +104,13 @@
 		Sia $f \in A(\Aa_n(\KK))$ e sia $p \in \KK[x_1, \ldots, x_n]$ di grado due. Allora vale
 		la seguente identità:
 		
-		\begin{multline*}
-			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)}, \\[0.1in]
-			\con \hat M = \Matrix{ M & \rvline & \vec t \, \\ \hline 0 & \rvline & 1 \, },
-		\end{multline*}
-		
+		\begin{equation*}
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)},
+		\end{equation*}
+	
 		\vskip 0.05in
-		
-		dove $f(\x) = M \x + \vec t$ $\forall \x \in \KK^n$ con $M \in \GL(n, \KK)$ e $\vec t \in \KK^n$.
+	
+		con $\hat M = \Matrix{ M & \rvline & \vec t \, \\ \hline 0 & \rvline & 1 \, }$, dove $f(\x) = M \x + \vec t$ $\forall \x \in \KK^n$ con $M \in \GL(n, \KK)$ e $\vec t \in \KK^n$.
 	\end{proposition}
 	
 	\begin{proof}
@@ -196,7 +197,7 @@
 
 	\hr
 	
-	\begin{theorem} [classificazione delle coniche su $\CC$]
+	\begin{theorem} [classificazione delle coniche complesse]
 		Sia $\KK=\CC$. Allora ogni conica è affinemente equivalente ad
 		un'equazione canonica della seguente tabella, unicamente
 		determinata dagli invarianti $\rg(\MM(p))$ e $\rg(\AA(p))$.
@@ -352,6 +353,36 @@
 		Allora $\mathcal{C}$ è affinemente equivalente a
 		$\mathcal{C}_4$ mediante l'identità $p_3 = p \circ (f_1 \circ f_2 \circ f_3)$, concludendo la classificazione
 		delle coniche complesse.
+	\end{proof}
+
+	\begin{theorem} [classificazione delle coniche reali]
+		Sia $\KK=\RR$. Allora ogni conica è affinemente equivalente ad
+		un'equazione canonica della seguente tabella, unicamente
+		determinata dagli invarianti $\rg(\MM(p))$, $\rg(\AA(p))$,
+		$S(\MM(p)) := \abs{\iota_+(\MM(p)) - \iota_-(\MM(p))}$ e
+		$S(\AA(p)) := \abs{\iota_+(\AA(p)) - \iota_-(\AA(p))}$. \\[0.1in]
 		
+		\centering\small
+		\begin{tabular}{|l|l|l|l|l|l|}
+			\hline
+			& $\rg(\MM(p))$ & $\rg(\AA(p))$ & $S(\MM(p))$ & $S(\AA(p))$ & Equazione canonica \\ \hline
+			ellisse ($\mathcal{C}_1$) & 3 & 2 & 1 & 2 & $x^2+y^2-1=0$ \\ \hline
+			iperbole ($\mathcal{C}_2$) & 3 & 2 & 1 & 0 & $x^2-y^2-1=0$ \\ \hline
+			parabola ($\mathcal{C}_3$) & 3 & 1 & 1 & 1 & $x^2-y=0$ \\ \hline
+			due rette reali incidenti ($\mathcal{C}_4$) & 2 & 2 & 0 & 0 & $x^2-y^2=0$ \\ \hline
+			due rette reali parallele ($\mathcal{C}_5$) & 2 & 1 & 0 & 1 & $x^2-1=0$ \\ \hline
+			due rette reali coincidenti ($\mathcal{C}_6$) & 1 & 1 & 1 & 1 & $x^2=0$ \\ \hline
+			ellisse immaginaria ($\mathcal{C}_7$) & 3 & 2 & 3 & 2 & $x^2+y^2+1=0$ \\ \hline
+			\begin{tabular}[c]{@{}l@{}}due rette complesse coniugate\\ e incidenti in un punto reale ($\mathcal{C}_8$)\end{tabular} & 2 & 2 & 2 & 2 & $x^2+y^2=0$ \\ \hline
+			\begin{tabular}[c]{@{}l@{}}due rette complesse coniugate,\\ distinte e parallele ($\mathcal{C}_9$)\end{tabular} & 2 & 1 & 2 & 1 & $x^2+1=0$ \\ \hline
+		\end{tabular}
+	\end{theorem}
+
+	\vskip 0.1in
+
+	\begin{proof}
+		Come già visto precedentemente, la classificazione è completa perché sono comprese tutte le possibili
+		scelte di invarianti, ed è anche ben definita, dacché
+		due coniche distinte della tabella differiscono di almeno un'invariante.
 	\end{proof}
 \end{document}
