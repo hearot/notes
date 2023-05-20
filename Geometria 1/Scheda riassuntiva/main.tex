@@ -8,13 +8,15 @@
 \usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
 \usepackage{personal_commands}
 
+\setlength{\extrarowheight}{0pt}
+
 \ifthenelse{\lengthtest { \paperwidth = 11in}}
 { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
 {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
 	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
 	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
 }
-\pagestyle{empty}
+%\pagestyle{empty}
 \makeatletter
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
 	{-1ex plus -.5ex minus -.2ex}%
@@ -346,11 +348,34 @@
 		l'applicazione lineare $p_V$ tale che $p_V(\vec{v}, \vec{w}) = \vec{v}$.
 		Analogamente si può fare con gli altri spazi del prodotto cartesiano.
 		
-		Si dice che $B$ è un supplementare di $A$ se $V = A \oplus B \iff
-		\dim A + \dim B = \dim V \land A \cap B = \zerovecset$. Il supplementare
+		Si dice che $B$ è un supplementare di $A$ se $V = A \oplus B$ (ossia $\iff
+		\dim A + \dim B = \dim V \, \land \, A \cap B = \zerovecset$). Il supplementare
 		non è per forza unico. Per trovare un supplementare di $A$ è sufficiente
 		completare $\basis_A$ ad una base $\basis$ di $V$ e considerare
-		$\Span(\basis \setminus \basis_A)$.
+		$B := \Span(\basis \setminus \basis_A)$.
+		
+		\subsubsection{Somma diretta di più sottospazi}
+		
+		Si dice che i sottospazi $W_1$, ..., $W_k$ di $V$ sono in somma
+		diretta, e si scrive $W_1 + \ldots + W_k = W_1 \oplus \ldots \oplus W_k$,
+		se la rappresentazione di un vettore della somma di questi sottospazi
+		è unica, ossia se esistono unici $\ww 1 \in W_1$, ..., $\ww k \in W_k$ tali
+		per cui $\w \in W_1 + \ldots + W_k$ si scrive come $\w = \ww 1 + \ldots + \ww k$. \\
+		
+		In generale, sono equivalenti i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\itemsep0em
+			\item $W_1$, ..., $W_k$ sono in somma diretta,
+			\item Se esistono $\ww 1 \in W_1$, ..., $\ww k \in W_k$ tali per cui
+			$\ww 1 + \ldots + \ww k = \vec 0$, allora $\ww 1 = \cdots = \ww k = \vec 0$ (è sufficiente considerare due scritture alternative e poi farne la differenza per dimostrare un'implicazione),
+			\item Se $\basis_{W_1}$, ..., $\basis_{W_k}$ sono basi di $W_1$, ..., $W_k$,
+			allora $\bigcup_{i=1}^k \basis_{W_i}$ è base di $W_1 + \ldots + W_k$ (è sufficiente considerare l'indipendenza lineare per dimostrare un'implicazione),
+			\item $\dim (W_1 + \ldots + W_k) = \dim W_1 + \ldots + \dim W_k$ (si dimostra facilmente che è equivalente a (iii), e quindi che lo è alle altre proposizioni),
+			\item $W_i \cap (W_1 + \ldots + W_{i-1}) = \zerovecset$ $\forall 2 \leq i \leq k$ (è sufficiente spezzare la somma in $(W_1 + \ldots + W_{i-1}) + W_i$ e ricondursi al caso di due sottospazi, mostrando in particolare, per induzione, l'equivalenza con (iv), da cui seguono le altre equivalenze),
+			\item $W_i \cap (W_1 + \ldots + W_{i-1} + \widehat{W_i} + W_{i+1} + W_k) = \zerovecset$ $\forall 1 \leq i \leq k$, ossia $W_i$, intersecato con la somma
+			dei restanti sottospazi, è di dimensione nulla (è facile ricondursi alla proposizione (v) per induzione).
+		\end{enumerate}
 		
 		\subsection{Proprietà generali delle matrici}
 		
@@ -442,7 +467,7 @@
 		indipendenti di $A$. Siano $A$, $B \in M(m, n, \KK)$.
 		
 		\begin{itemize}
-			\item $\rg(A) = \rg(A^\top)$ (i.e. il rango è lo stesso se calcolato
+			\item $\rg(A) = \rg(A^\top)$ (i.e.~il rango è lo stesso se calcolato
 			sulle righe invece che sulle colonne),
 			\item $\rg(A) \leq \min\{m, n\}$ (come conseguenza dell'affermazione
 			precedente),
@@ -594,8 +619,7 @@
 		la regola di Cramer.
 		
 		Si definisce:
-		
-		\[ A_i^* = \begin{pmatrix}[c|c|c|c|c]
+		\[ A_i^* = \begin{pmatrix}
 			A^1 & \cdots & A^i \to B & \cdots & A^n
 		\end{pmatrix}, \]
 		
@@ -673,7 +697,8 @@
 		identità è l'unica matrice identica a sé stessa.
 		
 		Sia $p \in \End(V)$. Si dice che un endomorfismo è un automorfismo
-		se è un isomorfismo. Siano $\basis$, $\basis'$ due qualsiasi
+		se è un isomorfismo. Gli automorfismi formano un sottospazio vettoriale
+		di $\End(V)$ denotato con $\Aut(V)$ o $\GL(V)$. Siano $\basis$, $\basis'$ due qualsiasi
 		basi di $V$.
 		
 		\begin{itemize}
@@ -693,6 +718,12 @@
 		$M^\basis_{\basis'}(id_V) M^{\basis'}_\basis(id_V)
 		= I_n$. Dunque entrambe le matrici sono invertibili. Inoltre
 		$M^\basis_\basis(id_V) = I_n$.
+		
+		Si definisce un analogo della similitudine anche per gli endomorfismi:
+		due endomorfismi $f$, $g \in \End(V)$ si dicono coniugati se e solo se $\exists
+		h \in \GL(V) \mid f = h \, g \, h\inv$. Il coniugio induce in particolare
+		un'altra relazione di equivalenza. Due endomorfismi $f$ e $g$ sono coniugati
+		se e solo se le loro matrici associate nella stessa base $\basis$ sono simili.
 		
 		\subsubsection{Duale, biduale e annullatore}
 		
@@ -868,7 +899,6 @@
 		$\dual{\vec{v_{i_1}}} \wedge \cdots \wedge \dual{\vec{v_{i_k}}}$
 		tra elementi della base come la forma $k$-lineare alternante
 		determinata dalla relazione:
-		
 		\[ \dual{\vec{v_{i_1}}} \wedge \cdots \wedge \dual{\vec{v_{i_k}}} = \sum_{\sigma \in S_k} \sgn(\sigma) \, \dual{\vec{v_{i_{\sigma(1)}}}} \otimes \cdots \otimes \dual{\vec{v_{i_{\sigma(k)}}}}. \]
 		
 		Si definisce l'insieme:
@@ -936,7 +966,7 @@
 			\item se $A$ è triangolare superiore (o inferiore), allora $\det(A)$ è
 			il prodotto degli elementi sulla sua diagonale principale,
 			\item $\det(A_1, \ldots, A_n) = \sgn(\sigma) \det(A_{\sigma(1)}, \ldots, A_{\sigma(n)})$, $\forall \sigma \in S_n$ (infatti $\det$ è alternante),
-			\item $\det \begin{pmatrix}
+			\item \setlength{\extrarowheight}{1.3pt}$\det \begin{pmatrix}
 				A
 				& \rvline & B \\
 				\hline
@@ -949,7 +979,7 @@
 				\hline
 				0 & \rvline &
 				C
-			\end{pmatrix} = \det(A)\det(C)$,
+			\end{pmatrix} = \det(A)\det(C)$\setlength{\extrarowheight}{0pt},
 			\item se $A$ è nilpotente (ossia se $\exists k \mid A^k = 0$),
 			$\det(A) = 0$,
 			\item se $A$ è idempotente (ossia se $A^2 = A$), allora
@@ -958,6 +988,9 @@
 			$\det(A) = \pm 1$,
 			\item se $A$ è un'involuzione (ossia se $A^2 = I_n$), allora
 			$\det(A) = \pm 1$,
+			\item se ogni minore di taglia $k$ di $A$ ha determinante nullo,
+			allora tutti i minori di $A$ taglia maggiore o uguale a $k$ hanno
+			determinante nullo (è una diretta applicazione dello sviluppo di Laplace).
 		\end{itemize}
 		
 		Le operazioni del terzo tipo dell'algoritmo di eliminazione
@@ -969,35 +1002,38 @@
 		per uno scalare) altera il determinante moltiplicandolo per
 		tale scalare.
 		
-		Inoltre, se $D$ è invertibile, vale la seguente scomposizione:
-		
-		\[ \begin{pmatrix}
-			A
-			& \rvline & B \\
-			\hline
-			C & \rvline &
-			D
-		\end{pmatrix} = \begin{pmatrix}
-			I_k
-			& \rvline & BD^{-1} \\
-			\hline
-			0 & \rvline &
-			I_k
-		\end{pmatrix}
-		\begin{pmatrix}
-			A-BD^{-1}C
-			& \rvline & 0 \\
-			\hline
-			0 & \rvline &
-			D
-		\end{pmatrix}
-		\begin{pmatrix}
-			I_k
-			& \rvline & 0 \\
-			\hline
-			D^{-1}C & \rvline &
-			I_k
-		\end{pmatrix}, \]
+		Inoltre, se $D$ è invertibile, vale la decomposizione di Schur:
+		\setlength{\extrarowheight}{1.3pt}
+		\begin{gather*}
+			\begin{pmatrix}
+				A
+				& \rvline & B \\
+				\hline
+				C & \rvline &
+				D
+			\end{pmatrix} = \begin{pmatrix}
+				I_k
+				& \rvline & BD^{-1} \\
+				\hline
+				0 & \rvline &
+				I_k
+			\end{pmatrix}
+			\begin{pmatrix}
+				A-BD^{-1}C
+				& \rvline & 0 \\
+				\hline
+				0 & \rvline &
+				D
+			\end{pmatrix} \\
+			\begin{pmatrix}
+				I_k
+				& \rvline & 0 \\
+				\hline
+				D^{-1}C & \rvline &
+				I_k
+			\end{pmatrix},
+		\end{gather*}
+		\setlength{\extrarowheight}{0pt}
 		
 		dove $k \times k$ è la taglia di $A$. Pertanto vale
 		la seguente relazione, sempre se $D$ è invertibile:
@@ -1012,7 +1048,6 @@
 		
 		È possibile computare il determinante di $A$, scelta la riga $i$, mediante lo
 		sviluppo di Laplace:
-		
 		\[ \det(A) = \sum_{j=1}^n a_{ij} \Cof_{i,j}(A) = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det(A_{i,j}). \]
 		
 		Si definisce matrice di Vandermonde una matrice $A \in M(n, \KK)$ della
@@ -1040,6 +1075,46 @@
 		tale che $p(\alpha_i) = \beta_i$ per $i$ coppie ($\alpha_i$, $\beta_i$) con
 		$\alpha_i$ tutti distinti).
 		
+		\subsubsection{Rango tramite il determinante degli orlati}
+		
+		Si dicono \textit{sottomatrici} della matrice $A \in M(m, n, \KK)$ tutte
+		le matrici contenute in $A$, ossia le matrici $B$ che sono ottenibili da $A$
+		mantenendo solo alcune sue righe e colonne. In generale, si scrive $A^{j_1, \ldots, j_s}_{i_1, \ldots, i_t}$ per indicare la sottomatrice ottenuta
+		da $A$ mantenendo le colonne di indice $j_1$, ..., $j_s$ e le righe di
+		indice $i_1$, ..., $i_t$. Quando è omesso l'indice delle colonne o l'indice
+		delle righe, si sottintende di aver mantenuto o tutte le colonne o tutte le righe
+		(e.g.~$A_{1,2}$ è la sottomatrice di $A$ ottenuta mantenendo tutte le colonne e
+		le prime due righe). Si dice che $M$ è \textit{minore} di $A$ una sua sottomatrice quadrata. Si chiamano \textit{orlati} di un minore $M$ di taglia $k$ i minori di taglia $k+1$ di $A$ aventi $M$ come minore.
+		
+		\begin{itemize}
+			\item Se $B$ è una sottomatrice di $A$, allora $\rg(B) \leq \rg(A)$ (è sufficiente prendere un numero massimo di colonne linearmente indipendenti
+			di $B$ e mostrare che le relative colonne in $A$ sono ancora linearmente indipendenti),
+			\item $\rg(A) = \max\{\rg(B) \mid B \text{ sottomatrice di }\! A\}$ (è sufficiente utilizzare il precedente risultato; infatti $A$ è una sottomatrice di $A$),
+			\item $\rg(A) = \max\{\rg(B) \mid B \text{ minore invertibile di }\! A\} = \max\{n \mid \text{esiste un minore di $A$ di taglia $n$ invertibile} \}$ (è sufficiente utilizzare la prima disuguaglianza e considerare un minore di $A$ composto dalle righe e le colonne linearmente indipendenti di $A$, che sono
+			dello stesso numero, dal momento che il rango per righe è uguale al rango per colonne),
+			\item $\rg(A)$ è il più piccolo naturale $n$ tale per cui, per ogni minore
+			$M$ di $A$ di taglia maggiore di $n$, $\det(M) = 0$ (ossia $M$ è singolare; segue direttamente dal precedente risultato),
+			\item $\rg(A)$ è il più piccolo naturale $n$ tale per cui, per ogni minore
+			$M$ di $A$ di taglia $n+1$, $\det(M) = 0$ (ossia $M$ è singolare; segue dal precedente risultato a cui si combina lo sviluppo di Laplace del determinante -- se ogni minore di taglia $k$ ha determinante nullo, anche tutti i minori di
+			taglia maggiore di $k$ hanno determinante nullo).
+			\item esiste un minore $M$ di taglia $k$ di $A$ con $\det(M) \neq 0$ $\implies \rg(A) \geq k$ (deriva direttamente dall'ultimo risultato sul rango),
+			\item per ogni minore $M$ di taglia $k$ di $A$ vale che $\det(M) = 0$
+			$\implies \rg(A) < k$ (come sopra).
+		\end{itemize}
+		
+		Si può facilitare lo studio del rango tramite il teorema di Kronecker (o degli orlati): $\rg(A)$ è il più piccolo naturale $n$ tale per cui esista un minore
+		$M$ di taglia $k$ con $\det(M) \neq 0$ e per cui ogni suo orlato $O$ è tale
+		per cui $\det(O) = 0$.
+		
+		Sia infatti, senza perdità di generalità, $M = A^{1,\ldots, k}_{1,\ldots,k}$ tale minore (altrimenti è sufficiente considerare una permutazione delle righe e
+		delle colonne per ricadere in questo caso; tale permutazione è ammessa dall'algoritmo di Gauss). Si mostra che $A^j \in \Span(A^1, \ldots, A^k)$ $\forall j > k$. Si consideri ogni orlato $M_j$ di $M$ ottenuto scegliendo
+		la $j$-esima colonna di $A$: per ipotesi $\det(M_j) = 0$, ed il rango è almeno
+		$k$. Quindi $\rg(M_j) = k$; poiché le prime $k$ righe sono linearmente indipendenti, l'ultima riga aggiunta deve certamente appartenere al loro
+		sottospazio generato. Quindi ogni riga di $A^{1,\ldots, k, j}$ appartiene
+		al sottospazio $\Span(A_1, \ldots, A_k)$, da cui si deduce che $\rg(A^{1,\ldots, k, j}) = k$, e quindi che $\rg(A^{1,\ldots,k,j}) = k \implies A^j \in \Span(A^1, \ldots, A^k) \implies \rg(A) = k$.
+		
+		
+		
 		\subsection{Autovalori e diagonalizzabilità}
 		
 		Sia $f \in \End(V)$. Si dice che $\lambda \in \KK$ è un autovalore
@@ -1047,7 +1122,6 @@
 		tale che $f(\vec{v}) = \lambda \vec{v}$, e in tal caso si dice
 		che $\vec{v}$ è un autovettore relativo a $\lambda$. Un autovalore
 		è tale se esiste una soluzione non nulla a $(f - \lambda \Idv) \vec{v} = \vec{0}$, ossia se e solo se:
-		
 		\[\det(f - \lambda \Idv) = 0. \]
 		
 		Questa relazione è ben definita dacché il determinante è invariante
@@ -1055,7 +1129,7 @@
 		di $f$. Si definisce allora $p_f(\lambda) = \det(f - \lambda \Idv)$,
 		detto polinomio caratteristico di $f$, ancora invariante per
 		matrici associate a $f$. Si denota inoltre con
-		spettro di $f$ l'insieme $sp(f)$ degli autovalori di $f$ e con
+		spettro di $f$ l'insieme $\Sp(f)$ degli autovalori di $f$ e con
 		$V_\lambda = \Ker(f - \lambda \Idv)$ lo spazio degli autovettori
 		relativo a $\lambda$, detto autospazio di $\lambda$.
 		
@@ -1075,17 +1149,17 @@
 			\item il termine noto di $p_f(\lambda)$ è $\det(f - 0 \cdot \Idv) = \det(f)$,
 			\item poiché $p_f(\lambda)$ appartiene all'anello euclideo $\KK[\lambda]$, che è dunque un UFD, esso ammette al più
 			$n$ radici,
-			\item $sp(f)$ ha al più $n$ elementi, ossia esistono al massimo
+			\item $\Sp(f)$ ha al più $n$ elementi, ossia esistono al massimo
 			$n$ autovalori (dalla precedente considerazione),
 			\item se $\KK = \CC$ e $\charpoly{f} \in \RR[\lambda]$, $\lambda \in
-			sp(f) \iff \overline{\lambda} \in sp(f)$ (infatti $\lambda$ è
+			\Sp(f) \iff \overline{\lambda} \in \Sp(f)$ (infatti $\lambda$ è
 			soluzione di $\charpoly{f}$, e quindi anche $\overline{\lambda}$
 			deve esserne radice, dacché i coefficienti di $\charpoly{f}$ sono
 			in $\RR$),
 			\item se $\KK$ è un campo algebricamente chiuso, $p_f(\lambda)$
 			ammette sempre almeno un autovalore distinto (o esattamente
 			$n$ se contati con molteplicità),
-			\item $0 \in sp(f) \iff \dim \Ker f > 0 \iff \rg f < 0 \iff \det(f) = 0$,
+			\item $0 \in \Sp(f) \iff \dim \Ker f > 0 \iff \rg f < 0 \iff \det(f) = 0$,
 			\item autovettori relativi ad autovalori distinti sono sempre
 			linearmente indipendenti,
 			\item dati $\lambda_1$, ..., $\lambda_k$ autovalori di $f$,
@@ -1103,8 +1177,8 @@
 			minore di $\mu_a(\lambda)$),
 			\item vale sempre la disuguaglianza $n \geq \sum_{i=1}^k \mu_a(\lambda_i) \geq \sum_{i=1}^k \mu_g(\lambda_i)$,
 			\item se $W \subseteq V$ è un sottospazio $f$-invariante,
-			allora $\charpolyrestr{f}{W} \mid p_f(\lambda)$\footnote{lavorando
-				su endomorfismi, la notazione $\restr{f}{W}$ è impiegata per
+			allora $\charpolyrestr{f}{W} \mid p_f(\lambda)$\footnote{Quando si lavora
+				su degli endomorfismi, la notazione $\restr{f}{W}$ è impiegata per
 				considerare $f$ ristretta a $W$ sia sul dominio che sul codominio.} (è sufficiente
 			prendere una base di $W$ ed estenderla a base di $V$, considerando
 			poi la matrice associata in tale base, che è a blocchi),
@@ -1142,7 +1216,10 @@
 		che $f$ è diagonalizzabile se e solo se per ogni autovalore la
 		massima taglia di un blocco di Jordan è esattamente $1$, ossia
 		se il polinomio minimo di $f$ è un prodotto di fattori lineari
-		distinti.
+		distinti. Si può fare la stessa considerazione guardando al
+		teorema di decomposizione primaria (gli indici di Fitting del
+		sottospazio generalizzato sono esattamente le moltiplicità algebriche
+		degli autovalori nel polinomio minimo).
 		
 		Data $f$ diagonalizzabile, la matrice diagonale $J$ a cui $f$ è
 		associata è, dati gli autovalori $\lambda_1$, ..., $\lambda_k$,
@@ -1170,11 +1247,10 @@
 		
 		Se $f$ è diagonalizzabile, allora ogni spazio $W$ $f$-invariante di
 		$V$ è tale che:
-		
 		\[ W = (W \cap V_{\lambda_1}) \oplus \cdots \oplus (W \cap V_{\lambda_k}), \]
 		
 		dove $\lambda_1$, ..., $\lambda_k$ sono gli autovalori distinti di
-		$f$.
+		$f$, e dunque $\restr{f}{W}$ è sempre diagonalizzabile, se $f$ lo è.
 		
 		Due endomorfismi $f$, $g \in \End(V)$ diagonalizzabili si dicono simultaneamente diagonalizzabili se esiste una base $\basis$ di $V$
 		tale per cui sia la matrice associata di $f$ in $\basis$ che quella
@@ -1191,6 +1267,12 @@
 		anche base di autovettori di $V_{\lambda_i}$; unendo tutti questi
 		autovettori in un'unica base $\basis$ di $V$, si otterrà dunque
 		che una base in cui le matrici associate di $f$ e $g$ sono diagonali.
+		
+		Se $f$ è diagonalizzabile, anche $f^k$ lo è, per ogni $k \in \NN$. Se
+		ogni vettore di $V$ è un autovettore di $f$, allora $f = \lambda \Id$,
+		con $\lambda \in \KK$ (è sufficiente considerare l'eventuale esistenza di più
+		autospazi e due vettori $\v$ e $\w$ di due autospazi distinti e considerare
+		le due scritture possibili di $f(\v + \w)$).
 
 		\subsection{Prodotto scalare e congruenza}
 		Si consideri una mappa $\varphi : V \times V \to \KK$. Si dice che
@@ -1338,7 +1420,6 @@
 		Data una base $\basis$ di $V$, se $\abs{\CI(\varphi) \cap \basis} \leq 1$ (ossia se ogni vettore di
 		$\basis$ è anisotropo o al più vi è un vettore isotropo, posto in fondo come $\vv n$), si può
 		trovare una base ortogonale $\basis' = \{ \vv 1', \ldots, \vv n' \}$ a partire da $\basis$ tale che ne mantenga la stessa bandiera, ossia tale che:
-		
 		\[ \Span(\vv 1', \ldots, \vv i') = \Span(\vv 1, \ldots, \vv i) \forall 1 \leq i \leq n. \]
 		
 		Si definisce $C(\w, \v) = \frac{\varphi(\v, \w)}{\varphi(\w, \w)}$ come il coefficiente di Fourier
