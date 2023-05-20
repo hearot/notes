@@ -1115,7 +1115,7 @@
 		
 		
 		
-		\subsection{Autovalori e diagonalizzabilità}
+		\subsection{Autovalori, diagonalizzabilità e triangolabilità}
 		
 		Sia $f \in \End(V)$. Si dice che $\lambda \in \KK$ è un autovalore
 		di $f$ se e solo se $\exists \vec{v} \neq \vec{0}$, $\vec{v} \in V$
@@ -1252,7 +1252,11 @@
 		\[ W = (W \cap V_{\lambda_1}) \oplus \cdots \oplus (W \cap V_{\lambda_k}), \]
 		
 		dove $\lambda_1$, ..., $\lambda_k$ sono gli autovalori distinti di
-		$f$, e dunque $\restr{f}{W}$ è sempre diagonalizzabile, se $f$ lo è.
+		$f$, e dunque $\restr{f}{W}$ è sempre diagonalizzabile, se $f$ lo è. In generale, dato un sottospazio $W$ di $V$ che
+		è $f$-invariante, si può facilmente costruire un suo
+		supplementare $f$-invariante. È infatti sufficiente
+		prendere una base di $W$ ed estenderla a base di $V$
+		completandola tramite una base di autovettori di $V$.
 		
 		Se $f$ è diagonalizzabile, anche $f^k$ lo è, per ogni $k \in \NN$. Se
 		ogni vettore di $V$ è un autovettore di $f$, allora $f = \lambda \Id$,
@@ -1270,7 +1274,27 @@
 		caratteristico ha come radici esattamente gli elementi sulla diagonale della
 		matrice associata di $f$ nella base $\basis$ in cui tale matrice è triangolare
 		superiore (e dunque $p_f(\lambda)$ è riducibile in fattori lineari). Se invece $p_f(\lambda)$ è riducibile in fattori lineari, si può applicare il seguente
-		algoritmo [...]
+		algoritmo (su cui si fonda induttivamente la dimostrazione della proposizione):
+		
+		\begin{enumerate}
+			\itemsep 0pt
+			\item Si calcolino le basi degli autospazi di $f$,
+			\item Si estenda l'unione $\basis_A$ di queste basi a una base $\basis$ di $V$,
+			\item Si consideri la matrice associata di $f$ nella base $\basis$, della forma: \setlength{\extrarowheight}{1.3pt}
+			\[M_\basis(f) = \begin{pmatrix}
+				A
+				& \rvline & B \\
+				\hline
+				0 & \rvline &
+				C
+			\end{pmatrix}, \]\setlength{\extrarowheight}{0pt}dove $A$ è una matrice diagonale contenente gli autovalori di $\Sp(f)$,
+			\item Se $M_\basis(f)$ è triangolare superiore, l'algoritmo termina. Altrimenti si ripeta l'algoritmo su $C$ (ossia sull'endomorfismo $p_W \circ \restr{f}{W} \in \End(W)$, dove $W$ è il sottospazio generato dai vettori aggiunti alla base $\basis_A$ per costruire la base $\basis$).
+		\end{enumerate}
+	
+		Inoltre, se $W$ è un sottospazio $f$-invariante di $V$,
+		e $f$ è triangolabile, anche $\restr{f}{W}$ lo è (infatti,
+		in tal caso, il polinomio caratteristico di $f$ si riduce
+		in fattori lineari).
 		
 		\subsubsection{Diagonalizzabilità e triangolabilità simultanea}
 
@@ -1291,7 +1315,118 @@
 		che una base in cui le matrici associate di $f$ e $g$ sono diagonali.
 		
 		Analogamente due endomorfismi $f$, $g \in \End(V)$ triangolabili si dicono
-		simultaneamente triangolabili se [...]
+		simultaneamente triangolabili se esiste una base $\basis$
+		in cui $M_\basis(f)$ e $M_\basis(g)$ sono due matrici
+		triangolari superiori. Non è generalmente vero che
+		due endomorfismi simultaneamente triangolabili
+		commutano; è tuttavia vero il viceversa. Se infatti $f$
+		e $g$ sono due endomorfismi triangolabili tali che $f \circ g = g \circ f$, allora si può riapplicare, con le dovute modifiche, il precedente algoritmo di triangolarizzazione (anche questa volta dimostrabile per induzione):
+		\begin{enumerate}
+			\itemsep 0pt
+			\item Si calcolino le basi degli autospazi di $f$ e si consideri $\restr{f}{U}$, dove $U = \eigsp 1 \oplus \cdots \oplus \eigsp k$,
+			\item Si cerchi una base $\basis_U$ in cui $\restr{f}{U}$ e $\restr{g}{U}$ sono simultaneamente diagonalizzabili (osservando che $g$ è $U$-invariante),
+			\item Si estenda tale base $\basis_U$ ad una base $\basis$ di $V$ e si chiami $W$ il sottospazio $\Span(\basis_W)$, dove $\basis_W := \basis \setminus \basis_U$,
+			\item Si considerino la matrice associata di $f$ e di $g$  nella base $\basis$, della forma: \setlength{\extrarowheight}{1.3pt}
+			\begin{gather*}
+				M_\basis(f) = \begin{pmatrix}
+					A
+					& \rvline & B \\
+					\hline
+					0 & \rvline &
+					C
+				\end{pmatrix}, \\
+				M_\basis(g) = \begin{pmatrix}
+					A'
+					& \rvline & B' \\
+					\hline
+					0 & \rvline &
+					C'
+				\end{pmatrix},
+			\end{gather*}
+			\setlength{\extrarowheight}{0pt}dove $A$ e $A'$ sono matrici diagonali contenente gli autovalori dei rispettivi endomorfismi,
+			\item Se le due matrici sono triangolari superiori, l'algoritmo termina. Altrimenti si ripeta l'algoritmo su $C$ e $C'$ (ossia sugli endomorfismi $p_W \circ \restr{f}{W}$, $p_W \circ \restr{g}{W} \in \End(W)$, i
+			quali commutano, dal momento che vale l'identità $C C' = C' C$, dedotta moltiplicando le due matrici associate di sopra).
+		\end{enumerate}
+	
+		\subsubsection{Polinomio minimo}
+		
+		Sia $f \in \End(V)$. Si può allora definire l'applicazione $\sigma_f : \KK[x] \to \End(V)$
+		tale per cui $\sigma_f(p) = p(f)$, dove per $p(f)$ s'intende
+		la riscrittura di $p$ a cui si sostituisce all'usuale
+		somma e all'usuale prodotto, la somma di applicazioni
+		e la composizione (intendendo, in particolare, i termini
+		noti come multipli dell'identità $f^0 := \Idv$). In particolare $\sigma_f$ è un omomorfismo di anelli,
+		ed è dunque anche un'applicazione lineare. $\sigma_f$ non
+		è mai iniettiva, ed esiste dunque sempre un polinomio $p$
+		tale per cui $\sigma_f(p) = 0$, l'applicazione nulla (è
+		sufficiente prendere $n^2+1$ potenze di $f$ e osservare
+		che devono essere linearmente indipendenti). Poiché
+		$\KK[x]$ è un PID, $\Ker \sigma_f$ è un ideale principale,
+		e quindi esiste un polinomio monico $\varphi_f$, detto
+		polinomio minimo di $f$, tale per cui
+		$\Ker \sigma_f = (\varphi_f)$.
+		
+		\begin{itemize}
+			\item $\varphi_f \mid p_f$ (teorema di Hamilton-Cayley),
+			\item $\deg \varphi_f = d$ se e solo se $\Idv$, $f$, ...,
+			$f^{d-1}$ sono linearmente indipendenti e $f^d \in \Span(\Idv, f, \ldots, f^{d-1})$,
+			\item $\dim \KK[f] = \deg \varphi_f$ (infatti, per
+			il primo teorema di omomorfismo $\KK[f] \cong \KK[x]\quot(\varphi_f)$, da cui si ricava
+			facilmente la dimensione dello spazio),
+			\item $\Idv$, $f$, ..., $f^{d-1}$ formano una base
+			di $\KK[f]$ (per i precedenti risultati), se $d = \deg \varphi_f$,
+			\item $\varphi_f$ e $p_f$ condividono gli stessi fattori
+			primi (se infatti non comparisse un autovalore come radice di $\varphi_f$, $\varphi_f(f)$ non sarebbe nullo),
+			\item gli esponenti dei fattori lineari di $\varphi_f$
+			sono esattamente gli indici di Fitting degli autospazi
+			generalizzati di $f$,
+			\item gli autovalori hanno moltiplicità algebrica $1$ in $\varphi_f$ se e solo se $f$ è diagonalizzabile (è sufficiente utilizzare il precedente risultato, o considerare la forma canonica di Jordan).
+		\end{itemize}
+	
+		Sia $\v \in V$. Si definisce allora l'applicazione
+		$\val_{f, \v} : \KK[x] \to V$ in modo tale
+		che $\val_{f, \v}(p) = p(f)(\v)$. Come prima,
+		$\val_{f,\v}$ è un'applicazione lineare. Si osserva
+		ancora che $\Ker \val_{f, \v}$ è un'ideale,
+		e quindi che esiste un polinomio $\varphi_{f, \v}$
+		tale per cui $\Ker \val_{f, \v} = (\varphi_{f, \v})$.
+		Tale polinomio viene denotato come polinomio minimo
+		relativo al vettore $\v$. Si definisce in particolare
+		$\KK[f](\v) := \Imm \val_{f, \v}$.
+		
+		\begin{itemize}
+			\item $\varphi_{f, \v} \mid \varphi_f$ (infatti $\varphi_f(f)=0$, e dunque $\varphi_f(f)$ annulla $\v$),
+			\item $\deg \varphi_{f, \v} = d$ se e solo se $\v$, $f(\v)$, ..., $f^{d-1}(\v)$ sono linearmente indipendenti
+			e $f^d(\v) \in \Span(\v, \ldots, f^{d-1}(\v))$,
+			\item $\dim \KK[f](\v) = \deg \varphi_{f, \v}$ (si dimostra allo stesso modo in cui si è dimostrata la proposizione analoga per $\varphi_f$),
+			\item $\v$, ..., $f^{d-1}(\v)$ formano una base
+			di $\KK[f](\v)$, se $d = \deg \varphi_{f, \v}$.
+			\item se $\vv 1$, ..., $\vv k$ sono generatori
+			di $V$, allora $\varphi_f = \mcm(\varphi_{f, \vv 1}, \ldots, \varphi_{f, \vv k})$ (è sufficiente mostrare
+			che $\varphi_f$ annulla una base e che il grado è minimale).
+			\item se $\v$, ..., $f^{k}(\v)$ sono linearmente indipendenti per qualche $\v \in V$, allora $\deg \varphi_f \geq \varphi_{f, \v} \geq k + 1$.
+			\item esiste sempre un vettore $\v$ tale per cui
+			$\varphi_f = \varphi_{f, \v}$ (se $\KK$ è infinito).
+			\item $p(f)$ è invertibile $\iff \Ker p(f) = \zerovecset$ $\iff \MCD(\varphi_f, p) \in \KK^*$, se $p \in \KK[x]$.
+		\end{itemize}
+		
+		Un vettore $\v$ si dice ciclico rispetto a $f$ se
+		gli $n$ vettori $\v$, ..., $f^{n-1}(\v)$ formano
+		una base di $V$, in tal caso detta base ciclica
+		di $V$.
+		
+		Se $\KK$ è infinito, $V$ ammette una base ciclica se e solo se $p_f = \pm \varphi_f$ (infatti esiste sempre un vettore $\v$ tale per cui $\varphi_f = \varphi_{f, \v}$). In
+		una base ciclica $\basis$ la matrice associata si
+		scrive nel seguente modo:
+		\[ M_\basis(f) = \Matrix{1 & & & -a_0 \\ & \ddots & & \vdots \\ & & 1 & -a_{n-1}}, \]
+		
+		dove $\varphi_f(x) = x^n + a_{n-1} x^{n-1} + \ldots + a_0$.
+		Tale matrice viene detta matrice compagna del polinomio
+		$p := \varphi_f$ (e dunque ogni polinomio monico è in particolare
+		il polinomio minimo di un qualche endomorfismo; analogamente
+		ogni polinomio monico è, a meno del segno, un polinomio
+		caratteristico).
+		a meno)
 
 		\subsection{Prodotto scalare e congruenza}
 		Si consideri una mappa $\varphi : V \times V \to \KK$. Si dice che
