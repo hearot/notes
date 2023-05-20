@@ -1087,7 +1087,7 @@
 		le prime due righe). Si dice che $M$ è \textit{minore} di $A$ una sua sottomatrice quadrata. Si chiamano \textit{orlati} di un minore $M$ di taglia $k$ i minori di taglia $k+1$ di $A$ aventi $M$ come minore.
 		
 		\begin{itemize}
-			\item Se $B$ è una sottomatrice di $A$, allora $\rg(B) \leq \rg(A)$ (è sufficiente prendere un numero massimo di colonne linearmente indipendenti
+			\item se $B$ è una sottomatrice di $A$, allora $\rg(B) \leq \rg(A)$ (è sufficiente prendere un numero massimo di colonne linearmente indipendenti
 			di $B$ e mostrare che le relative colonne in $A$ sono ancora linearmente indipendenti),
 			\item $\rg(A) = \max\{\rg(B) \mid B \text{ sottomatrice di }\! A\}$ (è sufficiente utilizzare il precedente risultato; infatti $A$ è una sottomatrice di $A$),
 			\item $\rg(A) = \max\{\rg(B) \mid B \text{ minore invertibile di }\! A\} = \max\{n \mid \text{esiste un minore di $A$ di taglia $n$ invertibile} \}$ (è sufficiente utilizzare la prima disuguaglianza e considerare un minore di $A$ composto dalle righe e le colonne linearmente indipendenti di $A$, che sono
@@ -1190,7 +1190,9 @@
 			a blocchi),
 			\item se $V = W \oplus U$, dove sia $W$ che $U$ sono $f$-invarianti,
 			allora $\charpoly{f} = \charpolyrestr{f}{W} \cdot \charpolyrestr{f}{U}$ (la matrice associata in un'unione di basi
-			di $W$ e $U$ è infatti diagonale a blocchi).
+			di $W$ e $U$ è infatti diagonale a blocchi),
+			\item se sia $W$ che $U$ sono $f$-invarianti, allora $f$ è diagonalizzabile
+			se e solo se sia $\restr{f}{W}$ che $\restr{f}{U}$ lo sono.
 		\end{itemize}
 		
 		Si dice che $f$ è diagonalizzabile se $V$ ammette una base per cui
@@ -1252,6 +1254,26 @@
 		dove $\lambda_1$, ..., $\lambda_k$ sono gli autovalori distinti di
 		$f$, e dunque $\restr{f}{W}$ è sempre diagonalizzabile, se $f$ lo è.
 		
+		Se $f$ è diagonalizzabile, anche $f^k$ lo è, per ogni $k \in \NN$. Se
+		ogni vettore di $V$ è un autovettore di $f$, allora $f = \lambda \Id$,
+		con $\lambda \in \KK$ (è sufficiente considerare l'eventuale esistenza di più
+		autospazi e due vettori $\v$ e $\w$ di due autospazi distinti e considerare
+		le due scritture possibili di $f(\v + \w)$).
+		
+		Si dice infine che $f$ è triangolabile (o triangolarizzabile) se $V$
+		ammette una base per cui la matrice associata di $f$ è triangolare superiore
+		(o inferiore, dal momento che è sufficiente riordinare dal basso la base
+		per ottenere una matrice associata triangolare superiore). Vale in particolare
+		che $f$ è triangolabile se e soltanto se $p_f(\lambda)$ è completamente
+		riducibile in fattori lineari in $\KK$ (dunque, nel caso di $\KK$ algebricamente
+		chiuso, $f$ è sempre triangolabile). Infatti, se $f$ è triangolabile, il polinomio
+		caratteristico ha come radici esattamente gli elementi sulla diagonale della
+		matrice associata di $f$ nella base $\basis$ in cui tale matrice è triangolare
+		superiore (e dunque $p_f(\lambda)$ è riducibile in fattori lineari). Se invece $p_f(\lambda)$ è riducibile in fattori lineari, si può applicare il seguente
+		algoritmo [...]
+		
+		\subsubsection{Diagonalizzabilità e triangolabilità simultanea}
+
 		Due endomorfismi $f$, $g \in \End(V)$ diagonalizzabili si dicono simultaneamente diagonalizzabili se esiste una base $\basis$ di $V$
 		tale per cui sia la matrice associata di $f$ in $\basis$ che quella
 		di $g$ sono diagonali. Vale in particolare che $f$ e $g$ sono
@@ -1268,11 +1290,8 @@
 		autovettori in un'unica base $\basis$ di $V$, si otterrà dunque
 		che una base in cui le matrici associate di $f$ e $g$ sono diagonali.
 		
-		Se $f$ è diagonalizzabile, anche $f^k$ lo è, per ogni $k \in \NN$. Se
-		ogni vettore di $V$ è un autovettore di $f$, allora $f = \lambda \Id$,
-		con $\lambda \in \KK$ (è sufficiente considerare l'eventuale esistenza di più
-		autospazi e due vettori $\v$ e $\w$ di due autospazi distinti e considerare
-		le due scritture possibili di $f(\v + \w)$).
+		Analogamente due endomorfismi $f$, $g \in \End(V)$ triangolabili si dicono
+		simultaneamente triangolabili se [...]
 
 		\subsection{Prodotto scalare e congruenza}
 		Si consideri una mappa $\varphi : V \times V \to \KK$. Si dice che
