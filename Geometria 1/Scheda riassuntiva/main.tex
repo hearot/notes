@@ -1192,7 +1192,11 @@
 			allora $\charpoly{f} = \charpolyrestr{f}{W} \cdot \charpolyrestr{f}{U}$ (la matrice associata in un'unione di basi
 			di $W$ e $U$ è infatti diagonale a blocchi),
 			\item se sia $W$ che $U$ sono $f$-invarianti, allora $f$ è diagonalizzabile
-			se e solo se sia $\restr{f}{W}$ che $\restr{f}{U}$ lo sono.
+			se e solo se sia $\restr{f}{W}$ che $\restr{f}{U}$ lo sono,
+			\item se $f$ è nilpotente, $p_f(\lambda) = \lambda^n$ (è sufficiente considerare
+			un eventuale altro autovalore diverso da zero e mostrare che se tale
+			autovalore esistesse, $f$ non sarebbe nilpotente),
+			\item un endomorfismo è nilpotente se e solo se $f^n = 0$ (discende direttamente dal teorema di Hamilton-Cayley e dalla forma di $p_f$),
 		\end{itemize}
 		
 		Si dice che $f$ è diagonalizzabile se $V$ ammette una base per cui
@@ -1218,7 +1222,7 @@
 		che $f$ è diagonalizzabile se e solo se per ogni autovalore la
 		massima taglia di un blocco di Jordan è esattamente $1$, ossia
 		se il polinomio minimo di $f$ è un prodotto di fattori lineari
-		distinti. Si può fare la stessa considerazione guardando al
+		distinti (i.e.~se $\varphi_f(t) = \prod_i (t-\lambda_i)$). Si può fare la stessa considerazione guardando al
 		teorema di decomposizione primaria (gli indici di Fitting del
 		sottospazio generalizzato sono esattamente le moltiplicità algebriche
 		degli autovalori nel polinomio minimo).
@@ -1380,7 +1384,13 @@
 			\item gli esponenti dei fattori lineari di $\varphi_f$
 			sono esattamente gli indici di Fitting degli autospazi
 			generalizzati di $f$,
-			\item gli autovalori hanno moltiplicità algebrica $1$ in $\varphi_f$ se e solo se $f$ è diagonalizzabile (è sufficiente utilizzare il precedente risultato, o considerare la forma canonica di Jordan).
+			\item gli autovalori hanno moltiplicità algebrica $1$ in $\varphi_f$ se e solo se $f$ è diagonalizzabile (è sufficiente utilizzare il precedente risultato, o considerare la forma canonica di Jordan),
+			\item se $f$ è nilpotente, $\varphi_f(t) = t^k$, dove $k$ è l'indice di Fitting
+			di $\Ker f$ (discende direttamente dalla forma di $p_f$ se $f$ è nilpotente),
+			\item se $p \in \KK[x]$ è tale per cui $p = p_1 \cdots p_k$ con $p_1$, ..., $p_k \in \KK[x]$ coprimi, allora $\Ker p(f) = \Ker p_1(f) \oplus \cdots \oplus \Ker p_k(f)$ (teorema di decomposizione primaria; si dimostra facilmente attraverso il teorema di Bezout),
+			\item $V = \gensp 1 \oplus \cdots \oplus \gensp k$, se $\lambda_1$, ..., $\lambda_k$ sono tutti gli autovalori di $f$ (deriva direttamente dal teorema
+			di Hamilton-Cayley e dal teorema di decomposizione primaria, o, alternativamente,
+			dalla decomposizione di Fitting).
 		\end{itemize}
 	
 		Sia $\v \in V$. Si definisce allora l'applicazione
@@ -1392,7 +1402,7 @@
 		tale per cui $\Ker \val_{f, \v} = (\varphi_{f, \v})$.
 		Tale polinomio viene denotato come polinomio minimo
 		relativo al vettore $\v$. Si definisce in particolare
-		$\KK[f](\v) := \Imm \val_{f, \v}$.
+		$\KK[f](\v) := \Im \val_{f, \v}$.
 		
 		\begin{itemize}
 			\item $\varphi_{f, \v} \mid \varphi_f$ (infatti $\varphi_f(f)=0$, e dunque $\varphi_f(f)$ annulla $\v$),
@@ -1407,7 +1417,8 @@
 			\item se $\v$, ..., $f^{k}(\v)$ sono linearmente indipendenti per qualche $\v \in V$, allora $\deg \varphi_f \geq \varphi_{f, \v} \geq k + 1$.
 			\item esiste sempre un vettore $\v$ tale per cui
 			$\varphi_f = \varphi_{f, \v}$ (se $\KK$ è infinito).
-			\item $p(f)$ è invertibile $\iff \Ker p(f) = \zerovecset$ $\iff \MCD(\varphi_f, p) \in \KK^*$, se $p \in \KK[x]$.
+			\item $p(f)$ è invertibile $\iff \Ker p(f) = \zerovecset$ $\iff \MCD(\varphi_f, p) \in \KK^*$, se $p \in \KK[x]$ (è sufficiente
+			applicare il teorema di Bezout).
 		\end{itemize}
 		
 		Un vettore $\v$ si dice ciclico rispetto a $f$ se
@@ -1426,7 +1437,202 @@
 		il polinomio minimo di un qualche endomorfismo; analogamente
 		ogni polinomio monico è, a meno del segno, un polinomio
 		caratteristico).
-		a meno)
+		
+		\subsection{La forma canonica di Jordan}
+		
+		Si definisce blocco di Jordan di taglia $k$ relativo
+		all'autovalore $\lambda$ la seguente matrice:
+		\[J_{\lambda, k} :=\begin{pmatrix}
+			\lambda&1&0&\cdots&0         \\                       
+			0&\ddots&\ddots&&\vdots      \\
+			\vdots&\ddots&\ddots&\ddots&0\\
+			\vdots&&\ddots&\ddots&1      \\
+			0&\cdots&\cdots&0&\lambda    
+		\end{pmatrix},\]
+		
+		ossia la matrice che ha solo $\lambda$ sulla diagonale, $1$ sulla
+		sopradiagonale e $0$ nelle altre posizioni. Si può
+		sempre restringere un blocco di Jordan a un blocco nilpotente
+		considerando $J = J_{\lambda, k} - \lambda I_k$. Tale blocco
+		ha come polinomio minimo $\varphi_J(t) = t^k$, e dunque
+		$\varphi_{J_{\lambda, k}}(t) = (t-\lambda)^k$. Allo stesso
+		modo si calcola $p_{J_{\lambda, k}}(t) = (t-\lambda)^k$. Si osserva dunque
+		che $\mu_{a, J_{\lambda, k}}(\lambda) = \mu_{a, J}(0)$.
+		
+		Poiché il polinomio caratteristico ed il polinomio minimo coincidono a meno
+		del segno, esiste sempre una base ciclica per la quale $J_{\lambda, k}$
+		si scrive come matrice compagna di $\varphi_{J_{\lambda, k}}$.
+		
+		Si definisce forma canonica di Jordan di un endomorfismo $f$
+		una sua matrice associata in una base $\basis$ tale per cui:
+		\[M_\basis(f) = \begin{pmatrix}
+			J_1 &          & 0   \\
+			& \ddots &     \\ 
+			0 &          & J_s \end{pmatrix}, \]
+
+		dove $J_1$, ..., $J_s$ sono blocchi di Jordan. La forma canonica
+		di Jordan esiste sempre ed è unica a meno di permutazione dei blocchi,
+		se tutti gli autovalori di $f$ sono in $\KK$ (teorema di Jordan; se
+		gli autovalori di $f$ non sono tutti in $\KK$, si può sempre considerare
+		un'estensione di campo in cui esistono).
+		
+		Si definisce autospazio generalizzato relativo all'autovalore $\lambda$ di
+		$f \in \End(V)$ lo spazio:
+	
+		\[ \Gensp = \Ker (f - \lambda \Idv)^n. \]
+		
+		Una definizione alternativa, ma equivalente di $\Gensp$ è la seguente:
+		
+		\[ \Gensp = \{ \v \in V \mid \exists k \in \NN \mid (f-\lambda \Idv)^k = \vec 0 \}, \]
+		
+		ossia $\Gensp$ è lo spazio dei vettori $\v \in V$ tali per cui, applicando ripetutamente $f-\lambda \Idv$, si ottiene un autovettore relativo a $\lambda$ (per
+		dimostrare l'equivalenza delle due dimostrazioni è sufficiente considerare la
+		decomposizione di Fitting). In generale, dalla catena della decomposizione
+		di Fitting, si deduce in realtà che:
+		
+		\[ \Gensp = \Ker (f - \lambda \Idv)^q \; \forall q \geq k, \]
+		
+		dove $k$ è la molteplicità algebrica di $\lambda$ in $\varphi_f$ (in particolare
+		si ottiene sempre l'autospazio generalizzato sostituendo $\mu_a(\lambda)$ a $q$,
+		dacché $\mu_a(\lambda) \geq k$).
+		
+		In generale vale che:
+		\[ V = \gensp 1 \oplus \cdots \oplus \gensp k, \]
+		se $\lambda_1$, ..., $\lambda_k$ sono tutti gli autovalori di $f$ (vd.~polinomio minimo). Inoltre, $\restr{f}{\Gensp}$ ammette come autovalore soltanto $\lambda$
+		(pertanto $\dim \Gensp = \mu_{a, f}(\lambda)$, confrontando i polinomi caratteristici). Si osserva inoltre che $\Gensp$ è sempre $f$-invariante. Infatti ogni $f$ induce due catene di inclusione:
+		
+		\begin{gather*}
+			\Ker f^0 = \zerovecset \subsetneqq \Ker f^1 \subsetneqq \cdots \subsetneqq \Ker f^k = \Ker f^{k+1} = \cdots, \\
+			\Im f^0 = V \supsetneqq \Im f^1 \supsetneqq \cdots \supsetneqq \Im f^k = \Im f^{k+1} = \cdots,
+		\end{gather*}
+		
+		dove $k$ è detto indice di Fitting di $f$. Vale in particolare la decomposizione di Fitting:
+		\[ V = \Ker f^k \oplus \Im f^k, \]
+		
+		dove $\restr{f}{\Ker f^k}$ è nilpotente (e dunque ammette solo $0$ come autovalore;
+		infatti $(\restr{f}{\Ker f^k})^k = \restr{f^k}{\Ker f^k} = 0$),
+		mentre $\restr{f}{\Im f^k}$ è invertibile (e dunque non ammette $0$ come autovalore;
+		infatti tale endomorfismo mantiene le dimensioni delle immagini).
+		
+		\begin{itemize}
+			\itemsep 0pt
+			\item esiste sempre almeno un blocco di Jordan relativo a $\lambda$ di ordine $k$,
+			dove $k$ è la molteplicità algebrica di $\lambda$ in $\varphi_f$,
+			\item la successione di $\Ker (f-\lambda \Idv)^t - \Ker (f - \lambda \Idv)^{t-1}$
+			all'aumentare di $t$ è decrescente ed è definitivamente $0$,
+			\item il numero di blocchi di Jordan di taglia maggiore o uguale a $t$ relativi
+			a $\lambda$ è esattamente $\Ker (f-\lambda \Idv)^t - \Ker (f - \lambda \Idv)^{t-1}$,
+			\item il numero di blocchi di Jordan di taglia $t$ relativi a $\lambda$
+			è esattamente:
+			\begin{gather*}
+				2 \dim \Ker (f-\lambda \Idv)^t - \dim \Ker (f-\lambda \Idv)^{t+1} \\ - \dim \Ker (f-\lambda \Idv)^{t-1},
+			\end{gather*}
+			riscrivibile anche come:
+			\begin{gather*}
+				\rg (f-\lambda \Idv)^{t+1} + \rg (f-\lambda \Idv)^{t-1} - \\
+				2 \rg (f-\lambda \Idv),
+			\end{gather*}
+			(da queste due identità risulta evidente l'unicità della forma canonica di Jordan),
+			\item esistono esattamente $\mu_g(\lambda) = \dim \Ker (f - \lambda \Idv)$ blocchi
+			relativi all'autovalore $\lambda$,
+			\item $\mu_g(\lambda) = 1$ $\forall \lambda \in \Sp(f)$ implica
+			che vi sia un solo blocco relativo ad ogni $\lambda \in \Sp(f)$; dal
+			momento che ne deve esiste uno di ordine massimo, tale blocco ha taglia
+			$k$, dove $k$ è la molteplicità algebrica di $\lambda$ in $\varphi_f$,
+			\item $\mu_g(\lambda) = 1$ $\forall \lambda \in \Sp(f)$ implica che
+			$p_f = \pm \varphi_f$ (e dunque che $f$ ammette una base ciclica; segue
+			direttamente dal precedente risultato),
+			\item una base di $\Ker (f - \lambda \Idv)^t$ è data dai primi $t$ vettori
+			di ogni blocco relativo a $\lambda$,
+			\item due matrici $A$, $B$ sono simili se e solo se condividono la stessa
+			forma canonica di Jordan (a meno di permutazione di blocchi; dunque la
+			forma canonica di Jordan è un invariante completto della similitudine),
+			\item Se $\KK=\CC$, vale l'identità:
+			\[ \conj{\Ker (f - \lambda \Idv)^k} = \Ker (f - \conj{\lambda} \Idv)^k, \]
+			
+			da cui è possibile ottenere una base dell'autospazio generalizzato relativo
+			a $\conj{\lambda}$ coniugando una base dell'autospazio generalizzato relativo
+			a $\lambda$ (in particolare i due spazi hanno la stessa dimensione),
+			\item Se $\KK=\CC$, la forma canonica di Jordan contiene tanti blocchi di taglia $t$
+			relativi a $\lambda$ quanti ve ne sono di relativi a $\conj{\lambda}$.
+		\end{itemize}
+		
+		\subsubsection{Calcolo di una base di Jordan}
+		
+		Si dice base di Jordan una qualsiasi base $\basis$ tale per cui
+		$M_\basis(f)$ è una forma canonica di Jordan, se $f \in \End(V)$.
+		Per calcolare una base di Jordan si può seguire il seguente
+		algoritmo:
+		
+		\begin{enumerate}
+			\item Si calcoli il polinomio caratteristico $p_f$ di $f$ e se
+			ne estragga lo spettro $\Sp(f)$,
+			\item Si consideri una base $\basis$ di $V$ e si ponga
+			$A := M_\basis(f)$,
+			\item Si consideri ogni autovalore $\lambda \in \Sp(f)$:
+				\begin{enumerate}[a.]
+					\item Si consideri $B := A - \lambda I_n$. Si calcoli
+					il rango di $B$ per ricavare $\mu_g(\lambda)$, indicante
+					il numero di blocchi relativi a $\lambda$,
+					\item Se possibile, si facciano considerazioni riguardo
+					a come deve essere la forma canonica di Jordan. Altrimenti
+					si calcoli il numero di blocchi tramite la formula
+					presentata precedentemente,
+					\item Si calcolino le matrici della forma $B^i$ con $2 \leq i \leq k-1$,
+					dove $k$ è la taglia del blocco più grande,
+					\item Si calcolino le basi dei sottospazi $U_i$ tali per cui:
+					\begin{flalign*}
+						&\Ker B^k = \Ker B^{k-1} \oplus U_1, \\
+						&\Ker B^{k-1} = \Ker B^{k-2} \oplus B(U_1) \oplus U_2, \\
+						&\,\vdots \\
+						&\Ker B = B^{k-1}(U_1) \oplus B^{k-2}(U_2) \oplus \cdots \oplus U_k;
+					\end{flalign*}
+					\item Si scelgano da queste basi i vettori che generano ogni blocco
+					relativo a $\lambda$ (in particolare ogni vettore di base di $U_i$ genera
+					un blocco di taglia $k-1+i$),
+					\item Per ogni blocco, generato dal vettore $\v$, si costruisca una base ordinata nel seguente modo:
+					\[ \basis' = \{B^{t-1} \v ,\ldots , B \v, \v\}, \]
+					dove $t$ è l'indice minimo per cui $B^t \v = 0$;
+				\end{enumerate}
+			\item Si uniscano ordinatamente a catena le basi ottenute in una base $\basis_J$. La base $[]_\basis\inv \basis_J$ è allora base di Jordan. In particolare, se
+			$P = \Matrix{\v_1 \cdots \v_n}$, dove $\basis_J= \{\v_1, \ldots, \v_n\}$, vale
+			che $J = P\inv A P$ è esattamente la forma canonica di Jordan individuata
+			da tale base.
+		\end{enumerate}
+		
+		Se $f$ è nilpotente, l'algoritmo può essere velocizzato notevolmente considerando
+		solamente $B := A$. Se $f$ ha un solo autovalore $\lambda$ e ammette una base ciclica (ossia esiste un solo blocco di Jordan), considerando $B := A - \lambda I_n$,
+		quasi ogni vettore è un vettore ciclico (è pertanto consigliato cercare un vettore
+		in modo casuale, piuttosto che estendere tutte le basi dei kernel).
+		
+		\subsubsection{La forma canonica di Jordan reale}
+
+		Sia $A \in M(n, \RR)$. Allora
+		la forma canonica di Jordan reale è una variante reale della forma canonica di
+		Jordan che esiste sempre (infatti gli autovalori di $A$ non sono forzatamente
+		in $\RR$, e potrebbero dunque essere in $\CC \setminus \RR$). La forma canonica di
+		Jordan reale si costruisce a partire da una forma canonica di Jordan $J$
+		e una sua base di Jordan $\basis$ associata. Tale forma canonica
+		si costruisce mediante il seguente algoritmo:
+		
+		\begin{enumerate}
+			\item Si scelga un autovalore $z$, se non si è già considerato il
+			suo coniugato $\conj z$:
+			\begin{enumerate}[a.]
+				\item Si prenda la base $\basis_z = \{\vv 1, \ldots, \vv k, \conj{\vv 1}, \ldots, \conj{\vv k}\}$ che
+				genera i blocchi di $z$ e $\conj z$ e si consideri la nuova
+				base $\basis_z' = \{ \Re(\vv 1), \imm(\vv 1), \ldots, \Re(\vv k), \imm(\vv 1k) \}$,
+				\item In tale base la forma canonica di Jordan varia eliminando i blocchi
+				di $\conj z$, sostituendo all'autovalore $z = a + bi$ il seguente blocco:
+				\[ \Matrix{
+					a & -b \\ b & a
+				}, \]
+				ed ingrandendo gli eventuali $1$ mediante l'identità $I_2$ (tale processo prende
+				il nome di complessificazione).
+			\end{enumerate}
+			\item La matrice ottenuta dopo aver considerato tutti gli eventuali autovalori complessi è una forma canonica di Jordan reale, e la base ottenuta mediante
+			tutti i processi di complessificazione è una base di Jordan reale.
+		\end{enumerate}
 
 		\subsection{Prodotto scalare e congruenza}
 		Si consideri una mappa $\varphi : V \times V \to \KK$. Si dice che
@@ -1468,7 +1674,7 @@
 			\item $\Ker a_\varphi = V^\perp$,
 			\item $\varphi$ è non degenere se e solo se $M_\basis(\varphi)$ è invertibile,
 			\item $W^\perp = \Ker i^\top \circ a_\varphi$,
-			\item $a_\varphi(W^\perp) = \Ann(W) \cap \Imm a_\varphi$,
+			\item $a_\varphi(W^\perp) = \Ann(W) \cap \Im a_\varphi$,
 			\item $\dim W + \dim W^\perp = \dim V + \dim (W \cap V^\perp)$ (da sopra),
 			\item $V = W \oplus^\perp W^\perp$ se $\restr{\varphi}{W}$ è non degenere ($\iff W \cap W^\perp = \Rad(\restr{\varphi}{W}) = \zerovecset$),
 			\item $(W^\perp)^\perp = W^\dperp = W + \Rad(\varphi) = W + V^\perp$,
