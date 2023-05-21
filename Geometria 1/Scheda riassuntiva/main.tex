@@ -230,7 +230,10 @@
 			nelle coordinate della rappresentazione della base (infatti ogni
 			iperpiano è il kernel di un funzionale $f \in \dual{V}$, e $M^\basis_{1_\KK}(f) \, [\vec{v}]_\basis = 0$ è l'equazione cartesiana; è sufficiente prendere una base di $\Pi$ e completarla
 			a base di $V$ con un vettore $\vec{t}$, considerando infine
-			$\Ker \dual{\vec{t}}$).
+			$\Ker \dual{\vec{t}}$),
+			\item un iperpiano $\Pi$, rappresentato da un'equazione cartesiana $\alpha_1 x_1 + \ldots + \alpha_n x_n = 0$, è esattamente il sottospazio ortogonale a $\Span(\alpha_1, \ldots, \alpha_n)^\perp$ tramite il prodotto scalare standard,
+			\item in generale, un sistema di equazioni omogenee è l'intersezione di più
+			sottospazi ortogonali.
 			
 		\end{itemize}
 		
@@ -823,12 +826,10 @@
 		di $V_i$, dove $k_i = \dim V_i$.
 		Si definisce l'applicazione $n$-lineare $\dual{\vec{v^{(1)}_{j_1}}}
 		\otimes \cdots \otimes \dual{\vec{v^{(n)}_{j_n}}}\in \Mult(V_1 \times \ldots
-		\times V_n, \KK)$ univocamente determinata dalla relazione:
-		
+		\times V_n, \KK)$ univocamente determinata dalla seguente relazione:
 		\[ \dual{\vec{v^{(1)}_{j_1}}} \otimes \cdots \otimes \dual{\vec{v^{(n)}_{j_n}}}(\vec{w_1}, \ldots, \vec{w_n}) = \dual{\vec{v^{(1)}_{j_1}}}(\vec{w_1}) \cdots \dual{\vec{v^{(n)}_{j_n}}}(\vec{w_n}).   \]
 		
 		Si definisce l'insieme $\basis_{\otimes}$ nel seguente modo:
-		
 		\[ \basis_{\otimes} = \left\{ \dual{\vec{v^{(1)}_{j_1}}} \otimes \cdots \otimes \dual{\vec{v^{(n)}_{j_n}}} \mid 1 \leq j_1 \leq k_1, \, \ldots, \, 1 \leq j_n \leq k_n \right\}. \]
 		
 		Poiché ogni applicazione $n$-lineare è univocamente determinata
@@ -862,12 +863,10 @@
 		si definisce il prodotto simmetrico (o \textit{prodotto vee}) 
 		$\dual{\vec{v_{i_1}}} \vee \cdots \vee \dual{\vec{v_{i_k}}}$
 		tra elementi della base come la forma $k$-lineare simmetrica
-		determinata dalla relazione:
-		
+		determinata dalla seguente relazione:
 		\[ \dual{\vec{v_{i_1}}} \vee \cdots \vee \dual{\vec{v_{i_k}}} = \sum_{\sigma \in S_k} \dual{\vec{v_{i_{\sigma(1)}}}} \otimes \cdots \otimes \dual{\vec{v_{i_{\sigma(k)}}}}. \]
 		
 		Si definisce l'insieme:
-		
 		\[\basis_{\Sym} = \left\{  \dual{\vec{v_{i_1}}} \vee \cdots \vee \dual{\vec{v_{i_k}}} \mid 1 \leq i_1 \leq \cdots \leq i_k \leq n \right\}. \]
 		
 		L'insieme $\basis_{\Sym}$ è sia generatore che linearmente
@@ -1554,7 +1553,16 @@
 			a $\conj{\lambda}$ coniugando una base dell'autospazio generalizzato relativo
 			a $\lambda$ (in particolare i due spazi hanno la stessa dimensione),
 			\item Se $\KK=\CC$, la forma canonica di Jordan contiene tanti blocchi di taglia $t$
-			relativi a $\lambda$ quanti ve ne sono di relativi a $\conj{\lambda}$.
+			relativi a $\lambda$ quanti ve ne sono di relativi a $\conj{\lambda}$,
+			\item Esistono e sono unici i due endomorfismi $\mu$, $\delta \in \End(V)$
+			tale che $\mu$ sia diagonalizzabile, $\delta$ sia nilpotente e che
+			$f = \mu + \delta$ (se esiste la forma canonica di Jordan),
+			\item Se $\forall \lambda \in \Sp(f)$, $\mu_g(\lambda) = 1$, allora
+			esiste un numero finito di sottospazi invarianti e sono tutte le possibili
+			somme dirette dei sottospazi degli autospazi generalizzati, %TODO: migliorare
+			\item Se $\KK$ è infinito ed esiste $\lambda \in \Sp(f)$ tale per cui
+			$\mu_g(\lambda) > 1$, allora esiste un numero infinito di sottospazi invarianti
+			per ogni dimensione, da $1$ a $\dim V -1$. %TODO: migliorare
 		\end{itemize}
 		
 		\subsubsection{Calcolo di una base di Jordan}
@@ -1667,6 +1675,13 @@
 		Si dice che $\varphi$ è definito se è definito positivo o definito negativo. Analogamente $\varphi$
 		è semidefinito se è semidefinito positivo o semidefinito negativo.
 		
+		Si scrive $\v^\perp$ per indicare tutti i vettori ortogonali a $\v$ (e quindi
+		$\v^\perp = \Span(\v)^\perp$). Si definisce $\iota : W \to V$ come l'applicazione
+		tale per cui $\iota(\w) = \w$. Si scrive $\restr{\varphi}{U}$ con $U$ sottospazio
+		di $V$ per indicare il prodotto scalare $\restr{\varphi}{U \times U}$.
+		
+		Sia ora $V$ di dimensione finita.
+		
 		\begin{itemize}
 			\item $M_\basis(\varphi)$ è simmetrica,
 			\item $\varphi(\v, \w) = [\v]_\basis^\top M_\basis(\varphi) [\w]_\basis$,
@@ -1676,15 +1691,43 @@
 			\item $W^\perp = \Ker i^\top \circ a_\varphi$,
 			\item $a_\varphi(W^\perp) = \Ann(W) \cap \Im a_\varphi$,
 			\item $\dim W + \dim W^\perp = \dim V + \dim (W \cap V^\perp)$ (da sopra),
-			\item $V = W \oplus^\perp W^\perp$ se $\restr{\varphi}{W}$ è non degenere ($\iff W \cap W^\perp = \Rad(\restr{\varphi}{W}) = \zerovecset$),
+			\item $V = W \oplus^\perp W^\perp$ se e solo se $\restr{\varphi}{W}$ è non degenere ($\iff W \cap W^\perp = \Rad(\restr{\varphi}{W}) = \zerovecset$),
+			\item $V = W + W^\perp$ se e solo se $\Rad(\restr{\varphi}{W}) \subseteq \Rad(\varphi)$,
+			\item se $V = U \oplus^\perp W$, allora $\Rad(\varphi) = \Rad(\restr{\varphi}{U}) \oplus \Rad(\restr{\varphi}{W})$,
+			\item $V = \Span(\w) \oplus^\perp \Span(\w)^\perp \iff q(\w) \neq 0 \iff \w \notin \CI(\varphi)$,
+			\item $\Span(\w) \subseteq \Span(\w)^\perp \iff \w \in \CI(\varphi)$,
 			\item $(W^\perp)^\perp = W^\dperp = W + \Rad(\varphi) = W + V^\perp$,
+			\item $\v \in V^\perp \iff \Span(\v)^\perp = V$,
+			\item $W^\perp = (\Span(W))^\perp$,
+			\item $W^\perp = \bigcap_{\w \in U} \w^\perp$,
+			\item se $\ww 1$, ..., $\ww k$ generano $W$, allora $W^\perp = \bigcap_{i = 1}^k \ww i ^\perp$,
+			\item $W^\perp = \alpha_\varphi\inv(\Ann(W))$,
+			\item $\alpha_\varphi(W^\perp) = \Ann(W) \cap \Im \alpha_\varphi$,
+			\item $V \subseteq W \implies W^\perp \subseteq V^\perp$,
 			\item $(U + W)^\perp = U^\perp \cap W^\perp$,
+			\item $((W^\perp)^\perp)^\perp = (W + V^\perp)^\perp = W^\perp \cap (V^\perp)^\perp = W^\perp \cap V = W^\perp$,
 			\item $(U \cap W)^\perp \supseteq U^\perp + W^\perp$,
 			\item $(U \cap W)^\perp = U^\perp + W^\perp$, se $\varphi$ è non degenere,
 			\item $\varphi$ è definito $\iff$ $\CI(\varphi) = \zerovecset$,
+			\item $\varphi$ è (semi)definito $\implies$ ogni sua restrizione è (semi)definita,
 			\item $\varphi$ è semidefinito $\iff$ $\CI(\varphi) = V^\perp = \Rad(\varphi)$ (considera l'esistenza
 			di due vettori $\v$, $\w \in V$ con forme quadratiche discordi, osserva che sono linearmente indipendenti
-			e trova un $\lambda \in \KK$ tale per cui $\v + \lambda \w$ crea un assurdo).
+			e trova un $\lambda \in \KK$ tale per cui $\v + \lambda \w$ crea un assurdo),
+			\item $\Im(\alpha_\varphi) \subseteq \Ann(V^\perp)$ (se $V$ è di dimensione infinita),
+			\item $\Im(\alpha_\varphi) = \Ann(V^\perp)$ (se $V$ è di dimensione finita),
+			\item $\Rad(\restr{\varphi}{U}) = U^\perp \cap U$,
+			\item $\CI(\restr{\varphi}{U}) = \CI(\varphi) \cap U$,
+		\end{itemize}
+		
+		Due esempi classici di prodotto scalare sono $\varphi(A, B) = \tr(AB)$ e
+		$\psi(A, B) = \tr(AB^\top)$, entrambi su $M(n, \KK)$. I due prodotti sono
+		entrambi non degeneri, e vale che:
+		
+		\begin{itemize}
+			\item $\restr{\varphi}{\Sym(n, \KK)} = \restr{\psi}{\Sym(n, \KK)}$,
+			\item $\restr{\varphi}{\Lambda(n, \KK)} = -\restr{\psi}{\Lambda(n, \KK)}$,
+			\item se $\Char \KK \neq 2$, $V = \Sym(n, \KK) \oplus^\perp \Lambda(n, \KK)$,
+			per ambo i prodotti scalari.
 		\end{itemize}
 		
 		Se $\basis'$ è un'altra base di $V$, vale il seguente \textit{teorema di cambiamento di base}:
@@ -1775,6 +1818,40 @@
 		Sylvester. Per il teorema di Sylvester, tale base esiste sempre, e la matrice di Sylvester è unica per
 		ogni prodotto scalare $\varphi$.
 		
+		Se $M \in \Sym(2, \RR)$, $\det(M) < 0 \iff \sigma(M) = (1, 1, 0)$ (e dunque
+		se e solo se $M$ rappresenta un piano iperbolico). Al contrario $\det(M) > 0$
+		se e solo se $M$ è definita (e in tal caso è definita positiva se il suo
+		primo elemento è positivo, e negativa se è negativo). Se $\KK=\RR$, $q(\v) > 0$ e $q(\w) < 0$,
+		allora $\v$ e $\w$ sono linearmente indipendenti; in particolare $\Span(\v, \w)$ è
+		un piano iperbolico ed esistono $\lambda_1$, $\lambda_2 \in \RR$ tali per
+		cui $\lambda_1 \v + \lambda_2 \w$ è isotropo.
+		
+		\subsubsection{Funzionali rappresentabili}
+		
+		Un funzionale $f \in \dual V$ si dice rappresentabile tramite $\varphi$ se
+		$f \in \Im \alpha_\varphi$, ossia se $\exists \v \in V \mid f = \varphi(\v, \cdot)$.
+		Dal momento che $\Im(\alpha_\varphi) = \Ann(V^\perp)$, $f$ è rappresentabile
+		se e solo se $V^\perp \subseteq \Ker f$.
+		
+		Se $\varphi$ è non degenere, ogni funzionale $f$ è rappresentabile in modo unico (teorema
+		di rappresentazione di Riesz; infatti $\alpha_\varphi$ sarebbe in tal caso
+		un isomorfismo).
+		
+		In particolare, $f$ è rappresentabile se e solo se, scelta una base $\basis$ di
+		$V$, il sistema $M_\basis(\varphi) \x = [f]_{\dual \basis}$ è risolvibile.
+		
+		Se $W$ è un supplementare di $V^\perp$, e dunque $V = W \oplus V^\perp$, allora
+		$\restr{\varphi}{W}$ è non degenere, e dunque $\alpha_{\restr{\varphi}{W}}$ è
+		un isomorfismo da $W$ a $\Im \alpha_\varphi$ (quindi se $f$ è rappresentabile,
+		lo è tramite un unico vettore di $W$).
+		
+		In particolare, se $\v$ rappresenta $f$, allora $\Ker f = \v^\perp$; da cui
+		segue che $\v \in (\Ker f)^\perp = \Span(\v) + V^\perp$. Inoltre
+		$\dim (\Ker f)^\perp = \dim V - \dim \Ker f + \dim (\Ker f \cap V^\perp)
+		= \dim V - \dim \Ker f + \dim V^\perp$. Se $f$ non è l'applicazione nulla,
+		$\v \notin \CI(\varphi)$, e quindi $\dim (\Ker f)^\perp = \dim V^\perp + 1$, da
+		cui segue che $\Ker f^\perp = \Span(\v) \oplus^\perp V^\perp$.
+		
 		\subsubsection{Algoritmo di ortogonalizzazione di Gram-Schmidt}
 		
 		Data una base $\basis$ di $V$, se $\abs{\CI(\varphi) \cap \basis} \leq 1$ (ossia se ogni vettore di
@@ -1823,6 +1900,7 @@
 			\item Se $W$ è isotropo e $\varphi$ è non degenere, allora $\dim W \leq \frac{1}{2} \dim V$,
 			\item Se $\KK = \RR$, allora $W(\varphi) = \min\{ i_+, i_- \} + i_0$ (è sufficiente considerare
 			una base di Sylvester e creare una nuova base i cui i vettori sono o isotropi o della forma $\vv i - \ww i$, dove $q(\vv i) = 1$ e $q(\ww i) = 1$, concludendo con discussioni dimensionali),
+			\item Se $\KK = \CC$, allora $W(\varphi) = \lfloor \frac{\dim V + \dim V^\perp}{2} \rfloor$,
 			\item Se $\varphi$ è definito, allora $W(\varphi) = 0$,
 			\item Se $\varphi$ è semidefinito, allora $W(\varphi) = i_0$ (e $W = V^\perp$ è un sottospazio
 			isotropo di tale dimensione).
@@ -1852,6 +1930,80 @@
 		Analogamente, se $\KK = \CC$ e $M_{\basis_V}(\varphi)$ e $M_{\basis_W}(\psi)$ condividono lo stesso
 		rango, allora $V$ e $W$ sono isometrici tra loro (come conseguenza stavolta del teorema di Sylvester
 		complesso).
+		
+		\subsection{Teorema spettrale reale e complesso}
+		
+		Se $f$ è simmetrico o hermitiano, esiste sempre una base ortonormale di autovettori
+		per $f$. $f$ è normale se e solo se è diagonalizzabile. Esiste sempre $S \in \Sym(n, \RR)$ tale per cui $S^2 = A$, con $A \in \Sym(n, \RR)$. Se $S$ è definita positiva,
+		tale $S$ è unica. Se $A \in \GL(n, \RR)$, esistono e sono unici $P \in O(n)$,
+		$S \in \Sym(n, \RR)$ tali per cui $A = PS$ (in particolare $S = \sqrt{A A^\top}$).
+		
+		Se $\varphi$ è definito positivo e $\psi$ è un altro prodotto scalare, allora
+		i due prodotti sono simultaneamente ortogonalizzabili. È sufficiente prendere
+		una base $\basis$ ortonormale di $\varphi$, e trovare la base ortonormale $\basis'$ di autovettori
+		che rende $M_\basis(\psi)$ diagonale. In tale base $\basis'$, $M_{\basis'}(\varphi)$
+		è l'identità e $M_\basis(\psi)$ è diagonale: dunque la base è ortogonale per ambo
+		i prodotti scalari.
+		
+				\subsection{Complementi sugli spazi affini}
+		
+		\begin{itemize}
+			\item se $A \cap B \neq \emptyset$, vale la formula di Grassmann,
+			\item se $A \cap B = \emptyset$, $\dim (A + B) = \dim A + \dim B - \dim (A_0 \cap B_0) + 1$,
+			\item ogni affinità $f(\x) = M \x + \vec t$ può scriversi in forma matriciale
+			come:
+			
+			\[ \Matrix{M & \vec t \\ 0 & 1}. \]
+		\end{itemize}
+		
+		La matrice $\MM(p \circ f)$, con $f(\x) = M\x + \vec t$, varia nel seguente
+		modo:
+		\begin{gather*}
+			\tiny
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \\ \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)},
+		\end{gather*}
+		
+		Una conica è a centro se e solo se è risolvibile il sistema $(\AA(p) \vec t + \Ll(p)$.
+		
+		Sia $\KK=\CC$. Allora ogni conica è affinemente equivalente ad
+		un'equazione canonica della seguente tabella, unicamente
+		determinata dagli invarianti $\rg(\MM(p))$ e $\rg(\AA(p))$.
+		
+		\begin{center}
+			\tiny
+			\begin{tabular}{|l|l|l|l|l|}
+				\hline
+				& $\rg(\MM(p))$ & $\rg(\AA(p))$ & Eq.~canonica & A centro \\ \hline
+				$\mathcal{C}_1$ & 3             & 2             & $x^2+y^2=1$        & Sì       \\ \hline
+				$\mathcal{C}_2$ & 3             & 1             & $x^2=y$            & No       \\ \hline
+				$\mathcal{C}_3$ & 2             & 2             & $x^2+y^2=0$        & Sì       \\ \hline
+				$\mathcal{C}_4$ & 2             & 1             & $x^2=1$          & Sì       \\ \hline
+				$\mathcal{C}_5$ & 1             & 1             & $x^2=0$            & Sì       \\ \hline
+			\end{tabular}
+		\end{center}
+
+		Sia $\KK=\RR$. Allora ogni conica è affinemente equivalente ad
+		un'equazione canonica della seguente tabella, unicamente
+		determinata dagli invarianti $\rg(\MM(p))$, $\rg(\AA(p))$,
+		$S(\MM(p)) := \abs{\iota_+(\MM(p)) - \iota_-(\MM(p))}$ e
+		$S(\AA(p)) := \abs{\iota_+(\AA(p)) - \iota_-(\AA(p))}$. \\[0.1in]
+		
+		\begin{center}
+			\tiny
+			\begin{tabular}{|l|l|l|l|l|l|}
+				\hline
+				& $\rg(\MM(p))$ & $\rg(\AA(p))$ & $S(\MM(p))$ & $S(\AA(p))$ & Eq.~canonica \\ \hline
+				$\mathcal{C}_1$ & 3 & 2 & 1 & 2 & $x^2+y^2-1=0$ \\ \hline
+				$\mathcal{C}_2$ & 3 & 2 & 1 & 0 & $x^2-y^2-1=0$ \\ \hline
+				$\mathcal{C}_3$ & 3 & 1 & 1 & 1 & $x^2-y=0$ \\ \hline
+				$\mathcal{C}_4$ & 2 & 2 & 0 & 0 & $x^2-y^2=0$ \\ \hline
+				$\mathcal{C}_5$ & 2 & 1 & 0 & 1 & $x^2-1=0$ \\ \hline
+				$\mathcal{C}_6$ & 1 & 1 & 1 & 1 & $x^2=0$ \\ \hline
+				$\mathcal{C}_7$ & 3 & 2 & 3 & 2 & $x^2+y^2+1=0$ \\ \hline
+				$\mathcal{C}_8$ & 2 & 2 & 2 & 2 & $x^2+y^2=0$ \\ \hline
+				$\mathcal{C}_9$ & 2 & 1 & 2 & 1 & $x^2+1=0$ \\ \hline
+			\end{tabular}
+		\end{center}
 		
 		\vfill
 		\hrule
