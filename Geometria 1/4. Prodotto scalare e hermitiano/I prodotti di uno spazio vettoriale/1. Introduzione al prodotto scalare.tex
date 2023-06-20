@@ -357,6 +357,33 @@
 	Si conclude allora, sostituendo l'equazione \eqref{eq:dim_formula_dimensioni_2} nell'equazione \eqref{eq:dim_formula_dimensioni_1}, che $\dim V = \dim W^\top + \dim W - \dim (W \cap V^\perp)$, ossia la tesi.
 \end{proof}
 
+\begin{proof}[Dimostrazione alternativa]
+	Si consideri nuovamente l'applicazione lineare $\alpha_\varphi$ introdotta
+	precedentemente. Si osserva innanzitutto che\footnote{$\alpha_\varphi\inv$ in questo caso non indica un'eventuale applicazione inversa di $\alpha_\varphi$, ma indica l'insieme delle eventuali controimmagini degli elementi su cui è applicata.} $W^\perp = \alpha_\varphi\inv(\Ann(W))$. Allora vale la seguente identità:
+	
+	\begin{equation}
+		\label{eq:formula_dimensioni_dimostrazione_alternativa_1}
+		\alpha_\varphi(W^\perp) = \Ann(W) \cap \Im \alpha_\varphi.
+	\end{equation}
+
+	\vskip 0.05in
+	
+	Si mostra che $\Im \alpha_\varphi = \Ann(V^\perp)$. Chiaramente $\Im \alpha_\varphi \subseteq \Ann(V^\perp)$: siano infatti $\v \in V$ e $\w \in V^\perp$, allora $\alpha_\varphi(\v)(\w) = \varphi(\v, \w) = 0$. Inoltre $\dim \Im \alpha_\varphi = \rg \alpha_\varphi = n - \dim \Ker \alpha_\varphi = \dim V - \dim V^\perp = \dim \Ann(V^\perp)$,
+	da cui segue l'uguaglianza dei due sottospazi. Allora l'equazione \eqref{eq:formula_dimensioni_dimostrazione_alternativa_1} si può riscrivere\footnote{Si è utilizzata l'identità $\Ann(U) \cap \Ann(W) = \Ann(U + W)$, dove $U$ e $W$ sono due sottospazi di $V$, nonché che $\Ker \alpha_\varphi = V^\perp$.} come:
+	
+	\[ \alpha_\varphi(W^\perp) = \Ann(W) \cap \Ann(V^\perp) = \Ann(W + V^\perp) \]
+	
+	da cui segue che:
+	
+	\[ \dim W^\perp - \dim (V^\perp \cap W^\perp) = \dim V - \dim (W + V^\perp), \]
+	
+	e quindi, applicando la formula di Grassmann, che\footnote{Ricordiamo che $V^\perp \subseteq W^\perp$ per ogni sottospazio $W$ di $V$, e quindi che $\dim (V^\perp \cap W^\perp) = \dim V^\perp$.}:
+	
+	\[ \dim W^\perp - \dim V^\perp = \dim V - \dim W - \dim V^\perp + \dim (W \cap V^\perp), \]
+	
+	ossia la tesi.
+\end{proof}
+
 \begin{remark} Si identifica $\w^\perp$ come il sottospazio di tutti i vettori di $V$ ortogonali a $\w$.
 	In particolare, se $W = \Span(\vec w)$ è il sottospazio generato da $\vec w \neq \vec 0$, $\vec w \in V$, allora $W^\perp = \w^\perp$. Inoltre valgono le seguenti equivalenze: $\vec w \notin W^\perp \iff$ $\Rad (\restr{\varphi}{W}) = W \cap W^\perp = \zerovecset$ $\iff \vec w \text{ non è isotropo } \iff$ $V = W \oplus^\perp W^\perp$. \\
 	
@@ -834,4 +861,79 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	$\varphi(\vv i ', \vv j ') = 0$, dal momento che i vettori di $\basis$ sono a due a due ortogonali
 	tra loro. Se invece $i = j$, allora $\varphi(\vv i ', \vv j ') = \varphi(\vv i, \vv i) + \varphi(\ww i, \ww i) = 1-1=0$. Quindi $M_{\basis'}(\restr{\varphi}{W}) = 0$, da cui si conclude che $\restr{\varphi}{W} = 0$.
 	Pertanto $W(\varphi) \geq i_-(\varphi)$, e quindi si conclude che $W(\varphi) = i_-(\varphi)$, da cui la tesi.
+\end{proof}
+
+\section{Isometrie tra spazi vettoriali}
+
+\begin{definition} (isometria)
+	Dati due spazi vettoriali $(V, \varphi)$ e
+	$(V', \varphi')$ dotati di prodotto scalare sullo stesso campo $\KK$, si dice che
+	$V$ e $V'$ sono \textbf{isometrici} se esiste un isomorfismo
+	$f$, detto \textit{isometria}, che preserva tali che prodotti, ossia tale che:
+	
+	\[ \varphi(\vec v, \vec w) = \varphi'(f(\vec v), f(\vec w)). \]
+\end{definition}
+
+\begin{exercise} Sia $f : V \to V'$ un isomorfismo. Allora $f$ è un'isometria $\iff$ $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$ $\iff$ $\exists$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$ tale che $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
+\end{exercise}
+
+\begin{solution} Se $f$ è un'isometria, detta $\basis$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$
+	dal momento che $f$ è anche un isomorfismo. Inoltre, dacché $f$ è un'isometria, vale sicuramente che
+	$\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. \\
+	
+	Sia ora assunto per ipotesi che $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Allora, analogamente a prima, detta $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$, e in quanto tale,
+	per ipotesi, è tale che $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. \\
+	
+	Sia infine assunto per ipotesi che $\exists$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$ tale che $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Siano $\v$, $\w \in V$. Allora $\exists a_1$, ..., $a_n$, $b_1$, ..., $b_n \in \KK$
+	tali che $\v = a_1 \vv 1 + \ldots + a_n \vv n$ e $\w = b_1 \vv 1 + \ldots + b_n \vv n$. Si ricava pertanto
+	che:
+	
+	\[ \varphi'(f(\v), f(\w)) = \sum_{i=1}^n \sum_{j=1}^n a_i b_j \, \varphi'(f(\vv i), f(\vv j)) =
+	\sum_{i=1}^n \sum_{j=1}^n a_i b_j \, \varphi(\vv i, \vv j) = \varphi(\v, \w), \]
+	
+	da cui la tesi.
+\end{solution}
+
+\begin{proposition} Sono equivalenti le seguenti affermazioni:
+	
+	\begin{enumerate}[(i)]
+		\item $V$ e $V'$ sono isometrici;
+		\item $\forall$ base $\basis$ di $V$, base $\basis'$ di $V'$,
+		$M_\basis(\varphi)$ e $M_{\basis'}(\varphi')$ sono congruenti;
+		\item $\exists$ base $\basis$ di $V$, base $\basis'$ di $V'$ tale che
+		$M_\basis(\varphi)$ e $M_{\basis'}(\varphi')$ sono congruenti.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} Se $V$ e $V'$ sono isometrici, sia $f : V \to V'$ un'isometria. Sia $\basisC = \{ \vv 1, \ldots, \vv n \}$ una base di $V$. Allora, poiché $f$ è anche un isomorfismo, $\basisC' = f(\basisC)$ è una base di $V$ tale che
+	$\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Pertanto $M_\basisC(\varphi) = M_{\basisC'}(\varphi')$. Si conclude allora che, cambiando base in $V$ (o in $V'$), la matrice associata
+	al prodotto scalare varia per congruenza dalla formula di cambiamento di base per il prodotto scalare, da cui si ricava che per ogni scelta di $\basis$ base di $V$ e di $\basis'$ base di $V'$, $M_\basis(\varphi) \cong M_{\basis'}(\varphi')$. Inoltre, se tale risultato è vero per ogni $\basis$ base di $V$ e di $\basis'$ base di $V'$, dal momento che sicuramente esistono due basi $\basis$, $\basis'$ di $V$ e $V'$, vale anche (ii) $\implies$ (iii). \\
+	
+	Si dimostra ora (iii) $\implies$ (i). Per ipotesi $M_\basis(\varphi) \cong M_{\basis'}(\varphi')$, quindi
+	$\exists P \in \GL(n, \KK) \mid M_{\basis'}(\varphi') = P^\top M_\basis(\varphi) P$. Allora $\exists$ $\basis''$
+	base di $V'$ tale che $P = M_{\basis''}^{\basis'}(\Idv)$, da cui $P\inv = M_{\basis'}^{\basis''}(\varphi)$. Per la formula di cambiamento di base del prodotto
+	scalare, $M_{\basis''}(\varphi) = (P\inv)^\top M_{\basis'} P\inv = M_\basis(\varphi)$. Detta
+	$\basis'' = \{ \ww 1, \ldots, \ww n \}$, si costruisce allora l'isomorfismo $f : V \to V'$ tale
+	che $f(\vv i) = \ww i$ $\forall 1 \leq i \leq n$.. Dal momento che per costruzione $M_\basis(\varphi) = M_{\basis''}(\varphi')$,
+	$\varphi(\vv i, \vv j) = \varphi'(\ww i, \ww j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
+	Si conclude dunque che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v, \w \in V$, e dunque
+	che $f$ è un'isometria, come desiderato dalla tesi. 
+\end{proof}
+
+\begin{proposition} $(V, \varphi)$ e $(V', \varphi')$ spazi vettoriali
+	su $\RR$ sono
+	isometrici $\iff$ $\varphi$ e $\varphi'$ hanno la stessa segnatura.
+\end{proposition}
+
+\begin{proof}\nl\nl
+	\rightproof Per la precedente proposizione, esistono due basi $\basis$ e $\basis'$, una di $V$ e una di $V'$,
+	tali che $M_\basis(\varphi) \cong M_{\basis'}(\varphi)$. Allora queste due matrici condividono la stessa
+	segnatura, e così quindi anche $\varphi$ e $\varphi'$. \\
+	
+	\leftproof Se $\varphi$ e $\varphi'$ hanno la stessa segnatura, esistono due basi $\basis = \{ \vv 1, \ldots, \vv n \}$ e $\basis' = \{ \ww 1, \ldots, \ww n \}$, una
+	di $V$ e una di $V'$, tali che $M = M_\basis(\varphi) = M_{\basis'}(\varphi')$ e che $M$ è una matrice di
+	Sylvester. Allora si costruisce $f : V \to V'$ tale che $f(\vv i) = \ww i$. Esso è un isomorfismo, e per
+	costruzione $\varphi(\vv i, \vv j) = \varphi'(\ww i, \ww j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$, da cui
+	si conclude che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v$, $\w \in V$, e quindi che $V$ e
+	$V'$ sono isometrici.
 \end{proof}
