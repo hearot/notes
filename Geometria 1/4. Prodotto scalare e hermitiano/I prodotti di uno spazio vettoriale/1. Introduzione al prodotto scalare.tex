@@ -848,7 +848,7 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 \begin{proof}
 	Senza perdità di generalità si assuma $\iota_-(\varphi) \leq \iota_+(\varphi)$ (il caso $\iota_-(\varphi) > \iota_+(\varphi)$ è analogo). Sia $W$ un sottospazio con $\dim W > \iota_-(\varphi)$. Sia $W^+$
 	un sottospazio con $\dim W^+ = \iota_+(\varphi)$ e $\restr{\varphi}{W^+} > 0$. Allora, per la formula
-	di Grassmann, $n \geq \dim (W + W^+) = \dim W + \dim W^+ - \dim (W \cap W^+) > n - \dim (W \cap W^+) \implies \dim (W \cap W^+) > 0$. Quindi $\exists \w \in W$, $\w \neq \vec 0$ tale che $\varphi(\w, \w) > 0$, da cui
+	di Grassmann, $n - \dim(W \cap W^+) < \dim (W + W^\perp) \leq n \implies \dim (W \cap W^+) > 0$. Quindi $\exists \w \in W$, $\w \neq \vec 0$ tale che $\varphi(\w, \w) > 0$, da cui
 	si ricava che $W$ non è isotropo. Pertanto $W(\varphi) \leq \iota_-(\varphi)$. \\
 	
 	Sia $a := \iota_+(\varphi)$ e sia $b := \iota_-(\varphi)$.
@@ -874,11 +874,14 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	\[ \varphi(\vec v, \vec w) = \varphi'(f(\vec v), f(\vec w)). \]
 \end{definition}
 
-\begin{exercise} Sia $f : V \to V'$ un isomorfismo. Allora $f$ è un'isometria $\iff$ $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$ $\iff$ $\exists$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$ tale che $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
-\end{exercise}
+\vskip 0.01in
 
-\begin{solution} Se $f$ è un'isometria, detta $\basis$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$
-	dal momento che $f$ è anche un isomorfismo. Inoltre, dacché $f$ è un'isometria, vale sicuramente che
+\begin{proposition} Sia $f : V \to V'$ un isomorfismo. Allora $f$ è un'isometria $\iff$ $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$ $\iff$ $\exists$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$ tale che $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
+	\label{prop:isometrie_base_sufficiente}
+\end{proposition}
+
+\begin{proof} Se $f$ è un'isometria, detta $\basis$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$
+	dal momento che $f$ è prima di tutto un isomorfismo. Inoltre, dacché $f$ è un'isometria, vale sicuramente che
 	$\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. \\
 	
 	Sia ora assunto per ipotesi che $\forall$ base $\basis = \{ \vv 1, \ldots, \vv n \}$ di $V$, $\basis' = \{ f(\vv 1), \ldots, f(\vv n) \}$ è una base di $V'$ e $\varphi(\vv i, \vv j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$. Allora, analogamente a prima, detta $\basis = \{ \vv 1, \ldots, \vv n \}$ una base di $V$, $\basis' = f(\basis)$ è una base di $V'$, e in quanto tale,
@@ -892,10 +895,10 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	\sum_{i=1}^n \sum_{j=1}^n a_i b_j \, \varphi(\vv i, \vv j) = \varphi(\v, \w), \]
 	
 	da cui la tesi.
-\end{solution}
+\end{proof}
 
 \begin{proposition} Sono equivalenti le seguenti affermazioni:
-	
+		\label{prop:isometrie_equivalenza_base}
 	\begin{enumerate}[(i)]
 		\item $V$ e $V'$ sono isometrici;
 		\item $\forall$ base $\basis$ di $V$, base $\basis'$ di $V'$,
@@ -912,11 +915,11 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	Si dimostra ora (iii) $\implies$ (i). Per ipotesi $M_\basis(\varphi) \cong M_{\basis'}(\varphi')$, quindi
 	$\exists P \in \GL(n, \KK) \mid M_{\basis'}(\varphi') = P^\top M_\basis(\varphi) P$. Allora $\exists$ $\basis''$
 	base di $V'$ tale che $P = M_{\basis''}^{\basis'}(\Idv)$, da cui $P\inv = M_{\basis'}^{\basis''}(\varphi)$. Per la formula di cambiamento di base del prodotto
-	scalare, $M_{\basis''}(\varphi) = (P\inv)^\top M_{\basis'} P\inv = M_\basis(\varphi)$. Detta
+	scalare, $M_{\basis''}(\varphi') = (P\inv)^\top M_{\basis'} P\inv = M_\basis(\varphi)$. Detta
 	$\basis'' = \{ \ww 1, \ldots, \ww n \}$, si costruisce allora l'isomorfismo $f : V \to V'$ tale
 	che $f(\vv i) = \ww i$ $\forall 1 \leq i \leq n$.. Dal momento che per costruzione $M_\basis(\varphi) = M_{\basis''}(\varphi')$,
 	$\varphi(\vv i, \vv j) = \varphi'(\ww i, \ww j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$.
-	Si conclude dunque che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v, \w \in V$, e dunque
+	Si conclude dunque, dalla \textit{Proposizione \ref{prop:isometrie_base_sufficiente}}, che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v, \w \in V$, e dunque
 	che $f$ è un'isometria, come desiderato dalla tesi. 
 \end{proof}
 
@@ -925,15 +928,12 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	isometrici $\iff$ $\varphi$ e $\varphi'$ hanno la stessa segnatura.
 \end{proposition}
 
-\begin{proof}\nl\nl
-	\rightproof Per la precedente proposizione, esistono due basi $\basis$ e $\basis'$, una di $V$ e una di $V'$,
-	tali che $M_\basis(\varphi) \cong M_{\basis'}(\varphi)$. Allora queste due matrici condividono la stessa
-	segnatura, e così quindi anche $\varphi$ e $\varphi'$. \\
+\begin{proof}Si dimostrano le due implicazioni separatamente.\nl\nl
+	\rightproof Per la \textit{Proposizione \ref{prop:isometrie_equivalenza_base}}, esistono due basi $\basis$ e $\basis'$, una di $V$ e una di $V'$,
+	tali che $M_\basis(\varphi) \cong M_{\basis'}(\varphi')$. Allora, poiché queste due matrici sono congruenti, esse devono condividere anche la stessa
+	segnatura, che è invariante completo per congruenza, e dunque le segnature di $\varphi$ e di $\varphi'$ coincidono. \\
 	
-	\leftproof Se $\varphi$ e $\varphi'$ hanno la stessa segnatura, esistono due basi $\basis = \{ \vv 1, \ldots, \vv n \}$ e $\basis' = \{ \ww 1, \ldots, \ww n \}$, una
-	di $V$ e una di $V'$, tali che $M = M_\basis(\varphi) = M_{\basis'}(\varphi')$ e che $M$ è una matrice di
-	Sylvester. Allora si costruisce $f : V \to V'$ tale che $f(\vv i) = \ww i$. Esso è un isomorfismo, e per
-	costruzione $\varphi(\vv i, \vv j) = \varphi'(\ww i, \ww j) = \varphi'(f(\vv i), f(\vv j))$ $\forall 1 \leq i, j \leq n$, da cui
-	si conclude che $\varphi(\v, \w) = \varphi'(f(\v), f(\w))$ $\forall \v$, $\w \in V$, e quindi che $V$ e
-	$V'$ sono isometrici.
+	\leftproof Se $\varphi$ e $\varphi'$ hanno la stessa segnatura, allora, detta $\basis$
+	una base di $V$ e $\basis'$ una base di $V'$, $M_\basis(\phi) \cong M_{\basis'}(\phi')$.
+	Allora, per la \textit{Proposizione \ref{prop:isometrie_equivalenza_base}}, $V$ e $V'$ sono isometrici.
 \end{proof}
