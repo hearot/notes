@@ -803,7 +803,7 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 
 \begin{proposition} \label{prop:disuguaglianza_sottospazio_isotropo}
 	Se $W$ è un sottospazio isotropo di $V$, allora
-	$\dim W \leq \frac{\dim V + \dim V^\perp}{2}$.
+	$\dim W \leq \floor{\frac{\dim V + \dim V^\perp}{2}}$.
 \end{proposition}
 
 \begin{proof}
@@ -825,7 +825,7 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	 
 	 Sostituendo allora l'equazione \eqref{eq:disuguaglianza_sottospazio_isotropo_2} nella disuguaglianza
 	 \eqref{eq:disuguaglianza_sottospazio_isotropo_1}, si ottiene che $\dim W \leq \frac{\dim V + \dim (W \cap V^\perp)}{2}$. Dal momento che $W \cap V^\perp \subseteq V^\perp$,
-	 $\dim (W \cap V^\perp) \leq \dim V^\perp$, e quindi $\dim W \leq \frac{\dim V + \dim V^\perp}{2}$, da cui la tesi.
+	 $\dim (W \cap V^\perp) \leq \dim V^\perp$, e quindi $\dim W \leq \frac{\dim V + \dim V^\perp}{2}$. Poiché $\dim W$ è un numero naturale, vale come conseguenza la tesi.
 \end{proof}
 
 \begin{definition}[indice di Witt]
@@ -835,11 +835,32 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 
 \begin{remark}\nl
 	\li Se $W$ è isotropo e $\varphi$ è non degenere, il risultato della \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}} si riduce alla disuguaglianza
-	$\dim W \leq \frac{1}{2} \dim V$, \\
+	$\dim W \leq \floor{\frac{1}{2} \dim V}$, \\
 	\li Se $\varphi > 0$ o $\varphi < 0$, $W(\varphi) = 0$. Infatti ogni sottospazio non nullo $W$ di $V$
 	non ammette vettori isotropi, da cui si deduce che $\restr{\varphi}{W} \neq 0$. \\
-	\li Ancora per la \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}}, vale che $W(\varphi) \leq \frac{\dim V + \dim V^\perp}{2}$.
+	\li Ancora per la \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}}, vale che $W(\varphi) \leq \floor{\frac{\dim V + \dim V^\perp}{2}}$.
 \end{remark}
+
+\begin{proposition}
+	Sia $\KK = \CC$. Allora
+	$W(\varphi) = \floor{\frac{\dim V + \dim V^\perp}{2}}$.
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis$ una base di Sylvester per $V$. In particolare, detto $k := \dim V^\perp$; sia $\basis = \{ \vv 1, \ldots, \vv{n-k}, \uu 1, \ldots, \uu k \}$ ordinata in modo tale che $\vv i$ non
+	sia isotropo per $1 \leq i \leq n-k$ e che $\uu i$ sia invece isotropo per
+	$1 \leq i \leq k$. Si costruisca allora la base $\basis' = \{\vv 1 ' := \vv 1 + i \vv 2, \, \vv 2 ' := \vv 3 + i \vv 4, \ldots, \uu 1, \ldots, \uu k\}$ ottenuta prendendo in ordine quante più coppie distinte possibili di
+	vettori $\vec i$ e aggiungendo al vettore con indice minore della coppia il vettore
+	con indice maggiore moltiplicato per $i$. In questo modo si è costruita un insieme linearmente indipendente
+	contenente $\floor{\frac{n-k}{2}} + k = \floor{\frac{\dim V - \dim V^\perp}{2}} + \dim V^\perp = \floor{\frac{\dim V + \dim V^\perp}{2}}$. \\
+	
+	Sia allora $W = \Span(\basis')$. I vettori della forma $\uu i$ con $1 \leq i \leq k$ sono
+	chiaramente già ortogonali con gli altri vettori della base. Si consideri allora
+	il prodotto $\varphi(\vv i', \vv j')$. Se $i \neq j$, il prodotto ha argomenti tra di
+	loro già ortogonali per costruzione di $\basis$; se invece $i = j$, detto $\vv i' = \vv s + i \vv {s+1}$ con $s \in \NN$, $\varphi(\vv i', \vv i') = \varphi(\vv s, \vv s) - \varphi(\vv {s+1}, \vv {s+1}) = 1 - 1 = 0$. Allora $M_{\basis'}(\restr{\varphi}{W}) = 0 \implies \restr{\varphi}{W} = 0$. Pertanto $W$ è un sottospazio isotropo di dimensione
+	$\floor{\frac{\dim V + \dim V^\perp}{2}}$. Poiché per la \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}} tale dimensione maggiora tutte le
+	dimensioni dei sottospazi isotropi, si conclude che $W(\varphi) = \floor{\frac{\dim V + \dim V^\perp}{2}}$, da cui la tesi.
+\end{proof}
 
 \begin{proposition}
 	Sia $\KK = \RR$. Allora
@@ -854,7 +875,7 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	si ricava che $W$ non è isotropo. Pertanto $W(\varphi) \leq \iota_0(\varphi) + \iota_-(\varphi)$. \\
 	
 	Siano $a := \iota_+(\varphi)$, $b := \iota_-(\varphi)$ e $c := \iota_0(\varphi)$.
-	Sia $\basis = \{ \vv 1, \ldots, \vv a, \ww 1, \ldots, \ww b, \UU 1, \ldots, \UU c \}$ una base di Sylvester per $\varphi$. Siano $\vv 1$, ..., $\vv a$ tali che $\varphi(\vv i, \vv i) = 1$
+	Sia $\basis = \{ \vv 1, \ldots, \vv a, \ww 1, \ldots, \ww b, \uu 1, \ldots, \uu c \}$ una base di Sylvester per $\varphi$. Siano $\vv 1$, ..., $\vv a$ tali che $\varphi(\vv i, \vv i) = 1$
 	con $1 \leq i \leq a$. Analogamente siano $\ww 1$, ..., $\ww b$ tali che $\varphi(\ww i, \ww i) = -1$ con
 	$1 \leq i \leq b$ e siano $\uu 1$, ..., $\uu c$ tali che $\varphi(\uu i, \uu i) = 0$ con
 	$1 \leq i \leq c$. Posto $\basis' = \{ \vv 1 ' := \vv 1 + \ww 1, \ldots, \vv b ' := \vv b + \ww b, \uu 1, \ldots, \uu c \}$, si definisca $W = \Span(\basis')$. \\
