@@ -725,7 +725,7 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	$p + q = \rg(\restr{\varphi}{W}) = k$. \\
 	
 	Siano ora $\basis_\perp$ e $\basis_\perp'$ due basi di Sylvester di $W$ e $W'$. Siano $A = M_{\basis_\perp}(\restr{\varphi}{W})$
-	e $A' = M_{\basis_\perp'}(\restr{\varphi}{W})$. Allora $\det(A) = (-1)^p (-1)^q$, mentre $\det(A') = (-1)^p (-1)^q \, d'$,
+	e $A' = M_{\basis_\perp'}(\restr{\varphi}{W})$. Allora $\det(A) = 1^p (-1)^q$, mentre $\det(A') = 1^p (-1)^q \, d'$,
 	dove $d' \in \{-1, 0, 1\}$. Allora $\det(A') = \det(A) d' \implies d' = \frac{\det(A')}{\det(A)}$, dal
 	momento che $\det(A) \neq 0$, essendo $\restr{\varphi}{W}$ non degenere. \\
 	
@@ -802,8 +802,8 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 \end{remark}
 
 \begin{proposition} \label{prop:disuguaglianza_sottospazio_isotropo}
-	Sia $\varphi$ non degenere. Se $W$ è un sottospazio isotropo di $V$, allora
-	$\dim W \leq \frac{1}{2} \dim V$.
+	Se $W$ è un sottospazio isotropo di $V$, allora
+	$\dim W \leq \frac{\dim V + \dim V^\perp}{2}$.
 \end{proposition}
 
 \begin{proof}
@@ -815,17 +815,17 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	
 	\vskip 0.05in
 
-	Inoltre, dal momento che $\varphi$ è non degenere, vale anche che:
+	Inoltre, per la formula delle dimensioni del prodotto scalare, vale anche che:
 	
 	\begin{equation} \label{eq:disuguaglianza_sottospazio_isotropo_2}
-		\dim W + \dim W^\perp = \dim V \implies \dim W^\perp = \dim V - \dim W.
+		\dim W^\perp = \dim V + \dim (W \cap V^\perp) - \dim W.
 	\end{equation}
 	
 	\vskip 0.05in
 	 
 	 Sostituendo allora l'equazione \eqref{eq:disuguaglianza_sottospazio_isotropo_2} nella disuguaglianza
-	 \eqref{eq:disuguaglianza_sottospazio_isotropo_1}, si ottiene che $\dim W \leq \frac{1}{2} \dim V$,
-	 ossia la tesi.
+	 \eqref{eq:disuguaglianza_sottospazio_isotropo_1}, si ottiene che $\dim W \leq \frac{\dim V + \dim (W \cap V^\perp)}{2}$. Dal momento che $W \cap V^\perp \subseteq V^\perp$,
+	 $\dim (W \cap V^\perp) \leq \dim V^\perp$, e quindi $\dim W \leq \frac{\dim V + \dim V^\perp}{2}$, da cui la tesi.
 \end{proof}
 
 \begin{definition}[indice di Witt]
@@ -834,33 +834,36 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 \end{definition}
 
 \begin{remark}\nl
+	\li Se $W$ è isotropo e $\varphi$ è non degenere, il risultato della \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}} si riduce alla disuguaglianza
+	$\dim W \leq \frac{1}{2} \dim V$, \\
 	\li Se $\varphi > 0$ o $\varphi < 0$, $W(\varphi) = 0$. Infatti ogni sottospazio non nullo $W$ di $V$
 	non ammette vettori isotropi, da cui si deduce che $\restr{\varphi}{W} \neq 0$. \\
-	\li Se $\varphi$ è non degenere, per la \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}}, vale che $W(\varphi) \leq \frac{1}{2} \dim V$.
+	\li Ancora per la \textit{Proposizione \ref{prop:disuguaglianza_sottospazio_isotropo}}, vale che $W(\varphi) \leq \frac{\dim V + \dim V^\perp}{2}$.
 \end{remark}
 
-%TODO: dimostrare che in generale $W(\varphi) = \min\{\iota_+(\varphi), \iota_-(\varphi)\} + \iota_0$
 \begin{proposition}
-	Sia $\KK = \RR$ e sia $\varphi$ non degenere. Allora
-	$W(\varphi) = \min\{\iota_+(\varphi), \iota_-(\varphi)\}$.
+	Sia $\KK = \RR$. Allora
+	$W(\varphi) = \iota_0 + \min\{\iota_+(\varphi), \iota_-(\varphi)\}$.
 \end{proposition}
 
 \begin{proof}
-	Senza perdità di generalità si assuma $\iota_-(\varphi) \leq \iota_+(\varphi)$ (il caso $\iota_-(\varphi) > \iota_+(\varphi)$ è analogo). Sia $W$ un sottospazio con $\dim W > \iota_-(\varphi)$. Sia $W^+$
-	un sottospazio con $\dim W^+ = \iota_+(\varphi)$ e $\restr{\varphi}{W^+} > 0$. Allora, per la formula
-	di Grassmann, $n - \dim(W \cap W^+) < \dim (W + W^\perp) \leq n \implies \dim (W \cap W^+) > 0$. Quindi $\exists \w \in W$, $\w \neq \vec 0$ tale che $\varphi(\w, \w) > 0$, da cui
-	si ricava che $W$ non è isotropo. Pertanto $W(\varphi) \leq \iota_-(\varphi)$. \\
+	Senza perdità di generalità si assuma $\iota_-(\varphi) \leq \iota_+(\varphi)$ (il caso $\iota_-(\varphi) > \iota_+(\varphi)$ è analogo). Sia $W$ un sottospazio con $\dim W > \iota_0(\varphi) + \iota_-(\varphi)$. Sia $W^+$
+	un sottospazio con $\dim W^+ = \iota_+(\varphi)$ e $\restr{\varphi}{W^+} > 0$. Si
+	osserva pertanto che $\dim W + \dim W^+ > \iota_+(\varphi) + \iota_-(\varphi) + \iota_0(\varphi) = n$: allora, per la formula
+	di Grassmann, $n - \dim(W \cap W^+) < \dim (W + W^+) \leq n \implies \dim (W \cap W^+) > 0$. Quindi $\exists \w \in W$, $\w \neq \vec 0$ tale che $\varphi(\w, \w) > 0$, da cui
+	si ricava che $W$ non è isotropo. Pertanto $W(\varphi) \leq \iota_0(\varphi) + \iota_-(\varphi)$. \\
 	
-	Sia $a := \iota_+(\varphi)$ e sia $b := \iota_-(\varphi)$.
-	Sia ora $\basis = \{ \vv 1, \ldots, \vv a, \ww 1, \ldots, \ww b \}$ una base di Sylvester per $\varphi$. Siano $\vv 1$, ..., $\vv a$ tali che $\varphi(\vv i, \vv i) = 1$
+	Siano $a := \iota_+(\varphi)$, $b := \iota_-(\varphi)$ e $c := \iota_0(\varphi)$.
+	Sia $\basis = \{ \vv 1, \ldots, \vv a, \ww 1, \ldots, \ww b, \UU 1, \ldots, \UU c \}$ una base di Sylvester per $\varphi$. Siano $\vv 1$, ..., $\vv a$ tali che $\varphi(\vv i, \vv i) = 1$
 	con $1 \leq i \leq a$. Analogamente siano $\ww 1$, ..., $\ww b$ tali che $\varphi(\ww i, \ww i) = -1$ con
-	$1 \leq i \leq b$. Detta allora $\basis' = \{ \vv 1 ' := \vv 1 + \ww 1, \ldots, \vv b ' := \vv b + \ww b \}$, sia $W = \Span(\basis')$. \\
+	$1 \leq i \leq b$ e siano $\uu 1$, ..., $\uu c$ tali che $\varphi(\uu i, \uu i) = 0$ con
+	$1 \leq i \leq c$. Posto $\basis' = \{ \vv 1 ' := \vv 1 + \ww 1, \ldots, \vv b ' := \vv b + \ww b, \uu 1, \ldots, \uu c \}$, si definisca $W = \Span(\basis')$. \\
 	
-	Si osserva che $\basis'$ è linearmente indipendente, e dunque che $\dim W = \iota_-$. Inoltre
+	Si osserva che $\basis'$ è linearmente indipendente, e dunque che $\dim W = \iota_-(\varphi) + \iota_0(\varphi)$. Chiaramente i vettori $\uu i$ sono ancora ortogonali con gli elementi di $\basis'$ e sono tali per cui $\varphi(\uu i, \uu i) = 0$ $\forall 1 \leq i \leq c$. Inoltre
 	$\varphi(\vv i ', \vv j ') = \varphi(\vv i + \ww i, \vv j + \ww j)$. Se $i \neq j$, allora
 	$\varphi(\vv i ', \vv j ') = 0$, dal momento che i vettori di $\basis$ sono a due a due ortogonali
 	tra loro. Se invece $i = j$, allora $\varphi(\vv i ', \vv j ') = \varphi(\vv i, \vv i) + \varphi(\ww i, \ww i) = 1-1=0$. Quindi $M_{\basis'}(\restr{\varphi}{W}) = 0$, da cui si conclude che $\restr{\varphi}{W} = 0$.
-	Pertanto $W(\varphi) \geq i_-(\varphi)$, e quindi si conclude che $W(\varphi) = i_-(\varphi)$, da cui la tesi.
+	Pertanto $W(\varphi) \geq \iota_0(\varphi) + \iota_-(\varphi)$, e quindi si conclude che $W(\varphi) = \iota_0(\varphi) + \iota_-(\varphi)$, da cui la tesi.
 \end{proof}
 
 \section{Isometrie tra spazi vettoriali}
