@@ -16,7 +16,7 @@
 		\Large \textbf{Quadriche e classificazione affine delle coniche}
 	\end{center}
 	
-	\begin{center}\textit{Il documento è quasi del tutto completo. In particolare manca la dimostrazione della classificazione delle coniche reali, ancora in corso d'opera.}\end{center}
+	\begin{center}\textit{Il documento è completo nel suo contenuto e manca solo di un'ultima revisione nella dimostrazione della classificazione delle coniche reali.}\end{center}
 	
 	\begin{note}
 		Si assume che, nel corso del documento, valga che $\Char \KK \neq 2$.
@@ -291,7 +291,7 @@
 		
 		\vskip 0.05in
 		
-		Sia dunque $f_3 \in A(\Aa_2(\CC))$ tale che $f_3(\x) = \x + \vec t_3$. Se $p_3 = p_2 \circ f_3$, vale allora che:
+		Sia dunque $f_3 \in A(\Aa_2(\CC))$ tale che $f_3(\x) = \x + \vec t_2$. Se $p_3 = p_2 \circ f_3$, vale allora che:
 		
 		\[ \MM(p_3) = \MM(p_2 \circ f_3) = \Matrix{1 & 0 & 0 \\ 0 & 0 & b_2 \\ 0 & b_2 & 0}. \]
 		
@@ -366,7 +366,7 @@
 		\begin{tabular}{|l|l|l|l|l|l|}
 			\hline
 			& $\rg(\MM(p))$ & $\rg(\AA(p))$ & $S(\MM(p))$ & $S(\AA(p))$ & Equazione canonica \\ \hline
-			ellisse ($\mathcal{C}_1$) & 3 & 2 & 1 & 2 & $x^2+y^2-1=0$ \\ \hline
+			ellisse reale ($\mathcal{C}_1$) & 3 & 2 & 1 & 2 & $x^2+y^2-1=0$ \\ \hline
 			iperbole ($\mathcal{C}_2$) & 3 & 2 & 1 & 0 & $x^2-y^2-1=0$ \\ \hline
 			parabola ($\mathcal{C}_3$) & 3 & 1 & 1 & 1 & $x^2-y=0$ \\ \hline
 			due rette reali incidenti ($\mathcal{C}_4$) & 2 & 2 & 0 & 0 & $x^2-y^2=0$ \\ \hline
@@ -384,6 +384,103 @@
 	\begin{proof}
 		Come già visto precedentemente, la classificazione è completa perché sono comprese tutte le possibili
 		scelte di invarianti, ed è anche ben definita, dacché
-		due coniche distinte della tabella differiscono di almeno un'invariante. [TODO]
+		due coniche distinte della tabella differiscono di almeno un'invariante. \\
+		
+		Sia allora $\mathcal{C}$ una conica relativa al polinomio $p \in \RR[x, y]$. Sia $\rg(\AA(p)) = 2$.
+		Se $S(\AA(p)) = 2$, allora, per il teorema di Sylvester, $\exists M \in \GL(2, \RR) \mid M^\top \AA(p) M = \pm I_2$. Sia allora
+		$f_1 \in A(\AA_2(\RR))$ l'affinità tale per cui
+		$f_1(\vec x) = M \vec x + \vec t$, dove $\vec t = - \AA(p)\inv \vec b$. Allora, detto $p_1$ il polinomio monico ottenuto moltiplicando eventualmente per $-1$ il polinomio $p \circ f_1$, vale che:
+		
+		\[ \MM(p_1) = \Matrix{I_2 & \rvline & 0 \, \\ \hline \, 0 & \rvline & c}, \]
+		
+		\vskip 0.05in
+		
+		dove $c \in \RR$. Se $\rg(\MM(p)) = 2$, allora
+		$c$ deve necessariamente essere nullo. Allora
+		$p_1(x, y) = x^2 + y^2$, la cui conica corrispondente
+		è data da due rette complesse coniugate e incidenti in un punto reale ($\mathcal{C}_8$). \\
+		
+		Altrimenti, se
+		$\rg(\MM(p)) = 3$, si discutono due casi dipendentemente dal valore di $S(\MM(p))$. Se
+		$S(\MM(p)) = 3$, allora $c$ è necessariamente positivo. Pertanto, detta $f_2 \in A(\AA_2(\RR))$
+		l'affinità tale per cui $f_2(\vec x) = \sqrt{c} \, \vec x$ e detto $p_2 = p_1 \circ f_2$, vale che $\MM(p_2) = c \, I_3$, ossia che $p_2(x, y) = c(x^2 + y^2 + 1)$. Si è ottenuto dunque che $\mathcal{C}$ è affinemente equivalente all'ellisse immaginaria ($\mathcal{C}_7$). \\
+		
+		Si procede analogamente se $S(\MM(p)) = 1$: in
+		tal caso $c$ è necessariamente negativo, e quindi
+		$f_2$ si costruità moltiplicando per $\sqrt{-c}$:
+		si ottiene in questo modo l'ellisse reale ($\mathcal{C}_1$). \\
+		
+		Sia ora invece $S(\AA(p)) = 1$. Allora, per il teorema di Sylvester, $\exists M \in \GL(2, \RR) \mid M^\top \AA(p) M = \SMatrix{1 & 0 \\ 0 & -1}$.
+		Si costruisca allora l'affinità $f_1 \in A(\AA_2(\RR))$ in modo tale che $f_1(\vec x) = M \vec x + \vec t$, dove $\vec t = -\AA(p) \vec b$.
+		Detto allora $p_1 = p \circ f_1$, vale che:
+		
+		\[ \MM(p_1) = \Matrix{\begin{smallmatrix}
+				1 & 0 \\ 0 & -1
+			\end{smallmatrix} & \rvline & 0 \, \\ \hline \, 0 & \rvline & c}. \]
+		
+		\vskip 0.05in
+		
+		Se $\rg(\MM(p)) = 2$, allora $c$ è necessariamente nullo, e quindi $p_1(x, y) = x^2 - y^2$, da cui
+		si deduce che $\mathcal{C}$ è affinemente
+		equivalente alla conica generata da due rette
+		reali incidenti ($\mathcal{C}_4$). Se invece
+		$\rg(\MM(p)) = 3$, $c$ non è nullo, e quindi
+		si può costruire l'affinità $f_2 \in A(\AA_2(\RR))$
+		data da $f_2(\vec x) = \sqrt{\abs{c}} \, \vec x$. Allora, detto $p_2 = f \circ p_1$, $p_2$ può essere
+		sempre ricondotto a un
+		multiplo di $x^2 - y^2 - 1$: se infatti $c < 0$,
+		$p_2$ lo è già, altrimenti è sufficiente applicare
+		una terza affinità $f_3(\vec x) = \SMatrix{0 & 1 \\ 1 & 0} \, \vec x$ e considerare $p_3 = p_2 \circ f_3$. Pertanto $\mathcal{C}$ è in questo caso
+		affinemente equivalente a un'iperbole ($\mathcal{C}_2$). \\
+		
+		Sia adesso $\rg(\AA(p)) = 1$. Allora, per il teorema
+		di Sylvester, $\exists M \in \GL(2, \RR) \mid M^\top \AA(p) M = \SMatrix{1 & 0 \\ 0 & 0}$. Sia $\Ll(p) = \SMatrix{b_1 \\ b_2}$, con $b_1$, $b_2 \in \RR$. Si costruisca $f_1 \in A(\AA_2(\RR))$ in modo tale
+		che $f_1(\vec x) = M \vec x$. Detto
+		$p_1 = p \circ f_1$, vale che:
+		
+		\[ \MM(p_1) = \MM(p \circ f_1) = \Matrix{1 & 0 & b_1 \\ 0 & 0 & b_2 \\ b_1 & b_2 & c(p)}. \]
+		
+		\vskip 0.1in
+		
+		Si consideri dunque l'affinità $f_2 \in A(\AA_2(\RR))$ costruita in modo tale che
+		$f_2(\vec x) = \vec x - (b_1, 0)^\top$. Detto
+		quindi $p_2 = p_1 \circ f_2$, vale che:
+		
+		\[ \MM(p_2) = \Matrix{1 & 0 & 0 \\ 0 & 0 & b_2 \\ 0 & b_2 & c'}, \]
+		
+		\vskip 0.07in
+		
+		dove $c' \in \RR$. Se $\rg(\MM(p)) = 3$, allora $b_2$ è necessariamente
+		non nullo. Si cerca adesso di eliminare
+		il termine noto $c'$ mediante una traslazione:
+		si consideri infatti $f_3 \in A(\AA_2(\RR))$ definita in modo tale che $f_3(\vec x) = \vec x + (0, -\frac{c}{2 b_2})^\top$, analogamente a come
+		era stata impostata l'affinità nel caso complesso.
+		Allora, detto $p_3 = p_2 \circ f_2$, vale che:
+		
+		\[ \MM(p_3) = \Matrix{1 & 0 & 0 \\ 0 & 0 & b_2 \\ 0 & b_2 & 0}. \]
+		
+		\vskip 0.05in
+		
+		Normalizzando il coefficiente di $y$ mediante
+		l'affinità $f_4 \in A(\AA_2(\RR))$ tale per cui $f_4(\vec x) = \SMatrix{1 & 0 \\ 0 & -\frac{1}{b_2}}$,
+		e detto $p_4 = p_3 \circ f_4$, si ottiene finalmente
+		che $p_4(x, y) = x^2 - y$, ossia che $\mathcal{C}$ è
+		affinemente equivalente a una parabola ($\mathcal{C}_3$). \\
+		
+		Se $\rg(\MM(p)) = 2$, allora necessariamente
+		$b_2 = 0$ e $c \neq 0$. Si costruisce dunque
+		l'affinità $f_3 \in A(\AA_2(\RR))$ definita in
+		modo tale che $f_3(\vec x) = \SMatrix{\sqrt{\abs{c'}} & 0 \\ 0 & 1}$ e si pone
+		$p_3 = p_2 \circ f_3$. Se $S(\MM(p)) = 0$, allora necessariamente $c' < 0$, e quindi vale che $p_3$ è multiplo di $x^2 - 1$. Pertanto $\mathcal{C}$ è affinemente
+		equivalente alla conica generata da due rette reali parallele ($\mathcal{C}_5$). Se invece $S(\MM(p)) = 2$, $c'$ è strettamente positivo, e quindi $p_3$ è
+		multiplo di $x^2 + 1$. In tal caso $\mathcal{C}$ è affinemente equivalente alla conica
+		generata da due rette complesse coniugate, distinte e parallele ($\mathcal{C}_9$). \\
+		
+		Se invece $\rg(\MM(p)) = 1$, sia $b_2$ che $c$ devono
+		essere nulli. Allora $p_2(x, y) = x^2$, da cui
+		si deduce che $\mathcal{C}$ è affinemente
+		equivalente alla conica generata da due rette
+		reali coincidenti ($\mathcal{C}_6$), completando la classificazione.
+		 
 	\end{proof}
 \end{document}
