@@ -16,10 +16,8 @@
 		\Large \textbf{Quadriche e classificazione affine delle coniche}
 	\end{center}
 	
-	\begin{center}\textit{Il documento è completo nel suo contenuto e manca solo di un'ultima revisione nella dimostrazione della classificazione delle coniche reali.}\end{center}
-	
 	\begin{note}
-		Si assume che, nel corso del documento, valga che $\Char \KK \neq 2$.
+		Nel corso del documento si assume $\Char \KK \neq 2$.
 	\end{note}
 	
 	\begin{definition}[quadriche] Si dice \textbf{quadrica} il luogo di zeri
@@ -396,7 +394,7 @@
 		\vskip 0.05in
 		
 		dove $c \in \RR$. Se $\rg(\MM(p)) = 2$, allora
-		$c$ deve necessariamente essere nullo. Allora
+		$c$ deve necessariamente essere nullo. In tal caso
 		$p_1(x, y) = x^2 + y^2$, la cui conica corrispondente
 		è data da due rette complesse coniugate e incidenti in un punto reale ($\mathcal{C}_8$). \\
 		
@@ -453,7 +451,7 @@
 		dove $c' \in \RR$. Se $\rg(\MM(p)) = 3$, allora $b_2$ è necessariamente
 		non nullo. Si cerca adesso di eliminare
 		il termine noto $c'$ mediante una traslazione:
-		si consideri infatti $f_3 \in A(\AA_2(\RR))$ definita in modo tale che $f_3(\vec x) = \vec x + (0, -\frac{c}{2 b_2})^\top$, analogamente a come
+		si consideri $f_3 \in A(\AA_2(\RR))$ definita in modo tale che $f_3(\vec x) = \vec x + (0, -\frac{c}{2 b_2})^\top$, analogamente a come
 		era stata impostata l'affinità nel caso complesso.
 		Allora, detto $p_3 = p_2 \circ f_2$, vale che:
 		
@@ -462,7 +460,7 @@
 		\vskip 0.05in
 		
 		Normalizzando il coefficiente di $y$ mediante
-		l'affinità $f_4 \in A(\AA_2(\RR))$ tale per cui $f_4(\vec x) = \SMatrix{1 & 0 \\ 0 & -\frac{1}{b_2}}$,
+		l'affinità $f_4 \in A(\AA_2(\RR))$ tale per cui $f_4(\vec x) = \SMatrix{1 & 0 \\ 0 & -\frac{1}{2b_2}}$,
 		e detto $p_4 = p_3 \circ f_4$, si ottiene finalmente
 		che $p_4(x, y) = x^2 - y$, ossia che $\mathcal{C}$ è
 		affinemente equivalente a una parabola ($\mathcal{C}_3$). \\
@@ -481,6 +479,17 @@
 		si deduce che $\mathcal{C}$ è affinemente
 		equivalente alla conica generata da due rette
 		reali coincidenti ($\mathcal{C}_6$), completando la classificazione.
-		 
 	\end{proof}
+
+	\begin{remark}
+		È utile osservare che la classificazione delle
+		coniche complesse è una mera conseguenza della
+		classificazione delle coniche reali. È possibile
+		infatti dedurre le coniche complesse
+		``dimenticando'' il segno nelle equazioni canoniche
+		delle coniche reali. Formalmente è sufficiente
+		costruire un'affinità in modo tale che una variabile
+		venga moltiplicata per $i$ per far sì che il segno
+		scompaia.
+	\end{remark}
 \end{document}
