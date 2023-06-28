@@ -166,7 +166,10 @@
 		è mai unione finita di sottospazi propri. Un insieme linearmente
 		indipendente di $V$ con esattamente $\dim V$ elementi è una
 		base di $V$. Analogamente, un insieme generatore di $V$ con esattamente
-		$\dim V$ elementi è una base di $V$.
+		$\dim V$ elementi è una base di $V$. In generale, quando il campo su
+		cui fonda lo spazio vettoriale è ambiguo, si scrive $\dim_\KK V$ o $[V : \KK]$
+		per indicarne la dimensione relativa al campo $\KK$ (per esempio un $\CC$-spazio è
+		compatibilmente anche un $\RR$-spazio).
 		
 		Sia $\basis = \{\vec{v_1}, \ldots, \vec{v_n}\}$ una base ordinata dello spazio vettoriale $V$.
 		
@@ -233,7 +236,8 @@
 			$\Ker \dual{\vec{t}}$),
 			\item un iperpiano $\Pi$, rappresentato da un'equazione cartesiana $\alpha_1 x_1 + \ldots + \alpha_n x_n = 0$, è esattamente il sottospazio ortogonale a $\Span(\alpha_1, \ldots, \alpha_n)^\perp$ tramite il prodotto scalare standard,
 			\item in generale, un sistema di equazioni omogenee è l'intersezione di più
-			sottospazi ortogonali.
+			sottospazi ortogonali,
+			\item se $\mathbb{F}$ è un'estensione di campo di $\KK$, allora vale $[V : \KK] = [V : \mathbb{F}] [\mathbb{F} : \KK]$ (\textit{teorema delle torri algebriche}).
 			
 		\end{itemize}
 		
@@ -464,6 +468,16 @@
 		\det(\lambda I_n - A)$ (\textit{teorema di 
 			Hamilton-Cayley}).
 		
+		Si elencano adesso i tipi principali di matrici:
+		
+		\begin{itemize}
+			\item $A$ è simmetrica $\defiff A^\top = A$,
+			\item $A$ è antisimmetrica $\defiff A^\top = -A$,
+			\item $A$ è hermitiana $\defiff A^* := \left(\overline{A\,}\right)^\top = A$,
+			\item $A$ è ortogonale ($A \in O(n)$ o $O_n$) $\defiff AA^\top = A^\top A = I_n$,
+			\item $A$ è unitaria ($A \in U(n)$ o $U_n$) $\defiff AA^* = A^*A = I_n$.
+		\end{itemize}
+		
 		\subsection{Rango di una matrice}
 		
 		Si definisce rango di una matrice $A$ il numero di colonne linearmente
@@ -527,6 +541,10 @@
 			\dim \Span(A^1, \ldots, A^n) \iff
 			\dim \Im (A \mid B) = \dim \Im A \iff \rg (A \mid B) = \rg (A)$
 			(\textit{teorema di Rouché-Capelli}),
+			\item Data un'applicazione lineare $f : \KK^n \to \KK^m$ determinata
+			dalla matrice $M$, il sistema di equazioni cartesiane che rappresenta
+			$\Im f$ si ottiene imponendo la validità del teorema di Rouché-Capelli
+			sul vettore $\vec x = (x_1, \ldots, x_m)$, ossia imponendo $\rg(M) = \rg(M \mid \vec x)$,
 			\item $A\vec{x} = B$, se la ammette, ha un'unica soluzione
 			se e solo se $\Ker A = \zerovecset \iff \rg A = n$.
 		\end{itemize}
@@ -764,7 +782,7 @@
 		\[ \Ann_{\mathcal{L}(V, W)}(U) = \left\{ f \in \mathcal{L}(V, W) \mid f(U) = \zerovecset \right\}. \]
 		
 		Se $V$ è a dimensione finita, la dimensione di
-		$\Ann(U)$ è pari a $(\dim V - \dim U) \cdot \dim W$ (è sufficiente
+		$\Ann_{\mathcal{L}(V, W)}(U)$ è pari a $(\dim V - \dim U) \cdot \dim W$ (è sufficiente
 		prendere una base di $U$, completarla a base di $V$ e
 		notare che $f(U) = \zerovecset \iff$ ogni valutazione
 		in $f$ degli elementi della base di $U$ è nullo $\iff$ la matrice
@@ -1719,6 +1737,9 @@
 			\item $\CI(\restr{\varphi}{U}) = \CI(\varphi) \cap U$,
 		\end{itemize}
 		
+		Se $U$ è un sottospazio di $V$, $\varphi$ induce un prodotto scalare $\hat \varphi : V/U \times V/U \times \KK$ tale che $\hat \varphi([\vv 1]_U, [\vv 2]_U) = \varphi(\vv 1, \vv 2)$ se e solo se $U \subseteq V^\perp$. In particolare, se $U = V^\perp$,
+		$\hat \varphi$ è anche non degenere.
+
 		Due esempi classici di prodotto scalare sono $\varphi(A, B) = \tr(AB)$ e
 		$\psi(A, B) = \tr(AB^\top)$, entrambi su $M(n, \KK)$. I due prodotti sono
 		entrambi non degeneri, e vale che:
@@ -1793,8 +1814,10 @@
 			una base ortogonale e se ne normalizzino i vettori anisotropi, facendo infine eventuali considerazioni
 			dimensionali per dimostrare la seconda parte dell'enunciato),
 			
-			\item $\varphi > 0 \iff \sigma = (n, 0, 0)$ e $\varphi < 0 \iff \sigma = (0, n, 0)$,
-			\item $\varphi \geq 0 \iff \sigma = (n - k, 0, k)$ e $\varphi \leq 0 \iff \sigma = (0, n - k, k)$,
+			\item $\varphi > 0 \iff \sigma = (n, 0, 0)$,
+			\item $\varphi < 0 \iff \sigma = (0, n, 0)$,
+			\item $\varphi \geq 0 \iff \sigma = (n - k, 0, k)$,
+			\item $\varphi \leq 0 \iff \sigma = (0, n - k, k)$,
 			con $0 \leq k \leq n$ tale che $k = \dim V^\perp$,
 			
 			\item I vettori isotropi di una base ortogonale sono una base di $V^\perp$,
@@ -1826,31 +1849,66 @@
 		un piano iperbolico ed esistono $\lambda_1$, $\lambda_2 \in \RR$ tali per
 		cui $\lambda_1 \v + \lambda_2 \w$ è isotropo.
 		
+		\subsection{Prodotto hermitiano}
+		
+		Sia $V$ un $\CC$-spazio. Allora una mappa $\varphi : V \times V \to \CC$ si
+		dice prodotto hermitiano (e quindi si dice che $\varphi \in \PH(V)$, l'$\RR$-spazio dei
+		prodotti hermitiani\footnote{Infatti, se $\lambda \in \CC \setminus \RR$ e $\varphi \in \PH(V)$, $\lambda \varphi$ \underline{non} è un prodotto hermitiano, mancando della proprietà del coniugio.}) se è una forma sesquilineare, ossia se è antilineare
+		nel primo argomento ed è lineare nel secondo\footnote{In realtà questa convenzione è spesso e volentieri implementata nelle ricerche di Fisica, mentre in Matematica si tende in realtà a mettere l'antilinearità nel secondo argomento. Il corso ha comunque implementato la prima delle due convenzioni, e così si è riportato in queste schede la convenzione scelta.}, e se il coniugio applicato a $\varphi$ ne inverte gli argomenti. In particolare $\varphi$ è un prodotto hermitiano se:
+		
+		\begin{enumerate}[(i)]
+			\item $\varphi(\v, \lambda \U + \w) = \lambda \varphi(\v, \U) + \varphi(\v, \w)$,
+			$\forall \v$, $\U$, $\w \in V$, $\lambda \in \KK$,
+			\item $\conj{\varphi(\v, \w)} = \varphi(\w, \v)$.
+		\end{enumerate}
+		
+		Un prodotto hermitiano $\varphi$ si comporta pressoché come un prodotto
+		scalare su $\RR$. Infatti tale prodotto soddisfa le seguenti proprietà:
+		
+		\begin{itemize}
+			\item 
+		\end{itemize}
+		
 		\subsubsection{Funzionali rappresentabili}
 		
 		Un funzionale $f \in \dual V$ si dice rappresentabile tramite $\varphi$ se
 		$f \in \Im \alpha_\varphi$, ossia se $\exists \v \in V \mid f = \varphi(\v, \cdot)$.
-		Dal momento che $\Im(\alpha_\varphi) = \Ann(V^\perp)$, $f$ è rappresentabile
+		Dal momento che $\Im(\alpha_\varphi) = \Ann(V^\perp)$ (l'inclusione verso destra è facile da dimostrare e l'uguaglianza è data dall'uguaglianza dimensione), $f$ è rappresentabile
 		se e solo se $V^\perp \subseteq \Ker f$.
 		
-		Se $\varphi$ è non degenere, ogni funzionale $f$ è rappresentabile in modo unico (teorema
-		di rappresentazione di Riesz; infatti $\alpha_\varphi$ sarebbe in tal caso
-		un isomorfismo).
+		Se $\varphi$ è non degenere, ogni funzionale $f$ è rappresentabile in modo unico (\textit{teorema
+		di rappresentazione di Riesz}; infatti $\alpha_\varphi$ sarebbe in tal caso
+		un isomorfismo). In particolare, se $\varphi$ è un prodotto scalare, tale
+		vettore $\v$, data una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n\}$, è
+		determinato nel seguente modo:
 		
-		In particolare, $f$ è rappresentabile se e solo se, scelta una base $\basis$ di
+		\[ \v = \sum_{i=1}^n \frac{f(\vv i)}{\varphi(\vv i, \vv i)} \, \vv i. \]
+		
+		Se invece $\varphi$ è un prodotto hermitiano, tale vettore $\v$ si determina
+		nel seguente altro modo:
+		
+		\[ \v = \sum_{i=1}^n \conj{\left(\frac{f(\vv i)}{\varphi(\vv i, \vv i)}\right)} \, \vv i. \]
+		
+		In generale, $f$ è rappresentabile se e solo se, scelta una base $\basis$ di
 		$V$, il sistema $M_\basis(\varphi) \x = [f]_{\dual \basis}$ è risolvibile.
 		
 		Se $W$ è un supplementare di $V^\perp$, e dunque $V = W \oplus V^\perp$, allora
-		$\restr{\varphi}{W}$ è non degenere, e dunque $\alpha_{\restr{\varphi}{W}}$ è
+		$\restr{\varphi}{W}$ è non degenere, e dunque $\restr{\alpha_{\varphi}}{W} : W \to \Im \alpha_\varphi$ è
 		un isomorfismo da $W$ a $\Im \alpha_\varphi$ (quindi se $f$ è rappresentabile,
 		lo è tramite un unico vettore di $W$).
 		
 		In particolare, se $\v$ rappresenta $f$, allora $\Ker f = \v^\perp$; da cui
-		segue che $\v \in (\Ker f)^\perp = \Span(\v) + V^\perp$. Inoltre
-		$\dim (\Ker f)^\perp = \dim V - \dim \Ker f + \dim (\Ker f \cap V^\perp)
-		= \dim V - \dim \Ker f + \dim V^\perp$. Se $f$ non è l'applicazione nulla,
-		$\v \notin \CI(\varphi)$, e quindi $\dim (\Ker f)^\perp = \dim V^\perp + 1$, da
-		cui segue che $\Ker f^\perp = \Span(\v) \oplus^\perp V^\perp$.
+		segue che $(\Ker f)^\perp = \v^\dperp = \Span(\v) + V^\perp$. Se $f$ non è
+		l'applicazione nulla, $\vec v \notin V^\perp$, e quindi $\Span(\v) \cap V^\perp = \zerovecset \implies (\Ker f)^\perp = \Span(\v) \oplus^\perp V^\perp$. Quindi,
+		per computare un vettore $\vv 0$ che rappresenti $f$ è sufficiente prendere
+		un supplementare $\Span(\U)$ di $V^\perp$ in $(\Ker f)^\perp$ (infatti l'aggiunta
+		di un vettore di $V^\perp$ non varierebbe l'immagine secondo $\alpha_\varphi$) e
+		computare $\lambda \in \KK \mid \vv 0 = \lambda \U$ nel seguente
+		modo:
+		
+		\[ \lambda = \frac{\varphi(\lambda \U, \w)}{\varphi(\U, \w)} = \frac{f(\w)}{\varphi(\U, \w)}, \]
+		
+		dove $\w \notin \Ker f$.
 		
 		\subsubsection{Algoritmo di ortogonalizzazione di Gram-Schmidt}
 		
@@ -1896,13 +1954,13 @@
 		
 		\begin{itemize}
 			\item $V^\perp$ è un sottospazio isotropo,
-			\item Se $W$ è isotropo, allora $\dim W \leq \frac{\dim V + \dim \Rad(\varphi)}{2}$,
-			\item Se $W$ è isotropo e $\varphi$ è non degenere, allora $\dim W \leq \frac{1}{2} \dim V$,
+			\item Se $W$ è isotropo, allora $\dim W \leq  \lfloor \frac{\dim V + \dim \Rad(\varphi)}{2} \rfloor$,
+			\item Se $W$ è isotropo e $\varphi$ è non degenere, allora $\dim W \leq \lfloor \frac{1}{2} \dim V \rfloor$,
 			\item Se $\KK = \RR$, allora $W(\varphi) = \min\{ i_+, i_- \} + i_0$ (è sufficiente considerare
-			una base di Sylvester e creare una nuova base i cui i vettori sono o isotropi o della forma $\vv i - \ww i$, dove $q(\vv i) = 1$ e $q(\ww i) = 1$, concludendo con discussioni dimensionali),
-			\item Se $\KK = \CC$, allora $W(\varphi) = \lfloor \frac{\dim V + \dim V^\perp}{2} \rfloor$,
-			\item Se $\varphi$ è definito, allora $W(\varphi) = 0$,
-			\item Se $\varphi$ è semidefinito, allora $W(\varphi) = i_0$ (e $W = V^\perp$ è un sottospazio
+			una base di Sylvester e costruire un nuovo insieme linearmente indipendente $\basis_W$ i cui i vettori sono o isotropi o della forma $\vv i - \ww i$, dove $q(\vv i) = 1$ e $q(\ww i) = 1$, mostrando che $W = \Span(\basis_W)$ è isotropo, concludendo con discussioni dimensionali),
+			\item Se $\KK = \CC$, allora $W(\varphi) = \lfloor \frac{\dim V + \dim V^\perp}{2} \rfloor$ (è sufficiente considerare una base di Sylvester per $\varphi$, costruire un nuovo insieme linearmente indipendente $\basis_W$ prendendo quante più coppie $(\vv i, \vv j)$ possibili di vettori della base non isotropi poi associate al vettore $\vv i + i \vv j$, mostrando infine che $W = \Span(\basis_W)$ è isotropo e che è sicuramente massimale perché realizza la dimensione massima possibile secondo le precedenti proposizioni),
+			\item Se $\KK=\RR$ e $\varphi$ è definito, allora $W(\varphi) = 0$,
+			\item Se $\KK=\RR$ e $\varphi$ è semidefinito, allora $W(\varphi) = i_0$ (e $W = V^\perp$ è un sottospazio
 			isotropo di tale dimensione).
 		\end{itemize}
 		
