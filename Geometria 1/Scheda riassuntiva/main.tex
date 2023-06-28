@@ -179,6 +179,8 @@
 			di $V$ contenenti tali vettori,
 			\item $\Span(\basis) = V$,
 			\item $\Span(\emptyset) = \zerovecset$,
+			\item $U \cap W$ è sempre un sottospazio se $U$ e $W$ sono due sottospazi di $V$,
+			\item $U \cup W$ è un sottospazio se e solo se $U \subseteq W$ o $U \supseteq W$ (e quindi $U \cup W = U$ o $U \cup W = W$),
 			\item dato $X$ generatore di $V$, $X \setminus \{\vec{x_0}\}$
 			genera $V \iff \vec{x_0} \in \Span(X \setminus \{\vec{x_0}\})$,
 			\item $X \subseteq Y$ è un sottospazio di $Y \iff \Span(X) = X$,
@@ -1863,11 +1865,36 @@
 		\end{enumerate}
 		
 		Un prodotto hermitiano $\varphi$ si comporta pressoché come un prodotto
-		scalare su $\RR$. Infatti tale prodotto soddisfa le seguenti proprietà:
+		scalare su $\RR$ (le definizioni principali sono infatti le medesime). Se $\basis$ è una base di $V$, la matrice associata $M_\basis(\varphi)$ è definita in
+		modo tale che $M_\basis(\varphi)_{ij} = \varphi(\vv i, \vv j)$. Infatti tale prodotto soddisfa le seguenti proprietà:
 		
 		\begin{itemize}
-			\item 
+			\item $\varphi(\lambda \v + \w, \U) = \conj{\lambda} \varphi(\v, \U) + \varphi(\w, \U)$, $\forall \v$, $\w$, $\U \in V$, $\lambda \in \CC$, 
+			\item $V^\perp = []_\basis \inv (\Ker M_\basis(\varphi))$,
+			\item $\varphi$ è non degenere se e solo se $\Ker M_\basis(\varphi) = \zerovecset$,
+			\item $\dim W + \dim W^\perp = \dim V + \dim (W \cap V^\perp)$ (formula delle dimensioni),
+			\item $\varphi(\v, \w) = [\v]_\basis^* M_\basis(\varphi) [\w]_\basis$,
+			\item $M_{\basis'}(\varphi) = \left(M_\basis^{\basis'}(\Idv)\right)^* M_\basis(\varphi) \, M_\basis^{\basis'}(\Idv)$ (formula del cambiamento di base),
+			\item si può definire una relazione di equivalenza analoga alla congruenza: $A \sim_* B \defiff \exists M \in \GL(n, \CC) \mid A = M^* B M$,
+			\item $\varphi$ è completamente determinato dalla sua forma quadratica $q$ secondo le seguenti due formule di polarizzazione:
+			\begin{itemize}
+				\item $q(\v + \w) - q(\v) - q(\w) = 2 \Re(\varphi(\v, \w))$,
+				\item $q(\v + i \w) - q(\v) - q(\w) = 2 i \imm(\varphi(\v, \w))$,
+			\end{itemize}
+			\item esiste sempre una base ortogonale per $\varphi$ (\textit{teorema di Lagrange}),
+			\item vale il teorema di Sylvester reale e la segnatura in senso hermitiano è un invariante per la relazione $\sim_*$,
+			\item $\varphi > 0 \iff \sigma(\varphi) = (n, 0, 0)$,
+			\item $\varphi < 0 \iff \sigma(\varphi) = (0, n, 0)$,
+			\item $\varphi \geq 0 \iff \sigma(\varphi) = (n-k, 0, k)$, dove $k = \dim V^\perp = \dim \Ker M_\basis(\varphi)$,
+			\item $\varphi \leq 0 \iff \sigma(\varphi) = (0, n-k, k)$, dove $k = \dim V^\perp = \dim \Ker M_\basis(\varphi)$.
 		\end{itemize}
+		
+		Esiste un unico modo per complessificare un prodotto scalare $\varphi$, ossia
+		esiste un unico prodotto hermitiano $\varphi_\CC$ tale per cui $\varphi_\CC(\v, \w) = \varphi(\v, \w)$ se $\v$, $\w$ sono vettori della parte reale dello spazio complessificato. In particolare $\varphi_\CC$ è determinato dalla seguente
+		formula:
+		\begin{multline*}
+			\varphi_\CC(\vv 1 + i \vv 2, \ww 1 + i \ww 2) = \varphi(\vv 1, \ww 1) + \varphi(\vv 2, \ww 2) \\ + i (\varphi(\vv 1, \ww 2) - \varphi(\vv 2, \ww 1)).
+		\end{multline*}
 		
 		\subsubsection{Funzionali rappresentabili}
 		
