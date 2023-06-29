@@ -496,7 +496,7 @@
 			\item $\rg(A)$ è il minimo numero di matrici di rango uno che
 			sommate restituiscono $A$ (è sufficiente usare la proposizione
 			precedente per dimostrare che devono essere almeno $\rg(A)$),
-			\item $\rg(A)=1 \implies \exists B \in M(m, 1, \KK)$, $C \in M(1, n, \KK) \mid A=BC$ (infatti $A$ può scriversi come $\begin{pmatrix}[c|c|c]\alpha_1 A^i & \cdots & \alpha_n A^i \end{pmatrix}$ per un certo $i \leq n$ tale che $A^i \neq \vec{0}$).
+			\item $\rg(A)=1 \implies \exists B \in M(m, 1, \KK)$, $C \in M(1, n, \KK) \mid A=BC$ (infatti $A$ può scriversi come $\begin{pmatrix}\alpha_1 A^i & \cdots & \alpha_n A^i \end{pmatrix}$ per un certo $i \leq n$ tale che $A^i \neq \vec{0}$).
 		\end{itemize}
 		
 		Siano $A \in M(m, n, \KK)$, $B \in M(n, k, \KK)$ e $C \in M(k, t, \KK)$.
@@ -561,9 +561,44 @@
 			ad un'altra riga distinta.
 		\end{enumerate}
 		
-		Queste operazioni non variano né $\Ker A$ né $\rg (A)$. Si possono effettuare le stesse medesime operazioni
-		sulle colonne (variando tuttavia $\Ker A$, ma lasciando
-		invariato $\Im A$ -- e quindi $\rg (A)$). L'algoritmo di eliminazione di Gauss
+  		A queste operazioni è associato il prodotto a sinistra per delle particolari matrici. 
+		In particolare, l'operazione di scambio della riga $i$-esima con quella $j$-esima corrisponde alla moltiplicazione a sinistra per la matrice $S_{i,j}$, dove:
+		\[ S_{i,j}=I_n-E_{i,i}-E_{j,j}+E_{i,j}+E_{j,i}. \]
+
+		Per esempio, scambiare due righe in una matrice $2 \times 2$ corrisponde a
+		moltiplicare a sinistra per $S_{1,2}$, dove:
+		
+		\[S_{1,2}=\begin{pmatrix}
+			0 & 1 \\
+			1 & 0 \\
+		\end{pmatrix}\]
+		
+		All'operazione di moltiplicazione di una riga per uno scalare non nullo corrisponde invece la matrice:
+		
+		\[ M_{i,\lambda} = \Matrix{I_{i-1} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & \lambda & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & I_{n-i} }. \]
+		
+		All'operazione di somma di un multiplo non nullo di una riga ad un'altra riga distinta corrisponde invece la matrice:
+		\[M_{i,j,\lambda}=I_n+\lambda E_{i,j}.\]
+		
+		Tutte queste matrici sono invertibili ed in particolare valgono le seguente relazioni:
+		\begin{itemize}
+			\item $S_{i,j}^{-1}=S_{i,j}$,
+			\item $M_{i,\lambda}^{-1}=M_{i,\frac{1}{\lambda}}$,
+			\item $M_{i,\lambda} = M_{i, i, \lambda-1}$,
+			\item $M_{i,j,\lambda}^{-1}=M_{i,j,-\lambda}$.
+		\end{itemize}
+		
+		Queste operazioni non variano né $\Ker A$ né $\rg (A)$. Permettendo di variare $\Ker A$ si possono effettuare le stesse medesime operazioni
+		sulle colonne (lasciando però
+		invariato $\Im A$, e quindi $\rg (A)$): tali operazioni corrispondono a moltiplicare a destra per una matrice invertibile, analogamente a come accade per le righe. \\
+		
+		Le matrici per cui si moltiplica a destra per operare sulle colonne sono esattamente le stesse matrici impiegate
+		per le operazioni di riga, sebbene trasposte. In particolare le matrici di scambio
+		di riga e di moltiplicazione per uno scalare coincidono. Pertanto, se $A$ è una matrice simmetrica (i.e.~se $A \in \Sym(n, \KK)$), operare mediante le stesse
+		operazioni sulle righe e sulle colonne permette di individuare matrici congruenti
+		ad $A$.
+		
+		L'algoritmo di eliminazione di Gauss
 		procede nel seguente modo:
 		
 		\begin{enumerate}
@@ -598,7 +633,7 @@
 		scambiati), si può ottenere una matrice a scala ridotta,
 		ossia un matrice dove tutti i pivot sono $1$ e dove tutti
 		gli elementi sulle colonne dei pivot, eccetto i pivot stessi,
-		sono nulli.
+		sono nulli. % TODO: controllare e sistemare
 		
 		Si definisce:
 		
@@ -1132,8 +1167,6 @@
 		sottospazio generato. Quindi ogni riga di $A^{1,\ldots, k, j}$ appartiene
 		al sottospazio $\Span(A_1, \ldots, A_k)$, da cui si deduce che $\rg(A^{1,\ldots, k, j}) = k$, e quindi che $\rg(A^{1,\ldots,k,j}) = k \implies A^j \in \Span(A^1, \ldots, A^k) \implies \rg(A) = k$.
 		
-		
-		
 		\subsection{Autovalori, diagonalizzabilità e triangolabilità}
 		
 		Sia $f \in \End(V)$. Si dice che $\lambda \in \KK$ è un autovalore
@@ -1166,6 +1199,8 @@
 			\item il coefficiente di $\lambda^n$ è sempre $(-1)^n$,
 			\item il coefficiente di $\lambda^{n-1}$ è $(-1)^{n+1} \tr(f)$,
 			\item il termine noto di $p_f(\lambda)$ è $\det(f - 0 \cdot \Idv) = \det(f)$,
+			\item il termine noto di $p_f(\lambda)$ è $\det(f - 0 \cdot \Idv) = \det(f)$,
+			\item $p_f(\lambda)=\sum_{i=0}^{n}(-\lambda)^i(\sum\det(M_{n-i}))$ dove i $M_j$ sono i minori principali di taglia $j$, % TODO: sistemare e aggiungere spiegazione
 			\item poiché $p_f(\lambda)$ appartiene all'anello euclideo $\KK[\lambda]$, che è dunque un UFD, esso ammette al più
 			$n$ radici,
 			\item $\Sp(f)$ ha al più $n$ elementi, ossia esistono al massimo
@@ -1582,7 +1617,7 @@
 			somme dirette dei sottospazi degli autospazi generalizzati, %TODO: migliorare
 			\item Se $\KK$ è infinito ed esiste $\lambda \in \Sp(f)$ tale per cui
 			$\mu_g(\lambda) > 1$, allora esiste un numero infinito di sottospazi invarianti
-			per ogni dimensione, da $1$ a $\dim V -1$. %TODO: migliorare
+			per ogni dimensione, da $1$ a $\dim V -1$. %TODO: migliorare + sono esattamente $\sum_{k=0}^{n}\binom{n}{k}=2^n
 		\end{itemize}
 		
 		\subsubsection{Calcolo di una base di Jordan}
@@ -1739,7 +1774,7 @@
 			\item $\CI(\restr{\varphi}{U}) = \CI(\varphi) \cap U$,
 		\end{itemize}
 		
-		Se $U$ è un sottospazio di $V$, $\varphi$ induce un prodotto scalare $\hat \varphi : V/U \times V/U \times \KK$ tale che $\hat \varphi([\vv 1]_U, [\vv 2]_U) = \varphi(\vv 1, \vv 2)$ se e solo se $U \subseteq V^\perp$. In particolare, se $U = V^\perp$,
+		Se $U$ è un sottospazio di $V$, $\varphi$ induce un prodotto scalare $\hat \varphi : V/U \times V/U \to \KK$ tale che $\hat \varphi([\vv 1]_U, [\vv 2]_U) = \varphi(\vv 1, \vv 2)$ se e solo se $U \subseteq V^\perp$. In particolare, se $U = V^\perp$,
 		$\hat \varphi$ è anche non degenere.
 
 		Due esempi classici di prodotto scalare sono $\varphi(A, B) = \tr(AB)$ e
@@ -1789,7 +1824,7 @@
 			completamente determinata dalla sua forma quadratica),
 			
 			\item Esiste sempre una base ortogonale $\basis$ di $V$ (teorema di Lagrange; è sufficiente considerare
-			l'esistenza di un vettore anisotropo $\w \in V$ ed osservare che $V = W \oplus^\perp W^\perp$, dove $W = \Span(V)$, concludendo per induzione; o in caso di non esistenza di tale $\w$, concludere per il
+			l'esistenza di un vettore anisotropo $\w \in V$ ed osservare che $V = W \oplus^\perp W^\perp$, dove $W = \Span(\w)$, concludendo per induzione; o in caso di non esistenza di tale $\w$, concludere per il
 			risultato precedente),
 			
 			\item (se $\KK = \CC$) Esiste sempre una base ortogonale $\basis$ di $V$ tale che:
@@ -2072,7 +2107,94 @@
 		è l'identità e $M_\basis(\psi)$ è diagonale: dunque la base è ortogonale per ambo
 		i prodotti scalari.
 		
-				\subsection{Complementi sugli spazi affini}
+		\subsection{Azioni di gruppo}
+		Sia $G$ un gruppo e $X$ un insieme. Un'azione sinistra\footnote{Un'azione sinistra induce sempre anche un'azione destra, ponendo $x \cdot g=g^{-1} \cdot x$.} di $G$ su $X$ a sinistra un'applicazione $\cdot : G \times X \rightarrow X$, per la quale si pone $g \cdot x := \cdot(g, x)$, tale che:
+
+		\begin{enumerate}[(i)]
+			\item $e \cdot x=x$, $\forall x \in X$, dove $e$ è l'identità di $G$,
+			\item $g \cdot (h \cdot x)=(gh) \cdot x$, $\forall g, h \in G$, $\forall x \in X$.
+		\end{enumerate}
+
+		Si definisce l'applicazione $f_g:X\rightarrow X$ indotta dalla relazione $f_g(x)=g \cdot x$; tale applicazione è bigettiva. Se $\cdot$ è un'azione sinistra di $G$ su $X$, si dice che $G$ opera a sinistra su $X$ e che $X$ è un $G$-insieme. \\
+		
+		\vskip 0.05in
+		
+		Si definisce \textit{stabilizzatore} di $x \in X$ il sottogruppo di $G$ $\Stab_G(x)$
+		tale che:
+		\[ \Stab_G(x)= \{g\in G | g \cdot x=x\}, \]
+		dove si scrive $\Stab(x)$ per indicare $\Stab_G(x)$ qualora non fosse ambigua
+		l'azione a cui ci si riferisce. \\
+
+		Si può costruire un omomorfismo $\tau : G \rightarrow S_X$, dove $(S_x, \circ)$ è il gruppo delle bigezioni di $X$, dove $\tau(g) = f_g$. Si dice che l'azione di $G$ su $X$ è \textit{fedele} se l'omomorfismo $g \rightarrow f_g$ è iniettivo, ossia
+		se e solo se:
+		\[ f_g = \IdV{X} \implies g = e, \]
+		
+		ossia se e solo se:
+		\[ \bigcap_{x \in X} \Stab(x) = \{e\}. \]
+		
+		Per esempio, $S_X$ opera fedelmente su $X$ tramite l'azione indotta dalla relazione $g \cdot x=g(x)$ (ed è in realtà anche un'azione transitiva). $G$ stesso opera su $G$
+		tramite l'azione banale indotta dalla relazione $g \cdot g'=gg'$.
+		
+		Si definisce su $X$ la relazione $x \sim_G y \iff \exists g \in G$ t.c.~$y=g \cdot x$.
+		La relazione $\sim_G$ è una relazione d'equivalenza: due elementi equivalenti tramite $\sim_G$ si dicono coniugati tramite $G$. Le classi di equivalenza si dicono orbite di $G$. In particolare si definisce $\Orb(x) = O_x$, con $x \in X$, come $[x]_{\sim_G}$,
+		ossia come la classe di equivalenza di $x$ rispetto a $\sim_G$.
+		
+		Si presentano alcuni esempi di orbite:
+		\begin{enumerate}
+			\item $\GL(n,\KK)$ opera su $M(n,\KK)$ tramite la similitudine e le orbite sono le classi di matrici simili, rappresentate dalle forme canoniche di Jordan,
+			\item $\GL(n,\KK)$ opera su $\Sym(n,\KK)$ tramite la congruenza e le orbite sono le classi di matrici congruenti, rappresentate in $\RR$ dalle matrici diagonali con $1$, $-1$ e $0$ come elementi, e in $\CC$ dalle stesse matrici rappresentanti delle classi
+			di equivalenza della SD-equivalenza,
+			\item $O_n$ agisce naturalmente su $\RR^n$ e l'orbita di $\vec x \in \RR^n$ è la sfera di raggio $\norm{\vec x}$ secondo il prodotto scalare standard di $\RR^n$. 
+		\end{enumerate}
+		
+		Vale il teorema di orbita-stabilizzare: l'applicazione $f:G/\Stab_G(x) \rightarrow \Orb(x)$ tale che $g \Stab_G(x) \mapsto g \cdot x$ è una bigezione tra
+		$G/\Stab_G(x)$ e $\Orb(x)$ (tale teorema è un analogo del primo teorema di
+		omomorfismo per i gruppi). Se $G$ è finito, vale allora che $\abs{G} = \abs{\Stab_G(x)} \cdot \abs{\Orb(x)}$.
+		
+		Si dice che $G$ opera \textit{liberamente} su $X$ se $\forall x \in X$ l'applicazione
+		da $G$ in $X$ tale che $g \mapsto g \cdot x$ è iniettiva, ossia se e solo se $\Stab_G(x)=\{e\}$, $\forall x \in X$. Se $G$ opera liberamente su $X$,
+		$G$ opera anche fedelmente su $X$.
+		
+		Si dice che $G$ opera \textit{transitivamente }su $X$ se $x \sim_G y$, $\forall x,y \in X$, cioè se esiste un'unica orbita, che coincide dunque con $G$. In tal caso
+		si dice che $X$ è \textit{omogeneo} per l'azione di $G$, oppure che
+		$X$ è $G$-omogeneo.
+		
+		Si presentano alcuni esempi di azioni transitive:
+		\begin{enumerate}
+			\item $O_n$ opera transitivamente sulla sfera $n$-dimensionale di $\RR^n$,
+			\item Sia $\Gr_k(\RR^n)=\{W \text{ sottospazio di } \RR^n | \dim W=k\}$ la Grassmanniana di ordine $k$ su $\RR^n$. Allora $O_n$ opera transitivamente su $\Gr_k(\RR^n)$.
+		\end{enumerate}
+		
+		Si dice che $G$ opera in maniera \textit{semplicemente transitiva} su $X$ se opera transitivamente e liberamente su $X$; in tal caso si dice che $X$ è un insieme $G$-omogeneo principale. Equivalentemente $G$ opera in maniera semplicemente transitiva se $\exists x\in X$ t.c.~$g\rightarrow g \cdot x$ è una bigezione.
+		
+		Se $X$ è un insieme $G$-omogeneo e $G$ è abeliano, allora $G$ agisce fedelmente su $X$ $\iff$ $X$ è $G$-insieme omogeneo principale.
+		
+		\subsection{Proprietà generali di uno spazio affine}
+		Si dice spazio affine $E$ un qualcune insieme $V$-omogeneo principale, dove
+		$V$ è uno spazio vettoriale, inteso in tal senso come il gruppo abeliano
+		$(V, +)$. Si scrive in tal caso l'azione $\v \cdot P$ come $P + \v$. Equivalentemente $E$ è uno spazio affine se $\forall P$, $Q \in E$, $\exists! \, \v\in V$ t.c. $P + \v = Q$. In particolar modo, ci si riferisce a $\v \mid P + \v = Q$ come $Q - P$ o
+		$\overrightarrow{PQ}$.
+		
+		Valgono le seguenti proprietà generali:
+		\begin{itemize}
+			\item fissato $\v \in V$, l'applicazione da $E$ in $E$ tale che $P \mapsto P+\v$ è una bigezione,
+			\item fissato $O \in E$, l'applicazione da $V$ in $E$ tale che $\v \mapsto O+\v$ è una bigezione,
+			\item fissato $O \in E$, l'applicazione da $E$ in $V$ tale che $P \rightarrow P-O$ è una bigezione ed è l'inversa della bigezione presentata nello scorso punto.
+		\end{itemize}
+		
+		Siano $P_1$, ..., $P_k \in E$ e $\lambda_1$, ..., $\lambda_k \in \KK$. Siano inoltre
+		$O$, $O' \in E$. Allora se si pone $P=O+\sum_{i=1}^{k}\lambda_i (P_i-O)$ e $P'=O'+\sum_{i=1}^{k}\lambda_i (P_i-O')$, vale che:
+		\[P=P'\iff\sum_{i=1}^{k}\lambda_i=1\]
+		
+		Pertanto un punto $P\in E$ si dice \textit{combinazione affine} dei punti $P_1$, ..., $P_k$ se $\exists \lambda_1$, ..., $\lambda_k \in \KK$ tali che $\sum_{i=1}^{k}\lambda_i=1$ e che $\forall O \in E$,
+		$P=O+\sum_{i=1}^{k}\lambda_i (P_i-O)$. Si scrive in tal caso $P=\sum_{i=1}^{k}\lambda_i P_i$ (la notazione è ben definita dal momento che
+		non dipende da $O$ per l'asserzione precedente).
+		
+		Un sottoinsieme $D\subseteq E$ si dice \textit{sottospazio affine} se è chiuso per combinazioni affini. Il sottospazio affine $D \subseteq E$ generato da un sottoinsieme $S \subseteq E$ è l'insieme delle combinazioni affini (finite) dei punti di $S$;
+		si denota tale sottospazio affine $D$ come $\Aff(S)$. Vale inoltre che $\Aff(S)$ è il
+		più piccolo sottospazio affine contenente $S$.
+				
+		\subsection{Complementi sugli spazi affini}
 		
 		\begin{itemize}
 			\item se $A \cap B \neq \emptyset$, vale la formula di Grassmann,
@@ -2090,7 +2212,7 @@
 			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \\ \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)},
 		\end{gather*}
 		
-		Una conica è a centro se e solo se è risolvibile il sistema $(\AA(p) \vec t + \Ll(p)$.
+		Una conica è a centro se e solo se è risolvibile il sistema $\AA(p) \vec t + \Ll(p) = \vec 0$.
 		
 		Sia $\KK=\CC$. Allora ogni conica è affinemente equivalente ad
 		un'equazione canonica della seguente tabella, unicamente
