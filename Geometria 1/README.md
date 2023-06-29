@@ -8,4 +8,9 @@ Il corso di Geometria 1 è terminato, ma questa cartella vedrà ancora aggiornam
 ho iniziato a prendere appunti con [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it), per poi passare definitivamente a prenderli in LaTeX con [TeXstudio](https://www.texstudio.org/). Alcuni appunti sono ancora in corso di revisione (troverete \[WIP\] nel titolo o un breve avviso all'inizio del documento), ma sono sostanzialmente completi.
 
 La cartella contiene in particolar modo una *Scheda riassuntiva*, che, come dice il nome, vorrebbe essere un recap di
-tutti i risultati principali dell'algebra lineare.
+tutti i risultati principali dell'algebra lineare e della geometria del primo anno. Questo progetto non sarebbe mai stato realizzabile senza il meraviglioso
+aiuto di alcuni miei amici e colleghi, che ora elenco:
+
+   - [Federico Volpe](https://poisson.phc.dm.unipi.it/~volpe/),
+   - [Mario Zito](mailto:m.zito12@studenti.unipi.it),
+   - [Rubens Martino](mailto:r.martino3@studenti.unipi.it).
