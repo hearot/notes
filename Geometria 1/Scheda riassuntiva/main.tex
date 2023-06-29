@@ -2016,6 +2016,48 @@
 		rango, allora $V$ e $W$ sono isometrici tra loro (come conseguenza stavolta del teorema di Sylvester
 		complesso).
 		
+		\subsection{Operatori simmetrici, ortogonali, hermitiani e unitari}
+		
+		[TODO]
+		
+		\subsection{Spazi euclidei reali e complessi}
+		
+		Si dice che $(V, \varphi)$ è uno spazio euclideo reale se $V$ è un $\RR$-spazio e se
+		$\varphi$ è un prodotto scalare definito positivo. Si dice che $(V_\CC, \varphi_\CC)$ è uno spazio euclideo complesso se $V_\CC$ è un $\CC$-spazio e se $\varphi_\CC$ è un
+		prodotto hermitiano definito positivo.
+		
+		Questi due tipi di spazi hanno in comune alcune proprietà particolari. Si definisce
+		innanzitutto la norma euclidea per uno spazio euclideo $(V, \varphi)$ come:
+		
+		\[ \norm{\v} = \sqrt{q(\v)} = \sqrt{\varphi(\v, \v)}. \]
+		
+		Tale norma soddisfa alcune proprietà:
+		
+		\begin{itemize}
+			\item $\norm{\lambda \v} = \abs{\lambda} \norm{\v}$,
+			\item $\norm{\v} \norm{\w} \geq \abs{\varphi(\v, \w)}$ (disuguaglianza di Cauchy-Schwarz),
+			\item $\norm{\v + \w} \leq \norm{\v} + \norm{\w}$ (disuguaglianza triangolare).
+		\end{itemize}
+		
+		Su questi due spazi possono essere definiti due particolare operatori: la
+		proiezione ortogonale e l'inversione ortogonale.
+		
+		Si definisce proiezione ortogonale su un sottospazio $W \neq \zerovecset$ l'operatore $\pr_W \in \End(V)$ tale
+		che $\pr_W(\v) = \w$, dove $\v = \w + \w^\perp$, con $\w \in W$ e $\w^\perp \in W^\perp$. Tale decomposizione è ben definita e unica dacché $V = W \oplus^\perp W^\perp$ (infatti $\varphi$ è definita positiva). Una proiezione ortogonale
+		soddisfa la relazione $\pr_W^2 = \pr_W$, da cui si ricava che $\varphi_{\pr_W} \mid x(x-1)$ (implicandone la diagonalizzabilità). Infatti $V_1 = \Ker(\pr_W - \Idv) = W$ e $V_0 = \Ker(\pr_W) = W^\perp$ (per cui $\varphi_{\pr_W}(x) = x(x-1)$). La
+		proiezione ortogonale è un operatore simmetrico (se lo spazio è euclideo reale)
+		o hermitiano (se lo spazio è euclideo complesso); infatti vale che
+		$\varphi(\pr_W(\v), \w) = \varphi(\pr_W(\v), \pr_W(\w) + \pr_{W^\perp}(\w)) =
+		\varphi(\pr_W(\v), \pr_W(\w)) = \varphi(\pr_W(\v) + \pr_{W^\perp}(\v), \pr_W(\w)) =
+		\varphi(\v, \pr_W(\w))$.
+		
+		Si definisce inversione ortogonale su un sottospazio $W \neq \zerovecset$ l'operatore $\rho_W \in \End(V)$ tale
+		che $\rho_W(\v) = \w - \w^\perp$, dove $\v = \w + \w^\perp$, con $\w \in W$ e $\w^\perp \in W^\perp$. Come prima, tale decomposizione è unica e ben definita. Un'inversione ortogonale
+		soddisfa la relazione $\rho_W^2 = \Idv$, da cui si ricava che $\varphi_{\rho_W} \mid (x+1)(x-1)$ (implicandone la diagonalizzabilità). Infatti $V_1 = \Ker(\rho_W - \Idv) = W$ e $V_{-1} = \Ker(\rho_W + \Idv) = W^\perp$ (per cui $\varphi_{\rho_W}(x) = (x+1)(x-1)$). Se $\dim W = \dim V - 1$, allora si dice che l'inversione ortogonale
+		è una riflessione ortogonale. L'inversione ortogonale è sempre un operatore
+		ortogonale (se lo spazio è euclideo reale) o unitario (se lo spazio è euclideo
+		complesso); infatti vale che $\varphi(\v, \w) = \varphi(\pr_W(\v) + \pr_{W^\perp}(\v), \pr_W(\w) + \pr_{W^\perp}(\w)) = \varphi(\pr_W(\v), \pr_W(\w)) + \varphi(\pr_{W^\perp}(\v), \pr_{W^\perp}(\w)) = \varphi(\pr_W(\v), \pr_W(\w)) + \varphi(-\pr_{W^\perp}(\v), -\pr_{W^\perp}(\w)) = \varphi(\pr_W(\v) - \pr_{W^\perp}(\v), \pr_W(\w) - \pr_{W^\perp}(\w)) = \varphi(\rho_W(\v), \rho_W(\w))$.
+
 		\subsection{Teorema spettrale reale e complesso}
 		
 		Se $f$ è simmetrico o hermitiano, esiste sempre una base ortonormale di autovettori
