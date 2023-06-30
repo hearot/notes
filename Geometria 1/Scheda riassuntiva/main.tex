@@ -562,10 +562,11 @@
 		\end{enumerate}
 		
   		A queste operazioni è associato il prodotto a sinistra per delle particolari matrici. 
-		In particolare, l'operazione di scambio della riga $i$-esima con quella $j$-esima corrisponde alla moltiplicazione a sinistra per la matrice $S_{i,j}$, dove:
+		In particolare, l'operazione di scambio della riga $i$-esima con quella $j$-esima corrisponde alla moltiplicazione a sinistra per la matrice $S_{i,j}$, detta matrice
+		elementare di permutazione, dove:
 		\[ S_{i,j}=I_n-E_{i,i}-E_{j,j}+E_{i,j}+E_{j,i}. \]
 
-		Per esempio, scambiare due righe in una matrice $2 \times 2$ corrisponde a
+		In particolare, la stessa matrice $S_{i,j}$ si ottiene scambiando la riga $i$-esima e la $j$-esima. Per esempio, scambiare due righe in una matrice $2 \times 2$ corrisponde a
 		moltiplicare a sinistra per $S_{1,2}$, dove:
 		
 		\[S_{1,2}=\begin{pmatrix}
@@ -573,19 +574,26 @@
 			1 & 0 \\
 		\end{pmatrix}\]
 		
-		All'operazione di moltiplicazione di una riga per uno scalare non nullo corrisponde invece la matrice:
+		All'operazione di moltiplicazione della riga $i$-esima per uno scalare $\lambda \neq 0$ corrisponde invece la matrice $M_{i, \lambda}$, detta elementare di dilatazione, dove:
 		
 		\[ M_{i,\lambda} = \Matrix{I_{i-1} & \rvline & 0 & \rvline & 0 \\ \hline 0 & \rvline & \lambda & \rvline & 0 \\ \hline 0 & \rvline & 0 & \rvline & I_{n-i} }. \]
 		
-		All'operazione di somma di un multiplo non nullo di una riga ad un'altra riga distinta corrisponde invece la matrice:
+		All'operazione di somma della riga $j$-esima moltiplicata per $\lambda \neq 0$ alla riga $i$-esima corrisponde invece la matrice $M_{i,j,\lambda}$, detta elementare di trasvezione (o di tosatura, dall'inglese \textit{shear matrix}), dove:
 		\[M_{i,j,\lambda}=I_n+\lambda E_{i,j}.\]
-		
-		Tutte queste matrici sono invertibili ed in particolare valgono le seguente relazioni:
+		Se $\lambda \neq 0$, tutte queste matrici sono invertibili ed in particolare valgono le seguente relazioni:
 		\begin{itemize}
-			\item $S_{i,j}^{-1}=S_{i,j}$,
-			\item $M_{i,\lambda}^{-1}=M_{i,\frac{1}{\lambda}}$,
+			\item $S_{i,j}^{-1}=S_{i,j}$, da cui si osserva che l'inversa di una matrice elementare di permutazione è ancora una matrice dello stesso tipo),
+			\item $M_{i,\lambda}^{-1}=M_{i,\frac{1}{\lambda}}$, come sopra,
+			\item $M_{i,j,\lambda}^{-1}=M_{i,j,-\lambda}$, come sopra,
 			\item $M_{i,\lambda} = M_{i, i, \lambda-1}$,
-			\item $M_{i,j,\lambda}^{-1}=M_{i,j,-\lambda}$.
+			\item le matrici elementari generano il gruppo delle matrici invertibili $\GL(n, \KK)$, ossia ogni matrice
+			invertibile si scrive come prodotto di matrici elementari (è sufficiente
+			applicare l'algoritmo di eliminazione di Gauss per righe su $A \in \GL(n, \KK)$ e
+			osservare che ne deve risultare obbligatoriamente una matrice diagonale che,
+			normalizzata sugli elementi, restituisce esattamente $I_n$; allora poiché applicare l'algoritmo
+			equivale a moltiplicare a sinistra per delle matrici elementari $\mathcal{E}_1$, ..., $\mathcal{E}_k$, si verifica che $\mathcal{E}_1 \cdots \mathcal{E}_k A = I_n \implies A = \mathcal{E}_k \inv \cdots \mathcal{E}_1 \inv$, dove si
+			conclude la dimostrazione osservando che l'inversa di una matrice elementare
+			è ancora una matrice elementare).
 		\end{itemize}
 		
 		Queste operazioni non variano né $\Ker A$ né $\rg (A)$. Permettendo di variare $\Ker A$ si possono effettuare le stesse medesime operazioni
@@ -593,8 +601,7 @@
 		invariato $\Im A$, e quindi $\rg (A)$): tali operazioni corrispondono a moltiplicare a destra per una matrice invertibile, analogamente a come accade per le righe. \\
 		
 		Le matrici per cui si moltiplica a destra per operare sulle colonne sono esattamente le stesse matrici impiegate
-		per le operazioni di riga, sebbene trasposte. In particolare le matrici di scambio
-		di riga e di moltiplicazione per uno scalare coincidono. Pertanto, se $A$ è una matrice simmetrica (i.e.~se $A \in \Sym(n, \KK)$), operare mediante le stesse
+		per le operazioni di riga, sebbene trasposte (e quindi sono ancora matrici elementari). In particolare le matrici elementari di permutazione (per scambiare le righe) e di dilatazione (per moltiplicare una riga per uno scalare non nullo) coincidono. Pertanto, se $A$ è una matrice simmetrica (i.e.~se $A \in \Sym(n, \KK)$), operare mediante le stesse
 		operazioni sulle righe e sulle colonne permette di individuare matrici congruenti
 		ad $A$.
 		
@@ -2121,7 +2128,7 @@
 		
 		Si definisce \textit{stabilizzatore} di $x \in X$ il sottogruppo di $G$ $\Stab_G(x)$
 		tale che:
-		\[ \Stab_G(x)= \{g\in G | g \cdot x=x\}, \]
+		\[ \Stab_G(x)= \{g\in G \mid g \cdot x=x\}, \]
 		dove si scrive $\Stab(x)$ per indicare $\Stab_G(x)$ qualora non fosse ambigua
 		l'azione a cui ci si riferisce. \\
 
@@ -2143,7 +2150,7 @@
 		\begin{enumerate}
 			\item $\GL(n,\KK)$ opera su $M(n,\KK)$ tramite la similitudine e le orbite sono le classi di matrici simili, rappresentate dalle forme canoniche di Jordan,
 			\item $\GL(n,\KK)$ opera su $\Sym(n,\KK)$ tramite la congruenza e le orbite sono le classi di matrici congruenti, rappresentate in $\RR$ dalle matrici diagonali con $1$, $-1$ e $0$ come elementi, e in $\CC$ dalle stesse matrici rappresentanti delle classi
-			di equivalenza della SD-equivalenza,
+			di equivalenza della SD-equivalenza, ossia le matrici del tipo $I_r^{m \times n}$,
 			\item $O_n$ agisce naturalmente su $\RR^n$ e l'orbita di $\vec x \in \RR^n$ è la sfera di raggio $\norm{\vec x}$ secondo il prodotto scalare standard di $\RR^n$. 
 		\end{enumerate}
 		
@@ -2167,7 +2174,8 @@
 		
 		Si dice che $G$ opera in maniera \textit{semplicemente transitiva} su $X$ se opera transitivamente e liberamente su $X$; in tal caso si dice che $X$ è un insieme $G$-omogeneo principale. Equivalentemente $G$ opera in maniera semplicemente transitiva se $\exists x\in X$ t.c.~$g\rightarrow g \cdot x$ è una bigezione.
 		
-		Se $X$ è un insieme $G$-omogeneo e $G$ è abeliano, allora $G$ agisce fedelmente su $X$ $\iff$ $X$ è $G$-insieme omogeneo principale.
+		Se $X$ è un insieme $G$-omogeneo e $G$ è abeliano, allora $G$ agisce fedelmente su $X$ $\iff$ $X$ è $G$-insieme omogeneo principale (per dimostrare l'implicazione a destra è sufficiente mostrare che, se $x \in X$, $g \in \Stab(x) \implies f_g = \IdV{X}$, da cui si conclude
+		che $g = e$ per la fedeltà dell'azione).
 		
 		\subsection{Proprietà generali di uno spazio affine}
 		Si dice spazio affine $E$ un qualcune insieme $V$-omogeneo principale, dove
