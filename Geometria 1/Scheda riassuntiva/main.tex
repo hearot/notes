@@ -2154,7 +2154,7 @@
 			\item $O_n$ agisce naturalmente su $\RR^n$ e l'orbita di $\vec x \in \RR^n$ è la sfera di raggio $\norm{\vec x}$ secondo il prodotto scalare standard di $\RR^n$. 
 		\end{enumerate}
 		
-		Vale il teorema di orbita-stabilizzare: l'applicazione $f:G/\Stab_G(x) \rightarrow \Orb(x)$ tale che $g \Stab_G(x) \mapsto g \cdot x$ è una bigezione tra
+		Vale il teorema di orbita-stabilizzatore: l'applicazione $f:G/\Stab_G(x) \rightarrow \Orb(x)$ tale che $g \Stab_G(x) \mapsto g \cdot x$ è una bigezione tra
 		$G/\Stab_G(x)$ e $\Orb(x)$ (tale teorema è un analogo del primo teorema di
 		omomorfismo per i gruppi). Se $G$ è finito, vale allora che $\abs{G} = \abs{\Stab_G(x)} \cdot \abs{\Orb(x)}$.
 		
@@ -2178,7 +2178,7 @@
 		che $g = e$ per la fedeltà dell'azione).
 		
 		\subsection{Proprietà generali di uno spazio affine}
-		Si dice spazio affine $E$ un qualcune insieme $V$-omogeneo principale, dove
+		Si dice spazio affine $E$ un qualunque insieme $V$-omogeneo principale, dove
 		$V$ è uno spazio vettoriale, inteso in tal senso come il gruppo abeliano
 		$(V, +)$. Si scrive in tal caso l'azione $\v \cdot P$ come $P + \v$. Equivalentemente $E$ è uno spazio affine se $\forall P$, $Q \in E$, $\exists! \, \v\in V$ t.c. $P + \v = Q$. In particolar modo, ci si riferisce a $\v \mid P + \v = Q$ come $Q - P$ o
 		$\overrightarrow{PQ}$.
@@ -2187,7 +2187,7 @@
 		\begin{itemize}
 			\item fissato $\v \in V$, l'applicazione da $E$ in $E$ tale che $P \mapsto P+\v$ è una bigezione,
 			\item fissato $O \in E$, l'applicazione da $V$ in $E$ tale che $\v \mapsto O+\v$ è una bigezione,
-			\item fissato $O \in E$, l'applicazione da $E$ in $V$ tale che $P \rightarrow P-O$ è una bigezione ed è l'inversa della bigezione presentata nello scorso punto.
+			\item fissato $O \in E$, l'applicazione da $E$ in $V$ tale che $P \mapsto P-O$ è una bigezione ed è l'inversa della bigezione presentata nello scorso punto.
 		\end{itemize}
 		
 		Siano $P_1$, ..., $P_k \in E$ e $\lambda_1$, ..., $\lambda_k \in \KK$. Siano inoltre
@@ -2201,10 +2201,128 @@
 		Un sottoinsieme $D\subseteq E$ si dice \textit{sottospazio affine} se è chiuso per combinazioni affini. Il sottospazio affine $D \subseteq E$ generato da un sottoinsieme $S \subseteq E$ è l'insieme delle combinazioni affini (finite) dei punti di $S$;
 		si denota tale sottospazio affine $D$ come $\Aff(S)$. Vale inoltre che $\Aff(S)$ è il
 		più piccolo sottospazio affine contenente $S$.
-				
+		        
+        Partendo da $V$ spazio vettoriale su $\KK$ possiamo associare uno spazio affine $E=V$ con azione $\v \cdot \w=\v+\w=\w+\v$. 
+            In questo caso una combinazione affine diventa un caso particolare di combinazione lineare. 
+            Chiamiamo lo spazio affine associato in questo modo a $V=\KK^n$ $\mathcal{A}_n(\KK)$ %A maiuscola corsiva?
+            Se $E$ è affine su $V$ di dimensione $n$ su $\KK$ allora ogni scelta di un punto $O\in E$ e di una base $\mathcal{B}$ di $V$ induce la bigezione naturale 
+            $\varphi_{O,\mathcal{B}}:E\rightarrow \mathcal{A}_n(\KK)$ tale che $\varphi_{O,\mathcal{B}}(O+\v)=[\v]_\basis$
+
+            Un sottoinsieme $D\subseteq E$ è un sottospazio affine $\iff \forall P_0 \in D$
+            $D_0=\{P-P_0 \mid P\in D\}\subseteq V$ è un sottospazio vettoriale di $V$.
+            Segue che $D=P_0+D_0$ ossia che $D$ è il traslato di $D_0$ per $P_0-O$ %O ??
+            Chiamiamo $D_0$ \textit{direzione} del sottospazio affine $D$.
+            Inoltre $D_0$ è unico e possiamo scriverlo anche come $D_0=\{Q-P\mid P,Q\in D\}$.
+
+            In generale i sottospazi affini corrispondo ai traslati di sottospazi vettoriali di $V$
+
+            Chiamiamo \textit{dimensione} di un sottospazio affine $D$ la dimensione dello spazio vettoriale $D_0$. In particolare dim$E$=dim$V$.
+            Quindi così come per gli spazi vettoriali i sottospazi affini di dimensione 0 sono i punti di $E$, quelli di dimensione 1 sono le rette di $E$, quelli di dimensione 2 sono i piani di $E$ e quelli di codimensione 1 sono gli iperpiani affini.
+
+            Due sottospazi affini con la stessa direzione si diranno paralleli, coincidono o hanno intersezione vuota e si ottengono l'uno dall'altro mediante traslazione.
+
+            Diciamo che i punti $P_1,\ldots,P_k\in E$ sono \textit{affinemente indipendenti} se l'espressione $P=\sum_{i=1}^{k}\lambda_i P_i\in \Aff(\{P_1,\ldots,P_k\})$ è unica.
+
+            Un sottoinsieme $S\subseteq E$ si dice affinemente indipendente se ogni suo sottoinsieme finito è affinemente indipendente.
+
+            $P_1,\ldots,P_k$ sono affinemente indipendenti se e solo se $\forall i=1,\ldots,k$ i vettori $P_j-P_i$ con $j\neq i$ sono linearmente indipendenti $\iff \forall i$ $P_i\notin \Aff(\{P_1,\ldots,\hat{P}_i,\ldots,P_k\})$ %?
+
+            Sia $E=\mathcal{A}_n(\KK)$ allora $\w_1,\ldots,\w_n \in E$ sono affinemente indipendenti se e solo se i vettori $\hat{\w}_1,\ldots,\hat{\w}_n$ con $\hat{w_i}=\begin{pmatrix}
+                \w_i \\ 1
+            \end{pmatrix} \in \KK^{n+1}$ sono linearmente indipendenti.
+            
+		Segue che ci sono al massimo $n+1$ vettori affinemente indipendenti.
+
+            Se scegliamo $n+1$ punti $P_0,\ldots,P_n\in E$ $\Aff(\{P_0,\ldots,P_n\}=E$. 
+            Dunque per ogni punto $P \in E$ $P=\sum_{i=0}^{n}\lambda_i P_i$ con $\sum_{i=0}^{n}\lambda_i=1$.
+            Chiamiamo i $\lambda_i$ le \textit{coordinate affini} del punto $P$ sul riferimento affine $P_0,\ldots,P_n$
+
+            Diciamo che $P=\sum_{i=1}^{k}\lambda_i P_i$ è una \textit{combinazione convessa} di $P_1,\ldots,P_k$ se $\sum_{i=0}^{n}\lambda_i=1$ e $\lambda_i\ge0$  $\forall i$
+
+            Diremo che l'\textit{inviluppo convesso} $IC(S)$ di un insieme $S\subseteq E$ è l'insieme delle combinazioni convesse finite di $S$.
+            
+            $\forall S\subseteq E$, $IC(S)$ è convesso.
+
+            Chiamiamo \textit{baricentro geometrico} di $P_1,\ldots,P_n\in E$ come $G=\frac{1}{n}\sum_{i=1}^{n}P_i$
+            Se $A\subseteq E$ è finito, chiamiamo $G_A$ il baricentro geometrico dei punti di $A$.
+            
+            Allora se $A=B\sqcup C$ $(A=B\cup C \wedge B\cap C= \emptyset )$
+            $$G_A= \frac{|B|}{|A|}G_B+\frac{|C|}{|A|}G_C$$
+
+            \subsection{Applicazioni affini e affinità}
+            Siano $E$ spazio affine su $V$, $E'$ spazio affine su $V'$ sullo stesso campo $\KK$.
+            
+            Un'applicazione $f:E\rightarrow E'$ si dice \textit{applicazione affine} se conserva le combinazioni affini.
+
+            Sia $f:E \rightarrow E'$ un'applicazione affine. Allore esiste ed è unica l'applicazione lineare $g:V\rightarrow V'$ tale che $f(O+\v)=f(O)+g(\v)$ per ogni scelta di $O\in E$ e $\v\in V$.
+            Viceversa se $g:V\rightarrow V'$ è lineare, si trova $f:E\rightarrow E'$ affine per ogni scelta di punti $O\in E$, $O'\in E'$ $f(P)=O'+g(P-O)$
+
+            Nel caso $E=\mathcal{A}_n(\KK)$, $E'=\mathcal{A}_m(\KK)$ si trova $f(\x)=f(\Vec{0})+g(\x)=A\x+\Vec{b}$ con $A\in M(m,n,\KK)$ e $\Vec{b} \in A_m(\KK)$
+            Sia $E''$ un altro spazio affine associato a $V''$ e $f':E'\rightarrow E''$ è affine con applicazione lineare associata $g':V' \rightarrow V''$, allora $f'\circ f:E\rightarrow E''$ è affine e vale $f'(f(O+\v)=f'(f(O))+g'(g(\v))$ e l'applicazione lineare associata a $f'\circ f$ è $g'\circ g$
+
+            Diremo che $f:E\rightarrow E$ è un'\textit{affinità} di $E$ se $f$ è un'applicazione affine bigettiva.
+            $f$ affinità di $E$ implica che l'applicazione lineare associata $g:V\rightarrow V$ sia invertibile.
+
+            Chiamiamo il gruppo affine di $E$ $A(E)$ il gruppo delle affinità di $E$.
+
+            L'applicazione $\pi:A(E)\rightarrow GL(V) : f\mapsto g$ è un omomorfismo surgettivo. Il nucleo è dato dalle traslazioni le quali formano un sottogruppo normale.
+
+            $f:E\rightarrow E$ affinità manda $x$ in $A\x+\vec{b}$ e dato che f bigettiva $A\in GL_n(\KK)$. Segue che $f^{-1}:\x\mapsto A^{-1}\x-A^{-1}\Vec{b}$
+
+            $\iota:\KK^n=\mathcal{A}_n(\KK)\rightarrow\mathcal{A}_{n+1}(\KK)=\KK^{n+1}$, $\x\mapsto \hat{\x}=\begin{pmatrix}
+                \x \\ 1
+            \end{pmatrix}$ 
+            è un isomorfismo affine tra $\mathcal{A}_n(\KK)$ e l'iperpiano $H_{n+1}=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=1\}\subset \mathcal{A}_{n+1}(\KK)$
+
+            Sia $f$ un'affinità di $\mathcal{A}_n(\KK)$ data da $f(\x)=A\x+\Vec{b}$.
+            Allora tramite $\iota$ abbiamo l'affinità di $H_{n+1}$ $f'(\hat{\x})=\hat{f(\x)}=\begin{pmatrix}
+                f(\x) \\ 1
+            \end{pmatrix}$
+            e ci associamo l'applicazione lineare invertibile $\hat{f}:\KK^{n+1}\rightarrow \KK^{n+1}$ data dalla matrice $\hat{A}=\Matrix{A & \vec b \\ 0 & 1}$
+            
+            Le matrici di questa forma formano un sottogruppo di $GL_{n+1}(\KK)$ isomorfo ad $A_n(\KK)$ che corrisponde agli endomorfismi che preservano $H_{n+1}$ %?
+
+            $f$ automorfismo di $\KK^n$, $E\subseteq \KK^n$ sottospazio affine, se $f(E)\subseteq E$ allora $f|_E:E\rightarrow E$ è affine.
+
+             Sia $E$ spazio affine di dimensione $n$.
+            \begin{enumerate}
+                \item Se $f\in A(E)$ e $P_0,\ldots P_n$ sono affinemente indipendenti allora $f(P_0),\ldots,f(P_n)$ sono affinemente indipendenti.
+                \item Se $P_0,\ldots P_n$ sono affinemente indipendenti e $Q_0,\ldots P_n$ sono affinemente indipendenti esiste ed è unica l'affinità $f:E \rightarrow E$ tale che $f(P_i)=Q_i \forall i=1,\ldots,n$
+                \item  $f\in A(E)$, $D\subseteq E$ sottospazio affine $\implies f(D)$ è sottospazio affine della stessa dimensione
+            \end{enumerate}
+            $A_n(\KK)$ dipende da $n^2+n=n(n+1)$ parametri.
+            Dato $D$ sottospazio affine di dimensione $k$ di $\mathcal{A}_n(\KK)$, $\{f\in A_n(\KK)\mid f(D)=D\}$ è un sottogruppo di $A_n(\KK)$ che dipende da $(n+1)k+(n-k)n$ parametri.
+            
+            \subsection{Spazio proiettivo}
+            Chiamiamo l'insieme dei sottospazi di dimensione 1 in $\KK^{n+1}$ \textit{spazio proiettivo} (associato a $\KK^{n+1})$ e lo denotiamo con $\PP(\KK^{n+1})=\PP^n(\KK)$
+
+            Ogni punto $\begin{pmatrix}
+                \x \\ 1
+            \end{pmatrix}\in H_{n+1}$ individua un unico sottospazio $l=Span(\begin{pmatrix}
+                \x \\ 1
+            \end{pmatrix})\in \KK^{n+1}$ di dimensione 1.
+
+            La differenza $\PP^n(\KK)\setminus \mathcal{A}_n(\KK)$ corrisponde ai sottogruppi $l\in \KK^{n+1}$ tali che $l\subset\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=0\}\cong \KK^n$, cioè corrisponde a un $\PP(\KK^n)=\PP^{n-1}(\KK)$ %??
+
+            Tali rette si dicono \textit{punti all'infinito} di $\mathcal{A}_n(\KK)$, intituivamente un punto all'infinito è il limite di un punto $P\in \mathcal{A}_n(\KK)$ che si allontana verso l'infinito di direzione $l$ %??
+
+            Si può ricoprire $\PP^n(\KK)$ con gli iperpiani $H_i=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{i}=1\}$.
+            Ogni 1-sottospazio $l\in \KK^{n+1}$ interseca almeno uno degli $H_i$ in  un punto.
+            
+           
+
+           
 		\subsection{Complementi sugli spazi affini}
-		
-		\begin{itemize}
+             Alcuni esempi visti a lezione: %da tenere ?
+            \begin{itemize}
+                \item $A_1(\KK)$ agisce transitivamente su $\mathcal{A}_1(\KK)$. Non agisce liberamente se $x_0\in\mathcal{A}_1(\KK)$
+                $Stab(x_0)=\{f\mid f(x_0)=x_0\}\cong GL_1(\KK)$
+                \item $|Fix(f)|=|\{x\in \mathcal{A}_1(\KK)\mid f(x)=x\}|\geq1$.
+                $|Fix(f)|=0\iff f$ è una traslazione
+                \item $\mathcal{A}_1(\KK)$ agisce in maniera semplicemente transitiva sulle coppie di punti $(P_1,P_2), P_1\neq P_2$
+                \item Siano $P_1,P_2,P_3$, $Q_1,Q_2,Q_3$ due terne di punti distinti, allora esiste ed è unica $f\in \mathcal{A}_1(\KK)$ tale che $f(P_i)=Q_i \forall i=1,2,3 \iff \lambda(P_1,P_2,P_3)=\lambda(Q_1,Q_2,Q_3)$ dove $\lambda(P_1,P_2,P_3)$ è definito dal \textit{rapporto semplice} $P_3-P_1=\lambda(P_2-P_1)$ ($\iff P_3=(1-\lambda)P_1+\lambda P_2$)
+                %vari esempi di posizione tra rette e numero di parametri di dipendenza. da inserire (?)
+                \item $A,B$ sottospazi affini $\implies D\cap D'=\emptyset$ oppure $D\cap D'$ è un sottospazio affine.
 			\item se $A \cap B \neq \emptyset$, vale la formula di Grassmann,
 			\item se $A \cap B = \emptyset$, $\dim (A + B) = \dim A + \dim B - \dim (A_0 \cap B_0) + 1$,
 			\item ogni affinità $f(\x) = M \x + \vec t$ può scriversi in forma matriciale
@@ -2213,15 +2331,73 @@
 			\[ \Matrix{M & \vec t \\ 0 & 1}. \]
 		\end{itemize}
 		
-		La matrice $\MM(p \circ f)$, con $f(\x) = M\x + \vec t$, varia nel seguente
+		
+	\subsection{Coniche} %problema di notazione, come fare A maiuscola corsiva da sostituire a \matchal{A} (?)
+            Una conica in $\mathcal{A}_2(\KK)$ è il luogo delle soluzioni di un polinomio di secondo grado $p(x,y)=ax^2+bxy+cy^2+dx+ey+f$.
+            (Notare che il polinomio può non avere soluzioni ed è invariante per la moltiplicazione per uno scalare diverso da 0).
+
+            Più in generale chiamiamo \textit{quadrica} in $\mathcal{A}_n(\KK)$ il luogo degli zeri di un polinomio di secondo grado in n variabili $p(x_1,\ldots,x_n)$
+
+            \[p(\x)=\x^\top\AA\x+2\Vec{b}^\top\x+c\]
+            dove $\AA$ è la matrice dei coefficienti dei fattori di grado 2, $\Vec{b}$ è il vettore dei coefficienti dei fattori lineari e $c$ è il termine noto del polinomio.
+            Definiamo inoltre la matrice $\MM(p)=\begin{pmatrix}
+                \AA(p) & \mathcal{L}(p) \\
+                \mathcal{L}(p)^\top & c
+            \end{pmatrix}$
+
+            Nel caso di una conica determinata dal polinomio $p(x,y)=a_{1,1}x^2+a_{1,2}xy+a_{2,2}y^2+a_{1,3}x+a_{2,3}y+a_{3,3}$ abbiamo che:
+
+            
+            $\AA(p)=\begin{pmatrix}
+                a_{1,1} & \frac{a_{1,2}}{2} \\
+                \frac{a_{1,2}}{2} & a_{2,2}
+            \end{pmatrix}$
+            $\Vec{b}=\mathcal{L}(p)=\begin{pmatrix}
+                \frac{a_{1,3}}{2} \\
+                \frac{a_{2,3}}{2}
+            \end{pmatrix}$
+            $c=a_{3,3}$
+            $\MM(p)=\begin{pmatrix}
+                a_{1,1} & \frac{a_{1,2}}{2} & \frac{a_{1,3}}{2} \\
+                \frac{a_{1,2}}{2} & a_{2,2} & \frac{a_{2,3}}{2} \\
+                \frac{a_{1,3}}{2} & \frac{a_{2,3}}{2} & a_{3,3,} \\
+            \end{pmatrix}$
+
+            Sia $f\in A_n(\KK)$, $f(\x')=M\x'+\Vec{t}$, $M\in GL_n(\KK), t\in \KK^n$.
+            ponendo $\x=M\x'+\Vec{t}$ troviamo:
+            \[p'(\x')=\x'^{\top} A'\x'+2\Vec{b'}^\top\x'+c'\]
+            con $\AA'=M^\top \AA M$, $\Vec{b}'=M^\top(\AA\Vec{t}+\Vec{b})$, $c'=p(\Vec{t})$.
+            
+            La matrice $\MM(p \circ f)$, varia nel seguente
 		modo:
 		\begin{gather*}
 			\tiny
 			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \\ \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)},
 		\end{gather*}
-		
-		Una conica è a centro se e solo se è risolvibile il sistema $\AA(p) \vec t + \Ll(p) = \vec 0$.
-		
+  
+            Sia $C=\{\x\in \mathcal{A}_n(\KK) \mid p(\x)=0\}$.
+            $C$ si dice \textit{a centro} se $\exists \x_0\in \mathcal{A}_n(\KK)$ t.c. $p(\x_0+\x)=p(x_0-\x) \forall \x \in \KK^n$
+            
+            Si dirà che $\x_0$ è un centro di simmetria.
+            
+            Alternativamente $C$ è a centro $\x_0 \iff \MM(p \circ f)=\begin{pmatrix}
+                \AA & 0 \\
+                0 & c
+            \end{pmatrix}$
+            
+		Oppure ancora una conica è a centro se e solo se è risolvibile il sistema $\AA(p) \vec t + \Ll(p) = \vec 0$.
+
+        I centri della quadriche (quando ci sono) formano un sottospazio affine di dimensione $n-rg(\AA)$
+
+        Diremo che la conica $C$ è \textit{non degenere} quando $rg(\MM(p))=3$
+
+        \subsection{Classificazione delle coniche}
+        Classificazione \textit{affine}: si trova una forma canonica nelle orbite del gruppo affine $A_n(\KK)$.
+
+        se $V$ è euclideo su $\RR$, si può introdurre la distanza $d(P,Q)=\norm{Q-P}$.
+        Le isometrie di $E$ sono quelle affinità che preservano la distanza e formano il gruppo $ISO(E)$.
+        Classificazione \textit{isometrica}: Si trovano forme canoniche nelle orbite rispetto a $ISO(E)$ %???		
+
 		Sia $\KK=\CC$. Allora ogni conica è affinemente equivalente ad
 		un'equazione canonica della seguente tabella, unicamente
 		determinata dagli invarianti $\rg(\MM(p))$ e $\rg(\AA(p))$.
