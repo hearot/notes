@@ -471,7 +471,6 @@
 			Hamilton-Cayley}).
 		
 		Si elencano adesso i tipi principali di matrici:
-		
 		\begin{itemize}
 			\item $A$ è simmetrica $\defiff A^\top = A$,
 			\item $A$ è antisimmetrica $\defiff A^\top = -A$,
@@ -479,6 +478,13 @@
 			\item $A$ è ortogonale ($A \in O(n)$ o $O_n$) $\defiff AA^\top = A^\top A = I_n$,
 			\item $A$ è unitaria ($A \in U(n)$ o $U_n$) $\defiff AA^* = A^*A = I_n$.
 		\end{itemize}
+		
+		Se $A \in M(m, n, \RR)$, allora $\Ker A^\top A = \Ker A$. Infatti, se $\vec x \in \Ker A^\top A$, allora $A^\top A \vec x = \vec 0 \implies \vec x ^\top A^\top A \vec x = \vec 0 \implies q(A \vec x) = \vec 0 \implies A \vec x = \vec 0 \implies \vec x \in \Ker A$, dove $q$ è la forma quadratica derivante dal prodotto scalare standard
+		di $\RR^n$. Da questo risultato si deduce anche che $\rg(A^\top A) = \rg(A)$. \\
+		\vskip 0.05in
+		
+		Se $A \in M(m, n, \CC)$, allora $\Ker A^* A = \Ker A$ e $\rg (A^* A) = \rg(A)$ (si segue la stessa linea
+		di dimostrazione di sopra).
 		
 		\subsection{Rango di una matrice}
 		
@@ -1843,7 +1849,7 @@
 			dove $r = \rg(\varphi)$ (teorema di Sylvester, caso complesso; si consideri una base ortogonale e se
 			ne normalizzino i vettori anisotropi),
 			
-			\item Due matrici simmetriche con stesso rango allora non solo sono SD-equivalenti, ma sono
+			\item Due matrici simmetriche ad elementi complessi con stesso rango allora non solo sono SD-equivalenti, ma sono
 			anche congruenti,
 			
 			\item (se $\KK = \RR$) Esiste sempre una base ortogonale $\basis$ di $V$ tale che:
@@ -2075,16 +2081,32 @@
 		
 		Se $\varphi$ è un prodotto scalare, $f^* = f^\top$ si chiama \textit{trasposto}
 		di $f$, mentre se $\varphi$ è hermitiano $f^*$ si dice \textit{aggiunto} di $f$.
+
+		D'ora in poi si intenderà con $f^\top$ il trasposto di $f$ (con $\varphi$ scalare) e con $f^*$ l'aggiunto di $f$ (con $\varphi$ hermitiano). \\
 		
-		D'ora in poi si intenderà con $f^\top$ il trasposto di $f$ (con $\varphi$ scalare) e con $f^*$ l'aggiunto di $f$ (con $\varphi$ hermitiano).
+		Un'operatore $f$ si dice \textit{simmetrico} se $f = f^\top$ e quindi se $\varphi(\v, f(\w)) = \varphi(f(\v), \w)$ (analogamente un'operatore si dice \textit{hermitiano} se $f = f^*$). \\
+		
+		Un'operatore $f$ si dice \textit{ortogonale} se è un'isometria da
+		$(V, \varphi)$ in $(V, \varphi)$, ossia se e solo se $\varphi(\v, \w) = \varphi(f(\v), f(\w))$ (analogamente un'operatore si dice \textit{unitario} se è un'isometria con
+		$\varphi$ prodotto hermitiano). \\
+		
+		Sia $\basis$ una base di $V$.
 		
 		\begin{itemize}
+			\item se $\basis$ è una base ortonormale, $M_\basis(f^\top) = M_\basis(f)^\top$ (infatti in tal caso $M_\basis(\varphi) = I_n$),
+			\item se $\basis$ è una base ortonormale, $M_\basis(f^*) = M_\basis(f)^*$ (come sopra),
+			\item $f$ è simmetrico $\iff$ $f = f^\top$ $\iff$ $M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi) = M_\basis(f^\top) = M_\basis(f)$ $\iff$ $M_\basis(\varphi) M_\basis(f)$ è simmetrica,
+			\item se $\basis$ è una base ortonormale, $f$ è simmetrico $\iff$ $f = f^\top$ $\iff$ $M_\basis(f) = M_\basis(f)^\top$ $\iff$ $M_\basis(f)$ è simmetrica,
+			\item $f$ è hermitiano $\iff$ $f = f^*$ $\iff$ $M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi) = M_\basis(f^*) = M_\basis(f)$ $\iff$ $M_\basis(\varphi) M_\basis(f)$ è hermitiana,
+			\item se $\basis$ è una base ortonormale, $f$ è hermitiana $\iff$ $f = f^*$ $\iff$ $M_\basis(f) = M_\basis(f)^*$ $\iff$ $M_\basis(f)$ è hermitiana,
 			\item $(f^\top)^\top = f$,
 			\item $(f^*)^* = f$,
 			\item $(\lambda f)^\top = \lambda f^\top$,
 			\item $(\lambda f)^* = \conj{\lambda} f^*$,
 			\item $(f + g)^\top = f^\top + g^\top$,
 			\item $(f + g)^* = f^* + g^*$,
+			\item $(f \circ g)^\top = g^\top \circ f^\top$,
+			\item $(f \circ g)^* = g^* \circ f^*$,
 			\item se $f$ è invertibile, $(f^\top)\inv = (f\inv)^\top$ (è sufficiente mostrare che $\varphi((f^\top \circ (f\inv)^\top)(\v), \w) = \varphi(\v, \w)$ e dedurre,
 			sottraendo i due membri, che deve valere $f^\top \circ (f\inv)^\top = \Idv$),
 			\item se $f$ è invertibile, $(f^*)\inv = (f\inv)^*$ (come sopra),
@@ -2094,7 +2116,7 @@
 			\item $\Im f^* = (\Ker f)^\perp$,
 			\item se $W$ è un sottospazio di $V$, allora $W$ è $f$-invariante se e solo
 			se $W^\perp$ è $f^*$-invariante,
-			\item l'operatore $\top \in \End(\End(V))$ è sempre diagonalizzabili
+			\item l'operatore $\top \in \End(\End(V))$ è sempre diagonalizzabile
 			e ha spettro $\{\pm 1\}$, dal momento che il suo polinomio minimo è $x^2-1$ (infatti $(f^\top)^\top = f$ e gli autospazi relativi a $1$ e $-1$ sono entrambi diversi da $\zerovecset$),
 			\item l'autospazio $V_1$ di $\top$ raccoglie gli operatori simmetrici, mentre
 			$V_{-1}$ raccoglie gli operatori antisimmetrici.
@@ -2253,7 +2275,7 @@
             Chiamiamo $D_0$ \textit{direzione} del sottospazio affine $D$.
             Inoltre $D_0$ è unico e possiamo scriverlo anche come $D_0=\{Q-P\mid P,Q\in D\}$.
 
-            In generale i sottospazi affini corrispondo ai traslati di sottospazi vettoriali di $V$
+            In generale i sottospazi affini corrispondono ai traslati di sottospazi vettoriali di $V$
 
             Chiamiamo \textit{dimensione} di un sottospazio affine $D$ la dimensione dello spazio vettoriale $D_0$. In particolare dim$E$=dim$V$.
             Quindi così come per gli spazi vettoriali i sottospazi affini di dimensione 0 sono i punti di $E$, quelli di dimensione 1 sono le rette di $E$, quelli di dimensione 2 sono i piani di $E$ e quelli di codimensione 1 sono gli iperpiani affini.
