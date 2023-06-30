@@ -1053,6 +1053,8 @@
 			$\det(A) = 1$ o $\det(A) = 0$,
 			\item se $A$ è ortogonale (ossia se $AA^\top = I_n$), allora
 			$\det(A) = \pm 1$,
+			\item se $A \in M(n, \CC)$, $\det(\conj{A}) = \conj{\det(A)}$ (segue direttamente dallo sviluppo di Laplace del determinante), 
+			\item se $A$ è unitaria (ossia se $AA^* = I_n$), allora $\abs{\det(A)} = 1$,
 			\item se $A$ è un'involuzione (ossia se $A^2 = I_n$), allora
 			$\det(A) = \pm 1$,
 			\item se ogni minore di taglia $k$ di $A$ ha determinante nullo,
@@ -2078,11 +2080,10 @@
 		
 		Se invece $\varphi$ è hermitiano, vale la seguente relazione:
 		\[ M_\basis(f^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi). \]
-		
 		Se $\varphi$ è un prodotto scalare, $f^* = f^\top$ si chiama \textit{trasposto}
 		di $f$, mentre se $\varphi$ è hermitiano $f^*$ si dice \textit{aggiunto} di $f$.
 
-		D'ora in poi si intenderà con $f^\top$ il trasposto di $f$ (con $\varphi$ scalare) e con $f^*$ l'aggiunto di $f$ (con $\varphi$ hermitiano). \\
+		D'ora in poi si intenderà con $f^\top$ il trasposto di $f$ (con $\varphi$ scalare) e con $f^*$ l'aggiunto di $f$ (con $\varphi$ hermitiano). \\ \vskip 0.05in
 		
 		Un'operatore $f$ si dice \textit{simmetrico} se $f = f^\top$ e quindi se $\varphi(\v, f(\w)) = \varphi(f(\v), \w)$ (analogamente un'operatore si dice \textit{hermitiano} se $f = f^*$). \\
 		
@@ -2099,6 +2100,10 @@
 			\item se $\basis$ è una base ortonormale, $f$ è simmetrico $\iff$ $f = f^\top$ $\iff$ $M_\basis(f) = M_\basis(f)^\top$ $\iff$ $M_\basis(f)$ è simmetrica,
 			\item $f$ è hermitiano $\iff$ $f = f^*$ $\iff$ $M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi) = M_\basis(f^*) = M_\basis(f)$ $\iff$ $M_\basis(\varphi) M_\basis(f)$ è hermitiana,
 			\item se $\basis$ è una base ortonormale, $f$ è hermitiana $\iff$ $f = f^*$ $\iff$ $M_\basis(f) = M_\basis(f)^*$ $\iff$ $M_\basis(f)$ è hermitiana,
+			\item $f$ è ortogonale $\iff$ $f \circ f^\top = f^\top \circ f = \Idv$,
+			\item se $\basis$ è una base ortonormale, $f$ è ortogonale $\iff$ $M_\basis(f)$ è ortogonale,
+			\item $f$ è unitario $\iff$ $f \circ f^* = f^* \circ f = \Idv$,
+			\item se $\basis$ è una base ortonormale, $f$ è unitaria $\iff$ $M_\basis(f)$ è unitaria,
 			\item $(f^\top)^\top = f$,
 			\item $(f^*)^* = f$,
 			\item $(\lambda f)^\top = \lambda f^\top$,
@@ -2115,7 +2120,8 @@
 			\item $\Im f^\top = (\Ker f)^\perp$,
 			\item $\Im f^* = (\Ker f)^\perp$,
 			\item se $W$ è un sottospazio di $V$, allora $W$ è $f$-invariante se e solo
-			se $W^\perp$ è $f^*$-invariante,
+			se $W^\perp$ è $f^\top$-invariante (o $f^*$-invariante),
+			\item se $f$ è simmetrico (o hermitiano), allora $W$ è $f$-invariante se e solo se $W^\perp$ è $f$-invariante,
 			\item l'operatore $\top \in \End(\End(V))$ è sempre diagonalizzabile
 			e ha spettro $\{\pm 1\}$, dal momento che il suo polinomio minimo è $x^2-1$ (infatti $(f^\top)^\top = f$ e gli autospazi relativi a $1$ e $-1$ sono entrambi diversi da $\zerovecset$),
 			\item l'autospazio $V_1$ di $\top$ raccoglie gli operatori simmetrici, mentre
@@ -2163,6 +2169,19 @@
 
 		\subsection{Teorema spettrale reale e complesso}
 		
+		Sia $(V, \varphi)$ uno spazio euclideo reale. Se $f$ è un operatore simmetrico, allora
+		$f$ ammette solo autovalori reali. Prendendo infatti il prodotto hermitiano complessificato di $\varphi$, allora, se $\lambda$ è un autovalore in $\CC$ di $f$,
+		$\conj{\lambda} \varphi(\v, \v) = \varphi(\lambda \v, \v)$ $= \varphi(f(\v), \v) = \varphi(\v, f(\v)) = \varphi(\v, \lambda \v) = \lambda \varphi(\v, \v)$, dove $\v$ è un autovettore non nullo relativo
+		a $\lambda$; pertanto $\lambda = \conj{\lambda} \implies \lambda \in \RR$ dacché $\varphi(\v, \v) \neq 0$). Seguendo gli stessi passaggi algebrici si mostra
+		che se $f$ è un operatore hermitiano uno spazio euclideo complesso, questo
+		ammette solo autovalori reali. \\ \vskip 0.05in
+		
+		Se $f$ è simmetrico o hermitiano, allora $V_\lambda \perp V_\mu$ se $\lambda$ e
+		$\mu$ sono due autovalori distinti. Infatti, se $\v$ è un autovettore relativo a $\lambda$ e $\w$ è un autovettore relativo a $\mu$, allora\footnote{$\lambda$ non è stato coniugato come argomento del prodotto dal momento che per il risultato precedente è reale, e quindi $\conj \lambda = \lambda$.} $\lambda \varphi(\v, \w) =
+		\varphi(\lambda \v, \w) = \varphi(\v, \mu \w) = \mu \varphi(\v, \w)$; poiché
+		$\lambda \neq \mu$ deve allora per forza valere $\varphi(\v, \w) = 0$.
+		
+		% TODO: sistemare
 		Se $f$ è simmetrico o hermitiano, esiste sempre una base ortonormale di autovettori
 		per $f$. $f$ è normale se e solo se è diagonalizzabile. Esiste sempre $S \in \Sym(n, \RR)$ tale per cui $S^2 = A$, con $A \in \Sym(n, \RR)$. Se $S$ è definita positiva,
 		tale $S$ è unica. Se $A \in \GL(n, \RR)$, esistono e sono unici $P \in O(n)$,
