@@ -2058,9 +2058,48 @@
 		rango, allora $V$ e $W$ sono isometrici tra loro (come conseguenza stavolta del teorema di Sylvester
 		complesso).
 		
-		\subsection{Operatori simmetrici, ortogonali, hermitiani e unitari}
+		\subsection{Trasposta e aggiunta di un'applicazione}
+
+		Sia $(V, \varphi)$ uno spazio dotato di un prodotto $\varphi$ non degenere. Allora si definisce $f^* \in \End(V)$ (talvolta indicato come $f^\top$ se $\varphi$ non è hermitiano, quando è chiaro che non ci stia riferendo alla trasposizione dell'operatore $f$)
+		come l'unico operatore tale per cui $\varphi(f^*(\v), \w) = \varphi(\v, f(\w))$.
+		In particolare, se $\varphi$ non è hermitiano, tale operatore soddisfa la seguente relazione:
+		\[ \alpha_\varphi \circ f^* = f^\top \circ \alpha_\varphi, \]
 		
-		[TODO]
+		dove con $f^\top$ si indica l'applicazione trasposta di $f$. Scelta allora una
+		base $\basis$ di $V$, sempre se $\varphi$ non è hermitiano, si può scrivere in relazione a $M_\basis(f)$ la
+		matrice associata a $f^*$:
+		\[ M_\basis(f^*) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi). \]
+		
+		Se invece $\varphi$ è hermitiano, vale la seguente relazione:
+		\[ M_\basis(f^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi). \]
+		
+		Se $\varphi$ è un prodotto scalare, $f^* = f^\top$ si chiama \textit{trasposto}
+		di $f$, mentre se $\varphi$ è hermitiano $f^*$ si dice \textit{aggiunto} di $f$.
+		
+		D'ora in poi si intenderà con $f^\top$ il trasposto di $f$ (con $\varphi$ scalare) e con $f^*$ l'aggiunto di $f$ (con $\varphi$ hermitiano).
+		
+		\begin{itemize}
+			\item $(f^\top)^\top = f$,
+			\item $(f^*)^* = f$,
+			\item $(\lambda f)^\top = \lambda f^\top$,
+			\item $(\lambda f)^* = \conj{\lambda} f^*$,
+			\item $(f + g)^\top = f^\top + g^\top$,
+			\item $(f + g)^* = f^* + g^*$,
+			\item se $f$ è invertibile, $(f^\top)\inv = (f\inv)^\top$ (è sufficiente mostrare che $\varphi((f^\top \circ (f\inv)^\top)(\v), \w) = \varphi(\v, \w)$ e dedurre,
+			sottraendo i due membri, che deve valere $f^\top \circ (f\inv)^\top = \Idv$),
+			\item se $f$ è invertibile, $(f^*)\inv = (f\inv)^*$ (come sopra),
+			\item $\Ker f^\top = (\Im f)^\perp$,
+			\item $\Ker f^* = (\Im f)^\perp$,
+			\item $\Im f^\top = (\Ker f)^\perp$,
+			\item $\Im f^* = (\Ker f)^\perp$,
+			\item se $W$ è un sottospazio di $V$, allora $W$ è $f$-invariante se e solo
+			se $W^\perp$ è $f^*$-invariante,
+			\item l'operatore $\top \in \End(\End(V))$ è sempre diagonalizzabili
+			e ha spettro $\{\pm 1\}$, dal momento che il suo polinomio minimo è $x^2-1$ (infatti $(f^\top)^\top = f$ e gli autospazi relativi a $1$ e $-1$ sono entrambi diversi da $\zerovecset$),
+			\item l'autospazio $V_1$ di $\top$ raccoglie gli operatori simmetrici, mentre
+			$V_{-1}$ raccoglie gli operatori antisimmetrici.
+		\end{itemize}
+
 		
 		\subsection{Spazi euclidei reali e complessi}
 		
@@ -2394,7 +2433,7 @@
         \subsection{Classificazione delle coniche}
         Classificazione \textit{affine}: si trova una forma canonica nelle orbite del gruppo affine $A_n(\KK)$.
 
-        se $V$ è euclideo su $\RR$, si può introdurre la distanza $d(P,Q)=\norm{Q-P}$.
+        Se $V$ è euclideo su $\RR$, si può introdurre la distanza $d(P,Q)=\norm{Q-P}$.
         Le isometrie di $E$ sono quelle affinità che preservano la distanza e formano il gruppo $ISO(E)$.
         Classificazione \textit{isometrica}: Si trovano forme canoniche nelle orbite rispetto a $ISO(E)$ %???		
 
