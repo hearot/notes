@@ -2379,7 +2379,7 @@
         le stesse proprietà di una base vettoriale, mediante
         cui se ne dimostra l'esistenza).
 
-        Sia $E = \AnK$ allora $\ww 1$, ..., $\ww n \in E$ sono affinemente indipendenti se e solo se i vettori $\hat{\ww 1}$, ..., $\hat{\ww n}$ con $\hat{\ww i}=\Matrix{\ww i \\[0.03in] \hline 1} \in \KK^{n+1}$ sono linearmente indipendenti. \\ \vskip 0.05in
+        Sia $E = \AnK$ allora $\ww 1$, ..., $\ww n \in E$ sono affinemente indipendenti se e solo se i vettori $\hat{\ww 1}$, ..., $\hat{\ww n}$ con $\hat{\ww i}=\Matrix{\ww i \\[0.03in] \hline 1} = \iota(\ww i) \in \KK^{n+1}$ sono linearmente indipendenti. \\ \vskip 0.05in
 
 		Siano $P_0$, ..., $P_k$ i punti di un riferimento
 		affine per il sottospazio affine $D$. Allora ogni
@@ -2409,46 +2409,45 @@
         \subsection{Applicazioni affini e affinità}
         Siano $E$ spazio affine su $V$, $E'$ spazio affine su $V'$ sullo stesso campo $\KK$.
         
-        Un'applicazione $f:E\rightarrow E'$ si dice \textit{applicazione affine} se conserva le combinazioni affini.
+        Un'applicazione $f:E\rightarrow E'$ si dice \textit{applicazione affine} se conserva le combinazioni affini, ossia se:
+        \[ f\left( \sum_{i=1}^k \lambda_i P_i \right) = \sum_{i=1}^k \lambda_i f(P_i) \impliedby \sum_{i=1}^k \lambda_i = 1. \]
 
-        Sia $f:E \rightarrow E'$ un'applicazione affine. Allore esiste ed è unica l'applicazione lineare $g:V\rightarrow V'$ tale che $f(O+\v)=f(O)+g(\v)$ per ogni scelta di $O\in E$ e $\v\in V$.
-        Viceversa se $g:V\rightarrow V'$ è lineare, si trova $f:E\rightarrow E'$ affine per ogni scelta di punti $O\in E$, $O'\in E'$ $f(P)=O'+g(P-O)$
+        Se $D$ è un sottospazio affine di $E$ $f$-invariante,
+        allora $\restr{f}{D}$ è ancora un'applicazione affine.
+        Esiste ed è unica l'applicazione lineare $g : V \rightarrow V'$ tale che $f(P)=f(O)+g(P-O)$ per ogni scelta di $P$, $O \in E$; tale applicazione lineare
+        si denota con $df$ e viene detta \textit{differenziale} di $g$. Analogamente si può sempre costruire un'applicazione affine tale per cui $df=g$, data
+        $g \in \mathcal{L}(V, V')$.
 
-        Nel caso $E=\mathcal{A}_n(\KK)$, $E'=\mathcal{A}_m(\KK)$ si trova $f(\x)=f(\Vec{0})+g(\x)=A\x+\Vec{b}$ con $A\in M(m,n,\KK)$ e $\Vec{b} \in A_m(\KK)$
-        Sia $E''$ un altro spazio affine associato a $V''$ e $f':E'\rightarrow E''$ è affine con applicazione lineare associata $g':V' \rightarrow V''$, allora $f'\circ f:E\rightarrow E''$ è affine e vale $f'(f(O+\v)=f'(f(O))+g'(g(\v))$ e l'applicazione lineare associata a $f'\circ f$ è $g'\circ g$
+        Nel caso in cui $E=\mathcal{A}_n(\KK)$, $E'=\mathcal{A}_m(\KK)$, un'applicazione affine $f$ è della forma $f(\x)=f(\Vec{0})+g(\x)=A \x+\Vec{b}$ con $A\in M(m,n,\KK)$ e $\Vec{b} \in A_m(\KK)$. \\ \vskip 0.05in
 
-        Diremo che $f:E\rightarrow E$ è un'\textit{affinità} di $E$ se $f$ è un'applicazione affine bigettiva.
-        $f$ affinità di $E$ implica che l'applicazione lineare associata $g:V\rightarrow V$ sia invertibile.
+        Sia $E''$ un altro spazio affine associato a $V''$. Se $f':E'\rightarrow E''$ è affine, allora $f'\circ f:E\rightarrow E''$ è affine e vale $d(f' \circ f) = df' \circ df$.
 
-        Chiamiamo il gruppo affine di $E$ $A(E)$ il gruppo delle affinità di $E$.
+        Si dice che $f : E \rightarrow E$ è un'\textit{affinità} di $E$ se $f$ è un'applicazione affine bigettiva; si definisce $A(E)$ come il gruppo
+        delle affinità di $E$ rispetto alla composizione. Vale
+        in particolare che $f$ è un'affinità di $E$ $\iff$ $df$ è invertibile.
 
-        L'applicazione $\pi:A(E)\rightarrow GL(V) : f\mapsto g$ è un omomorfismo surgettivo. Il nucleo è dato dalle traslazioni le quali formano un sottogruppo normale.
+        L'applicazione $\pi : A(E)\rightarrow \GL(V) : f  \mapsto g$ è un omomorfismo surgettivo il cui nucleo è dato dalle traslazioni, che pertanto formano un sottogruppo normale.
 
-        $f:E\rightarrow E$ affinità manda $x$ in $A\x+\vec{b}$ e dato che f bigettiva $A\in GL_n(\KK)$. Segue che $f^{-1}:\x\mapsto A^{-1}\x-A^{-1}\Vec{b}$
+        Sia $f \in A(E)$. Allora $d(f\inv) = df\inv$; in particolare, se $E = \AnK$, $f\inv(\vec x) = A\inv \vec x - A\inv \vec b$, dove $f(\vec x) = A \vec x + \vec b$.
 
-        $\iota:\KK^n=\mathcal{A}_n(\KK)\rightarrow\mathcal{A}_{n+1}(\KK)=\KK^{n+1}$, $\x\mapsto \hat{\x}=\begin{pmatrix}
-            \x \\ 1
-        \end{pmatrix}$ 
-        è un isomorfismo affine tra $\mathcal{A}_n(\KK)$ e l'iperpiano $H_{n+1}=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=1\}\subset \mathcal{A}_{n+1}(\KK)$
+        Si definisce l'applicazione affine $\iota : \AnK \to 
+        \mathcal{A}_{n+1}(\KK)$ in modo tale che $\x \mapsto \hat{\x}=\Matrix{\x \\[0.03in] \hline 1}$. Si osserva che $\iota$
+        è un isomorfismo affine tra $\AnK$ e l'iperpiano $H_{n+1}=\{\x\in \mathcal{A}_{n+1}(\KK)\mid$ $ x_{n+1}=1\}\subset \mathcal{A}_{n+1}(\KK)$.
 
-        Sia $f$ un'affinità di $\mathcal{A}_n(\KK)$ data da $f(\x)=A\x+\Vec{b}$.
-        Allora tramite $\iota$ abbiamo l'affinità di $H_{n+1}$ $f'(\hat{\x})=\hat{f(\x)}=\begin{pmatrix}
-            f(\x) \\ 1
-        \end{pmatrix}$
-        e ci associamo l'applicazione lineare invertibile $\hat{f}:\KK^{n+1}\rightarrow \KK^{n+1}$ data dalla matrice $\hat{A}=\Matrix{A & \vec b \\ 0 & 1}$
+        Sia $f \in A(\AnK)$ data da $f(\x)=A\x+\Vec{b}$.
+        Allora esiste un'unica applicazione lineare $\hat f \in \End(\KK^{n+1})$ che estende $f$ in $\mathcal{A}_{n+1}(\KK)$ tale per cui
+        $f(\iota(\x)) = \iota(f(\x))$; in particolare tale
+        applicazione è rappresentata dalla matrice $\hat A$, dove:
+        \[ \hat{A}=\Matrix{ A & \rvline & \vec b \, \\ \hline 0 & \rvline & 1 \, }. \]
+        In particolare $\hat A$ dipende da $n^2 + n$ parametri; se si fosse posto $f(D) = D$, sarebbe dipesa invece da $k(k+1) + n(n-k)$ parametri. Le matrici di questa forma formano un sottogruppo di $\GL_{n+1}(\KK)$ isomorfo ad $A(\AnK)$.
+
+        Sia $E$ spazio affine di dimensione $n$.
         
-        Le matrici di questa forma formano un sottogruppo di $GL_{n+1}(\KK)$ isomorfo ad $A_n(\KK)$ che corrisponde agli endomorfismi che preservano $H_{n+1}$ %?
-
-        $f$ automorfismo di $\KK^n$, $E\subseteq \KK^n$ sottospazio affine, se $f(E)\subseteq E$ allora $f|_E:E\rightarrow E$ è affine.
-
-         Sia $E$ spazio affine di dimensione $n$.
         \begin{enumerate}
-            \item Se $f\in A(E)$ e $P_0,\ldots P_n$ sono affinemente indipendenti allora $f(P_0),\ldots,f(P_n)$ sono affinemente indipendenti.
-            \item Se $P_0,\ldots P_n$ sono affinemente indipendenti e $Q_0,\ldots P_n$ sono affinemente indipendenti esiste ed è unica l'affinità $f:E \rightarrow E$ tale che $f(P_i)=Q_i \forall i=1,\ldots,n$
-            \item  $f\in A(E)$, $D\subseteq E$ sottospazio affine $\implies f(D)$ è sottospazio affine della stessa dimensione
+            \item se $f\in A(E)$ e i punti $P_0$, ..., $P_n \in E$ sono affinemente indipendenti, allora anche i punti $f(P_0)$, ..., $f(P_n)$ sono affinemente indipendenti,
+            \item se $\dim E_0 = n$, i punti $P_0$, ..., $P_n$ sono affinemente indipendenti e anche i punti $Q_0$, ... $Q_n$ sono affinemente indipendenti, allora esiste ed è unica l'affinità $f : E \rightarrow E$ tale che $f(P_i)=Q_i \forall i=1\text{---}n$,
+            \item se $f\in A(E)$, $D \subseteq E$ sottospazio affine $\implies f(D)$ è un sottospazio affine della stessa dimensione.
         \end{enumerate}
-        $A_n(\KK)$ dipende da $n^2+n=n(n+1)$ parametri.
-        Dato $D$ sottospazio affine di dimensione $k$ di $\mathcal{A}_n(\KK)$, $\{f\in A_n(\KK)\mid f(D)=D\}$ è un sottogruppo di $A_n(\KK)$ che dipende da $(n+1)k+(n-k)n$ parametri.
         
         \subsection{Spazio proiettivo}
         Chiamiamo l'insieme dei sottospazi di dimensione 1 in $\KK^{n+1}$ \textit{spazio proiettivo} (associato a $\KK^{n+1})$ e lo denotiamo con $\PP(\KK^{n+1})=\PP^n(\KK)$
