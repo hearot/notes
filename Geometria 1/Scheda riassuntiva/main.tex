@@ -2327,7 +2327,7 @@
 		
 		Siano $P_1$, ..., $P_k \in E$ e $\lambda_1$, ..., $\lambda_k \in \KK$. Siano inoltre
 		$O$, $O' \in E$. Allora se si pone $P=O+\sum_{i=1}^{k}\lambda_i (P_i-O)$ e $P'=O'+\sum_{i=1}^{k}\lambda_i (P_i-O')$, vale che:
-		\[P=P'\iff\sum_{i=1}^{k}\lambda_i=1\]
+		\[P=P' \, \forall O, O' \in E \iff\sum_{i=1}^{k}\lambda_i=1\]
 		
 		Pertanto un punto $P\in E$ si dice \textit{combinazione affine} dei punti $P_1$, ..., $P_k$ se $\exists \lambda_1$, ..., $\lambda_k \in \KK$ tali che $\sum_{i=1}^{k}\lambda_i=1$ e che $\forall O \in E$,
 		$P=O+\sum_{i=1}^{k}\lambda_i (P_i-O)$. Si scrive in tal caso $P=\sum_{i=1}^{k}\lambda_i P_i$ (la notazione è ben definita dal momento che
@@ -2337,115 +2337,134 @@
 		si denota tale sottospazio affine $D$ come $\Aff(S)$. Vale inoltre che $\Aff(S)$ è il
 		più piccolo sottospazio affine contenente $S$.
 		        
-        Partendo da $V$ spazio vettoriale su $\KK$ possiamo associare uno spazio affine $E=V$ con azione $\v \cdot \w=\v+\w=\w+\v$. 
-            In questo caso una combinazione affine diventa un caso particolare di combinazione lineare. 
-            Chiamiamo lo spazio affine associato in questo modo a $V=\KK^n$ $\mathcal{A}_n(\KK)$ %A maiuscola corsiva?
-            Se $E$ è affine su $V$ di dimensione $n$ su $\KK$ allora ogni scelta di un punto $O\in E$ e di una base $\mathcal{B}$ di $V$ induce la bigezione naturale 
-            $\varphi_{O,\mathcal{B}}:E\rightarrow \mathcal{A}_n(\KK)$ tale che $\varphi_{O,\mathcal{B}}(O+\v)=[\v]_\basis$
+        Ogni spazio vettoriale $V$ su $\KK$ induce uno spazio affine tramite l'azione banale che compie $(V, +)$ su $(V, +)$, ossia con $\v \cdot \w=\v+\w=\w+\v$, dove l'operazione $+$ coincide sia con la somma affine che
+        con quella vettoriale.
+        In questo caso una combinazione affine diventa un caso particolare di combinazione lineare. Lo spazio affine
+        generato in questo modo su $\KK^n$ viene detto \textit{spazio affine standard} ed è indicato come $\AnK$. \\ \vskip 0.05in
+        
+        Se $E$ è uno spazio affine sul $\KK$-spazio $V$, allora ogni scelta di un punto $O \in E$ e di una base $\mathcal{B}$ di $V$ induce la bigezione naturale 
+        $\varphi_{O,\mathcal{B}} : E \to \AnK$ tale che $\varphi_{O,\mathcal{B}}(P)=[P-O]_\basis$, dove $P \in E$.
 
-            Un sottoinsieme $D\subseteq E$ è un sottospazio affine $\iff \forall P_0 \in D$
-            $D_0=\{P-P_0 \mid P\in D\}\subseteq V$ è un sottospazio vettoriale di $V$.
-            Segue che $D=P_0+D_0$ ossia che $D$ è il traslato di $D_0$ per $P_0-O$ %O ??
-            Chiamiamo $D_0$ \textit{direzione} del sottospazio affine $D$.
-            Inoltre $D_0$ è unico e possiamo scriverlo anche come $D_0=\{Q-P\mid P,Q\in D\}$.
+        Un sottoinsieme $D \subseteq E$ è un sottospazio affine $\iff \forall P_0 \in D$,
+        $D_0=\{P-P_0 \mid P\in D\}\subseteq V$ è un sottospazio vettoriale di $V$.
+        Si può allora scrivere che $D=P_0+D_0$, ossia si deduce che $D$ è il traslato di $D_0$ per $P_0$, e quindi
+        che ogni sottospazio affine è in particolare il traslato
+        di un sottospazio vettoriale.
+        L'insieme $D_0$, scritto anche come $\Giac(D)$, è detto \textit{direzione} (o \textit{giacitura}) del sottospazio affine $D$ ed è invariante per la scelta
+        del punto $P_0$; in particolare vale che $D_0 = \{ Q - P \mid P, Q \in D \}$.
 
-            In generale i sottospazi affini corrispondono ai traslati di sottospazi vettoriali di $V$
+        Si definisce la dimensione di un sottospazio affine $D$ come la dimensione della sua direzione $D_0$. In particolare $\dim E = \dim V$. Quindi, così come accade per gli spazi vettoriali, i sottospazi affini di dimensione nulla corrispondono ai punti di $E$, quelli di dimensione unitaria corrispondono alle \textit{rette} di $E$, quelli di dimensione $2$ corrispondono ai \textit{piani}, mentre quelli di codimensione unitaria (ossia di dimensione $\dim V - 1$) corrispondono agli \textit{iperpiani affini}.
 
-            Chiamiamo \textit{dimensione} di un sottospazio affine $D$ la dimensione dello spazio vettoriale $D_0$. In particolare dim$E$=dim$V$.
-            Quindi così come per gli spazi vettoriali i sottospazi affini di dimensione 0 sono i punti di $E$, quelli di dimensione 1 sono le rette di $E$, quelli di dimensione 2 sono i piani di $E$ e quelli di codimensione 1 sono gli iperpiani affini.
+        Due sottospazi affini con la stessa direzione si
+        dicono \textit{paralleli} se sono distinti, o \textit{coincidenti} se sono uguali. Due sottospazi
+        affini paralleli hanno sempre intersezione vuota e si ottengono l'uno dall'altro mediante traslazione.
 
-            Due sottospazi affini con la stessa direzione si diranno paralleli, coincidono o hanno intersezione vuota e si ottengono l'uno dall'altro mediante traslazione.
+	    Dei punti $P_1$, ..., $P_k \in E$ si dicono \textit{affinemente indipendenti} se per
+	    $P \in \Aff(P_1, \ldots, P_k)$ esistono unici
+	    $\lambda_1$, ..., $\lambda_k$ tali per cui
+	    $P = \sum_{i=1}^k \lambda_i P_i$ è una combinazione
+	    affine. Un sottoinsieme $S \subseteq E$ si dice affinemente indipendente se ogni suo sottoinsieme finito è affinemente indipendente.
 
-            Diciamo che i punti $P_1,\ldots,P_k\in E$ sono \textit{affinemente indipendenti} se l'espressione $P=\sum_{i=1}^{k}\lambda_i P_i\in \Aff(\{P_1,\ldots,P_k\})$ è unica.
+        I punti $P_1$, ..., $P_k$ sono affinemente indipendenti se e solo se $\forall i=1\text{---}k$ i vettori $P_j-P_i$ con $j \neq i$ sono linearmente indipendenti in $V$ $\iff \forall i=1\text{---}k$, $P_i \notin \Aff(S \setminus \{P_i\})$,
+        dove $S = \{P_1, \ldots, P_k\}$. Pertanto, possono
+        esistere al più $\dim D_0 + 1$ punti affinemente
+        indipendenti in $D$. In particolare, se si scelgono
+        $n+1$ punti $P_0$, ..., $P_n \in E$ affinemente
+        indipendenti, vale che $\Aff(P_0, \ldots, P_n) = E$ (in tal caso infatti la direzione sarebbe tutto $V$).
+        Esistono sempre $P_0$, ..., $P_n$ punti di $D$ tali
+        che $\Aff(P_0, \ldots, P_n) = D$, se $\dim D = n$;
+        in tal caso l'insieme di questi punti viene detto
+        \textit{riferimento affine}. Ogni riferimento affine ha
+        lo stesso numero di elementi (in generale valgono
+        le stesse proprietà di una base vettoriale, mediante
+        cui se ne dimostra l'esistenza).
 
-            Un sottoinsieme $S\subseteq E$ si dice affinemente indipendente se ogni suo sottoinsieme finito è affinemente indipendente.
+        Sia $E = \AnK$ allora $\ww 1$, ..., $\ww n \in E$ sono affinemente indipendenti se e solo se i vettori $\hat{\ww 1}$, ..., $\hat{\ww n}$ con $\hat{\ww i}=\Matrix{\ww i \\[0.03in] \hline 1} \in \KK^{n+1}$ sono linearmente indipendenti. \\ \vskip 0.05in
 
-            $P_1,\ldots,P_k$ sono affinemente indipendenti se e solo se $\forall i=1,\ldots,k$ i vettori $P_j-P_i$ con $j\neq i$ sono linearmente indipendenti $\iff \forall i$ $P_i\notin \Aff(\{P_1,\ldots,\hat{P}_i,\ldots,P_k\})$ %?
+		Siano $P_0$, ..., $P_k$ i punti di un riferimento
+		affine per il sottospazio affine $D$. Allora ogni
+		punto $P \in D$ è univocamente determinato dagli
+		scalari $\lambda_i$ in $\KK$ tali per cui $P = \sum_{i=0}^k \lambda_i P_i$, eccetto per uno di questi scalari che è già determinato dagli altri (infatti vale sempre $\sum_{i=0}^k \lambda_i = 1$). Vi è dunque una bigezione tra $D$ e $\mathcal{A}_k(\KK)$. L'immagine di $P$
+		tramite questa bigezione è un vettore contenente
+		le cosiddette \textit{coordinate affini} di $P$.
 
-            Sia $E=\mathcal{A}_n(\KK)$ allora $\w_1,\ldots,\w_n \in E$ sono affinemente indipendenti se e solo se i vettori $\hat{\w}_1,\ldots,\hat{\w}_n$ con $\hat{w_i}=\begin{pmatrix}
-                \w_i \\ 1
-            \end{pmatrix} \in \KK^{n+1}$ sono linearmente indipendenti.
-            
-		Segue che ci sono al massimo $n+1$ vettori affinemente indipendenti.
+		Si dice \textit{combinazione convessa} una qualsiasi
+		combinazione affine finita in un insieme di punti affinemente indipendenti $S$ in cui ogni coordinata affine è maggiore o
+		uguale a zero. Si pone in particolare $\IC(S)$ come
+		l'insieme di questo tipo di combinazioni (intuitivamente un inviluppo convesso è l'insieme dei punti contenuti "dentro" il riferimento affine scelto; per tre punti è il triangolo, per due punti è il segmento). Si scrive $\IC(P_1, \ldots, P_k)$ per indicare $\IC(\{P_1, \ldots, P_k\})$. \\ \vskip 0.05in 
+		
+		Si osserva che $\IC(S)$ è un insieme
+		convesso (ossia $\forall P, Q \in \IC(S)$, $[P, Q] \subseteq \IC(S)$, dove $[P, Q] := \IC(\{P, Q\})$ è il segmento congiungente $P$ e $Q$).
 
-            Se scegliamo $n+1$ punti $P_0,\ldots,P_n\in E$ $\Aff(\{P_0,\ldots,P_n\}=E$. 
-            Dunque per ogni punto $P \in E$ $P=\sum_{i=0}^{n}\lambda_i P_i$ con $\sum_{i=0}^{n}\lambda_i=1$.
-            Chiamiamo i $\lambda_i$ le \textit{coordinate affini} del punto $P$ sul riferimento affine $P_0,\ldots,P_n$
+        Si definisce il \textit{baricentro geometrico} di $P_1$, ..., $P_n\in E$ come la seguente combinazione convessa: 
+        \[ G=\frac{1}{n}\sum_{i=1}^{n}P_i \in \IC(P_1, \ldots, P_n). \]
+        Se $A \subseteq E$ è finito, si definisce $G_A$ come il baricentro geometrico dei punti di $A$. Inoltre,
+        se $A$ è un'unione di insiemi disgiunti, $G_A$ è
+        una combinazione convessa dei baricentri di questi insiemi con peso la loro cardinalità divisa per la
+        cardinalità di $A$; in altre parole se $A=B \sqcup C$ (i.e.~$A = B \cup C \land B \cap C = \emptyset$), allora:
+        \[ G_A = \frac{\abs B}{\abs A} G_B + \frac{\abs C}{\abs A} G_C. \]
+     	In questo modo si dimostra facilmente che in un triangolo il baricentro geometrico giace sulle
+     	congiungenti dei punti medi con i vertici opposti.
 
-            Diciamo che $P=\sum_{i=1}^{k}\lambda_i P_i$ è una \textit{combinazione convessa} di $P_1,\ldots,P_k$ se $\sum_{i=0}^{n}\lambda_i=1$ e $\lambda_i\ge0$  $\forall i$
+        \subsection{Applicazioni affini e affinità}
+        Siano $E$ spazio affine su $V$, $E'$ spazio affine su $V'$ sullo stesso campo $\KK$.
+        
+        Un'applicazione $f:E\rightarrow E'$ si dice \textit{applicazione affine} se conserva le combinazioni affini.
 
-            Diremo che l'\textit{inviluppo convesso} $IC(S)$ di un insieme $S\subseteq E$ è l'insieme delle combinazioni convesse finite di $S$.
-            
-            $\forall S\subseteq E$, $IC(S)$ è convesso.
+        Sia $f:E \rightarrow E'$ un'applicazione affine. Allore esiste ed è unica l'applicazione lineare $g:V\rightarrow V'$ tale che $f(O+\v)=f(O)+g(\v)$ per ogni scelta di $O\in E$ e $\v\in V$.
+        Viceversa se $g:V\rightarrow V'$ è lineare, si trova $f:E\rightarrow E'$ affine per ogni scelta di punti $O\in E$, $O'\in E'$ $f(P)=O'+g(P-O)$
 
-            Chiamiamo \textit{baricentro geometrico} di $P_1,\ldots,P_n\in E$ come $G=\frac{1}{n}\sum_{i=1}^{n}P_i$
-            Se $A\subseteq E$ è finito, chiamiamo $G_A$ il baricentro geometrico dei punti di $A$.
-            
-            Allora se $A=B\sqcup C$ $(A=B\cup C \wedge B\cap C= \emptyset )$
-            $$G_A= \frac{|B|}{|A|}G_B+\frac{|C|}{|A|}G_C$$
+        Nel caso $E=\mathcal{A}_n(\KK)$, $E'=\mathcal{A}_m(\KK)$ si trova $f(\x)=f(\Vec{0})+g(\x)=A\x+\Vec{b}$ con $A\in M(m,n,\KK)$ e $\Vec{b} \in A_m(\KK)$
+        Sia $E''$ un altro spazio affine associato a $V''$ e $f':E'\rightarrow E''$ è affine con applicazione lineare associata $g':V' \rightarrow V''$, allora $f'\circ f:E\rightarrow E''$ è affine e vale $f'(f(O+\v)=f'(f(O))+g'(g(\v))$ e l'applicazione lineare associata a $f'\circ f$ è $g'\circ g$
 
-            \subsection{Applicazioni affini e affinità}
-            Siano $E$ spazio affine su $V$, $E'$ spazio affine su $V'$ sullo stesso campo $\KK$.
-            
-            Un'applicazione $f:E\rightarrow E'$ si dice \textit{applicazione affine} se conserva le combinazioni affini.
+        Diremo che $f:E\rightarrow E$ è un'\textit{affinità} di $E$ se $f$ è un'applicazione affine bigettiva.
+        $f$ affinità di $E$ implica che l'applicazione lineare associata $g:V\rightarrow V$ sia invertibile.
 
-            Sia $f:E \rightarrow E'$ un'applicazione affine. Allore esiste ed è unica l'applicazione lineare $g:V\rightarrow V'$ tale che $f(O+\v)=f(O)+g(\v)$ per ogni scelta di $O\in E$ e $\v\in V$.
-            Viceversa se $g:V\rightarrow V'$ è lineare, si trova $f:E\rightarrow E'$ affine per ogni scelta di punti $O\in E$, $O'\in E'$ $f(P)=O'+g(P-O)$
+        Chiamiamo il gruppo affine di $E$ $A(E)$ il gruppo delle affinità di $E$.
 
-            Nel caso $E=\mathcal{A}_n(\KK)$, $E'=\mathcal{A}_m(\KK)$ si trova $f(\x)=f(\Vec{0})+g(\x)=A\x+\Vec{b}$ con $A\in M(m,n,\KK)$ e $\Vec{b} \in A_m(\KK)$
-            Sia $E''$ un altro spazio affine associato a $V''$ e $f':E'\rightarrow E''$ è affine con applicazione lineare associata $g':V' \rightarrow V''$, allora $f'\circ f:E\rightarrow E''$ è affine e vale $f'(f(O+\v)=f'(f(O))+g'(g(\v))$ e l'applicazione lineare associata a $f'\circ f$ è $g'\circ g$
+        L'applicazione $\pi:A(E)\rightarrow GL(V) : f\mapsto g$ è un omomorfismo surgettivo. Il nucleo è dato dalle traslazioni le quali formano un sottogruppo normale.
 
-            Diremo che $f:E\rightarrow E$ è un'\textit{affinità} di $E$ se $f$ è un'applicazione affine bigettiva.
-            $f$ affinità di $E$ implica che l'applicazione lineare associata $g:V\rightarrow V$ sia invertibile.
+        $f:E\rightarrow E$ affinità manda $x$ in $A\x+\vec{b}$ e dato che f bigettiva $A\in GL_n(\KK)$. Segue che $f^{-1}:\x\mapsto A^{-1}\x-A^{-1}\Vec{b}$
 
-            Chiamiamo il gruppo affine di $E$ $A(E)$ il gruppo delle affinità di $E$.
+        $\iota:\KK^n=\mathcal{A}_n(\KK)\rightarrow\mathcal{A}_{n+1}(\KK)=\KK^{n+1}$, $\x\mapsto \hat{\x}=\begin{pmatrix}
+            \x \\ 1
+        \end{pmatrix}$ 
+        è un isomorfismo affine tra $\mathcal{A}_n(\KK)$ e l'iperpiano $H_{n+1}=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=1\}\subset \mathcal{A}_{n+1}(\KK)$
 
-            L'applicazione $\pi:A(E)\rightarrow GL(V) : f\mapsto g$ è un omomorfismo surgettivo. Il nucleo è dato dalle traslazioni le quali formano un sottogruppo normale.
+        Sia $f$ un'affinità di $\mathcal{A}_n(\KK)$ data da $f(\x)=A\x+\Vec{b}$.
+        Allora tramite $\iota$ abbiamo l'affinità di $H_{n+1}$ $f'(\hat{\x})=\hat{f(\x)}=\begin{pmatrix}
+            f(\x) \\ 1
+        \end{pmatrix}$
+        e ci associamo l'applicazione lineare invertibile $\hat{f}:\KK^{n+1}\rightarrow \KK^{n+1}$ data dalla matrice $\hat{A}=\Matrix{A & \vec b \\ 0 & 1}$
+        
+        Le matrici di questa forma formano un sottogruppo di $GL_{n+1}(\KK)$ isomorfo ad $A_n(\KK)$ che corrisponde agli endomorfismi che preservano $H_{n+1}$ %?
 
-            $f:E\rightarrow E$ affinità manda $x$ in $A\x+\vec{b}$ e dato che f bigettiva $A\in GL_n(\KK)$. Segue che $f^{-1}:\x\mapsto A^{-1}\x-A^{-1}\Vec{b}$
+        $f$ automorfismo di $\KK^n$, $E\subseteq \KK^n$ sottospazio affine, se $f(E)\subseteq E$ allora $f|_E:E\rightarrow E$ è affine.
 
-            $\iota:\KK^n=\mathcal{A}_n(\KK)\rightarrow\mathcal{A}_{n+1}(\KK)=\KK^{n+1}$, $\x\mapsto \hat{\x}=\begin{pmatrix}
-                \x \\ 1
-            \end{pmatrix}$ 
-            è un isomorfismo affine tra $\mathcal{A}_n(\KK)$ e l'iperpiano $H_{n+1}=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=1\}\subset \mathcal{A}_{n+1}(\KK)$
+         Sia $E$ spazio affine di dimensione $n$.
+        \begin{enumerate}
+            \item Se $f\in A(E)$ e $P_0,\ldots P_n$ sono affinemente indipendenti allora $f(P_0),\ldots,f(P_n)$ sono affinemente indipendenti.
+            \item Se $P_0,\ldots P_n$ sono affinemente indipendenti e $Q_0,\ldots P_n$ sono affinemente indipendenti esiste ed è unica l'affinità $f:E \rightarrow E$ tale che $f(P_i)=Q_i \forall i=1,\ldots,n$
+            \item  $f\in A(E)$, $D\subseteq E$ sottospazio affine $\implies f(D)$ è sottospazio affine della stessa dimensione
+        \end{enumerate}
+        $A_n(\KK)$ dipende da $n^2+n=n(n+1)$ parametri.
+        Dato $D$ sottospazio affine di dimensione $k$ di $\mathcal{A}_n(\KK)$, $\{f\in A_n(\KK)\mid f(D)=D\}$ è un sottogruppo di $A_n(\KK)$ che dipende da $(n+1)k+(n-k)n$ parametri.
+        
+        \subsection{Spazio proiettivo}
+        Chiamiamo l'insieme dei sottospazi di dimensione 1 in $\KK^{n+1}$ \textit{spazio proiettivo} (associato a $\KK^{n+1})$ e lo denotiamo con $\PP(\KK^{n+1})=\PP^n(\KK)$
 
-            Sia $f$ un'affinità di $\mathcal{A}_n(\KK)$ data da $f(\x)=A\x+\Vec{b}$.
-            Allora tramite $\iota$ abbiamo l'affinità di $H_{n+1}$ $f'(\hat{\x})=\hat{f(\x)}=\begin{pmatrix}
-                f(\x) \\ 1
-            \end{pmatrix}$
-            e ci associamo l'applicazione lineare invertibile $\hat{f}:\KK^{n+1}\rightarrow \KK^{n+1}$ data dalla matrice $\hat{A}=\Matrix{A & \vec b \\ 0 & 1}$
-            
-            Le matrici di questa forma formano un sottogruppo di $GL_{n+1}(\KK)$ isomorfo ad $A_n(\KK)$ che corrisponde agli endomorfismi che preservano $H_{n+1}$ %?
+        Ogni punto $\begin{pmatrix}
+            \x \\ 1
+        \end{pmatrix}\in H_{n+1}$ individua un unico sottospazio $l=Span(\begin{pmatrix}
+            \x \\ 1
+        \end{pmatrix})\in \KK^{n+1}$ di dimensione 1.
 
-            $f$ automorfismo di $\KK^n$, $E\subseteq \KK^n$ sottospazio affine, se $f(E)\subseteq E$ allora $f|_E:E\rightarrow E$ è affine.
+        La differenza $\PP^n(\KK)\setminus \mathcal{A}_n(\KK)$ corrisponde ai sottogruppi $l\in \KK^{n+1}$ tali che $l\subset\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=0\}\cong \KK^n$, cioè corrisponde a un $\PP(\KK^n)=\PP^{n-1}(\KK)$ %??
 
-             Sia $E$ spazio affine di dimensione $n$.
-            \begin{enumerate}
-                \item Se $f\in A(E)$ e $P_0,\ldots P_n$ sono affinemente indipendenti allora $f(P_0),\ldots,f(P_n)$ sono affinemente indipendenti.
-                \item Se $P_0,\ldots P_n$ sono affinemente indipendenti e $Q_0,\ldots P_n$ sono affinemente indipendenti esiste ed è unica l'affinità $f:E \rightarrow E$ tale che $f(P_i)=Q_i \forall i=1,\ldots,n$
-                \item  $f\in A(E)$, $D\subseteq E$ sottospazio affine $\implies f(D)$ è sottospazio affine della stessa dimensione
-            \end{enumerate}
-            $A_n(\KK)$ dipende da $n^2+n=n(n+1)$ parametri.
-            Dato $D$ sottospazio affine di dimensione $k$ di $\mathcal{A}_n(\KK)$, $\{f\in A_n(\KK)\mid f(D)=D\}$ è un sottogruppo di $A_n(\KK)$ che dipende da $(n+1)k+(n-k)n$ parametri.
-            
-            \subsection{Spazio proiettivo}
-            Chiamiamo l'insieme dei sottospazi di dimensione 1 in $\KK^{n+1}$ \textit{spazio proiettivo} (associato a $\KK^{n+1})$ e lo denotiamo con $\PP(\KK^{n+1})=\PP^n(\KK)$
+        Tali rette si dicono \textit{punti all'infinito} di $\mathcal{A}_n(\KK)$, intituivamente un punto all'infinito è il limite di un punto $P\in \mathcal{A}_n(\KK)$ che si allontana verso l'infinito di direzione $l$ %??
 
-            Ogni punto $\begin{pmatrix}
-                \x \\ 1
-            \end{pmatrix}\in H_{n+1}$ individua un unico sottospazio $l=Span(\begin{pmatrix}
-                \x \\ 1
-            \end{pmatrix})\in \KK^{n+1}$ di dimensione 1.
-
-            La differenza $\PP^n(\KK)\setminus \mathcal{A}_n(\KK)$ corrisponde ai sottogruppi $l\in \KK^{n+1}$ tali che $l\subset\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{n+1}=0\}\cong \KK^n$, cioè corrisponde a un $\PP(\KK^n)=\PP^{n-1}(\KK)$ %??
-
-            Tali rette si dicono \textit{punti all'infinito} di $\mathcal{A}_n(\KK)$, intituivamente un punto all'infinito è il limite di un punto $P\in \mathcal{A}_n(\KK)$ che si allontana verso l'infinito di direzione $l$ %??
-
-            Si può ricoprire $\PP^n(\KK)$ con gli iperpiani $H_i=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{i}=1\}$.
-            Ogni 1-sottospazio $l\in \KK^{n+1}$ interseca almeno uno degli $H_i$ in  un punto.
-            
-           
-
+        Si può ricoprire $\PP^n(\KK)$ con gli iperpiani $H_i=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{i}=1\}$.
+        Ogni 1-sottospazio $l\in \KK^{n+1}$ interseca almeno uno degli $H_i$ in  un punto.
            
 		\subsection{Complementi sugli spazi affini}
              Alcuni esempi visti a lezione: %da tenere ?
