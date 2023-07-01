@@ -983,9 +983,7 @@
 		\[ \underbrace{\dim \Sym^k(V)}_{= \, \binom{n+k-1}{k}} + \underbrace{\dim \Lambda^k(V)}_{\leq \, \binom{n}{k}} < \underbrace{\dim \Mult(V^k, \KK)}_{=\,n^k}, \]
 		
 		e dunque che $\Sym^k(V) + \Lambda^k(V) \neq \Mult(V^k, \KK)$.
-		
-		
-		
+
 		\subsection{Determinante di una matrice}
 		
 		Si definisce il determinante $\det$ di una matrice di taglia
@@ -2491,43 +2489,53 @@
 
         Si può ricoprire $\PP^n(\KK)$ con gli iperpiani $H_i=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{i}=1\}$ dal momento che ogni retta deve intersecare almeno uno di questi iperpiani in un punto.
 		
-	\subsection{Coniche} %problema di notazione, come fare A maiuscola corsiva da sostituire a \matchal{A} (?)
-            Una conica in $\mathcal{A}_2(\KK)$ è il luogo delle soluzioni di un polinomio di secondo grado $p(x,y)=ax^2+bxy+cy^2+dx+ey+f$.
-            (Notare che il polinomio può non avere soluzioni ed è invariante per la moltiplicazione per uno scalare diverso da 0).
+		\subsection{Coniche e quadriche}
+	
+		Si definisce \textit{quadrica} il luogo di zeri in $\AA_n(\KK)$ di un polinomio
+		di secondo grado $p(x_1, \ldots, x_n) \in \KK[x_1, \ldots, x_n]$ in $n$ variabili, dove si identifica con
+		una $n$-upla $(x_1, \ldots, x_n)$ di variabili che sono zeri del polinomio
+		un elemento di $\AA_n(\KK)$ con le stesse coordinate.
+        Una \textit{conica} è in particolare una quadrica in due variabili. Si osserva che
+        una quadrica è invariante per la moltiplicazione per uno scalare diverso
+        da $0$.
 
-            Più in generale chiamiamo \textit{quadrica} in $\mathcal{A}_n(\KK)$ il luogo degli zeri di un polinomio di secondo grado in n variabili $p(x_1,\ldots,x_n)$
+        D'ora in poi si intenderà con $\x$ l'$n$-upla $(x_1, \ldots, x_n)$ e si supporrà
+        $\Char \KK \neq 2$. Il polinomio $p(x_1, \ldots, x_n)$ può essere descritto come:
+        \[ p(x_1, \ldots, x_n) = \sum_{i=1}^n a_{ii} x_i^2 + \sum_{1 \leq i<j\leq n} 2 a_{ij} x_i x_y + \sum_{i=1}^n 2 b_i x_i + c. \]
+        
+        Si definiscono le seguenti quantità:
+        
+        \begin{itemize}
+        	\item la \textit{parte quadratica} $\AA(p) \in \Sym(n, \KK)$ di $p$, dove:
+        	\[ \AA(p)_{ij} = \begin{cases}
+        		a_{ij} & \se i \leq j, \\
+        		a_{ji} & \se i > j.
+        	\end{cases} \]
+        	\item la \textit{parte lineare} $\Ll(p) \in M(n, 1, \KK)$ di $p$, dove $\Ll(p)_{i1} = b_i$,
+        	\item il \textit{termine noto} $c(p) \in \KK$ di $p$, dove $c(p) = c$.
+        \end{itemize}
+        Allora il polinomio può essere riscritto come:
+        \[ p(\x) = \x^\top \AA(p) \, \x + 2 \Ll(p)^\top \x + c(p). \]
 
-            \[p(\x)=\x^\top\AA\x+2\Vec{b}^\top\x+c\]
-            dove $\AA$ è la matrice dei coefficienti dei fattori di grado 2, $\Vec{b}$ è il vettore dei coefficienti dei fattori lineari e $c$ è il termine noto del polinomio.
-            Definiamo inoltre la matrice $\MM(p)=\begin{pmatrix}
-                \AA(p) & \mathcal{L}(p) \\
-                \mathcal{L}(p)^\top & c
-            \end{pmatrix}$
+        Si definisce inoltre la matrice $\MM(p)$, dove:
+        \[ \MM(p) =\Matrix{\AA(p) & \rvline & \Ll(p) \, \\ \hline \Ll(p) & \rvline & c(p) } \in \Sym(n+1, \KK),\] la quale viene detta \textit{matrice associata alla quadrica} in $p$. Allora, tramite l'identificazione di $\Aa_n(\KK)$ in $H_{n+1} \subset \KK^{n+1}$ mediante $\iota$, vale che:
+        \[ p(\x) = \hat \x ^\top \MM(p) \hat x, \quad \dove \hat \x = \iota(\vec x) = \projT{\x}. \]
+        
+        Si deduce allora che una quadrica altro non è che la controimmagine tramite $\iota$
+        dell'intersezione tra $H_{n+1}$ e il cono isotropo $\CI(\varphi_{\MM(p)})$, dove
+        $\varphi_{\MM(p)}$ è il prodotto scalare indotto da $\MM(p)$ in $\KK^{n+1}$ (i.e.~la quadrica è esattamente $\iota\inv(H_{n+1} \cap \CI(\varphi_{\MM(p)}))$).
 
-            Nel caso di una conica determinata dal polinomio $p(x,y)=a_{1,1}x^2+a_{1,2}xy+a_{2,2}y^2+a_{1,3}x+a_{2,3}y+a_{3,3}$ abbiamo che:
+        Nel caso di una conica determinata dal polinomio $p(x,y)=$ $ax^2+by^2+$ $cxy+dx+ey+f$, vale
+        che:
 
-            
-            $\AA(p)=\begin{pmatrix}
-                a_{1,1} & \frac{a_{1,2}}{2} \\
-                \frac{a_{1,2}}{2} & a_{2,2}
-            \end{pmatrix}$
-            $\Vec{b}=\mathcal{L}(p)=\begin{pmatrix}
-                \frac{a_{1,3}}{2} \\
-                \frac{a_{2,3}}{2}
-            \end{pmatrix}$
-            $c=a_{3,3}$
-            $\MM(p)=\begin{pmatrix}
-                a_{1,1} & \frac{a_{1,2}}{2} & \frac{a_{1,3}}{2} \\
-                \frac{a_{1,2}}{2} & a_{2,2} & \frac{a_{2,3}}{2} \\
-                \frac{a_{1,3}}{2} & \frac{a_{2,3}}{2} & a_{3,3,} \\
-            \end{pmatrix}$
+        \[ \MM(p) = \Matrix{\NMatrix{a & \nicefrac{c}{2} \\ \nicefrac{c}{2} & b} & \rvline & \NMatrix{\nicefrac{d}{2} \\ \nicefrac{e}{2}} \, \\ \hline \NMatrix{\nicefrac{d}{2} & \nicefrac{e}{2}} & \rvline & f }. \]
 
-            Sia $f\in A_n(\KK)$, $f(\x')=M\x'+\Vec{t}$, $M\in GL_n(\KK), t\in \KK^n$.
-            ponendo $\x=M\x'+\Vec{t}$ troviamo:
-            \[p'(\x')=\x'^{\top} A'\x'+2\Vec{b'}^\top\x'+c'\]
-            con $\AA'=M^\top \AA M$, $\Vec{b}'=M^\top(\AA\Vec{t}+\Vec{b})$, $c'=p(\Vec{t})$.
-            
-            La matrice $\MM(p \circ f)$, varia nel seguente
+        Sia $f\in A_n(\KK)$, $f(\x')=M\x'+\Vec{t}$, $M\in GL_n(\KK), t\in \KK^n$.
+        ponendo $\x=M\x'+\Vec{t}$ troviamo:
+        \[p'(\x')=\x'^{\top} A'\x'+2\Vec{b'}^\top\x'+c'\]
+        con $\AA'=M^\top \AA M$, $\Vec{b}'=M^\top(\AA\Vec{t}+\Vec{b})$, $c'=p(\Vec{t})$.
+        
+        La matrice $\MM(p \circ f)$, varia nel seguente
 		modo:
 		\begin{gather*}
 			\tiny
