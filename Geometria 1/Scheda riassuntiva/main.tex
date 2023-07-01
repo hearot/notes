@@ -2128,6 +2128,24 @@
 			$V_{-1}$ raccoglie gli operatori antisimmetrici.
 		\end{itemize}
 
+		\subsubsection{Operatori normali}
+		
+		Un operatore $f$ in uno spazio euclideo reale
+		si dice normale se commuta col suo trasposto,
+		ossia se $f \circ f^\top = f^\top \circ f$, mentre
+		si dice normale in uno spazio euclideo complesso
+		se commuta col suo aggiunto, ossia se $f \circ f^* = f^* \circ f$. \\ \vskip 0.05in
+		
+		Analogamente una matrice si dice
+		normale se commuta con la sua trasposta (se è a elementi reali) o con la sua aggiunta (se è a elementi complessi). Una matrice contemporaneamente
+		normale e triangolare è necessariamente una matrice
+		diagonale. \\ \vskip 0.05in
+		
+		In uno spazio euclideo complesso, $f$ è normale $\iff$ $f$ è diagonalizzabile ($f$ è triangolarizzabile con una base ortonormale $\basis$ tramite
+		l'algoritmo di ortogonalizzazione di Gram-Schmidt, e quindi la matrice $M_\basis(f)$ è sia normale che
+		triangolare, e quindi diagonale). In uno spazio
+		euclideo reale, se $f$ è triangolarizzabile e
+		normale, allora $f$ è diagonalizzabile (come prima).
 		
 		\subsection{Spazi euclidei reali e complessi}
 		
@@ -2185,7 +2203,12 @@
 		base ortonormale di autovettori (\textit{teorema spettrale}). Se così non fosse, detto $W = V_{\lambda_1} \oplus^\perp \cdots \oplus^\perp V_{\lambda_k}$, $W^\perp$ sarebbe $f$-invariante e simmetrico/hermitiano, e dunque ammetterebbe un autovalore reale, contrariamente a quanto ipotizzato, \Lightning. Alternativamente, poiché
 		$f$ è simmetrico (e in tal caso anche perché il
 		polinomio caratteristico è completamente fattorizzabile in $\RR$) o hermitiano, $f$ è anche
-		normale, ed è dunque diagonalizzabile; allora, poiché gli autospazi sono in somma diretta ortogonale, $f$ è anche ortogonalmente o unitariamente diagonalizzabile.
+		normale, ed è dunque diagonalizzabile; allora, poiché gli autospazi sono in somma diretta ortogonale, $f$ è anche ortogonalmente o unitariamente diagonalizzabile. \\ \vskip 0.05in
+		
+		In termini matriciali, se $A$ è una matrice
+		simmetrica a elementi reali (o hermitiana a elementi complessi), esiste una matrice $O \in O(n)$ (o $U \in U(n)$) tale per cui $O^\top A O$ (o $U \in U(n)$) è diagonale. Infatti $f_A$, l'operatore
+		indotto da $A$ nella base ortonormale di $\RR^n$ (o $\CC^n$), è un operatore simmetrico (o hermitiano) rispetto al prodotto standard dello
+		spazio euclideo che si sta studiando.
 		
 		\subsubsection{Radice quadrata di una matrice simmetrica, decomposizione polare e simultanea ortogonalizzabilità}
 		
