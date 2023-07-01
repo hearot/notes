@@ -2181,18 +2181,50 @@
 		\varphi(\lambda \v, \w) = \varphi(\v, \mu \w) = \mu \varphi(\v, \w)$; poiché
 		$\lambda \neq \mu$ deve allora per forza valere $\varphi(\v, \w) = 0$.
 		
-		% TODO: sistemare
-		Se $f$ è simmetrico o hermitiano, esiste sempre una base ortonormale di autovettori
-		per $f$. $f$ è normale se e solo se è diagonalizzabile. Esiste sempre $S \in \Sym(n, \RR)$ tale per cui $S^2 = A$, con $A \in \Sym(n, \RR)$. Se $S$ è definita positiva,
-		tale $S$ è unica. Se $A \in \GL(n, \RR)$, esistono e sono unici $P \in O(n)$,
+		Se $f$ è simmetrico o hermitiano, esiste sempre una
+		base ortonormale di autovettori (\textit{teorema spettrale}). Se così non fosse, detto $W = V_{\lambda_1} \oplus^\perp \cdots \oplus^\perp V_{\lambda_k}$, $W^\perp$ sarebbe $f$-invariante e simmetrico/hermitiano, e dunque ammetterebbe un autovalore reale, contrariamente a quanto ipotizzato, \Lightning. Alternativamente, poiché
+		$f$ è simmetrico (e in tal caso anche perché il
+		polinomio caratteristico è completamente fattorizzabile in $\RR$) o hermitiano, $f$ è anche
+		normale, ed è dunque diagonalizzabile; allora, poiché gli autospazi sono in somma diretta ortogonale, $f$ è anche ortogonalmente o unitariamente diagonalizzabile.
+		
+		\subsubsection{Radice quadrata di una matrice simmetrica, decomposizione polare e simultanea ortogonalizzabilità}
+		
+		Se $A \in \Sym(n, \RR)$ è semidefinita positiva, allora
+		esiste sempre una matrice $S \in \Sym(n, \RR)$ tale
+		per cui $S^2 = A$. Se si suppone anche che $S$ è
+		semidefinita positiva, tale matrice diventa unica e
+		viene detta \textit{radice quadrata} di $A$, indicata come $\sqrt{A}$. \\
+		
+		Per costruire tale radice quadrata è sufficiente
+		considerare $P \in O(n)$ tale per cui
+		$P^\top A P = D$, dove $D \in M(n, \RR)$ è
+		diagonale, secondo il teorema spettrale. Poiché $A$ è semidefinita positiva, $D$
+		si compone di soli elementi non negativi, ed è
+		dunque possibile costruire la matrice $\sqrt{D} \in M(n, \RR)$ dove $\sqrt{D}_{ii} = \sqrt{D_{ii}}$ (da cui si deduce che $\sqrt{D}^2 = D$ e che $\sqrt{D}$ è esattamente la radice quadrata di $D$).
+		Si consideri dunque $S = P \sqrt{D} P^\top$; vale
+		che $S^2 = P D P^\top = A$, e dunque $S$ è la
+		radice quadrata $\sqrt{A}$ di $A$ (per dimostrare l'unicità di tale matrice è sufficiente ridursi all'uguaglianza negli autospazi). Si osserva che
+		se $A$ è definita positiva, anche $S$ lo è. \\ \vskip 0.05in
+		
+		Se $A \in M(n, \RR)$ esistono e sono uniche le
+		matrici $P \in O(n)$, $S \in \Sym(n, \RR)$, con $S$ semidefinita positiva, tali per
+		cui $A = PS$. In particolare vale che $S = \sqrt{A A^\top}$; se dunque $A \in \GL(n, \RR)$, $S$ è
+		definita positiva (in tal caso $\Ker A^\top A = \Ker A = \zerovecset$ -- come visto nella sezione sulle matrici --, e dunque $\vec x^\top A^\top A \vec x = \innprod{A \vec x, A \vec x} > 0$ $\implies A^\top A > 0 \implies S > 0$).
+		
+		Se $A \in \GL(n, \RR)$, esistono e sono unici $P \in O(n)$,
 		$S \in \Sym(n, \RR)$ tali per cui $A = PS$ (in particolare $S = \sqrt{A A^\top}$).
 		
-		Se $\varphi$ è definito positivo e $\psi$ è un altro prodotto scalare, allora
-		i due prodotti sono simultaneamente ortogonalizzabili. È sufficiente prendere
+		Due prodotti $\varphi$, $\psi$ si dicono simultaneamente ortogonalizzabili se esiste una
+		base $\basis$ tale per cui sia che $M_\basis(\varphi)$ che $M_\basis(\psi)$ sono
+		diagonali (ossia se esiste una base ortogonale per
+		entrambi i prodotti). \\ \vskip 0.05in
+
+		Se $\KK=\RR$ o $\KK=\CC$, $\varphi$ è definito positivo, allora
+		i due prodotti $\varphi$ e $\psi$ sono sempre simultaneamente ortogonalizzabili. È sufficiente infatti prendere
 		una base $\basis$ ortonormale di $\varphi$, e trovare la base ortonormale $\basis'$ di autovettori
 		che rende $M_\basis(\psi)$ diagonale. In tale base $\basis'$, $M_{\basis'}(\varphi)$
 		è l'identità e $M_\basis(\psi)$ è diagonale: dunque la base è ortogonale per ambo
-		i prodotti scalari.
+		i prodotti.
 		
 		\subsection{Azioni di gruppo}
 		Sia $G$ un gruppo e $X$ un insieme. Un'azione sinistra\footnote{Un'azione sinistra induce sempre anche un'azione destra, ponendo $x \cdot g=g^{-1} \cdot x$.} di $G$ su $X$ a sinistra un'applicazione $\cdot : G \times X \rightarrow X$, per la quale si pone $g \cdot x := \cdot(g, x)$, tale che:
