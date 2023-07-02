@@ -454,7 +454,6 @@
 		tale che $C_A(B) = AB - BA$. Allora $\Ker C_A = M(n, \KK)
 		\iff A \in \Span(I_n)$. Siano $I$ un insieme di $n^2$ indici
 		distinti, allora l'insieme
-		
 		\[ T = \left\{ A^i \mid i \in I \right\} \]
 		
 		è linearmente dipendente (è sufficiente notare che
@@ -1431,7 +1430,7 @@
 		è mai iniettiva, ed esiste dunque sempre un polinomio $p$
 		tale per cui $\sigma_f(p) = 0$, l'applicazione nulla (è
 		sufficiente prendere $n^2+1$ potenze di $f$ e osservare
-		che devono essere linearmente indipendenti). Poiché
+		che devono essere linearmente dipendenti). Poiché
 		$\KK[x]$ è un PID, $\Ker \sigma_f$ è un ideale principale,
 		e quindi esiste un polinomio monico $\varphi_f$, detto
 		polinomio minimo di $f$, tale per cui
@@ -1697,7 +1696,7 @@
 			\begin{enumerate}[a.]
 				\item Si prenda la base $\basis_z = \{\vv 1, \ldots, \vv k, \conj{\vv 1}, \ldots, \conj{\vv k}\}$ che
 				genera i blocchi di $z$ e $\conj z$ e si consideri la nuova
-				base $\basis_z' = \{ \Re(\vv 1), \imm(\vv 1), \ldots, \Re(\vv k), \imm(\vv 1k) \}$,
+				base $\basis_z' = \{ \Re(\vv 1), \imm(\vv 1), \ldots, \Re(\vv k), \imm(\vv k) \}$,
 				\item In tale base la forma canonica di Jordan varia eliminando i blocchi
 				di $\conj z$, sostituendo all'autovalore $z = a + bi$ il seguente blocco:
 				\[ \Matrix{
@@ -2476,6 +2475,9 @@
 			$\abs{\Fix(f)}=0 \iff f$ è una traslazione, dove $\Fix(f) = \{x\in \mathcal{A}_1(\KK)\mid f(x)=x\}$,
 			\item $A(\mathcal{A}_1(\KK))$ agisce in maniera semplicemente transitiva sulle coppie di punti $(P_1,P_2) \in \AA_1(\KK) \times \AA_1(\KK)$ con $P_1\neq P_2$.
 		\end{itemize}
+		
+		Sia $f(\x) = M\x + \vec t$ un'affinità di $A(\AnK)$. Allora, se $1$ non è un autovalore
+		di $M$, $f$ ha un unico punto fisso (in tal caso, infatti $(M-I)$ è invertibile, e quindi $(M-I)\x = -\vec t$ ammette un'unica soluzione).
         
         \subsection{Spazio proiettivo}
         Si definisce \textit{spazio proiettivo} relativo a $\KK^{n+1}$ l'insieme delle rette di $\KK^{n+1}$. Tale spazio viene denotato come $\PP(\KK^{n+1})=\PP^n(\KK)$ (intuitivamente lo spazio proiettivo perde una dimensione rispetto allo spazio di partenza perché è la proiezione di tutte le rette in un unico punto, eccetto per i punti all'infinito).
@@ -2490,6 +2492,8 @@
         Si può ricoprire $\PP^n(\KK)$ con gli iperpiani $H_i=\{\x\in \mathcal{A}_{n+1}(\KK)\mid x_{i}=1\}$ dal momento che ogni retta deve intersecare almeno uno di questi iperpiani in un punto.
 		
 		\subsection{Coniche e quadriche}
+		
+		\setlength{\extrarowheight}{4pt}
 	
 		Si definisce \textit{quadrica} il luogo di zeri in $\AA_n(\KK)$ di un polinomio
 		di secondo grado $p(x_1, \ldots, x_n) \in \KK[x_1, \ldots, x_n]$ in $n$ variabili, dove si identifica con
@@ -2518,7 +2522,7 @@
         \[ p(\x) = \x^\top \AA(p) \, \x + 2 \Ll(p)^\top \x + c(p). \]
 
         Si definisce inoltre la matrice $\MM(p)$, dove:
-        \[ \MM(p) =\Matrix{\AA(p) & \rvline & \Ll(p) \, \\ \hline \Ll(p) & \rvline & c(p) } \in \Sym(n+1, \KK),\] la quale viene detta \textit{matrice associata alla quadrica} in $p$. Allora, tramite l'identificazione di $\Aa_n(\KK)$ in $H_{n+1} \subset \KK^{n+1}$ mediante $\iota$, vale che:
+        \[ \MM(p) =\Matrix{\AA(p) & \rvline & \Ll(p) \, \\ \hline \Ll(p) & \rvline & c(p) } \in \Sym(n+1, \KK),\] la quale viene detta \textit{matrice associata alla quadrica} in $p$. Si dice che la quadrica relativa a $p$ è \textit{non degenere} se $\rg(\MM(p)) = n+1$. Allora, tramite l'identificazione di $\Aa_n(\KK)$ in $H_{n+1} \subset \KK^{n+1}$ mediante $\iota$, vale che:
         \[ p(\x) = \hat \x ^\top \MM(p) \hat x, \quad \dove \hat \x = \iota(\vec x) = \projT{\x}. \]
         
         Si deduce allora che una quadrica altro non è che la controimmagine tramite $\iota$
@@ -2530,40 +2534,47 @@
 
         \[ \MM(p) = \Matrix{\NMatrix{a & \nicefrac{c}{2} \\ \nicefrac{c}{2} & b} & \rvline & \NMatrix{\nicefrac{d}{2} \\ \nicefrac{e}{2}} \, \\ \hline \NMatrix{\nicefrac{d}{2} & \nicefrac{e}{2}} & \rvline & f }. \]
 
-        Sia $f\in A_n(\KK)$, $f(\x')=M\x'+\Vec{t}$, $M\in GL_n(\KK), t\in \KK^n$.
-        ponendo $\x=M\x'+\Vec{t}$ troviamo:
-        \[p'(\x')=\x'^{\top} A'\x'+2\Vec{b'}^\top\x'+c'\]
-        con $\AA'=M^\top \AA M$, $\Vec{b}'=M^\top(\AA\Vec{t}+\Vec{b})$, $c'=p(\Vec{t})$.
-        
-        La matrice $\MM(p \circ f)$, varia nel seguente
-		modo:
+        Sia $f\in A(\AnK)$ tale per cui $f(\x)=M\x + \vec t$, con $M\in \GL(n, \KK), \vec t \in \KK^n$. Si definisce allora un'azione destra di $A(\AnK)$ sulle quadriche di
+        $n$ variabili, dove $p \cdot f$ è indicato come $p \circ f$, che a sua volta
+        indica il polinomio $p(f(\x)) = p(M\x + \vec t)$. Il luogo di zeri $Z(p)$ di una quadrica
+        su cui agisce $A(\AnK)$ varia a sua volta secondo l'affinità; in particolare vale che:
+        \[ Z(p) = f(Z(p \circ f)). \]
+        Si definisce allora una relazione di equivalenza detta \textit{equivalenza affine},
+        dove:
+        \[ p \sim q \defiff \exists \lambda \in \KK^*, f \in A(\AnK) \mid p = \lambda (q \circ f). \]
+        Vale inoltre la seguente identità:
+        \[p(f(\x))=\x^{\top} A' \x+2\vec{b'}^\top\x+c',\]
+
+        dove $\AA'=M^\top \AA M$, $\vec{b'}= M^\top(\AA\Vec{t}+\Vec{b})$ e $c'=p(\vec{t})$. Pertanto la matrice $\MM(p \circ f)$ può essere scritta come:
+
 		\begin{gather*}
-			\tiny
-			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \\ \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)},
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \\
+			 \Matrix{M^\top \AA(p) M & \rvline & M^\top(\AA(p) \vec t + \Ll(p)) \, \\ \hline \, \left(M^\top(\AA(p) \vec t + \Ll(p))\right)^\top & \rvline & p(\vec t)}.
 		\end{gather*}
+		
+		Se $f$ è solo una traslazione (i.e.~$M = I_n$), la formula si semplifica:
+		\begin{gather*}
+			\MM(p \circ f) = {\hat M}^\top \MM(p) \hat M = \\
+			\Matrix{\AA(p) & \rvline & \AA(p) \vec t + \Ll(p) \, \\ \hline \, 	\left(\AA(p) \vec t + \Ll(p)\right)^\top & \rvline & p(\vec t)}.
+		\end{gather*}
+
   
-            Sia $C=\{\x\in \mathcal{A}_n(\KK) \mid p(\x)=0\}$.
-            $C$ si dice \textit{a centro} se $\exists \x_0\in \mathcal{A}_n(\KK)$ t.c. $p(\x_0+\x)=p(x_0-\x) \forall \x \in \KK^n$
-            
-            Si dirà che $\x_0$ è un centro di simmetria.
-            
-            Alternativamente $C$ è a centro $\x_0 \iff \MM(p \circ f)=\begin{pmatrix}
-                \AA & 0 \\
-                0 & c
-            \end{pmatrix}$
-            
-		Oppure ancora una conica è a centro se e solo se è risolvibile il sistema $\AA(p) \vec t + \Ll(p) = \vec 0$.
+        Una quadrica relativa al polinomio $p$ si dice \textit{a centro} se
+        $\exists \vec{x_0} \in \AnK \mid p(\vec{x_0} + \vec t) = p(\vec{x_0} - \vec t)$,
+        dove $\vec t \in \AnK$; in particolare tale $\vec{x_0}$ è detto \textit{centro di simmetria}. Vale in particolare che $\vec 0$ è un centro di simmetria di $p$ se
+        e solo se $\Ll(p) = \vec 0$. \\ \vskip 0.05in
+        
+        Inoltre vale che $\vec{x_0}$ è un centro di simmetria di $p$ se e solo se $p \circ f$ ha centro di simmetria
+        $\vec 0$ tramite
+        la traslazione $f(\x) = \x + \vec{x_0}$; pertanto $p$ è a centro se e solo se è risolvibile in $\vec{x_0}$ il sistema:
+        \[ \Ll(p \circ f) = \AA(p) \vec {x_0} + \Ll(p) = \vec 0.\]
+        Poiché allora i centri della quadriche sono soluzione di un sistema lineare, se esistono, essi formano un sottospazio affine di dimensione $n-\rg(\AA)$; in particolare, se $\vec{x_0}$ è un particolare centro, tale sottospazio affine $C$ è
+        esattamente dato da:
+        \[ C = \vec{x_0} + \Ker \AA(p). \]
 
-        I centri della quadriche (quando ci sono) formano un sottospazio affine di dimensione $n-rg(\AA)$
-
-        Diremo che la conica $C$ è \textit{non degenere} quando $rg(\MM(p))=3$
-
-        \subsection{Classificazione delle coniche}
-        Classificazione \textit{affine}: si trova una forma canonica nelle orbite del gruppo affine $A_n(\KK)$.
-
-        Se $V$ è euclideo su $\RR$, si può introdurre la distanza $d(P,Q)=\norm{Q-P}$.
-        Le isometrie di $E$ sono quelle affinità che preservano la distanza e formano il gruppo $ISO(E)$.
-        Classificazione \textit{isometrica}: Si trovano forme canoniche nelle orbite rispetto a $ISO(E)$ %???		
+        \subsubsection{Classificazione delle coniche in $\CC$ ed $\RR$}
+        Esistono due tipi di classificazioni: una \textit{affine}, dove per ogni quadrica si trova una forma canonica per equivalenza affine tramite la moltiplicazione per scalare $\lambda$ e per applicazione delle affinità di $A(\AnK)$, e una \textit{isometrica}, dove si classificano le quadriche rispetto alle isometrie del gruppo delle isometrie $\Iso(\AnK)$ (e.g.~le ellissi in generale sono affinemente equivalenti, ma non sono isometricamente equivalenti), dove $\Iso(\AnK)$ è composto dalla affinità di $A(\AnK)$
+        che preservano la distanza tra punti, qualora definibile.
 
 		Sia $\KK=\CC$. Allora ogni conica è affinemente equivalente ad
 		un'equazione canonica della seguente tabella, unicamente
