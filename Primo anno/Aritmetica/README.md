@@ -8,7 +8,7 @@ Tutti i PDF sotto la cartella omonima sono il risultato degli appunti presi in p
 e D'Adderio, di cui sopra il programma. Seppur manchi una parte preliminare (la quasi totalità di teoria dei gruppi), il resto delle lezioni
 è quasi del tutto coperto.
 
-La cartella dell'*Algebrario* contiene un prototipo di dispense che intendo scrivere sul corso di Aritmetica del primo anno. Al momento
-il lavoro è in pausa, ma potrebbe (e dovrebbe) riprendere in estate, nonostante la presenza di una buona parte delle nozioni della
-seconda parte del corso (non è un caso: per studiare per il secondo compitino ho riscritto buona parte delle nozioni che già
-conoscevo per consolidare le mie conoscenze).
+La cartella dell'*Algebrario* contiene un prototipo di quelle che sarebbero dovute essere delle dispense completamente sostitutive del corso.
+Accorgendomi tuttavia della precarietà di alcuni capitoli, e influenzato anche dall'esistenza di dispense che seguono la stessa filosofia
+(come quelle di [Diego Monaco](https://github.com/diego-unipi/Appunti-Aritmetica)), ho deciso di procedere all'abbandono del progetto. Gli
+appunti già creati -- spesso e volentieri tratti interamente da alcuni [miei scritti](https://scritti.hearot.it) -- verranno tuttavia revisionati e integrati in una cartella unica assieme ai PDF.
