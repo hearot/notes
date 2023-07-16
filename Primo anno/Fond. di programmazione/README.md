@@ -6,3 +6,4 @@
 
 Gli appunti relativi al corso di Fondamenti di programmazione sono stati presi con [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it). Seppur carenti per quanto riguarda la parte relativa al linguaggio C, tali appunti approfondiscono in modo particolare
 il programma riguardante la semantica, gli automi a stati finiti (DFA, NFA, ε-NFA) e le grammatiche.
+Il corso è terminato, e quindi questa cartella non vedrà più aggiornamenti.

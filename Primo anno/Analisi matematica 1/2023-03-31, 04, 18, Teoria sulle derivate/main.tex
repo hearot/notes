@@ -447,24 +447,15 @@
 		Allora $\frac{f(x)}{g(x)} \tendsto{x_0} L$.
 	\end{theorem}
 
-	\begin{proof}
-		Si consideri il caso (a) per $x_0$ finito. Si ponga $f(x_0) = g(x_0) := 0$. Senza perdità di generalità si
+	\begin{proof}[Dimostrazione del caso $(a)$ con $x_0$]
+		Senza perdità di generalità si ponga $f(x_0) = g(x_0) := 0$ e si
 		assuma che $I$ sia un intorno destro di $x_0$. Sia $x \in I \setminus \{x_0\}$, da cui si ricava che $x > x_0$. \\
 		
 		Si osserva che $\frac{f(x)}{g(x)} = \frac{f(x) - f(x_0)}{g(x)} - g(x_0)$. Per il teorema di Cauchy, esiste allora $\tilde{x} \in (x_0, x)$,
 		in funzione di $x$, tale
 		che $\frac{f(x)}{g(x)} = \frac{f'(\tilde x)}{g'(\tilde x)}$. Allora
 		$\lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(\tilde x)}{g'(\tilde x)} = \lim_{\tilde x \to x_0} \frac{f'(\tilde x)}{g'(\tilde x)} = L$, dove si è utilizzato che $\tilde x \tendsto{x_0} x_0$ per il teorema del confronto applicato sulla
-		relazione $x_0 < \tilde x < x$. \\
-		
-		Si consideri ora il caso (b) per $x_0$ finito. Siano $x_1 > x_0$
-		tali che $x_1 > x > x_0$. Allora vale la seguente identità:
-		
-		\[ \frac{f(x)}{g(x)} = \left( \frac{f(x) - f(x_1)}{g(x) - g(x_1)} + \frac{f(x_1)}{g(x) - g(x_1)} \right) \frac{g(x) - g(x_1)}{g(x)}. \]
-		
-		Si osserva allora che:
-		
-		\[ \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f(x) - f(x_1)}{g(x) - g(x_1)}. \]
+		relazione $x_0 < \tilde x < x$.
 	\end{proof}
 
 	\begin{remark}
@@ -482,52 +473,5 @@
 	\begin{proof}
 		Si consideri il rapporto incrementale $\frac{f(x) - f(x_0)}{x - x_0}$.
 		Allora, per $x \to x_0$, per il teorema di de l'Hopital, $f'(x_0) = \lim_{x \to x_0} f'(x)$.
-	\end{proof}
-
-	\begin{theorem} (sullo sviluppo di Taylor)
-		Sia $I$ un intervallo e sia $\xbar \in I$. Sia $f : I \to \RR$ e
-		sia $d \in \NN$. Sia $f$ derivabile $d-1$ dappertutto e sia derivabile
-		$d$ volte in $\xbar$. Allora, detti
-		
-		\[ P_d(h) = f(\xbar) + f'(\xbar) h + \ldots + \frac{f^{(d)}(\xbar)}{d!} h^d, \]
-		
-		\[ R_d(h) = f(\xbar + h) - P_d(h), \]
-		
-		\begin{enumerate}[(a)]
-			\item $R_d(h) = o(h^d)$ per $h \to 0$,
-			
-			\item se $f$ è derivabile $d$ volte su $I$ e $d+1$ volte in $\xbar$, allora $R_d(h) = O(h^{d+1})$ per $h \to 0$ e $\frac{R_d(h)}{h^{d+1}} \to \frac{f^{(d+1)}(\xbar)}{(d+1)!}$,
-			
-			\item se $f$ è derivabile $d+1$ volte su $I$, allora
-			$\forall h \mid \xbar + h \in I$, $\exists \tilde x \in [\xbar, \xbar + h] \mid R_d(h) = \frac{f^{(d+1)}(\tilde x)}{(d+1)!}$ (\textit{formula del resto di Lagrange}),
-			
-			\item se $f \in C^{d+1}$, allora $R_d(h) = \frac{1}{d!} \int_0^h (h-t)^d f^{(d+1)}(\xbar + t) \, dt$ (\textit{formula integrale}).
-		\end{enumerate}
-	\end{theorem}
-
-	\begin{proof} % TODO: dimostrazione farlocca, migliorarla
-		(d) Si assuma $\xbar = 0$ e $f \in C^{d+1}$. Innanzitutto
-		si osserva che la tesi è equivalente a mostrare che $f(h) = P_d(h) + \frac{1}{d!} \int_0^h (h-t)^d f^{(d+1)}(t) \, dt$. \\
-		
-		Se $d=0$, $f(h) = f(0) + \int_0^h f'(t) \,dt$ (teorema fondamentale
-		del calcolo integrale). $f(h) = f(0) + \abs{-(h-t) f'(h)}_0^h + \int_0^h (h-t) f''(t) \, dt$. [...] % TODO: si continua per induzione 
-	\end{proof}
-
-	\begin{proposition}
-		Sia $f : I \to \RR$ derivabile. Sia $\xbar \in I$ tale che
-		$f'(\xbar) = 0$ ed esista $f''(\xbar)$. Allora:
-		
-		\begin{enumerate}[(i)]
-			\item $f''(\xbar) > 0 \implies \xbar$ è un punto di minimo locale stretto,
-			\item $f''(\xbar) < 0 \implies \xbar$ è un punto di massimo locale.stretto,
-			\item $\xbar$ è un punto di minimo locale $\implies f''(\xbar) \geq 0$,
-			\item $\xbar$ è un punto di massimo locale $\implies f''(\xbar) \leq 0$. 
-		\end{enumerate}
-	\end{proposition}
-
-	\begin{proof}
-		Per lo sviluppo di Taylor, $f(\xbar + h) = f(\xbar) + f'(\xbar) h + \frac{1}{2} f''(\xbar) h^2 + o(h^2) \implies \frac{f(\xbar + h) - f(\xbar)}{h^2} = \frac{1}{2} f''(\xbar) + o(1)$ (infinitesimo).
-		Allora $\frac{f(\xbar + h) - f(\xbar)}{h^2} \tendsto{h} L > 0$.
-		Quindi permanenza del segno.
 	\end{proof}
 \end{document}
