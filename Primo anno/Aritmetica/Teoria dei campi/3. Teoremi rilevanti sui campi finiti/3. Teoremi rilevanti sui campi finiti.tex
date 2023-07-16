@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Teoremi rilevanti sui campi finiti}
 
 \section{Campo di spezzamento di un irriducibile in \texorpdfstring{$\FFpp$}{F\_p}}
@@ -201,3 +223,5 @@
     anche $\FFpp \subseteq \FFpn$, si deduce che $\FFpd \cong \FFpp(\alpha) \subseteq
         \FFpn$. Allora, per il \thref{th:inclusione}, $d$ divide $n$.
 \end{proof}
+
+\end{document}

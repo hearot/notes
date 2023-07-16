@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Anelli euclidei, PID e UFD}
 
 \section{Prime proprietà}
@@ -794,3 +816,8 @@ Si definisce innanzitutto $\ZZ[\sqrt{n}]$ nel seguente modo:
     fattorizzazioni in irriducibili completamente
     distinte. Quindi $\ZZsqrt{10}$ non può essere un UFD.
 \end{proof}
+
+\chapter{Riferimenti bibliografici}
+\printbibliography[heading=none]
+
+\end{document}

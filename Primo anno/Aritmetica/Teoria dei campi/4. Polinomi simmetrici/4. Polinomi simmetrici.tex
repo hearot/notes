@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Polinomi simmetrici}
 
 \section{Definizione e prime proprietà}
@@ -67,13 +89,9 @@ ossia il polinomio ottenuto permutando le variabili $x_i$ secondo $\sigma$.
     dove con LO si indica il \textit{lexicographic order}.
 \end{definition}
 
-\begin{proposition}
+\begin{remark}
     Il \textit{deglex} è una relazione di ordine totale.
-\end{proposition}
-
-\begin{proof}
-    [TODO]
-\end{proof}
+\end{remark}
 
 \begin{proposition}
     \label{prop:moltiplicazione_disuguaglianza_deglex}
@@ -245,6 +263,4 @@ ossia il polinomio ottenuto permutando le variabili $x_i$ secondo $\sigma$.
     e surgettivo, è un isomorfismo, da cui la tesi.
 \end{proof}
 
-\section{Teorema fondamentale dell'Algebra}
-
-
+\end{document}

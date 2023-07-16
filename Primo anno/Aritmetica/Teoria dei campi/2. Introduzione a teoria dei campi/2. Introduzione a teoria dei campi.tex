@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Introduzione alla teoria dei campi}
 
 \section{La caratteristica di un campo}
@@ -10,8 +32,8 @@ Si consideri il seguente omomorfismo:
 
 completamente determinato dalla condizione $\psi(1) = 1$, dacché
 $\ZZ$ è generato da $1$. Si studia innanzitutto il caso in cui
-$\Ker \psi = (0)$. In questo caso, $\psi$ è un monomorfismo, e per
-il \corref{cor:primo_isomorfismo_iniettivo}, $\ZZ \cong \Imm \psi$. \\
+$\Ker \psi = (0)$. In questo caso, $\psi$ è un monomorfismo, e dunque
+$\ZZ \cong \Imm \psi$. \\
 
 Pertanto, $\KK$ ammetterebbe come sottoanello una copia isomorfa di $\ZZ$.
 Inoltre, poiché $\KK$ è un campo, deve anche ammetterne gli inversi, e quindi
@@ -38,8 +60,7 @@ Se $n$ fosse generatore di $\Ker \psi$ si ricaverebbe allora che:
 \vskip 0.1in
 
 che è assurdo, dal momento che $\KK$, in quanto campo, è anche un dominio.
-Quindi $n$ deve essere un numero primo. In particolare, allora, per
-il \nameref{th:primo_isomorfismo}, $\ZZp = \ZZ/(p) \cong \Imm \psi$,
+Quindi $n$ deve essere un numero primo. In particolare, allora $\ZZp = \ZZ/(p) \cong \Imm \psi$,
 ossia $\KK$ contiene una copia isomorfa di $\ZZp$, a cui ci riferiremo
 semplicemente con $\FFpp$. \\
 
@@ -283,3 +304,5 @@ seguente teorema.
     ossia tutte le radici di $x^{p^n}-x$ (e coincide quindi
     con il campo di spezzamento $A$), da cui la tesi.
 \end{proof}
+
+\end{document}

@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Irriducibili e corollari di aritmetica in \texorpdfstring{$\ZZi$}{Z[i]}}
 
 Come già dimostrato, $\ZZi$ è un anello euclideo con la seguente
@@ -132,7 +154,7 @@ generale riguardante $\ZZi$.
 \end{proof}
 
 \begin{theorem}
-    $z \in \ZZi$ è irriducibile se e solo se $z$ è un associato di un $k \in \ZZ$ tale che $k \equiv -1 \pmod 4$, o se $\norm{z}^2$ è primo.
+    $z \in \ZZi$ è irriducibile se e solo se $z$ è un associato di un primo $p \in \ZZ$ tale che $p \equiv -1 \pmod 4$, o se $\norm{z}^2$ è primo.
 \end{theorem}
 
 \begin{proof} Si dimostrano le due implicazioni separatamente. \\
@@ -163,8 +185,8 @@ generale riguardante $\ZZi$.
 
     attraverso cui si verifica l'implicazione. \\
 
-    ($\,\Longleftarrow\,\,$)\; Se $k \in \ZZ$ e $k \equiv -1 \pmod4$, per
-    il \textit{Teorema \ref{th:primo_-1_mod_4_irriducibile}}, $k$ è
+    ($\,\Longleftarrow\,\,$)\; Se $p \in \ZZ$ e $p \equiv -1 \pmod4$, per
+    il \textit{Teorema \ref{th:primo_-1_mod_4_irriducibile}}, $p$ è
     irriducibile. Allora in quanto suo associato, anche $z$ è irriducibile. \\
 
     Altrimenti, se $\norm{z}^2$ è un primo $p$, si ponga
@@ -234,3 +256,4 @@ strettamente collegata a $\ZZi$.
     $65=5\cdot 13=(2\cdot3-1\cdot2)^2 + (2\cdot2+1\cdot3)^2=4^2+7^2$.
 \end{example}
 
+\end{document}

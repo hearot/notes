@@ -1,3 +1,20 @@
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage{biblatex}
+\usepackage{bm}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\begin{document}
+
 \chapter{Introduzione alla teoria degli anelli}
 
 \section{Definizione e prime proprietà}
@@ -255,7 +272,7 @@ così come si introdotto il concetto di \textit{sottogruppo normale} per i grupp
     monogenerato\footnote{Non è un caso: $\RR[x]$, in quanto anello euclideo, si dimostra essere un PID (\textit{principal ideal domain}), ossia un dominio che ammette \textit{solo} ideali monogenerati.}. In particolare, $I=(x-2)$.
 \end{example}
 
-\section{Quoziente per un ideale e primo teorema d'isomorfismo}
+\section{Quoziente per ideale e primo teorema d'isomorfismo}
 
 Si definisce invece adesso il concetto di \textbf{anello quoziente}, in modo
 completamente analogo a quello di \textit{gruppo quoziente}:
@@ -317,3 +334,5 @@ Adesso è possibile enunciare il seguente fondamentale teorema:
     Poiché $\phi$ è un monomorfismo, $\Ker \phi = \{0\}$. Allora, per il \textit{Primo teorema di isomorfismo}, $A/\{0\} \cong \Imm \phi$. Dalla
     \textit{Proposizione \ref{prop:quoziente_pieno}}, si desume che $A \cong A/\{0\}$. Allora, per la proprietà transitiva degli isomorfismi, $A \cong \Imm \phi$.
 \end{proof}
+
+\end{document}

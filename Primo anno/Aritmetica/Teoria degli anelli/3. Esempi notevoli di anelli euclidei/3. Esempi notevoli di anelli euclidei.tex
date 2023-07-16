@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Esempi notevoli di anelli euclidei}
 
 \section{I numeri interi: \texorpdfstring{$\ZZ$}{Z}}
@@ -17,8 +39,8 @@ esistono -- e sono anche unici, a meno di segno -- $q$, $r \in \ZZ \mid a = bq +
     \left|r\right| < \left|q\right|$. \\
 
 Dal momento che così si verifica che $\ZZ$ è un anello euclideo, il \textit{Teorema
-    fondamentale dell'aritmetica} è una conseguenza del
-\textit{Teorema \ref{th:euclidei_ufd}}.
+    fondamentale dell'aritmetica} è un corollario del teorema per cui ogni anello
+    euclideo è un UFD.
 
 \section{I campi: \texorpdfstring{$\KK$}{K}}
 
@@ -58,7 +80,7 @@ euclideo\footnote{Curiosamente i polinomi di $\KK[x]$ e i campi $\KK$ sono gli u
     la sua valutazione polinomiale in $\KK[x]$. $\varphi_\alpha$ è un omomorfismo, il cui
     nucleo è rappresentato dai polinomi in $\KK[x]$ che hanno $\alpha$ come radice. Poiché
     $\KK[x]$ è un PID, $\Ker \varphi$ deve essere monogenerato. $x-\alpha \in \Ker \varphi$
-    è irriducibile, e quindi è il generatore dell'ideale. Si desume così che
+    è irriducibile, e quindi è il generatore dell'ideale. Si deduce così che
     $\Ker \varphi = (x-\alpha)$.
 \end{example}
 
@@ -69,37 +91,6 @@ Un importante esempio di anello euclideo è il dominio degli interi di Gauss $\Z
 \[\ZZ[i] = \{a+bi \mid a, b \in \ZZ\}.\]
 
 \vskip 0.1in
-
-\begin{wrapfigure}{l}{0pt}
-    \begin{tikzpicture}
-        \begin{scope}
-            \clip (-2, -0.5) rectangle (3, 3);
-            \draw[step=0.25cm, gray!20!white, very thin] (-7, -3) grid (7, 3);
-
-            \foreach \x in {-4,...,4} {
-                    \draw[ultra thin, loosely dashdotted] (-3 + \x, -3) -- (3 + \x, 3);
-                }
-            \foreach \y in {-4,...,5} {
-                    \draw[ultra thin, loosely dashdotted] (-7, 7 + \y) -- (7, -7 + \y);
-                }
-
-            \draw[line width=0.7pt, ->] (0, 0) -- (0.5, 0.5) node[align=center, below=3pt]{$b$};
-            \draw[line width=0.7pt, ->] (0, 0) -- (-0.5, 0.5) node[align=center, below=2pt]{$ib$};
-
-            \draw[line width=0.5pt, ->] (0, 0) -- (0.5, 2.5) node[above=0.5pt]{$bq$};
-
-            \draw[line width=0.5pt, ->] (0, 0) -- (1, 2.5) node[below, right]{$a$};
-
-            \draw[densely dotted] (0.5, 2.5) -- (1, 2.5) node[below=4pt, left=2.5pt]{$r$};
-
-            \draw[line width=0.2pt, ->] (0, -1) -- (0, 3);
-            \draw[line width=0.2pt, ->] (-3, 0) -- (3, 0);
-
-        \end{scope}
-    \end{tikzpicture}
-    \caption{Visualizzazione della divisione euclidea nel piano degli interi di Gauss.}
-    \label{fig:z_i}
-\end{wrapfigure}
 
 La funzione grado coincide in particolare con il quadrato del modulo di un numero complesso, ossia:
 \[g(z) : \ZZ[i] \setminus \{0\} \to \NN, \, a+bi \mapsto \left| a+bi \right|^2.\]
@@ -121,8 +112,7 @@ di $\ZZ$ proprio in modo tale da farlo coincidere con quello di $\ZZ[i]$. \\
 
     Si verifica infine che esiste una divisione euclidea, ossia che
     $\forall a \in \ZZ[i]$, $\forall b \in \ZZ[i] \setminus \{0\}$, $\exists q$, $r \in \ZZ[i] \mid a = bq + r$ e $r=0 \,\lor\, g(r) < g(b)$.
-    Come si visualizza facilmente nella \textit{Figura \ref{fig:z_i}},
-    tutti i multipli di $b$ formano un piano con basi $b$ e $ib$, dove
+    Tutti i multipli di $b$ formano un piano con basi $b$ e $ib$, dove
     sicuramente esiste un certo $q$ tale che la distanza $\left|r\right| = \left|a-bq\right|$ sia minima. \\
 
     Se $a$ è un multiplo di $b$, vale sicuramente che $a = bq$. Altrimenti dal momento che $r$ è sicuramente inquadrato in uno dei tasselli del piano, vale
@@ -147,42 +137,6 @@ primitiva dell'unità in senso antiorario, ossia:
 In particolare, $\omega$ è una delle due radici dell'equazione
 $z^2 + z + 1 = 0$, dove invece l'altra radice altro non è che
 $\omega^2 = \overline{\omega}$.
-
-\begin{wrapfigure}{l}{0pt}
-    \begin{tikzpicture}
-        \begin{scope}
-            \clip (-2, -0.5) rectangle (3, 3);
-            \draw[step=0.25cm, gray!20!white, very thin] (-7, -3) grid (7, 3);
-
-            \foreach \x in {-4,...,4} {
-                    \draw[ultra thin, loosely dashdotted] (-3 + 0.87*\x, -3) -- (3 + 0.87*\x, 3);
-                }
-
-            \foreach \y in {-4,...,5} {
-                    \draw[ultra thin, loosely dashdotted] (-7, 1.8756443470179 + 0.65*\y) -- (7, -1.8756443470179 + 0.65*\y);
-                }
-
-            \foreach \x in {-4,...,5} {
-                    \draw[ultra thin, loosely dashed] (-7 + 0.6289*\x, 28.5025773880714) -- (7+ 0.65*\x, -28.5025773880714);
-                }
-
-            \draw[line width=0.7pt, ->] (0, 0) -- (0.5, 0.5) node[align=center, below=3pt]{$b$};
-            \draw[line width=0.7pt, ->] (0, 0) -- (-0.6830127018922, 0.1830127018922) node[align=center, below=2pt]{$\omega b$};
-
-            \draw[line width=0.5pt, ->] (0, 0) -- (0.71494, 2.41094) node[below=2pt, left=4pt]{$bq$};
-
-            \draw[line width=0.5pt, ->] (0, 0) -- (1.1, 2.7) node[below, right]{$a$};
-
-            \draw[densely dotted] (0.71494, 2.41094) -- (1.1, 2.7) node[above=3pt, left=2.5pt]{$r$};
-
-            \draw[line width=0.2pt, ->] (0, -1) -- (0, 3);
-            \draw[line width=0.2pt, ->] (-3, 0) -- (3, 0);
-
-        \end{scope}
-    \end{tikzpicture}
-    \caption{Visualizzazione della divisione euclidea nel piano degli interi di Eisenstein.}
-    \label{fig:z_omega}
-\end{wrapfigure}
 
 \vskip 0.1in
 
@@ -210,7 +164,7 @@ Sviluppando il modulo è possibile ottenere una formula più concreta:
 
     Si verifica infine la seconda e ultima proprietà della funzione grado. Come per
     $\ZZ[i]$, i multipli di $b \in \ZZ[\omega]$ sono visualizzati su un piano che
-    ha per basi $b$ e $\omega b$ (come in $\textit{Figura \ref{fig:z_omega}}$), pertanto
+    ha per basi $b$ e $\omega b$, pertanto
     esiste sicuramente un $q$ tale che la distanza $\left|a-bq\right|$ sia minima. \\
 
     Se $a$ è multiplo di $b$, allora chiaramente $a = bq$. Altrimenti, $a$ è certamente
@@ -222,3 +176,8 @@ Sviluppando il modulo è possibile ottenere una formula più concreta:
 
     \[\left|r\right| \leq \frac{\sqrt{3}}{2} \left|b\right| < \left|b\right| \implies \left|r\right|^2 < \left|b\right|^2 \implies g(r) < g(b). \]
 \end{proof}
+
+\chapter{Riferimenti bibliografici}
+\printbibliography[heading=none]
+
+\end{document}

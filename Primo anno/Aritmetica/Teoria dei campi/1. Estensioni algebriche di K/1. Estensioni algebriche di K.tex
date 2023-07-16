@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{Estensioni algebriche di \texorpdfstring{$\KK$}{K}}
 
 \section{Morfismi di valutazione, elementi algebrici e trascendenti}
@@ -186,9 +208,7 @@ seguente teorema.
 
 \begin{proof}
     Se $\alpha$ è algebrico, allora $\Ker \valalpha = (f(x)) \neq (0)$,
-    dove $f(x) \in A[x]$ è irriducibile. Pertanto, per
-    il \textit{Teorema \ref{th:campo_quoziente_irriducibile}},
-    $A[x]/(f(x))$ è un campo. \\
+    dove $f(x) \in A[x]$ è irriducibile. Pertanto $A[x]/(f(x))$ è un campo. \\
 
     Dunque dal \textit{Teorema \ref{th:isomorfismo_algebrico}} si
     ricava che:
@@ -537,8 +557,7 @@ seguente teorema.
 
     \ (\textit{passo induttivo}) \,Sia $\deg f(x) = n$. Sia $f_1(x)$ un
     irriducibile di $f(x)$ e sia $\gamma(x) \in A[x]$ tale che
-    $f(x)=f_1(x)\gamma(x)$. Allora, per il \thref{th:campo_quoziente_irriducibile}
-    $A[x]/(f_1(x))$ è un campo, in cui, per la \propref{prop:radice_quoziente},
+    $f(x)=f_1(x)\gamma(x)$. Allora $A[x]/(f_1(x))$ è un campo in cui
     $f_1(x)$ ammette radice. \\
 
     Poiché $\deg \gamma(x) < n$, per il passo induttivo
@@ -595,3 +614,8 @@ Pertanto ora è possibile enunciare la definizione di \textit{campo di spezzamen
     
     da cui la tesi.
 \end{proof}
+
+\chapter{Riferimenti bibliografici}
+\printbibliography[heading=none]
+
+\end{document}

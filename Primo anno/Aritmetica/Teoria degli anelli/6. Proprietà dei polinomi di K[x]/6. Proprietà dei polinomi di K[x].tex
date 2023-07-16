@@ -1,3 +1,25 @@
+% !BIB TS-program = biber
+
+\PassOptionsToPackage{main=italian}{babel}
+\documentclass[11pt]{scrbook}
+\usepackage{evan_notes}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{cancel}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{marvosym}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
 \chapter{I polinomi di un campo: \texorpdfstring{$\KKx$}{K[x]}}
 
 \section{Elementi preliminari}
@@ -297,3 +319,5 @@ $\ZZ/p\ZZ$.
     Quindi $\overline{x}$ è una radice di $f(x)$, da cui la tesi.
 
 \end{proof}
+
+\end{document}
