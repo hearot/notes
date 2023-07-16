@@ -7,7 +7,7 @@
 Il corso di Geometria 1 è terminato, ma questa cartella vedrà ancora aggiornamenti per il momento. Gli appunti non sono stati presi con gli stessi strumenti sin dall'inizio: in particolar modo,
 ho iniziato a prendere appunti con [Microsoft Journal](https://apps.microsoft.com/store/detail/microsoft-journal/9N318R854RHH?hl=it-it&gl=it), per poi passare definitivamente a prenderli in LaTeX con [TeXstudio](https://www.texstudio.org/). Alcuni appunti sono ancora in corso di revisione (troverete \[WIP\] nel titolo o un breve avviso all'inizio del documento), ma sono sostanzialmente completi.
 
-La cartella contiene in particolar modo una *Scheda riassuntiva*, che, come dice il nome, vorrebbe essere un recap di
+La cartella contiene in particolar modo una [Scheda riassuntiva](https://g1.hearot.it), che, come dice il nome, vorrebbe essere un recap di
 tutti i risultati principali dell'algebra lineare e della geometria del primo anno. Questo progetto non sarebbe mai stato realizzabile senza il meraviglioso
 aiuto di alcuni miei amici e colleghi, che ora elenco:
 
