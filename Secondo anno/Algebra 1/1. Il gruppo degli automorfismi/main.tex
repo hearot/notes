@@ -1,0 +1,149 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Il gruppo degli automorfismi}
+	\maketitle
+
+	\begin{note}
+		Nel corso del documento per $(G, \cdot)$ si intenderà un qualsiasi gruppo.
+		Si scriverà $gh$ per indicare $g \cdot h$, omettendo il punto.
+	\end{note}
+
+	\begin{definition}[gruppo degli automorfismi]
+		Si definisce \textbf{gruppo degli automorfismi} di un gruppo $G$ il
+		gruppo $(\Aut(G), \circ)$ dotato dell'operazione di composizione.
+	\end{definition} \smallskip
+
+	
+	Si può associare ad ogni elemento $g \in G$ un automorfismo particolare $\varphi_g$
+	determinato dalla seguente associazione:
+	\[ h \xmapsto{\varphi_g} ghg\inv. \]
+	
+	\begin{definition}[gruppo degli automorfismi interni] Si definisce \textbf{gruppo
+		degli automorfismi interni} di un gruppo $G$ il gruppo $(\Inn(G), \circ)$
+		dotato dell'operazione di composizione, dove:
+		
+		\[ \Inn(G) = \{ \varphi_g \mid g \in G \}. \]
+	\end{definition}
+	
+	Gli automorfismi interni soddisfano alcune proprietà. Per esempio vale che:
+	\[ \varphi_g \circ \varphi_h = \varphi_{gh}, \]
+	così come vale anche che:
+	\[ \varphi_g \inv = \varphi_{g\inv}. \] \smallskip
+
+
+	Chiaramente $\Inn(G) \leq \Aut(G)$. Tuttavia vale anche che $\Inn(G)$ è un sottogruppo
+	normale di $\Aut(G)$. Infatti, se $f \in \Aut(G)$, vale che:
+	\[ f \circ \varphi_g \circ f\inv = \varphi_{f(g)} \in \Inn(G). \]
+	
+	Inoltre, se $G$ è abeliano, $\varphi_g$ coincide con la sola identità $\Id$
+	(infatti, in tal caso, $\varphi_g(h) = ghg\inv = gg\inv h = h$). \bigskip
+	
+
+	Si dimostra adesso un teorema fondamentale che mette in relazione $\Inn(G)$
+	con un gruppo quoziente particolare di $G$, $G \quot Z(G)$. Preliminarmente,
+	si osserva che $Z(G)$ è un sottogruppo normale di $G$, e quindi
+	$G \quot Z(G)$ è effettivamente un gruppo. Allora si può enunciare la:
+	
+	\begin{proposition}
+		$\Inn(G) \cong G \quot Z(G)$.
+	\end{proposition}
+	
+	\begin{proof}
+		Sia $\zeta : G \to \Inn(G)$ la mappa che associa $g$ al proprio
+		automorfismo interno associato $\varphi_g$. Si osserva che $\zeta$
+		è un omomorfismo tra gruppi:
+		\[ \zeta(gh) = \varphi_{gh} = \varphi_g \circ \varphi_h = \zeta(g) \circ \zeta(h). \]
+		
+		Chiaramente $\zeta$ è una mappa surgettiva, e quindi $\Im \zeta = \Inn(G)$.
+		Si osserva inoltre che $\Ker \zeta$ è esattamente il centro di $G$, $Z(G)$. Infatti,
+		se $g \in \Ker \zeta$, vale che $\zeta(g) = \Id$, e quindi che:
+		\[ ghg\inv = h \implies gh=hg \quad \forall h \in G. \]
+		
+		Allora, per il Primo teorema di isomorfismo, $G \quot {\Ker \zeta} = G \quot Z(G) \cong \Inn(G)$.
+	\end{proof} \bigskip
+
+
+	Il gruppo $G \quot Z(G)$ risulta particolarmente utile nello studio della commutatività
+	del gruppo. Infatti vale la:
+	
+	\begin{proposition}
+		$G \quot Z(G)$ è ciclico se e solo se $G$ è abeliano (e quindi se e solo se $G \quot Z(G)$ è banale).
+	\end{proposition}
+	
+	\begin{proof}
+		Se $G$ è abeliano, $G \quot Z(G)$ contiene solo l'identità, ed è dunque ciclico.
+		Viceversa, sia $g Z(G)$ un generatore di $G \quot Z(G)$.
+		Se $h$, $k \in G$, vale in particolare che esistono $m$, $n \in \NN$ tali per cui
+		$h Z(G) = g^m Z(G)$ e $k Z(G) = g^n Z(G)$. Allora esistono
+		$z_1$, $z_2 \in Z(G)$ per cui $h = g^m z_1$ e $k = g^n z_2$. \bigskip
+
+
+		Si conclude allora che:
+		\[ hk = g^m z_1 g^n z_2 = g^n z_2 g^m z_1 = kh, \]
+		e quindi $G$ è abeliano (da cui si deduce che $G \quot Z(G)$ è in realtà banale).
+	\end{proof} \bigskip
+	
+
+	Allora, poiché $\Inn(G) \cong G \quot Z(G)$, $\Inn(G)$ è ciclico se e solo se
+	$G$ è abeliano (e dunque se e solo se è banale). Inoltre, il gruppo $\Inn(G)$
+	risulta utile per definire in modo alternativo (ma equivalente) la nozione
+	di \textit{sottogruppo normale}. Infatti vale che:
+	
+	\begin{proposition}
+		Sia $H \leq G$. Allora $H \nsgeq G$ se e solo se $H$ è $\varphi_g$-invariante
+		per ogni $g \in G$ (ossia se $\varphi_g(H) \subseteq H$).
+	\end{proposition}
+	
+	\begin{proof}
+		Se $H$ è normale, allora $\varphi_g(h) = g h g\inv$ appartiene ad $H$ per
+		definizione. Allo stesso modo dire che $H$ è $\varphi_g$-invariante
+		equivale a dire che $gHg\inv \subseteq H$ per ogni $g \in G$.
+	\end{proof} \bigskip
+
+
+	In generale, se $H \nsgeq G$, vale che la restrizione $\restr{\varphi_g}{H}$ è
+	ancora un omomorfismo ed è in particolare un elemento di $\Aut(H)$. Infatti
+	$\restr{\varphi_g}{H}$ è ancora iniettiva, e per ogni $h \in H$ vale che:
+	\[ \varphi_g(g\inv h g) = h, \]
+	mostrando la surgettività di $\restr{\varphi_g}{H}$ (infatti $g\inv h g \in H$). \bigskip
+
+
+	Si può estendere questa idea considerando i sottogruppi di $G$ che sono $f$-invarianti
+	per ogni scelta di $f \in \Aut(G)$.
+	
+	\begin{definition}[sottogruppo caratteristico]
+		$H \leq G$ si dice \textbf{sottogruppo caratteristico} di $G$ se $H$
+		è $f$-invariante per ogni $f \in \Aut(G)$.
+	\end{definition} \smallskip
+	
+	In particolare, $H \leq G$ è un sottogruppo caratteristico di $G$ se ogni
+	automorfismo di $G$ si riduce, restringendolo su $H$, ad un automorfismo
+	di $H$. Infatti, se $f(H) \subseteq H$, vale anche che $f\inv(H) \subseteq H \implies
+	H \subseteq f(H)$, e quindi $f(H) = H$ (da cui la surgettività dell'omomorfismo
+	in $H$). \bigskip
+	
+
+	Chiaramente ogni sottogruppo caratteristico è un sottogruppo normale (infatti è
+	in particolare $\varphi_g$-invariante per ogni scelta di $g \in G$), ma non è
+	vero il contrario. Per esempio, si definisca l'automorfismo $\eta$ per $(\QQ, +)$
+	tale per cui:
+	\[ x \xmapsto{\eta} \nicefrac{x}2. \]
+	Si osserva facilmente che $\eta$ è un automorfismo. Dal momento che $(\QQ, +)$ è
+	abeliano, ogni suo sottogruppo è normale. In particolare $(\ZZ, +) \nsg (\QQ, +)$.
+	Tuttavia $\eta(\ZZ) \not\subseteq \ZZ$ (e quindi $\ZZ$ non è caratteristico in $\QQ$). \bigskip
+	
+	
+	Esiste tuttavia, per qualsiasi scelta di gruppo $G$, un sottogruppo che è caratteristico,
+	$Z(G)$ (oltre che $G$ stesso ed il sottogruppo banale). Infatti, se $z \in Z(G)$ e
+	$g \in G$, vale che:
+	\[ f(z)g = f(z)f(f\inv(g)) = f(z f\inv(g)) = f(f\inv(g) z) = g f(z) \quad \forall f \in \Aut(G), \]
+	e quindi $f(Z(G)) \subseteq Z(G)$ per ogni scelta di $f \in \Aut(G)$. \bigskip
+	
+	
+	Inoltre, se $H \leq G$ è l'unico sottogruppo di un certo ordine (o è comunque
+	caratterizzato univocamente da una proprietà invariante per automorfismi),
+	$H$ è anche caratteristico (infatti gli automorfismi preservano le cardinalità essendo
+	bigezioni).
+\end{document}
