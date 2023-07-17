@@ -1,4 +1,4 @@
-\chapter{Introduzione al prodotto hermitiano}
+\chapter{Teoria di base del prodotto hermitiano}
 
 \section{Prime definizioni}
 
@@ -132,6 +132,20 @@
 	\li Come mostrato nei momenti finali del documento (vd.~\textit{Esercizio 3}), vale
 	la formula delle dimensioni anche nel caso del prodotto hermitiano.
 \end{remark}
+
+\begin{theorem} (di rappresentazione di Riesz per il prodotto hermitiano)
+	Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano non
+	degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
+	$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
+\end{theorem}
+
+\begin{proof}
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
+	particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{\conj{f(\vv 1)}}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{\conj{f(\vv n)}}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
+	si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
+	la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
+	e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
+\end{proof}
 
 \section{Da $\CC$ ad $\RR$ e viceversa}
 

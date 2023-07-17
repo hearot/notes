@@ -1,4 +1,4 @@
-\chapter{Introduzione al prodotto scalare}
+\chapter{Teoria di base del prodotto scalare}
 
 \begin{note}
 	Nel corso del documento, per $V$, qualora non specificato, si intenderà uno spazio vettoriale di dimensione
@@ -960,4 +960,26 @@ Si osserva infine che, se $V = \RR^3$ e $\basis$ ne è la base canonica, i coni 
 	\leftproof Se $\varphi$ e $\varphi'$ hanno la stessa segnatura, allora, detta $\basis$
 	una base di $V$ e $\basis'$ una base di $V'$, $M_\basis(\phi) \cong M_{\basis'}(\phi')$.
 	Allora, per la \textit{Proposizione \ref{prop:isometrie_equivalenza_base}}, $V$ e $V'$ sono isometrici.
+\end{proof}
+
+%TODO: presentare prima i funzionali rappresentabili e poi il teorema di Riesz
+\section{Teorema di rappresentazione di Riesz}
+
+\begin{theorem} (di rappresentazione di Riesz per il prodotto scalare) 
+	Sia $V$ uno spazio vettoriale e sia $\varphi$ un suo prodotto scalare
+	non degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
+	$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
+\end{theorem}
+
+\begin{proof}
+	Si consideri l'applicazione $a_\varphi$. Poiché $\varphi$ non è degenere, $\Ker a_\varphi = V^\perp = \zerovecset$, da cui si deduce che $a_\varphi$ è un isomorfismo. Quindi $\forall f \in V^*$ esiste
+	un unico $\v \in V$ tale per cui $a_\varphi(\v) = f$, e dunque tale per cui $\varphi(\v, \w) = a_\varphi(\v)(\w) = f(\w)$ $\forall \w \in V$.
+\end{proof}
+
+\begin{proof}[Dimostrazione costruttiva]
+	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
+	particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{f(\vv 1)}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{f(\vv n)}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
+	si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
+	la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
+	e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
 \end{proof}

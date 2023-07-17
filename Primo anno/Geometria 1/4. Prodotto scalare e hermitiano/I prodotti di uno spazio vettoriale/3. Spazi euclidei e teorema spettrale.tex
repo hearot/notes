@@ -1,4 +1,4 @@
-\chapter{Spazi euclidei e teorema spettrale (non indicizzato)}
+\chapter{Aggiunta di un endomorfismo e spazi euclidei}
 
 \begin{note}
 	Nel corso del documento, per $V$ si intenderà uno spazio vettoriale di dimensione
@@ -6,38 +6,12 @@
 	dipendentemente dal contesto.
 \end{note}
 
-\begin{theorem} (di rappresentazione di Riesz per il prodotto scalare) 
-	Sia $V$ uno spazio vettoriale e sia $\varphi$ un suo prodotto scalare
-	non degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
-	$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
-\end{theorem}
+\begin{definition} (base ortonormale)
+	Si definisce \textbf{base ortonormale} di uno spazio vettoriale $V$ su un suo prodotto $\varphi$
+	una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n \}$ tale che $\varphi(\vv i, \vv j) = \delta_{ij}$.
+\end{definition}
 
-\begin{proof}
-	Si consideri l'applicazione $a_\varphi$. Poiché $\varphi$ non è degenere, $\Ker a_\varphi = V^\perp = \zerovecset$, da cui si deduce che $a_\varphi$ è un isomorfismo. Quindi $\forall f \in V^*$ esiste
-	un unico $\v \in V$ tale per cui $a_\varphi(\v) = f$, e dunque tale per cui $\varphi(\v, \w) = a_\varphi(\v)(\w) = f(\w)$ $\forall \w \in V$.
-\end{proof}
-
-\begin{proof}[Dimostrazione costruttiva]
-	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
-	particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{f(\vv 1)}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{f(\vv n)}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
-	si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
-	la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
-	e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
-\end{proof}
-
-\begin{theorem} (di rappresentazione di Riesz per il prodotto hermitiano)
-	Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano non
-	degenere. Allora per ogni $f \in V^*$ esiste un unico $\v \in V$ tale che
-	$f(\w) = \varphi(\v, \w)$ $\forall \w \in V$.
-\end{theorem}
-
-\begin{proof}
-	Sia $\basis = \{ \vv 1, \ldots, \vv n \}$ una base ortogonale di $V$ per $\varphi$. Allora $\basis^*$ è una base di $V^*$. In
-	particolare $f = f(\vv 1) \vec{v_1^*} + \ldots + f(\vv n) \vec{v_n^*}$. Sia $\v = \frac{\conj{f(\vv 1)}}{\varphi(\vv 1, \vv 1)} \vv 1 + \ldots + \frac{\conj{f(\vv n)}}{\varphi(\vv n, \vv n)}$. Detto $\w = a_1 \vv 1 + \ldots + a_n \vv n$,
-	si deduce che $\varphi(\v, \w) = a_1 f(\vv 1) + \ldots + a_n f(\vv n) = f(\w)$. Se esistesse $\v' \in V$ con
-	la stessa proprietà di $\v$, $\varphi(\v, \w) = \varphi(\v', \w) \implies \varphi(\v - \v', \w)$ $\forall \w \in V$. Si deduce dunque che $\v - \v' \in V^\perp$, contenente solo $\vec 0$ dacché $\varphi$ è non degenere;
-	e quindi si conclude che $\v = \v'$, ossia che esiste solo un vettore con la stessa proprietà di $\v$.
-\end{proof}
+\section{Trasposto di un endomorfismo su un prodotto scalare}
 
 \begin{proposition}
 	Sia $V$ uno spazio vettoriale con prodotto scalare $\varphi$ non degenere.
@@ -87,6 +61,48 @@
 \end{proof}
 
 \begin{proposition}
+	Sia $\varphi$ un prodotto scalare non degenere di $V$. Sia $f \in \End(V)$. Allora
+	vale la seguente identità:
+	
+	\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
+	
+	dove $\basis$ è una base di $V$.
+\end{proposition}
+
+\begin{proof}
+	Sia $\basis^*$ la base relativa a $\basis$ in $V^*$. Per la proposizione precedente vale la seguente identità:
+	
+	\[ a_\varphi \circ f_\varphi^\top = f^\top \circ a_\varphi. \]
+	
+	Pertanto, passando alle matrici associate, si ricava che:
+	
+	\[ M_{\basis^*}^\basis(a_\varphi) M_\basis(f_\varphi^\top) = M_{\basis^*}(f^\top) M_{\basis^*}^\basis(a_\varphi). \]
+	
+	Dal momento che valgono le seguenti due identità:
+	
+	\[ M_{\basis^*}^\basis(a_\varphi) = M_\basis(\varphi), \qquad M_{\basis^*}(f^\top) = M_\basis(f)^\top, \]
+	
+	e $a_\varphi$ è invertibile (per cui anche $M_\basis(\varphi)$ lo è), si conclude che:
+	
+	\[ M_\basis(\varphi) M_\basis(f_\varphi^\top) = M_\basis(f)^\top M_\basis(\varphi) \implies M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
+	
+	da cui la tesi.
+\end{proof}
+
+\begin{corollary} Sia $\varphi$ un prodotto scalare di $V$.
+	Se $\basis$ è una base ortonormale, $\varphi$ è non degenere e $M_\basis(f_\varphi^\top) = M_\basis(f)^\top$.
+\end{corollary}
+
+\begin{proof}
+	Se $\basis$ è una base ortonormale, $M_\basis(\varphi) = I_n$. Pertanto $\varphi$ è
+	non degenere. Allora, per la proposizione precedente:
+	
+	\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi) = M_\basis(f)^\top. \]
+\end{proof}
+
+\section{Aggiunto di un endomorfismo su un prodotto hermitiano}
+
+\begin{proposition}
 	Sia $V$ uno spazio vettoriale su $\CC$ e sia $\varphi$ un suo prodotto hermitiano. Allora esiste un'unica
 	mappa\footnote{Si osservi che $f^*$ non è un'applicazione lineare, benché sia invece \textit{antilineare}.} $f^* : V \to V$, detta \textbf{aggiunto di} $f$, tale che $\varphi(\v, f(\w)) = \varphi(f^*(\v), \w)$ $\forall \v$, $\w \in V$.
 \end{proposition}
@@ -127,51 +143,6 @@
 	
 	da cui si deduce, come prima, che $f = (f^*)^*$.
 \end{remark}
-
-\begin{definition} (base ortonormale)
-	Si definisce \textbf{base ortonormale} di uno spazio vettoriale $V$ su un suo prodotto $\varphi$
-	una base ortogonale $\basis = \{ \vv 1, \ldots, \vv n \}$ tale che $\varphi(\vv i, \vv j) = \delta_{ij}$.
-\end{definition}
-
-\begin{proposition}
-	Sia $\varphi$ un prodotto scalare non degenere di $V$. Sia $f \in \End(V)$. Allora
-	vale la seguente identità:
-	
-	\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
-	
-	dove $\basis$ è una base di $V$.
-\end{proposition}
-
-\begin{proof}
-	Sia $\basis^*$ la base relativa a $\basis$ in $V^*$. Per la proposizione precedente vale la seguente identità:
-	
-	\[ a_\varphi \circ f_\varphi^\top = f^\top \circ a_\varphi. \]
-	
-	Pertanto, passando alle matrici associate, si ricava che:
-	
-	\[ M_{\basis^*}^\basis(a_\varphi) M_\basis(f_\varphi^\top) = M_{\basis^*}(f^\top) M_{\basis^*}^\basis(a_\varphi). \]
-	
-	Dal momento che valgono le seguenti due identità:
-	
-	\[ M_{\basis^*}^\basis(a_\varphi) = M_\basis(\varphi), \qquad M_{\basis^*}(f^\top) = M_\basis(f)^\top, \]
-	
-	e $a_\varphi$ è invertibile (per cui anche $M_\basis(\varphi)$ lo è), si conclude che:
-	
-	\[ M_\basis(\varphi) M_\basis(f_\varphi^\top) = M_\basis(f)^\top M_\basis(\varphi) \implies M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi), \]
-	
-	da cui la tesi.
-\end{proof}
-
-\begin{corollary} Sia $\varphi$ un prodotto scalare di $V$.
-	Se $\basis$ è una base ortonormale, $\varphi$ è non degenere e $M_\basis(f_\varphi^\top) = M_\basis(f)^\top$.
-\end{corollary}
-
-\begin{proof}
-	Se $\basis$ è una base ortonormale, $M_\basis(\varphi) = I_n$. Pertanto $\varphi$ è
-	non degenere. Allora, per la proposizione precedente:
-	
-	\[ M_\basis(f_\varphi^\top) = M_\basis(\varphi)\inv M_\basis(f)^\top M_\basis(\varphi) = M_\basis(f)^\top. \]
-\end{proof}
 
 \begin{proposition}
 	Sia $\varphi$ un prodotto hermitiano non degenere di $V$. Sia $f \in \End(V)$. Allora
@@ -219,6 +190,10 @@
 	\[ M_\basis(f_\varphi^*) = M_\basis(\varphi)\inv M_\basis(f)^* M_\basis(\varphi) = M_\basis(f)^*. \]
 \end{proof}
 
+\section{Tipi di operatori di $(V, \varphi)$}
+
+\subsection{Operatori simmetrici e ortogonali per un prodotto scalare}
+
 \begin{note}
 	D'ora in poi, nel corso del documento, s'intenderà per $\varphi$ un prodotto scalare (o eventualmente hermitiano) non degenere di $V$.
 \end{note}
@@ -259,6 +234,8 @@
 	\end{align*}
 \end{remark}
 
+\subsection{Operatori hermitiani e unitari per prodotti hermitiani}
+
 \begin{definition} (applicazioni e matrici hermitiane)
 	Sia $f \in \End(V)$ e si consideri il prodotto hermitiano $\varphi$. Si dice allora che
 	$f$ è \textbf{hermitiano} se $f = f^*$. Sia $A \in M(n, \CC)$. Si dice dunque che $A$
@@ -292,6 +269,10 @@
 	\[ SU_2 = \left\{ \Matrix{x & -y \\ \conj y & \conj x} \in M(2, \CC) \;\middle\vert\; \abs{x}^2 + \abs{y}^2 = 1 \right\}. \]
 	
 \end{remark}
+
+\section{Spazi euclidei reali e complessi}
+
+\subsection{Prime definizioni e risultati preliminari}
 
 \begin{definition} (spazio euclideo reale)
 	Si definisce \textbf{spazio euclideo reale} uno spazio vettoriale $V$ su $\RR$ dotato
@@ -482,7 +463,7 @@
 	\end{itemize}
 \end{solution}
 
-\hr
+\subsection{Norme euclidee}
 
 \begin{note}
 	D'ora in poi, qualora non specificato diversamente, si assumerà che $V$ sia uno spazio
@@ -587,74 +568,6 @@
 	si può esprimere la disuguaglianza di Bessel: $\norm{\v}^2 \geq \sum_{i=1}^k \varphi(\v, \vv i)^2$ per $k \leq n$.
 \end{remark}
 
-\begin{remark} (algoritmo di ortogonalizzazione di Gram-Schmidt)
-	Se $\varphi$ è non degenere (o in generale, se $\CI(\varphi) = \zerovecset$) ed è
-	data una base $\basis = \{ \vv 1, \ldots, \vv n \}$ per $V$ (dove si ricorda che deve valere
-	$\Char \KK \neq 2$), è possibile
-	applicare l'\textbf{algoritmo di ortogonalizzazione di Gram-Schmidt} per ottenere
-	da $\basis$ una nuova base $\basis' = \{ \vv 1', \ldots, \vv n' \}$ con le seguenti proprietà:
-	
-	\begin{enumerate}[(i)]
-		\item $\basis'$ è una base ortogonale,
-		\item $\basis'$ mantiene la stessa bandiera di $\basis$ (ossia $\Span(\vv 1, \ldots, \vv i) = \Span(\vv 1', \ldots, \vv i')$ per ogni $1 \leq i \leq n$).
-	\end{enumerate}
-	
-	L'algoritmo si applica nel seguente modo: si prenda in considerazione $\vv 1$ e sottragga ad ogni altro vettore
-	della base il vettore $C(\vv 1, \vv i) \vv 1 = \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv 1$,
-	rendendo ortogonale ogni altro vettore della base con $\vv 1$. Pertanto si applica la mappa
-	$\vv i \mapsto \vv i - \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i = \vv i ^{(1)}$.
-	Si verifica infatti che $\vv 1$ e $\vv i ^{(1)}$ sono ortogonali per $2 \leq i \leq n$:
-	
-	\[ \varphi(\vv 1, \vv i^{(1)}) = \varphi(\vv 1, \vv i) - \varphi\left(\vv 1, \frac{\varphi(\vv 1, \vv i)}{\varphi(\vv 1, \vv 1)} \vv i\right) = \varphi(\vv 1, \vv i) - \varphi(\vv 1, \vv i) = 0. \]
-	
-	Poiché $\vv 1$ non è isotropo, si deduce la decomposizione $V = \Span(\vv 1) \oplus \Span(\vv 1)^\perp$.
-	In particolare $\dim \Span(\vv 1)^\perp = n-1$: essendo allora i vettori $\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}$
-	linearmente indipendenti e appartenenti a $\Span(\vv 1)^\perp$, ne sono una base. Si conclude quindi
-	che vale la seguente decomposizione:
-	
-	\[ V = \Span(\vv 1) \oplus^\perp \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)}). \]
-	
-	\vskip 0.05in
-	
-	Si riapplica dunque l'algoritmo di Gram-Schmidt prendendo come spazio vettoriale lo spazio generato dai
-	vettori a cui si è applicato precedentemente l'algoritmo, ossia $V' = \Span(\vv 2 ^{(1)}, \ldots, \vv n ^{(1)})$,
-	fino a che non si ottiene $V' = \zerovecset$. \\
-	
-	Si può addirittura ottenere una base ortonormale a partire da $\basis'$ normalizzando ogni vettore (ossia
-	dividendo per la propria norma), se si sta considerando uno spazio euclideo.
-\end{remark}
-
-\begin{remark}
-	Poiché la base ottenuta tramite Gram-Schmidt mantiene la stessa bandiera della base di partenza,
-	ogni matrice triangolabile è anche triangolabile mediante una base ortogonale.
-\end{remark}
-
-\begin{example}
-	Si consideri $V = (\RR^3, \innprod{\cdot, \cdot})$, ossia $\RR^3$ dotato del prodotto scalare standard.
-	Si applica l'algoritmo di ortogonalizzazione di Gram-Schmidt sulla seguente base:
-	
-	\[ \basis = \Biggl\{ \underbrace{\Vector{1 \\ 0 \\ 0}}_{\vv 1 \, = \, \e1}, \underbrace{\Vector{1 \\ 1 \\ 0}}_{\vv 2}, \underbrace{\Vector{1 \\ 1 \\ 1}}_{\vv 3} \Biggl\}. \]
-	
-	\vskip 0.05in
-	
-	Alla prima iterazione dell'algoritmo si ottengono i seguenti vettori:
-	
-	\begin{itemize}
-		\item $\vv 2 ^{(1)} = \vv 2 -  \frac{\varphi(\vv 1, \vv 2)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 2 - \vv 1 = \Vector{0 \\ 1 \\ 0} = \e 2$,
-		\item $\vv 3 ^{(1)} = \vv 3 - \frac{\varphi(\vv 1, \vv 3)}{\varphi(\vv 1, \vv 1)} \vv 1 = \vv 3 - \vv 1 = \Vector{0 \\ 1 \\ 1}$.
-	\end{itemize}
-	
-	Si considera ora $V' = \Span(\vv 2 ^{(1)}, \vv 3 ^{(1)})$. Alla seconda iterazione dell'algoritmo si
-	ottiene allora il seguente vettore:
-	
-	\begin{itemize}
-		\item $\vv 3 ^{(2)} = \vv 3 ^{(1)} - \frac{\varphi(\vv 2 ^{(1)},  \vv 3 ^{(1)})}{\varphi(\vv 2 ^{(1)}, \vv 2 ^{(1)})} \vv 2 ^{(1)} = \vv 3 ^{(1)} - \vv 2 ^{(1)} = \Vector{0 \\ 0 \\ 1} = \e 3$.
-	\end{itemize}
-	
-	Quindi la base ottenuta è $\basis' = \{\e1, \e2, \e3\}$, ossia la base canonica di $\RR^3$, già
-	ortonormale.
-\end{example}
-
 \begin{remark}
 	Si osserva adesso che se $(V, \varphi)$ è uno spazio euclideo (e quindi $\varphi > 0$), e $W$ è
 	un sottospazio di $V$, vale la seguente decomposizione:
@@ -664,6 +577,8 @@
 	Pertanto ogni vettore $\v \in V$ può scriversi come $\w + \w'$ dove $\w \in W$ e $\w' \in W^\perp$,
 	dove $\varphi(\w, \w') = 0$.
 \end{remark}
+
+\subsection{La proiezione ortogonale}
 
 \begin{definition} (proiezione ortogonale)
 	Si definisce l'applicazione $\pr_W : V \to V$, detta \textbf{proiezione ortogonale} su $W$,
@@ -712,6 +627,8 @@
 	\end{enumerate}
 \end{proof}
 
+\subsection{L'inversione ortogonale e le riflessioni}
+
 \begin{definition} (inversione ortogonale)
 	Si definisce l'applicazione $\rho_W : V \to V$, detta \textbf{inversione ortogonale}, in modo tale che, detto $\v = \w + \w' \in V$ con $\w \in W$, $\w \in W^\perp$, $\rho_W(\v) = \w - \w'$. Se $\dim W = \dim V - 1$,
 	si dice che $\rho_W$ è una \textbf{riflessione}.
@@ -725,6 +642,8 @@
 	
 	Quindi $\varphi(\rho_W(\vv 1), \rho_W(\vv 2)) = \varphi(\ww 1, \ww 2) + \varphi(\ww 1', \ww 2) + \varphi(\ww 1, \ww 2') + \varphi(\ww 1', \ww 2') = \varphi(\vv 1, \vv 2)$.
 \end{remark}
+
+\subsubsection{Il teorema di Cartan-Dieudonné}
 
 \begin{lemma} Sia $(V, \varphi)$ uno spazio euclideo reale.
 	Siano $\U$, $\w \in V$. Se $\norm{\U} = \norm{\w}$, allora esiste un sottospazio $W$ di dimensione
@@ -789,7 +708,7 @@
 
 \setcounter{lemma}{0}
 
-\hr
+\subsection{Il teorema spettrale per operatori simmetrici ed hermitiani}
 
 \begin{lemma}
 	Sia $f \in \End(V)$ simmetrico (o hermitiano). Allora $f$ ha solo autovalori reali\footnote{Nel caso
@@ -843,6 +762,7 @@
 	da cui la tesi.
 \end{proof}
 
+%TODO: mostrare in generale che se W è f-invariante, W^\perp è f*-invariante
 \begin{lemma}
 	Sia $f \in \End(V)$ simmetrico (o hermitiano). Se $W \subseteq V$ è $f$-invariante, allora anche
 	$W^\perp$ lo è.
@@ -907,6 +827,8 @@
 	e quello di nullità è la molteplicità algebrica di $0$ come autovalore (ossia esattamente
 	la dimensione di $V^\perp_\varphi = \Ker a_\varphi$).
 \end{remark}
+
+\subsection{Operatori normale e triangolazione con base ortonormale}
 
 \begin{theorem} [di triangolazione con base ortonormale]
 	Sia $f \in \End(V)$, dove $(V, \varphi)$ è uno spazio euclideo su $\KK$. Allora,
@@ -1066,6 +988,8 @@
 	anche il viceversa. Pertanto, se $A \in M(n, \RR)$, $A$ è una matrice normale reale con $p_A$ completamente
 	riducibile in $\RR$ $\iff$ $A = A^\top$.
 \end{remark}
+
+\section{Alcuni esercizi svolti}
 
 \begin{exercise}
 	Sia $V$ uno spazio dotato del prodotto $\varphi$. Sia
