@@ -11,7 +11,7 @@ La cartella contiene in particolar modo una [Scheda riassuntiva](https://g1.hear
 tutti i risultati principali dell'algebra lineare e della geometria del primo anno. Questo progetto non sarebbe mai stato realizzabile senza il meraviglioso
 aiuto di alcuni miei amici e colleghi, che ora elenco:
 
-   - [Avio Baccioli](mailto:aviobac@gmail.com)
+   - [Avio Baccioli](mailto:aviobac@gmail.com),
    - [Federico Volpe](https://poisson.phc.dm.unipi.it/~volpe/),
    - [Mario Zito](mailto:m.zito12@studenti.unipi.it),
    - [Rubens Martino](mailto:r.martino3@studenti.unipi.it).
