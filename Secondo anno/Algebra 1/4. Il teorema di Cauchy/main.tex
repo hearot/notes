@@ -12,57 +12,56 @@
 	Si dimostra in questo documento, per ben due volte, un inverso parziale
 	del teorema di Lagrange, il celebre teorema di Cauchy. Tale teorema
 	asserisce che se $p$ è un numero primo che divide l'ordine di $G$,
-	allora esiste un sottogruppo $H$ di $G$ di ordine $p$. \medskip
+	allora esiste un elemento di $G$ di ordine $p$. \medskip
 	
 	
 	Si mostra innanzitutto che il teorema vale per gruppi abeliani.
 	
 	\begin{theorem}[di Cauchy per gruppi abeliani]
-		Sia $G$ un gruppo abeliano finito. Se $p$ divide $\abs{G}$, allora
-		esiste $H \leq G$ tale per cui $\abs{H} = p$.
+		Sia $G$ un gruppo abeliano finito. Se un numero primo $p$ divide $\abs{G}$, allora
+		esiste $g \in G$ tale per cui $o(g) = p$.
 	\end{theorem}
 	
 	\begin{proof}
 		Sia $\abs{G} = pn$ con $n \in \NN^+$. Si dimostra per induzione su $n$ la
-		validità della tesi. Se $n = 1$, allora $G$ stesso è un sottogruppo di ordine $p$, completando il passo base. \medskip
+		validità della tesi. Se $n = 1$, allora $G$ è ciclico, e quindi ammette un
+		elemento di ordine $p$, completando il passo base. \medskip
 		
 		
-		Sia allora $n > 1$ e si ipotizzi allora che tutti i gruppi tali che $\abs{G} = pk$ con $k < n$, $k \in \NN^+$ ammettano un sottogruppo di ordine $p$. Sia $h \in G$, $h \neq e$ (questo $h$ sicuramente esiste, dal momento che $p > 1$). Se $p \mid o(h)$, allora
-		$\Cyc{h^{\nicefrac{o(h)}{p}}}$ è un sottogruppo di $G$ di ordine $p$. Altrimenti,
+		Sia allora $n > 1$ e si ipotizzi allora che tutti i gruppi tali che $\abs{G} = pk$ con $k < n$, $k \in \NN^+$ ammettano un elemento di ordine $p$. Sia $h \in G$, $h \neq e$ (questo $h$ sicuramente esiste, dal momento che $p > 1$). Se $p \mid o(h)$, allora
+		$h^{\nicefrac{o(h)}{p}}$ è un elemento di $G$ di ordine $p$. Altrimenti,
 		si consideri $H = \Cyc{h}$. \medskip
 		
 		
 		Dal momento che $G$ è abeliano, $H$ è normale, e dunque si può considerare il gruppo quoziente $G \quot H$. Poiché $p \nmid o(h) = \abs H$ e $p$ divide $\abs G$,
 		$p$ divide anche $\abs{G \quot H}$ per il teorema di Lagrange. Inoltre, poiché
 		$o(h) > 1$ (infatti $h \neq e$), $\abs{G \quot H} < \abs{G}$. Per l'ipotesi
-		induttiva, allora, esiste un sottogruppo $T$ di ordine $p$ di $G \quot H$. Poiché
-		$T$ è di ordine $p$, $T$ è ciclico, e quindi esiste $t \in G$, $t \neq e$ tale per cui
-		$T = \Cyc{tH}$. \medskip
+		induttiva, allora, esiste un elemento $tH$ di ordine $p$ in $G \quot H$. \medskip
 		
 		
 		Si mostra adesso che $p \mid o(t)$. Si consideri la proiezione al quoziente $\pi : G \to G \quot H$ tale per cui:
 		\[ g \xmapsto{\pi} gH. \]
 		Allora $p = o(tH) \mid o(t)$, dal momento che $eH=\pi(t^{o(t)})=(tH)^{o(t)}$.
-		Pertanto, come prima, si può estrarre da $\Cyc{t}$ un sottogruppo di $G$
-		di ordine $p$, concludendo il passo induttivo.
+		Pertanto, come prima, $t^{\nicefrac{o(t)}{p}}$ è un elemento di ordine $p$,
+		concludendo il passo induttivo.
 	\end{proof} \bigskip
 	
 	Di seguito si dimostra il teorema di Cauchy in generale.
 	
 	\begin{theorem}[di Cauchy]
-		Sia $G$ un gruppo finito. Se $p \mid \abs{G}$, allora
-		esiste $H \leq G$ tale per cui $\abs{H} = p$.
+		Sia $G$ un gruppo finito. Se un numero primo $p$ divide $\abs{G}$, allora
+		esiste $g \in G$ tale per cui $o(g) = p$.
 	\end{theorem}
 	
 	\begin{proof}
 		Sia $\abs{G} = pn$ con $n \in \NN^+$. Si dimostra la tesi per induzione.
-		Se $n = 1$, $G$ stesso è sottogruppo di ordine $p$, completando il passo
-		base. Sia ora $n > 1$ e si assuma che ogni sottogruppo di ordine $pk$ con
-		$k < n$ ammetta un sottogruppo di ordine $p$. \medskip
+		Se $n = 1$, $G$ è ciclico e dunque ammette un generatore di ordine $p$,
+		completando il passo base. Sia ora $n > 1$ e si assuma che ogni gruppo di ordine $pk$ con
+		$k < n$ ammetta un elemento di ordine $p$. \medskip
 		
 		
-		Se esiste $H \lneq G$ tale per cui $p$ divide $\abs H$, allora $H$, e quindi
-		anche $G$, ammette un sottogruppo di ordine $p$ per l'ipotesi induttiva.
+		Se esiste un sottogruppo proprio $H < G$ tale per cui $p$ divide $\abs H$, allora $H$, e quindi
+		anche $G$, ammette un elemento di ordine $p$ per l'ipotesi induttiva.
 		Si assuma dunque che non esiste alcun sottogruppo proprio $H < G$ tale
 		per cui $p$ divide $\abs H$. Si consideri la formula delle classi
 		di coniugio:
@@ -76,12 +75,12 @@
 		\[ \abs{Z(G)} \equiv 0 \pod p. \]		
 		Poiché $Z(G)$ è un sottogruppo di $G$, se valesse $Z(G) < G$, si violerebbero
 		le ipotesi iniziali. Pertanto deve necessariamente valere $Z(G) = G$, e quindi
-		$G$ è abeliano. Pertanto $G$ ammette un sottogruppo di ordine $p$ per il Teorema
+		$G$ è abeliano. Pertanto $G$ ammette un elemento di ordine $p$ per il Teorema
 		di Cauchy per i gruppi abeliani; completando il passo induttivo.
 	\end{proof} \smallskip
 	
 	
-	Si mostra inoltre una dimostrazione alternativa del teorema di Cauchy (più immediata
+	Si mostra infine una dimostrazione alternativa del teorema di Cauchy (più immediata
 	e facile da ricordare), basata su una particolare costruzione.
 	
 	\begin{proof}[Dimostrazione alternativa]
@@ -89,8 +88,7 @@
 		\[ S = \{ (a_1, \ldots, a_p) \in G^p \mid a_1 \cdots a_p = e \}. \]
 		Dimostrando che esiste un elemento $h \in G$ diverso dall'identità tale
 		per cui $(h, \ldots, h) \in S$, si mostra che $h^p = e$, e dunque che
-		$o(h) = p$ (infatti $h \neq e$). Allora, in tal caso, $\Cyc{h}$ è
-		un sottogruppo di $G$ di ordine $p$, e si dimostra la tesi. \medskip
+		$o(h) = p$ (infatti $h \neq e$), dimostrando la tesi. \medskip
 		
 		
 		Si ipotizzi che tale elemento $h$ non esisti. Si consideri l'azione $\varphi$
