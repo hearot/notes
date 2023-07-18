@@ -10,4 +10,7 @@
 - [Schede di Andrea Gallese 📖](https://uz.sns.it/~Gall/Algebra.pdf)
 - [Pagina e-learning del corso 🔗](https://elearning.dm.unipi.it/course/view.php?id=404)
 
-[WIP]
+Questa cartella raccoglie tutti gli appunti che ho preso in relazione al corso di Algebra 1. In realtà, il corso non è ancora
+iniziato; tuttavia, avendo a disposizione un po' di tempo libero, ho iniziato a studiacchiare alcuni concetti in vista dell'inizio
+del corso. Mi sto basando sugli [appunti di Diego Monaco e Leonardo Migliorini](https://github.com/diego-unipi/Algebra-1),
+che riprendono il programma del corso dell'A.A. 2022-2023.
