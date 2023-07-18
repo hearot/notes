@@ -1,0 +1,149 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Azione di un gruppo su un insieme}
+	\maketitle
+
+	\begin{note}
+		Nel corso del documento per $(G, \cdot)$ si intenderà un qualsiasi gruppo.
+		Si scriverà $gh$ per indicare $g \cdot h$, omettendo il punto. Analogamente
+		con $X$ si indicherà un insieme generico qualsiasi.
+	\end{note}
+
+	\begin{definition}[azione di un gruppo su un insieme] Sia $X$ un insieme. Allora
+		un'applicazione $\varphi : G \to S(X)$ tale che $g \xmapsto{\varphi} \left[ x \mapsto g \cdot x \right]$ si dice \textbf{azione di $G$ su $X$}
+		se è un omomorfismo di gruppi. 
+	\end{definition} \medskip
+	
+	
+	Se $G$ agisce tramite $\varphi$ su $X$, si dice allora che $X$ è un $G$-insieme. Si dice inoltre che l'azione $\varphi$ è \textbf{fedele} se $\varphi$ è iniettiva,
+	ossia se e solo se $\varphi(g) = \Id \implies g = e$.
+	
+	\begin{definition}[stabilizzatore] Sia $x \in X$. Allora si definisce lo
+		\textbf{stabilizzatore di $x$}, denotato come $\Stab(x)$, come il sottogruppo di $G$ 
+		tale per cui:
+		\[ \Stab(x) = \{ g \in G \mid g \cdot x = x \}. \]
+	\end{definition} \medskip
+
+
+	Si può allora constatare che $\varphi$ è fedele se e solo se:
+	\[ \Ker \varphi = \bigcap_{x \in X} \Stab(x) = \{e\}. \] \medskip
+	
+	
+	Si costruisce adesso una relazione di equivalenza $\sim$ su $X$, data dalla
+	seguente definizione:
+	\[ x \sim y \defiff \exists g \in G \mid g \cdot x = y. \]
+	Le classi di equivalenza di $\sim$ vengono dette $\textbf{orbite}$ e si
+	pone $\Orb(x) := \left[ x \right]_\sim$. \medskip
+	
+	\begin{definition}[azione libera]
+		Si dice che $\varphi$ è un'azione libera (o che $G$ agisce liberamente
+		su $X$) se $\Stab(x) = \{e\}$ per ogni scelta di $x \in X$.
+	\end{definition}
+	
+	\begin{definition}[azione transitiva]
+		Si dice che $\varphi$ è un'azione transitiva (o che $G$ agisce transitivamente
+		su $X$) se esiste un'unica classe di equivalenza di $\sim$ (ossia se
+		$\forall x$, $y \in X$, $\exists g \in G \mid g \cdot x = y$). In tal
+		caso si dice che $X$ è un $G$-insieme omogeneo.
+	\end{definition}
+	
+	\begin{definition}[azione semplicemente transitiva]
+		Si dice che $\varphi$ è un'azione semplicemente transitiva (o che $G$ agisce in
+		maniera semplicemente transitiva su $X$) se $\varphi$ è un'azione libera e
+		transitiva. In tal caso si dice che $X$ è un $G$-insieme omogeneo principale.
+	\end{definition} \medskip
+	
+	In generale, un'azione può essere solamente libera o solamente transitiva. Chiaramente
+	però la libertà di un'azione ne implica la fedeltà, e non il contrario. Tuttavia
+	nel caso particolare dei gruppi abeliani, la fedeltà e la transitività di un'azione
+	ne implicano anche la libertà, come enunciato dalla:
+	
+	\begin{proposition}
+		Sia $G$ abeliano. Allora, se $\varphi$ è fedele e transitiva, $\varphi$ è
+		semplicemente transitiva.
+	\end{proposition}
+	
+	\begin{proof}
+		È sufficiente dimostrare che $\varphi$ è anche libera, ossia che $\Stab(x) = \{e\}$
+		per ogni scelta di $x \in X$. Sia allora $g \in \Stab(x)$. Si mostra che
+		$g \in \Ker \varphi$, da cui si dedurrà che $g = e$. \medskip
+		
+		
+		Sia $y \in X$. Poiché $\varphi$ è transitiva, $x \sim y$, e quindi esiste
+		$h \in G$ tale per cui $h \cdot x = y$. Pertanto, sfruttando la commutatività
+		di $G$, $g \cdot y = g \cdot (h \cdot x) =
+		h \cdot (g \cdot x) = h \cdot x = y$, da cui si deduce che $\varphi(g) = \Id$,
+		concludendo la dimostrazione.
+	\end{proof} \bigskip
+	
+	Si dimostra adesso il teorema più importante sulle azioni di gruppi sugli insiemi: il
+	Teorema orbita-stabilizzatore, un ``analogo'' del Primo teorema di isomorfismo per
+	le azioni\footnote{Si lascia al lettore la gioia di dimostrare il Primo teorema di isomorfismo proprio a partire dal Teorema orbita-stabilizzatore (indizio: se $f \in \Hom(G,H)$, si può considerare l'azione $\varphi : G \to S(H)$ tale che $g \xmapsto{\varphi} \left[ h \mapsto g \cdot h = f(g)h \right]$). Si noterà infatti
+	che la dimostrazione del Teorema orbita-stabilizzatore ricalca totalmente la
+	stessa idea della dimostrazione del Primo teorema di isomorfismo.}.
+	
+	\begin{theorem}[orbita-stabilizzatore]
+		Sia $x \in X$. Allora la mappa $\alpha : G \quot \Stab(x) \to \Orb(x)$ tale
+		che $g \Stab(x) \xmapsto{\alpha} g \cdot x$ è una bigezione.
+	\end{theorem}
+	
+	\begin{proof}
+		Si mostra che la mappa $\alpha$ è ben definita. Se $g \in G$ e $s \in \Stab(x)$,
+		allora $\alpha(gs \Stab(x)) = (gs) \cdot x = g \cdot x = \alpha(g \Stab(x))$. \medskip
+
+
+		Si dimostra allora l'iniettività di $\alpha$. Siano $g$ e $h \in G$ tali
+		che $\alpha(g \Stab(x)) = \alpha(h \Stab(x))$. Allora $g \cdot x = h \cdot x \implies
+		(h\inv g) \cdot x = x \implies h \inv g \in \Stab(x)$; pertanto $h \in g \Stab(x) \implies g \Stab(x) = h \Stab(x)$, da cui l'iniettività. \medskip
+		
+		
+		Infine si mostra la surgettività di $\alpha$. Se $y \in \Orb(x)$, allora esiste
+		$g \in G$ tale per cui $g \cdot x = y$, e quindi $\alpha(g \Stab(x)) = g \cdot x = y$,
+		da cui la surgettività.
+	\end{proof} \bigskip
+	
+
+	Se $G$ è finito, il Teorema orbita-stabilizzatore implica anche un'identità aritmetica
+	riguardante le cardinalità di $\Stab(x)$ e $\Orb(x)$:
+	\[ \abs G = \abs{\Stab(x)} \abs{\Orb(x)}. \]
+	Da questa identità si può estrarre un'ulteriore uguaglianza:
+	\[ \abs X = \sum_{x \in \mathcal{R}} \abs{\Orb(x)} =  \sum_{x \in \mathcal{R}} \frac{\abs G}{\abs{\Stab(x)}}, \]
+	dove $\mathcal{R}$ è un insieme dei rappresentanti delle orbite dell'azione. Questo
+	fatto è un'immediata conseguenza del fatto che la relazione $\sim$ è di equivalenza,
+	e che, in quanto tale, induce una partizione dell'insieme $X$ mediante i suoi
+	rappresentanti:
+	\[ X = \bigsqcup_{x \in \mathcal{R}} \Orb(x). \] \bigskip
+
+
+	Si introduce adesso il concetto di \textit{punti fissi} di un dato $g \in G$, a cui
+	seguirà il \textit{lemma di Burnside}, un risultato utile per contare il numero
+	di orbite di un'azione.
+	
+	\begin{definition}[punti fissi di $g$]
+		Si definisce l'insieme $\Fix(g)$ come il sottoinsieme di $X$ dei punti
+		lasciati fissi da $g$, ossia:
+		\[ \Fix(g) = \{ x \in X \mid g \cdot x = x \}. \]
+	\end{definition}
+	
+	\begin{proposition}[lemma di Burnside]
+		$\abs{X \quot \sim} = \frac{1}{\abs{G}} \sum_{g \in G} \abs{\Fix(g)}$.
+	\end{proposition}
+	
+	\begin{proof}
+		L'idea chiave risiede nell'osservare che $\sum_{g \in G} \abs{\Fix(g)}$ conta
+		gli elementi dell'insieme $S$, dove:
+		\[ S = \{ (g, x) \in G \times X \mid g \cdot x = x \} \subseteq G \times X. \]
+		Infatti, gli stessi elementi sono contati da $\sum_{x \in X} \abs{\Stab(x)}$.
+		Applicando allora il Teorema orbita-stabilizzatore, ed indicando
+		con $\mathcal{R}$ un insieme dei rappresentanti delle orbite, la
+		somma si riscrive come:
+		\[ \sum_{g \in G} \abs{\Fix(g)} = \sum_{x \in X} \abs{\Stab(x)} =
+		\sum_{r \in \mathcal{R}} \sum_{x \in \Orb(r)} \abs{\Stab(x)} = (*),
+		 \]
+		 a sua volta riscritta come:
+		 \[ (*) = \sum_{r \in \mathcal{R}} \sum_{x \in \Orb(r)} \frac{\abs{G}}{\abs{\Orb(x)}} = \sum_{r \in \mathcal{R}} \sum_{x \in \Orb(r)} \frac{\abs{G}}{\abs{\Orb(r)}} = \abs{G} \abs{X \quot \sim}, \]
+		 dove è stato cruciale osservare che, per $x \in \Orb(r)$, $\Orb(x) = \Orb(r)$.
+	\end{proof}
+\end{document}
