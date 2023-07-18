@@ -1,0 +1,95 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Azione di coniugio e $p$-gruppi}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento per $(G, \cdot)$ si intenderà un qualsiasi gruppo.
+	\end{note}
+	
+	Si consideri l'omomorfismo $\zeta$ che associa ad ogni $g \in G$ l'automorfismo interno
+	che induce. Questo omomorfismo induce la cosiddetta:
+	
+	\begin{definition}[azione di coniugio]
+		Si definisce \textbf{azione di coniugio} l'azione di $G$ su sé stesso indotta da $\zeta : G \to \Aut(G)$ dove:
+		\[ g \xmapsto{\zeta} \varphi_g = \left[ h \mapsto g h g\inv \right]. \]
+	\end{definition}
+	
+	L'orbita di un elemento $g \in G$ prende in questo particolare caso il nome
+	di \textbf{classe di coniugio} (e si indica come $\Cl(g)$), mentre il suo stabilizzatore viene detto \textbf{centralizzatore} (indicato con $Z_G(g)$). Si verifica facilmente
+	che $Z_G(g)$ è composto da tutti gli elementi $h \in G$ che commutano con $g$, ossia
+	tali che $gh = hg$. Allora vale in particolare che:
+	\[ Z(G) = \Ker \zeta = \bigcap_{g \in G} Z_G(g). \] \medskip
+	
+	
+	Si osserva inoltre che se $g \in Z(G)$, allora $\Cl(g) = \{g\}$ (infatti, per $h \in G$, si avrebbe $h g h\inv = h h\inv g = g$). Si può dunque riscrivere la somma data dal
+	Teorema orbita-stabilizzatore nel seguente modo:
+	\[ \abs{G} = \sum_{g \in \mathcal{R}} \frac{\abs{G}}{\abs{Z_G(g)}} = \sum_{g \in Z(G)} \underbrace{\abs{\Cl(g)}}_{=1} + \sum_{g \in \mathcal{R} \setminus Z(G)} \frac{\abs{G}}{\abs{Z_G(g)}} = (*), \]
+	che riscritta ancora si risolve nella \textbf{formula delle classi di coniugio}:
+	\[ (*) = \abs{Z(G)} + \sum_{g \in \mathcal{R} \setminus Z(G)} \frac{\abs{G}}{\abs{Z_G(g)}}, \]
+	dove $\mathcal{R}$ è un insieme di rappresentanti delle orbite dell'azione di coniugio
+	(si osserva che ogni elemento di $Z(G)$ è un rappresentante dacché l'orbita di un
+	elemento del centro è banale). \medskip
+	
+	
+	Utilizzando la nozione di centralizzatore, si può contare ``facilmente'' il numero
+	di classi di coniugio di un gruppo. Infatti, si osserva crucialmente che
+	$\Fix(g)$ (il numero di elementi di $G$ lasciati invariati sotto il coniugio di $g$)
+	è lo stesso insieme $Z_G(g)$. Infatti vale che:
+	\[ \Fix(g) = \{ h \in G \mid gh = hg \} = Z_G(g). \]
+	Allora, per il lemma di Burnside, se $k(G)$ è il numero di classi di coniugio di $G$, vale che:
+	\[ k(G) = \frac{1}{\abs{G}} \sum_{g \in G} \abs{Z_G(g)}. \] \bigskip
+	
+	
+	La formula delle classi di coniugio risulta in particolare utile nella discussione
+	dei $p$-gruppi, definiti di seguito.
+	
+	\begin{definition}[$p$-gruppo]
+		Sia $G$ un gruppo finito. $G$ si dice allora \textbf{$p$-gruppo} se
+		$\abs{G} = p^n$ per $n \in \NN^+$ e un numero primo $p \in \NN$.
+	\end{definition}
+	
+	Infatti, grazie alla formula delle classi di coniugio, si osserva facilmente che il centro di un $p$-gruppo non è mai banale (ossia composto dalla sola identità), come mostra la:
+	
+	\begin{proposition}
+		Sia $G$ un $p$-gruppo. Allora $\abs{Z(G)} > 1$. 
+	\end{proposition}
+	
+	\begin{proof}
+		Dalla formula delle classi di coniugio si ha che:
+		\[ \abs{G} = \abs{Z(G)} + \sum_{g \in \mathcal{R} \setminus Z(G)} \frac{\abs G}{\abs{Z_G(g)}}. \]
+		Si osserva in particolare che il secondo termine della somma a destra è divisibile
+		per $p$. Infatti, poiché $g \notin Z(G)$ per ipotesi, $Z_G(g) \neq Z(G)$; da cui
+		si deduce che $\abs{Z_G(g)}$ deve essere un divisore stretto di $p^n$, e dunque
+		che $p \mid \nicefrac{\abs G}{\abs{Z_G(g)}}$. Prendendo l'identità di sopra modulo
+		$p$, si deduce allora che:
+		\[ \abs{Z(G)} \equiv 0 \pod p. \]
+		Combinando questo risultato col fatto che $\abs{Z(G)} \geq 1$ (infatti $Z(G) \leq G$),
+		si conclude che deve valere necessariamente che $\abs{Z(G)} > 1$.
+	\end{proof} \medskip
+	
+	
+	Quest'ultima proposizione spiana il terreno per un risultato interessante sui
+	gruppi di ordine $p^2$, come mostra il:
+	
+	\begin{theorem}
+		Ogni gruppo $G$ di ordine $p^2$ è abeliano.
+	\end{theorem}
+	
+	\begin{proof}
+		Dal momento che $G$ è un $p$-gruppo, per la precedente proposizione
+		$\abs{Z(G)} > 1$. Allora $\abs{Z(G)}$ è pari a $p$ o $p^2$, per il
+		Teorema di Lagrange. Se $\abs{Z(G)}$ fosse pari a $p$, allora
+		$\abs{G \quot Z(G)} = \nicefrac{\abs G}{\abs{Z(G)}} = p$. Pertanto
+		$G \quot Z(G)$ sarebbe ciclico, e dunque $G$ sarebbe abeliano; assurdo,
+		dal momento che si era presupposto che $Z(G)$ fosse un sottogruppo proprio
+		di $G$, \Lightning. Allora $Z(G)$ ha ordine $p^2$,
+		e dunque $Z(G) = G$.
+	\end{proof}
+	
+	Questo risultato ha un'immediata applicazione, se combinato con il Teorema
+	fondamentale dei gruppi abeliani finiti. Infatti, esso implica che
+	$G$ deve per forza essere isomorfo a $\ZZ_{p^2}$ o a $\ZZ_{p} \times \ZZ_{p}$.
+\end{document}
