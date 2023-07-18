@@ -1,0 +1,47 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Normalizzatore e teorema di Cayley}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento per $(G, \cdot)$ si intenderà un qualsiasi gruppo.
+	\end{note}
+	
+	Sia $X = \{ H \subseteq G \mid H \leq G \}$ l'insieme dei sottogruppi di $G$.
+	Allora si può costruire un'azione $\varphi : G \to S(X)$ in modo tale che:
+	\[ g \xmapsto{\varphi} \left[ H \mapsto gHg\inv \right]. \]
+	Si definisce \textbf{normalizzatore} lo stabilizzatore di un sottogruppo
+	$H$ (e si indica con $N_G(H)$), mentre $\Orb(H)$ è l'insieme dei \textbf{coniugati}
+	di $H$. Si osserva in modo cruciale che $H \nsgeq G$ se e solo se
+	$\Orb(H) = \{H\}$, e quindi se e solo se $N_G(H) = G$. Analogamente si
+	osserva che $H$ è normale se e solo se:
+	\[ H = \bigcup_{h \in H} \Cl(h). \] \bigskip
+	
+	
+	Si illustra adesso un risultato principale della teoria dei gruppi che mette in
+	relazione ogni gruppo con il proprio gruppo di bigezioni, ed ogni gruppo finito con i
+	sottogruppi dei gruppi simmetrici.
+	
+	\begin{theorem}[di Cayley]
+		Ogni gruppo è isomorfo a un sottogruppo del suo gruppo di bigezioni.
+		In particolare, ogni gruppo finito $G$ è isomorfo a un sottogruppo di un gruppo
+		simmetrico.
+	\end{theorem}
+	
+	\begin{proof}
+		Si consideri l'azione\footnote{Tale azione prende il nome di \textbf{rappresentazione regolare a sinistra}.
+		Si può infatti definire un'azione analoga a destra ponendo $g \mapsto \left[ h \mapsto hg\inv \right]$,
+		costruendo dunque una \textit{rappresentazione regolare a destra}.} $\varphi : G \to S(G)$ tale per cui:
+		\[ g \xmapsto{\varphi} \left[ h \mapsto gh \right]. \]
+		Si mostra che $\varphi$ è fedele\footnote{L'azione $\varphi$ è molto
+		più che fedele; è infatti innanzitutto libera.}. Sia infatti $\varphi(g) = \Id$; allora
+		vale che $ge = e \implies g = e$. Quindi $\Ker \varphi$ è banale, e per il
+		Primo teorema di isomorfismo vale che:
+		\[ G \cong \Im \varphi \leq S(G). \]
+		Se $G$ è finito, $S(G)$ è isomorfo a $S_n$, dove $n := \abs{G}$, e quindi
+		$\Im \varphi$ è a sua volta isomorfo a un sottogruppo di $S_n$, da cui
+		la tesi.
+	\end{proof}
+\end{document}
