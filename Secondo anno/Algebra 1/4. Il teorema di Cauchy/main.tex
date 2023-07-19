@@ -60,23 +60,23 @@
 		$k < n$ ammetta un elemento di ordine $p$. \medskip
 		
 		
-		Se esiste un sottogruppo proprio $H < G$ tale per cui $p$ divide $\abs H$, allora $H$, e quindi
-		anche $G$, ammette un elemento di ordine $p$ per l'ipotesi induttiva.
-		Si assuma dunque che non esiste alcun sottogruppo proprio $H < G$ tale
-		per cui $p$ divide $\abs H$. Si consideri la formula delle classi
+		Sia $\mathcal{R}$ è un insieme dei rappresentanti delle classi di coniugio
+		di $G$. Se esiste $g \in \mathcal{R}$ tale per cui $p$ divida
+		$\abs{Z_G(g)}$, allora esiste un elemento di ordine $p$ in
+		$Z_G(g)$ per ipotesi induttiva (infatti $Z_G(g) \neq G$, altrimenti
+		$g$ apparterrebbe al centro di $G$). Altrimenti si consideri la formula delle classi
 		di coniugio:
-		\[ \abs G = \abs{Z(G)} + \sum_{g \in \mathcal{R} \setminus Z(G)} \frac{\abs G}{\abs{Z_G(g)}}, \]
-		dove $\mathcal{R}$ è un insieme dei rappresentanti delle classi di coniugio
-		di $G$. Se $g \in \mathcal{R} \setminus Z(G)$, allora $Z_G(g)$ è un sottogruppo
-		proprio di $G$, e quindi, per ipotesi, $p$ non divide $\abs{Z_G(g)}$; e quindi
+		\[
+			\abs G = \abs{Z(G)} + \sum_{g \in \mathcal{R} \setminus Z(G)} \frac{\abs G}{\abs{Z_G(g)}}.
+		\]
+		Poiché $p$ non divide $\abs{Z_G(g)}$ per ogni $g \in \mathcal{R} \setminus Z(G)$,
 		$p$ divide ancora $\nicefrac{\abs{G}}{\abs{Z_G(g)}}$ (e quindi il secondo termine
 		del secondo membro). Allora, prendendo
 		l'identità modulo $p$, si deduce che:
 		\[ \abs{Z(G)} \equiv 0 \pod p. \]		
-		Poiché $Z(G)$ è un sottogruppo di $G$, se valesse $Z(G) < G$, si violerebbero
-		le ipotesi iniziali. Pertanto deve necessariamente valere $Z(G) = G$, e quindi
-		$G$ è abeliano. Pertanto $G$ ammette un elemento di ordine $p$ per il Teorema
-		di Cauchy per i gruppi abeliani; completando il passo induttivo.
+		Poiché allora $p$ divide $\abs{Z(G)}$ e $Z(G)$ è un gruppo abeliano,
+		il passo induttivo segue dal Teorema di Cauchy per gruppi abeliani,
+		da cui la tesi.
 	\end{proof} \smallskip
 	
 	
