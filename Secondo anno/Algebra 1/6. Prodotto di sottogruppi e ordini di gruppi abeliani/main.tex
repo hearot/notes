@@ -1,0 +1,208 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Prodotto di sottogruppi e ordini di gruppi abeliani}
+	\maketitle
+
+	\begin{note}
+		Nel corso del documento per $(G, \cdot)$ si intenderà un qualsiasi gruppo.
+	\end{note}
+
+	Si introduce in questo documento la nozione di prodotto
+	di sottogruppi, ripresa poi nella dimostrazione di un
+	lemma fondamentale per lo studio dei gruppi abeliani.
+	
+	\begin{definition}[prodotto di sottogruppi]
+		Siano $H$ e $K$ due sottogruppi di $G$. Si definisce
+		il loro prodotto $HK$ come:
+		\[ HK = \{ hk \mid h \in H, k \in K \} \subseteq G. \]
+	\end{definition}
+
+	In realtà, il concetto di ``prodotto di sottogruppi'' non
+	è del tutto nuovo nello studio dell'Algebra per uno
+	studente che ha già seguito con successo un corso di
+	Algebra lineare. Infatti, la somma di due sottospazi
+	vettoriali è un prodotto di sottogruppi, per quanto
+	la scrittura $V+W$ possa trarre in inganno (infatti uno
+	spazio vettoriale è in particolare un gruppo abeliano).
+	L'unica, cruciale, differenza sta nel fatto che una
+	somma di sottospazi è sempre un sottospazio, mentre
+	$HK$ potrebbe non esserlo, come mostra la:
+	
+	\begin{proposition}
+		Siano $H$ e $K$ due sottogruppi di $G$. Allora
+		$HK$ è un sottogruppo di $G$ se e solo se $HK=KH$.
+	\end{proposition}
+
+	\begin{proof}
+		Se $HK$ è un sottogruppo di $G$, si verifica
+		facilmente che $HK=KH$. Infatti, se $k \in K$ e
+		$h \in H$, $kh$, che appartiene chiaramente
+		a $KH$, deve appartenere anche ad $HK$ dal momento
+		che è l'inverso dell'elemento $h\inv k\inv \in HK$
+		(infatti $HK$ è un gruppo); pertanto $KH \subseteq HK$.
+		Analogamente, sia $x$ un elemento di $HK$. Allora
+		$x$ ammette un inverso in $HK$, e quindi $x\inv = hk$,
+		con $h \in H$, $k \in K$. Allora $x = k\inv h\inv \in KH$,
+		da cui $HK \subseteq KH$ e quindi $HK=KH$. \bigskip
+		
+		
+		Sia ora $HK=KH$. Chiaramente $e \in HK$. Siano $x=h_1 k_1$ e $y=h_2 k_2$ elementi
+		di $HK$ con $h_1$, $h_2 \in H$ e $k_1$, $k_2 \in K$.
+		Allora $xy = h_1 k_1 h_2 k_2$; tuttavia $k_1 h_2$ si può
+		riscrivere per ipotesi (essendo $KH \subseteq HK$) come
+		$hk$ con $h \in H$ e $k \in K$. Allora $xy = h_1 h k k_2 \in HK$, e quindi $HK$ è chiuso per l'operazione di gruppo di $G$.
+		Inoltre $x\inv = k_1 \inv h_1 \inv \in KH$, e quindi,
+		per ipotesi, $x\inv \in HK$, da cui la tesi.
+	\end{proof}
+
+	Quindi, se un gruppo è abeliano, vale sempre la relazione
+	$HK=KH$, e dunque $HK$ è sempre un sottogruppo (e quindi
+	si sostituisce con più tranquillità alla notazione $HK$ la più familiare $H+K$). In realtà, però, si può indebolire questa
+	ipotesi richiedendo la normalità di $H$ o $K$ (come suggerisce
+	la notazione $H = KHK\inv$), come mostra la:
+	
+	\begin{proposition}
+		Siano $H$ e $K$ due sottogruppi di $G$. Allora, se $H \nsgeq G$, $HK = KH$.
+	\end{proposition}
+
+	\begin{proof}
+		Siano $h \in H$ e $k \in K$. Si consideri l'elemento
+		$hk \in HK$. Poiché $H$ è normale, $k\inv h k \in H$,
+		e quindi $k\inv h k = h'$ con $h' \in H$, da cui
+		$HK \subseteq KH$. Analogamente si mostra anche
+		l'altra inclusione.
+	\end{proof} \bigskip
+
+	Come studiato nell'ambito dell'Algebra lineare, l'intersezione dei
+	sottogruppi $H$ e $K$ gioca un ruolo fondamentale nel
+	considerare l'insieme $HK$. In particolare, ci si chiede
+	quando il prodotto $hk$ è univocamente rappresentato
+	(ossia $hk=h'k' \implies h=h'$ e $k=k'$). Si può
+	rispondere a questa domanda in due modi: mostrando
+	sotto quali ipotesi si trova un isomorfismo tra $HK$ e
+	$H \times K$ (che dunque codifica l'unicità tramite
+	l'uguaglianza delle coordinate), o determinando
+	la cardinalità di $HK$ per $G$ finito (e dunque l'unicità dipende
+	dall'uguaglianza $\abs{HK} = \abs H \abs K$, dal momento
+	che se le scritture sono uniche, tutti i prodotti tra elementi
+	di $H$ e di $K$ sono distinti). In entrambi i casi si giungerà
+	alla conclusione secondo cui $H \cap K$ deve essere
+	banale\footnote{Mantenendo l'analogia con l'Algebra lineare,
+	vale infatti che $V + W = V \oplus W$
+	se e solo se $V \cap W = \zerovecset$. Si mostrerà che
+	sotto le stesse ipotesi anche un prodotto di sottogruppi è
+	un prodotto diretto (tramite isomorfismo).} \bigskip
+
+
+	\begin{proposition}[cardinalità di $HK$]
+		Sia $G$ un gruppo finito.
+		Siano $H$ e $K$ due sottogruppi di $G$. Allora vale
+		che $\abs{HK} = \frac{\abs{H} \abs{K}}{\abs{H \cap K}}$.
+	\end{proposition}
+
+	\begin{proof}
+		Si costruisca la relazione di equivalenza $\sim$
+		su $H \times K$ in modo tale che:
+		\[ (h,k) \sim (h',k') \defiff hk=h'k'. \]
+		Allora chiaramente $\abs{H \times K \quot \sim} = \abs{HK}$
+		(infatti ad ogni classe di equivalenza corrisponde esattamente un unico elemento di $HK$). \bigskip
+		
+		Si esamini la classe di equivalenza di $(h,k) \in H \times K$. Si
+		mostra che ogni elemento di tale classe è della forma
+		$(ht,t\inv k)$ con $t \in H \cap K$. Sia infatti $(h_1,k_2) \in
+		[(h,k)]_\sim$. Allora:
+		\[
+			h_1k_1=hk \implies h\inv h_1 = k k_1\inv \in H \cap K.
+		\]
+		Pertanto, se $h\inv h_1 = k k_1\inv = t$, vale che $h_1=ht$ e che $k_1 = t\inv k$.
+		Quindi ogni classe di equivalenza contiene esattamente $\abs{H \cap K}$ elementi.
+		Poiché $\sim$ induce una partizione di $H \times K$ in classi
+		di equivalenza, vale dunque che:
+		\[
+			\abs{H} \abs{K} = \abs{H \times K} = \abs{H \times K \quot \sim} \abs{H \cap K} = \abs{HK} \abs{H \cap K},
+		\]
+		da cui la tesi. 
+	\end{proof}
+
+	Pertanto, se le scritture sono uniche, $H \cap K$ deve essere
+	per forza banale (infatti deve valere $\abs{H \cap K} = 1$).
+	Questo risultato può essere rafforzato dalla:
+	
+	\begin{proposition}
+		Siano $H$ e $K$ due sottogruppi normali di $G$ tali che
+		$H \cap K = \{e\}$. Allora $HK \cong H \times K$.
+	\end{proposition}
+
+	\begin{proof}
+		Si costruisce la mappa $\rho : H \times K \to HK$
+		in modo tale che:
+		\[ (h,k) \xmapsto{\rho} hk. \]
+		
+		Si osserva che ogni elemento $h$ di $H$ commuta con
+		ogni elemento $k$ di $K$. Sia infatti $g = k\inv hkh\inv$, allora:
+		\[
+			g = \underbrace{(k\inv hk)}_{\in H} h\inv \in H, \qquad g = k\inv \underbrace{(hkh\inv)}_{\in K} \in K.
+		\]
+		Pertanto $g \in H \cap K \implies hk=kh$. Allora $\rho$
+		è un omomorfismo, infatti:
+		\[
+			\rho((hh',kk')) = hh'kk' = hkh'k' = \rho((h,k)) \rho((h',k')).
+		\]
+		Chiaramente $\rho$ è surgettiva. Inoltre $\rho((h,k)) = e \implies h = k\inv \in H \cap K$,
+		e dunque $h = k = e$, da cui l'iniettività di $\rho$
+		e la tesi.
+	\end{proof} \bigskip
+
+
+	Si può adesso dimostrare il seguente fondamentale
+	teorema per i gruppi abeliani:
+	
+	\begin{theorem}
+		Sia $G$ un gruppo abeliano finito di ordine $n$.
+		Allora, se $m$ divide $n$, esiste un sottogruppo di
+		$G$ di ordine $m$.
+	\end{theorem}
+
+	\begin{proof}
+		Si dimostra preliminarmente che se $p^k$ divide $n$,
+		dove $p$ è un numero primo e $k \in \NN^+$, allora
+		$G$ ammette un sottogruppo di ordine $p^k$. Si
+		mostra la tesi per induzione su $k$. \medskip
+		
+		
+		Se $k=1$ la tesi è valida per il Teorema di Cauchy, completando il passo base. Si ipotizzi adesso
+		che per ogni $t < k$ valga la tesi. Si consideri
+		un sottogruppo $H$ di $G$ di ordine $p$
+		(ancora una volta questo sottogruppo esiste per il
+		Teorema di Cauchy). Poiché $G$ è abeliano, $H$ è
+		normale in $G$, e quindi si può considerare il
+		gruppo quoziente $G \quot H$. Per il Teorema di
+		Lagrange, $p^{k-1}$ divide $\abs{G \quot H}$, e
+		quindi, per l'ipotesi induttiva, esiste un sottogruppo
+		$T$ di $G \quot H$ di ordine $p^{k-1}$. \medskip
+		
+		
+		Si consideri la proiezione al quoziente $\pi_H : G \to G \quot H$. Poiché $\pi_H$ è un omomorfismo,
+		$\pi_H\inv(T)$ è un sottogruppo. Inoltre, questo sottogruppo di $G$ ha ordine $p^k$, dal momento che $H$ ha ordine $p$
+		(e quindi ogni elemento di $T$ corrisponde tramite
+		la controimmagine a $p$ elementi), completando il passo
+		induttivo. \medskip
+		
+		
+		Sia ora $m$ scomposto nella sua fattorizzazione in primi
+		$p_1^{k_1} \cdots p_s^{k_s}$. Per il risultato precedente,
+		$G$ ammette dei sottogruppi $H_1$, ..., $H_s$ di ordine
+		$p_1^{k_1}$, ..., $p_s^{k_s}$. Poiché $G$ è abeliano,
+		tutti questi sottogruppi sono normali e si può dunque
+		considerare il prodotto dei sottogruppi $H_1 \cdots H_s$
+		(che è dunque un sottogruppo). Poiché
+		$\MCD(p_1^{k_1}, p_2^{k_2})=1$, $H_1 \cap H_2$ è banale e vale
+		che $\abs{H_1 H_2} = \abs{H_1} \abs{H_2} = p_1^{k_1} p_2^{k_2}$.
+		Allora, poiché $\MCD(p_1^{k_1} p_2^{k_2}, p_3^{k_3}) = 1$, anche $(H_1H_2) \cap H_3$ è banale e dunque $\abs{H_1 H_2 H_3} =
+		p_1^{k_1} p_2^{k_2} p_3^{k_3}$. Proseguendo induttivamente
+		si mostra dunque che $H_1 \cdots H_s$ è un sottogruppo
+		di $G$ di ordine $m$.
+	\end{proof}
+\end{document}
