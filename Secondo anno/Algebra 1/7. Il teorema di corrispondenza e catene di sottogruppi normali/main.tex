@@ -1,0 +1,96 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Il teorema di corrispondenza e catene di sottogruppi normali}
+	\maketitle
+
+	Si illustra adesso un teorema che mette in corrispondenza
+	i sottogruppi di $G \quot H$ con i sottogruppi di $G$
+	che contengono $H$. Benché questo teorema possa sembrare
+	a prima vista di poca utilità, in realtà svela alcune
+	proprietà che hanno portato allo sviluppo della celebre
+	teoria di Galois. Non solo, guardando anche nelle piccole
+	applicazioni, il teorema di corrispondenza permette di
+	contare molto facilmente i sottogruppi di $G \quot H$,
+	nonché di dimostrare l'esistenza di una catena di
+	$p$-sottogruppi normali contenente tutti gli ordini
+	possibili per un $p$-gruppo.
+	
+	\begin{theorem}[di corrispondenza]
+		Sia $H$ un sottogruppo normale di $G$. Allora
+		la proiezione al quoziente $\pi_H : G \to G \quot H$
+		induce una bigezione tra l'insieme
+		\[ X = \{ K \leq G \mid H \subseteq K \} \]
+		dei sottogruppi di $G$ che contengono $H$ e l'insieme
+		\[ Y = \{ K' \leq G \quot H \} \]
+		dei sottogruppi di $G \quot H$. Tale bigezione preserva
+		la normalità di un gruppo e il suo indice, ossia:
+		\begin{itemize}
+			\item $K \nsgeq G \iff K' \nsgeq G \quot H$,
+			\item $\left[ G : K \right] = \left[ G \quot H : K' \right]$,
+		\end{itemize}
+		dove $K \in X$ e $K' \in Y$ sono in corrispondenza biunivoca
+		mediante $\pi_H$.
+	\end{theorem}
+
+	\begin{proof}
+		Sia $\alpha : X \to Y$ definita nel seguente modo:
+		\[ K \xmapsto{\alpha} \pi_H(K), \]
+		dove si osserva che $\pi_H(K) = \{ kH \mid k \in K \} = K \quot H \leq G \quot H$.
+		Si definisce analogamente $\beta : Y \to X$ in modo tale che:
+		\[ K' \xmapsto{\beta} \pi_H\inv(K'). \]
+		Le due mappe sono entrambe ben definite (infatti $\pi_H\inv(K')$ è sempre un sottogruppo di $G$ e contiene
+		sempre $H$, dacché $H \in K'$, essendo l'identità di $G \quot H$).
+		È dunque sufficiente mostrare che vale $\beta \circ \alpha = \Id_X$ e che $\alpha \circ \beta = \Id_Y$. \bigskip
+		
+		
+		Siano quindi $K \in X$ e $K' \in Y$. Chiaramente
+		$\pi_H(\pi_H\inv(K')) = K'$, dal momento che $\pi_H$ è
+		surgettiva; dunque $\alpha \circ \beta = \Id_Y$. Inoltre
+		$\pi_H \inv (\pi_H(K)) = \pi_H\inv (K \quot H) = \{ g \in G \mid gH \in K \quot H \} = K$\footnote{
+			Infatti se $gH=kH$ con $k \in K$, esiste un $h \in H$ tale per cui $g=kh$.
+			Dal momento che $H \subseteq K$, $g$ è dunque un elemento di
+		$K$.}, da cui $\beta \circ \alpha = \Id_X$. Quindi $X$ e $Y$ sono in corrispondenza biunivoca
+		tramite $\alpha$ e $\beta$. \bigskip
+		
+		
+		Rimane da dimostrare che $\alpha$ e $\beta$ preservano
+		la normalità e l'indice di sottogruppo. Se $K \nsgeq G$,
+		allora chiaramente $K' = K \quot H \nsgeq G \quot H$
+		(infatti $gH \, kH \, g\inv H = (gkg\inv) H$, dove
+		$gkg\inv \in K$ per ipotesi di normalità). Sia
+		ora $K' \nsgeq G \quot H$. Allora, se $k \in K$,
+		$gH \, kH \, g\inv H = (gkg\inv) H$, e per ipotesi
+		di normalità deve esistere $k' \in K$ tale per cui
+		$(gkg\inv) H = k'H$, e quindi deve esistere
+		$h \in H$ tale per cui $gkg\inv = k'h$. Dal momento
+		che $H \subseteq K$, $gkg\inv \in K$, e quindi
+		$K \nsgeq G$. \bigskip
+		
+		
+		Per mostrare che l'indice di sottogruppo si preserva
+		si dimostra che esiste lo stesso numero di classi
+		laterali in $G \quot K$ e $(G \quot H) \quot (K \quot H)$.
+		Pertanto è sufficiente mostrare che:
+		\[
+			xK = yK \iff xH (K \quot H) = yH (K \quot H), \qquad x, y \in G.
+		\]
+		Infatti, in tal caso vi sarebbero esattamente $[G : K]$
+		classi laterali in $(G \quot H) \quot (K \quot H)$.
+		Si consideri ora la classe laterale $xH(K \quot H)$:
+		\[
+			xH(K \quot H) = \{ xHkH \mid k \in K \} = \{ (xk) H \mid k \in K \},
+		\]
+		dove nell'ultima uguaglianza si è impiegata la normalità
+		di $H$ in $G$ (altrimenti il prodotto non sarebbe ben
+		definito).
+		Analogamente $yH(K \quot H) = \{ (yk)H \mid k \in K \}$. 
+		Quindi, se $xH (K \quot H) = yH (K \quot H)$, allora $xH = (yk)H$, con $k \in K$.
+		Allora $x = ykh$ con $h \in H$. Poiché $H \subseteq K$, si deduce
+		quindi che $xK = yK$. Infine, se $xK = yK$, esiste
+		$k \in K$ tale per cui $x=yk$. Allora:
+		\[ xH(K \quot H) = yH \, kH (K \quot H) = yH(K \quot H), \]
+		da cui la tesi.
+	\end{proof}
+\end{document}
