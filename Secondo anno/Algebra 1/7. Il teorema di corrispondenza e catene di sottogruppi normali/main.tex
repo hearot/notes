@@ -92,5 +92,55 @@
 		$k \in K$ tale per cui $x=yk$. Allora:
 		\[ xH(K \quot H) = yH \, kH (K \quot H) = yH(K \quot H), \]
 		da cui la tesi.
+	\end{proof} \bigskip
+	
+	
+	Si illustra allora il seguente fondamentale risultato sui $p$-gruppi,
+	che è conseguenza del Teorema di corrispondenza e delle proprietà degli
+	ordini di gruppi abeliani.
+	
+	\begin{proposition}
+		Sia $G$ un $p$-gruppo di ordine $p^n$, con $n \in \NN^+$. Allora
+		esiste una successione $H_1$, ..., $H_{n-1}$ di sottogruppi normali in $G$
+		tali per cui:
+		\[ \{ e \} < H_1 < H_2 < \cdots < H_{n-1} < G, \qquad \abs{H_i} = p^i. \]
+	\end{proposition}
+	
+	\begin{proof}
+		Si dimostra la tesi per induzione su $n$. Per $n=1$, la tesi è banale. Si
+		ipotizzi allora che la tesi valga per $t<n$ con $t \in \NN^+$. Se
+		$G$ è abeliano, allora $G$ ammette un sottogruppo $H_{n-1}$ di ordine
+		$p^{n-1}$. Tale sottogruppo $H_{n-1}$ ammette per ipotesi induttiva
+		una successione $H_1$, ..., $H_{n-2}$ di sottogruppi normali in
+		$H_{n-1}$ come desiderato dalla tesi.
+		Poiché $G$ è abeliano, tali sottogruppi sono
+		normali anche in $G$, e quindi:
+		\[ \{ e \} < H_1 < \cdots < H_{n-1} < G. \] \smallskip
+		
+		
+		Sia adesso $G$ non abeliano. Allora $\abs{Z(G)} < \abs{G}$. Si può
+		dunque considerare il gruppo quoziente $G \quot Z(G)$, di ordine
+		strettamente inferiore a $p^n$. Per ipotesi induttiva
+		esiste una catena di sottogruppi $\mathcal{H}_1$, ...,
+		$\mathcal{H}_{k-1}$ normali in $G \quot Z(G)$ tale per cui:
+		\[ \{e\} < \mathcal{H}_1 < \cdots < \mathcal{H}_{k-1} < G/Z(G), \qquad \abs{\mathcal{H}_i} = p^i, \]
+		dove $\abs{Z(G)} = p^{n-k}$. \medskip
+		
+		
+		Per il Teorema di corrispondenza, $\mathcal{H}_i$ corrisponde
+		a un sottogruppo normale $H_{n-k+i}$ di $G$ contenente $Z(G)$ tale per cui
+		$[G : H_{n-k+i}] = [G \quot Z(G) : \mathcal{H}_i]$. Allora vale che:
+		\[ H_{n-k+i} = \abs{Z(G)} \abs{\mathcal{H}_i} = p^{n-k} p^i = p^{n-k+i}, \]
+		e quindi $H_{n-k+i}$ copre tutti gli esponenti di $p$ da $n-k+1$ a $n-1$.
+		Inoltre, tramite $\pi_{Z(G)} \inv$, vale anche che $H_{n-k+i} < H_{n-k+i+1}$\footnote{Segue dal fatto
+		secondo cui $T \quot H < S \quot H \implies T < S$.}. Sempre per ipotesi
+		induttiva (come nella costruzione di prima), $Z(G)$ ammette una catena
+		di sottogruppi $H_1$, ..., $H_{n-k-1}$ normali in $Z(G)$ tale per cui:
+		\[
+			\{e\} < H_1 < \cdots < H_{n-k-1} < Z(G), \qquad \abs{H_i} = p^i.
+		\]
+		Poiché $Z(G)$ è il centro di $G$, tali sottogruppi sono normali anche in $G$.
+		Ponendo allora $H_{n-k} := Z(G)$ si è costruita la catena desiderata:
+		\[ \{e\} < H_1 < \cdots < H_{n-k} = Z(G) < H_{n-k+1} < \cdots < H_{n-1} < G. \]
 	\end{proof}
 \end{document}
