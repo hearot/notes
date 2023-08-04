@@ -2000,6 +2000,11 @@
 			\item Si ripeta il processo considerando come $\basis$ tutti i vettori di $\basis$ con $\vv 1$ escluso,
 			o si termini l'algoritmo una volta che è rimasto un solo vettore.
 		\end{enumerate}
+		
+		Dal momento che l'algoritmo mantiene invariata la bandiera della base,
+		una matrice triangolabile è anche ortogonalmente triangolabile se la base
+		non contiene alcun (o contiene al più un) vettore isotropo secondo un
+		certo prodotto scalare.
 
 		\subsubsection{Metodo di Jacobi per il calcolo della segnatura}
 		Sia $A = M_\basis(\varphi)$ una matrice associata a $\varphi$ nella base $\basis$.
@@ -2179,7 +2184,7 @@
 		che $\rho_W(\v) = \w - \w^\perp$, dove $\v = \w + \w^\perp$, con $\w \in W$ e $\w^\perp \in W^\perp$. Come prima, tale decomposizione è unica e ben definita. Un'inversione ortogonale
 		soddisfa la relazione $\rho_W^2 = \Idv$, da cui si ricava che $\varphi_{\rho_W} \mid (x+1)(x-1)$ (implicandone la diagonalizzabilità). Infatti $V_1 = \Ker(\rho_W - \Idv) = W$ e $V_{-1} = \Ker(\rho_W + \Idv) = W^\perp$ (per cui $\varphi_{\rho_W}(x) = (x+1)(x-1)$). Se $\dim W = \dim V - 1$, allora si dice che l'inversione ortogonale
 		è una riflessione ortogonale. L'inversione ortogonale è sempre un operatore
-		ortogonale (se lo spazio è euclideo reale) o unitario (se lo spazio è euclideo
+		ortogonale (se lo spazio euclideo è reale) o unitario (se lo spazio euclideo è
 		complesso); infatti vale che $\varphi(\v, \w) = \varphi(\pr_W(\v) + \pr_{W^\perp}(\v), \pr_W(\w) + \pr_{W^\perp}(\w)) = \varphi(\pr_W(\v), \pr_W(\w)) + \varphi(\pr_{W^\perp}(\v), \pr_{W^\perp}(\w)) = \varphi(\pr_W(\v), \pr_W(\w)) + \varphi(-\pr_{W^\perp}(\v), -\pr_{W^\perp}(\w)) = \varphi(\pr_W(\v) - \pr_{W^\perp}(\v), \pr_W(\w) - \pr_{W^\perp}(\w)) = \varphi(\rho_W(\v), \rho_W(\w))$.
 
 		\subsection{Teorema spettrale reale e complesso}
@@ -2205,7 +2210,11 @@
 		In termini matriciali, se $A$ è una matrice
 		simmetrica a elementi reali (o hermitiana a elementi complessi), esiste una matrice $O \in O(n)$ (o $U \in U(n)$) tale per cui $O^\top A O$ (o $U \in U(n)$) è diagonale. Infatti $f_A$, l'operatore
 		indotto da $A$ nella base ortonormale di $\RR^n$ (o $\CC^n$), è un operatore simmetrico (o hermitiano) rispetto al prodotto standard dello
-		spazio euclideo che si sta studiando.
+		spazio euclideo che si sta studiando. \\
+		
+		Una matrice reale è simmetrica se e solo se è ortogonalmente diagonalizzabile.
+		Una matrice complessa è hermitiana se e solo se è unitariamente diagonalizzabile
+		con autovalori reali.
 		
 		\subsubsection{Radice quadrata di una matrice simmetrica, decomposizione polare e simultanea ortogonalizzabilità}
 		
