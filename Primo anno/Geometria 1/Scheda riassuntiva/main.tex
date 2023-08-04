@@ -1263,6 +1263,10 @@
 			un eventuale altro autovalore diverso da zero e mostrare che se tale
 			autovalore esistesse, $f$ non sarebbe nilpotente),
 			\item un endomorfismo è nilpotente se e solo se $f^n = 0$ (discende direttamente dal teorema di Hamilton-Cayley e dalla forma di $p_f$),
+			\item l'unico endomorfismo diagonalizzabile e nilpotente è quello nullo,
+			\item in un campo algebricamente chiuso, un endomorfismo è diagonalizzabile
+			se e solo se è semisemplice (i.e.~se ogni sottospazio $f$-invariante ammette un
+			supplementare $f$-invariante).
 		\end{itemize}
 		
 		Si dice che $f$ è diagonalizzabile se $V$ ammette una base per cui
@@ -1322,7 +1326,8 @@
 		\[ W = (W \cap V_{\lambda_1}) \oplus \cdots \oplus (W \cap V_{\lambda_k}), \]
 		
 		dove $\lambda_1$, ..., $\lambda_k$ sono gli autovalori distinti di
-		$f$, e dunque $\restr{f}{W}$ è sempre diagonalizzabile, se $f$ lo è. In generale, dato un sottospazio $W$ di $V$ che
+		$f$, e dunque $\restr{f}{W}$ è sempre diagonalizzabile, se $f$ lo è.
+		In generale, dato un sottospazio $W$ di $V$ che
 		è $f$-invariante, si può facilmente costruire un suo
 		supplementare $f$-invariante. È infatti sufficiente
 		prendere una base di $W$ ed estenderla a base di $V$
@@ -1623,7 +1628,8 @@
 			relativi a $\lambda$ quanti ve ne sono di relativi a $\conj{\lambda}$,
 			\item Esistono e sono unici i due endomorfismi $\mu$, $\delta \in \End(V)$
 			tale che $\mu$ sia diagonalizzabile, $\delta$ sia nilpotente e che
-			$f = \mu + \delta$ (se esiste la forma canonica di Jordan),
+			$f = \mu + \delta$ (se esiste la forma canonica di Jordan; decomposizione di
+			Jordan-Chevalley),
 			\item Se $\forall \lambda \in \Sp(f)$, $\mu_g(\lambda) = 1$, allora
 			esiste un numero finito di sottospazi invarianti e sono tutte le possibili
 			somme dirette dei sottospazi degli autospazi generalizzati, %TODO: migliorare
