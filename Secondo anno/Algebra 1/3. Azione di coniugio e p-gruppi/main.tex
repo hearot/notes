@@ -87,9 +87,40 @@
 		dal momento che si era presupposto che $Z(G)$ fosse un sottogruppo proprio
 		di $G$, \Lightning. Allora $Z(G)$ ha ordine $p^2$,
 		e dunque $Z(G) = G$.
-	\end{proof}
+	\end{proof} \medskip
 	
-	Questo risultato ha un'immediata applicazione, se combinato con il Teorema
-	fondamentale dei gruppi abeliani finiti. Infatti, esso implica che
-	$G$ deve per forza essere isomorfo a $\ZZ_{p^2}$ o a $\ZZ_{p} \times \ZZ_{p}$.
+	
+	\begin{example}
+		Si mostra che\footnote{
+			Il risultato è facilmente dimostrabile attraverso
+			il Teorema di struttura dei gruppi abeliani
+			finitamente generati.
+		} $G$ è obbligatoriamente isomorfo a
+		$\ZZ_{p^2}$ o a $\ZZ_p \times \ZZ_p$ se
+		$\abs{G} = p^2$. \vskip 0.1in
+		
+
+		Se $G$ ammette un generatore,
+		allora $G$ è ciclico e quindi isomorfo a $\ZZ_{p^2}$.
+		Altrimenti, sia $g \in G$ un elemento di ordine\footnote{
+			Questo elemento deve esistere obbligatoriamente, non
+			solo per il Teorema di Cauchy, ma anche perché solo
+			l'identità ammette ordine $1$ e perché si è supposto
+			che nessun elemento abbia ordine $p^2$ (altrimenti
+			il gruppo sarebbe ciclico).
+		} $p$ e sia\footnote{
+			Tale $h$ deve esistere, altrimenti $G$ sarebbe ciclico.
+		} $h \in G$ tale che $h \notin \gen{g}$. Per il teorema
+		precedente $G$ è abeliano, e quindi $\gen{g}\gen{h}$ è
+		un sottogruppo di $G$. \medskip
+		
+		
+		Inoltre $\gen{g} \cap \gen{h}$ è
+		banale: se non lo fosse avrebbe ordine $p$, e quindi
+		$\gen{g}$ e $\gen{h}$ coinciderebbero insiemisticamente,
+		\Lightning. Pertanto $\gen{g}\gen{h} \cong \gen{g}
+		\times \gen{h} \cong \ZZ_p \times \ZZ_p$. Infine, poiché
+		$\abs{\gen{g} \gen{h}} = p^2$, vale anche che
+		$G = \gen{g} \gen{h}$, da cui la tesi.
+	\end{example}
 \end{document}
