@@ -145,5 +145,32 @@
 	Inoltre, se $H \leq G$ è l'unico sottogruppo di un certo ordine (o è comunque
 	caratterizzato univocamente da una proprietà invariante per automorfismi),
 	$H$ è anche caratteristico (infatti gli automorfismi preservano le cardinalità essendo
-	bigezioni).
+	bigezioni). \bigskip
+	
+	
+	\begin{example}[$\Aut(S_3) \cong S_3$]
+		Si osserva che $Z(S_3)$ deve essere obbligatoriamente
+		banale\footnote{
+			In generale $Z(S_n)$ è banale per $n \geq 3$.
+		}. Infatti, se non lo fosse, $Z(S_3)$ potrebbe
+		avere come cardinalità gli unici divisori positivi di
+		$\abs{S_3} = 6$, ossia $2$, $3$ e $6$ stesso. In tutti
+		e tre i casi $S_3 \quot Z(S_3)$ sarebbe ciclico, e quindi
+		$S_3$ sarebbe abeliano, \Lightning. \medskip
+		
+		
+		Poiché allora $Z(S_3)$ è banale, $S_3$ è isomorfo a
+		$\Inn(S_3) \leq \Aut(S_3)$. Pertanto $\abs{\Aut(S_3)} \geq \abs{S_3} = 6$. Ogni automorfismo è
+		determinato dalle immagini dei propri generatori, e quindi
+		ci sono al più $3 \cdot 2 = 6$ scelte dal momento che
+		$S_3 = \gen{(1,2), (1,2,3)}$. Allora
+		$\abs{\Aut(S_3)} \leq 6$, da cui si deduce che
+		$\abs{\Aut(S_3)} = 6$. \medskip
+		
+		
+		Dacché $\Aut(S_3)$ ha lo stesso numero di elementi
+		del suo sottogruppo $\Inn(S_3)$, deve valere l'uguaglianza
+		tra i due insiemi, e quindi $\Aut(S_3) = \Inn(S_3)$. Si
+		conclude dunque che $\Aut(S_3) \cong S_3$.
+	\end{example}
 \end{document}
