@@ -14,7 +14,11 @@
 	\[ g \xmapsto{\varphi} \left[ H \mapsto gHg\inv \right]. \]
 	Si definisce \textbf{normalizzatore} lo stabilizzatore di un sottogruppo
 	$H$ (e si indica con $N_G(H)$), mentre $\Orb(H)$ è l'insieme dei \textbf{coniugati}
-	di $H$. Si osserva in modo cruciale che $H \nsgeq G$ se e solo se
+	di $H$. In particolare $N_G(H)$ è il massimo sottogruppo per inclusione in cui $H$
+	è normale. \medskip
+	
+	
+	Si osserva ora in modo cruciale che $H \nsgeq G$ se e solo se
 	$\Orb(H) = \{H\}$, e quindi se e solo se $N_G(H) = G$. Analogamente si
 	osserva che $H$ è normale se e solo se:
 	\[ H = \bigcup_{h \in H} \Cl(h). \] \bigskip
@@ -43,5 +47,34 @@
 		Se $G$ è finito, $S(G)$ è isomorfo a $S_n$, dove $n := \abs{G}$, e quindi
 		$\Im \varphi$ è a sua volta isomorfo a un sottogruppo di $S_n$, da cui
 		la tesi.
+	\end{proof}
+	
+	
+	Si presentano adesso due risultati interessanti legati ai sottogruppi normali di
+	un gruppo $G$.
+	
+	\begin{proposition}
+		Sia $H \leq G$. Allora, se $[G : H] = 2$, $H$ è normale in $G$.
+	\end{proposition}
+	
+	\begin{proof}
+		Poiché $[G : H] = 2$, le uniche classi laterali sinistre rispetto ad $H$ in
+		$G$ sono $H$ e $gH = G \setminus H$, dove $g \notin H$. Analogamente esistono
+		due sole classi laterali destre, $H$ e $Hg = G \setminus H$. In particolare
+		$gH$ deve obbligatoriamente essere uguale a $Hg$, e quindi $gHg\inv = H$, da
+		cui la tesi.
+	\end{proof}
+	
+	\begin{proposition}
+		Siano $K \leq H \leq G$. Allora, se $H$ è normale in $G$ e $K$ è caratteristico
+		in $H$, $K$ è normale in $G$.
+	\end{proposition}
+	
+	\begin{proof}
+		Sia $\varphi_g \in \Inn(G)$. Poiché $H$ è normale in $G$, $\varphi_g(H) = H$. Pertanto
+		si può considerare la restrizione di $\varphi_g$ su $H$, $\restr{\varphi_g}{H}$.
+		In particolare $\restr{\varphi_g}{H}$ è un automorfismo di $\Aut(H)$, e quindi,
+		poiché $K$ è caratteristico in $H$, $\restr{\varphi_g}{H}(K) = K$, da cui si
+		deduce che $gKg\inv = K$ per ogni $g \in G$.
 	\end{proof}
 \end{document}

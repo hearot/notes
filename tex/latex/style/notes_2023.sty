@@ -18,6 +18,8 @@
 \usepackage{stackengine}
 \usepackage{wasysym}
 
+\usepackage{tikz-cd}
+
 \usepackage[italian]{babel}
 
 \usepackage{tabularx}
@@ -106,6 +108,10 @@
 \newcommand{\RRbar}{\overline{\RR}}
 
 % Spesso utilizzati al corso di Geometria 1.
+
+\DeclareMathOperator{\OO}{O} % gruppo ortogonale
+\DeclareMathOperator{\SOO}{SO} % gruppo ortogonale speciale
+
 \newcommand{\proj}[1]{\Matrix{#1 \\[0.03in] \hline 1}}
 \newcommand{\projT}[1]{\Matrix{#1 & \rvline & 1}^\top}
 
@@ -209,6 +215,8 @@
 
 % Spesso utilizzati durante il corso di Algebra 1
 
+\newcommand{\rotations}{\mathcal{R}}
+\newcommand{\gen}[1]{\langle #1 \rangle}
 \DeclareMathOperator{\Cl}{Cl}
 
 \newcommand{\actson}{\circlearrowleft}

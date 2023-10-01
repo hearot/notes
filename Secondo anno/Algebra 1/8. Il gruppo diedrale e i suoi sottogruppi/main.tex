@@ -1,0 +1,146 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Il gruppo diedrale e i suoi sottogruppi}
+	\maketitle
+
+	In questo documento si definisce il gruppo diedrale e si illustrano
+	le sue proprietà principali, a partire da come sono costruiti i suoi
+	sottogruppi. \medskip
+	
+	
+	Sia $n \geq 3$. Si definisce \textbf{gruppo diedrale}, denotato\footnote{
+		Alcuni testi denotano il gruppo diedrale come $D_{2n}$, dal
+		momento che vale $\abs{D_n} = 2n$.
+	} come $D_n$, il gruppo delle isometrie del piano $\RR^2$ che mappano i vertici di
+	un poligono regolare centrato nell'origine con $n$ lati in sé stessi. \medskip
+	
+	
+	Si verifica facilmente che $D_n$ è un gruppo:
+	\begin{itemize}
+		\item Ammette un'identità, che coincide con l'identità delle isometrie,
+		\item La composizione di due isometrie che mappano i vertici del poligono in
+			sé stessi è ancora un'isometria che lascia fissi i vertici del poligono,
+		\item Ogni isometria per cui i vertici del poligono rimangono fissi ammette
+			un'inversa con la stessa proprietà\footnote{
+				Si ricorda che ogni isometria è invertibile a prescindere.
+			}\footnote{
+				Dal momento che $D_n$ ha cardinalità $2n$, come mostrato dopo, questa
+				condizione è automaticamente verificata come conseguenza della finitezza
+				di $D_n$.
+			}.
+	\end{itemize}
+	
+	In particolare, se $\sigma \in D_n$, $\sigma$ permuta i vertici del poligono (pertanto
+	si può visualizzare $D_n$ come un sottogruppo naturale di $S_n$). Denotando con
+	$r$ la rotazione primitiva del gruppo (ossia una rotazione di $\frac{2\pi}{n}$ gradi in
+	senso antiorario) e con $s$ la simmetria rispetto all'asse $y$, si osserva che
+	ogni elemento della forma $s r^k$ con $k \in \ZZ$ è ancora una simmetria, benché non
+	per forza rispetto all'asse $y$\footnote{
+		La matrice associata di $s$ nella base canonica è $-1 E_{11} + E_{22}$, e quindi deve valere $\det(s) = -1$. Al contrario $r \in \SOO(2)$, e quindi $\det(r) = 1$. Si conclude pertanto che
+		$\det(s r^k) = \det(s) \det(r)^k = -1$, e dunque che $s r^k$ deve obbligatoriamente
+		appartenere alla classe laterale $s \SOO(2)$ delle riflessioni.
+	}. In particolare, per $n$ pari, le riflessioni di $D_n$ sono esattamente le riflessioni
+	rispetto alle rette passanti per i vertici o per i punti medi del poligono. \medskip
+	
+	
+	Dal momento che $\sigma \in D_n$ è in particolare una isometria, e quindi
+	un'applicazione lineare, $\sigma$ è completamente determinata da
+	$\sigma(V_1)$ e $\sigma(V_2)$, dove $V_i$ sono i vertici del poligono numerati
+	in senso antiorario. In particolare, se $\sigma(V_1) = V_k$, allora
+	$\sigma(V_2)$, affinché venga preservata la distanza, può valere\footnote{
+		Per semplicità si pone $V_0 := V_n$ e $V_{n+1} := V_1$.
+	} o
+	$V_{k-1}$ o $V_{k+1}$. Pertanto vi sono al più $2n$ scelte possibili di
+	$\sigma(V_1)$ e $\sigma(V_2)$ (e quindi $\abs{D_n} \leq 2n$). D'altra parte
+	si osserva che tutti gli elementi $1$, $r$, ..., $r^{n-1}$, $s$, $sr$, ..., $s r^{n-1}$
+	sono distinti:
+	\begin{itemize}
+		\item Gli $r^k$ con $0 \leq k \leq \ord(r) - 1$ sono tutti distinti e $\ord(r)$ vale
+			esattamente\footnote{
+				Infatti $r$ è rappresentato in $\SOO(2)$ dalla matrice $\SMatrix{
+					\cos(\frac{2\pi}{n}) & -\sin(\frac{2\pi}{n}) \\
+					\sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
+				}$, che ha ordine esattamente $n$.
+			} $n$,
+		\item Gli $sr^k$ con $0 \leq k \leq n - 1$ sono tutti distinti, altrimenti
+			la precedente osservazione sarebbe contraddetta,
+		\item Nessun $r^i$ coincide con un $s r^j$, dal momento che i loro determinanti
+			sono diversi ($\det(r^i) = 1$, mentre $\det(s r^j) = -1$). In particolare
+			$r^i \in \SOO(2)$, mentre $s r^j \in s \SOO(2)$.
+	\end{itemize}
+	
+	Pertanto $\abs{D_n} \geq 2n$, e quindi $\abs{D_n} = 2n$. Si conclude inoltre
+	che $D_n$ è generato da $r$ e da $s$, e quindi che $D_n = \gen{r, s}$. Esistono
+	dunque due sottogruppi naturali di $D_n$:
+	\[ \rotations := \gen{r} \cong \ZZ \quot n\ZZ, \quad \gen{s} \cong \ZZ \quot 2\ZZ. \]
+	
+	
+	\begin{proposition}
+		Vale l'identità $s r s\inv = r\inv$.
+	\end{proposition}
+
+	\begin{proof}
+		Si sviluppa $s r s\inv$ in termini matriciali, considerando
+		$s = \SMatrix{
+			-1 & 0 \\
+			0 & 1
+		}$ e $r = \SMatrix{
+			\cos(\frac{2\pi}{n}) & -\sin(\frac{2\pi}{n}) \\
+			\sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
+		}$:
+		\[ s r s\inv = \Matrix{
+			\cos(\frac{2\pi}{n}) & \sin(\frac{2\pi}{n}) \\
+			-\sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
+		}, \]
+		ottenendo la matrice associata a $r\inv$ nella base canonica.
+	\end{proof}
+	
+	
+	In generale vale dunque che $s r^k s\inv = r^{-k}$. Si deduce allora la presentazione del gruppo $D_n$:
+	\[ D_n = \gen{r,s \mid r^n = 1, s^2 = 1, s r s\inv = r\inv}. \] \smallskip
+	
+	
+	Si descrivono adesso tutti i sottogruppi di $D_n$. Innanzitutto, in $\rotations$
+	per ogni $d \mid n$ esiste un unico sottogruppo di ordine $d$ dal momento che
+	$\rotations$ è ciclico. Pertanto ogni tale sottogruppo assume la forma
+	$\gen{r^{\frac{n}{d}}}$. Inoltre, dal momento che\footnote{
+		Infatti ogni elemento di $D_n$, come visto prima, è della $r^k$ o $s r^k$.
+	} $[D_n : \rotations] = 2$, $\rotations$ è un sottogruppo normale di
+	$D_n$. Allora, poiché $\rotations$ è normale in $D_n$ e ogni sottogruppo
+	$H \leq \rotations$ è caratteristico\footnote{
+		Per ogni ordine di $\rotations$ esiste un unico sottogruppo $H \leq \rotations$,
+		e quindi tale sottogruppo deve essere caratteristico.
+	} in $D_n$, ogni sottogruppo di $\rotations$ è normale anche in $D_n$. \medskip
+	
+	
+	Sia ora $H$ un sottogruppo di $D_n$ con $H \not\subseteq \rotations$. Si consideri
+	la proiezione al quoziente mediante $\rotations$, ossia $\pi_\rotations : D_n \to D_n /
+	\rotations$. Chiaramente deve valere che $\pi_\rotations(H) = D_n / \rotations$: l'unica
+	altra possibilità è che $\pi_\rotations(H)$ sia $\{\rotations\}$, e quindi che
+	$H \subseteq \Ker \pi_\rotations = \rotations$, \Lightning. \medskip
+	
+	
+	Si consideri adesso
+	la restrizione di $\pi_\rotations$ ad $H$, $\restr{\pi_\rotations}{H} : H \to D_n / \rotations$. Vale in particolare che $\Ker \restr{\pi_\rotations}{H} = H \cap \Ker \pi_\rotations = H \cap \rotations$ e che $\Im \restr{\pi_\rotations}{H} = D_n / \rotations$
+	(da prima vale infatti che $\pi_\rotations(H) = D_n / \rotations$). Allora, per il Primo
+	teorema di isomorfismo, vale che:
+	\[ \frac{H}{H \cap \rotations} \cong D_n \quot \rotations, \]
+	da cui si deduce che $\abs{H} = 2 \abs{H \cap \rotations}$. In particolare $H \cap \rotations$ è un sottogruppo di $\rotations$, e quindi esiste $d \mid n$ tale per cui
+	$H \cap \rotations = \gen{r^d}$, con $\abs{H \cap \rotations} = \frac{n}{d}$. \medskip
+	
+	
+	Sia ora $s r^k$ una simmetria di $H$.
+	Innanzitutto si osserva che $\gen{r^d}$ è normale in $D_n$ e quindi
+	$\gen{ r^d }\gen{ s r^k }$ è effettivamente un sottogruppo di $D_n$. Dal momento che\footnote{
+		Infatti l'unica rotazione che è anche una simmetria è l'identità.
+	}
+	$\gen{ r^d } \cap \gen{ s r^k } = \{ e \}$, allora $\abs{\gen{ r^d } \gen{ s r^k }} = \abs{\gen{r^d}} \abs{\gen{s r^k}} = \frac{2n}{d}$. Anche $\abs{H} = \frac{2n}{d}$ e
+	quindi, per questioni di cardinalità, $H = \gen{ r^d } \gen{ s r^k } = \gen{ r^d, s r^k }$.
+	\medskip
+	
+	
+	In conclusione, ogni sottogruppo di $D_n$ è della forma $\gen{r^d}$ o della forma
+	$\gen{r^d, sr^k}$.
+\end{document}
