@@ -125,6 +125,19 @@
 		\]
 		da cui la tesi. 
 	\end{proof}
+	
+	\begin{proof}[Dimostrazione alternativa]
+		Si osserva che vale la seguente identità:
+		\[ HK = \bigcup_{h \in H} hK. \]
+		Poiché gli $hK$ rappresentano delle classi laterali sinistre
+		di $G$, se $h' \in H$, o $hK = h'K$ o $hK \cap h'K = \emptyset$. Se $hK = h'K$, allora $h h\inv \in K$, e quindi
+		$h h\inv \in H \cap K$. Vi sono dunque esattamente
+		$\abs{H \cap K}$ istanze della classe $hK$ nell'unione
+		considerata all'inizio della dimostrazione. Allora:
+		\[ \abs{HK} = \frac{\abs{H} \abs{K}}{\abs{H \cap K}}, \]
+		dove $\abs{K}$ è il numero di elementi di ogni classe
+		$hK$.
+	\end{proof}
 
 	Pertanto, se le scritture sono uniche, $H \cap K$ deve essere
 	per forza banale (infatti deve valere $\abs{H \cap K} = 1$).
