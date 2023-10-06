@@ -1,0 +1,135 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{I teoremi di isomorfismo}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento per $(G, \cdot)$ si intenderà un qualsiasi gruppo. Analogamente si intenderà lo stesso per
+		$G'$.
+	\end{note}
+	
+	Si illustrano i tre teoremi di isomorfismo nella loro
+	forma più generale.
+	
+	\begin{theorem}[Primo teorema di isomorfismo]
+		Sia $\varphi$ un omomorfismo da $G$ in $G'$. Allora,
+		se $N \leq \Ker \varphi$, esiste un unico omomorfismo
+		$f$ da $G \quot N$ in $G'$ che faccia commutare il
+		seguente diagramma commutativo:
+		\[\begin{tikzcd}
+			G &&& {G'} \\
+			\\
+			{G/N}
+			\arrow["{\pi_N}"', two heads, from=1-1, to=3-1]
+			\arrow["\varphi", from=1-1, to=1-4]
+			\arrow["f"', from=3-1, to=1-4]
+		\end{tikzcd}\]
+		Inoltre, tale $f$ è iniettiva se e solo se $N = \Ker \varphi$
+		e in tal caso induce il seguente isomorfismo:
+		\[ G \quot {\Ker \varphi} \cong \Im \varphi. \]
+	\end{theorem}
+	
+	\begin{proof}
+		Affinché il diagramma commuti, deve valere la seguente
+		relazione:
+		\[ \varphi(g) = f(\pi_N(g)) = f(gN). \]
+		Pertanto l'unica possibilità è che valga $f(gN) = \varphi(g)$.
+		Chiaramente tale mappa è ben definita, infatti se $n \in N$,
+		$\varphi(gn) = \varphi(g) \varphi(n) = \varphi(g)$, dacché
+		$n$ in particolare è anche un elemento di $\Ker \varphi$.
+		Inoltre $f$ è un omomorfismo, dal momento che
+		$f(gN hN) = f(ghN) = \varphi(gh) = \varphi(g) \varphi(h) =
+		f(gN) f(hN)$. \medskip
+		
+		
+		Sia $k \in \Ker \varphi$. Se $f$ è iniettiva, allora $f(gN) = \varphi(g) = e \implies gN = N$. Dal momento che
+		$f(kN) = \varphi(k) = e$, $kN = N$, e quindi $k \in N$,
+		da cui si deduce che $N = \Ker \varphi$. Se invece
+		$N = \Ker \varphi$, $f(gN) = e \implies \varphi(g) = e \implies g \in N$, e quindi $gN = N$, l'identità di
+		$G \quot N$, da cui si deduce che $f$ è iniettiva. In tal
+		caso la restrizione sull'immagine di $f$ a
+		$\Im f$, coincidente con $\Im f \circ \pi_N = \Im \varphi$
+		dacché $\pi_N$ è surgettiva, fornisce l'isomorfismo
+		ricercato. 
+	\end{proof}
+	
+	In particolare si osserva che $\Ker f = \Ker \varphi \quot N$,
+	infatti:
+	\[ \Ker f = \{ gN \mid \varphi(g) = e \} = \{ gN \mid g \in \Ker \varphi \} = \Ker \varphi \quot N.
+	 \]
+	
+	\begin{theorem}[Secondo teorema di isomorfismo, o teorema del diamante]
+		Siano $H$, $N \leq G$ con $N \nsgeq G$. Allora\footnote{
+			Si osserva che effettivamente $H \cap N$ è normale in
+			$H$. Infatti se $g \in H \cap N$, allora, se
+			$h \in H$, $h g h\inv$ appartiene sempre a $N$
+			perché $N$ è normale in $G$ e appartiene anche
+			ad $H$ poiché è prodotto di elementi in $H$.	
+		}\footnote{
+			Analogamente $N$ è normale in $HN$, essendo
+			normale in $G$.
+		}:
+		\[ H \quot (H \cap N) \cong HN \quot N. \]
+		Pertanto se si considera il seguente diagramma:
+		\[\begin{tikzcd}[column sep=0em,row sep=3em]
+			& HN \arrow[dl,dash] \arrow[dr,dash] \\
+			H \arrow[dr,dash] && N \arrow[dl,dash] \\
+			& H\cap N
+		\end{tikzcd}\]
+		i lati paralleli del parallelogramma (``diamante'')
+		forniscono gli isomorfismi dell'enunciato se anche
+		$H$ è normale in $G$.
+	\end{theorem}
+	
+	\begin{proof}
+		Si costruisce l'omomorfismo $\varphi : H \to HN \quot N$
+		tale per cui $h \mapsto hN$. Si osserva che $\varphi$ è
+		effettivamente un omomorfismo, infatti:
+		\[ \varphi(hh') = (hh')N = (hN) (h'N) = \varphi(h) \varphi(h'). \]
+		
+		Sia $hnN \in HN \quot N$. Allora $hnN = hN$, e quindi
+		$\varphi(h) = hN = hnN$, da cui si deduce che
+		$\varphi$ è surgettiva (e quindi $\Im \varphi = HN \quot N$).
+		\medskip
+
+		
+		Sia $\varphi(h) = e$. Allora $hN = N \implies h \in H \cap N$.
+		Si deduce dunque che $\Ker \varphi = H \cap N$, da cui,
+		applicando il Primo teorema di isomorfismo, si ottiene
+		la tesi:
+		\[ H \quot (H \cap N) \cong HN \quot N. \]
+	\end{proof}
+	
+	\begin{theorem}[Terzo teorema di isomorfismo]
+		Siano $H$ e $N$ due sottogruppi normali di $G$ e sia
+		$N \leq H$. Allora\footnote{
+			Ci sono più modi per vedere che $H \quot N$ è
+			normale in $G \quot N$. Un modo di vederlo si
+			ottiene dalla dimostrazione stessa del teorema,
+			dal momento che si ottiene che $H \quot N$ è
+			il kernel dell'omomorfismo $\varphi$. Altrimenti,
+			se $hN \in H \quot N$, $gN hN g\inv N = (ghg\inv)N$,
+			e poiché $H$ è normale in $G$, $ghg\inv \in H$, da
+			cui $(ghg\inv)N \in H \quot N$.
+		}:
+		\[ \frac{G \quot N}{H \quot N} \cong G \quot H. \]
+	\end{theorem}
+	
+	\begin{proof}
+		Si costruisce l'omomorfismo $\varphi : G \quot N \to G \quot H$ tale per cui $gN \mapsto gH$. Si verifica innanzitutto
+		che la mappa $\varphi$ è ben definita:
+		\[ gnH = gH \impliedby N \subseteq H. \]
+		Inoltre $\varphi$ è effettivamente un omomorfismo dal momento
+		che:
+		\[ \varphi(gkN) = gkH = gH \, kH = \varphi(gN) \varphi(kN).  \]
+		Chiaramente $\varphi$ è una mappa surgettiva e quindi
+		$\Im \varphi = G \quot H$.
+		Allora, se $g \in \Ker \varphi$, $\varphi(gN) = gH = H$, e quindi $g \in H$. Pertanto $\Ker \varphi = \{ 
+			gN \mid g \in H 
+		 \} = H \quot N$. Si conclude allora, per il Primo teorema
+		 di isomorfismo, che:
+		 \[ \frac{G \quot N}{H \quot N} \cong G \quot H. \]
+	\end{proof}
+\end{document}
