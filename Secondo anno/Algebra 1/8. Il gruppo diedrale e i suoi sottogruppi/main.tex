@@ -106,7 +106,7 @@
 	per ogni $d \mid n$ esiste un unico sottogruppo di ordine $d$ dal momento che
 	$\rotations$ è ciclico. Pertanto ogni tale sottogruppo assume la forma
 	$\gen{r^{\frac{n}{d}}}$. Inoltre, dal momento che\footnote{
-		Infatti ogni elemento di $D_n$, come visto prima, è della $r^k$ o $s r^k$.
+		Infatti ogni elemento di $D_n$, come visto prima, è della forma $r^k$ o $s r^k$.
 	} $[D_n : \rotations] = 2$, $\rotations$ è un sottogruppo normale di
 	$D_n$. Allora, poiché $\rotations$ è normale in $D_n$ e ogni sottogruppo
 	$H \leq \rotations$ è caratteristico\footnote{
@@ -142,5 +142,59 @@
 	
 	
 	In conclusione, ogni sottogruppo di $D_n$ è della forma $\gen{r^d}$ o della forma
-	$\gen{r^d, sr^k}$.
+	$\gen{r^d, sr^k}$. Si mostra adesso che per $0 \leq k < d < n$ e $d \mid n$ la
+	classificazione è unica e completa. Chiaramente è completa, dal momento che
+	$d$ si può sempre ridurre in modulo $n$ e che per $k>d$ si può moltiplicare
+	$sr^k$ per riottenere una riflessione con esponente minore di $d$. \medskip
+	
+	
+	Si verifica adesso che è vi è un solo modo di esprimere un sottogruppo in queste
+	condizioni. Se $H_1 := \gen{r^{d_1}, s r^{k_1}} = \gen{r^{d_1}, s r^{k_1}} =: H_2$, allora
+	in particolare $H_1 \cap \rotations = \gen{r^{d_1}} = \gen{r^{d_2}} = H_2 \cap \rotations$,
+	da cui si deduce facilmente che $d_1 = d_2$. Sia ora $s r^{k_1} r^{t d_1} =
+	s r^{k_2} r^{t' d_2}$ con $t$, $t' \in \ZZ$. Allora deve valere che:
+	\[ r^{k_1 + t d_1} =r^{k_2 + t' d_2} \iff k_1 + t d_1 \equiv k_2 + t' d_2 \pod n, \]
+	e quindi, se $d := d_1 = d_2$, questo implica che:
+	\[ k_1 \equiv k_2 \pod d \implies k_1 = k_2 \impliedby 0 \leq k_1, k_2 < d. \]
+	Pertanto esistono esattamente\footnote{
+		La scrittura $d(n)$ indica il numero di divisori di $n$, mentre $\sigma(n)$ indica la 
+		somma dei divisori di $n$. Infatti per ogni divisore $d$ di $n$ si conta un
+		sottogruppo ciclico $\gen{r^d}$ e un sottogruppo della forma $\gen{r^d, sr^h}$
+		con $0 \leq h < d$ (e quindi $d$ sottogruppi di questo tipo).
+	} $d(n) + \sigma(n)$ sottogruppi di $D_n$. \bigskip
+	
+	
+	
+	Si studiano adesso i sottogruppi normali di $D_n$. Come già visto, i sottogruppi di
+	$\rotations$ sono tutti normali in $D_n$. Si studiano dunque soltanto i gruppi
+	della forma $\gen{r^d, s r^h}$. Si ricorda che il sottogruppo
+	$H = \gen{r^d, s r^h}$ è normale se e solo se $N_G(H) = G$, ossia se il suo
+	normalizzatore è tutto $G$. In particolare questo è vero se i generatori di $G$
+	appartengono a $N_G(H) = G$ e quindi se $r H r\inv = H$ e se $s H s\inv = H$.
+	In particolare\footnote{
+		Si è utilizzata la relazione $g \gen{g_1, \ldots, g_i} g\inv = \gen{g g_1 g\inv, \ldots, g g_i g\inv}$.
+	} si deve studiare quando valgono le seguenti identità:
+	\[
+		\gen{r^d, s r^h} = \underbrace{\gen{r^d, s r^{h-2}}}_{r H r\inv},
+		\qquad \gen{r^d, s r^h} = \underbrace{\gen{r^{-d}, r^h s\inv}}_{s H s\inv} =
+		\gen{r^d, s r^{-h}}.
+	\]
+	La prima identità è vera se e solo se $h \equiv h-2 \pod d$, e quindi se e solo
+	se $d \mid 2$. Pertanto $d$ può valere solo $1$ o $2$: se $d = 1$, $H$ è
+	esattamente $\gen{r, s} = D_n$; se invece $d = 2$, $H$ può essere soltanto
+	$\gen{r^2, s}$ o $\gen{r^2, s r}$. Ciononostante, nel caso $d = 2$, dal momento
+	che $d \mid n$, $n$ deve essere pari (e quindi se $n$ è dispari, $D_n$ non ammette
+	sottogruppi normali non banali, ed è in particolare semplice). \medskip
+	
+	
+	Si consideri dunque $n$ pari. È sufficiente controllare che per $d = 2$ valga
+	anche la seconda identità, ossia che valga $h \equiv -h \pod 2$, sempre verificata.
+	Si conclude dunque con la seguente classificazione:
+	
+	\begin{itemize}
+		\item se $n$ è dispari, $D_n$ ammette come sottogruppi normali soltanto
+		$D_n$, $\{ e \}$ e i sottogruppi di $\rotations$,
+		\item se $n$ è pari, $D_n$ ammette come sottogruppi normali tutti quelli
+			del caso dispari insieme a $\gen{r^2, s}$ e $\gen{r^2, s r}$.
+	\end{itemize}
 \end{document}
