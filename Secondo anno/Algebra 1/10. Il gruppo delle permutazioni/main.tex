@@ -59,8 +59,16 @@
 	In particolare, se $\sigma_k$ è un $k$-ciclo, $\sgn(\sigma_k) = (-1)^{k-1}$ e $\ord(\sigma_k) = k$. Si osserva inoltre che vi sono esattamente $\binom{n}{k} \frac{k!}{k} =
 	\binom{n}{k} (k-1)!$ $k$-cicli in $S_n$ e che in generale l'ordine
 	di una permutazione è il minimo comune multiplo degli
-	ordini dei suoi cicli. \medskip
-	
+	ordini dei suoi cicli. In particolare vale la seguente identità\footnote{
+		Si verifica facilmente che il prodotto a destra fornisce un omomorfismo. Allora
+		è sufficiente mostrare che è ben definito e che vale $-1$ sulle trasposizioni.
+		Se si considera $\sigma = (a, b)$, per $i$ e $j$ tali per cui
+		$\{i, j\} \cap \{a, b\} = \emptyset$ il termine della produttoria è unitario;
+		per $\{i, j\} = \{a, b\}$ il termine è $-1$ e per un'intersezione di un solo
+		termine si osserva che vi sono due termini del prodotto che valgono $-1$ e
+		che moltiplicati si annullano nell'unità. Poiché $\sgn$ vale anch'esso $-1$ sulle trasposizioni, i due omomorfismi coincidono (infatti le trasposizioni generano $S_n$).
+	}:
+	\[ \sgn(\sigma) = \prod_{1 \leq i < j \leq n} \frac{\sigma(i) - \sigma(j)}{i - j}. \]
 
 	Si definisce \textit{tipo} di una permutazione $\sigma$ la sua decomposizione
 	in cicli disgiunti a meno degli elementi presenti nei cicli. Sia $\sigma$
