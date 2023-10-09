@@ -197,4 +197,20 @@
 		\item se $n$ è pari, $D_n$ ammette come sottogruppi normali tutti quelli
 			del caso dispari insieme a $\gen{r^2, s}$ e $\gen{r^2, s r}$.
 	\end{itemize}
+	
+	
+	Si illustrano adesso le classi di coniugio più importanti in $D_n$. Si consideri
+	per esempio $\Cl(r)$. Dal momento che $D_n \supseteq Z_{D_n}(r) \subseteq \rotations$
+	e che $[D_n : \rotations] = 2$, allora $Z_{D_n}(r)$ può essere o tutto $D_n$ o
+	soltanto $\rotations$. Infatti, poiché $\rotations \leq Z_{D_n}(r)$,
+	$n \mid Z_{D_n}(r)$, e quindi:
+	\[ 2 = \abs{D_n/\rotations} = \abs{D_n \quot Z_{D_n}(r)} \abs{Z_{D_n} \quot \rotations}, \]
+	da cui si ricava che un fattore tra $\abs{D_n \quot Z_{D_n}(r)}$ e
+	$\abs{Z_{D_n} \quot \rotations}$ deve valere $1$. Se $Z_{D_n}(r)$ fosse uguale a
+	$D_n$, allora $r$ apparterrebbe a $Z(D_n)$, e quindi deve valere la seguente identità:
+	\[ sr = rs \implies r\inv = r, \]
+	mai verificata in $D_n$ (per $n \geq 3$), \Lightning. Quindi $Z_{D_n}(r) = \rotations$,
+	e allora, per il Teorema orbita-stabilizzatore, $\abs{\Cl(r)} = \abs{D_n} \quot {\left\lvert \mathcal{R} \right\rvert} = 2$. In particolare sia $r$ che $s r s\inv = r\inv$ sono distinti,
+	e quindi:
+	\[ \Cl(r) = \{r, r\inv\}. \]
 \end{document}
