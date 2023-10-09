@@ -148,7 +148,7 @@
 	bigezioni). \bigskip
 	
 	
-	\begin{example}[$\Aut(S_3) \cong S_3$]
+	\begin{example}[$\Aut(S_3) \cong S_3$] %TODO: aggiungere Aut(Z_2 * Z_2) ~ S_3
 		Si osserva che $Z(S_3)$ deve essere obbligatoriamente
 		banale\footnote{
 			In generale $Z(S_n)$ è banale per $n \geq 3$.
@@ -173,4 +173,69 @@
 		tra i due insiemi, e quindi $\Aut(S_3) = \Inn(S_3)$. Si
 		conclude dunque che $\Aut(S_3) \cong S_3$.
 	\end{example}
+	
+	
+	Si illustrano adesso dei risultati molto interessanti sui gruppi di automorfismi
+	dei prodotti diretti, a partire dalla:
+	
+	\begin{proposition}
+		Siano $H$ e $K$ due gruppi finiti di cardinalità coprime tra loro. Allora
+		$H \times \{e\}$ e $\{e\} \times K$ sono caratteristici in $H \times K$.
+	\end{proposition}
+	
+	\begin{proof}
+		Sia $\varphi \in \Aut(H \times K)$. Si deve dimostrare che se
+		$\varphi(h, e) = (h', k')$, allora $k' = e$. Chiaramente
+		$\ord(h, e) = \ord(h) \mid \abs{H}$. Allo stesso tempo
+		$\ord(h', k') = \mcm(\ord(h'), \ord(k'))$. In particolare, dal momento
+		che $\MCD(\abs{H}, \abs{K}) = 1$, $\ord(h', k') = \ord(h') \ord(k')$.
+		Dacché $\varphi$ è un automorfismo, $\ord(h', k') = \ord(h, e) = \ord(h)$, e
+		quindi $\ord(h') \ord(k') = \ord(h)$. Allora $\ord(k')$ deve dividere
+		$\abs{H}$, e quindi può valere soltanto $1$, essendo $\abs{H}$ e
+		$\abs{K}$ coprimi. Pertanto $k' = e$, e quindi $H \times \{e\}$ è caratteristico
+		in $H \times K$. Analogamente si dimostra la tesi per $\{e\} \times K$.
+	\end{proof}
+	
+	\begin{proposition}
+		Siano $H$ e $K$ due gruppi con $H \times \{e\}$ e $\{e\} \times K$ caratteristici
+		in $H \times K$. Allora $\Aut(H \times K) \cong \Aut(H) \times \Aut(K)$.
+	\end{proposition}
+	
+	\begin{proof}
+		Nel corso della dimostrazione, se $\varphi \in \Aut(H \times K)$, si
+		denota con $\varphi_H = \iota_{H \xhookrightarrow{} H \times \{e\}}\inv \circ \restr{\varphi}{H \times \{e\}} \circ \iota_{H \xhookrightarrow{} H \times \{e\}}$ la proiezione di $\varphi$ su
+		$H$ a partire da $H$, e analogamente si fa lo stesso con $\varphi_K$. Tale
+		notazione è ben definita dal momento che $\varphi$ può sempre essere ristretta
+		ad $H \times \{e\}$ (infatti è un sottogruppo caratteristico). \medskip
+		
+		
+		Sia allora
+		$\alpha : \Aut(H \times K) \to \Aut(H) \times \Aut(K)$ tale per cui
+		$\varphi \xmapsto{\alpha} (\varphi_H, \varphi_K)$. La mappa è ben
+		definita dal momento che $\varphi_H$ e $\varphi_K$ sono due automorfismi
+		di $\Aut(H)$ e $\Aut(K)$. Analogamente si definisce la mappa
+		$\beta : \Aut(H) \times \Aut(K) \to \Aut(H \times K)$ tale per cui
+		$(\varphi_H, \varphi_K) \xmapsto{\beta} [(h, k) \mapsto (\varphi_H(h), \varphi_K(k))]$.
+		\medskip
+		
+		
+		Si verifica facilmente che $\alpha$ è un omomorfismo di gruppi, che
+		$\alpha \circ \beta = \Id_{\Aut(H) \times \Aut(K)}$ e che
+		$\beta \circ \alpha = \Id_{\Aut(H \times K)}$, da cui segue la tesi.
+		%TODO: scrivere le verifiche
+	\end{proof}
+	
+	
+	Allo stesso modo si verifica che se $\alpha$ è un isomorfismo, allora
+	$H \times \{e\}$ e $\{e\} \times K$ sono caratteristici in $H \times K$. \medskip
+	
+	
+	A partire dal precedente risultato, si dimostra facilmente che se $\MCD(m, n) = 1$,
+	allora:
+	\[ \Aut(\ZZ \quot m \ZZ \times \ZZ \quot n \ZZ) \cong \Aut(\ZZ \quot m \ZZ) \times \Aut(\ZZ \quot n \ZZ), \]
+	e quindi, ricordando che $\ZZ \quot m \ZZ \times \ZZ \quot n \ZZ \cong \ZZ \quot mn \ZZ$
+	per il Teorema cinese del resto e che $\Aut(\ZZ \quot m \ZZ) \cong (\ZZ \quot m \ZZ)^*$,
+	vale che:
+	\[ (\ZZ \quot m \ZZ)^* \times (\ZZ \quot n \ZZ)^* \cong (\ZZ \quot mn \ZZ)^* \]
+	%TODO: aggiungere dimostrazione Aut(Z/nZ) ~ (Z/nZ)*
 \end{document}
