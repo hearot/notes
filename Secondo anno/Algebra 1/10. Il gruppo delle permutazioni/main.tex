@@ -88,14 +88,16 @@
 	
 	Come corollario di questo risultato, se $m_1$ rappresenta il numero di $1$-cicli di $\sigma$, $m_2$ quello dei suoi $2$-cicli, fino a $m_k$, vale il seguente risultato:
 	\[ \abs{\Cl(\sigma)} = \frac{n!}{m_1! \, 1^{m_1} \, m_2! \, 2^{m_2} \cdots m_k! \, k^{m_k}}, \]
-	e in particolare esistono tante classi di coniugio quante partizioni di $n$. \medskip
-	
-	
-	Si osserva infine che se $\tau_1 \sigma \tau_1\inv = \tau_2 \sigma \tau_2\inv = \rho$, allora:
-	\[ \tau_1\inv (\tau_2 \sigma \tau_2\inv) \tau_1 = \tau_1\inv \rho \tau_1 = \sigma, \]
-	per cui $\tau_1\inv \tau_2 \in Z_{S_n}(\sigma)$ dacché $(\tau_1\inv \tau_2) \sigma = \sigma (\tau_1\inv \tau_2)$. Allora $\tau_1 \in \tau_2 Z_{S_n}(\sigma)$. \medskip
-	
-	
-	Infine, se $H \leq S_n$, $H$ è normale in $S_n$ se e solo se per ogni tipo $H$ contiene
-	tutte le permutazioni di quel tipo o nessuna.
+	e in particolare esistono tante classi di coniugio quante partizioni di $n$.
+	Come conseguenza di questo risultato, per il Teorema orbita-stabilizzatore,
+	vale che:
+	\[ \abs{Z_{S_n}(\sigma)} = m_1! \, 1^{m_1} \, m_2! \, 2^{m_2} \cdots m_k! \, k^{m_k}, \]
+	dove si ricorda\footnote{
+		Infatti $Z_{S_n}(\sigma)$ è lo stabilizzatore di $\sigma$ nell'azione di coniugio.
+	} che due permutazioni coniugano $\sigma$ nella stessa permutazione
+	$\rho$ se queste due permutazioni fanno parte della stessa classe in $G \quot Z_{S_n}(\sigma)$. Infine,
+	sempre come corollario dello stesso risultato,
+	se $H \leq S_n$, $H$ è normale in $S_n$ se e solo se per ogni tipo di
+	permutazione $H$ contiene
+	tutte le permutazioni di quel tipo o nessuna. \medskip
 \end{document}
