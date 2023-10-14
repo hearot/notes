@@ -1,0 +1,125 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{marvosym}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{notes_2023}
+
+\setlength{\extrarowheight}{0pt}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+%\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\title{Scheda riassuntiva di Geometria 2}
+
+\begin{document}
+	
+	\parskip=0.7ex
+	
+	\raggedright
+	\footnotesize
+	
+	\begin{center}
+		\Large{\textbf{Scheda riassuntiva di Geometria 2}} \\
+	\end{center}
+	\begin{multicols}{3}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\section{Geometria proiettiva}
+		
+		\subsection{Spazi e trasformazioni proiettive}
+
+		Sia $\KK$ un campo e sia $V$ uno spazio proiettivo. Sia $\sim$ la seguente
+		relazione di equivalenza su $V \setminus \zerovecset$ tale per cui
+		\[ \v \sim \w \defiff \exists \lambda \in \KK^* \mid \v = \lambda \w. \]
+		Allora si definisce lo \textbf{spazio proiettivo} associata a $V$, denotato
+		con $\PP(V)$, come:
+		\[ \PP(V) = V \setminus \zerovecset \quot \sim. \]
+		In particolare esiste una bigezione tra gli elementi dello spazio proiettivo
+		e le rette di $V$ (i.e.~i sottospazi di $V$ con dimensione $1$). Si definisce
+		la \textit{dimensione} di $\PP(V)$ come:
+		\[ \dim \PP(V) := \dim V - 1. \]
+		Gli spazi proiettivi di dimensione $1$ sono detti \textit{rette proiettive},
+		mentre quelli di dimensione $2$ \textit{piani}. Si dice
+		\textbf{spazio proiettivo standard di dimensione $n$} lo spazio proiettivo
+		associato a $\KK^{n+1}$, e viene denotato come $\PP^n(\KK) := \PP(\KK^{n+1})$. \medskip
+		
+		
+		Sia $W$ uno spazio vettoriale. Una mappa $f : \PP(V) \to \PP(W)$ si dice
+		\textbf{trasformazione proiettiva} se è tale per cui esiste un'applicazione
+		lineare $\varphi \in \Ll(V, W)$ che soddisfa la seguente identità:
+		\[ f([\v]) = [\varphi(\w)], \]
+		dove con $[\cdot]$ si denota la classe di equivalenza in $\PP(V)$.
+		Una trasformazione proiettiva invertibile da $\PP(V)$ in $\PP(W)$
+		si dice \textbf{isomorfismo proiettivo}. Una
+		trasformazione proiettiva da $\PP(V)$ in $\PP(V)$ si dice
+		\textbf{proiettività}.
+		
+		\begin{itemize}
+			\item Se $f$ è una trasformazione proiettiva, allora $\varphi$ è necessariamente
+				iniettiva (altrimenti l'identità non sussisterebbe, dacché $[\vec 0]$ non
+				esiste -- la relazione d'equivalenza $\sim$ è infatti definita su $V \setminus
+				\zerovecset$).
+			\item Allo stesso tempo, un'applicazione lineare $\varphi$ iniettiva induce
+				sempre una trasformazione proiettiva $f$,
+			\item Se $f$ è una trasformazione proiettiva, allora $f$ è in particolare anche
+				iniettiva (infatti $[\varphi(\v)] = [\varphi(\w)] \implies \exists \lambda \in \KK^* \mid \v = \lambda \w \implies \v \sim \w$),
+			\item La composizione di due trasformazioni proiettive è ancora una
+				trasformazione proiettiva ed è indotta dalla composizione delle app.
+				lineari associate alle trasformazioni di partenza,
+			\item L'identità $\Id$ è una proiettività di $\PP(V)$, ed è indotta
+				dall'identità di $V$.
+		\end{itemize}
+		
+		Poiché allora nelle proiettività di $V$ esiste un'identità, un inverso e vale
+		l'associatività nella composizione, si definisce $\PPGL(V)$ come il gruppo delle
+		proiettività di $V$ rispetto alla composizione.
+		
+		Sono inoltre equivalenti i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\item $f$ è surgettiva,
+			\item $f$ è bigettiva,
+			\item $\dim \PP(V) = \dim \PP(W)$,
+			\item $f$ è invertibile e $f\inv$ è una trasformazione proiettiva.
+		\end{enumerate}
+		
+		In particolare $\varphi\inv$ induce esattamente $f\inv$.		
+		\vfill
+		\hrule
+		~\\
+		Ad opera di Gabriel Antonio Videtta, \url{https://poisson.phc.dm.unipi.it/~videtta/}.
+		~\\Reperibile su
+		\url{https://notes.hearot.it}, nella sezione \textit{Secondo anno $\to$ Geometria 2 $\to$ Scheda riassuntiva}.
+	\end{multicols}
+	
+\end{document}
