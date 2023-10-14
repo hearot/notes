@@ -216,9 +216,11 @@
 			base naturale di $M(m, n, \KK)$ (dunque $\dim \Sym(n, \KK) = \frac{n(n+1)}{2}$),
 			\item le matrici $A$ di taglia $n$ tali che $A^\top = -A$ formano il
 			sottospazio $\Lambda(n, \KK)$ di $M(n, \KK)$, detto sottospazio delle matrici
-			antisimmetriche, la cui base naturale è data da
+			antisimmetriche, la cui base naturale, se $\Char \KK \neq 2$, è data da
 			$\basis' = \{E_{ij} - E_{ji} \in \basis \mid i < j\}$, dove $\basis$ è la
 			base naturale di $M(m, n, \KK)$ (dunque $\dim \Lambda(n, \KK) = \frac{n(n-1)}{2}$),
+			\item se invece $\Char \KK = 2$, le matrici antisimmetriche sono esattamente
+			le matrici simmetriche,
 			\item poiché $\Sym(n, \KK) \cap \Lambda(n, \KK) = \zerovecset$ e
 			$\dim \Sym(n, \KK) + \dim \Lambda(n, \KK) = \dim M(n, \KK)$,
 			vale che $M(n, \KK) = \Sym(n, \KK) \oplus \Lambda(n, \KK)$,
