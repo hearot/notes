@@ -71,8 +71,41 @@
 		Gli spazi proiettivi di dimensione $1$ sono detti \textit{rette proiettive},
 		mentre quelli di dimensione $2$ \textit{piani}. Si dice
 		\textbf{spazio proiettivo standard di dimensione $n$} lo spazio proiettivo
-		associato a $\KK^{n+1}$, e viene denotato come $\PP^n(\KK) := \PP(\KK^{n+1})$. \medskip
+		associato a $\KK^{n+1}$, e viene denotato come $\PP^n(\KK) := \PP(\KK^{n+1})$.
+		Si indica con $\pi$ la proiezione al quoziente tramite $\sim$, ossia:
+		\[ \pi(W) = \{ [\w] \mid \w \in W \}. \]
 		
+		
+		Si dice \textbf{sottospazio proiettivo} un qualsiasi sottoinsieme $S$ di $\PP(V)$
+		tale per cui esista un sottospazio vettoriale $W$ di $V$ tale per cui
+		$S = \pi(W \setminus \zerovecset)$, e si scrive $S = \PP(W)$, con:
+		\[ \dim S = \dim W - 1. \]
+		In particolare, tramite $\pi$ si descrive una bigezione tra i sottospazi vettoriali di 
+		$V$ e i sottospazi proiettivi di $\PP(V)$. \medskip
+		
+		
+		L'intersezione di sottospazi proiettivi è ancora un sottospazio proiettivo ed
+		è indotto dall'intersezione degli spazi vettoriali che generano i singoli
+		sottospazi proiettivi. Pertanto, se $F \subseteq \PP(V)$, è ben definito
+		il seguente sottospazio:
+		\[ \displaystyle L(F) = \bigcap_{\substack{F \subseteq S_i \\ S_i \text{\;ssp. pr.}}} S_i, \]
+		ossia l'intersezione di tutti i sottospazi proiettivi che contengono $F$.
+		Si scrive $L(S_1, \ldots, S_n)$ per indicare $L(S_1 \cup \cdots \cup S_n)$.
+		Se $S_1 = \PP(W_1)$, ..., $S_n = \PP(W_n)$, allora vale che:
+		\[ L(S_1, \ldots, S_n) = \PP(W_1 + \ldots + W_n). \]
+		
+		
+		Vale pertanto la \textbf{formula di Grassmann proiettiva}:
+		\[ \dim L(S_1, S_2) = \dim S_1 + \dim S_2 - \dim (S_1 \cap S_2). \]
+		Allora, se $\dim S_1 + \dim S_2 \geq \dim \PP(V)$ (si osservi che è
+		$\geq$ e non $>$ come nel caso vettoriale, dacché un sottospazio di dimensione
+		zero è comunque un punto in geometria proiettiva), vale necessariamente
+		che:
+		\[ S_1 \cap S_2 \neq \emptyset, \]
+		infatti $\dim S_1 \cap S_2 = \dim S_1 + \dim S_2 - \dim L(S_1, S_2) \geq
+		\dim S_1 + \dim S_2 - \dim \PP(V) \geq 0$. In particolare, in $\PP^2(\KK)$,
+		questo implica che due rette proiettive distinte si incontrano sempre in un unico
+		punto (infatti $1+1\geq2$).
 		
 		Sia $W$ uno spazio vettoriale. Una mappa $f : \PP(V) \to \PP(W)$ si dice
 		\textbf{trasformazione proiettiva} se è tale per cui esiste un'applicazione
@@ -113,7 +146,18 @@
 			\item $f$ è invertibile e $f\inv$ è una trasformazione proiettiva.
 		\end{enumerate}
 		
-		In particolare $\varphi\inv$ induce esattamente $f\inv$.		
+		In particolare $\varphi\inv$ induce esattamente $f\inv$.
+		
+		\begin{itemize}
+			\item I punti fissi di $f$ sono indotti esattamente dalle rette di autovettori
+				di $\varphi$ (infatti $\varphi(\v) = \lambda \v \implies f([\v]) = [\v]$),
+			\item In particolare, $f \in \PPGL(\PP^n(\RR))$ ammette sempre un punto
+				fisso se $n$ è pari (il polinomio caratteristico di $\varphi$ ha grado
+				dispari, e quindi ammette una radice in $\RR$),
+			\item Se $\KK$ è algebricamente chiuso, $f$ ammette sempre un punto fisso
+				(il polinomio caratteristico di $\varphi$ ha tutte le radici in $\KK$).
+		\end{itemize}
+		
 		\vfill
 		\hrule
 		~\\
