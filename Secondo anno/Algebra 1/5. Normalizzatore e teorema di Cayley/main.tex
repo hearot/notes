@@ -77,4 +77,76 @@
 		poiché $K$ è caratteristico in $H$, $\restr{\varphi_g}{H}(K) = K$, da cui si
 		deduce che $gKg\inv = K$ per ogni $g \in G$.
 	\end{proof}
+	
+	Si illustra adesso un risultato riguardante l'esistenza di sottogruppi normali in $G$:
+	\begin{theorem}[di Poincaré]
+		Sia $H$ un sottogruppo di $G$ di indice $n$. Allora esiste sempre un sottogruppo
+		$N$ di $G$ tale per cui:
+		\begin{enumerate}[(i)]
+			\item $N$ è normale in $G$,
+			\item $N$ è contenuto in $H$,
+			\item $n \mid [G : N] \mid n!$.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		Si consideri l'azione $\varphi : G \to S(G \quot H)$ tale per cui
+		$g \xmapsto{\varphi} [kH \mapsto gkK]$. Tale azione è sicuramente
+		ben definita dal momento che $kH = k'H \implies gkH = gk'H$. Si
+		studia $N := \Ker \varphi$. Chiaramente $N$ è normale in $G$, e si
+		verifica facilmente che $N$ è contenuto anche in $H$, infatti, se
+		$n \in N$, allora:
+		\[ H = \varphi(n)(H) = nH \implies n \in H. \]
+		Poiché $G \quot N$ è isomorfo a $\Im \varphi \leq S(G \quot H)$,
+		$[G : N] \mid \abs{S(G \quot H)} = \abs{S_n} = n!$ considerando che
+		$S(G \quot H) \cong S_n$. Dal momento allora che $N$ è un sottogruppo
+		di $H$, vale che:
+		\[ [G : N] = [G : H] [H : N] = n [H : N], \]
+		e quindi $n \mid [G : N]$. Si è dunque esibito un sottogruppo $N$ con
+		le proprietà indicate nella tesi.
+	\end{proof}
+	
+	Dal precedente teorema sono immediati i seguenti due risultati:
+	
+	\begin{corollary}
+		Sia $H$ un sottogruppo di $G$ con indice $n$. Se $n! < \abs{G}$ e
+		$n>1$, allora $G$ non è semplice.
+	\end{corollary}
+	
+	\begin{corollary}
+		Sia $H$ un sottogruppo di $G$ con indice $p$, dove $p$ è il più piccolo
+		primo che divide $n = \abs{G}$. Allora $H$ è normale.
+	\end{corollary}
+	
+	\begin{proof}
+		Per il Teorema di Poincaré, esiste un sottogruppo $N$ di $H$ tale per cui
+		$N$ sia normale e $p \mid [G : N] \mid p!$ con $p = [G : H]$. In particolare
+		$[G : N]$ deve dividere anche $n$, e quindi $[G : N]$ deve dunque
+		dividere $\MCD(p!, n)$, che è, per ipotesi, $p$ stesso. Si conclude dunque
+		che $[G : N] = p = [G : H]$, e quindi che $N = H$, ossia che $H$ stesso
+		è normale.
+	\end{proof}
+	
+	\begin{example} [Tutti i gruppi di ordine $15$ sono ciclici]
+		Sia $G$ un gruppo di ordine $15$. Per il teorema di Cauchy esistono
+		due elementi $h$ ed $k$, uno di ordine $3$ e l'altro di ordine $5$.
+		In particolare, si consideri $K = \gen{k}$; poiché $\abs{K} = 5$,
+		$[G : K] = 3$, il più piccolo primo che divide $15$. Pertanto
+		$K$ è normale per il corollario di sopra. \medskip
+		
+		
+		Poiché $K$ è normale, si può considerare la restrizione $\iota :
+		\Inn(G) \to \Aut(K)$ tale per cui $\varphi_g \xmapsto{\iota} \restr{\varphi_g}{K}$.
+		Dal momento che $K$ è ciclico, $\Aut(K) \cong \Aut(\ZZ \quot 5 \ZZ) \cong
+		(\ZZ \quot 5 \ZZ)^* \cong \ZZ \quot 4 \ZZ$. Quindi $[G : \Ker \iota]$ deve
+		dividere sia $4$ che $15$; dal momento che $\MCD(4, 15) = 1$, $[G : \Ker \iota] = 1$,
+		e quindi che $\iota$ è l'omomorfismo banale. Poiché $\iota$ è banale, $K$ è
+		un sottogruppo di $Z(G)$. \medskip
+		
+		
+		In particolare $[G : Z(G)] \mid [G : K] = 3$, e quindi in particolare
+		$G \quot Z(G)$ è ciclico, da cui si deduce che $G$ è abeliano. Infine,
+		dal momento che $\MCD(3, 5) = 1$ e $h$ e $k$ commutano,
+		$hk$ è un elemento di ordine $15$, e dunque $G$ è ciclico.
+	\end{example}
 \end{document}
