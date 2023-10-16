@@ -84,32 +84,38 @@
 	e facile da ricordare), basata su una particolare costruzione.
 	
 	\begin{proof}[Dimostrazione alternativa]
-		Si consideri l'insieme $S$, dove:
+		Si\footnote{
+			Riadattando opportunamente questa dimostrazione, si può fornire un'ulteriore dimostrazione del Teorema di Eulero di teoria dei numeri.
+		} consideri l'insieme $S$, dove:
 		\[ S = \{ (a_1, \ldots, a_p) \in G^p \mid a_1 \cdots a_p = e \}. \]
 		Dimostrando che esiste un elemento $h \in G$ diverso dall'identità tale
 		per cui $(h, \ldots, h) \in S$, si mostra che $h^p = e$, e dunque che
 		$o(h) = p$ (infatti $h \neq e$), dimostrando la tesi. \medskip
 		
 		
-		Si ipotizzi che tale elemento $h$ non esisti. Si consideri l'azione $\varphi$
+		Si consideri l'azione $\varphi$
 		di $\ZZ \quot p\ZZ$ su $S$ univocamente determinata\footnote{$\ZZ \quot p\ZZ$ è infatti generato da $1$.} dalla relazione:
 		\[ 1 \xmapsto{\varphi} \left[ (a_1, a_2, \ldots, a_p) \mapsto (a_2, \ldots, a_p, a_1) \right]. \]
 		In particolare $m \cdot (a_1, \ldots, a_p)$ restituisce una $p$-upla ottenuta
 		``ciclando a sinistra'' la $p$-upla iniziale di $m$ posizioni. Si consideri la
 		somma data dal teorema orbita-stabilizzatore:
-		\[ \abs{S} = \sum_{x \in S} \frac{p}{\abs{\Stab(x)}} = 1 + \sum_{x \in S \setminus \{(e,\ldots,e)\}} \frac{p}{\abs{\Stab(x)}}. \]
+		\[ \abs{S} = \sum_{x \in S} \frac{p}{\abs{\Stab(x)}} = 1 + N + \sum_{x \in S \setminus (\{(e,\ldots,e)\} \cup H)} \frac{p}{\abs{\Stab(x)}}, \]
+		dove $H$ è l'insieme degli elementi $h \neq e$ tali per cui $h^p = e$ (ossia
+		le $p$-uple con coordinate identiche tra loro) e $N = \abs H$.
 		Poiché $\Stab(x) \leq \ZZ \quot p\ZZ$, gli unici ordini di $\Stab(x)$ possono
-		essere $1$ e $p$. Se tuttavia, per $x \in S \setminus \{(e,\ldots,e)\}$,
+		essere $1$ e $p$. Se tuttavia, per $x \in S \setminus (\{(e,\ldots,e)\} \cup H)$,
 		valesse $\Stab(x) = \ZZ \quot p\ZZ$, $x$ avrebbe coordinate tutte uguali,
-		e quindi, per ipotesi, $x = (e,\ldots,e)$, \Lightning. Quindi il secondo
-		termine del secondo membro vale esattamente $pk$, dove $k = \abs{S \setminus \{(e,\ldots,e)\}}$. \medskip
+		e quindi, per ipotesi, $x$ apparterrebbe ad $H$ o sarebbe l'identità, \Lightning. Quindi la somma del secondo membro vale esattamente $pk$, dove $k = \abs{S \setminus (\{(e,\ldots,e)\} \cup H)}$. \medskip
 		
 		
 		Si osserva adesso che $\abs S = n^{p-1}$, dove $n = \abs G$. Infatti è sufficiente
 		determinare le prime $p-1$ coordinate, per le quali vi sono $n$ scelte, per determinare
 		anche l'ultima coordinata tramite la relazione $a_1 \cdots a_n = e$. Prendendo
-		allora la precedente identità modulo $p$, si ottiene:
-		\[ 1 \equiv 0 \pod p, \]
-		da cui l'assurdo ricercato, \Lightning.
+		allora la precedente identità modulo $p$, si ottiene che\footnote{
+			Questa dimostrazione fornisce quindi anche un risultato sul numero di elementi
+			con ordine primo in $G$, ossia esso è congruo a $-1$ in modulo $p$.
+		}:
+		\[ N \equiv -1 \pod p, \]
+		e quindi in particolare esiste almeno un elemento di ordine $p$ diverso dall'identità.
 	\end{proof}
 \end{document}
