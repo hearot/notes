@@ -111,7 +111,8 @@
 		\textbf{trasformazione proiettiva} se è tale per cui esiste un'applicazione
 		lineare $\varphi \in \Ll(V, W)$ che soddisfa la seguente identità:
 		\[ f([\v]) = [\varphi(\w)], \]
-		dove con $[\cdot]$ si denota la classe di equivalenza in $\PP(V)$.
+		dove con $[\cdot]$ si denota la classe di equivalenza in $\PP(V)$. Si scrive
+		in questo caso che $[\varphi] = f$.
 		Una trasformazione proiettiva invertibile da $\PP(V)$ in $\PP(W)$
 		si dice \textbf{isomorfismo proiettivo}. Una
 		trasformazione proiettiva da $\PP(V)$ in $\PP(V)$ si dice
@@ -135,7 +136,9 @@
 		
 		Poiché allora nelle proiettività di $V$ esiste un'identità, un inverso e vale
 		l'associatività nella composizione, si definisce $\PPGL(V)$ come il gruppo delle
-		proiettività di $V$ rispetto alla composizione.
+		proiettività di $V$ rispetto alla composizione. In particolare si pone la
+		seguente definizione
+		\[ \PPGL_{n+1}(\KK) := \PPGL(\KK^{n+1}). \]
 		
 		Sono inoltre equivalenti i seguenti fatti:
 		
@@ -157,6 +160,81 @@
 			\item Se $\KK$ è algebricamente chiuso, $f$ ammette sempre un punto fisso
 				(il polinomio caratteristico di $\varphi$ ha tutte le radici in $\KK$).
 		\end{itemize}
+		
+		\subsection{Riferimenti proiettivi, teorema fondamentale della geometria proiettiva
+			e coordinate omogenee}
+		
+		Più punti $P_1$, ..., $P_k$ si dicono \textbf{indipendenti} se e solo se
+		i vettori delle loro classi di equivalenza sono tra di loro linearmente indipendenti.
+		In particolare, $P_1$, ..., $P_k$ sono indipendenti se e solo se
+		$\dim L(P_1, \ldots, P_k) = k-1$. Analogamente al caso vettoriale, se $\dim \PP(V) = n$,
+		presi più di $n+1$ punti, questi sono sicuramente non indipendenti. \medskip
+		
+		
+		
+		Un insieme $\{P_1, \ldots, P_k\}$ si dice \textit{in posizione generale} se e solo se
+		ogni suo sottoinsieme di $h \leq n+1$ punti è indipendente. Se $k \leq n+1$, un
+		insieme è in posizione generale se e solo se è indipendente. Altrimenti, l'insieme
+		è in posizione generale se ogni sottoinsieme di $n+1$ punti è indipendente. \medskip
+		
+		
+		
+		Si dice \textbf{riferimento proiettivo} una qualsiasi $(n+2)$-upla di punti
+		$P_1$, ..., $P_{n+2}$ in posizione generale. In particolare, si dice che i punti
+		$P_1$, ..., $P_{n+1}$ sono i \textbf{punti fondamentali} del riferimento, mentre
+		$P_{n+2}$ è il \textbf{punto unità}. Una base $\basis = \{\vv 1, \ldots, \vv{n+1}\}$
+		di $V$ si dice \textbf{base normalizzata} rispetto a $P_1$, ..., $P_{n+2}$ se:
+		\[ P_i = [\vv i] \, \forall i \leq n+1 \qquad P_{n+2} = [\vv 1 + \ldots + \vv n]. \]
+		
+		Una base normalizzata per $R$ esiste sempre ed
+		è unica a meno di \textit{riscalamento simultaneo}
+		(ossia a meno di moltiplicare ogni vettore della base per uno stesso $\lambda \in \KK^*$). In particolare, se $P_i = [\vv i]$ con $i \leq n+1$ e
+		$P_{n+2} = [\v]$, dacché $\{\vv 1, \ldots, \vv {n+1}\}$ è una base di $V$
+		esistono $\alpha_i \in \KK$ per cui:
+		\[ \v = \alpha_1 \vv 1 + \ldots + \alpha_{n+1} \vv{n+1}, \]
+		con $\alpha_i \neq 0$ (altrimenti si avrebbero $n+1$ vettori linearmente
+		dipendenti, contraddicendo la posizione generale). Allora
+		$\{\alpha_1 \vv 1, \ldots, \alpha_{n+1} \vv {n+1}\}$ è una base normalizzata
+		per il riferimento proiettivo. \medskip
+		
+		
+		Sia d'ora in poi $R = \{P_1, \ldots, P_{n+2}\}$ un riferimento proiettivo e
+		$\basis = \{\vv 1, \ldots, \vv{n+1}\}$ una base normalizzata rispetto ad $R$.
+		Se $f = [\varphi]$, $g = [\psi]$ sono trasformazioni da $\PP(V)$ in $\PP(W)$, sono equivalenti i seguenti fatti:
+		
+		\begin{itemize}
+			\item $\varphi = \lambda \psi$ per $\lambda \in \KK^*$,
+			\item $f = g$,
+			\item $f(P_i) = g(P_i)$ per $1 \leq i \leq n+2$.
+		\end{itemize}
+		
+		Come conseguenza di questo fatto, vale che:
+		\[ \PPGL(V) \cong GL(V) \quot N, \]
+		dove $N = \{ \lambda \Id_V \mid \lambda \in \KK^* \}$ (è sufficiente
+		considerare l'omomorfismo $\zeta : GL(V) \to \PPGL(V)$ tale per cui
+		$f \xmapsto{\zeta} [f]$).
+		
+		Il \textbf{teorema fondamentale della geometria proiettiva}
+		asserisce che se $R = \{P_1, \ldots, P_{n+2}\}$ e $R' = \{Q_1, \ldots, Q_{m+2}\}$ sono
+		due riferimenti proiettivi di $V$ e $W$ e vale che $\dim \PP(W) \geq \dim \PP(V)$,
+		allora, per ogni scelta di $n+2$ punti $Q_1'$, ..., $Q_{n+2}'$ da $R'$, esiste
+		un'unica trasformazione proiettiva tale per cui:
+		\[ f(P_i) = Q_i' \, \forall 1 \leq i \leq n+2. \]
+		Se $n=m$, il teorema asserisce semplicemente che esiste un'unica trasformazione
+		che mappa ordinatamente $R$ in $R'$. \medskip
+		
+		
+		Si può costruire su $R$ un sistema di coordinate, dette \textbf{coordinate omogenee},
+		per cui $P = [a_1, \ldots, a_n] = [a_1 : \cdots : a_n]$ se e solo se
+		$P = [a_1 \vv 1 + \ldots + a_{n+1} \vv n]$ dove $\basis = \{\vv 1, \ldots, \vv{n+1}\}$
+		è una base normalizzata associata a $R$. Per $\PP^n(\KK)$, si definisce il
+		\textit{riferimento standard} come il riferimento dato da
+		$[\e1]$, ..., $[\e{n+1}]$ e $[\e1 + \ldots + \e{n+1}]$. In tal caso vale
+		la seguente identità:
+		\[ [a_1, \ldots, a_n] = [(a_1, \ldots, a_n)]. \]
+		Si osserva che $[0, \ldots, 0]$ non è mai associato a nessun punto e che due punti
+		hanno le stesse coordinate in un riferimento proiettivo a meno di riscalamento
+		di tutte le coordinate per uno stesso $\lambda \in \KK^*$.
 		
 		\vfill
 		\hrule
