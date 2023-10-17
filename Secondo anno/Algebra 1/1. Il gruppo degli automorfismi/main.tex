@@ -148,7 +148,7 @@
 	bigezioni). \bigskip
 	
 	
-	\begin{example}[$\Aut(S_3) \cong S_3$] %TODO: aggiungere Aut(Z_2 * Z_2) ~ S_3
+	\begin{example}[$\Aut(S_3) \cong S_3$]
 		Si osserva che $Z(S_3)$ deve essere obbligatoriamente
 		banale\footnote{
 			In generale $Z(S_n)$ è banale per $n \geq 3$.
@@ -172,6 +172,39 @@
 		del suo sottogruppo $\Inn(S_3)$, deve valere l'uguaglianza
 		tra i due insiemi, e quindi $\Aut(S_3) = \Inn(S_3)$. Si
 		conclude dunque che $\Aut(S_3) \cong S_3$.
+	\end{example}
+	
+	
+	\begin{example}[$\Aut(\ZZ \quot n \ZZ) \cong (\ZZ \quot n \ZZ)^*$]
+		Sia $f$ un automorfismo di $\Aut(\ZZ \quot n \ZZ)$. Allora,
+		necessariamente, $f(\cleq1)$ deve essere un
+		generatore di $\Aut(\ZZ \quot n \ZZ)$. Si può quindi costruire
+		un isomorfismo $\zeta : \Aut(\ZZ \quot n \ZZ) \to
+		(\ZZ \quot n \ZZ)^*$ tale per cui
+		$f \xmapsto{\zeta} f(\cleq1)$. \medskip
+		
+		
+		Chiaramente $\zeta$ è un omomorfismo, infatti\footnote{
+			Potrebbe non risultare completamente ovvio che
+			valga $f(g(\cleq 1)) = f(\cleq 1) g(\cleq 1)$.
+			È necessario però ricordarsi che $\ZZ\quot n \ZZ$ è
+			un gruppo definito sulla somma, e quindi vale sempre
+			che $f(\cleq a) = a f(\cleq 1) = \cleq{a} f(\cleq 1)$.
+		}:
+		\[ \zeta(f \circ g) = f(g(\cleq 1)) = f(\cleq 1) g(\cleq 1) = \zeta(f) \zeta(g). \]
+		Inoltre $f(\cleq 1) = \cleq 1 \implies f = \Id$, e quindi
+		$\zeta$ è iniettiva. Infine, per ogni $\cleq a \in (\ZZ \quot n \ZZ)^*$, si può costruire $f_a \in \Aut(\ZZ \quot n \ZZ)$
+		di cui è immagine ponendo semplicemente che valga\footnote{
+			L'automorfismo è ben determinato dal momento che manda
+			un generatore in un altro generatore.
+		}
+		$f_a(\cleq 1) = \cleq a$. Si conclude quindi che
+		$\zeta$ è un isomorfismo e dunque che vale il seguente
+		isomorfismo:
+		\[ \Aut(\ZZ \quot n \ZZ) \cong (\ZZ \quot n \ZZ)^* \]
+		Il risultato è valido anche con $n = 0$, da cui si
+		ricava che:
+		\[ \Aut(\ZZ) \cong \ZZ^* \cong \{\pm 1\}. \]
 	\end{example}
 	
 	
@@ -237,5 +270,87 @@
 	per il Teorema cinese del resto e che $\Aut(\ZZ \quot m \ZZ) \cong (\ZZ \quot m \ZZ)^*$,
 	vale che:
 	\[ (\ZZ \quot m \ZZ)^* \times (\ZZ \quot n \ZZ)^* \cong (\ZZ \quot mn \ZZ)^* \]
-	%TODO: aggiungere dimostrazione Aut(Z/nZ) ~ (Z/nZ)*
+	
+	\begin{example}($\Aut((\ZZ \quot p \ZZ)^n)$)
+		Il gruppo $(\ZZ \quot p \ZZ)^n$ ha una più facile
+		visualizzazione se lo si pensa come spazio vettoriale su
+		$\ZZ \quot p \ZZ$ (che per $p$ primo è, per l'appunto,
+		un campo). In tal caso, gli automorfismi di
+		$(\ZZ \quot p \ZZ)^n$ coincidono esattamente con gli
+		endomorfismi invertibili di $\End((\ZZ \quot p \ZZ)^n)$,
+		e quindi vale in particolare che:
+		\[ \Aut((\ZZ \quot p \ZZ)^n) \cong \GL_n(\ZZ \quot p \ZZ). \]
+		In questo modo è estremamente più facile contare il
+		numero di automorfismi di questo gruppo. È infatti
+		sufficiente contare le possibili matrici invertibili con
+		elementi in $\ZZ \quot p \ZZ$. Nella prima colonna di una
+		matrice $A \in \GL_n(\ZZ \quot p \ZZ)$ possono
+		essere effettuate $p^n - 1$ scelte (si esclude il vettore
+		nullo); nella seconda è sufficiente scegliere un vettore
+		che non stia in $(\ZZ \quot p \ZZ)^n \setminus
+		\Span(A^1)$, e quindi si hanno $p^n - p$ scelte; per la
+		terza colonna se ne hanno $p^n - p^2$, ... \medskip
+		
+		
+		Si conclude dunque che vale la seguente identità:
+		\[ \abs{\Aut((\ZZ \quot p \ZZ)^n)} = \prod_{i=0}^{n-1} (p^n - p^i). \] \medskip
+		
+		
+		Se si prende $m$ \textit{square-free}\footnote{
+			Ossia $m$ non è diviso da alcun quadrato; equivalentemente
+			un primo che compare nella fattorizzazione di $m$
+			compare con esponente unitario.
+		}, il risultato si può estendere facilmente
+		su $\Aut((\ZZ \quot m)^n)$. Se infatti
+		$m = p_1 \cdots p_k$, vale che:
+		\[
+			\Aut((\ZZ \quot m \ZZ)^n) \cong
+			\Aut((\ZZ \quot p_1 \ZZ)^n \times \cdots \times (\ZZ \quot p_k \ZZ)^n)
+			\cong \Aut((\ZZ \quot p_1 \ZZ)^n) \times
+			\cdots \times \Aut((\ZZ \quot p_k \ZZ)^n,
+		\]
+		dove si è usato sia il Teorema cinese del resto, sia
+		il fatto per cui $\MCD(p_i, p_j) = 1$ per $i \neq j$.
+	\end{example}
+	
+	\begin{example}[$\Aut(\ZZ \quot 2 \ZZ \times \ZZ \quot 2 \ZZ) \cong S_3$ e altre proprietà]
+		Ora che è chiara la visualizzazione in senso vettoriale
+		di $(\ZZ \quot p \ZZ)^n$, si possono elencare alcune
+		proprietà di $\ZZmod2 \times \ZZmod2$. \medskip
+		
+		
+		Innanzitutto, benché $\ZZmod2 \times \ZZmod2$ sia abeliano,
+		$\Aut(\ZZmod2 \times \ZZmod2) \cong \GL_2(\ZZmod2)$ non
+		lo è. Inoltre, ogni sottogruppo proprio e non banale di
+		$\ZZmod2 \times \ZZmod2$ non è caratteristico: ogni
+		tale sottogruppo è vettorialmente una retta (infatti
+		$\ZZmod2 \times \ZZmod2$ ha dimensione due), e quindi
+		è sufficiente costruire un automorfismo che manda tale
+		retta in un'altra. \medskip
+		
+		
+		Infine, sempre perché $\Aut(\ZZmod2 \times \ZZmod2) \cong \GL_2(\ZZmod2)$, si può visualizzare facilmente l'isomorfismo
+		tra $\Aut(\ZZmod2 \times \ZZmod2)$ e $S_3$. Infatti,
+		$\GL_2(\ZZmod2)$ si compone di $6$ matrici, nella
+		seguente bigezione con $S_3$:
+		
+		\[
+			\Matrix{1 & 0 \\ 0 & 1} \bij e, \quad
+			\Matrix{0 & 1 \\ 1 & 0} \bij (1, 2), \quad
+			\Matrix{1 & 1 \\ 0 & 1} \bij (2, 3),
+		\]
+		
+		\[
+			\Matrix{1 & 0 \\ 1 & 1} \bij (1, 3), \quad
+			\Matrix{0 & 1 \\ 1 & 1} \bij (1, 2, 3) \quad
+			\Matrix{1 & 1 \\ 1 & 0} \bij (1, 3, 2).
+		\]
+		\vskip 0.1in
+
+		Infine, poiché $\Aut(\ZZmod2 \times \ZZmod2) \cong
+		S_3 \cong \Aut(S_3)$, $\ZZmod2 \times \ZZmod2$ e
+		$S_3$ formano un esempio di gruppi non isomorfi
+		(in particolare uno è abeliano e l'altro no) i cui
+		gruppi di automorfismo sono isomorfi.
+	\end{example}
 \end{document}
