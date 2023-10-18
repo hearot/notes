@@ -10,8 +10,8 @@
 		$G'$.
 	\end{note}
 	
-	Si illustrano i tre teoremi di isomorfismo nella loro
-	forma più generale.
+	Si illustrano i tre teoremi di isomorfismo (o omomorfismo)
+	nella loro forma più generale.
 	
 	\begin{theorem}[Primo teorema di isomorfismo]
 		Sia $\varphi$ un omomorfismo da $G$ in $G'$. Allora,
@@ -60,7 +60,38 @@
 	\[ \Ker f = \{ gN \mid \varphi(g) = e \} = \{ gN \mid g \in \Ker \varphi \} = \Ker \varphi \quot N.
 	 \]
 	
-	\begin{theorem}[Secondo teorema di isomorfismo, o teorema del diamante]
+	\begin{theorem}[Secondo teorema di isomorfismo]
+		Siano $H$ e $N$ due sottogruppi normali di $G$ e sia
+		$N \leq H$. Allora\footnote{
+			Ci sono più modi per vedere che $H \quot N$ è
+			normale in $G \quot N$. Un modo di vederlo si
+			ottiene dalla dimostrazione stessa del teorema,
+			dal momento che si ottiene che $H \quot N$ è
+			il kernel dell'omomorfismo $\varphi$. Altrimenti,
+			se $hN \in H \quot N$, $gN hN g\inv N = (ghg\inv)N$,
+			e poiché $H$ è normale in $G$, $ghg\inv \in H$, da
+			cui $(ghg\inv)N \in H \quot N$.
+		}:
+		\[ \frac{G \quot N}{H \quot N} \cong G \quot H. \]
+	\end{theorem}
+	
+	\begin{proof}
+		Si costruisce l'omomorfismo $\varphi : G \quot N \to G \quot H$ tale per cui $gN \mapsto gH$. Si verifica innanzitutto
+		che la mappa $\varphi$ è ben definita:
+		\[ gnH = gH \impliedby N \subseteq H. \]
+		Inoltre $\varphi$ è effettivamente un omomorfismo dal momento
+		che:
+		\[ \varphi(gkN) = gkH = gH \, kH = \varphi(gN) \varphi(kN).  \]
+		Chiaramente $\varphi$ è una mappa surgettiva e quindi
+		$\Im \varphi = G \quot H$.
+		Allora, se $g \in \Ker \varphi$, $\varphi(gN) = gH = H$, e quindi $g \in H$. Pertanto $\Ker \varphi = \{ 
+		gN \mid g \in H 
+		\} = H \quot N$. Si conclude allora, per il Primo teorema
+		di isomorfismo, che:
+		\[ \frac{G \quot N}{H \quot N} \cong G \quot H. \]
+	\end{proof}
+	
+	\begin{theorem}[Terzo teorema di isomorfismo, o teorema del diamante]
 		Siano $H$, $N \leq G$ con $N \nsgeq G$. Allora\footnote{
 			Si osserva che effettivamente $H \cap N$ è normale in
 			$H$. Infatti se $g \in H \cap N$, allora, se
@@ -100,36 +131,5 @@
 		applicando il Primo teorema di isomorfismo, si ottiene
 		la tesi:
 		\[ H \quot (H \cap N) \cong HN \quot N. \]
-	\end{proof}
-	
-	\begin{theorem}[Terzo teorema di isomorfismo]
-		Siano $H$ e $N$ due sottogruppi normali di $G$ e sia
-		$N \leq H$. Allora\footnote{
-			Ci sono più modi per vedere che $H \quot N$ è
-			normale in $G \quot N$. Un modo di vederlo si
-			ottiene dalla dimostrazione stessa del teorema,
-			dal momento che si ottiene che $H \quot N$ è
-			il kernel dell'omomorfismo $\varphi$. Altrimenti,
-			se $hN \in H \quot N$, $gN hN g\inv N = (ghg\inv)N$,
-			e poiché $H$ è normale in $G$, $ghg\inv \in H$, da
-			cui $(ghg\inv)N \in H \quot N$.
-		}:
-		\[ \frac{G \quot N}{H \quot N} \cong G \quot H. \]
-	\end{theorem}
-	
-	\begin{proof}
-		Si costruisce l'omomorfismo $\varphi : G \quot N \to G \quot H$ tale per cui $gN \mapsto gH$. Si verifica innanzitutto
-		che la mappa $\varphi$ è ben definita:
-		\[ gnH = gH \impliedby N \subseteq H. \]
-		Inoltre $\varphi$ è effettivamente un omomorfismo dal momento
-		che:
-		\[ \varphi(gkN) = gkH = gH \, kH = \varphi(gN) \varphi(kN).  \]
-		Chiaramente $\varphi$ è una mappa surgettiva e quindi
-		$\Im \varphi = G \quot H$.
-		Allora, se $g \in \Ker \varphi$, $\varphi(gN) = gH = H$, e quindi $g \in H$. Pertanto $\Ker \varphi = \{ 
-			gN \mid g \in H 
-		 \} = H \quot N$. Si conclude allora, per il Primo teorema
-		 di isomorfismo, che:
-		 \[ \frac{G \quot N}{H \quot N} \cong G \quot H. \]
 	\end{proof}
 \end{document}

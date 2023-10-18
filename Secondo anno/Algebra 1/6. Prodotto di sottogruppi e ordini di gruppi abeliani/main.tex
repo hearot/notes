@@ -154,11 +154,13 @@
 		\[ (h,k) \xmapsto{\rho} hk. \]
 		
 		Si osserva che ogni elemento $h$ di $H$ commuta con
-		ogni elemento $k$ di $K$. Sia infatti $g = k\inv hkh\inv$, allora:
+		ogni elemento $k$ di $K$. Se infatti si considera il
+		commutatore $g = [h, k]$, vale che:
 		\[
-			g = \underbrace{(k\inv hk)}_{\in H} h\inv \in H, \qquad g = k\inv \underbrace{(hkh\inv)}_{\in K} \in K.
+			g = \underbrace{(hkh\inv)}_{\in K} k \in K, \qquad g = h\inv \underbrace{(kh\inv k\inv)}_{\in H} \in H.
 		\]
-		Pertanto $g \in H \cap K \implies hk=kh$. Allora $\rho$
+		Pertanto $g \in H \cap K \implies [h, k] = e \implies
+		hk=kh$. Allora $\rho$
 		è un omomorfismo, infatti:
 		\[
 			\rho((hh',kk')) = hh'kk' = hkh'k' = \rho((h,k)) \rho((h',k')).
@@ -173,7 +175,43 @@
 	facilmente due copie isomorfe di $G_1$ e $G_2$ in $G$, ossia $G_1' = G_1 \times \{e\}$ e $G_2' = \{e\} \times G_2$.
 	Vale inoltre che $G_1'$, $G_2' \nsgeq G$ e dunque,
 	per la proposizione precedente\footnote{Infatti $G_1' \cap G_2' = \{(e,e)\}$.}, che
-	$G \cong G_1' \times G_2'$. \bigskip
+	$G \cong G_1' \times G_2'$. \medskip
+	
+	
+	In particolare vale il seguente risultato, considerando
+	$\gen{x} \cap \gen{y} = \{e\}$:
+	
+	\begin{proposition}
+		Siano\footnote{
+			In generale, se $\MCD(\ord(x), \ord(y)) > 1$,
+			non vale che $\ord(xy) = \mcm(\ord(x), \ord(y))$,
+			benché sicuramente $\ord(xy) \mid \mcm(\ord(x), \ord(y))$,
+			sempre a patto che $x$ e $y$ commutino.
+			È sufficiente considerare in $\ZZmod6$ gli elementi
+			$\cleq 1$ e $\cleq 2$: infatti $\ord(\cleq 1) = 6$ e
+			$\ord(\cleq 2) = 3$, ma $\ord(\cleq 1 + \cleq 2) =
+			\ord(\cleq 3) = 2 \neq 6$.
+		}\footnote{
+			A prescindere da quanto valga $\MCD(\ord(x), \ord(y))$,
+			se $x$ e $y$ commutano, esiste sempre un elemento
+			$g \in G$ tale per cui $\ord(g) = \mcm(\ord(x), \ord(y))$.
+		} $x$, $y$ due elementi di $G$ che commutano con
+		$\MCD(\ord(x), \ord(y)) = 1$. Allora $\ord(xy) = \ord(x) \ord(y)$. % TODO: aggiungere la dimostrazione
+	\end{proposition}
+	
+	\begin{proof}
+		Chiaramente $\ord(xy) \mid \ord(x) \ord(y)$, dal momento
+		che $(xy)^{\ord(x) \ord(y)} = x^{\ord(x) \ord(y)} y^{\ord(x) \ord(y)} = e$, dove si è usato che $x$ e $y$ commutano.
+		Sia allora $k = \ord(xy)$. Vale allora che
+		$x^k y^k = e \implies x^k = y^{-k} \in \gen{x} \cap \gen{y}$.
+		Tuttavia $\abs{\gen{x} \cap \gen{y}} \mid
+		\MCD(\abs{\gen{x}}, \abs{\gen{y}}) = \MCD(\ord(x), \ord(y)) =
+		1$, e quindi $\gen{x} \cap \gen{y} = \{e\}$. Allora
+		deve valere che $x^k = y^{-k} = e \implies
+		\ord(x), \ord(y) \mid k$, da cui si deduce che
+		$\ord(x) \ord(y) \mid k = \ord(x) \ord(y)$. Si conclude dunque che
+		$\ord(xy) = \ord(x) \ord(y)$.
+	\end{proof} \vskip 0.2in
 
 
 	Si può adesso dimostrare il seguente fondamentale
