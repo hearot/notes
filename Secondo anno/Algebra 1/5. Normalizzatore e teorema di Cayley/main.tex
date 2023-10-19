@@ -54,7 +54,13 @@
 	un gruppo $G$.
 	
 	\begin{proposition}
-		Sia $H \leq G$. Allora, se $[G : H] = 2$, $H$ è normale in $G$.
+		Sia\footnote{
+			Si osserva che questa proposizione risulta superflua se si dimostra,
+			come succede sul finire di questo documento, che per il più piccolo
+			primo $p$ che divide $\abs{G}$, i sottogruppi corrispondenti di
+			indice $p$ sono normali. Vista tuttavia la semplicità della dimostrazione,
+			si è preferito lasciarla per motivi didattici.
+		} $H \leq G$. Allora, se $[G : H] = 2$, $H$ è normale in $G$.
 	\end{proposition}
 	
 	\begin{proof}
@@ -128,7 +134,12 @@
 	\end{proof}
 	
 	\begin{example} [Tutti i gruppi di ordine $15$ sono ciclici]
-		Sia $G$ un gruppo di ordine $15$. Per il teorema di Cauchy esistono
+		Sia\footnote{
+			In realtà $15$ è un numero molto speciale, in quanto è prodotto
+			di due primi distinti ($3$ e $5$) tali per cui $3$ non divida
+			$5-1 = 4$. In generale, ogni gruppo di ordine $pq$ con
+			$p$ e $q$ primi tali per cui $p<q$ e $p \nmid q-1$ è ciclico.
+		} $G$ un gruppo di ordine $15$. Per il teorema di Cauchy esistono
 		due elementi $h$ ed $k$, uno di ordine $3$ e l'altro di ordine $5$.
 		In particolare, si consideri $K = \gen{k}$; poiché $\abs{K} = 5$,
 		$[G : K] = 3$, il più piccolo primo che divide $15$. Pertanto
@@ -149,4 +160,62 @@
 		dal momento che $\MCD(3, 5) = 1$ e $h$ e $k$ commutano,
 		$hk$ è un elemento di ordine $15$, e dunque $G$ è ciclico.
 	\end{example}
+	
+	Si illustrano infine due risultati interessanti sui coniugati di $G$:
+	
+	\begin{proposition}
+		Sia $H \leq G$. Allora
+		\[ \bigcup_{g \in G} gHg\inv = G \iff H = G. \]
+	\end{proposition}
+	
+	\begin{proof}
+		Se $H = G$, allora $gGg\inv = G$ e quindi l'identità è vera. Viceversa,
+		$gHg\inv = kHk\inv \iff g N_G(H) = k N_G(H)$. Preso dunque un'insieme
+		$\rotations$ di rappresentanti per ogni classe in $G \quot N_G(H)$,
+		vale che:
+		\[ \bigcup_{g \in \rotations} gHg\inv = G. \]
+		In ogni $gHg\inv$ ci sono $\abs{H}$ elementi distinti, e quindi, poiché
+		$\abs{\rotations} = \abs{G \quot N_G(H)}$, deve valere la seguente
+		disuguaglianza:
+		\[ \abs{\bigcup_{g \in \rotations} gHg\inv} \leq \abs{G \quot N_G(H)} \abs{H} \leq
+			\frac{\abs{G}}{\abs{N_G(H)}} \abs{H} \leq \abs{G}, \]
+		dove si è usato che $H \leq N_G(H)$.
+		Se $\abs{G \quot N_G(H)}$ non valesse $1$, ci sarebbe più ripetizioni di $e$
+		all'interno dell'unione, e quindi la prima disuguaglianza sarebbe stretta,
+		\Lightning. Quindi $N_G(H) = G \implies H \nsgeq G$. Allora la disuguaglianza
+		si riscrive come:
+		\[ \abs{G} = \abs{\bigcup_{g \in \rotations} gHg\inv} \leq \abs{H} \leq \abs{G}, \]
+		da cui si ricava che necessariamente $\abs{H} = \abs{G} \implies H = G$.
+	\end{proof}
+	
+	\begin{proposition} % magari questa dimostrazione andrebbe spostata?
+		Sia $\varphi$ un'azione transitiva di $G$ su $X$. Allora gli stabilizzatori sono
+		tra di loro coniugati, e dunque isomorfi. Inoltre, se $\abs{X} \geq 2$, allora
+		esiste un $g$ tale per cui $\Fix(g) = \emptyset$.
+	\end{proposition}
+	
+	\begin{proof}
+		Siano $x$, $y \in X$. Si verifica innanzitutto che esiste un $g \in G$ tale per cui
+		$g \Stab(x) g\inv = \Stab(y)$. Poiché $\varphi$ è un'azione transitiva,
+		esiste $g \in G$ tale per cui $g \cdot y = x$. Allora vale che:
+		\[ \Stab(x) = \{ h \in G \mid h \cdot x = x \} = \{ h \in G \mid h \cdot (g \cdot y) = (g \cdot y) \}, \]
+		da cui si deduce infine che:
+		\[ \Stab(x) = \{ h \in G \mid (g\inv h g) \cdot y = y \} = g \Stab(y) g\inv. \]
+		In particolare un isomorfismo tra i due gruppi è dato proprio dall'azione di
+		coniugio tramite $g$, ossia dall'omomorfismo\footnote{
+			Tale omomorfismo è infatti surgettivo perché $\Stab(x) = g\Stab(y)g\inv$,
+			mentre è iniettivo perché $ghg\inv = e \implies h = e$.
+		} $\zeta : \Stab(y) \to \Stab(x)$
+		tale per cui $h \mapsto ghg\inv$. \medskip
+		
+		
+		Infine, se $g$ non fissa alcun punto di $X$, allora $g \notin \bigcup_{x \in X} \Stab(x)$; pertanto tale $g$ esiste se e solo se $\bigcup_{x \in X} \Stab(x) \neq G$. Poiché tali sottogruppi sono tutti coniugati, scelto $u \in U$ vale
+		che:
+		\[ \bigcup_{x \in X} \Stab(x) = \bigcup_{g \in G} g \Stab(u) g\inv. \]
+		Si conclude dunque che tale $g$ esiste se e solo se $\Stab(u) \neq G$.
+		Se $\Stab(u)$ fosse uguale a $G$, allora, per il Teorema orbita-stabilizzatore,
+		varrebbe che $\abs{\Orb(u)} = 1$; tuttavia $\varphi$ è transitiva e quindi
+		$X = \Orb(u) \implies \abs{X} = \abs{\Orb(u)} = 1$, \Lightning. Si conclude
+		così la dimostrazione.
+	\end{proof}
 \end{document}
