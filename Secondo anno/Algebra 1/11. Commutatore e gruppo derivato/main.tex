@@ -1,0 +1,78 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Commutatore e gruppo derivato}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento con $G$ si indicherà un qualsiasi gruppo.
+	\end{note}
+
+	Siano $g$ e $h$ due elementi di $G$. Si definisce allora il loro \textbf{commutatore}
+	come l'elemento $[g, h] = ghg\inv h\inv$. Tale elemento formalizza il concetto di
+	``misura di commutatività'', ossia identifica formalmente quanto $g$ e $h$ commutano.
+	Infatti vale che:
+	\[ [g,h] = e \iff gh=hg. \]
+	Si definisce allora il \textbf{gruppo derivato} di $G$, indicato con $G'$, come
+	il sottogruppo di $G$ generato dai commutatori:
+	\[ G' = \gen{[g, h] \mid g, h \in G}. \]
+	Si osserva che $[g, h] [h, g] = ghg\inv h\inv hg h\inv g\inv = e$, e quindi
+	che $[g, h]\inv = [h, g]$. In particolare valgono alcune proprietà particolari
+	per $G'$, riassunte dalla:
+	
+	\begin{proposition}
+		Sia $N$ un sottogruppo normale di $G$ e sia $H$ un gruppo abeliano. Allora:
+		
+		\begin{enumerate}[(i)]
+			\item $G'$ è un gruppo caratteristico,
+			\item $G \quot G'$ è un gruppo abeliano, ed è indicato come
+			$G_{ab}$, \textbf{l'abelianizzato di $G$},
+			\item Se $G \quot N$ è abeliano, $G' \leq N$\footnote{
+				In un certo senso, questo punto dimostra che la scelta di definire
+				$G_{ab}$ è tutt'altro che data al caso. $G_{ab}$ è infatti il ``più stretto
+				parente'' abeliano di $G$. Si osservi anche che $G$ abeliano
+				$\implies$ $G' = \{e\}$ $\implies$ $G_{ab} \cong G$. 
+			},,
+			\item Se $H$ è abeliano, ogni omomorfismo $\varphi \in \Hom(G, H)$ è
+				tale per cui $G' \leq \Ker \varphi$, e quindi
+				$\Hom(G, H)$ può identificarsi con $\Hom(G/G', H) =
+				\Hom(G_{ab}, H)$.
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+		Si dimostrano le tesi punto per punto.
+		
+		\begin{enumerate}[(i)]
+			\item Se si pone $S = \{ [x, y] \mid x, y \in G \}$ (ossia $S$ è l'insieme dei
+				generatori di $G'$ dacché $S\inv = S$), è sufficiente mostrare che per $\varphi \in \Aut(G)$
+				vale che $\varphi(S) = S$. Allora $\varphi([x, y]) = \varphi(x) \varphi(y)
+				\varphi(x)\inv \varphi(y)\inv = [\varphi(x), \varphi(y)] \in S$, mostrando
+				dunque che $G'$ è caratteristico.
+			\item $G \quot G'$ è un gruppo perché $G'$, in quanto caratteristico, è
+				normale. Siano $x$, $y \in X$, allora $xyG' = yxG'$ perché
+				$xy(yx)\inv = xyx\inv y \inv = [x, y] \in G'$ per definizione, e quindi
+				$G_{ab}$ è abeliano.
+			\item Se $G \quot N$ è abeliano, $xyN = yxN \implies xy(yx)\inv \in N \implies
+				[x, y] \in N$. Poiché allora $S \subseteq N$, vale che $G' = \gen{S} \leq N$.
+			\item È sufficiente mostrare che $S \subseteq \Ker \varphi$. Si verifica dunque
+				che:
+				\[ \varphi([x, y]) = \varphi(x) \varphi(y) \varphi(x)\inv \varphi(y)\inv
+				= e \implies [x, y] \in \Ker \varphi. \]
+				Poiché allora $G' \subseteq \Ker \varphi$, per il Primo teorema di isomorfismo,
+				ogni omomorfismo $\varphi \in \Hom(G, H)$ ammette un unico omomorfismo
+				$\varphi' \in \Hom(G \quot G', H) = \Hom(G_{ab}, H)$ tale per cui il seguente
+				diagramma commuti:
+				\[\begin{tikzcd}[cramped]
+					G && H \\
+					\\
+					{G_{ab}}
+					\arrow["\varphi", from=1-1, to=1-3]
+					\arrow["{\pi_{G_{ab}}}"', two heads, from=1-1, to=3-1]
+					\arrow["{\varphi'}"', from=3-1, to=1-3]
+				\end{tikzcd}\]
+				Pertanto $\Hom(G, H) \bij \Hom(G_{ab}, H)$.
+		\end{enumerate}
+	\end{proof}
+\end{document}
