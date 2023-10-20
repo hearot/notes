@@ -99,9 +99,33 @@
 	
 	
 	In generale vale dunque che $s r^k s\inv = r^{-k}$. Si deduce allora la presentazione del gruppo $D_n$:
-	\[ D_n = \gen{r,s \mid r^n = 1, s^2 = 1, s r s\inv = r\inv}. \] \smallskip
+	\[ D_n = \gen{r,s \mid r^n = 1, s^2 = 1, s r s\inv = r\inv}. \]
 	
+	\begin{example}[Sottogruppi di $S_n$ isomorfi al gruppo diedrale]
+		Si consideri il sottogruppo $H$ di $S_5$ generato da
+		$r = (1, 2, 3, 4, 5)$ e $s = (2, 3)(4, 5)$. L'ordine di $r$ è
+		esattamente $5$, mentre $s^2 = 1$. Allo stesso tempo vale che
+		$s r s\inv = r\inv$, e quindi tale sottogruppo è isomorfo a $D_5$.
+		Tale identificazione si può verificare più facilmente osservando
+		come $r$ ed $s$ agiscono sul seguente pentagono:
+		\[\begin{tikzcd}[cramped,column sep=small,row sep=scriptsize]
+			&& 1 \\
+			\\
+			2 &&&& 5 \\
+			\\
+			& 3 && 4
+			\arrow["r", tail reversed, no head, from=3-5, to=5-4]
+			\arrow["r"', from=3-5, to=1-3]
+			\arrow["r"', from=1-3, to=3-1]
+			\arrow["r"', from=3-1, to=5-2]
+			\arrow["s", tail reversed, from=5-2, to=5-4]
+			\arrow["s"', tail reversed, from=3-5, to=3-1]
+			\arrow["r"', curve={height=12pt}, from=5-2, to=5-4]
+		\end{tikzcd}\]
+	\end{example}
 	
+	\smallskip
+
 	Si descrivono adesso tutti i sottogruppi di $D_n$. Innanzitutto, in $\rotations$
 	per ogni $d \mid n$ esiste un unico sottogruppo di ordine $d$ dal momento che
 	$\rotations$ è ciclico. Pertanto ogni tale sottogruppo assume la forma
