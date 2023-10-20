@@ -80,8 +80,8 @@
 	\end{theorem}
 	
 	\begin{proof}
-		Si consideri l'azione\footnote{Tale azione prende il nome di \textbf{rappresentazione regolare a sinistra}.
-		Si può infatti definire un'azione analoga a destra ponendo $g \mapsto \left[ h \mapsto hg\inv \right]$,
+		Si consideri l'azione\footnote{Tale azione prende il nome di \textbf{rappresentazione regolare a sinistra} o \textbf{\textit{embedding} di Cayley}.
+		Si può definire un'azione analoga a destra ponendo $g \mapsto \left[ h \mapsto hg\inv \right]$,
 		costruendo dunque una \textit{rappresentazione regolare a destra}.} $\varphi : G \to S(G)$ tale per cui:
 		\[ g \xmapsto{\varphi} \left[ h \mapsto gh \right]. \]
 		Si mostra che $\varphi$ è fedele\footnote{L'azione $\varphi$ è molto
@@ -94,6 +94,55 @@
 		la tesi.
 	\end{proof}
 	
+	A partire dall'\textit{embedding} di Cayley si può dimostrare un risultato
+	sui gruppi di ordine $2d$ con $d$ dispari:
+	
+	\begin{proposition}
+		Sia $G$ un gruppo di ordine $2d$ con $d$ dispari. Allora $G$ ammette
+		un sottogruppo $H$ di ordine $d$.
+	\end{proposition}
+	
+	\begin{proof}
+		Consideriamo l'\textit{embedding} di Cayley di $G$. In particolare,
+		poiché $S(G) \cong S_{2d}$, possiamo identificare $S(G)$ con
+		$S_{2d}$, studiando tale \textit{embedding} direttamente su quest'ultimo
+		sottogruppo. \medskip
+		
+		
+		Sia allora $\varphi : G \to S_{2d}$ la composizione $\xi \circ \lambda$ dove
+		$\xi$ è un isomorfismo tra $S(G)$ e $S_{2d}$ e $\lambda : G \to S(G)$ è l'\textit{embedding} di Cayley associato a $G$.
+		Si osserva che $\varphi\inv(\Ad{2d}) = \{ g \in G \mid \varphi(g) \in \Ad{2d} \} =
+		\Ker (\pi_{\Ad{2d}} \circ \varphi)$. Per il Primo teorema di isomorfismo vale
+		che:
+		\[ G \quot \Ker (\pi_{\Ad{2d}} \circ \varphi) \cong \Im (\pi_{\Ad{2d}} \circ \varphi) \leq
+		S_{2d} \quot {\Ad{2d}} \cong \{\pm 1\}, \]
+		e quindi\footnote{
+			Si può arrivare alla stessa conclusione mediante un ragionamento leggermente
+			diverso. Se si considera $K = \varphi(G)$, $K \cap \Ad{2d} = \varphi(G) \cap \Ad{2d}$ è esattamente $\Ker(\restr{\sgn}{\varphi(G)})$, e quindi
+			$[K : (K \cap \Ad{2d})] \in \{1, 2\}$. Pertanto, dal momento che $\varphi$
+			è un isomorfismo tra $G$ e $\Im \varphi = \varphi(G)$, $\varphi\inv(\Ad{2d}) =
+			\varphi\inv(\Ad{2d} \cap \varphi(G))$ può avere solo indice $1$ o $2$, ed
+			ha indice $1$ se e solo se $\varphi(G) \subseteq \Ad{2d}$.
+		} $[G : \Ker (\pi_{\Ad{2d}} \circ \varphi)]$ vale $1$ o $2$. \medskip
+		
+		
+		Se
+		$[G : \Ker (\pi_{\Ad{2d}} \circ \varphi)]$ fosse uguale a $1$,
+		varrebbe che $G = \Ker (\pi_{\Ad{2d}} \circ \varphi) = \varphi\inv(\Ad{2d})$, e quindi che
+		$\varphi(G) \subseteq \Ad{2d}$. Si mostra che ciò è impossibile esibendo un elemento
+		$g \in G$ tale per cui $\varphi(g)$ sia dispari. Dacché $2 \mid \abs{G}$,
+		esiste $g \in G$ con $\ord(g) = 2$ per il teorema di Cauchy. Allora la
+		decomposizione in cicli di $\varphi(g)$ sarà la stessa di $\lambda(g)$, ossia\footnote{
+			In generale, se $\ord(g) = k$, la sua decomposizione tramite $\lambda$ sarà:
+			\[ (g_1, g g_1, \ldots, g^{k-1} g_1)  (g_2, g g_2, \ldots, g^{k-1} g_2) \cdots (g_s, g g_s, \ldots, g^{k-1} g_s), \]
+			con $s = 2d/k$, ossia $\lambda(g)$ sarà prodotto di $2d/k$ $k$-cicli.
+		}:
+		\[ \lambda(g) = (g_1, g g_1) (g_2, g g_2) \cdots (g_d, g g_d). \]
+		Poiché $\lambda(g)$ è allora prodotto di $d$ trasposizioni, $\lambda(g)$ è dispari,
+		e così pure $\varphi(g)$. Pertanto $\varphi(g) \notin \Ad{2d} \implies
+		[G : \Ker (\pi_{\Ad{2d}} \circ \varphi)] = 2$, e quindi
+		$\abs{ \Ker (\pi_{\Ad{2d}} \circ \varphi)} = d$, concludendo la dimostrazione.
+	\end{proof} \bigskip
 	
 	Si presentano adesso due risultati interessanti legati ai sottogruppi normali di
 	un gruppo $G$.
