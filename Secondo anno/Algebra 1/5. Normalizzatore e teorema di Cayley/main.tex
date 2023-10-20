@@ -21,8 +21,53 @@
 	Si osserva ora in modo cruciale che $H \nsgeq G$ se e solo se
 	$\Orb(H) = \{H\}$, e quindi se e solo se $N_G(H) = G$. Analogamente si
 	osserva che $H$ è normale se e solo se:
-	\[ H = \bigcup_{h \in H} \Cl(h). \] \bigskip
+	\[ H = \bigcup_{h \in H} \Cl(h). \]
+	Tramite la stessa azione $\varphi$ possiamo illustrare un importante relazione
+	tra gli stabilizzatori, dettata dalla:
 	
+	\begin{proposition}
+		Sia $x \in X$ e sia $g \in G$. Allora vale che $\Stab(g \cdot x) = g \Stab(x) g\inv$,
+		e i coniugati di $\Stab(x)$ sono esattamente altri stabilizzatori.
+	\end{proposition}
+	
+	\begin{proof}
+		Si osserva che se $ghg\inv \in g\Stab(x)g\inv$, allora:
+		\[ (ghg\inv) \cdot (g \cdot x) = gh \cdot x = g \cdot x \implies ghg\inv \in \Stab(g \cdot x), \]
+		e viceversa che se $h \in \Stab(g \cdot x)$:
+		\[ (g\inv h g) \cdot x = g\inv \cdot (h \cdot (g \cdot x)) = (g\inv g) \cdot x = x \implies g\inv h g \in \Stab(x) \implies h \in g \Stab(x) g\inv, \]
+		da cui si deduce che $\Stab(g \cdot x) = g \Stab(x) g\inv$.
+	\end{proof}
+	
+	Da questa proposizione segue immediatamente il seguente:
+	
+	\begin{corollary}
+		Sia $\varphi$ un'azione transitiva. Allora tutti gli stabilizzatori sono
+		coniugati tra loro.
+	\end{corollary}
+	
+	\begin{proof}
+		Siano $x$ e $y \in X$. Poiché $\varphi$ è transitiva, esiste un'unica orbita
+		e dunque esiste $g \in G$ tale per cui $g \cdot y = x$. Allora
+		$\Stab(x) = \Stab(g \cdot y) = g \Stab(y) g\inv$.
+	\end{proof}
+	
+	Infine, si verifica una proprietà dei sottogruppi coniugati:
+	
+	\begin{proposition}
+		Se $H$ e $K$ sono coniugati, allora sono in particolare anche isomorfi.
+	\end{proposition}
+	
+	\begin{proof}
+		Poiché $H$ e $K$ sono coniugati, esiste un $g \in G$ tale per cui
+		$K = gHg\inv$.
+		Un isomorfismo tra i due gruppi è allora naturalmente dato dall'azione di
+		coniugio tramite $g$, ossia dall'omomorfismo $\zeta : H \to K$
+		tale per cui $h \xmapsto{\zeta} ghg\inv$. Tale mappa è sicuramente un omomorfismo;
+		è ben definita e surgettiva perché i gruppi sono coniugati ed è iniettiva
+		perché $ghg\inv = e \implies h = e$ (e quindi $\Ker \zeta = \{e\}$).
+	\end{proof}
+	
+	\bigskip
 	
 	Si illustra adesso un risultato principale della teoria dei gruppi che mette in
 	relazione ogni gruppo con il proprio gruppo di bigezioni, ed ogni gruppo finito con i
@@ -188,34 +233,21 @@
 		da cui si ricava che necessariamente $\abs{H} = \abs{G} \implies H = G$.
 	\end{proof}
 	
-	\begin{proposition} % magari questa dimostrazione andrebbe spostata?
-		Sia $\varphi$ un'azione transitiva di $G$ su $X$. Allora gli stabilizzatori sono
-		tra di loro coniugati, e dunque isomorfi. Inoltre, se $\abs{X} \geq 2$, allora
-		esiste un $g$ tale per cui $\Fix(g) = \emptyset$.
+	\begin{proposition}
+		Sia $\varphi$ un'azione transitiva di $G$ su $X$.
+		Allora esiste sempre un $g \in G$ tale per cui $\Fix(g) = \emptyset$,
+		se $\abs{X} \geq 2$.
 	\end{proposition}
 	
-	\begin{proof}
-		Siano $x$, $y \in X$. Si verifica innanzitutto che esiste un $g \in G$ tale per cui
-		$g \Stab(x) g\inv = \Stab(y)$. Poiché $\varphi$ è un'azione transitiva,
-		esiste $g \in G$ tale per cui $g \cdot y = x$. Allora vale che:
-		\[ \Stab(x) = \{ h \in G \mid h \cdot x = x \} = \{ h \in G \mid h \cdot (g \cdot y) = (g \cdot y) \}, \]
-		da cui si deduce infine che:
-		\[ \Stab(x) = \{ h \in G \mid (g\inv h g) \cdot y = y \} = g \Stab(y) g\inv. \]
-		In particolare un isomorfismo tra i due gruppi è dato proprio dall'azione di
-		coniugio tramite $g$, ossia dall'omomorfismo\footnote{
-			Tale omomorfismo è infatti surgettivo perché $\Stab(x) = g\Stab(y)g\inv$,
-			mentre è iniettivo perché $ghg\inv = e \implies h = e$.
-		} $\zeta : \Stab(y) \to \Stab(x)$
-		tale per cui $h \mapsto ghg\inv$. \medskip
-		
-		
-		Infine, se $g$ non fissa alcun punto di $X$, allora $g \notin \bigcup_{x \in X} \Stab(x)$; pertanto tale $g$ esiste se e solo se $\bigcup_{x \in X} \Stab(x) \neq G$. Poiché tali sottogruppi sono tutti coniugati, scelto $u \in U$ vale
+	\begin{proof}		
+		Se $g$ non fissa alcun punto di $X$, allora $g \notin \bigcup_{x \in X} \Stab(x)$; pertanto tale $g$ esiste se e solo se $\bigcup_{x \in X} \Stab(x) \neq G$. Poiché tali sottogruppi sono tutti coniugati, scelto $u \in U$ vale
 		che:
 		\[ \bigcup_{x \in X} \Stab(x) = \bigcup_{g \in G} g \Stab(u) g\inv. \]
 		Si conclude dunque che tale $g$ esiste se e solo se $\Stab(u) \neq G$.
 		Se $\Stab(u)$ fosse uguale a $G$, allora, per il Teorema orbita-stabilizzatore,
 		varrebbe che $\abs{\Orb(u)} = 1$; tuttavia $\varphi$ è transitiva e quindi
-		$X = \Orb(u) \implies \abs{X} = \abs{\Orb(u)} = 1$, \Lightning. Si conclude
-		così la dimostrazione.
+		$X = \Orb(u) \implies \abs{X} = \abs{\Orb(u)} = 1$, \Lightning. Pertanto
+		$\Stab(u) \neq G$, e dunque l'unione non ricopre tutto $G$, concludendo
+		la dimostrazione.
 	\end{proof}
 \end{document}
