@@ -153,6 +153,34 @@
 	tutte le permutazioni di quel tipo o nessuna. \medskip
 	
 	
+	Per calcolare il centralizzatore di una permutazione $\sigma \in S_n$, la
+	strategia generale si compone di due passi fondamentali: computare il
+	numero di elementi del centralizzatore tramite il Teorema orbita-stabilizzatore
+	(come visto precedentemente) e poi ``indovinare'' dei sottogruppi con
+	cui $\sigma$ commuta che, combinati tramite il prodotto di sottogruppi,
+	danno esattamente il numero calcolato inizialmente.
+	
+	\begin{example}
+		Sia $\sigma = \overbrace{(1,2,3,4)}^{\sigma_1}\overbrace{(5,6,7)}^{\sigma_2}\overbrace{(8,9)}^{\sigma_3} \in S_9$. Si calcola $Z_{S_9}(\sigma)$.
+		Tramite il Teorema orbita-stabilizzatore, vale che:
+		\[ Z_{S_9}(\sigma) = 1! \cdot 4 \cdot 1! \cdot 3 \cdot 1! \cdot 2 = 4! = 24. \]
+		Si osserva facilmente che $\sigma$ commuta con $\sigma_1$, $\sigma_2$ e
+		$\sigma_3$, e quindi $\gen{\sigma_i} \leq Z_{S_9}(\sigma)$ $\forall i \in \{1,2,3\}$.
+		In particolare $\gen{\sigma_i}$ commuta sempre con $\gen{\sigma_j}$ per $i \neq j$,
+		dal momento che questi cicli sono tutti disgiunti. Si considera\footnote{
+			Poiché $\sigma_i$ commuta con $\sigma_j$, questo sottogruppo è ben definito.
+		} il
+		sottogruppo $H = \gen{\sigma_1}\gen{\sigma_2}\gen{\sigma_3}$: ogni suo elemento
+		è esprimibile in modo unico come prodotto di una potenza di $\sigma_1$, di
+		$\sigma_2$ e di $\sigma_3$, e quindi $\abs{H} = \abs{\gen{\sigma_1}} \abs{\gen{\sigma_2}} \abs{\gen{\sigma_3}} = 4 \cdot 3 \cdot 2 = 24$; poiché
+		allora $H \leq Z_{S_9}(\sigma)$ ha lo stesso numero di elementi del centralizzatore,
+		$Z_{S_9}(\sigma) = H$. Infine, dal
+		momento che $\gen{\sigma_i} \cap (\gen{\sigma_j} \gen{\sigma_k})$ per ogni
+		$i$, $j$, $k$ distinti in $\{1, 2, 3\}$, $H \cong \gen{\sigma_1} \times \gen{\sigma_2} \times \gen{\sigma_3}$, e dunque:
+		\[ Z_{S_9}(\sigma) \cong \ZZmod4 \times \ZZmod3 \times \ZZmod2 \cong \ZZmod{12} \times \ZZmod2. \]
+	\end{example} \bigskip
+
+	
 	Si osserva adesso che $\An$ può scriversi come il sottogruppo generato dai
 	$2-2$-cicli, infatti ogni permutazione pari è prodotto di un numero pari di trasposizioni,
 	che possono dunque essere ridotte a $2-2$-cicli. Allo stesso tempo allora
@@ -184,5 +212,24 @@
 		Sia $H$ un gruppo abeliano. Allora $\Hom(S_n, H) \bij \Hom(\ZZmod2, H)$.
 	\end{proposition}
 
-	In particolare, vi sono tanti omomorfismi non banali in $\Hom(S_n, H) \bij \Hom(\ZZmod2, H)$ quanti elementi di ordine $2$ vi sono in $H$.
+	In particolare, vi sono tanti omomorfismi non banali in $\Hom(S_n, H) \bij \Hom(\ZZmod2, H)$ quanti elementi di ordine $2$ vi sono in $H$. \bigskip
+	
+	
+	Si ricercano adesso le classi di coniugio in $\An$. Si osserva innanzitutto che,
+	se $\sigma \in \An$, $\Cl_{\An}(\sigma) \subseteq \Cl_{\Sn}(\sigma)$. Inoltre,
+	per il Teorema orbita-stabilizzatore, vale che:
+	\[ \abs{\Cl_{\An}(\sigma)}(\sigma) = \frac{\abs{\An}}{\abs{Z_{\An}(\sigma)}} =
+	\frac{\abs{S_n}/2}{\abs{Z_{\Sn}(\sigma) \cap \An}}. \]
+	Poiché\footnote{
+		È sufficiente osservare che $Z_{\Sn}(\sigma) \cap \An = \Ker(\restr{\sgn}{\An})$,
+		e dunque che $Z_{\Sn}(\sigma) \quot{(Z_{\Sn}(\sigma) \cap \An)}$ può essere
+		isomorfo tramite il Primo teorema di isomorfismo soltanto a $\{1\}$ o
+		a $\{\pm1\}$.
+	} $Z_{\Sn}(\sigma) \cap \An$ in $Z_{\Sn}(\sigma)$ ha indice $1$ se
+	$Z_{\Sn}(\sigma) \subseteq \An$ e $2$ altrimenti, vale che:
+	
+	\begin{itemize}
+		\item $\abs{\Cl_{\An}(\sigma)}(\sigma) = \frac{1}{2} \abs{\Cl_{\Sn}(\sigma)}$, se $Z_{\Sn}(\sigma) \subseteq \An$,
+		\item $\abs{\Cl_{\An}(\sigma)}(\sigma) = \abs{\Cl_{\Sn}(\sigma)}$, altrimenti.
+	\end{itemize}
 \end{document}
