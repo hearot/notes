@@ -10,19 +10,62 @@
 		$\{1, \ldots, n\}$ e con $G$ un qualsiasi gruppo.
 	\end{note}
 
-	Si definisce brevemente il gruppo delle permutazioni $S_n$ come il gruppo
+	Si definisce brevemente il \textbf{gruppo delle permutazioni} $S_n$ come il gruppo
 	delle bigezioni su $G$, ossia $S(X_n)$. Si deduce facilmente che
 	$\abs{S_n} = n!$ dal momento che vi sono esattamente $n!$ scelte possibili
 	per costruire una bigezione da $X_n$ in $X_n$ stesso. \medskip
 	
+	
+	Si definisce
+	l'\textbf{azione naturale} di $S_n$ su $X_n$ come l'azione $\varphi : S_n \to S(X_n)$
+	tale per cui $\sigma \xmapsto{\varphi} [n \mapsto \sigma(n)]$. In particolare,
+	per $H \leq S_n$, si definisce la sua azione naturale come la restrizione dell'azione
+	naturale di $S_n$ su $H$. Un sottogruppo $H$ si dice \textit{transitivo} se la
+	sua azione naturale è transitiva. Si osserva che ogni tale azione naturale è fedele
+	(infatti $\sigma \in S_n$ fissa tutto $X_n$ solo se è l'identità di $S_n$). Si illustra allora subito un risultato sui
+	sottogruppi abeliani transitivi di $S_n$:
+	
+	\begin{proposition}
+		Sia $H$ un sottogruppo abeliano transitivo di $S_n$. Allora
+		$\abs{H} = n$.
+	\end{proposition}
+	
+	\begin{proof}
+		Dal Teorema orbita-stabilizzatore, $\abs{H} = \abs{\Stab(i)} \abs{\Orb(i)}$. Poiché
+		$H$ è un sottogruppo transitivo, $\abs{\Orb(i)} = n$, e quindi è sufficiente
+		verificare che $\Stab(i)$ sia banale. \medskip
+		
+		
+		Ogni $\Stab(i)$ è coniugato
+		ad ogni altro $\Stab(j)$, sempre per la transitività dell'azione; poiché allora $H$ è abeliano, in particolare $\Stab(i)$ coincide con
+		ogni altro stabilizzatore. Pertanto $\sigma \in \Stab(i)$ se e solo se
+		$\sigma$ appartiene al nucleo dell'azione naturale di $H$, ossia
+		a $\cap_{x=1}^n \Stab(x)$, e quindi se e solo se $\sigma = e$. Si conclude dunque
+		che $\Stab(i)$ è banale e quindi che $\abs{H} = n$.
+	\end{proof}
+	
+	\begin{example}[Il gruppo di Klein $V_4$]
+		In $S_4$, e in particolare in $A_4$, esiste un sottogruppo normale non banale
+		molto particolare\footnote{
+			Pertanto $A_4$ non è semplice.
+		}, il cosiddetto\footnote{
+			La lettere $V$ è dovuta al termine \textit{vier}, che in tedesco
+			significa ``quattro''.
+		} \textbf{gruppo di Klein} $V_4$, dove:
+		\[ V_4 = \{ e, (1, 2)(3, 4), (1, 3)(2, 4), (1, 4)(2, 3) \}. \]
+		Tale sottogruppo è abeliano e transitivo (e quindi, per il risultato di prima,
+		$\abs{V_4} = 4$, come si osserva facilmente). Poiché ogni suo elemento ha
+		ordine $2$ (e in particolare $V_4$ non è ciclico), $V_4$ deve necessariamente
+		essere isomorfo a $\ZZmod2 \times \ZZmod2$. Pertanto $V_4$ è il più piccolo
+		gruppo non ciclico per ordine (a meno di isomorfismo).
+	\end{example}
 	
 	Come è noto, ogni $\sigma \in S_n$ può scriversi come prodotto di cicli
 	disgiunti. Di seguito si introduce un modo formale per descrivere questi
 	cicli. \medskip
 	
 	
-	Si consideri l'azione di $\gen{\sigma}$ su $X_n$ univocamente determinata
-	da $\sigma \cdot x = \sigma(x)$. Allora i cicli di $\sigma$ sono esattamente
+	Si consideri l'azione naturale di $\gen{\sigma}$. Allora i cicli di $\sigma$ sono esattamente
 	le orbite di $\sigma$ ordinate nel seguente modo:
 	\[ \Orb(x) = \{ x, \sigma(x), \dots, \sigma^m(x) \}. \]
 
@@ -108,4 +151,38 @@
 	se $H \leq S_n$, $H$ è normale in $S_n$ se e solo se per ogni tipo di
 	permutazione $H$ contiene
 	tutte le permutazioni di quel tipo o nessuna. \medskip
+	
+	
+	Si osserva adesso che $\An$ può scriversi come il sottogruppo generato dai
+	$2-2$-cicli, infatti ogni permutazione pari è prodotto di un numero pari di trasposizioni,
+	che possono dunque essere ridotte a $2-2$-cicli. Allo stesso tempo allora
+	$\An$ è generato dai $3$-cicli se $n \geq 3$. Si consideri infatti $(i, j)(k, l)$. Se
+	$\{i, j\} \cap \{k, l\} = 2$, $(i, j) = (k, l)$, e quindi $(i, j)(k, l) = e$;
+	se $\{i, j\} \cap \{k, l\} = 1$, si può assumere senza perdita di generalità che
+	$k = i$, da cui $(i, j)(i, l) = (i, l, j)$, un $3$-ciclo; se invece $\{i, j\} \cap \{k, l\} = 0$,
+	$(i, j)(k, l) = (i, j)(j, k)(j, k)(k, l) = (i, j, k)(j, k, l)$, e quindi
+	$(i, j)(k, l)$ è prodotto di due $3$-cicli. Pertanto si è dimostrato
+	che $\An = \gen{(i, j)(k, l) \mid i, j, k, l \in X_n} \subseteq \gen{(i, j, k) \mid i, j, k \in X_n}$; allo stesso tempo ogni $3$-ciclo è una permutazione
+	pari, e quindi vale anche l'inclusione inversa. \medskip
+	
+	
+	
+	Si consideri adesso $S_n'$, il sottogruppo derivato di $S_n$. Poiché $S_n$ è abeliano
+	per $n \in \{ 1, 2 \}$, in tal caso $S_n' = \{e\}$; in tutti gli altri casi
+	$S_n'$ non può essere uguale a $\{e\}$, altrimenti $S_n$ sarebbe abeliano. Si osserva
+	che $[(i,j), (j,k)]$ con $i$, $j$ e $k$ distinti si scrive come:
+	\[ [(i,j), (j,k)] = (i, j) (j, k) (i, j)\inv (j, k)\inv = (i, k) (j, k) = (i, k, j), \]
+	e quindi si deduce che $\gen{(i, j, k) \mid \abs{\{i, j, k\}} = 3} = \An$ è un sottogruppo
+	di $S_n'$. Inoltre\footnote{
+		Alternativamente $[S_n : S_n']$ deve dividere $[S_n : \An] = 2$, e quindi,
+		poiché $S_n \neq S_n'$, è necessario che $S_n'$ sia esattamente $\An$.
+	} l'omomorfismo $\sgn$ ha come codominio un gruppo abeliano isomorfo
+	a $\ZZmod2$, e quindi $S_n' \subseteq \Ker \sgn = \An$. Si conclude dunque che
+	$S_n' = \An$ e che ${S_n}_{\,ab} = S_n \quot \An \cong \{\pm 1\} \cong \ZZmod2$ per $n \geq 3$. Pertanto adesso è immediato il seguente risultato:
+	
+	\begin{proposition}
+		Sia $H$ un gruppo abeliano. Allora $\Hom(S_n, H) \bij \Hom(\ZZmod2, H)$.
+	\end{proposition}
+
+	In particolare, vi sono tanti omomorfismi non banali in $\Hom(S_n, H) \bij \Hom(\ZZmod2, H)$ quanti elementi di ordine $2$ vi sono in $H$.
 \end{document}
