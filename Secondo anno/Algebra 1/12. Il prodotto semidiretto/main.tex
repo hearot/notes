@@ -1,0 +1,54 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Il prodotto semidiretto}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento con $G$ un qualsiasi gruppo.
+	\end{note}
+
+	Siano $H$ e $K$ due gruppi. Allora, dato un omomorfismo $\varphi : K \to \Aut(H)$ e
+	detto $\varphi_k := \varphi(k)$,
+	si può costruire un gruppo su $H \times K$ detto \textbf{prodotto semidiretto} tra $H$ e $K$,
+	indicato con $H \rtimes_\varphi K$, dove l'operazione è data da:
+	\[ (h,k)(h',k') = (h \, \varphi_k(h'), k k'). \]
+	
+	In questo gruppo l'inverso di $(h, k)$ è dato da $(\varphi_k\inv(h\inv), k\inv)$,
+	infatti:
+	\[ (h, k) (\varphi_k\inv(h\inv), k\inv) = (h \, \varphi_k(\varphi_k\inv(h\inv)), kk\inv) = (e, e). \]
+	In particolare, se $\varphi$ è banale, e quindi $k \xmapsto{\varphi} \Id_H$,
+	$H \rtimes_\varphi K$ ha la stessa struttura usuale del prodotto diretto. Nel
+	prodotto semidiretto $H \rtimes_\varphi K$ si possono identificare facilmente
+	$H$ e $K$ nei sottogruppi $H \times \{e\}$ e $\{e\} \times K$. \medskip
+	
+	
+	Detto $\alpha: H \rtimes_\varphi K \to K$ la mappa che associa $(h, k)$ a
+	$k$, si verifica che $\alpha$ è un omomorfismo con $\Ker \alpha = H \times \{e\}$.
+	Pertanto $H \times \{e\}$ è un sottogruppo normale di $H \rtimes_\varphi K$,
+	mentre in generale $K \times \{e\}$ non lo è. \medskip
+	
+	
+	Si illustra adesso un teorema che permette di decomporre, sotto opportune ipotesi,
+	un gruppo in un prodotto semidiretto di due suoi sottogruppi:
+	
+	\begin{theorem}[di decomposizione in prodotto semidiretto]
+		Siano $H$ e $K$ due sottogruppi di $G$ con $H \cap K = \{e\}$ e
+		$H \nsgeq G$. Allora vale che $HK \cong H \rtimes_\varphi K$ con
+		$\varphi : K \to \Aut(H)$ tale per cui\footnote{
+			Tale mappa è ben definita dal momento che $H$ è normale in $G$.
+		} $k \xmapsto{\varphi} [h \mapsto k h k\inv]$.
+	\end{theorem}
+	
+	\begin{proof}
+		Si costruisce un isomorfismo tra $H \rtimes_\varphi K$ e $HK$. Sia
+		$\alpha : H \rtimes_\varphi K \to HK$ tale per cui
+		$(h, k) \xmapsto{\alpha} hk$. Si verifica che $\alpha$ è un
+		omomorfismo:
+		\[ \alpha((h,k)(h',k')) = \alpha(h k h' k\inv, k k') =
+			h k h' k\inv k k' = hkh'k' = \alpha(h,k)\alpha(h',k'). \]
+		Chiaramente $\alpha$ è iniettivo dal momento che $hk=e \implies h = k\inv \in H \cap K \implies h = k = e$. Infine $\alpha$ è surgettiva dal momento che $hk = \alpha(h, k)$,
+		e quindi $\alpha$ è un isomorfismo.
+	\end{proof}
+\end{document}
