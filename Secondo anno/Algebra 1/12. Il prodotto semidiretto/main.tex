@@ -34,7 +34,14 @@
 	un gruppo in un prodotto semidiretto di due suoi sottogruppi:
 	
 	\begin{theorem}[di decomposizione in prodotto semidiretto]
-		Siano $H$ e $K$ due sottogruppi di $G$ con $H \cap K = \{e\}$ e
+		Siano\footnote{
+			Si osserva che questo teorema richiede \textit{quasi} le stesse ipotesi
+			del Teorema di decomposizione in prodotto diretto. L'unica ipotesi che
+			manca è quella della normalità di $K$. Ciononostante, questo teorema
+			copre anche il teorema analogo sul prodotto diretto: se $K$ fosse normale,
+			$\varphi$ sarebbe l'identità ($h$ e $k$ commuterebbero), e quindi
+			$H \rtimes_\varphi K$ sarebbe esattamente $H \times K$.
+		} $H$ e $K$ due sottogruppi di $G$ con $H \cap K = \{e\}$ e
 		$H \nsgeq G$. Allora vale che $HK \cong H \rtimes_\varphi K$ con
 		$\varphi : K \to \Aut(H)$ tale per cui\footnote{
 			Tale mappa è ben definita dal momento che $H$ è normale in $G$.
@@ -51,4 +58,84 @@
 		Chiaramente $\alpha$ è iniettivo dal momento che $hk=e \implies h = k\inv \in H \cap K \implies h = k = e$. Infine $\alpha$ è surgettiva dal momento che $hk = \alpha(h, k)$,
 		e quindi $\alpha$ è un isomorfismo.
 	\end{proof}
+	
+	\begin{example}[$\Sn \cong \An \rtimes_\varphi \gen{\tau}$]
+		Sia $\tau$ una trasposizione di $\Sn$. Allora $\An$ è normale in $\Sn$,
+		$\An \cap \gen{\tau} = \{e\}$ e $\abs{\An} \abs{\gen{\tau}} = \abs{\Sn} \implies
+		\Sn = \An \gen{\tau}$. Allora, per il Teorema di decomposizione in prodotto
+		semidiretto, vale che:
+		\[ \Sn \cong \An \rtimes_\varphi \gen{\tau}, \]
+		con $\varphi : \gen{\tau} \to \Aut(\An)$ tale per cui
+		$\tau \xmapsto{\varphi} [h \mapsto \tau h \tau\inv]$.
+	\end{example}
+	
+	\begin{example}[$\Dn \cong \rotations \rtimes_\varphi \gen{sr^k}$]
+		Sia $sr^k$ una qualsiasi simmetria di $\Dn$. Allora $\rotations$ è normale in $\Dn$,
+		$\rotations \cap \gen{sr^k} = \{e\}$ e $\abs{\rotations} \abs{\gen{s r^k}} = \abs{\Dn} \implies
+		\Dn = \rotations \gen{s r^k}$. Allora, come prima, vale che:
+		\[ \Dn \cong \rotations \rtimes_\varphi \gen{sr^k}, \]
+		con $\varphi : \gen{s r^k} \to \Aut(\rotations)$ tale per cui
+		$s r^k \xmapsto{\varphi} [h \mapsto sr^k h (sr^k)\inv]$.
+	\end{example}
+	
+	Si illustra adesso un lemma che verrà riutilizzato successivamente per classificare
+	i gruppi di ordine $pq$.
+	
+	\begin{nlemma}
+		Siano $\varphi$, $\psi : K \to \Aut(H)$ tali per cui esistono
+		$\alpha \in \Aut(H)$ e $\beta \in \Aut(K)$ che soddisfano la seguente
+		identità:
+		\[ \alpha \circ \varphi_k \circ \alpha\inv = \psi_{\beta(k)} \qquad \forall k \in K. \]
+		Allora vale che $H \rtimes_\varphi K \cong H \rtimes_\psi K$.
+	\end{nlemma}
+	
+	\begin{proof}
+		Si costruisce la mappa $F : H \rtimes_\varphi K \to H \rtimes_\psi K$ tale
+		per cui $(h, k) \xmapsto{F} (\alpha(h), \beta(k))$. Si verifica che $F$ è un omomorfismo:
+		\[ F(h \varphi_k(h'), k k') = (\alpha(h) \alpha(\varphi_k(h')), \beta(k) \beta(k')), \]
+		e quindi, poiché $\alpha \circ \varphi_k = \psi_{\beta(k)} \circ \alpha$:
+		\[ F(h \varphi_k(h'), k k') = (\alpha(h)\psi_{\beta(k)}(\alpha(h')), \beta(k) \beta(k')) = F(h, k) F(h', k'). \]
+		Chiaramente $F$ è anche iniettiva e surgettiva, e quindi $F$ è l'isomorfismo
+		desiderato dalla tesi.
+	\end{proof}
+	
+	\begin{proposition}
+		Sia $G$ un gruppo di ordine $pq$ con $p$ e $q$ primi tali per cui $p < q$. Allora $G$ è
+		isomorfo a $\ZZ_{pq}$ se $p \nmid q-1$. Altrimenti $G$ è isomorfo a $\ZZmod{pq}$ o
+		a $\ZZmod q \rtimes_\varphi \ZZmod p$ con $\varphi : \ZZmod p \to \Aut(\ZZmod q)$
+		univocamente determinata dalla relazione
+		$\cleq 1 \xmapsto{\varphi} f$ con $f$ un qualsiasi elemento
+		di ordine $p$ di $\Aut(\ZZmod q)$ (ossia $\varphi$ non è banale).
+	\end{proposition}
+	
+	\begin{proof}
+		Per il Teorema di Cauchy, esistono due elementi $x$ e $y$ di $G$ con $\ord(x)=q$
+		e $\ord(y)=p$. Siano $H = \gen{x}$ e $K = \gen{y}$. Allora, poiché $[G : H] = p$
+		è il più piccolo primo che divide $\abs{G} = pq$, $H$ è normale. Inoltre
+		$H \cap K = \{e\}$, dacché $\abs{H \cap K} \mid \MCD(p, q) = 1$. Pertanto
+		$\abs{HK} = \abs{H} \abs{K} = pq \implies G = HK$. \medskip
+		
+		
+		Per il Teorema di decomposizione di un gruppo in un prodotto semidiretto,
+		$G$ è isomorfo al prodotto semidiretto $H \rtimes_\varphi K$ con
+		$\varphi : K \to \Aut(H)$ tale per cui $k \xmapsto{\varphi} [h \mapsto k h k\inv]$.
+		Si osserva che $H \cong \ZZmod q$, $\Aut(H) \cong \ZZmod{q-1}$ e analogamente che
+		$K \cong \ZZmod p$. \medskip
+		
+		
+		Deve inoltre valere anche che $\abs{\Im \varphi} \mid \MCD(\abs{K},
+		\abs{\Aut(H)}) = \MCD(p, q-1)$. Pertanto, se $p \nmid q-1$, $\MCD(p, q-1) = 1$,
+		e quindi $\Im \varphi$ è banale. In tal caso $\varphi$ è la mappa che associa
+		ogni $k$ all'identità di $\Aut(H)$, e quindi $G \cong H \times K \cong \ZZmod p \times \ZZmod q \cong \ZZmod{pq}$, dove si è usato il Teorema cinese del resto. \medskip
+		
+		
+		Altrimenti $\MCD(p, q-1) = p$, e quindi $\Im \varphi$ può essere banale (riconducendoci
+		al caso di prima, in cui $G \cong \ZZmod{pq}$), oppure $\abs{\Im \varphi} = p$. Si
+		mostra adesso che i prodotti semidiretti su $\varphi$ non banale sono tutti isomorfi
+		a prescindere dalla scelta di $\varphi$. \medskip
+		
+		
+		%TODO: terminare la discussione del caso in cui p divide q-1
+	\end{proof}
+	
 \end{document}
