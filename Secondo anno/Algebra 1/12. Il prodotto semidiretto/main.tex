@@ -78,16 +78,16 @@
 		$s r^k \xmapsto{\varphi} [h \mapsto sr^k h (sr^k)\inv]$.
 	\end{example}
 	
-	Si illustra adesso un lemma che verrà riutilizzato successivamente per classificare
+	Si illustrano adesso due lemmi che verranno riutilizzati successivamente per classificare
 	i gruppi di ordine $pq$.
 	
-	\begin{nlemma}
+	\begin{lemma}
 		Siano $\varphi$, $\psi : K \to \Aut(H)$ tali per cui esistono
 		$\alpha \in \Aut(H)$ e $\beta \in \Aut(K)$ che soddisfano la seguente
 		identità:
-		\[ \alpha \circ \varphi_k \circ \alpha\inv = \psi_{\beta(k)} \qquad \forall k \in K. \]
+		\[ \alpha \circ \varphi_k \circ \alpha\inv = \psi_{\beta(k)}, \qquad \forall k \in K. \]
 		Allora vale che $H \rtimes_\varphi K \cong H \rtimes_\psi K$.
-	\end{nlemma}
+	\end{lemma}
 	
 	\begin{proof}
 		Si costruisce la mappa $F : H \rtimes_\varphi K \to H \rtimes_\psi K$ tale
@@ -99,13 +99,59 @@
 		desiderato dalla tesi.
 	\end{proof}
 	
+	\begin{lemma}
+		Siano $\ZZmod q \rtimes_\varphi \ZZmod p$ e
+		$\ZZmod q \rtimes_\psi \ZZmod p$ due prodotti
+		semidiretti con $p$, $q$ primi tali per cui
+		$p$ è minore di $q$ e $p \mid q-1$. Allora,
+		se $\varphi$ e $\psi$ sono entrambi omomorfismi non banali,
+		$\ZZmod q \rtimes_\varphi \ZZmod p$ è isomorfo
+		a $\ZZmod q \rtimes_\psi \ZZmod p$.
+	\end{lemma}
+	
+	\begin{proof}
+		Poiché $\ZZmod p$ è ciclico, sia $\varphi$ che
+		$\psi$ sono univocamente determinati come
+		omomorfismi da $\varphi_{\cleq 1}$ e
+		$\psi_{\cleq 1}$. In particolare, affinché i due
+		omomorfismi non siano banali, gli ordini di
+		queste valutazioni devono entrambi essere $p$,
+		dato che $\ord(\varphi_{\cleq 1})$, $\ord(\psi_{\cleq 1})
+		\mid \ord(\cleq 1) = p$. \medskip
+		
+		
+		Poiché $\Aut(\ZZmod q) \cong \ZZmod{(q-1)}$ è ciclico,
+		$\ord(\varphi_{\cleq 1}) = \ord(\psi_{\cleq 1}) \implies \gen{\varphi_{\cleq 1}} = \gen{\psi_{\cleq 1}}$, e quindi
+		esiste\footnote{
+			Si scarta la possibilità in cui $\ell = 0$ dal
+			momento che altrimenti $\varphi_{\cleq 1}$ sarebbe
+			l'identità di $\Aut(\ZZmod q)$.
+		} $\ell \in \{1, \ldots, p-1\}$ tale per cui $\varphi_{\cleq 1} = \psi_{\cleq 1}^\ell$. Si osserva inoltre
+		che $\psi_{\cleq 1}^\ell = \psi_{\cleq \ell}$. \medskip
+		
+		
+		Sia $\beta \in \Aut(\ZZmod p)$ l'automorfismo\footnote{
+			$\beta$ è in effetti un automorfismo dal momento
+			che $\ell \neq 0$, e quindi $\cleq \ell$ è un altro
+			generatore di $\ZZmod p$.
+		} di $\ZZmod p$ univocamente
+		determinato da $\beta(\cleq 1) = \cleq \ell$. Allora
+		vale che:
+		\[ \varphi_{\cleq n} = \varphi_{\cleq 1}^n =
+			\psi_{\cleq \ell}^n = \psi_{n \cleq \ell} = \psi_{\beta(\cleq n)}, \qquad \forall \cleq n \in \ZZmod p. \]
+		Si conclude allora per il \textit{Lemma 1} che
+		$\ZZmod q \rtimes_\varphi \ZZmod p$ è isomorfo
+		a $\ZZmod q \rtimes_\psi \ZZmod p$.
+	\end{proof}
+	
 	\begin{proposition}
 		Sia $G$ un gruppo di ordine $pq$ con $p$ e $q$ primi tali per cui $p < q$. Allora $G$ è
 		isomorfo a $\ZZ_{pq}$ se $p \nmid q-1$. Altrimenti $G$ è isomorfo a $\ZZmod{pq}$ o
 		a $\ZZmod q \rtimes_\varphi \ZZmod p$ con $\varphi : \ZZmod p \to \Aut(\ZZmod q)$
 		univocamente determinata dalla relazione
 		$\cleq 1 \xmapsto{\varphi} f$ con $f$ un qualsiasi elemento
-		di ordine $p$ di $\Aut(\ZZmod q)$ (ossia $\varphi$ non è banale).
+		di ordine $p$ di $\Aut(\ZZmod q)$ (ossia $\varphi$ non è banale). In particolare esiste un solo gruppo non abeliano
+		di ordine $pq$ a meno di isomorfismo.
 	\end{proposition}
 	
 	\begin{proof}
@@ -119,7 +165,7 @@
 		Per il Teorema di decomposizione di un gruppo in un prodotto semidiretto,
 		$G$ è isomorfo al prodotto semidiretto $H \rtimes_\varphi K$ con
 		$\varphi : K \to \Aut(H)$ tale per cui $k \xmapsto{\varphi} [h \mapsto k h k\inv]$.
-		Si osserva che $H \cong \ZZmod q$, $\Aut(H) \cong \ZZmod{q-1}$ e analogamente che
+		Si osserva che $H \cong \ZZmod q$, $\Aut(H) \cong \ZZmod{(q-1)}$ e analogamente che
 		$K \cong \ZZmod p$. \medskip
 		
 		
@@ -130,12 +176,34 @@
 		
 		
 		Altrimenti $\MCD(p, q-1) = p$, e quindi $\Im \varphi$ può essere banale (riconducendoci
-		al caso di prima, in cui $G \cong \ZZmod{pq}$), oppure $\abs{\Im \varphi} = p$. Si
-		mostra adesso che i prodotti semidiretti su $\varphi$ non banale sono tutti isomorfi
-		a prescindere dalla scelta di $\varphi$. \medskip
-		
-		
-		%TODO: terminare la discussione del caso in cui p divide q-1
+		al caso di prima, in cui $G \cong \ZZmod{pq}$), oppure $\abs{\Im \varphi} = p$, e in tal caso $G$ è isomorfo,
+		per\footnote{
+			Infatti $H \cong \ZZmod q$ e $K \cong \ZZmod p$, e
+			quindi i prodotti semidiretti tra $H$ e $K$
+			sono gli stessi di $\ZZmod q$ e $\ZZmod p$.
+		} il \textit{Lemma 2}, a tutti i prodotti semidiretti
+		non banali (e quindi, a meno di isomorfismo, ne esiste
+		soltanto uno). Tale prodotto semidiretto dà luogo ad
+		un gruppo non abeliano\footnote{
+			Se $H \rtimes_\varphi K$ con
+			$\varphi$ non banale fosse un gruppo abeliano, allora
+			$\{e\} \times K$ sarebbe normale. Pertanto,
+			$(h',k')(e,k)(h',k')\inv$ dovrebbe appartenere
+			a $\{e\} \times K$. Tuttavia vale che:
+			\[ (h',k')(e,k)(h',k')\inv =
+				(h', k' k)(\varphi_{{k'}\inv}({h'}\inv), {k'}\inv) =
+				(h' \varphi_{k}({h'}\inv), k), \]
+			e quindi dovrebbe valere $\varphi_k(h') = h'$
+			per ogni $h' \in H$. In tal caso però
+			$\varphi_k$ sarebbe l'identità per ogni $k \in K$,
+			e $\varphi$ sarebbe quindi in particolare banale.
+		}, e pertanto non può essere
+		isomorfo a $\ZZmod{pq}$.
 	\end{proof}
+	
+	In particolare, si osserva che se $G$ non abeliano ha ordine $pq$,
+	allora $Z(G)$ è banale. Infatti $\abs{Z(G)} \neq p$, $q$
+	(altrimenti $G \quot{Z(G)}$ sarebbe ciclico, e quindi
+	$G$ sarebbe abeliano), né tantomeno $\abs{Z(G)} = pq$.
 	
 \end{document}
