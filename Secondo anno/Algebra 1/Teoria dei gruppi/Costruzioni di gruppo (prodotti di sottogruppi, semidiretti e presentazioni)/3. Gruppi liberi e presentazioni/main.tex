@@ -1,0 +1,91 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Gruppi liberi e presentazioni}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento con $G$ un qualsiasi gruppo.
+	\end{note}
+
+	Si definisce il \textbf{gruppo libero} su $n$ generatori
+	il gruppo $F_n$ tale per cui:
+	\[ F_n = \gen{x_1, \ldots, x_n} = \{ x_{i_1}^{\pm 1} \cdots x_{i_k}^{\pm 1} \mid i_j \in \{1, \ldots, n\} \} \quot \sim, \]
+	dove\footnote{
+		Chiaramente la relazione $\sim$ è di equivalenza.
+	} $a \sim b$ se e solo se sostituendo i vari $x_i x_i\inv$ 
+	o $x_i\inv x_i$ si ottengono le stesse scritture in
+	funzione dei simboli $x_1$, ..., $x_n$. L'operazione di
+	questo gruppo è la concatenazione (ossia il prodotto tra
+	$x_i$ e $x_j$ è per definizione $x_i x_j$) e la stringa
+	vuota è per definizione l'identità, indicata con $e$.
+	Per convenzione si denota $x \cdots x$ ripetuto $k$ volte come $x^k$ e si pone $x^{-k} := (x\inv)^k$, facendo
+	valere le usuali proprietà delle potenze. \medskip
+	
+	
+	In generale, dato un insieme $S$, si definisce
+	il gruppo libero $F(S)$ come il gruppo libero ottenuto
+	dalle scritture finite di $S$ a meno di equivalenza per
+	$\sim$. Se $S$ è finito e $\abs{S} = n$, allora
+	$F(S) \cong F_n$, dove l'isomorfismo è costruito mandando
+	ordinatamente i generatori di $F(S)$ in
+	$x_1$, \ldots, $x_n$. \medskip
+
+
+	Per i gruppi liberi vale la \textbf{proprietà universale},
+	ossia $\Hom(F_n, G)$ è in bigezione con $G^n$ tramite
+	la mappa che associa un omomorfismo $\varphi$ alla $n$-upla
+	$(\varphi(x_1), \ldots, \varphi(x_n))$, la cui inversa associa
+	una $n$-upla $(g_1, \ldots, g_n)$ ad un unico omomorfismo
+	tale per cui $\varphi(x_i) = g_i$. Questi gruppi, infatti,
+	non presentano alcuna relazione tra i propri generatori,
+	e dunque gli omomorfismi presentati sono sempre ben definiti. \medskip
+	
+	
+	Si dice che un gruppo $G$ ammette una \textbf{presentazione} se esiste un insieme $S$ di generatori di $G$ e un sottoinsieme $R$ di $F(S)$ tale per cui:
+	\[ G \cong F(S) \quot N, \]
+	dove $N$ è il più piccolo sottogruppo normale di
+	$F(S)$ contenente $R$ (ossia la \textit{chiusura normale}
+	di $R$). In particolare $G$ ammette una \textbf{presentazione finita} se $S$ e $R$ sono finiti. \medskip
+	
+	
+	Se $G$ ammette una presentazione, allora esiste un
+	omomorfismo surgettivo $\varphi : F(S) \to G$ tale
+	per cui $\varphi$ ristretto a $S$ sia l'identità\footnote{
+		A livello astratto $S$ in $F(S)$ è solo una scrittura
+		simbolica, quello che si intende è che si associa
+		al simbolo $s \in S$ l'effettivo elemento $s$ in
+		$G$.
+	} e per cui $\Ker \varphi = N$. \medskip
+	
+	
+	In tal caso, è decisamente più facile descrivere gli
+	omomorfismi da $G$ a un qualsiasi altro gruppo $H$.
+	Infatti, poiché $G \cong F(S) \quot N$, esiste una bigezione,
+	secondo il Primo teorema di omomorfismo, tra
+	$\Hom(G, H)$ e gli omomorfismi di $\Hom(F(S), H)$ tali
+	per cui $N$ sia contenuto nel nucleo; affinché $N$
+	sia contenuto nel nucleo è però sufficiente
+	vi sia contenuto $R$, dacché $N$ è la chiusura normale
+	di $R$. Pertanto $R$ rappresenta in un certo senso un
+	insieme di ``relazioni tra i generatori'' che devono
+	essere rispettate affinché l'omomorfismo sia ben definito.
+	Si scrive allora la presentazione di $G$ come:
+	\[ G \cong F(S) \quot N = \gen{S \mid R}. \]
+	Talvolta per $R$ si scrive un insieme di identità
+	$a_1 = b_1$, sottintendendo che
+	$a_1 b_1\inv \in R$.
+	
+	\begin{example}
+		Si illustrano le presentazioni dei gruppi
+		più importanti:
+		
+		\begin{itemize}
+			\item $\ZZ \cong \gen{x}$,
+			\item $\ZZmod n \cong \gen{x \mid x^n}$,
+			\item $\ZZmod 2 \times \ZZmod 2 \cong \gen{x, y \mid x^2, y^2, [x, y]}$,
+			\item $D_n \cong \gen{r, s \mid r^n, s^2, (sr)^2}$.
+		\end{itemize}
+	\end{example}
+\end{document}
