@@ -1,0 +1,213 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{I teoremi di Sylow}
+	\maketitle
+	
+	\begin{note}
+		Nel corso del documento con $p$ si indicherà un numero
+		primo, con $G$ si indicherà un qualsiasi gruppo finito di ordine $p^n m$ tale per cui $\MCD(p, m) = 1$
+		(ossia $n$ è la valutazione $p$-adica di $\abs{G}$).
+	\end{note}
+
+	I teoremi di Sylow rappresentano, insieme al teorema di
+	struttura per gruppi abeliani finiti, lo strumento più
+	importante e applicabile dell'algebra elementare. Attraverso
+	questi teoremi, lo studio e la classificazione dei gruppi
+	finiti viene enormemente facilitata e ridotta ai suoi
+	$p$-sottogruppi. \medskip
+	
+	
+	Prima di illustrare gli enunciati e le dimostrazioni di questi
+	teoremi, si definisce preliminarmente cos'è un $p$-sottogruppo
+	di Sylow, detto poi semplicemente $p$-Sylow:
+	
+	\begin{definition}[$p$-Sylow]
+		Sia $H \leq G$. Si dice che $H$ è un \textbf{$p$-Sylow}
+		di $G$ se $\abs{H} = p^n$, ossia se $H$ è un $p$-sottogruppo
+		di $H$ con valutazione $p$-adica massima.
+	\end{definition}
+	
+	Si illustra adesso il Primo teorema di Sylow, che riguarda
+	l'esistenza di $p$-sottogruppi di tutte le cardinalità
+	possibili\footnote{
+		A dire la verità il Primo teorema di Sylow si deduce
+		anche solo mostrando l'esistenza di un $p$-Sylow. Infatti,
+		per una proposizione nota sui $p$-gruppi, che discende
+		direttamente dal Teorema di corrispondenza, in un
+		$p$-gruppo esiste sempre
+		una catena di $p$-sottogruppi normali che comprende
+		$p$-sottogruppi di tutte le cardinalità. Dal momento
+		però che la dimostrazione è molto istruttiva (e anche
+		molto generale), si è preferito lasciare la generalizzazione.
+	}\footnote{
+		Si osserva che il Primo teorema di Sylow generalizza il
+		Teorema di Cauchy alla sua massima estensione.
+	} in $G$:
+	
+	\begin{theorem}[Primo teorema di Sylow, esistenza]
+		Per ogni $i \in \NN$ tale per cui $0 \leq i \leq n$, esiste
+		un sottogruppo $H \leq G$ tale per cui $\abs{H} = p^i$.
+	\end{theorem}
+
+	\begin{proof}
+		Si consideri il sottoinsieme $\MM$
+		di $\pset(G)$ dato da:
+		\[ \MM = \{ X \subseteq G \mid \abs{X} = p^i \}. \]
+
+
+		Allora vale che:
+		\[ \abs{\MM} = \binom{p^n m}{p^i} = \frac{(p^n m)!}{(p^i)! (p^n m - p^i)!} = \frac{p^n m (p^n m - 1) \cdots (p^n m - p^i + 1)}{p^i (p^i - 1) \cdots 1}, \]
+		ossia, equivalentemente, che:
+		\[ \abs{\MM} = p^{n-i} m \prod_{j=1}^{p^i - 1} \frac{p^n m - j}{p^i - j}. \]
+
+
+		Si osserva che $p^{n-i} \exactdiv \abs{M}$. Infatti,
+		$p \nmid m$ perché $\MCD(p, m) = 1$ per ipotesi; inoltre,
+		considerando il termine generico $a_j$ della produttoria,
+		vale che\footnote{
+			Infatti $j$ può valere al più $p^i - 1$.
+		} $\nu_p(p^n m - j) = \nu_p(j) = \nu_p(p^i - j)$,
+		e quindi che $\nu_p(a_j) = 0$. \medskip
+		
+		
+		Dal momento che, dato $X \in \MM$, $g X$ appartiene ancora
+		ad $\MM$ e $g X = h X \iff g = h$, $\forall$ $g$, $h \in G$,
+		si può considerare l'azione $\phi : G \to S(\MM)$
+		tale per cui $g \xmapsto{\phi} [X \mapsto gX]$.
+		Dacché le orbite forniscono una partizione di $\MM$,
+		vale che:
+		\[ \abs{\MM} = \sum_{X \in \rotations} \frac{\abs{G}}{\abs{\Stab(X)}}, \]
+		dove $\rotations$ è un insieme di rappresentanti delle
+		orbite e dove si è applicato il Teorema orbita-stabilizzatore.
+		Dal momento che $p^{n-i} \exactdiv \abs{M}$, esiste
+		sicuramente un $X \in \rotations$ tale per cui
+		$p^{n-i+1} \nmid \abs{\Orb(X)}$, da cui si deduce che
+		$p^i \mid \abs{\Stab(X)}$. \medskip
+		
+		
+		Sia $x \in X$ e si consideri ora la mappa $\tau : \Stab(X) \to X$ tale per cui $g \xmapsto{\tau} gx$. Tale mappa è
+		sicuramente iniettiva (infatti $gx = hx \implies g = h$),
+		e quindi $\abs{\Stab(X)} \leq \abs{X} = p^i$. Si deduce
+		dunque che $\abs{\Stab(X)} = p^i$, da cui la tesi.
+	\end{proof} \bigskip
+	
+
+	Si dimostra adesso il Secondo teorema di Sylow, che mostra
+	che i $p$-Sylow sono tra loro coniugati e che dimostra l'esistenza
+	di un'inclusione più generale tra i $p$-sottogruppi con
+	i $p$-sottogruppi di cardinalità maggiore. Da questo
+	teorema discenderà in particolare uno dei due risultati
+	del Terzo teorema di Sylow sul numero di $p$-Sylow di
+	un gruppo $G$.
+
+	\begin{theorem}[Secondo teorema di Sylow, coniugio e inclusione]
+		Tutti i $p$-Sylow di $G$ sono coniugati (e quindi isomorfi)
+		tra loro. Inoltre, ogni $p$-sottogruppo di ordine
+		$p^i$, se $i \neq n$, è contenuto
+		in un $p$-sottogruppo di ordine $p^{i+1}$ (in particolare
+		questi sottogruppi sono sottogruppi di un $p$-Sylow)\footnote{
+			Il Secondo teorema di Sylow implica in particolare
+			che se $H$ è un $p$-sottogruppo di ordine $p^i$,
+			esiste sempre un $p$-sottogruppo $K$ di $G$ di
+			ordine $p^j$ con $j \geq i$ tale per cui
+			$H \leq K$.
+		}.
+	\end{theorem}
+	
+	\begin{proof}
+		Sia\footnote{
+			Tale $S$ esiste per il Primo teorema di Sylow.
+		} $S$ un $p$-Sylow di $G$. Sia $H$ un $p$-sottogruppo
+		di ordine $p^i$ e si consideri l'azione
+		$\varphi : H \to S(X)$ su $X = G \quot S$ tale per
+		cui $h \xmapsto{\varphi} [gS \mapsto hgS]$. Dal momento
+		che $\abs{X} = [G : S] = m$, per
+		il Teorema orbita-stabilizzatore vale allora che:
+		\[ m = \sum_{gS \in \rotations} \frac{p^i}{\abs{\Stab(gS)}}, \]
+		dove $\rotations$ è un insieme di rappresentanti delle
+		orbite tramite $\varphi$. \medskip
+		
+		
+		Dal momento che $p \nmid m$ per ipotesi, deve esistere
+		$gS \in \rotations$ tale per cui $\abs{\Stab(gS)} = p^i$,
+		da cui si deduce che $\Stab(gS) = H$. Pertanto vale che
+		$hgS = gS$ $\forall h \in H$, e quindi
+		$hg \in gS$, da cui si ricava infine che $h \in gSg\inv$.
+		Allora $H \subseteq gSg\inv$. Se allora $H$ è un $p$-Sylow,
+		$H = gSg\inv$ per cardinalità, e quindi tutti i
+		$p$-Sylow sono coniugati tra loro, dimostrando la prima
+		parte dell'enunciato. \medskip
+		
+		
+		Sia ora $i \neq n$. Allora $H$ è un $p$-sottogruppo proprio
+		di $P = gSg\inv$, che è un $p$-Sylow di $G$. Allora
+		vale che $H \lneq N_P(H)$ dal momento che $P$ è un $p$-gruppo.
+		Dacché $H \nsg N_P(H)$, $N_P(H) \quot H$ è un $p$-gruppo
+		non banale. Allora, per il Teorema di Cauchy, esiste
+		$x \in N_P(H)$ tale per cui $\ord(xH) = p$. Allora
+		$\pi_H\inv(\gen{xH})$ è un sottogruppo di $N_P(H)$ di ordine
+		$p \cdot p^i = p^{i+1}$ che contiene $H$, da cui
+		la tesi.
+	\end{proof} \bigskip
+	
+	
+	Si dimostra infine il Terzo teorema di Sylow, che riguarda
+	il numero di $p$-Sylow in $G$, indicato con $n_p$. Questo
+	teorema, al di là del lato meramente computazionale, risulta
+	spesso utile quando si cerca di dimostrare che un $p$-Sylow
+	è caratteristico. Infatti è sufficiente verificare che
+	$n_p$ sia esattamente $1$; in questo modo esiste un solo
+	$p$-Sylow, e tale $p$-Sylow deve essere caratteristico, e
+	quindi normale.
+	
+	\begin{theorem}[Terzo teorema di Sylow, numero]
+		Sia $n_p$ il numero di $p$-Sylow di $G$. Allora vale
+		che:
+		
+		\begin{itemize}
+			\item $n_p = [G : N_G(S_p)]$, e dunque $n_p$ divide $\abs{G}$, dove
+				$S_p$ è un $p$-Sylow,
+			\item $n_p \equiv 1 \pod p$, e quindi\footnote{
+				Poiché $n_p \mid \abs{G} = p^n m$, ma $n_p \equiv 1 \pod p$, $n_p$ è coprimo con $p^n$, e quindi
+				$n_p$ deve dividere $m$.
+			} $n_p \mid m$.
+		\end{itemize}
+	\end{theorem}
+	
+	\begin{proof}
+		Poiché i coniugati di un $p$-Sylow $S$ hanno la stessa cardinalità di $S$, tali coniugati sono ancora
+		$p$-Sylow. Similmente, per il Secondo teorema di Sylow, tutti
+		i $p$-Sylow sono a loro volta coniugati di $S$. Pertanto,
+		se $X$ è l'insieme dei $p$-Sylow di $G$, vale che
+		$X$ è esattamente l'insieme dei coniugati di $S$. Allora,
+		per il Teorema orbita-stabilizzatore, vale che:
+		\[ n_p = \abs{X} = [G : N_G(S)], \]
+		che chiaramente divide $\abs{G}$. \medskip
+		
+		
+		Sia $\varphi : S \to S(X)$ l'azione su $X$ tale per cui
+		$s \xmapsto{\varphi} [H \mapsto sHs\inv]$. Si mostra
+		che $\Orb(S) = \{S\}$ è l'unica orbita banale. Se
+		$\Orb(H)$ fosse banale, varebbe $sHs\inv = H$ $\forall s \in S$,
+		e quindi varebbe $S \leq N_G(H)$. In tal caso esisterebbe
+		il sottogruppo $HS$, che ha cardinalità:
+		\[ \abs{HS} = \frac{p^n p^n}{p^i} = p^{2n-i}, \]
+		dove $p^i$ è la cardinalità di $H \cap S$. Poiché
+		$n$ è il massimo esponente di un $p$-sottogruppo di
+		$G$, deve valere $2n-i \leq n \implies n \leq i$. Allo
+		stesso tempo, anche il massimo esponente di $p$ in
+		$H \cap S$, in quanto $p$-sottogruppo, deve essere
+		minore o uguale a $n$, e quindi $n = i$. Pertanto
+		$H = S$. \medskip
+		
+		
+		Allora, se $\rotations$ è un insieme di rappresentanti
+		delle orbite di $X$ tramite $\varphi$, vale che:
+		\[ n_p = \abs{X} = \sum_{H \in \rotations} \frac{p^n}{\abs{\Stab(H)}} = 1 + \sum_{H \in \rotations \setminus \{S\}} \frac{p^n}{\abs{\Stab(H)}}. \]
+		Poiché $p$ divide la somma del membro a destra (infatti
+		le orbite sono non banali, e quindi $\abs{\Stab(H)} \neq p^n$),
+		deve dunque valere $n_p \equiv 1 \pod 1$, da cui la tesi.
+	\end{proof}
+\end{document}

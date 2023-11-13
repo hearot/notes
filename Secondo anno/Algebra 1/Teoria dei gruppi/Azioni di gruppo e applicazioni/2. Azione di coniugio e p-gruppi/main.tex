@@ -123,4 +123,43 @@
 		$\abs{\gen{g} \gen{h}} = p^2$, vale anche che
 		$G = \gen{g} \gen{h}$, da cui la tesi.
 	\end{example}
+	
+	
+	Si mostra infine una proposizione riguardante il normalizzatore
+	di un sottogruppo proprio di un $p$-gruppo:
+	
+	\begin{proposition}
+		Sia $G$ un $p$-gruppo. Allora $H \lneq G \implies
+		H \lneq N_G(H)$.
+	\end{proposition}
+	
+	\begin{proof}
+		Sia $\abs{G} = p^n$. Si dimostra la tesi per induzione
+		su $n$. Se $n = 1$, la tesi è banale. Sia ora $n > 1$.
+		Si distinguono due casi, in base a se $Z(G) \leq H$ o
+		meno. \medskip
+		
+		
+		Se $Z(G) \nleq H$, allora esiste sicuramente un elemento
+		$x \in Z(G) \setminus H$, e quindi un elemento $x$
+		appartenente a $N_G(H)$, ma non ad $H$. In tal caso,
+		si deduce facilmente che $H \lneq N_G(H)$. \medskip
+		
+		
+		Se invece $Z(G) \leq H$, si può applicare il Teorema
+		di corrispondenza. Poiché $G \quot Z(G)$ è un $p$-gruppo
+		di ordine strettamente minore di $p^n$ (infatti il
+		centro di un $p$-gruppo è sempre non banale), per
+		induzione $H \quot Z(G) \lneq N_{G \quot Z(G)}(H \quot Z(G))$.
+		Allora, per il Teorema di corrispondenza,
+		$H = \pi_{Z(G)}\inv(H \quot Z(G)) \lneq \pi_{Z(G)}\inv(
+		N_{G \quot Z(G)}(H \quot Z(G)))$. È sufficiente mostrare
+		che $\pi_{Z(G)}\inv(
+		N_{G \quot Z(G)}(H \quot Z(G))) \subseteq N_G(H)$ per
+		dedurre la tesi. Sia allora $g \in \pi_{Z(G)}\inv(
+		N_{G \quot Z(G)}(H \quot Z(G)))$. Allora, per ipotesi,
+		vale che:
+		\[ \pi_{Z(G)}(gHg\inv) = g Z(G) \pi_{Z(G)}(H) g\inv Z(G) \subseteq \pi_{Z(G)}(H), \]
+		per cui $gHg\inv \subseteq H$.
+	\end{proof}
 \end{document}
