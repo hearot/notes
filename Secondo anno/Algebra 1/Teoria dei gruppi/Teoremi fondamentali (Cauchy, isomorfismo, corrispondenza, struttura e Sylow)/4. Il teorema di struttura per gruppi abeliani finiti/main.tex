@@ -1,0 +1,112 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Il teorema di struttura per gruppi abeliani finiti}
+	\maketitle
+		
+	\begin{note}
+		Nel corso del documento con $G$ si indicherà un qualsiasi gruppo.
+	\end{note}
+	
+	\begin{theorem}[di struttura per gruppi abeliani finiti]
+		Sia $G$ un gruppo abeliano finito. Allora esistono unici
+		$n_1$, \ldots, $n_s \in \NN$ tali per cui:
+		\[ G \cong \ZZmod{n_1} \times \cdots \times \ZZmod{n_s}, \qquad n_s \mid n_{s-1} \mid \cdots \mid n_2 \mid n_1. \]
+	\end{theorem}
+	
+	\begin{definition}[$p$-componente]
+		Si definisce \textbf{$p$-componente} $G(p)$ (o $p$-torsione)
+		di $G$ il sottogruppo di $G$ tale per cui:
+		\[ G(p) = \{ x \in G \mid \ord(x) = p^k \text{ per qualche } k \}. \]
+	\end{definition}
+	
+	\begin{remark}
+		Si dimostra facilmente che $G(p)$ è un sottogruppo. Chiaramente
+		$G(p) \subseteq G$; inoltre $e$ chiaramente appartiene
+		a $G(p)$. Se poi $x$, $y \in G(p)$, allora
+		$\ord(xy) \mid \mcm(\ord(x), \ord(y))$, e quindi
+		$\ord(xy) = p^k$ per qualche $k$. Pertanto anche
+		$xy \in G(p)$. Dal momento che $G(p)$ è finito,
+		questo dimostra che $G(p)$ è un sottogruppo.
+	\end{remark}
+	
+	\begin{remark}
+		$G(p)$ è un sottogruppo caratteristico di $G$. Infatti
+		$\varphi \in \Aut(G)$ lascia invariato l'ordine di
+		un elemento di $G(p)$, e quindi $\varphi(G(p)) = G(p)$.
+	\end{remark}
+	
+	\begin{remark}
+		La dimostrazione del teorema di struttura segue
+		il seguente schema:
+		
+		\begin{itemize}
+			\item Se $G$ è abeliano con $\abs{G} = p_1^{e_1} \cdots p_r^{e_r}$, allora $G \cong G(p_1) \times \cdots \times G(p_r)$, ossia $G$ è isomorfo al prodotto diretto tra
+			le sue $p$-componenti. Tale decomposizione di $G$
+			come prodotto di $p$-gruppi di ordini tra loro
+			coprimi è unica.
+			\item Se $G$ è un $p$-gruppo abeliano. Allora esistono
+			e sono univocamente determinati degli interi
+			positivi $r_1 \geq \cdots \geq r_s$ tali che
+			$G \cong \ZZmod{p_1^{r_1}} \times \cdots
+			\times \ZZmod{p_1^{r_s}}$.
+		\end{itemize}
+	\end{remark}
+	
+	\begin{proof}[Dimostrazione a priori]
+		Per il primo teorema, $G$ si può decomporre nelle sue
+		$p$-componenti:
+		\[ G \cong G(p_1) \times \cdots \times G(p_s). \]
+		
+		
+		Allora, per il secondo teorema, ogni $G(p_i)$ può
+		decomporsi come prodotto diretto di $\ZZmod{p_i^k}$,
+		e quindi:
+		\[ G \cong (\ZZmod{p_1}^{e_{1,1}} \times \cdots \times \ZZmod{p_1}^{e_{1,t_1}}) \times \cdots \times (\ZZmod{p_r}^{e_{r,1}} \times \cdots \times \ZZmod{p_1}^{e_{r,t_r}}). \]
+		
+		
+		Sia $t = \max\{t_1, \ldots, t_r\}$. Posso allungare le
+		fattorizzazioni di $G(p_i)$ fino ad ottenere $t$ fattori aggiungendo eventualmente dei gruppi banali nella
+		fattorizzazione. \medskip
+		
+		
+		Applicando allora il Teorema cinese del resto si ottiene
+		l'esistenza della fattorizzazione secondo il Teorema
+		di struttura per gruppi abeliani finiti. 
+		
+		
+		L'unicità segue dal primo teorema riapplicando il Teorema
+		cinese del resto al contrario. %TODO: estendi
+	\end{proof}
+	
+	%TODO: esempio su Z_26 x Z_169 x Z_8 x Z_12
+	
+	Si dimostrano i due teoremi:
+	
+	\begin{theorem}
+		Se $G$ è abeliano con $\abs{G} = p_1^{e_1} \cdots p_r^{e_r}$, allora $G \cong G(p_1) \times \cdots \times G(p_r)$, ossia $G$ è isomorfo al prodotto diretto tra
+		le sue $p$-componenti. Tale decomposizione di $G$
+		come prodotto di $p$-gruppi di ordini tra loro
+		coprimi è unica.
+	\end{theorem}
+	
+	\begin{proof}
+		Si dimostra per induzione sul numero $s$ di primi distinti
+		nella fattorizzazione di $\abs{G}$. Se $s=1$,
+		$G$ coincide con l'unica sua $p$-componente. Sia
+		ora $s \geq 2$. Se $\abs{G} = m m'$ con $m'>1$ e
+		$\MCD(m, m') = 1$. Mostro che $G \cong mG \times m'G$. \medskip
+		
+		
+		%TODO: continuare con Bezout
+	\end{proof}
+	
+	\begin{theorem}
+		Se $G$ è un $p$-gruppo abeliano. Allora esistono
+		e sono univocamente determinati degli interi
+		positivi $r_1 \geq \cdots \geq r_s$ tali che
+		$G \cong \ZZmod{p_1^{r_1}} \times \cdots
+		\times \ZZmod{p_1^{r_s}}$.
+	\end{theorem}
+\end{document}
