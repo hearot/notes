@@ -91,7 +91,32 @@
 		sicuramente iniettiva (infatti $gx = hx \implies g = h$),
 		e quindi $\abs{\Stab(X)} \leq \abs{X} = p^i$. Si deduce
 		dunque che $\abs{\Stab(X)} = p^i$, da cui la tesi.
-	\end{proof} \bigskip
+	\end{proof}
+	
+	
+	\begin{example}
+		Sia $G$ un $p$-gruppo di ordine $p^n$ con $n \geq 4$
+		tale per cui
+		$\abs{Z(G)} = p$. Si dimostra allora che $G$ ammette un sottogruppo abeliano di ordine $p^3$. \medskip
+		
+		
+		Per il Primo teorema di Sylow, in ogni tale gruppo $G$
+		si può estrarre un $p$-sottogruppo $H$ di ordine $p^4$.
+		Pertanto è sufficiente dimostrare la tesi per $n = 4$,
+		dacché un sottogruppo di $H$ è in particolare un sottogruppo
+		di $G$. \medskip
+		
+		
+		Poiché $G$ è un $p$-gruppo tale per cui $\abs{Z(G)} = p$,
+		esiste $x \in G$ tale per cui $Z_G(x)$ ha ordine $p^3$.
+		Chiaramente $Z(G) \leq Z(Z_G(x))$, e analogamente
+		$\gen{x} \leq Z(Z_G(x))$. Pertanto $\abs{Z(Z_G(x))}$ ha
+		almeno $p^2$ elementi. Se però valesse
+		$\abs{Z(Z_G(x))} = p^2$, $Z_G(x) \quot Z(Z_G(x))$ sarebbe
+		ciclico, e quindi $Z_G(x)$ abeliano, \Lightning. Quindi
+		$Z(Z_G(x))$ ha ordine $p^3$ e coincide con $Z_G(x)$, da
+		cui la tesi.
+	\end{example} \bigskip
 	
 
 	Si dimostra adesso il Secondo teorema di Sylow, che mostra
@@ -150,7 +175,17 @@
 		$\pi_H\inv(\gen{xH})$ è un sottogruppo di $N_P(H)$ di ordine
 		$p \cdot p^i = p^{i+1}$ che contiene $H$, da cui
 		la tesi.
-	\end{proof} \bigskip
+	\end{proof}
+	
+	\begin{remark}
+		In particolare, se $G$ è un gruppo abeliano finito, per il
+		Secondo teorema di Sylow vale che $G(p)$, la $p$-componente
+		di $G$, è unica in quanto $p$-Sylow di un gruppo abeliano
+		(infatti l'insieme dei coniugati di un sottogruppo in un gruppo abeliano è sempre banale). Allora $G$ è esattamente
+		il prodotto diretto dei suoi $p$-Sylow.
+	\end{remark}
+	
+	\bigskip
 	
 	
 	Si dimostra infine il Terzo teorema di Sylow, che riguarda
@@ -210,4 +245,26 @@
 		le orbite sono non banali, e quindi $\abs{\Stab(H)} \neq p^n$),
 		deve dunque valere $n_p \equiv 1 \pod 1$, da cui la tesi.
 	\end{proof}
+	
+	\begin{example}
+		Si mostra che in un gruppo $G$ di ordine $5 \cdot 11 \cdot 17$
+		esiste un elemento di ordine $11 \cdot 17$. \medskip
+		
+		Si consideri un $11$-Sylow $P_{11}$ e un $17$-Sylow $P_{17}$.
+		Questi sottogruppi hanno ordine $11$ e $17$, e quindi
+		sono ciclici. Pertanto esistono $x$, $y \in G$ tali per
+		cui $P_{11} = \gen{x}$ e $P_{17} = \gen{y}$. \medskip
+		
+		Si consideri $n_{11}$: $n_{11}$ deve dividere $5 \cdot 17$,
+		e quindi $n_{11} \in \{1, 5, 17, 5 \cdot 17\}$. Tuttavia
+		$n_{11} \equiv 1 \pod{11}$ solo se $n_{11} = 1$. Quindi
+		$P_{11}$ è l'unico $11$-Sylow, e pertanto è caratteristico,
+		e dunque normale. Analogamente si verifica che $n_{17} = 1$,
+		e quindi che anche $P_{17}$ è normale. \medskip
+		
+		Poiché $P_{11}$ e $P_{17}$ sono $p$-gruppi relativi a primi
+		distinti, la loro intersezione è banale. Pertanto
+		$x$ e $y$ commutano, e allora $\ord(xy) = \ord(x) \ord(y) =
+		11 \cdot 17$.
+	\end{example}
 \end{document}

@@ -122,7 +122,30 @@
 		\times \gen{h} \cong \ZZ_p \times \ZZ_p$. Infine, poiché
 		$\abs{\gen{g} \gen{h}} = p^2$, vale anche che
 		$G = \gen{g} \gen{h}$, da cui la tesi.
-	\end{example}
+	\end{example} \medskip
+	
+	
+	La formula delle classi di coniugio permette di dimostrare
+	agevolmente un'altra proposizione sui $p$-gruppi, come la:
+	
+	\begin{proposition}
+		Sia $G$ un $p$-gruppo di ordine $p^n$ con $\abs{Z(G)} = p$
+		con $n \geq 2$. Allora esiste un elemento $x \in G$ tale
+		per cui $\abs{Z_G(x)} = p^{n-1}$.
+	\end{proposition}
+	
+	\begin{proof}
+		Si consideri la formula delle classi di coniugio:
+		\[ \abs{G} = \abs{Z(G)} + \sum_{g \in \rotations \setminus Z(G)} \frac{\abs G}{\abs{Z_G(g)}}, \]
+		dove $\rotations$ è un insieme dei rappresentanti delle
+		classi di coniugio. Allora vale che:
+		\[ p^n = p + \sum_{g \in \rotations \setminus Z(G)} \frac{\abs G}{\abs{Z_G(g)}}. \]
+		Se non esistesse $x \in G$ (e quindi, equivalentemente,
+		in $\rotations$) tale per cui $\abs{Z_G(x)} = p^{n-1}$, la somma a destra
+		sarebbe divisibile almeno per $p^2$, e quindi, poiché
+		$n \geq 2$, $p^2$ dovrebbe dividere $p$, \Lightning. Pertanto
+		tale elemento $x$ esiste e la tesi è dimostrata.
+	\end{proof} \medskip
 	
 	
 	Si mostra infine una proposizione riguardante il normalizzatore
