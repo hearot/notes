@@ -182,21 +182,8 @@
 	$\gen{x} \cap \gen{y} = \{e\}$:
 	
 	\begin{proposition}
-		Siano\footnote{
-			In generale, se $\MCD(\ord(x), \ord(y)) > 1$,
-			non vale che $\ord(xy) = \mcm(\ord(x), \ord(y))$,
-			benché sicuramente $\ord(xy) \mid \mcm(\ord(x), \ord(y))$,
-			sempre a patto che $x$ e $y$ commutino.
-			È sufficiente considerare in $\ZZmod6$ gli elementi
-			$\cleq 1$ e $\cleq 2$: infatti $\ord(\cleq 1) = 6$ e
-			$\ord(\cleq 2) = 3$, ma $\ord(\cleq 1 + \cleq 2) =
-			\ord(\cleq 3) = 2 \neq 6$.
-		}\footnote{
-			A prescindere da quanto valga $\MCD(\ord(x), \ord(y))$,
-			se $x$ e $y$ commutano, esiste però sempre un elemento
-			$g \in G$ tale per cui $\ord(g) = \mcm(\ord(x), \ord(y))$.
-		} $x$, $y$ due elementi di $G$ che commutano con
-		$\MCD(\ord(x), \ord(y)) = 1$. Allora $\ord(xy) = \ord(x) \ord(y)$. % TODO: aggiungere la dimostrazione
+		Siano $x$ e $y$ due elementi di $G$ che commutano con
+		$\MCD(\ord(x), \ord(y)) = 1$. Allora $\ord(xy) = \ord(x) \ord(y)$.
 	\end{proposition}
 	
 	\begin{proof}
@@ -211,8 +198,44 @@
 		\ord(x), \ord(y) \mid k$, da cui si deduce che
 		$\ord(x) \ord(y) \mid k = \ord(x) \ord(y)$. Si conclude dunque che
 		$\ord(xy) = \ord(x) \ord(y)$.
-	\end{proof} \vskip 0.2in
-
+	\end{proof}
+	
+	Se $\ord(x)$ e $\ord(y)$ non sono coprimi, non vale in generale
+	che $\ord(xy)$ è uguale a $\mcm(\ord(x), \ord(y))$,
+	benché sicuramente $\ord(xy) \mid \mcm(\ord(x), \ord(y))$,
+	sempre a patto che $x$ e $y$ commutino.
+	È sufficiente considerare in $\ZZmod6$ gli elementi
+	$\cleq 1$ e $\cleq 2$: infatti $\ord(\cleq 1) = 6$ e
+	$\ord(\cleq 2) = 3$, ma $\ord(\cleq 1 + \cleq 2) =
+	\ord(\cleq 3) = 2 \neq 6$. \medskip
+	
+	
+	A prescindere da quanto valga $\MCD(\ord(x), \ord(y))$,
+	se $x$ e $y$ commutano, esiste però sempre un elemento
+	$g \in G$ tale per cui $\ord(g) = \mcm(\ord(x), \ord(y))$, come
+	mostra la:
+	
+	\begin{proposition}
+		Siano $x$ e $y$ due elementi di $G$ che commutano. Allora
+		esiste un elemento $g$ di $G$ tale per cui $\ord(g) = \mcm(\ord(x), \ord(y))$. 
+	\end{proposition}
+	
+	\begin{proof}
+		Siano $m = \ord(x)$ ed $n = \ord(y)$. Siano $m = \prod_{i = 1}^\infty p_i^{m_i}$
+		ed $n = \prod_{i = 1}^\infty p_i^{n_i}$ le due fattorizzazioni in numeri primi
+		di $m$ ed $n$. Allora $\mcm(m, n) = \prod_{i = 1}^\infty p_i^{c_i}$,
+		dove si pone $c_i = \max(m_i, n_i)$. Chiaramente esiste un numero finito di
+		$i$ per cui $c_i \neq 0$; per ogni tale $i$, se $c_i = m_i$, si considera
+		$z_i = x^{\nicefrac{m}{p_i^{m_i}}}$, altrimenti si considera
+		$z_i = y^{\nicefrac{n}{p_i^{n_i}}}$. \medskip
+		
+		
+		Si osserva che tali $z_i$ hanno esattamente ordine $p_i^{c_i}$.
+		Sia allora $z = \prod_{i \mid c_i \neq 0} z_i$. Poiché $\ord(z_i)$ è coprimo
+		con $\ord(z_j)$ per $j \neq i$, $z$ ha come ordine, per la precedente proposizione,
+		esattamente $\prod_{i \mid c_i \neq 0} p_i^{c_i} = \prod_{i = 1}^\infty p_i^{c_i} =
+		\mcm(m, n)$, da cui la tesi.
+	\end{proof}
 
 	Si può adesso dimostrare il seguente fondamentale
 	teorema per i gruppi abeliani:
