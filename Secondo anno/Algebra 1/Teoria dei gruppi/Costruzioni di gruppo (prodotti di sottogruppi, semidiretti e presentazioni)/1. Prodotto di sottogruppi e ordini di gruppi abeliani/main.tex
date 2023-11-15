@@ -196,7 +196,7 @@
 		1$, e quindi $\gen{x} \cap \gen{y} = \{e\}$. Allora
 		deve valere che $x^k = y^{-k} = e \implies
 		\ord(x), \ord(y) \mid k$, da cui si deduce che
-		$\ord(x) \ord(y) \mid k = \ord(x) \ord(y)$. Si conclude dunque che
+		$\ord(x) \ord(y) \mid k = \ord(xy)$. Si conclude dunque che
 		$\ord(xy) = \ord(x) \ord(y)$.
 	\end{proof}
 	
@@ -241,13 +241,25 @@
 	teorema per i gruppi abeliani:
 	
 	\begin{theorem}
-		Sia $G$ un gruppo abeliano finito di ordine $n$.
+		Sia\footnote{
+			In realtà questo teorema diventa di facile
+			dimostrazione una
+			volta che si dimostra il Teorema di struttura
+			per gruppi abeliani finiti. È sufficiente
+			infatti dividere $G$ nel prodotto delle sue
+			$p$-componenti ed estrarre da ogni $p$-componente
+			un sottogruppo affinché il prodotto dei sottogruppi
+			scelti abbia ordine $m$.
+		} $G$ un gruppo abeliano finito di ordine $n$.
 		Allora, se $m$ divide $n$, esiste un sottogruppo di
 		$G$ di ordine $m$.
 	\end{theorem}
 
 	\begin{proof}
-		Si dimostra preliminarmente che se $p^k$ divide $n$,
+		Si\footnote{
+			Questa parte della dimostrazione è già implicata
+			dal Primo teorema di Sylow.
+		} dimostra preliminarmente che se $p^k$ divide $n$,
 		dove $p$ è un numero primo e $k \in \NN^+$, allora
 		$G$ ammette un sottogruppo di ordine $p^k$. Si
 		mostra la tesi per induzione su $k$. \medskip
