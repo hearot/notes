@@ -6,14 +6,56 @@
 	\maketitle
 		
 	\begin{note}
-		Nel corso del documento con $G$ si indicherà un qualsiasi gruppo.
+		Nel corso del documento con $G$ si indicherà un qualsiasi gruppo abeliano finito.
 	\end{note}
 	
-	\begin{theorem}[di struttura per gruppi abeliani finiti]
+	In questo documento si dimostra il celebre Teorema di
+	struttura per gruppi abeliani finiti. In realtà questo
+	teorema è un caso particolare del Teorema di struttura
+	per gruppi abeliani finitamente generati (e quindi
+	potenzialmente infiniti), a sua volta caso particolare
+	del Teorema di struttura per moduli finitamente generati
+	su un PID\footnote{
+		Ho trattato e dimostrato questo teorema in un documento
+		separato, reperibile su
+		\url{https://git.phc.dm.unipi.it/g.videtta/scritti/src/branch/main/Geometria/Articoli/3.\%20Il\%20teorema\%20di\%20struttura\%20dei\%20moduli\%20finitamente\%20generati\%20su\%20un\%20PID/main.pdf}
+	}. Per motivi didattici si riporta la dimostrazione semplificata
+	per il semplice caso dei gruppi abeliani finiti. \medskip
+	
+	
+	Il Teorema di struttura trova immediata applicazione nello
+	studio dei gruppi abeliani finiti e, dato $n \in \NN^+$, permette di classificare tutti i gruppi abeliani di ordine $n$ (a meno
+	di isomorfismo), come illustra il seguente enunciato:
+	
+	\begin{theorem}[di struttura per gruppi abeliani finiti,
+		decomposizione in fattori invarianti]
 		Sia $G$ un gruppo abeliano finito. Allora esistono unici
-		$n_1$, \ldots, $n_s \in \NN$ tali per cui:
+		$n_1$, \ldots, $n_s \in \NN^+ \setminus \{1\}$ tali per cui:
 		\[ G \cong \ZZmod{n_1} \times \cdots \times \ZZmod{n_s}, \qquad n_s \mid n_{s-1} \mid \cdots \mid n_2 \mid n_1. \]
+		Tale fattorizzazione di $G$ viene detta
+		\textbf{decomposizione in fattori invarianti}, dove
+		i fattori invarianti sono i vari $n_i$.
 	\end{theorem}
+	
+	Equivalentemente si poteva enunciare il Teorema di struttura
+	utilizzando la \textit{decomposizione in fattori elementari}
+	mediante l'applicazione reiterata del Teorema cinese del
+	resto, come illustra il:
+	
+	\begin{theorem}[di struttura per gruppi abeliani finiti,
+		decomposizione primaria]
+		Sia $G$ un gruppo abeliano finito. Allora esistono unici
+		$p_1$, \ldots, $p_s$ numeri primi e unici $m_{i,1} \geq \cdots \geq m_{i,t_i}$ per ogni $1 \leq i \leq s$ tali per cui:
+		\[ G \cong \ZZpmod{p_1^{m_{1,1}}} \times \cdots \times \ZZpmod{p_1^{m_{1,t_1}}} \times \ZZpmod{p_2^{m_{2,1}}} \times \cdots \times \ZZpmod{p_s^{m_{s,t_s}}}. \]
+		Tale fattorizzazione di $G$ viene detta
+		\textbf{decomposizione primaria} (o in fattori
+		elementari), dove i fattori elementari sono i vari $p_i^{m_{i,j}}$.
+	\end{theorem}
+	
+	
+	Prima di dimostrare il Teorema di struttura, si definisce
+	il concetto di $p$-componente relativa a un numero $p$
+	primo.
 	
 	\begin{definition}[$p$-componente]
 		Si definisce \textbf{$p$-componente} $G(p)$ (o $p$-torsione)
@@ -22,25 +64,53 @@
 	\end{definition}
 	
 	\begin{remark}
-		Si dimostra facilmente che $G(p)$ è un sottogruppo. Chiaramente
-		$G(p) \subseteq G$; inoltre $e$ chiaramente appartiene
-		a $G(p)$. Se poi $x$, $y \in G(p)$, allora
+		Si osserva facilmente che $G(p)$ è effettivamente
+		un sottogruppo. Infatti vale chiaramente che
+		$G(p) \subseteq G$; inoltre $e$ appartiene
+		a $G(p)$. Dati allora $x$, $y \in G(p)$, allora
 		$\ord(xy) \mid \mcm(\ord(x), \ord(y))$, e quindi
 		$\ord(xy) = p^k$ per qualche $k$. Pertanto anche
 		$xy \in G(p)$. Dal momento che $G(p)$ è finito,
-		questo dimostra che $G(p)$ è un sottogruppo.
+		la chiusura sull'operazione di gruppo implica anche
+		l'esistenza dell'inverso, e dunque
+		$G(p)$ è un sottogruppo di $G$.
 	\end{remark}
 	
 	\begin{remark}
-		$G(p)$ è un sottogruppo caratteristico di $G$. Infatti
+		Si osserva che $G(p)$ ha ordine $p^n$, dove
+		$p^n \exactdiv n = \abs{G}$ e che se $H \leq G$
+		è un sottogruppo di ordine $p^i$, $H$ è chiaramente
+		un sottogruppo di $G(p)$. Pertanto, si può definire
+		equivalentemente $G(p)$ come il $p$-sottogruppo\footnote{
+			Chiaramente $G(p)$ è un $p$-sottogruppo. Infatti,
+			se $q$ fosse un primo diverso da $p$ che divide
+			$\abs{G(p)}$, per il Teorema di Cauchy esisterebbe
+			un elemento di ordine $q$ in $G(p)$, $\Lightning$.
+		} massimo
+		per inclusione di $G$.
+	\end{remark}
+	
+	\begin{remark}
+		La $p$-componente $G(p)$ è anche un sottogruppo caratteristico di $G$. Infatti
 		$\varphi \in \Aut(G)$ lascia invariato l'ordine di
 		un elemento di $G(p)$, e quindi $\varphi(G(p)) = G(p)$.
+		Alternativamente si può utilizzare l'osservazione
+		precedente e notare che $G(p)$ è l'unico sottogruppo
+		del suo ordine\footnote{
+			In ogni caso $G$ è abeliano e quindi, poiché
+			tutti i $p$-Sylow sono coniugati, $G(p)$ è l'unico $p$-Sylow di $G$, e dunque
+			è caratteristico perché unico del suo ordine.
+			Più elementarmente, ogni $p$-sottogruppo di $G$
+			è contenuto in $G(p)$, e quindi è l'unico del suo
+			ordine.
+		}.
 	\end{remark}
 	
-	\begin{remark}
-		La dimostrazione del teorema di struttura segue
-		il seguente schema:
-		
+	\begin{scheme}
+		La dimostrazione del Teorema di struttura si fonda su
+		due teoremi che verranno dimostrati nel seguito e che
+		vengono ora enunciati:
+	
 		\begin{itemize}
 			\item Se $G$ è abeliano con $\abs{G} = p_1^{e_1} \cdots p_r^{e_r}$, allora $G \cong G(p_1) \times \cdots \times G(p_r)$, ossia $G$ è isomorfo al prodotto diretto tra
 			le sue $p$-componenti. Tale decomposizione di $G$
@@ -52,7 +122,7 @@
 			$G \cong \ZZmod{p_1^{r_1}} \times \cdots
 			\times \ZZmod{p_1^{r_s}}$.
 		\end{itemize}
-	\end{remark}
+	\end{scheme}
 	
 	\begin{proof}[Dimostrazione a priori]
 		Per il primo teorema, $G$ si può decomporre nelle sue
@@ -73,16 +143,28 @@
 		
 		Applicando allora il Teorema cinese del resto si ottiene
 		l'esistenza della fattorizzazione secondo il Teorema
-		di struttura per gruppi abeliani finiti. 
-		
-		
-		L'unicità segue dal primo teorema riapplicando il Teorema
-		cinese del resto al contrario. %TODO: estendi
+		di struttura per gruppi abeliani finiti. L'unicità segue
+		riapplicando prima il primo teorema e poi il
+		secondo teorema.
 	\end{proof}
 	
-	%TODO: esempio su Z_26 x Z_169 x Z_8 x Z_12
+	\begin{example}[$\ZZmod{26} \times \ZZmod{169} \times \ZZmod{12}$]
+		Si scrive il gruppo $G = \ZZmod{26} \times \ZZmod{169} \times \ZZmod{12}$ seguendo le regole del Teorema di struttura.
+		Poiché $26 = 2 \cdot 13$, $169 = 13^2$ e $12 = 2^2 \cdot 3$,
+		applicando il Teorema cinese del resto si può scrivere $G$
+		come:
+		\[ G \cong (\ZZmod{2} \times \ZZmod{13}) \times (\ZZmod{13^2}) \times (\ZZmod{2^2} \times \ZZmod{3}). \]
+		Facendo commutare i fattori come nella dimostrazione
+		del Teorema di struttura otteniamo che:
+		\[ G \cong (\ZZmod{2^2} \times \ZZmod{13^2} \times \ZZmod{3}) \times (\ZZmod{2} \times \ZZmod{13}), \]
+		e quindi vale la seguente decomposizione in fattori
+		invarianti per $G$:
+		\[ G \cong \ZZmod{2028} \times \ZZmod{26}, \]
+		dove si osserva che $26 \mid 2028$.
+	\end{example}
 	
-	Si dimostrano i due teoremi:
+	Si dimostrano adesso i due teoremi impiegati nella dimostrazione
+	del Teorema di struttura:
 	
 	\begin{theorem}
 		Se $G$ è abeliano con $\abs{G} = p_1^{e_1} \cdots p_r^{e_r}$, allora $G \cong G(p_1) \times \cdots \times G(p_r)$, ossia $G$ è isomorfo al prodotto diretto tra
@@ -92,14 +174,7 @@
 	\end{theorem}
 	
 	\begin{proof}
-		Si dimostra per induzione sul numero $s$ di primi distinti
-		nella fattorizzazione di $\abs{G}$. Se $s=1$,
-		$G$ coincide con l'unica sua $p$-componente. Sia
-		ora $s \geq 2$. Se $\abs{G} = m m'$ con $m'>1$ e
-		$\MCD(m, m') = 1$. Mostro che $G \cong mG \times m'G$. \medskip
-		
-		
-		%TODO: continuare con Bezout
+		%TODO
 	\end{proof}
 	
 	\begin{theorem}
@@ -109,4 +184,182 @@
 		$G \cong \ZZmod{p_1^{r_1}} \times \cdots
 		\times \ZZmod{p_1^{r_s}}$.
 	\end{theorem}
+	
+	\begin{proof}
+		%TODO
+	\end{proof}
+	
+	I gruppi moltiplicativi $\ZZmulmod{p^k}$ e $\ZZmulmod{2p^k}$,
+	con $p$ numero primo, sono completamente classificati e
+	sono note le loro decomposizioni in fattori invarianti,
+	come mostra il fondamentale:
+	
+	\begin{theorem}
+		Sia $p$ un numero primo dispari e $k \in \NN^+$. Allora,
+		$\ZZmulmod{p^k}$ e $\ZZmulmod{2p^k}$ sono gruppi
+		ciclici. Per $k > 2$, vale inoltre che
+		$\ZZmulmod{2^k} \cong \ZZmod{2} \times \ZZmod{2^{k-2}}$,
+		mentre $\ZZmulmod{2} \cong \{e\}$ e $\ZZmulmod{4} \cong
+		\ZZmod{2}$. \medskip
+		
+		
+		In particolare per $n \geq 1$, $\ZZmulmod{n}$ è ciclico se e solo se
+		$n$ è $1$, $2$, $p^k$ o $2p^k$ con $p$ primo dispari.
+	\end{theorem}
+	
+	\begin{proof}
+		Chiaramente $\ZZmulmod{2} \cong \{e\}$ e
+		$\ZZmulmod{4} \cong \ZZmod{2}$ dacché hanno uno
+		ordine $1$ e l'altro ordine $2$. \medskip
+
+		
+		Sia ora $p$ un numero primo dispari. Allora l'ordine di
+		$G = \ZZmulmod{p^k}$ è $\varphi(p^k) = p^k - p^{k-1} =
+		p^{k-1}(p-1)$. È dunque sufficiente trovare in
+		$\ZZmulmod{p^k}$ un elemento $x$ di ordine
+		$p^{k-1}$ e uno $y$ di ordine $p-1$ per concludere
+		che $\ZZmulmod{p^k}$ è ciclico. Infatti $\MCD(p^{k-1}, p-1) = 1$ e $x$ e $y$ commutano, dunque, in tal caso, si avrebbe
+		che $\ord(xy) = \abs{G}$. \medskip
+		
+		
+		Si mostra che $1+p$ ha ordine esattamente $p^{k-1}$ in
+		$\ZZmulmod{p^k}$ mostrando per induzione che
+		\[ (1+p)^{p^{i-2}} \equiv 1 + p^{i-1} \pod{p^i}, \]
+		per $i \geq 2$. Per $i = 2$, la tesi è banale. Si
+		assuma allora l'ipotesi induttiva. \medskip
+		
+		Per l'ipotesi induttiva vale allora che
+		$(1+p)^{p^{i-3}} = 1 + p^{i-2} + \alpha p^{i-1}$ per qualche
+		$\alpha \in \ZZ$, e quindi:
+		\[ (1+p)^{p^{i-2}} \equiv ((1+p)^{p^{i-3}})^p \equiv
+		(1 + p^{i-2}(1 + \alpha p))^p \pod{p^i}. \]
+		Applicando allora il Teorema del binomio di Newton,
+		vale che:
+		\[ (1+p)^{p^{i-2}} \equiv 1 + p^{i-1}(1+\alpha p) + \sum_{j=2}^{p} \binom{p}{j} p^{j(i-2)}(1 + \alpha p)^j \pod{p^i}. \]
+		Si osserva che $\binom{p}{j}$ è sempre divisibile per $p$
+		con $2 \leq j \leq p$, e dunque ogni termine della
+		somma è divisibile per $p^i$. Infatti $j(i-2)+1 \geq i$
+		per $j \geq \lfloor 1 + \frac{1}{i-2} \rfloor = 1$. Allora
+		si conclude che:
+		\[  (1+p)^{p^{i-2}} \equiv 1 + p^{i-1}(1+\alpha p) \equiv 1  + p^{i-1} \pod{p^i}, \]
+		completando l'induzione. \medskip
+		
+		
+		Allora vale che $(1+p)^{p^{k-1}} \equiv 1 + p^k \pod{p^{k+1}}$,
+		e quindi $(1+p)^{p^{k-1}} \equiv 1 \pod{p^k}$. Pertanto
+		l'ordine di $(1+p)$ è della forma $p^i$ con $i \leq k-1$.
+		Si mostra che $\ord(1+p) \nmid p^{k-2}$. Infatti vale
+		che:
+		\[ (1+p)^{p^{k-2}} \equiv 1 + p^{k-1} \not\equiv 1 \pod{p^k}. \]
+		Si conclude dunque che $\ord(1+p) = p^{k-1}$. \bigskip
+		
+		
+		Si consideri ora l'omomorfismo $\pi : \ZZmod{p^k} \to \ZZmod{p}$ tale per cui $[x]_{p^k} \xmapsto{\pi} [x]_p$.
+		Si verifica facilmente che tale mappa è ben definita,
+		infatti $a \equiv b \pod{p^k} \implies a \equiv b \pod{p}$. \medskip
+		
+		
+		Sia $\pi^*$ la restrizione di $\pi$ a $\ZZmod{p^k} \to
+		\ZZmod{p}$. Si osserva che tale restrizione è ben definita dacché
+		$\MCD(p^k, a) = 1 \iff \MCD(p, a) = 1$. Allora anche
+		$\pi^*$ è un omomorfismo e, come $\pi$, è surgettivo.
+		Poiché $\ZZmulmod{p}$ è ciclico in quanto gruppo moltiplicativo finito del campo $\ZZmulmod{p}$, allora,
+		dacché $\abs{\ZZmulmod{p}} = \varphi(p) = p-1$,
+		esiste $x \in \ZZmulmod{p}$ tale per cui $\ord(x) = p-1$.
+		\medskip
+		
+		
+		Dal momento che $\pi^*$ è surgettivo, esiste $y \in \ZZmulmod{p^k}$ tale per cui $p-1 = \ord(x) \mid \ord(y)$.
+		Allora esiste $z \in \gen{y}$ tale per cui $\ord(z) = p-1$.
+		Pertanto $(1+p)z$ ha ordine $p^{k-1}(p-1)$, e dunque
+		$\ZZmulmod{p^k}$ è ciclico. \medskip
+		
+		
+		Dacché $p$ è dispari, vale che
+		$\ZZmulmod{2p^k} \cong \ZZmulmod{2} \times
+		\ZZmulmod{p^k} \cong \ZZmulmod{p^k}$, e quindi
+		anche $\ZZmulmod{2p^k}$ è ciclico. \medskip
+		
+		
+		Sia ora $k > 2$. Chiaramente $[5]_{2^n} \in
+		\ZZmulmod{2^k}$ dal momento che $\MCD(5, 2^k) = 1$.
+		Si mostra che $\ord([5]_{2^n})$ ha ordine
+		$2^{n-2}$ in $\ZZmulmod{2^k}$. Analogamente a prima
+		si dimostra per induzione che per $n \geq 3$:
+		\[ (1 + 4)^{2^{n-3}} \equiv 1 + 2^{n-1} \pod{2^n}. \]
+		Chiaramente per $n=3$, $(1 + 4) \equiv 1 + 4 \pod{8}$.
+		Si assuma ora l'ipotesi induttiva. Allora
+		$(1+4)^{2^{n-4}} = 1 + 2^{n-2} + \alpha 2^{n-1}$ per qualche
+		$\alpha \in \ZZ$. Vale dunque che:
+		\[ (1 + 4)^{2^{n-3}} \equiv (1 + 2^{n-2} + \alpha 2^{n-1})^2
+		\pod{2^n}, \]
+		e quindi:
+		\[ (1 + 4)^{2^{n-3}} \equiv 1 + 2^{2(n-2)} + \alpha^2 2^{2(n-1)} + 2^{n-1} + \alpha 2^n + \alpha 2^{2n-3} \pod{2^n}. \]
+		Pertanto vale che $(1 + 4)^{2^{n-3}} \equiv 1 + 2^{n-1} \pod{2^n}$, concludendo l'induzione. \medskip
+		
+		
+		Allora $(1 + 4)^{2^{k-2}} \equiv 1 + 2^k \pod{2^{k+1}}$,
+		e quindi $(1 + 4)^{2^{k-2}} \equiv 1 \pod{2^k}$. Pertanto
+		$\ord([5]_{2^k}) = 2^i$ con $i \leq k-2$. Tuttavia
+		$(1 + 4)^{2^{k-3}} \equiv 1 + 2^{k-1} \pod{2^k}$, e quindi
+		$\ord([5]_{2^k})$ vale esattamente $2^{k-2}$. \medskip
+		
+		
+		Per il Teorema di struttura, $\ZZmulmod{2^k}$ può
+		dunque essere isomorfo solo a $\ZZmod{2} \times
+		\ZZmod{2^{k-2}}$ o a $\ZZmod{2^{k-1}}$. È dunque
+		sufficiente mostrare che $\ZZmulmod{2^k}$ non può
+		essere ciclico. Si considerino i due sottogruppi
+		$H_1 = \gen{5^{2^{k-3}}}$ e $H_2 = \gen{-5^{2^{k-3}}}$.
+		Entrambi i sottogruppi sono di ordine $2$ e sono
+		distinti. Infatti, $5^{2^{k-3}} \equiv -5^{2^{k-3}} \pod{2^k}$
+		implicherebbe $2 \cdot 5^{2^{k-3}} \equiv 0 \pod{2^k}$, e
+		quindi varrebbe $2^{k-1} \mid 5^{2^{k-3}}$, \Lightning.
+		Se però $\ZZmulmod{2^k}$ fosse ciclico, esisterebbe un
+		unico sottogruppo di ordine $2$. Pertanto
+		$\ZZmulmod{2^k}$ è isomorfo a $\ZZmod{2} \times
+		\ZZmod{2^{k-2}}$, come desiderato. \bigskip
+		
+		
+		Si consideri ora $\ZZmulmod{n}$. Se $n$ è $1$, $2$,
+		$4$, $p^k$ o $2p^k$ con $p$ dispari, $\ZZmulmod{n}$ è
+		ciclico per quanto dimostrato. \medskip
+		
+		
+		Si mostra ora per induzione su $n \geq 1$ che $\ZZmulmod{n}$ è ciclico
+		se e solo se $n$ è $1$, $2$,
+		$4$, $p^k$ o $2p^k$ con $p$ dispari. Per $(\ZZ \quot \ZZ)^*$,
+		la tesi è banale. 
+		Sia ora $\ZZmulmod{n}$
+		ciclico. Allora, se $n$ fosse uguale ad $ab$ con
+		$\MCD(a, b) = 1$ e $a$, $b > 1$, varrebbe $\ZZmulmod{n} \cong
+		\ZZmulmod{a} \times \ZZmulmod{b}$. Dal momento che
+		$\ZZmulmod{a} \cong \ZZmulmod{a} \times \{e\}$,
+		che a sua volta si identifica come sottogruppo di
+		$\ZZmulmod{n}$, e quindi ciclico, $\ZZmulmod{a}$ stesso
+		è ciclico, e analogamente anche $\ZZmulmod{b}$. Pertanto
+		deve valere $\MCD(\varphi(a), \varphi(b)) = 1$. \medskip
+		
+		
+		Dal momento che $\varphi(a)$ può essere o $1$ o un
+		numero pari, così come $\varphi(b)$, si può assumere
+		senza perdita di generalità che $\varphi(a) = 1$,
+		e dunque che $a$ sia $1$ o $2$. Poiché $\ZZmulmod{b}$
+		è ciclico e $b$ è strettamente minore di
+		$n$, per il passo induttivo $b$ può essere
+		$1$, $2$, $p^k$ o $2p^k$. Dal momento che $\MCD(a, b) = 1$,
+		$b$ può essere solo $1$ o $p^k$, e quindi $n = 2$ o
+		$n = 2 p^k$. \medskip
+		
+		
+		Se invece $n = ab$ con $\MCD(a, b) = 1$ implica che
+		uno tra $a$ e $b$ sia $1$, allora $n$ è $1$ o una
+		potenza di un primo, detto $p^k$. Se $p = 2$,
+		allora, per $k \geq 3$, $\ZZmulmod{2^k}$
+		conterrebbe una copia isomorfa di $\ZZmulmod{8} \cong
+		\ZZmod{2} \times \ZZmod{2}$. In tal caso,
+		non essendo $\ZZmulmod{8}$ ciclico, nemmeno $\ZZmulmod{2^k}$
+		è ciclico, e quindi $2^k$ può essere solo $1$, $2$ o
+		$4$. Si conclude così la dimostrazione del teorema.
+	\end{proof}
 \end{document}
