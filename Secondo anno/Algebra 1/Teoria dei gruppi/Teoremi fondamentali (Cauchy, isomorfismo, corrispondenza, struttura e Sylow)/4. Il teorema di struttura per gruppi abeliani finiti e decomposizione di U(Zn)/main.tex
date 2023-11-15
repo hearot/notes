@@ -363,4 +363,29 @@
 		è ciclico, e quindi $2^k$ può essere solo $1$, $2$ o
 		$4$. Si conclude così la dimostrazione del teorema.
 	\end{proof}
+	
+	\begin{remark}[La funzione $\lambda(n)$ di Carmichael]
+		Si definisce la funzione $\lambda : \NN^+ \to \NN^+$ di Carmichael in
+		modo tale che $\lambda(n)$ sia il più piccolo intero positivo $m$ tale
+		per cui $a^m \equiv 1 \pod{n}$ per ogni $a$ coprimo con $n$. \medskip
+		
+		
+		Grazie al Teorema sulla decomposizione di $\ZZmulmod{n}$, calcolare
+		$\lambda(n)$ risulta piuttosto semplice. Infatti, $\lambda(n)$ è
+		esattamente il minimo comune multiplo di tutti gli ordini di
+		$\ZZmulmod{n}$. In particolare, $\lambda(n)$ divide sempre $\varphi(n)$ e
+		vale l'uguaglianza se e solo se esiste un elemento $x$ in $\ZZmulmod{n}$ di
+		ordine $\varphi(n)$, ossia se e solo se $\ZZmulmod{n}$ è ciclico (e dunque se
+		e solo se
+		$n$ è $1$, $2$, $4$, $p^k$ o $2p^k$ per $p$ primo dispari).
+	\end{remark}
+	
+	\begin{example}[$\lambda(1000)$]
+		Si calcola $\lambda(1000)$. Dal momento che $1000 = 2^3 \cdot 5^3$, vale
+		che $\ZZmulmod{1000} \cong \ZZmulmod{2^3} \times \ZZmulmod{5^3}$.
+		Dacché $5$ è dispari e $\varphi(5^3) = 5^3 - 5^2 = 100$, $\ZZmulmod{5^3} \cong \ZZmod{100}$, mentre
+		$\ZZmulmod{2^3} \cong \ZZmod{2} \times \ZZmod{2}$. Pertanto vale che:
+		\[ \ZZmulmod{1000} \cong \ZZmod{2} \times \ZZmod{2} \times \ZZmod{100}, \]
+		e quindi $\lambda(1000) = \mcm(2,2,100) = 100$.
+	\end{example}
 \end{document}
