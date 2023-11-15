@@ -116,7 +116,7 @@
 			\item Se $G$ è abeliano con $\abs{G} = p_1^{e_1} \cdots p_r^{e_r}$, allora $G \cong G(p_1) \times \cdots \times G(p_r)$, ossia $G$ è isomorfo al prodotto diretto tra
 			le sue $p$-componenti. Tale decomposizione di $G$
 			come prodotto di $p$-gruppi di ordini tra loro
-			coprimi è unica.
+			coprimi è unica a meno di isomorfismi tra i vari $p$-gruppi.
 			\item Se $G$ è un $p$-gruppo abeliano. Allora esistono
 			e sono univocamente determinati degli interi
 			positivi $r_1 \geq \cdots \geq r_s$ tali che
@@ -171,11 +171,29 @@
 		Se $G$ è abeliano con $\abs{G} = p_1^{e_1} \cdots p_r^{e_r}$, allora $G \cong G(p_1) \times \cdots \times G(p_r)$, ossia $G$ è isomorfo al prodotto diretto tra
 		le sue $p$-componenti. Tale decomposizione di $G$
 		come prodotto di $p$-gruppi di ordini tra loro
-		coprimi è unica.
+		coprimi è unica a meno di isomorfismi tra i vari $p$-gruppi.
 	\end{theorem}
 	
 	\begin{proof}
-		%TODO
+		Poiché $G$ è abeliano, esiste il sottogruppo $G(p_1) G(p_2) \cdots G(p_r)$.
+		In particolare, dal momento che $\MCD(\abs{G(p_i)}, \abs{G(p_j)}) = 1$ e che
+		$G(p_i) \cap G(p_j) = \{e\}$ per
+		$i \neq j$, vale anche che $\abs{G(p_1) G(p_2) \cdots G(p_r)} = \abs{G}$.
+		Allora deve valere in particolare che $G = G(p_1) G(p_2) \cdots G(p_r)$. Per
+		il Teorema di decomposizione in prodotto diretto, si deduce che
+		$G \cong G(p_1) \times \cdots \times G(p_r)$. \medskip
+		
+		
+		Si mostra che la decomposizione di $G$ come prodotto di $p$-gruppi di ordini
+		tra loro coprimi è unica. Sia $H_1 \times H_2 \times \cdots H_r$ un'altra
+		decomposizione di $G$ in prodotto diretto in modo tale che $\abs{H_i} = p_i^{e_i}$.
+		Sia $\varphi$ un isomorfismo da $H_1 \times H_2 \times \cdots \times H_r$ in
+		$G(p_1) \times G(p_2) \times \cdots \times G(p_r)$. Allora $\varphi$ ristretto
+		all'identificazione di $H_i$ in $H_1 \times H_2 \times \cdots H_r$ (ossia
+		$\{e\} \times \cdots \times H_i \times \cdots \times \{e\}$) nell'identificazione
+		di $G(p_i)$ è ancora un isomorfismo, dal momento che entrambi sono gli unici
+		$p$-gruppi che compaiono nelle rispettive fattorizzazioni. Allora
+		$H_i \cong G(p_i)$, concludendo la dimostrazione.
 	\end{proof}
 	
 	\begin{theorem}
@@ -188,12 +206,11 @@
 	
 	\begin{proof}
 		%TODO
-	\end{proof}
+	\end{proof} \bigskip
 	
-	I gruppi moltiplicativi $\ZZmulmod{p^k}$ e $\ZZmulmod{2p^k}$,
-	con $p$ numero primo, sono completamente classificati e
-	sono note le loro decomposizioni in fattori invarianti,
-	come mostra il fondamentale:
+	I gruppi moltiplicativi $\ZZmulmod{n}$ sono completamente classificati ed
+	è noto l'algoritmo per dedurre le loro decomposizioni in fattori invarianti,
+	come mostra il fondamentale
 	
 	\begin{theorem}
 		Sia $p$ un numero primo dispari e $k \in \NN^+$. Allora,
