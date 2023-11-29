@@ -14,5 +14,6 @@ appunti sul corso dell'A.A. 2023-2024, prendendo talvolta spunto dagli
 [appunti di Diego Monaco e Leonardo Migliorini](https://github.com/diego-unipi/Algebra-1),
 che tuttavia riprendono il programma del corso dell'A.A. 2022-2023.
 
-Ho diviso gli appunti in base ai moduli del corso di Algebra 1. In particolare, per adesso è solo presente la
-sezione relativa a *Teoria dei gruppi*, a sua volta divisa in macrosezioni.
+Ho diviso gli appunti in base ai moduli del corso di Algebra 1. In particolare, per adesso è quasi completata la scrittura
+della sezione relativa a *Teoria dei gruppi*, a sua volta divisa in macrosezioni. Per il momento verrà trascurata la
+parte di *Teoria degli anelli* per completare la sezione di *Teoria dei campi*, e verrà ripresa alla fine.
