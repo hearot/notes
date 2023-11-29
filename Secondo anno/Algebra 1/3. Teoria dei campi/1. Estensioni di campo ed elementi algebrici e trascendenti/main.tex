@@ -1,0 +1,309 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Estensioni di campo ed elementi algebrici e trascendenti}
+	\maketitle
+	
+	\begin{note}
+		Una buona introduzione alle estensioni di campo
+		è già stata fatta nel corso di Aritmetica\footnote{
+			Questa parte di teoria è reperibile al
+			seguente link: \url{https://git.phc.dm.unipi.it/g.videtta/notes/src/branch/main/Primo\%20anno/Aritmetica/Teoria\%20dei\%20campi}.
+		}, e pertanto
+		l'esposizione in questo documento dell'argomento sarà
+		del tutto \textit{straightforward}. \medskip
+		
+		
+		Per $K$, $L$ ed $F$ si intenderanno sempre dei campi.
+		Se non espressamente detto, si sottintenderà anche
+		che $K \subseteq L$, $F$, e che $L$ ed $F$ sono
+		estensioni costruite su $K$. Per $[L : K]$ si
+		intenderà $\dim_K L$, ossia la dimensione di $L$
+		come $K$-spazio vettoriale.
+	\end{note} \bigskip
+
+	
+	Lo studio della teoria dei campi è inevitabile quando si
+	intende studiare la risolubilità delle equazioni, come
+	ben illustra la teoria di Galois. In particolare,
+	questa teoria si basa in parte sullo studio delle
+	estensioni, ossia dei ``sovracampi'', del campo di partenza
+	che si sta studiando. A questo proposito tornano utili
+	le seguenti definizioni:
+	
+	\begin{definition}[estensione di campo]
+		Si dice che $L$ è un'estensione di campo di $K$ se
+		$K \subseteq L$, e si scrive $\faktor{L}{K}$ per
+		studiare $L$ in riferimento a $K$. Si dice
+		che $L$ è un'estensione finita se $[L : K]$ è
+		finito.
+	\end{definition}
+	
+	\begin{definition}[omomorfismo di valutazione]
+		Sia $\alpha \in K$. Allora si definisce l'\textbf{omomorfismo di valutazione} $\varphi_{\alpha,K} : K[x] \to K[\alpha]$ di $\alpha$ su $K$,
+		spesso abbreviato come $\varphi_\alpha$ se è
+		sottinteso che si sta lavorando su $K$, come
+		l'omomorfismo univocamente determinato dalla
+		relazione:
+		\[ p \xmapsto{\varphi_\alpha} p(\alpha). \]
+	\end{definition}
+
+	\begin{remark}
+		L'omomorfismo di valutazione è sempre surgettivo e
+		la preimmagine di un elemento di $K[\alpha]$ è per
+		esempio lo stesso elemento a cui si è sostituito $x$
+		al posto di $\alpha$.
+	\end{remark}
+
+	\begin{definition}
+		Sia $\alpha \in K$. Allora si definisce $K(\alpha)$
+		come la più piccola estensione di $K$ che contiene
+		$\alpha$, ossia:
+		\[ K(\alpha) = \bigcap_{\substack{\faktor{F_i}{K} \text{ campo}	\\ \alpha \in F_i}} F_i. \]
+	\end{definition}
+
+	\begin{definition}[estensione semplice]
+		Un'estensione $\faktor{L}{K}$ si dice \textbf{semplice}
+		se esiste $\alpha \in L$ tale per cui $L = K(\alpha)$.
+	\end{definition}
+
+	\begin{remark}
+		Come suggerisce la definizione di $K(\alpha)$, se
+		$\faktor{L}{K}$ è un campo che contiene $\alpha$,
+		$K(\alpha) \subseteq L$.
+	\end{remark}
+
+	\begin{definition}[elementi algebrici e trascendenti]
+		Sia $\alpha \in K$. Allora $\alpha$ si dice \textbf{algebrico su $K$} se $\exists p \in K[x]$
+		tale per cui $p(\alpha) = 0$. Se $\alpha$ non è
+		algebrico, si dice che $\alpha$ è \textbf{trascendente}.
+	\end{definition}
+
+	\begin{remark}
+		Se $\alpha \in K$, $\alpha$ è algebrico se e solo
+		se $\Ker \varphi_\alpha$ è non banale. Analogamente
+		$\alpha$ è trascendente se e solo se $\Ker \varphi_\alpha$ è banale.
+	\end{remark}
+
+	\begin{remark}
+		Se $\alpha \in K$ è algebrico, allora $\Ker \varphi_\alpha$ è generato da un irriducibile dacché
+		$K[x]$ è un PID. In particolare $K[x] \quot {\Ker \varphi_\alpha}$ è un campo, e dunque, per il Primo
+		teorema di isomorfismo, lo è anche $K[\alpha]$.
+		Dal momento che $K[\alpha] \subseteq K(\alpha)$,
+		allora vale in questo caso che $K(\alpha) = K[\alpha]$.
+	\end{remark}
+
+	\begin{definition}
+		Sia $\alpha \in K$ algebrico su $K$. Si definisce il \textbf{polinomio minimo}
+		$\mu_\alpha \in K[x]$ come il generatore monico di
+		$\Ker \varphi_\alpha$. Per semplicità si definisce
+		$\deg_K \alpha$ come il grado di $\mu_\alpha$. 
+	\end{definition}
+
+	\begin{remark}
+		Se $\alpha \in K$ è algebrico, allora $K[x] \quot{\Ker \varphi_\alpha}$ è uno spazio vettoriale su $K$ di
+		dimensione $\deg_K \alpha$. In particolare vale allora
+		che $[K(\alpha) : K] = [K[x] \quot{\Ker \varphi_\alpha} : K] = \deg_K \alpha$. Inoltre $\mu_\alpha$ è irriducibile su $K$ dal momento che $\Ker \varphi_\alpha$ è massimale.
+	\end{remark}
+
+	\begin{remark}
+		Se $\alpha \in K$ è trascendente, allora
+		$\Ker \varphi_\alpha$ è banale e dunque, per il Primo
+		teorema di isomorfismo, $K[x] \cong K[\alpha]$.
+	\end{remark}
+
+	La caratterizzazione degli elementi algebrici e trascendenti
+	si conclude mediante la seguente proposizione:
+	
+	\begin{proposition}[caratterizzazione degli elementi algebrici e trascendenti]
+		Sia $\alpha \in K$. Allora $\alpha$ è algebrico su
+		$K$ se e solo se $[K(\alpha) : K]$ è finito.
+	\end{proposition}
+
+	\begin{proof}
+		Se $\alpha$ è algebrico, allora $[K(\alpha) : K]$ 
+		è pari a $\deg_K \alpha$. Se invece $[K(\alpha) : K]$
+		è pari ad $n \in \NN^+$, si considerino $1$, $\alpha$,
+		\ldots, $\alpha^n$. Dal momento che questi sono
+		$n+1$ elementi in $K(\alpha)$, devono essere
+		necessariamente linearmente dipendenti. Pertanto
+		esistono $a_0$, $a_1$, \ldots, $a_n$ tali per
+		cui $a_n \alpha^n + \ldots + a_1 \alpha + a_0 = 0$.
+		Pertanto esiste un polinomio con coefficienti in $K$
+		che annulla $\alpha$, e dunque $\alpha$ è algebrico. 
+	\end{proof}
+
+	A partire dalla definizione di elemento algebrico si può
+	anche definire la nozione di \textit{estensione algebrica}:
+	
+	\begin{definition}[estensione algebrica]
+		Si consideri $\faktor{L}{K}$. Allora si dice che
+		$L$ è un'\textbf{estensione algebrica} se ogni
+		elemento di $L$ è algebrico su $K$.
+	\end{definition}
+
+	Le estensioni finite sono privilegiate in questo senso,
+	dal momento che sono sempre algebriche, come illustra la:
+	
+	\begin{proposition}[estensione finita $\implies$ estensione algebrica]
+		Sia $L$ un'estensione finita di $K$. Allora $L$
+		è un'estensione algebrica di $K$.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $\alpha \in L$. Dal momento che $K \subseteq K(\alpha) \subseteq L$, $K(\alpha)$ è un sottospazio
+		di $L$, che è spazio vettoriale su $K$. Dal momento
+		che $L$ è un'estensione finita, $[L : K]$ è finito,
+		e dunque lo è anche $[K(\alpha) : K]$, per cui
+		$\alpha$ è algebrico, e così $L$.
+	\end{proof}
+
+	\begin{remark}
+		Mentre ogni estensione finita è algebrica, non è
+		vero che ogni estensione algebrica è finita. Per
+		esempio,
+		la chiusura algebrica $\overline{\QQ}$ di $\QQ$ non
+		è finita su $\QQ$. Infatti, per ogni $n \in \NN^+$,
+		$p_n(x) = x^n - 2$ è irriducibile in $\QQ[x]$ per il criterio
+		di Eisenstein, e dunque, detta $\alpha$ una radice
+		di $p_n$, $[\QQ(\alpha) : \QQ] = n$, e quindi, dal
+		momento che $\QQ(\alpha) \subseteq \overline{\QQ}$,
+		$[\overline{\QQ} : \QQ] \geq n$. Pertanto il grado
+		di $\overline{\QQ}$ su $\QQ$ non è finito, benché
+		$\overline{\QQ}$ sia un'estensione algebrica per
+		definizione.
+	\end{remark}
+
+	\begin{remark}
+		Se $L$ è un'estensione semplice, allora $L$
+		è algebrica se e solo se $L$ è un'estensione
+		finita.
+	\end{remark}
+
+	Definiamo infine il composto di due estensione $L$, $M$ di $K$ su uno stesso campo $\Omega$:
+
+	\begin{definition}[composto di due estensioni]
+		Siano $L$, $M \subseteq \Omega$ estensioni di $K$ con
+		$\Omega$ a sua volta campo. Si definisce allora
+		il \textbf{composto} $LM$ di $L$ e $M$ come il più
+		piccolo sottocampo di $\Omega$ che contiene sia
+		$L$ che $M$. Talvolta si scrive anche $L(M) = LM$.
+	\end{definition}
+
+	\begin{remark}
+		Se $L = K(\alpha_1, \ldots, \alpha_m)$ e
+		$M = K(\beta_1, \ldots, \beta_n)$, allora vale che:
+		\[ LM = K(\alpha_1, \ldots, \alpha_m, \beta_1, \ldots, 
+		\beta_n). \]
+	\end{remark}
+
+	\begin{proposition}
+		Siano $L$ e $M$ due campi tali per cui
+		$K \subseteq L$, $M$. Allora, se
+		$[L : K] = m \in \NN^+$ e $[M : K] = n \in \NN^+$,
+		$LM$ è un'estensione finita di $K$ e $\mcm(m, n) \mid [LM : K]$.
+	\end{proposition}
+
+	\begin{proof}
+		Si consideri il seguente diamante di estensioni:
+		\[\begin{tikzcd}[column sep=scriptsize]
+			&& LM \\
+			\\
+			L &&&& M \\
+			\\
+			&& K
+			\arrow["n", no head, from=3-5, to=5-3]
+			\arrow["m"', no head, from=3-1, to=5-3]
+			\arrow[no head, from=1-3, to=3-5]
+			\arrow[no head, from=1-3, to=3-1]
+			\arrow[no head, from=1-3, to=5-3]
+		\end{tikzcd}\]
+		Dal momento che $LM = L(M)$ è un $L$-spazio vettoriale
+		e $M$ è un'estensione finita di $K$, il grado di $LM$
+		su $L$ è finito. Pertanto, applicando il teorema delle
+		torri algebriche, $m \mid [LM : K]$. Analogamente
+		$n \mid [LM : K]$, e quindi $\mcm(m, n) \mid [LM : K]$.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $L$ un'estensione di campo di $K$. Allora
+		$A = \{ \alpha \in L \mid \alpha \text{ algebrico su } K \}$ è un campo, e quindi un'estensione algebrica
+		di $K$.
+	\end{proposition}
+
+	\begin{proof}
+		Siano $\alpha$ e $\beta \in A$. Si consideri il
+		seguente diamante di estensioni:
+		\[\begin{tikzcd}[column sep=small]
+			&& {K(\alpha, \beta)} \\
+			\\
+			{K(\alpha)} &&&& {K(\beta)} \\
+			\\
+			&& K
+			\arrow[no head, from=3-5, to=5-3]
+			\arrow[no head, from=3-1, to=5-3]
+			\arrow[no head, from=1-3, to=3-5]
+			\arrow[no head, from=1-3, to=3-1]
+			\arrow[no head, from=1-3, to=5-3]
+		\end{tikzcd}\]
+		Dal momento che $K(\alpha, \beta) = K(\alpha)K(\beta)$
+		e sia $[K(\alpha) : K]$ che $[K(\beta) : K]$ sono
+		finiti dacché $\alpha$ e $\beta$ sono algebrici,
+		$K(\alpha, \beta)$ è un'estensione finita di $K$,
+		ed è dunque un'estensione algebrica. Pertanto
+		$\alpha \pm \beta$, $\alpha\beta$, $\alpha\inv$
+		(se $\alpha \neq 0$) e $\beta\inv$ (se $\beta \neq 0$) sono elementi algebrici di $K$,
+		e quindi $A$ è un campo, e a maggior ragione un'estensione algebrica di $K$.
+	\end{proof}
+
+	\begin{proposition}
+		Se $K \subseteq L \subseteq F$ è una torre di
+		estensioni e $\faktor{L}{K}$ è algebrica così
+		come $\faktor{F}{L}$, allora anche
+		$\faktor{F}{K}$ è algebrica.
+	\end{proposition}
+
+	\begin{proof}
+		Sia $f \in F$. Allora, poiché $F$ è
+		algebrico su $L$, esistono $l_0$, \ldots,
+		$l_n \in L$ tali per cui, detto
+		$p(x) = l_n x^n + \ldots + l_1 x + l_0 \in L[x]$,
+		vale che $p(f) = 0$. In particolare $f$ è
+		algebrico su $K(l_n, \ldots, l_0)$, e quindi
+		$K(l_n, \ldots, l_0, f)$ è un'estensione finita
+		su $K(l_n, \ldots, l_0)$. \medskip
+		
+		
+		Chiaramente $K(l_n, \ldots, l_0)$ è un'estensione
+		finita su $K$ dal momento che questi due campi sono
+		i due estremi della seguente torre di estensioni:
+		\[\begin{tikzcd}
+			{K(l_n, \ldots, l_0)} \\
+			{K(l_{n-1}, \ldots, l_0) } \\
+			\vdots \\
+			{K(l_0)} \\
+			K
+			\arrow[no head, from=1-1, to=2-1]
+			\arrow[no head, from=2-1, to=3-1]
+			\arrow[no head, from=3-1, to=4-1]
+			\arrow[no head, from=4-1, to=5-1]
+		\end{tikzcd}\]
+		Infatti ogni campo della torre è un'estensione
+		finita del sottocampo corrispondente dal momento
+		che $\faktor{L}{K}$ è un'estensione algebrica\footnote{
+			In particolare questo dimostra che un'estensione
+			algebrica e finitamente generata è anche
+			finita. Si può generalizzare il risultato
+			mostrando che un'estensione è finita se e solo
+			se finitamente generata da elementi algebrici.
+		}. \medskip
+		
+		
+		Per il teorema delle torri algebriche, allora
+		$K(l_n, \ldots, l_0, f)$ è un'estensione finita
+		di $K$. Dal momento allora che $K(f) \subseteq K(l_n, \ldots, l_0, f)$, anche questa è un'estensione finita,
+		e quindi $f$ è algebrico, da cui la tesi.
+	\end{proof}
+
+\end{document}
