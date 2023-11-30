@@ -1,0 +1,201 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Chiusura algebrica di un campo e campi di spezzamento}
+	\maketitle
+	
+	\begin{note}
+		Per $K$, $L$ ed $F$ si intenderanno sempre dei campi.
+		Se non espressamente detto, si sottintenderà anche
+		che $K \subseteq L$, $F$, e che $L$ ed $F$ sono
+		estensioni costruite su $K$. Per $[L : K]$ si
+		intenderà $\dim_K L$, ossia la dimensione di $L$
+		come $K$-spazio vettoriale.
+	\end{note} \bigskip
+
+
+	Questo documento si propone di illustrare le principali
+	proprietà e caratteristiche dei campi algebricamente
+	chiusi, delle chiusure algebriche e dei campi di
+	spezzamento, col proposito di dare i mezzi necessari
+	per approcciarsi alla teoria di Galois. Per questo
+	motivo si presentano le seguenti definizioni:
+	
+	\begin{definition}[campo algebricamente chiuso]
+		Un campo $K$ si dice \textbf{algebricamente chiuso}
+		se ogni polinomio a coefficienti in $K$ ammette una
+		radice in $K$. Equivalentemente, $K$ è algebricamente
+		chiuso se ogni polinomio $p \in K[x]$ ha tutte le proprie
+		radici in $K$, e quindi se gli irriducibili di $K$ sono
+		tutti e soli i polinomi di grado unitario.
+	\end{definition}
+	
+	\begin{definition}[chiusura algebrica]
+		Un estensione $\faktor{\Omega}{K}$ si dice
+		\textbf{chiusura algebrica} di $K$, e si
+		indica usualmente con $\overline{K}$, se $\Omega$
+		è un campo algebricamente chiuso e se
+		$\Omega$ è un'estensione algebrica su $K$.
+	\end{definition}
+	
+	\begin{remark}
+		Per esempio, una chiusura algebrica di $\RR$ è $\CC$,
+		per il Teorema fondamentale dell'algebra.
+	\end{remark}
+	
+	\begin{proposition}
+		Sia $\Omega$ un campo algebricamente chiuso. Se allora
+		$K$ è un sottocampo di $\Omega$, vale che
+		$K'$, il campo degli elementi algebrici
+		su $K$, è una chiusura algebrica di $K$.
+	\end{proposition}
+	
+	\begin{proof}
+		Chiaramente
+		$K'$ è un'estensione algebrica su
+		$K$. Si verifica allora che $K'$ è
+		algebricamente chiuso. Sia $p \in K'[x]$.
+		Dal momento che $K$ è algebricamente chiuso, e
+		che $p$ appartiene anche a $K[x]$, allora
+		$p$ ammette una radice $\alpha \in \Omega$. Si mostra che
+		$\alpha$ è algebrico su $K$. Poiché allora
+		$\faktor{K'(\alpha)}{K'}$ è
+		un'estensione algebrica (infatti $p$ annulla $\alpha$
+		per ipotesi) e $\faktor{K'}{K}$ è algebrica
+		per ipotesi, allora $K'(\alpha)$ è algebrica
+		su $K$, e dunque $\alpha$ è algebrico su $K$, pertanto
+		$\alpha \in K'$, da cui la tesi.
+	\end{proof}
+	
+	\begin{remark}
+		Poiché $\QQ$ è un sottocampo di $\CC$ e $\CC$ è
+		un campo algebricamente chiuso, il campo degli
+		elementi algebrici di $\QQ$ è una chiusura algebrica di
+		$\QQ$ per la proposizione precedente.
+	\end{remark}
+	
+	Adesso si enuncia, senza dimostrarlo, un teorema su cui si baserà buona parte della prossima teoria:
+	
+	\begin{theorem}[esistenza ed unicità della chiusura algebrica]
+		Esiste ed è unica, a meno di $K$-isomorfismo\footnote{
+			Un $K$-isomorfismo è un isomorfismo tra estensioni
+			di $K$ che fissa $K$, ossia che ristretto a $K$ è
+			l'identità di $K$.
+		},
+		la chiusura algebrica di $K$.
+	\end{theorem}
+	
+	\begin{remark}
+		Poiché il campo degli elementi algebrici di $\QQ$ è una chiusura algebrica di
+		$\QQ$ ed è un insieme numerabile, $\CC$ non può
+		essere una chiusura algebrica di $\QQ$ dacché
+		$\CC$ ha la cardinalità del continuo (e dunque non possono
+		esistere bigezioni tra $\CC$ e $\overline{\QQ}$). Poiché
+		$\CC$ è però algebricamente chiuso, può solamente
+		verificarsi che $\CC$ non sia un'estensione algebrica
+		di $\QQ$. Più facilmente, $\pi \in \RR$ non è algebrico su $\QQ$,
+		e così né $\RR$ né $\CC$ sono estensioni algebriche su $\QQ$.
+	\end{remark}
+	
+	\begin{definition}[campo di spezzamento]
+		Sia $\mathcal{F}$ una famiglia di polinomi di $K[x]$.
+		Si definisce allora \textbf{campo di spezzamento} di
+		$\mathcal{F}$ una estensione $F$ di $K$ tale per cui:
+		
+		\begin{itemize}
+			\item ogni $p \in \mathcal{F}$ si decompone in fattori lineari in
+				$F[x]$,
+			\item se $L$ è un'estensione su $K$ tale per cui
+				$L \subsetneq F$, allora esiste $p \in \mathcal{F}$
+				non si decompone in fattori lineari in $L[x]$.
+		\end{itemize}
+		
+		Equivalentemente $F$ è un'estensione minimale in cui
+		ogni polinomio di $\mathcal{F}$ si decompone in fattori
+		lineari.
+	\end{definition}
+	
+	Come per le chiusure algebriche, si enuncia il seguente
+	teorema senza dimostrazione\footnote{
+		L'esistenza di un campo di spezzamento è piuttosto
+		facile da dimostrare, è sufficiente considerare
+		l'estensione di $K$ a cui si aggiungono tutte le
+		radici del polinomio.
+	}:
+	
+	\begin{theorem}[esistenza ed unicità del campo di spezzamento]
+		Esiste ed è unico, a meno di $K$-isomorfismo, il
+		campo di spezzamento di $\mathcal{F}$ su $K$.
+	\end{theorem}
+	
+	\begin{definition}[coniugati di $\alpha$]
+		Se $\alpha \in \faktor{L}{K}$ è algebrico su $K$, si definiscono \textbf{coniugati} di $\alpha$ su $K$ le
+		radici di $\mu_\alpha$ su $K$.
+	\end{definition}
+	
+	I coniugati di $\alpha$ sono speciali in quanto
+	permettono di studiare
+	le $K$-immersioni di $K(\alpha)$ in $\overline{K}$, ossia
+	di studiare i campi $K$-isomorfi a $K(\alpha)$ presenti in
+	$\overline{K}$, come dimostra la:
+	
+	\begin{proposition}
+		Sia $\alpha \in \faktor{L}{K}$ algebrico su $K$. Allora,
+		se $d$ è il numero di coniugati distinti di $\alpha$,
+		esistono esattamente $d$ $K$-immersioni di $K(\alpha)$
+		in $\overline{K}$ e sono tali da mandare $\alpha$ in
+		un suo altro coniugato.
+	\end{proposition}
+	
+	\begin{proof}
+		Per considerare le $K$-immersioni di $K(\alpha)$ in
+		$K$, si considera prima l'isomorfismo:
+		\[ K(\alpha) \cong K[x] \quot{(\mu_\alpha)}. \]
+		Per il Primo teorema di isomorfismo, esistono
+		allora tanti omomorfismi da $K(\alpha)$ in $\overline{K}$
+		quanti sono gli omomorfismi da $K[x]$ in $\overline{K}$ che
+		annullano $(\mu_\alpha)$. Un omomorfismo $\varphi$
+		da $K[x]$ a $\overline{K}$ che fissa $K$ è completamente determinato da
+		$\beta = \varphi(x)$ ed in particolare mappa $p \in K[x]$
+		a $p(\beta)$. Affinché allora $(\mu_\alpha)$
+		appartenga a $\Ker \varphi$, $\mu_\alpha(\beta) = 0$, e quindi
+		$\beta$ deve essere un coniugato di $\alpha$. Pertanto
+		gli omomorfismi da $K(\alpha)$ a $\overline{K}$ sono
+		tali per cui $\alpha$ venga mandato in $\beta$. Questi
+		sono $K$-immersioni dal momento che l'unità viene preservata,
+		da cui la tesi.
+	\end{proof}
+	
+	\hr
+	
+	\begin{definition}[estensione separabile]
+		Un'estensione $\faktor{L}{K}$ si dice \textbf{separabile}
+		se per ogni $\alpha \in L$, $\mu_{\alpha,K}$ ha radici
+		distinte.
+	\end{definition}
+	
+	\begin{definition}[campo perfetto]
+		Un campo si dice \textbf{perfetto} se le derivate dei
+		suoi polinomi irriducibili non sono mai nulle. 
+		Equivalentemente un campo è perfetto se i suoi
+		polinomi irriducibili hanno sempre radici distinte.
+	\end{definition}
+	
+	\begin{remark}
+		Le estensioni di un campo perfetto sono sempre separabili.
+		Infatti il polinomio minimo su $K$ è in particolare
+		un irriducibile, e quindi ha radici distinti.
+	\end{remark}
+	
+	\begin{note}
+		Si assumerà d'ora in poi che \underline{\textit{$K$
+		è perfetto}}, in modo tale da semplificare l'introduzione
+		alla teoria di Galois.
+	\end{note}
+	
+	\begin{remark}
+		Poiché $K$ è perfetto, le $K$-immersioni di $K(\alpha)$
+		sono esattamente $[K(\alpha) : K] = \deg_K \alpha$.
+	\end{remark}
+\end{document}
