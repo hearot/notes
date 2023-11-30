@@ -60,7 +60,7 @@
 		Sia $\alpha \in K$. Allora si definisce $K(\alpha)$
 		come la più piccola estensione di $K$ che contiene
 		$\alpha$, ossia:
-		\[ K(\alpha) = \bigcap_{\substack{\faktor{F_i}{K} \text{ campo}	\\ \alpha \in F_i}} F_i. \]
+		\[ K(\alpha) = \bigcap_{\substack{\faktor{F_i}{K} \text{ campo}	\\[0.02in] \alpha \in F_i}} F_i. \]
 	\end{definition}
 
 	\begin{definition}[estensione semplice]
@@ -197,6 +197,68 @@
 		\[ LM = K(\alpha_1, \ldots, \alpha_m, \beta_1, \ldots, 
 		\beta_n). \]
 	\end{remark}
+	
+	\begin{theorem}[delle torri algebriche]
+		Siano $K \subseteq L \subseteq F$ campi. Allora $\faktor{F}{K}$ è un'estensione finita se e solo se
+		$\faktor{L}{K}$ e $\faktor{F}{L}$ sono estensioni finite. \medskip
+		
+
+		In particolare\footnote{Si può generalizzare questa formula ad $F$ spazio vettoriale su $K$ e $L$ con $K \subseteq L$, a patto che $K$ e $L$ siano campi.}, se $\faktor{F}{K}$ è un'estensione finita,
+		vale che:
+		\[ [F : K] = [F : L] [L : K]. \]
+	\end{theorem}
+	
+	\begin{proof}
+		Se $\faktor{F}{K}$ è un'estensione finita, allora a
+		maggior ragione $\faktor{L}{K}$ è un'estensione finita
+		dal momento che $L$ è un $K$-sottospazio vettoriale di
+		$F$, che è un $K$-spazio vettoriale. Inoltre,
+		anche $\faktor{F}{L}$ è un'estensione finita, dacché
+		una base di $\faktor{F}{K}$ è un insieme di generatori
+		su $\faktor{F}{L}$, dal momento che $K \subseteq L$. \medskip
+		
+		
+		Si mostra adesso che se $\faktor{L}{K}$ e $\faktor{F}{L}$ sono estensioni finite, allora $F$ è uno spazio
+		finito-dimensionale su $K$ e vale che:
+		\[ [F : K] = [F : L] [L : K]. \]
+		Siano $[F : L] = m$ e $[L : K] = n$. Sia
+		$\BB_F = (f_1, \ldots, f_m)$ una base
+		di $F$ su $L$, e sia $\BB_L = (l_1, \ldots, l_n)$ una
+		base di $L$ su $K$. \\
+		
+		Si dimostra che la seguente è una base di $F$ su $K$:
+		\[\BB_F \BB_L = \{ f_1 l_1, \ldots, f_1 l_n, \ldots, f_m l_n\}, \]
+		dove si osserva che $\abs{\BB_F \BB_L} = [F : L] [L : K]$.
+		Si mostra innanzitutto che $\BB_F \BB_L$ è un insieme
+		di generatori. Sia $f \in F$.
+		Allora si può scrivere $f$ come combinazione lineare
+		finita con scalari in $L$:
+		\[f = \sum_{i=1}^m \beta_i f_i.\]
+		A sua volta, allora, si può scrivere ogni $\beta_i \in L$
+		come combinazione lineare finita con scalari in $K$:
+		\[\beta_i = \sum_{j=1}^n \gamma_j^{(i)} l_j.\]
+		Combinando queste due identità, si verifica che
+		$\BB_F \BB_L$ genera $F$ come $K$-spazio vettoriale:
+		\[ f = \sum_{i=1}^m \sum_{j=1}^n \gamma_j^{(i)} \, l_j f_i. \]
+
+		
+		Infine, si verifica che $\BB_F \BB_L$ è un insieme linearmente
+		indipendente. Si consideri l'equazione:
+		
+		\[ \sum_{i=1}^m \sum_{j=1}^n \gamma_j^{(i)} \, l_j f_i = \sum_{i=1}^m \left(\sum_{j=1}^n \gamma_j^{(i)} l_j \right) f_i = 0. \]
+		
+		Poiché $\BB_F$ è linearmente indipendente, si deduce
+		che:
+		
+		\[ \sum_{j=1}^n \gamma_j^{(i)} l_j = 0. \]
+		
+		Tuttavia, $\BB_L$ è a sua volta linearmente indipendente,
+		e quindi $\gamma_j^{(i)} = 0$, $\forall i, j$. Dunque
+		$\BB_F \BB_L$ è linearmente indipendente, e quindi è
+		una base dacché è anche un insieme di generatori per
+		$F$ come $K$-spazio vettoriale. Pertanto $F$ è un'estensione
+		finita di $K$ e vale la tesi.
+	\end{proof}
 
 	\begin{proposition}
 		Siano $L$ e $M$ due campi tali per cui
@@ -256,26 +318,28 @@
 		(se $\alpha \neq 0$) e $\beta\inv$ (se $\beta \neq 0$) sono elementi algebrici di $K$,
 		e quindi $A$ è un campo, e a maggior ragione un'estensione algebrica di $K$.
 	\end{proof}
-
+	
+	Le estensioni finite sono completamente caratterizzate
+	in qualità di estensioni finitamente generate da elementi
+	algebrici sul campo di riferimento, come mostra la:
+	
 	\begin{proposition}
-		Se $K \subseteq L \subseteq F$ è una torre di
-		estensioni e $\faktor{L}{K}$ è algebrica così
-		come $\faktor{F}{L}$, allora anche
-		$\faktor{F}{K}$ è algebrica.
+		$\faktor{L}{K}$ è un'estensione finita se e solo se
+		è un'estensione finitamente generata da elementi algebrici.
 	\end{proposition}
-
+	
 	\begin{proof}
-		Sia $f \in F$. Allora, poiché $F$ è
-		algebrico su $L$, esistono $l_0$, \ldots,
-		$l_n \in L$ tali per cui, detto
-		$p(x) = l_n x^n + \ldots + l_1 x + l_0 \in L[x]$,
-		vale che $p(f) = 0$. In particolare $f$ è
-		algebrico su $K(l_n, \ldots, l_0)$, e quindi
-		$K(l_n, \ldots, l_0, f)$ è un'estensione finita
-		su $K(l_n, \ldots, l_0)$. \medskip
+		Se $L$ è un'estensione finita su $K$, allora esiste una
+		base finita $\basis = \{l_1, \ldots, l_n\} \subseteq L$
+		tale per cui $L = K(l_1, \ldots, l_n)$. Poiché $L$ è
+		un'estensione finita, $L$ è anche algebrica, e quindi
+		$\basis$ è composta da elementi algebrici su $K$. Pertanto
+		$L$ è un'estensione finitamente generata da elementi algebrici
+		su $K$. \medskip
 		
-		
-		Chiaramente $K(l_n, \ldots, l_0)$ è un'estensione
+		Sia ora $L = K(l_1, \ldots, l_n)$ con $l_i$ elemento algebrico
+		su $K$. Allora, per il teorema delle torri algebriche,
+		$L$ è un'estensione
 		finita su $K$ dal momento che questi due campi sono
 		i due estremi della seguente torre di estensioni:
 		\[\begin{tikzcd}
@@ -289,21 +353,88 @@
 			\arrow[no head, from=3-1, to=4-1]
 			\arrow[no head, from=4-1, to=5-1]
 		\end{tikzcd}\]
-		Infatti ogni campo della torre è un'estensione
+		dove ogni campo interno della torre è un'estensione
 		finita del sottocampo corrispondente dal momento
-		che $\faktor{L}{K}$ è un'estensione algebrica\footnote{
-			In particolare questo dimostra che un'estensione
-			algebrica e finitamente generata è anche
-			finita. Si può generalizzare il risultato
-			mostrando che un'estensione è finita se e solo
-			se finitamente generata da elementi algebrici.
-		}. \medskip
+		che $\faktor{L}{K}$ è un'estensione algebrica, da
+		cui la tesi.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $K \subseteq L \subseteq F$ una torre di
+		estensioni. Allora $\faktor{F}{K}$ è un'estensione 
+		algebrica se e solo se lo sono sia $\faktor{L}{K}$
+		che $\faktor{F}{L}$.
+	\end{proposition}
+
+	\begin{proof}
+		Se $\faktor{F}{K}$ è un'estensione algebrica,
+		a maggior ragione $\faktor{F}{L}$ è
+		algebrica, dal momento che ogni elemento $f \in K$ è
+		radice di un polinomio a coefficienti in $K$, e
+		quindi, in particolare, di un polinomio a coefficienti in
+		$L$. Allora stesso tempo, ogni elemento di $L$ è un
+		elemento di $F$, e quindi tale elemento è ancora algebrico
+		su $K$, e così anche $\faktor{L}{K}$ è un'estensione
+		algebrica. \medskip
+		
+		
+		Siano $\faktor{L}{K}$ e $\faktor{F}{L}$
+		estensioni algebriche. Sia $f \in F$. Allora, poiché $F$ è
+		algebrico su $L$, esistono $l_0$, \ldots,
+		$l_n \in L$ tali per cui, detto
+		$p(x) = l_n x^n + \ldots + l_1 x + l_0 \in L[x]$,
+		vale che $p(f) = 0$. In particolare $f$ è
+		algebrico su $K(l_n, \ldots, l_0)$, e quindi
+		$K(l_n, \ldots, l_0, f)$ è un'estensione finita
+		su $K(l_n, \ldots, l_0)$. \medskip
+		
+		
+		Chiaramente anche $K(l_n, \ldots, l_0)$ è un'estensione
+		finita su $K$ dal momento che è finitamente generata
+		da elementi algebrici su $K$, dacché $L$ è un'estensione
+		algebrica su $K$. \medskip
 		
 		
 		Per il teorema delle torri algebriche, allora
 		$K(l_n, \ldots, l_0, f)$ è un'estensione finita
-		di $K$. Dal momento allora che $K(f) \subseteq K(l_n, \ldots, l_0, f)$, anche questa è un'estensione finita,
-		e quindi $f$ è algebrico, da cui la tesi.
+		su $K$. Dal momento allora che $K(f) \subseteq K(l_n, \ldots, l_0, f)$, anche questa è un'estensione finita,
+		e quindi $f$ è algebrico. Pertanto si conclude che
+		$\faktor{F}{K}$ è un'estensione algebrica, da cui
+		la tesi.
+	\end{proof}
+	
+	Infine, si presenta un risultato interessante che lega
+	l'algebricità di $\faktor{L}{K}$ e $\faktor{M}{K}$ a quella
+	di $\faktor{LM}{K}$:
+	
+	\begin{proposition}
+		Siano $K \subseteq L$, $M$. Allora le estensioni
+		$\faktor{L}{K}$ e $\faktor{M}{K}$ sono algebriche se
+		e solo se $\faktor{LM}{K}$ è algebrica.
+	\end{proposition}
+	
+	\begin{proof}
+		Siano $\faktor{L}{K}$ e $\faktor{M}{K}$ algebriche.
+		Sia $\alpha \in LM = L(M)$. Dal momento che $L(M)$ è un
+		$L$-spazio vettoriale i cui vettori sono gli elementi di
+		$M$, allora $\alpha$ può scriversi
+		come combinazione lineare finita di elementi in $M$ con
+		coefficienti in $L$, ossia:
+		\[ \alpha = \sum_{i=1}^n \lambda_i m_i. \]
+		Poiché $L$ e $M$ sono estensioni algebriche su $K$,
+		$K' := K(\lambda_1, \ldots, \lambda_n, m_1, \ldots, m_n)$ è
+		un'estensione finitamente generata da elementi algebrici
+		ed è pertanto finita su $K$. Poiché $K(\alpha) \subseteq
+		K'$, $K(\alpha)$ è un'estensione finita su $K$ e dunque
+		$\alpha$ è algebrico su $K$. Pertanto $LM$ è un'estensione
+		algebrica su $K$. \medskip
+		
+		
+		Se $\faktor{LM}{K}$ è un'estensione algebrica, allora
+		in particolare ogni elemento di $L$, che appartiene a $L$,
+		è algebrico su $K$, e così $\faktor{L}{K}$ è un'estensione
+		algebrica. Analogamente lo è anche $\faktor{M}{K}$, da cui
+		la tesi.
 	\end{proof}
 
 \end{document}
