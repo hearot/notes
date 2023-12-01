@@ -136,17 +136,20 @@
 	
 	I coniugati di $\alpha$ sono speciali in quanto
 	permettono di studiare
-	le $K$-immersioni di $K(\alpha)$ in $\overline{K}$, ossia
+	le $K$-immersioni\footnote{
+		Una $K$-immersione è un monomorfismo tra estensioni di $K$
+		che fissa $K$.
+	} di $K(\alpha)$ in $\overline{K}$, ossia
 	di studiare i campi $K$-isomorfi a $K(\alpha)$ presenti in
-	$\overline{K}$, come dimostra la:
+	$\overline{K}$, come dimostra il:
 	
-	\begin{proposition}
+	\begin{theorem}[$K$-immersioni da $K(\alpha)$ in $\overline{K}$]
 		Sia $\alpha \in \faktor{L}{K}$ algebrico su $K$. Allora,
 		se $d$ è il numero di coniugati distinti di $\alpha$,
 		esistono esattamente $d$ $K$-immersioni di $K(\alpha)$
 		in $\overline{K}$ e sono tali da mandare $\alpha$ in
 		un suo altro coniugato.
-	\end{proposition}
+	\end{theorem}
 	
 	\begin{proof}
 		Per considerare le $K$-immersioni di $K(\alpha)$ in
@@ -163,16 +166,23 @@
 		$\beta$ deve essere un coniugato di $\alpha$. Pertanto
 		gli omomorfismi da $K(\alpha)$ a $\overline{K}$ sono
 		tali per cui $\alpha$ venga mandato in $\beta$. Questi
+		omomorfismi
 		sono $K$-immersioni dal momento che l'unità viene preservata,
 		da cui la tesi.
 	\end{proof}
 	
 	\hr
 	
+	\begin{definition}[polinomio separabile]
+		Un polinomio $p \in K[x]$ si dice \textbf{separabile}
+		se $p$ ha radici distinte in un suo campo di
+		spezzamento.
+	\end{definition}
+	
 	\begin{definition}[estensione separabile]
 		Un'estensione $\faktor{L}{K}$ si dice \textbf{separabile}
-		se per ogni $\alpha \in L$, $\mu_{\alpha,K}$ ha radici
-		distinte.
+		se per ogni $\alpha \in L$, $\mu_{\alpha,K}$ è
+		un polinomio separabile.
 	\end{definition}
 	
 	\begin{definition}[campo perfetto]
@@ -190,7 +200,7 @@
 	
 	\begin{note}
 		Si assumerà d'ora in poi che \underline{\textit{$K$
-		è perfetto}}, in modo tale da semplificare l'introduzione
+		è un campo perfetto}}, in modo tale da semplificare l'introduzione
 		alla teoria di Galois.
 	\end{note}
 	
@@ -198,4 +208,83 @@
 		Poiché $K$ è perfetto, le $K$-immersioni di $K(\alpha)$
 		sono esattamente $[K(\alpha) : K] = \deg_K \alpha$.
 	\end{remark}
+	
+	\begin{remark}
+		Se $\varphi_i : K(\alpha) \mono \overline{K}$ è un'estensione di $\varphi : K \mono \overline{K}$, allora
+		$\varphi_i(K(\alpha)) = K(\varphi_i(\alpha))$.
+	\end{remark}
+
+	Poiché i campi considerati sono perfetti, si possono
+	studiare in generale le estensioni di tutte le immersioni
+	di $K$ in $\overline{K}$, e quindi non solo le estensioni
+	dell'identità, come dimostra il:
+	
+	\begin{theorem}[estensioni di $\varphi$ da $K(\alpha)$ in $\overline{K}$]
+		Sia $\alpha \in \faktor{L}{K}$ algebrico su $K$. Allora
+		per ogni $\varphi : K \mono \overline{K}$ esistono
+		esattamente $\deg_K \alpha$ estensioni $\varphi_i : K(\alpha) \mono K$ di $\varphi$, ossia monomorfismi per cui $\restr{\varphi_i}{K} = \varphi$. Tali estensioni sono tali da mappare $\alpha$
+		nelle radici di $\varphi(\mu_\alpha)$.
+	\end{theorem}
+	
+	\begin{proof}
+		Per considerare le estensioni di $\varphi$ da $K(\alpha)$ in
+		$K$, si considera prima l'isomorfismo:
+		\[ K(\alpha) \cong K[x] \quot{(\mu_\alpha)}. \]
+		Per il Primo teorema di isomorfismo, esistono
+		allora tanti omomorfismi da $K(\alpha)$ in $\overline{K}$
+		quanti sono gli omomorfismi da $K[x]$ in $\overline{K}$ che
+		annullano $(\mu_\alpha)$. Un omomorfismo $\varphi_i$
+		da $K[x]$ a $\overline{K}$ tale per cui $K$ viene mappato
+		tramite $\varphi$ è completamente determinato da
+		$\beta = \varphi_i(x)$ ed in particolare mappa $p \in K[x]$
+		alla valutazione del polinomio $q$, ottenuto mappando i
+		coefficienti di $p$ tramite $\varphi$, in $\beta$, detto
+		$\varphi(p)(\beta)$. Affinché allora $(\mu_\alpha)$
+		appartenga a $\Ker \varphi$, deve valere $\varphi(\mu_\alpha)(\beta) = 0$, e quindi
+		$\beta$ deve essere una radice di $\varphi(\mu_\alpha)$. 
+		Pertanto gli omomorfismi da $K(\alpha)$ a $\overline{K}$ sono
+		tali per cui $\alpha$ venga mandato nelle radici di
+		$\varphi(\mu_\alpha)$. Questi omomorfismi sono
+		ancora immersioni dal momento che l'unità viene
+		preservata da $\varphi_i$. Dal momento che $\varphi$ è
+		a sua volta un'immersione, $\varphi(\mu_\alpha)$ è
+		irriducibile dacché $\mu_\alpha$ lo è, ed inoltre
+		$\deg \varphi(\mu_\alpha) = \deg \mu_\alpha$. Pertanto,
+		poiché $K$ è un campo perfetto,
+		le radici di $\varphi(\mu_\alpha)$ sono $\deg_K \alpha$,
+		e quindi le estensioni di $\varphi$ sono esattamente
+		$\deg_K \alpha$.
+	\end{proof}
+	
+	A partire da questa proposizione, si può dimostrare un
+	risultato più generale sulle estensioni finite di $K$,
+	come mostra il fondamentale:
+	
+	\begin{theorem}[estensioni di $\varphi$ da $\faktor{L}{K}$ in $\overline{K}$]
+		Sia $[L : K] = n$. Allora per ogni $\varphi : K \mono \overline{K}$ immersione esistono esattamente $n$
+		estensioni $\varphi_i : L \to \overline{K}$ di $\varphi$,
+		ossia tali per cui $\restr{\varphi_i}{K} = \varphi$.	
+	\end{theorem}
+	
+	\begin{proof}
+		Se $n = 1$, la tesi è del tutto ovvia.
+		Si dimostra facilmente il teorema per $n \geq 2$ applicando il principio di induzione ed il teorema precedente.
+		Se $n = 2$, $L$ è un'estensione semplice di $K$ e quindi
+		esiste $\alpha \in L \setminus K$
+		tale per cui $L = K(\alpha)$.
+		La tesi allora segue applicando il teorema precedente. \medskip
+		
+
+		Se $n > 2$, sia $\alpha \in L \setminus K$.
+		Sia $[K(\alpha) : K] = m$. Se
+		$m = n$, allora $L = K(\alpha)$ e la tesi
+		segue ancora applicando il teorema precedente. Se invece
+		$m < n$, sia $[L : K(\alpha)] = d$. Per il teorema precedente
+		esistono esattamente $m$ estensioni $\varphi_i$ di $\varphi$ da $K(\alpha)$ in $K$. Invece, per il teorema delle torri algebriche,
+		$n = md$, e quindi $d < n$. Applicando allora l'ipotesi
+		induttiva, ogni $\varphi_i$ può essere unicamente
+		esteso in $d$ modi da $K(\alpha)$ a $L$. Pertanto esistono
+		solamente $n = md$ estensioni di $\varphi$, concludendo
+		il passo induttivo. 
+	\end{proof}
 \end{document}
