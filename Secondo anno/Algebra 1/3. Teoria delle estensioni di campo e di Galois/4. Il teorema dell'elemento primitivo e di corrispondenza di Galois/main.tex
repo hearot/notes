@@ -1,0 +1,98 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Il teorema dell'elemento primitivo e di corrispondenza di Galois}
+	\maketitle
+	
+	\begin{note}
+		Per $K$, $L$ ed $F$ si intenderanno sempre dei campi.
+		Se non espressamente detto, si sottintenderà anche
+		che $K \subseteq L$, $F$, e che $L$ ed $F$ sono
+		estensioni costruite su $K$. Per $[L : K]$ si
+		intenderà $\dim_K L$, ossia la dimensione di $L$
+		come $K$-spazio vettoriale. Per scopi didattici, si
+		considerano solamente campi perfetti, e dunque estensioni che sono sempre separabili, purché
+		non esplicitamente detto diversamente.
+	\end{note} \bigskip
+
+	Si dimostrano in questo documento i due teoremi più
+	importanti della teoria elementare delle estensioni di campo
+	e di Galois, il \textit{teorema dell'elemento primitivo} ed
+	il \textit{teorema di corrispondenza di Galois}.
+	
+	\begin{theorem}[dell'elemento primitivo]
+		Sia $\faktor{L}{K}$ un'estensione separabile e
+		finita. Allora $\faktor{L}{K}$ è semplice.
+	\end{theorem}
+	
+	\begin{proof}
+		Si distinguono i casi in cui $K$ è un campo finito
+		o infinito.
+		
+		\begin{itemize}
+			\item[($K$ finito)\;] Poiché $K$ è finito e
+			$L$ è un'estensione finita su $K$, a sua volta
+			$L$ è un campo finito. Pertanto $L^*$ è un
+			sottogruppo moltiplicativo finito di un campo, ed
+			è pertant ciclico. Se $\alpha \in L^*$ è allora
+			un generatore di $L^*$, vale che $L$ è uguale a
+			$K(\alpha)$. Pertanto $\faktor{L}{K}$ è un'estensione
+			semplice.
+
+			\item[($K$ infinito)\;] 
+			Si fornisce una dimostrazione costruttiva del
+			teorema, che permette di trovare algoritmicamente
+			un elemento primitivo per $L$.
+			Poiché $L$ è un'estensione
+			finita di $K$, $L$ è finitamente generato da
+			elementi algebrici su $K$. \medskip
+			
+			
+			Sia allora
+			$L = K(\alpha_1, \ldots, \alpha_n)$, dove
+			$\{ \alpha_i \}$ è una base di
+			$\faktor{L}{K}$ come $K$-spazio. È sufficiente
+			che $K(\alpha_1, \alpha_2)$ sia semplice affinché
+			anche $L$ lo sia. Infatti
+			si dimostrerebbe che $K(\alpha_1, \alpha_2) =
+			K(\gamma)$ per qualche $\gamma \in K(\alpha_1, \alpha_2)$,
+			e quindi $K(\alpha_1, \ldots, \alpha_n) =
+			K(\gamma, \alpha_3, \ldots, \alpha_n)$. Reiterando
+			allora il processo su $K(\gamma, \alpha_3)$ si
+			troverà un elemento primitivo, e così, induttivamente,
+			si dimostra che in particolare $L$ è semplice. Se
+			invece $n = 1$, la tesi è ovvia. \medskip
+			
+			
+			Sia allora, senza perdita di generalità, $L = K(\alpha, \beta)$. Sia $[L : K] = n$. Allora, poiché $L$
+			è un'estensione separabile su $K$, esistono
+			esattamente $n$ distinte $K$-immersioni di $L$,
+			dette $\varphi_i$.
+			Si definisca allora $p(x) \in \overline{K}[x]$ tale per cui:
+			\[ p(x) = \prod_{1 \leq i < j \leq n} (x \varphi_i(\alpha) + \varphi_i(\beta) - x \varphi_j(\alpha) - \varphi_j(\beta)). \]
+			Si dimostra che $p(x)$ non è nullo. Infatti,
+			se lo fosse, almeno uno dei fattori della produttoria
+			dovrebbe essere nullo. In tal caso si avrebbe
+			$\varphi_i(\alpha) = \varphi_j(\alpha)$ e
+			$\varphi_i(\beta) = \varphi_j(\beta)$, e dunque
+			$\varphi_i \equiv \varphi_j$, benché $i \neq j$,
+			\Lightning. Allora $\deg p = \binom{n}{2} > 0$.
+			Dal momento che $K$ è infinito, esiste\footnote{
+				A livello algoritmico è sufficiente valutare
+				$p(x)$ in al più $n+1$ valori distinti in $K$
+				per ottenere un $x$ funzionale per la tesi.
+			} $t \in K$
+			tale per cui $p(t) \neq 0$. \medskip
+			
+			
+			Detto $\gamma = \alpha t + \beta$, $\gamma$
+			ha esattamente $n$ coniugati. Infatti
+			$\varphi_i(\gamma) \neq \varphi_j(\gamma)$ $\forall i < j$, altrimenti $\gamma$ annullerebbe $p(x)$. Pertanto
+			$[K(\gamma) : K] = n = [K(\alpha, \beta) : K]$,
+			da cui $K(\alpha, \beta) = K(\gamma)$, ossia la tesi.
+		\end{itemize}
+	\end{proof}
+	
+	%TODO: aggiungere corrispondenza di Galois
+\end{document}
