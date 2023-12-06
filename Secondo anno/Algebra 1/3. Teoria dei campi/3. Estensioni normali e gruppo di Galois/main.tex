@@ -1,0 +1,258 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{notes_2023}
+
+\begin{document}
+	\title{Estensioni normali e gruppo di Galois}
+	\maketitle
+	
+	\begin{note}
+		Per $K$, $L$ ed $F$ si intenderanno sempre dei campi.
+		Se non espressamente detto, si sottintenderà anche
+		che $K \subseteq L$, $F$, e che $L$ ed $F$ sono
+		estensioni costruite su $K$. Per $[L : K]$ si
+		intenderà $\dim_K L$, ossia la dimensione di $L$
+		come $K$-spazio vettoriale. Per scopi didattici, si
+		considerano solamente campi perfetti, e dunque estensioni che sono sempre separabili, purché
+		non esplicitamente detto diversamente.
+	\end{note} \bigskip
+
+	Si introduce adesso il fondamentale concetto di
+	\textit{estensione normale}, prerequisito per
+	introdurre a sua volta la teoria di Galois.
+	
+	\begin{definition}[estensione normale]
+		Un'estensione algebrica
+		$\faktor{L}{K}$ si dice \textbf{normale}
+		se per ogni $K$-immersione $\varphi : L \to \overline{K}$
+		vale che $\varphi(L) = L$.
+	\end{definition}
+
+	Questa definizione viene immediatamente caratterizzata
+	attraverso i coniugati dei suoi elementi, come mostra
+	la:
+	
+	\begin{proposition}
+		Sono equivalenti i seguenti fatti:
+		
+		\begin{enumerate}[(i)]
+			\item $\faktor{L}{K}$ è un'estensione normale,
+			\item Per ogni $\alpha \in \faktor{L}{K}$, ogni coniugato
+			di $\alpha$ appartiene a $L$,
+			\item $\faktor{L}{K}$ è il campo di spezzamento
+			di una famiglia di polinomi di $K[x]$.
+		\end{enumerate}
+	\end{proposition}
+
+	\begin{proof}
+		Si mostra l'equivalenza delle proprietà:
+
+		\begin{itemize}
+			\item[$(i)\implies (ii)\;$] Sia $\varphi : L
+			\to \overline{K}$ una $K$-immersione di $L$. Allora,
+			poiché $L$ è normale su $K$, $\varphi(L) = L$.
+			Sia $\alpha \in L \setminus K$.
+			Dal momento che $K \subseteq K(\alpha) \subseteq L$,
+			$\restr{\varphi}{K(\alpha)}$ è in particolare
+			una $K$-immersione di $K(\alpha)$, e quindi
+			deve associare ad $\alpha$ un suo coniugato.
+			Dal momento però che $\varphi(\alpha) \in L$,
+			questo significa che ogni coniugato di $\alpha$
+			appartiene ad $L$.
+			
+			\item[$(ii)\implies (iii)\;$] Sia $\mathcal{F}$
+			la famiglia dei polinomi minimi degli elementi
+			di $\faktor{L}{K}$. Si dimostra che
+			$L$ è il campo di spezzamento di $\mathcal{F}$ su
+			$K$. Chiaramente $\mathcal{F} \subseteq L$,
+			dal momento che $L$ contiene una radice per
+			ipotesi di ogni polinomio minimo, e per
+			(ii) contiene tutti i suoi coniugati (e dunque
+			tutte le radici di ogni polinomio della famiglia
+			$\mathcal{F}$). Inoltre vale anche
+			che $L \subseteq \mathcal{F}$, dal momento che
+			ogni elemento di $L$ è radice di un polinomio
+			di $\mathcal{F}$, per costruzione. Pertanto
+			$L = \mathcal{F}$.
+			
+			\item[$(iii)\implies (i)\;$] Sia $\varphi : L
+			\to \overline{K}$ una $K$-immersione di $L$. Sia
+			$\alpha \in L \setminus K$.Dal momento per che $L$
+			è campo di spezzamento di una famiglia $\mathcal{F}$ di polinomi,
+			$L$ è generato dalle radici di $\mathcal{F}$.
+			Per ogni $\alpha$ generatore di $L$, allora,
+			$\varphi$ deve mappare $\alpha$ ad un suo
+			coniugato, ancora appartenente ad $L$ dacché
+			$\mathcal{F}$ è campo di spezzamento. Pertanto
+			$\varphi(\alpha) \in L$. Allora, dal momento
+			che $L$ è generato dalle radici di $\mathcal{F}$,
+			ogni suo elemento viene ancora mappato ad un
+			elemento di $L$, e quindi $\faktor{L}{K}$ è
+			un'estensione normale.
+		\end{itemize}
+	\end{proof}
+
+	\begin{remark}
+		Per esempio, $\faktor{\QQ(\sqrt[3]{2})}{\QQ}$ non
+		è normale, dal momento che $\sqrt[3]{2} \zeta_3$,
+		un coniugato di $\sqrt[3]{2}$, non appartiene
+		a $\QQ(\sqrt[3]{2})$. Al contrario,
+		$\faktor{\QQ(\zeta_3)}{\QQ}$ è normale, dal
+		momento che l'unico coniugato di $\zeta_3$ è
+		$\zeta_3^2$. 
+	\end{remark}
+
+	Dimostriamo inoltre che le estensioni di grado $2$
+	sono sempre normali, come mostra la:
+	
+	\begin{proposition}
+		Sia $\faktor{L}{K}$ un'estensione di grado $2$.
+		Allora $L$ è normale su $K$, se $\Char K \neq 2$.
+	\end{proposition}
+
+	\begin{proof}
+		Chiaramente $L$ è un'estensione algebrica di $K$,
+		essendo finita. Sia\footnote{
+			$L$ è di grado $2$ su $K$, e quindi $K$ deve
+			essere un suo sottinsieme proprio.
+		} allora $\alpha \in L \setminus K$. Dal momento che
+		$\alpha \notin K$, $[K(\alpha) : K] = 2$, e quindi
+		$L = K(\alpha)$. Inoltre $\deg_K \alpha = 2$, pertanto,
+		poiché $\Char K \neq 2$,
+		esiste un polinomio irriducibile
+		$p(x) = x^2 + bx + c$ con $b$, $c \in K$
+		di cui $\alpha$ è radice. In particolare,
+		$\alpha$, $\overline{\alpha} = \frac{-b \pm \sqrt{\Delta}}{2}$, dove
+		$\overline{\alpha}$ il coniugato di $\alpha$.
+		Allora $\alpha$, $\overline{\alpha} \in K(\sqrt{\Delta})$. Dal momento allora che
+		$L = K(\alpha) = K(\sqrt{\Delta})$, $L$ è
+		campo di spezzamento di $p \in K[x]$, e dunque,
+		per la proposizione precedente, è normale su $K$.
+	\end{proof}
+
+	Infine, si esplora la normalità su un diagramma di
+	estensioni.
+	
+	\begin{proposition}[normalità nel composto e nell'intersezione]
+		Siano $\faktor{L}{K}$ e $\faktor{M}{K}$ estensioni
+		normali. Allora $\faktor{LM}{K}$ e
+		$\faktor{L \cap M}{K}$ sono a loro volta normali.
+		
+		\[\begin{tikzcd}[column sep=small]
+			&& LM \\
+			\\
+			L &&&& M \\
+			\\
+			&& {L \cap M} \\
+			\\
+			&& K
+			\arrow[no head, from=5-3, to=7-3]
+			\arrow[no head, from=1-3, to=3-5]
+			\arrow[no head, from=1-3, to=3-1]
+			\arrow[no head, from=3-1, to=5-3]
+			\arrow[no head, from=5-3, to=3-5]
+			\arrow[no head, from=1-3, to=5-3]
+		\end{tikzcd}\]
+	\end{proposition}
+
+	\begin{proof}
+		Chiaramente $LM$ e $L \cap M$ sono estensioni
+		algebriche di $K$, in quanto sia $L$ che $M$ lo sono.
+		Sia $\varphi : LM \to \overline{K}$ una $K$-immersione
+		di $LM$. Allora $\varphi(LM) = \varphi(L(M)) =
+		L(\varphi(M)) = L(M) = LM$, e quindi $LM$ è normale
+		su $K$. Analogamente, se $\varphi : L \cap M \to \overline{K}$ è una $K$-immersione di $L \cap M$,
+		$\varphi(L \cap M) = \varphi(L) \cap \varphi(M) = L \cap M$, e quindi $L \cap M$ è normale su $K$.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $K \subseteq F \subseteq L$ una torre di campi. Allora
+		$\faktor{L}{K}$ normale $\implies$ $\faktor{L}{F}$
+		normale.
+	\end{proposition}
+
+	\begin{proof}
+		Poiché $L$ è normale su $K$, $L$ è un campo di
+		spezzamento di una famiglia $\mathcal{F}$ di polinomi
+		di $K[x]$. A maggior ragione, allora,
+		$L$ è campo di spezzamento di $\mathcal{F}$ come
+		polinomi di $F[x]$, e quindi è normale anche su $F$.
+	\end{proof} \medskip
+
+	Si può adesso introdurre la teoria di Galois introducendo
+	prima l'insieme $\Aut_K L$ e poi il gruppo $\Gal(\faktor{L}{K})$.
+	
+	\begin{definition}
+		Si definisce l'insieme $\Aut_K L$ come l'insieme
+		delle $K$-immersioni di $L$, ossia delle immersioni
+		$\varphi : L \to \overline{K}$ tali per cui
+		$\restr{\varphi}{K} = \Id_K$.
+	\end{definition}
+
+	Se $L$ è normale su $K$, le immersioni di
+	$\Aut_K L$ possono essere ristrette al codominio su
+	$L$ (infatti $\varphi(L) = L$ per definizione) e sono
+	tali per cui mandano gli elementi di $L$ nei loro
+	coniugati su $K$. Inoltre, se $L$ è un'estensione finita
+	di $K$, la separabilità di $L$ garantisce che\footnote{
+		In generale, se $L$ è un'estensione finita e normale di $K$,
+		$\abs{\Aut_K L} = [L : K]$ se e solo se $L$
+		separabile su $K$.
+	}
+	$\abs{\Aut_K L} = [L : K]$. Pertanto, riducendoci a
+	considerare le estensioni normali e separabili di $K$,
+	ogni immersione, ristretta opportunamente sul codominio,
+	ammette un inverso, e quindi si può considerare
+	$\Aut_K L$ come gruppo sulla composizione, denotato
+	come $\Gal(\faktor{L}{K})$. Tali estensioni sono
+	speciali, e vengono pertanto dette \textit{di Galois}.
+	
+	\begin{definition}[estensioni di Galois]
+		Si dice che $\faktor{L}{K}$ è un'\textbf{estensione
+		di Galois} se $L$ è sia normale che separabile su $K$.
+	\end{definition}
+
+	\begin{definition}[gruppo di Galois di $\faktor{L}{K}$]
+		Si definisce il gruppo di Galois di $\faktor{L}{K}$,
+		denotato come $\Gal(\faktor{L}{K})$, il gruppo
+		rispetto alla composizione
+		delle immersioni di $\Aut_K L$ ristrette sul codominio
+		a $L$.
+	\end{definition}
+
+	La maggior parte dei teoremi della teoria di Galois si
+	fondano particolarmente sul fatto che il gruppo di Galois
+	di un campo di spezzamento di un irriducibile $f$
+	agisce sulle radici di $f$, come mostra la:
+	
+	\begin{proposition}
+		Sia $f(x) \in K[x]$ un irriducibile. Allora,
+		se $L$ è il suo campo di spezzamento,
+		$\Gal(\faktor{L}{K})$ agisce fedelmente e transitivamente sulle
+		radici di $L$. Pertanto $\Gal(\faktor{L}{K}) \mono S_n$,
+		dove $n = [L : K] = \deg f(x)$, e quindi
+		$n \mid [L : K] \mid n!$. 
+	\end{proposition}
+
+	\begin{proof}
+		Si consideri l'azione $\Xi : \Gal(\faktor{L}{K}) \to
+		S(\{ \alpha_1, \ldots, \alpha_n \})$ tale per cui
+		$\varphi \xmapsto{\Xi} [\alpha_i \mapsto \varphi(\alpha_i)]$, dove\footnote{
+			Si ricorda l'ipotesi di $K$ campo perfetto;
+			pertanto $f(x)$ è separabile.
+		}
+		le $\alpha_i$ sono le radici distinte di $f(x)$.
+		Allora chiaramente $n \mid [L : K]$, dal momento
+		che $[K(\alpha_1) : K] = n$ e $K(\alpha_1) \subseteq L$. \medskip
+		
+		
+		Inoltre $\Xi$ è un'azione fedele dacché $\Ker \Xi$ è banale. Infatti
+		l'unica $K$-immersione che fissa ogni radice è
+		necessariamente
+		l'identità. Allora $\Xi$ è un'immersione di
+		$\Gal(\faktor{L}{K})$ in $S(\{ \alpha_1, \ldots, \alpha_n \}) \cong S_n$, e quindi
+		$[L : K] = \abs{\Gal(\faktor{L}{K})} \mid n!$. Infine, esiste sempre una $K$-immersione di
+		$L$ che mappa un qualsiasi $\alpha_i$ ad un altro
+		$\alpha_j$, purché $i \neq j$. Pertanto $\Gal(\faktor{L}{K})$ agisce transitivamente sulle
+		radici di $f(x)$.
+	\end{proof}
+\end{document}
