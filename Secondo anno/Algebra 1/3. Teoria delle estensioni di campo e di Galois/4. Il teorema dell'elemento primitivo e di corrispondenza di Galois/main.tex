@@ -306,10 +306,14 @@
 		$\QQ$. In particolare vale che:
 		\[ \mu_\alpha(x) = \prod_{i=0}^1 \prod_{j=0}^1 (x + (-1)^i \sqrt{2} + (-1)^j \sqrt{3}) = x^4 - 10x^2 + 1. \]
 		
+		In modo analogo si ottengono i polinomi minimi
+		di $\sqrt{2} + \sqrt{3}$ su $\QQ(\sqrt2)$,
+		$\QQ(\sqrt3)$ e $\QQ(\sqrt6)$, rispettivamente
+		$x^2-2\sqrt{2}x-1 = (x-\sqrt{2})^2 - 3$,
+		$x^2-2\sqrt{3}x-1 = (x-\sqrt{3})^2 - 2$ e
+		$x^2-(\sqrt{2} + \sqrt{3})^2 = x^2 - 2\sqrt{6} - 5$.
 		Tutte le informazioni sono infine raccolte nel seguente
-		diagramma di estensioni: %TODO: terminare esempio
-		
-		
+		diagramma di estensioni:
 		\[\begin{tikzcd}[column sep=2.25em]
 			&& {\overbrace{\mathbb{Q}(\sqrt{2}, \sqrt{3})}^{\mathbb{Q}(\sqrt{2} + \sqrt3)}} \\
 			\\
@@ -326,9 +330,25 @@
 			\arrow["{x^2-3}", curve={height=-12pt}, no head, from=3-5, to=5-3]
 			\arrow["{x^2-2}"', curve={height=12pt}, no head, from=3-1, to=5-3]
 			\arrow["{x^2-6}"'{pos=0.3}, shift left, curve={height=12pt}, no head, from=3-3, to=5-3]
-			\arrow["{x^2+2\sqrt3\,x+1}", curve={height=-18pt}, no head, from=1-3, to=3-5]
-			\arrow["{x^2+2\sqrt2\,x-1}"', curve={height=18pt}, no head, from=1-3, to=3-1]
+			\arrow["{x^2-2\sqrt3\,x+1}", curve={height=-18pt}, no head, from=1-3, to=3-5]
+			\arrow["{x^2-2\sqrt2\,x-1}"', curve={height=18pt}, no head, from=1-3, to=3-1]
 			\arrow["{\small x^2-2\sqrt6-5}"'{pos=0.8}, curve={height=12pt}, no head, from=1-3, to=3-3]
+		\end{tikzcd}\]
+		Tramite la corrispondenza di Galois abbiamo fatto
+		corrispondere questo diagramma al seguente diagramma
+		di gruppi:
+		\[\begin{tikzcd}
+			& {\{ \text{Id}_L \equiv \varphi_{00} \}} \\
+			\\
+			{\{ \varphi_{00}, \varphi_{01} \}} & {\{ \varphi_{00}, \varphi_{11} \}} & {\{\varphi_{00}, \varphi_{10}\}} \\
+			\\
+			& {\{\varphi_{01}, \varphi_{10}, \varphi_{01}, \varphi_{11}\}}
+			\arrow[no head, from=1-2, to=3-2]
+			\arrow[no head, from=1-2, to=3-1]
+			\arrow[no head, from=1-2, to=3-3]
+			\arrow[no head, from=3-2, to=5-2]
+			\arrow[no head, from=3-3, to=5-2]
+			\arrow[no head, from=3-1, to=5-2]
 		\end{tikzcd}\]
 	\end{example}
 \end{document}
