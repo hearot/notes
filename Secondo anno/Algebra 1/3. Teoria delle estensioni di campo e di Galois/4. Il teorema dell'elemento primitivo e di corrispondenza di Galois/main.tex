@@ -92,7 +92,243 @@
 			$[K(\gamma) : K] = n = [K(\alpha, \beta) : K]$,
 			da cui $K(\alpha, \beta) = K(\gamma)$, ossia la tesi.
 		\end{itemize}
-	\end{proof}
+	\end{proof} \medskip
+
+
+	Si illustrano adesso i prerequisiti per dimostrare
+	il Teorema di corrispondenza di Galois:
 	
-	%TODO: aggiungere corrispondenza di Galois
+	\begin{definition}
+		Sia $\faktor{L}{K}$ un'estensione di Galois. Allora,
+		se $H \leq \Gal(\faktor{L}{K})$, si definisce
+		$L^H = \Fix(H)$ come la sottoestensione di $L$ su
+		$K$ degli elementi fissati da ogni $\varphi \in H$,
+		ossia:
+		\[ L^H = \{ \alpha \in L \mid \varphi(\alpha) = \alpha \, \forall \varphi \in H \}. \]
+	\end{definition}
+
+	\begin{nlemma}
+		Sia $\faktor{L}{K}$ un'estensione di Galois. Allora,
+		se $H \leq \Gal(\faktor{L}{K})$ vale che:
+		\[ L^H = K \iff H = \Gal(\faktor{L}{K}). \]
+	\end{nlemma}
+
+	\begin{proof}
+		Sia $H = \Gal(\faktor{L}{K})$. Allora sicuramente
+		$K \subseteq L^H$. Si mostra che non può valere
+		$K \subsetneq L^H$. Se infatti $K \subsetneq L^H$,
+		varrebbe che $[L^H : K] > 1$, e quindi esisterebbe
+		una $K$-immersione non banale di $L^H$, detta
+		$\varphi : L^H \to \overline{K}$. In particolare
+		$\varphi$ può estendersi a una $K$-immersione di
+		$L$, detta $\tilde{\varphi}$. In particolare
+		$\tilde{\varphi} \in \Gal(\faktor{L}{K})$, e
+		quindi $\tilde{\varphi}$ deve fissare $L^H$ per
+		ipotesi. Tuttavia $\tilde{\varphi}$ ristretta
+		a $L^H$ non fissa $L^H$ per ipotesi, \Lightning.
+		Pertanto $L^H = K$. \medskip
+		
+		
+		Sia adesso $L^H = K$. Per il Teorema dell'elemento
+		primitivo, $\exists \alpha \in L^H$ tale per cui
+		$L = K(\alpha)$. Si consideri allora il
+		polinomio $p$ a coefficienti in $\overline{K}$ tale
+		per cui:
+		\[ p(x) = \prod_{\varphi \in H} (x - \varphi(\alpha)). \]
+		Poiché l'identità di $\Gal(\faktor{L}{K})$ appartiene
+		ad $H$, $(x-\alpha) \mid p(x)$, e quindi
+		$p(\alpha) = 0$. Inoltre $p$ è in realtà un polinomio
+		a coefficienti in $L^H$. Se infatti $\rho \in H$,
+		\[ \rho(p(x)) = \prod_{\varphi \in H} (x - \rho(\varphi(\alpha))) = p(x), \]
+		dove l'uguaglianza è dovuta al fatto\footnote{
+			In particolare è stato applicato l'\textit{embedding} di Cayley su $H$
+			attraverso l'elemento $\rho \in H$, e
+			quest'azione si è rivelata essere transitiva.
+		} che le
+		mappe $\{ \rho \circ \varphi \}$ sono esattamente le
+		mappe $\{ \varphi \}$. Pertanto $\abs{\Gal(\faktor{L}{K})} = [L : K] =
+		[K(\alpha) : K] \leq \deg p(x) = \abs{H}$ dal
+		momento che $\alpha$ è radice di $p(x)$. Dal momento
+		che vale anche che $\abs{\Gal(\faktor{L}{K})} \geq \abs{H}$, allora
+		$H = \Gal(\faktor{L}{K})$, da cui la tesi.
+	\end{proof}
+
+	\begin{proposition}
+		Sia $\sigma \in \Gal{\faktor{L}{K}}$. Allora,
+		se $H \leq \faktor{L}{K}$, vale che
+		$\sigma(L^H) = L^{\sigma H \sigma\inv}$.
+	\end{proposition}
+
+	\begin{proof}
+		Si osserva che:
+		\[ \sigma(L^H) = \{ \sigma(\alpha) \mid \alpha \in L, \, \varphi(\alpha) = \alpha \, \forall \varphi \in H \} = \{ \beta \in L \mid \varphi(\sigma\inv(\beta)) = \sigma\inv(\beta) \, \forall \varphi \in H \}, \]
+		dove si è sfruttato in modo cruciale il fatto che $\varphi \in H$ è bigettiva. Si
+		conclude allora che:
+		\[ \varphi(L^H) = \{ \beta \in L \mid \sigma(\varphi(\sigma\inv(\beta))) = \beta \, \forall \varphi \in H \} = L^{\sigma H \sigma\inv}. \]
+	\end{proof}
+
+	Si può adesso dimostrare il Teorema di corrispondenza di
+	Galois:
+	
+	\begin{theorem}[di corrispondenza di Galois]
+		Sia $\mathcal{E}$ l'insieme delle sottoestensioni
+		di $\faktor{L}{K}$ estensione di Galois. Sia
+		$\mathcal{G}$ l'insieme dei sottogruppi di
+		$\Gal(\faktor{L}{K})$. Allora $\mathcal{E}$ è
+		in bigezione con $\mathcal{G}$ attraverso
+		la mappa $\alpha : \mathcal{E} \to \mathcal{G}$
+		tale per cui:
+		\[ F \xmapsto{\alpha} \Gal(\faktor{L}{F}) \leq
+			\Gal(\faktor{L}{K}), \]
+		la cui inversa $\beta : \mathcal{G} \to \mathcal{E}$
+		è tale per cui:
+		\[ H \xmapsto{\beta} L^H \subseteq L. \]
+		Inoltre, una sottoestensione $\faktor{F}{K}$ di
+		$\faktor{L}{K}$ è normale su $K$ se e solo se
+		il corrispondente sottogruppo di $\Gal(\faktor{L}{K})$
+		è normale. Infine, se $\faktor{F}{K}$ è normale,
+		$F$ è in particolare di Galois\footnote{
+			Si ricorda che si considera $K$ un campo perfetto.
+		} e vale che:
+		\[ \Gal(\faktor{F}{K}) \cong \faktor{\Gal(\faktor{L}{K})}{\Gal(\faktor{L}{F})}. \]
+	\end{theorem}
+
+	\begin{proof}
+		Le mappe $\alpha$ e $\beta$ sono ovviamente ben definite. Si mostra direttamente che sono l'una
+		l'inversa dell'altra. Sia $H \leq \Gal(\faktor{L}{K})$.
+		Si osserva che:
+		\[ \alpha(\beta(H)) = \alpha(L^H) = \Gal(\faktor{L}{L^H}). \]
+		Sia $L^H = M$. Se si pone $K = \Gal(\faktor{L}{L^H})$, vale chiaramente che $H \leq K$ dal momento che $H$
+		fissa per definizione tutti gli elementi di 
+		$L^H$. Dacché allora $L^H = M$, per il lemma precedente
+		$H = K$, e quindi $\alpha(\beta(H)) = H$. \medskip
+		
+		
+		Analogamente si osserva che per $K \subseteq F \subseteq K$ vale che:
+		\[ \beta(\alpha(F)) = \beta(\Gal(\faktor{L}{F})) =
+			L^{\Gal(\faktor{L}{F})}. \]
+		Pertanto, detto $H = \Gal(\faktor{L}{F})$,
+		per il lemma precedente vale che $L^H = F$,
+		e quindi $\beta(\alpha(F)) = F$, dimostrando
+		la prima parte del teorema. \medskip
+		
+		
+		Sia ora $\faktor{F}{K}$ una sottoestensione normale
+		di $\faktor{L}{K}$. Allora, se $\varphi \in \Gal(\faktor{L}{F})$ e $\sigma \in \Gal(\faktor{L}{K})$,
+		$\tau = \sigma \circ \varphi \circ \sigma\inv$ è ancora
+		un elemento di $\faktor{L}{K}$. Pertanto,
+		$\tau$ si può restringere ad una $K$-immersione di $F$.
+		Poiché allora $F$ è normale su $K$, $\tau(F) = F$, e
+		quindi $\tau \in \Gal(\faktor{L}{F})$, e dunque
+		$\Gal(\faktor{L}{F}) \nsgeq \Gal(\faktor{L}{K})$. \medskip
+		
+		
+		Sia adesso $\Gal(\faktor{L}{F}) \nsgeq \Gal(\faktor{L}{K})$. Sia $\varphi$ una $K$-immersione
+		di $F$ su $\overline{K}$. Allora $\varphi$ può essere
+		estesa ad un elemento $\tilde{\varphi} \in \Gal(\faktor{L}{K})$. In particolare,
+		se $H = \Gal(\faktor{L}{F})$, $\varphi(F) =
+		\tilde{\varphi}(F) = L^{\varphi H \varphi\inv} = L^H = F$, dove si è sfruttata la normalità di $H$ in
+		$\Gal(\faktor{L}{K})$. Pertanto $F$ è normale su $K$,
+		e dunque, in quanto separabile per ipotesi, di Galois. \medskip
+		
+		
+		Si consideri adesso l'omomorfismo $\tau : \Gal(\faktor{L}{K}) \to \Gal(\faktor{F}{K})$ dato
+		dalla restrizione delle immersioni di $\Gal(\faktor{L}{K})$ su $F$. Chiaramente $\tau$
+		è una mappa surgettiva, dal momento che ogni $K$-immersione di $\Gal(\faktor{F}{K})$ può estendersi
+		a $K$-immersione di $\Gal(\faktor{L}{K})$. Inoltre
+		vale che $\Ker \tau$ è esattamente il sottogruppo
+		di $\Gal(\faktor{L}{K})$ che fissa $F$, ossia
+		$\Gal(\faktor{L}{F})$. Applicando allora il Primo
+		teorema di isomorfismo vale che:
+		\[ \Gal(\faktor{F}{K}) \cong \faktor{\Gal(\faktor{L}{K})}{\Gal(\faktor{L}{F})}, \]
+		da cui la tesi.
+	\end{proof}
+
+	\begin{example}[studio dei sottocampi di $\QQ(\sqrt{2}, \sqrt{3}) \quot \QQ$]
+		Dal momento che $L := \QQ(\sqrt{2}, \sqrt{3})$ è
+		il campo di spezzamento dei polinomi $x^2 - 2$
+		e $x^2 - 3$, tale estensione è normale su $\QQ$,
+		e quindi di Galois. Inoltre, dal momento che
+		$\sqrt{3} \notin \QQ(\sqrt{2})$,
+		$[L : \QQ] = 2 \cdot 2 = 4$, dal Teorema delle
+		torri algebriche. Pertanto $\Gal(\faktor{L}{\QQ})$
+		è un gruppo di ordine $4$. \medskip
+		
+		
+		Si definisce $\varphi_{ij}$ con $i$, $j \in \{0, 1\}$
+		come le $\QQ$-immersioni di $L$
+		tali per cui $\sqrt{2} \xmapsto{\varphi_{ij}} (-1)^i \sqrt{2}$ e analogamente $\sqrt{3} \xmapsto{\varphi_{ij}} (-1)^j \sqrt{3}$. Dal momento
+		che le varie $\varphi_{ij}$ sono distinte,
+		che ogni $\varphi_{ij}$ ha ordine $2$ e che ogni
+		gruppo di ordine $4$ è abeliano (o, più semplicemente,
+		le varie $\varphi_{ij}$ commutano tra loro),
+		vale che $\Gal(\faktor{L}{\QQ}) \cong \ZZmod2 \times \ZZmod2$. \medskip
+		
+		
+		Ogni sottoestensione di $L$ ha
+		grado su $\QQ$ divisore di $[L : \QQ]$, e quindi
+		ha grado $1$, $2$ o $4$. Se il grado è $4$,
+		la sottoestensione considerata è proprio $L$, mentre
+		se il grado è $1$ la sottoestensione è $\QQ$ stesso.
+		Si studiano ora le sottoestensioni di grado $2$.
+		Tali sottoestensioni corrispondono ai sottogruppi
+		di $\Gal(\faktor{L}{\QQ})$ di ordine $4/2 = 2$. Inoltre,
+		a priori, essendo $\Gal(\faktor{L}{\QQ})$ abeliano, tutte
+		le sottoestensioni sono normali su $\QQ$. \medskip
+		
+		
+		Ogni sottogruppo di ordine $2$ è ciclico e generato
+		da elementi di ordine $2$, e quindi, mantenendo
+		la corrispondenza con $\ZZmod2 \times \ZZmod2$,
+		da $(1,0)$, $(0,1)$ o $(1,1)$. Pertanto esistono
+		esattamente $3$ sottoestensioni distinte di grado $2$
+		su $\QQ$. \medskip
+		
+		
+		In particolare queste sottoestensioni corrispondono
+		ai sottocampi di $L$ fissati da $\varphi_{10}$,
+		$\varphi_{01}$ e $\varphi_{11}$, ossia
+		$\QQ(\sqrt{3})$, $\QQ(\sqrt{2})$ e $\QQ(\sqrt{6})$. \medskip
+		
+		
+		Inoltre $\alpha := \sqrt{2} + \sqrt{3}$ è un elemento primitivo
+		di $L$, dal momento che non può appartenere né a
+		$\QQ(\sqrt{3})$ né a $\QQ(\sqrt{2})$ (altrimenti
+		tali sottoestensioni coinciderebbero con $L$, \Lightning), e così nemmeno a $\QQ(\sqrt{6})$ (altrimenti $\alpha$ si scriverebbe
+		come combinazione lineare di $1$ e $\sqrt{6}$,
+		\Lightning). Alternativamente $\alpha$
+		ha esattamente $4$ coniugati tramite
+		le varie\footnote{
+			Tali $4$ coniugati sono distinti dal momento
+			che $\{1, \sqrt{2}, \sqrt{3}, \sqrt{6}\}$ è
+			una base di $L$ come $\QQ$-spazio.
+		} $\varphi_{ij}$, e quindi ha grado $4$ su
+		$\QQ$. In particolare vale che:
+		\[ \mu_\alpha(x) = \prod_{i=0}^1 \prod_{j=0}^1 (x + (-1)^i \sqrt{2} + (-1)^j \sqrt{3}) = x^4 - 10x^2 + 1. \]
+		
+		Tutte le informazioni sono infine raccolte nel seguente
+		diagramma di estensioni: %TODO: terminare esempio
+		
+		
+		\[\begin{tikzcd}[column sep=2.25em]
+			&& {\overbrace{\mathbb{Q}(\sqrt{2}, \sqrt{3})}^{\mathbb{Q}(\sqrt{2} + \sqrt3)}} \\
+			\\
+			{\mathbb{Q}(\sqrt{2})} && {\mathbb{Q}(\sqrt6)} && {\mathbb{Q}(\sqrt3)} \\
+			\\
+			&& {\mathbb{Q}}
+			\arrow["2"{pos=0.3}, no head, from=1-3, to=3-1]
+			\arrow["2"', no head, from=1-3, to=3-3]
+			\arrow["2"', no head, from=1-3, to=3-5]
+			\arrow["2"', no head, from=3-3, to=5-3]
+			\arrow["2"{description}, no head, from=3-5, to=5-3]
+			\arrow["2"{description}, no head, from=3-1, to=5-3]
+			\arrow["{\small x^4 - 10x^2 + 1}", curve={height=-24pt}, no head, from=1-3, to=5-3]
+			\arrow["{x^2-3}", curve={height=-12pt}, no head, from=3-5, to=5-3]
+			\arrow["{x^2-2}"', curve={height=12pt}, no head, from=3-1, to=5-3]
+			\arrow["{x^2-6}"'{pos=0.3}, shift left, curve={height=12pt}, no head, from=3-3, to=5-3]
+			\arrow["{x^2+2\sqrt3\,x+1}", curve={height=-18pt}, no head, from=1-3, to=3-5]
+			\arrow["{x^2+2\sqrt2\,x-1}"', curve={height=18pt}, no head, from=1-3, to=3-1]
+			\arrow["{\small x^2-2\sqrt6-5}"'{pos=0.8}, curve={height=12pt}, no head, from=1-3, to=3-3]
+		\end{tikzcd}\]
+	\end{example}
 \end{document}
