@@ -1,0 +1,212 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{marvosym}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{notes_2023}
+
+\setlength{\extrarowheight}{0pt}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+%\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\title{Scheda riassuntiva di Teoria dei campi e di Galois}
+
+\begin{document}
+	
+	\parskip=0.7ex
+	
+	\raggedright
+	\footnotesize
+	
+	\begin{center}
+		\Large{\textbf{Scheda riassuntiva di Teoria dei campi e di Galois}} \\
+	\end{center}
+	\begin{multicols}{3}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\section{Definizioni e prerequisiti}
+		
+		Si dice \textbf{campo} un anello commutativo non banale
+		$K$ che è
+		contemporaneamente anche un corpo. Si dice
+		\textbf{omomorfismo di campo} tra due campi $K$ ed $L$
+		un omomorfismo di anelli. Dal momento che un omomorfismo
+		$\varphi$ è tale per cui $\Ker \varphi$ è un ideale
+		di $K$ con $1 \notin \Ker \varphi$, deve per forza
+		valere $\Ker \varphi = \{0\}$, e quindi ogni omomorfismo
+		di campi è un'immersione. \medskip
+		
+		
+		Dato l'omomorfismo $\zeta : \ZZ \to K$ completamente
+		determinato dalla relazione $1 \xmapsto{\zeta} 1_K$,
+		si definisce \textbf{caratteristica di $K$}, detta
+		$\Char K$, il
+		generatore non negativo di $\Ker \zeta$. In particolare
+		$\Char K$ è $0$ o un numero primo. Se $\Char K$ è zero,
+		$\zeta$ è un'immersione, e quindi $K$ è un campo infinito,
+		e in particolare vi si immerge anche $\QQ$. \medskip
+		
+		
+		Tuttavia non è detto che $\Char K = p$ implichi che $K$ è
+		finito. In particolare $\ZZ_p(x)$, il campo delle funzioni
+		razionali a coefficienti in $\ZZ_p$, è un campo infinito
+		a caratteristica $p$. Se $\Char K = p$, per il Primo
+		teorema di isomorfismo per anelli, $\ZZmod{p}$ si immerge
+		su $K$ tramite la proiezione di $\zeta$; pertanto
+		$K$ contiene una copia isomorfa di $\ZZmod{p}$. Per
+		campi di caratteristica $p$, vale il Teorema del
+		binomio ingenuo, ossia:
+		\[ (a + b)^p = a^p + b^p, \]
+		estendibile anche a più addendi.
+		In particolare, per un campo $K$ di caratteristica $p$,
+		la $\Frob : K \to K$ tale per cui $a \xmapsto{\Frob} a^p$
+		è un omomorfismo di campi, ed in particolare è un'immersione
+		di $K$ in $K$. Se $K$ è un campo finito, $\Frob$ è dunque
+		un isomorfismo.
+		
+		
+		Per ogni $p$ primo e $n \in \NN^+$ esiste un campo finito
+		di ordine $p^n$. In particolare, tutti i campi finiti di
+		ordine $p^n$ sono isomorfi tra loro, possono essere visti
+		come spazi vettoriali di dimensione $n$ sull'immersione di $\ZZmod{p}$ che contengono,
+		e come campi di spezzamento di $x^{p^n}-x$
+		su tale immersione. Poiché tali campi sono isomorfi,
+		si indicano con $\FF_p$ e $\FF_{p^n}$ le strutture
+		algebriche di tali campi. In particolare con
+		$\FF_{p^n} \subseteq \FF_{p^m}$ si intende che
+		esiste un'immersione di un campo con $p^n$ elementi in
+		uno con $p^m$ elementi, e analogamente si farà con
+		altre relazioni (come l'estensione di campi)
+		tenendo bene in mente di star
+		considerando tutti i campi di tale ordine. \medskip
+		
+		
+		Vale la relazione $\FF_{p^n} \subseteq \FF_{q^m}$
+		se e solo se $p=q$ e $n \mid m$. Conseguentemente,
+		l'estensione minimale per inclusione comune a
+		$\FF_{p^{n_1}}$, ..., $\FF_{p^{n_i}}$ è
+		$\FF_{p^m}$ dove $m := \mcm(n_1, \ldots, n_i)$. Pertanto
+		se $p \in \FF_{p^n}[x]$ si decompone in fattori irriducibili
+		di grado $n_1$, \ldots, $n_i$, il suo campo di spezzamento
+		è $\FF_{p^m}$. Inoltre, $x^{p^n}-x$ è in $\FF_p$ il
+		prodotto di tutti gli irriducibili di grado divisore
+		di $n$.
+		
+		
+		Per il Teorema di Lagrange sui campi, ogni polinomio
+		di $K[x]$ ammette al più tante radici quante il suo grado.
+		Come conseguenza pratica di questo teorema, ogni sottogruppo
+		moltiplicativo finito di $K$ è ciclico. Pertanto
+		$\FF_{p^n}^* = \gen{\alpha}$ per $\alpha \in \FF_{p^n}$,
+		e quindi $\FF_{p^n} = \FF_p(\alpha)$, ossia
+		$\FF_{p^n}$ è sempre un'estensione semplice su $\FF_p$. Si dice
+		\textbf{campo di spezzamento} di una famiglia $\mathcal{F}$
+		di polinomi di $K[x]$ un sovracampo minimale per
+		inclusione di $K$ che fa sì che ogni polinomio di $\mathcal{F}$ si decomponga in fattori lineari. I campi
+		di spezzamento di $\mathcal{F}$ sono sempre
+		$K$-isomorfi tra loro. Per il criterio della derivata,
+		$p \in K[x]$ ammette radici multiple se e solo se
+		$\MCD(p, p')$ non è invertibile, dove $p'$ è la derivata
+		formale di $p$. \medskip
+		
+		
+		Se $p$ è irriducibile in $K[x]$, $(p)$ è un ideale
+		massimale, e $\faktor{K[x]}{(p)}$ è un campo che
+		ne contiene una radice, ossia $[x]$. In
+		particolare $K$ si immerge in $\faktor{K[x]}{(p)}$,
+		e quindi tale campo può essere identificato come
+		un'estensione di $K$ che aggiunge una radice di $p$.
+		Se $K$ è finito, detta $\alpha$ la radice aggiunta
+		all'estensione, $L := \faktor{K[x]}{(p)} \cong K(\alpha)$ contiene
+		tutte le radici di $p$ (ed è dunque il suo campo
+		di spezzamento). Infatti detto $[L : \FF_p] = n$,
+		$[x]$ annulla $x^{p^n}-x$ per il Teorema di Lagrange
+		sui gruppi, e quindi $p$ deve dividere $x^{p^n}-x$;
+		in tal modo $p$ deve spezzarsi in fattori lineari,
+		e quindi ogni radice deve già appartenere ad $L$.
+		In particolare, ogni estensione finita e semplice
+		di un campo finito è normale, e quindi di Galois. \medskip
+		
+		
+		Si dice che $L$ è un'estensione di $K$, e si indica
+		con $\faktor{L}{K}$, se $L$ è un sovracampo di $K$,
+		ossia se $K \subseteq L$. Si indica con $[L : K] = \dim_K L$ la
+		dimensione di $L$ come $K$-spazio vettoriale. Si
+		dice che $L$ è un'estensione finita di $K$ se $[L : K]$
+		è finito, e infinita altrimenti. Un'estensione finita
+		di un campo finito è ancora un campo finito. Un'estensione
+		è finita se e solo se è finitamente generata da elementi algebrici. Una $K$-immersione è un omomorfismo di campi
+		iniettivo da un'estensione di $K$ in un altro campo che
+		agisce come l'identità su $K$. Un $K$-isomorfismo è
+		una $K$-immersione che è isomorfismo. \medskip
+		
+		
+		Dato $\alpha$, si definisce $K(\alpha)$ il più piccolo
+		sovracampo di $K$ che contiene $\alpha$. Si definisce l'\textbf{omomorfismo di
+		valutazione} $\varphi_{\alpha, K} : K[x] \to K[\alpha]$, detto
+		$\varphi_\alpha$ se $K$ è noto, l'omomorfismo completamente
+		determinato dalla relazione $p \xmapsto{\varphi_\alpha} p(\alpha)$. Si verifica che $\varphi_\alpha$ è
+		surgettivo. Se $\varphi_\alpha$ è iniettivo,
+		si dice che $\alpha$ è \textbf{trascendentale} su $K$ e
+		$K[x] \cong K[\alpha]$, da cui $[K[\alpha] : K] =
+		[K[x] : K] = \infty$. Se invece $\varphi_\alpha$ non
+		è iniettivo, si dice che $\alpha$ è \textbf{algebrico}
+		su $K$. Si definisce $\mu_\alpha$, detto il \textbf{polinomio
+		minimo} di $\alpha$ su $K$, il generatore monico
+		di $\Ker \varphi_\alpha$. Si definisce
+		$\deg_K \alpha := \deg \mu_\alpha$. Se $\alpha$ è
+		algebrico su $K$, $\faktor{K[x]}{(\mu_\alpha)} \cong
+		K[\alpha]$, e quindi $K[\alpha]$ è un campo. Dacché
+		$K[\alpha] \subseteq K(\alpha)$, vale allora
+		$K[\alpha] = K(\alpha)$. Inoltre, poiché $\dim_K \faktor{K[x]}{(\mu_\alpha)} = \deg_K \alpha$, vale
+		anche che $[K(\alpha) : K] = \deg_K \alpha$.
+		Infine, si verifica che $\alpha$ è algebrico se e solo se
+		$[K(\alpha) : K]$ è finito. \medskip
+
+		
+		Si dice che $L$ è un'\textbf{estensione semplice} di
+		$K$ se $\exists \alpha \in L$ tale per cui $L = K(\alpha)$.
+		In tal caso si dice che $\alpha$ è un \textbf{elemento primitivo} di $K$. Si dice che $L$ è un'\textbf{estensione
+		algebrica} di $K$ se ogni suo elemento è algebrico su $K$.
+		Ogni estensione finita è algebrica. Non tutte le
+		estensioni algebriche sono finite (e.g.~
+		$\overline{\QQ}$ su $\QQ$).
+		\vfill
+		\hrule
+		~\\
+		Ad opera di Gabriel Antonio Videtta, \url{https://poisson.phc.dm.unipi.it/~videtta/}.
+		~\\Reperibile su
+		\url{https://notes.hearot.it}, nella sezione \textit{Secondo anno $\to$ Algebra 1 $\to$ 3. Teoria delle estensioni di campo e di Galois $\to$ Scheda riassuntiva di Teoria dei campi e di Galois}.
+	\end{multicols}
+	
+\end{document}
