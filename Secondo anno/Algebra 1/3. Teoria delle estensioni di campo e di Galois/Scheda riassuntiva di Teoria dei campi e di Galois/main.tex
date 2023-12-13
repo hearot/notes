@@ -54,7 +54,7 @@
 		\setlength{\multicolsep}{1pt}
 		\setlength{\columnsep}{2pt}
 		
-		\section{Definizioni e prerequisiti}
+		\section{Campi e omomorfismi}
 		
 		Si dice \textbf{campo} un anello commutativo non banale
 		$K$ che è
@@ -66,6 +66,8 @@
 		valere $\Ker \varphi = \{0\}$, e quindi ogni omomorfismo
 		di campi è un'immersione. \medskip
 		
+		
+		\section{Caratteristica di un campo}
 		
 		Dato l'omomorfismo $\zeta : \ZZ \to K$ completamente
 		determinato dalla relazione $1 \xmapsto{\zeta} 1_K$,
@@ -80,7 +82,12 @@
 		Tuttavia non è detto che $\Char K = p$ implichi che $K$ è
 		finito. In particolare $\ZZ_p(x)$, il campo delle funzioni
 		razionali a coefficienti in $\ZZ_p$, è un campo infinito
-		a caratteristica $p$. Se $\Char K = p$, per il Primo
+		a caratteristica $p$.
+		
+		
+		\subsection{Proprietà dei campi a caratteristica $p$}
+		
+		Se $\Char K = p$, per il Primo
 		teorema di isomorfismo per anelli, $\ZZmod{p}$ si immerge
 		su $K$ tramite la proiezione di $\zeta$; pertanto
 		$K$ contiene una copia isomorfa di $\ZZmod{p}$. Per
@@ -89,10 +96,16 @@
 		\[ (a + b)^p = a^p + b^p, \]
 		estendibile anche a più addendi.
 		In particolare, per un campo $K$ di caratteristica $p$,
-		la $\Frob : K \to K$ tale per cui $a \xmapsto{\Frob} a^p$
+		la mappa $\Frob : K \to K$ tale per cui $a \xmapsto{\Frob} a^p$
 		è un omomorfismo di campi, ed in particolare è un'immersione
-		di $K$ in $K$. Se $K$ è un campo finito, $\Frob$ è dunque
-		un isomorfismo.
+		di $K$ in $K$, detta \textbf{endomorfismo di Frobenius}. Se $K$ è un campo finito, $\Frob$ è anche
+		un isomorfismo. Si osserva che per gli elementi della
+		copia $K \supseteq \FF_p \cong \ZZmod{p}$ vale
+		$\restr{\Frob}{\FF_p} = \Id_{\FF_p}$, e quindi
+		$\Frob$ è un elemento di $\Gal(K / \FF_p)$. 
+		
+		
+		\section{Campi finiti}
 		
 		
 		Per ogni $p$ primo e $n \in \NN^+$ esiste un campo finito
@@ -100,7 +113,12 @@
 		ordine $p^n$ sono isomorfi tra loro, possono essere visti
 		come spazi vettoriali di dimensione $n$ sull'immersione di $\ZZmod{p}$ che contengono,
 		e come campi di spezzamento di $x^{p^n}-x$
-		su tale immersione. Poiché tali campi sono isomorfi,
+		su tale immersione. Tali campi hanno obbligatoriamente
+		caratteristica $p$, dove $\abs{K} = p^n$. Esiste
+		sempre un isomorfismo tra due campi finiti che manda la copia isomorfa di $\ZZmod{p}$ di uno nell'altra. \medskip
+		
+		
+		Poiché i campi finiti di medesima cardinalità sono isomorfi,
 		si indicano con $\FF_p$ e $\FF_{p^n}$ le strutture
 		algebriche di tali campi. In particolare con
 		$\FF_{p^n} \subseteq \FF_{p^m}$ si intende che
@@ -122,6 +140,7 @@
 		prodotto di tutti gli irriducibili di grado divisore
 		di $n$.
 		
+		\section{Proprietà dei polinomi di $K[x]$}
 		
 		Per il Teorema di Lagrange sui campi, ogni polinomio
 		di $K[x]$ ammette al più tante radici quante il suo grado.
@@ -141,13 +160,13 @@
 		
 		
 		Se $p$ è irriducibile in $K[x]$, $(p)$ è un ideale
-		massimale, e $\faktor{K[x]}{(p)}$ è un campo che
+		massimale, e $K[x] / (p)$ è un campo che
 		ne contiene una radice, ossia $[x]$. In
-		particolare $K$ si immerge in $\faktor{K[x]}{(p)}$,
+		particolare $K$ si immerge in $K[x] / (p)$,
 		e quindi tale campo può essere identificato come
 		un'estensione di $K$ che aggiunge una radice di $p$.
 		Se $K$ è finito, detta $\alpha$ la radice aggiunta
-		all'estensione, $L := \faktor{K[x]}{(p)} \cong K(\alpha)$ contiene
+		all'estensione, $L := K[x] / (p) \cong K(\alpha)$ contiene
 		tutte le radici di $p$ (ed è dunque il suo campo
 		di spezzamento). Infatti detto $[L : \FF_p] = n$,
 		$[x]$ annulla $x^{p^n}-x$ per il Teorema di Lagrange
@@ -157,18 +176,32 @@
 		In particolare, ogni estensione finita e semplice
 		di un campo finito è normale, e quindi di Galois. \medskip
 		
+		\section{Estensioni di campo}
+		
 		
 		Si dice che $L$ è un'estensione di $K$, e si indica
-		con $\faktor{L}{K}$, se $L$ è un sovracampo di $K$,
+		con $L / K$, se $L$ è un sovracampo di $K$,
 		ossia se $K \subseteq L$. Si indica con $[L : K] = \dim_K L$ la
 		dimensione di $L$ come $K$-spazio vettoriale. Si
 		dice che $L$ è un'estensione finita di $K$ se $[L : K]$
-		è finito, e infinita altrimenti. Un'estensione finita
+		è finito, e infinita altrimenti. Un'\textbf{estensione finita}
 		di un campo finito è ancora un campo finito. Un'estensione
 		è finita se e solo se è finitamente generata da elementi algebrici. Una $K$-immersione è un omomorfismo di campi
-		iniettivo da un'estensione di $K$ in un altro campo che
+		iniettivo da un'estensione di $K$ in un'altra estensione di $K$ che
 		agisce come l'identità su $K$. Un $K$-isomorfismo è
 		una $K$-immersione che è isomorfismo. \medskip
+		
+		
+		Date estensioni $L$ e $M$ su $K$, si definisce
+		$LM = L(M) = M(L)$ come il \textbf{composto} di $L$
+		ed $M$, ossia come la più piccola estensione di $K$ che
+		contiene sia $L$ che $M$. In particolare, $LM$
+		può essere visto come $L$-spazio vettoriale con
+		vettori in $M$, o analogamente come $M$-spazio con
+		vettori in $L$.
+		
+		
+		\subsection{Omomorfismo di valutazioni, elementi algebrici e trascendenti e polinomio minimo}
 		
 		
 		Dato $\alpha$, si definisce $K(\alpha)$ il più piccolo
@@ -183,15 +216,22 @@
 		è iniettivo, si dice che $\alpha$ è \textbf{algebrico}
 		su $K$. Si definisce $\mu_\alpha$, detto il \textbf{polinomio
 		minimo} di $\alpha$ su $K$, il generatore monico
-		di $\Ker \varphi_\alpha$. Si definisce
+		di $\Ker \varphi_\alpha$. IDal momento che $K$ è
+		in particolare un dominio di integrità, $\mu_\alpha$ è sempre irriducibile. \medskip
+		
+		
+		Si definisce
 		$\deg_K \alpha := \deg \mu_\alpha$. Se $\alpha$ è
-		algebrico su $K$, $\faktor{K[x]}{(\mu_\alpha)} \cong
+		algebrico su $K$, $K[x] / (\mu_\alpha) \cong
 		K[\alpha]$, e quindi $K[\alpha]$ è un campo. Dacché
 		$K[\alpha] \subseteq K(\alpha)$, vale allora
-		$K[\alpha] = K(\alpha)$. Inoltre, poiché $\dim_K \faktor{K[x]}{(\mu_\alpha)} = \deg_K \alpha$, vale
+		$K[\alpha] = K(\alpha)$. Inoltre, poiché $\dim_K K[x] / (\mu_\alpha) = \deg_K \alpha$, vale
 		anche che $[K(\alpha) : K] = \deg_K \alpha$.
 		Infine, si verifica che $\alpha$ è algebrico se e solo se
 		$[K(\alpha) : K]$ è finito. \medskip
+
+
+		\subsection{Estensioni semplici, algebriche}
 
 		
 		Si dice che $L$ è un'\textbf{estensione semplice} di
@@ -199,8 +239,112 @@
 		In tal caso si dice che $\alpha$ è un \textbf{elemento primitivo} di $K$. Si dice che $L$ è un'\textbf{estensione
 		algebrica} di $K$ se ogni suo elemento è algebrico su $K$.
 		Ogni estensione finita è algebrica. Non tutte le
-		estensioni algebriche sono finite (e.g.~
-		$\overline{\QQ}$ su $\QQ$).
+		estensioni algebriche sono finite (e.g.~$\overline{\QQ}$ su $\QQ$). \medskip
+		
+		
+		L'insieme degli elementi algebrici di un'estensione
+		di $K$ su $K$ è un estensione algebrica di $K$.
+		Pertanto se $\alpha$ e $\beta$ sono algebrici,
+		$\alpha \pm \beta$, $\alpha \beta$, $\alpha \beta\inv$
+		e $\alpha\inv \beta$ (a patto che o $\alpha \neq 0$ o
+		$\beta \neq 0$) sono algebrici.  
+		
+		
+		\subsection{Campi perfetti, estensioni separabili e coniugati}
+		
+		
+		Si dice che un'estensione algebrica $L$ è un'\textbf{estensione separabile} di
+		$K$ se per ogni elemento $\alpha \in L$,
+		$\mu_\alpha$ ammette radici distinte. Si dice
+		che $K$ è un \textbf{campo perfetto} se ogni
+		polinomio irriducibile ammette radici distinte.
+		In un campo perfetto, ogni estensione algebrica
+		è separabile. Si definiscono i coniugati di
+		$\alpha$ algebrico su $K$ come le radici
+		di $\mu_\alpha$. Se $K(\alpha)$ è separabile su $K$,
+		$\alpha$ ha esattamente $\deg_K \alpha$ coniugati,
+		altrimenti esistono al più $\deg_K \alpha$ coniugati. \medskip
+		
+		
+		Un campo è perfetto se e solo se ha caratteristica
+		$0$ o altrimenti se l'endomorfismo di
+		Frobenius è un automorfismo. Equivalentemente,
+		un campo è perfetto se le derivate dei polinomi
+		irriducibili sono sempre non nulle. Esempi di
+		campi perfetti sono allora tutti i campi di
+		caratteristica $0$ e tutti i campi finiti. 
+		
+		
+		\subsection{Campi algebricamente chiusi e chiusura algebrica di $K$}
+		
+		Un campo $K$ si dice \textbf{algebricamente chiuso} se
+		ogni $p \in K[x]$ ammette una radice in $K$. Equivalentemente $K$ è algebricamente chiuso se
+		ogni $p \in K[x]$ ammette tutte le sue radici in $K$.
+		Si dice \textbf{chiusura algebrica} di $K$
+		una sua estensione algebrica e algebricamente
+		chiusa. Le chiusure algebriche di $K$ sono
+		$K$-isomorfe tra loro, e quindi si identifica
+		con $\overline{K}$ la struttura algebrica della
+		chiusura algebrica di $K$. \medskip
+		
+		
+		Se $L$ è una sottoestensione di $K$ algebricamente
+		chiuso, allora $\overline{L}$ è il campo degli
+		elementi algebrici di $K$ su $L$. Infatti se
+		$p \in L[x]$, $p$ ammette una radice $\alpha$ in $K$, essendo
+		algebricamente chiuso. Allora $\alpha$ è un elemento
+		di $K$ algebrico su $L$, e quindi $\alpha \in \overline{L}$. Per il Teorema fondamentale dell'algebra,
+		$\overline{\RR} = \CC$.
+		
+		
+		\subsection{Estensioni normali e $K$-immersioni di un'estensione finita di $K$}
+		
+		Sia $\alpha$ un elemento algebrico su $K$. Allora
+		$[K(\alpha) : K] = \deg_K \alpha$. Le
+		$K$-immersioni da $K(\alpha)$ in $\overline{K}$
+		sono esattamente tante quanti sono i coniugati di
+		$\alpha$ e sono tali da mappare $\alpha$ ad un suo coniugato. Se $K$ è perfetto, esistono esattamente
+		$\deg_K \alpha$ $K$-immersioni da $K(\alpha)$
+		in $\overline{K}$. \medskip
+		
+		
+		Se $L / K$ è un'estensione finita su $K$, allora
+		esistono esattamente $[L : K]$ $K$-immersioni
+		da $L$ in $\overline{K}$. Per quanto detto prima,
+		tali immersioni mappano gli elementi $L$ nei
+		loro coniugati. \medskip
+		
+		
+		Se $L$ è un'estensione separabile finita, allora per
+		ogni $\varphi : K \to \overline{K}$ esistono
+		esattamente $[L : K]$ estensioni $\varphi_i : L \to \overline{K}$ di $\varphi$, ossia omomorfismi
+		tali per cui $\restr{\varphi_i}{K} = \varphi$. \medskip
+		
+		
+		Si dice che un'estensione algebrica $L / K$ è un'\textbf{estensione normale}
+		se per ogni $K$-immersione $\varphi$ da $L$ in $\overline{K}$
+		vale che $\varphi(L) = L$. Equivalentemente
+		un'estensione è normale se è il campo di spezzamento
+		di una famiglia di polinomi (in particolare è il campo
+		di spezzamento di tutti i polinomi irriducibili che
+		hanno una radice in $L$). Ancora, un'estensione $L$
+		è normale se e solo se per ogni $\alpha \in L$,
+		i coniugati di $L$ appartengono ancora ad $L$.
+		Per un'estensione normale, per ogni $K$-immersione
+		$\varphi : L \to \overline{K}$ si può restringere
+		il codominio ad un campo isomorfo a $L \subseteq \overline{K}$, e quindi considerare $\varphi$ come
+		un automorfismo di $L$ che fissa $K$. \medskip
+		
+		
+		Si indica con $\Aut_K(L) = \Aut(L / K)$ l'insieme
+		degli automorfismi di $L$ che fissano $K$. Se
+		$L$ è normale e separabile, si dice
+		\textbf{estensione di Galois}, e si definisce
+		$\Gal(L / K) := (\Aut_K L, \circ)$, ossia come
+		il gruppo $\Aut_K L$ con l'operazione di
+		composizione.
+		
+		
 		\vfill
 		\hrule
 		~\\
