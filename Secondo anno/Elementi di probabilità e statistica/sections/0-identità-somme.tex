@@ -1,0 +1,54 @@
+%--------------------------------------------------------------------
+\chapter*{Lista delle identità sulle sommatorie}
+\addcontentsline{toc}{chapter}{Lista delle identità sulle sommatorie}  
+\setlength{\parindent}{2pt}
+
+\section*{Identità sulle sommatorie}
+
+\begin{itemize}
+    \item $\binom{n}{k} = \binom{n}{n-k}$ -- ogni scelta di $k$ oggetti corrisponde
+    a non sceglierne $n-k$, e dunque vi è un principio di ``dualità''.
+    \item $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$ -- le combinazioni
+    di $n$ oggetti in $k$ posizioni si ottengono facendo la somma delle combinazioni
+    ottenute fissando un oggetto e combinando gli altri $n-1$ oggetti sui $k-1$
+    posti rimanenti, e delle combinazioni ottenute ignorando lo stesso oggetto,
+    ossia combinando gli altri $n-1$ oggetti su tutti e $k$ i posti.
+    \item $(1 + x)^n = \sum_{i = 0}^n \binom{n}{i} x^i$ -- Teorema del binomio di Newton.
+    \item $2^n = \sum_{i = 0}^n \binom{n}{i}$ -- Segue immediatamente dal Teorema del binomio di Newton; è coerente col fatto che si stanno contando le parti di $[n]$.
+    \item $\sum_{i = 0}^n (-1)^i \binom{n}{i} = 0$ -- Segue immediatamente dal Teorema del binomio
+    di Newton (infatti $(1-1)^n = 0$).
+    \item $\sum_{i = 0}^n i \binom{n}{i} = n 2^{n-1}$ -- Segue derivando rispetto a $x$ l'identità
+    del Teorema del binomio di Newton.
+    \item $\sum_{i = 0}^n \binom{n}{i} \pp^i (1 - \pp)^{n-i} = 1$ per $\pp \in [0, 1]$ -- Segue dal Teorema del binomio di Newton.
+    \item $\sum_{i=0}^n \binom{n}{i}^2 = \sum_{i=0}^n \binom{n}{i} \binom{n}{n-i} = \binom{2n}{n}$ -- Dato un gruppo di $n$ maschi e di $n$ femmine, si vuole
+    contare quanti team di $n$ persone si possono costruire prendendo persone
+    da entrambi i gruppi. Chiaramente la risposta è $\binom{2n}{n}$, ma si
+    può contare lo stesso numero di scelte fissando a ogni passo l'indice
+    $i$, che conta il numero di maschi nel team, a cui corrispondono
+    $\binom{n}{i} \binom{n}{n-i}$ scelte. L'identità segue dunque dal Principio
+    del \textit{double counting}.
+    \item $\sum_{i=r}^n \binom{i}{r} = \binom{n+1}{r+1}$ -- Dato un gruppo di $r$
+    persone distinguibili e di $n$ bastoni indistinguibili, per contare le possibili
+    distribuzioni con cui si possono affidare gli $n$ bastoni è sufficiente applicare
+    la combinazione con ripetizione, ottenendo $\binom{n+r-1}{r-1}$; un altro modo
+    di far ciò è fissare $i$ bastoni da affidare a una persona fissata in precedenza
+    e distribuire gli $n-i$ bastoni rimanenti tra gli altri, che a ogni $i$ si può fare in
+    $\binom{n-i+k-2}{k-2}$ modi. L'identità segue dunque dal Principio del \textit{double
+    counting} riparametrizzando la somma ottenuta.
+    \item $\sum_{i=1}^n i = \frac{n(n+1)}{2}$ -- Somma dei numeri da $1$ a $n$.
+    \item $\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}$ -- Somma dei quadrati da $1$ a $n$.
+    \item $\sum_{i=1}^n i^3 = \left[ \sum_{i=1}^n i \right]^2 = \frac{n^2(n+1)^2}{4}$ -- Somma
+    dei cubi da $1$ a $n$.
+    \item $\sum_{i=0}^n a^i = \frac{a^{n+1}-1}{a-1}$ per $a \neq 1$, $n$ altrimenti -- Somma
+    delle potenze di $a$ con esponente da $0$
+    a $n$.
+    \item $\sum_{i=0}^n i a^i = \frac{a}{(1-a)^2} \left[1 - (n+1)a^n + na^{n+1} \right]$ -- Segue derivando la somma delle potenze.
+    \item $\sum_{i=0}^n i^2 a^i = \frac{a}{(1-a)^3} \left[ (1+a) - (n+1)^2 a^n + (2n^2 + 2n-1)a^{n+1} - n^2 a^{n+2} \right]$ -- Segue
+    derivando due volte la somma delle potenze.
+    \item $\sum_{i=0}^\infty x^i = \frac{1}{1-x}$ per $\abs{x} < 1$ -- Serie geometrica. Deriva
+    prendendo il limite per $n \to \infty$ della
+    somma di potenze.
+    \item $\sum_{i=0}^\infty i x^i = \frac{x}{(1-x)^2}$ per $\abs{x} < 1$ -- Segue derivando la serie geometrica.
+    \item $\sum_{i=0}^\infty i^2 x^i = \frac{x(x+1)}{(1-x)^3}$ per $\abs{x} < 1$ -- Segue derivando due volte
+    la serie geometrica.
+\end{itemize}

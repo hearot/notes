@@ -1,0 +1,425 @@
+%--------------------------------------------------------------------
+\chapter{Spazi di probabilità in generale}
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+    \section{Definizioni preliminari}
+
+    \subsection{Esperimento aleatorio, spazi campionari}
+
+    \begin{definition}[Esperimento aleatorio]
+        Si dice \textbf{esperimento aleatorio} un fenomeno il cui esito
+        non è determinabile a priori.
+    \end{definition}
+    
+    \begin{definition}[Spazio campionario]
+        Si definisce \textbf{spazio campionario}, spesso indicato con
+        $\Omega$, un insieme non vuoto che contiene gli
+        esiti di un esperimento aleatorio.
+    \end{definition}
+
+    \subsection{\texorpdfstring{$\sigma$}{σ}-algebre e spazi misurabili}
+
+    \begin{definition}[$\sigma$-algebra]
+        Una $\sigma$-algebra $\FF$ di $\Omega$ è un sottoinsieme $\FF \subseteq \PP(\Omega)$ tale per cui:
+
+        \begin{enumerate}[(i.)]
+            \item $\Omega \in \FF$,
+            \item $A \in \FF \implies A^c \in \FF$,
+            \item per $(A_i)_{i \in \NN}$ famiglia numerabile di insiemi
+                in $\FF$, $\bigcup_{i \in \NN} A_i \in \FF$ ($\FF$ è chiuso per unioni numerabili).
+        \end{enumerate}
+    \end{definition}
+
+    Una $\sigma$-algebra $\FF$ di uno spazio campionario $\Omega$ rappresenta l'insieme degli
+    \textbf{eventi accettabili}. In particolare:
+
+    \begin{definition}[Spazio misurabile]
+        Si definisce \textbf{spazio misurabile} una coppia
+        $(\Omega, \FF)$, dove $\FF$ è una $\sigma$-algebra
+        di $\Omega$.
+    \end{definition}
+
+    \subsection{Insiemi discreti e \texorpdfstring{$\sigma$}{σ}-algebra naturale}
+
+    In alcuni casi la scelta della $\sigma$-algebra $\FF$ è
+    naturale, come nel caso in cui si considera uno spazio
+    campionario discreto:
+
+    \begin{definition}[Insieme discreto]
+        Diciamo che un insieme $\Omega$ è discreto se è finito o numerabile.
+        Se non viene esplicitato altrimenti, per $\Omega$ si considererà
+        sempre la $\sigma$-algebra naturale $\PP(\Omega)$.
+    \end{definition}
+
+    \subsection{Proprietà di una \texorpdfstring{$\sigma$}{σ}-algebra e \texorpdfstring{$\sigma$}{σ}-algebra generata}
+
+    In casi non discreti, è invece più naturale considerare
+    $\sigma$-algebre molto meno grandi dell'insieme delle
+    parti; in particolare, come vedremo nella \textit{Parte 3},
+    sarà naturale chiedersi qual è la $\sigma$-algebra più
+    piccola che contiene una certa famiglia di insiemi:
+
+    \begin{definition}[$\sigma$-algebra generata da una famiglia di insiemi]
+        Sia $\tau$ una famiglia di sottoinsiemi di $\PP(\Omega)$. Allora
+        si definisce la $\sigma$-algebra
+        generata da $\tau$, detta $\sigma(\tau)$, come la più
+        piccola $\sigma$-algebra contenente $\tau$. Equivalentemente:
+        \[
+            \sigma(\tau) = \bigcap_{\substack{\FF \subseteq \PP(\Omega) \\ \tau \subseteq \FF \\ \FF \; \sigma\text{-alg.}}} \FF.
+        \]
+    \end{definition}
+
+    \begin{remark}
+        La definizione data è una buona definizione dal momento che si
+        verifica facilmente che l'intersezione di $\sigma$-algebre è ancora
+        una $\sigma$-algebra.
+    \end{remark}
+
+    \begin{proposition}[Proprietà di $\FF$] Se $\FF$ è una $\sigma$-algebra
+    di $\Omega$, allora:
+        \begin{enumerate}[(i.)]
+            \item $\emptyset \in \FF$,
+            \item per $(A_i)_{i \in \NN}$ famiglia numerabile di insiemi
+                in $\FF$, $\bigcap_{i \in \NN} A_i \in \FF$ ($\FF$ è chiuso per intersezioni numerabili),
+            \item $A \setminus B = A \cap B^c \in \FF \impliedby A$, $B \in \FF$.
+        \end{enumerate}
+    \end{proposition}
+
+    \section{Corrispondenze logiche e relazionali tra eventi}
+
+    \begin{remark}[Corrispondenze affermazioni ed eventi]
+        Ad alcune affermazioni logiche su $A$ e $B$ eventi di $\FF$ corrispondono degli eventi ben precisi o delle
+        relazioni:
+        \begin{itemize}
+            \item ``Si verificano $A$ e $B$'' corrisponde a $A \cap B$,
+            \item ``Si verifica $A$ o $B$'' corrisponde a $A \cup B$,
+            \item ``Si verifica esattamente uno tra $A$ e $B$'' corrisponde a $A \setminus B \cupdot B \setminus A = A \Delta B$ (differenza simmetrica),
+            \item ``Non si verifica $A$'' corrisponde a $A^c$,
+            \item ``Si verifica qualcosa'' corrisponde a $\Omega$,
+            \item ``Non si verifica niente'' corrisponde a $\emptyset$,
+            \item ``Se succede $A$, allora succede $B$'' corrisponde a $A \subseteq B$,
+            \item ``Non succedono $A$ e $B$ contemporaneamente'' corrisponde a
+                $A \cap B = \emptyset$.
+        \end{itemize}
+    \end{remark}
+
+    \section{Misure di probabilità}
+
+    \subsection{La probabilità \texorpdfstring{$P$}{P} su \texorpdfstring{$\Omega$}{Ω} e spazi di probabilità}
+
+    \begin{definition}[Probabilità \texorpdfstring{$P$}{P} su $(\Omega, \FF)$ secondo Kolmogorov]
+        Dato $(\Omega, \FF)$ spazio misurabile, una \textbf{misura
+        di probabilità} $P$, detta semplicemente \textit{probabilità},
+        è una funzione $P : \FF \to \RR$ tale per cui:
+
+        \begin{enumerate}[(i.)]
+            \item $P(\Omega) = 1$,
+            \item $0 \leq P(A) \leq 1$ per ogni $A \in \FF$ (ossia $P$ può restringersi su $[0, 1]$ al codominio),
+            \item $P(\bigcupdot_{i \in \NN} A_i) = \sum_{i \in \NN} P(A_i)$ ($\sigma$-additività).
+        \end{enumerate}
+
+        In particolare $P$ è una misura.
+    \end{definition}
+
+    \begin{definition}[Spazio di probabilità]
+        Si dice \textbf{spazio di probabilità} una tripla
+        ($\Omega$, $\FF$, $P$) dove ($\Omega$, $\FF$) è
+        uno spazio misurabile e $P$ è una
+        probabilità su ($\Omega$, $\FF$).
+    \end{definition}
+
+    \subsection{Proprietà della probabilità \texorpdfstring{$P$}{P}}
+
+    \begin{proposition}[Proprietà di $P$]
+        Se $P$ è una probabilità su ($\Omega$, $\FF$), allora:
+
+        \begin{enumerate}[(i.)]
+            \item $P(\emptyset) = 0$,
+            \item $P(\bigcupdot_{i \in [n]} A_i) = \sum_{i \in [n]} P(A_i)$ ($\sigma$-additività finita),
+            \item $P(A) + P(A^c) = 1$,
+            \item $A \subseteq B \implies P(A) \leq P(B)$ e $P(B \setminus A) = P(B) - P(A)$ (segue da (iii)),
+            \item $P(B \setminus A) = P(B) - P(A \cap B)$ (segue da (iv) considerando che $B \setminus A = B \setminus (A \cap B)$),
+            \item $P(A \cup B) = P(A \Delta B \cupdot A \cap B) = P(A) + P(B) - P(A \cap B)$ (segue da (v)),
+            \item $P(\bigcup_{i \in [n]} A_i) = \sum_{j \in [n]} (-1)^{j+1} \sum_{1 \leq i_1 < \cdots < i_j \leq n} P(\bigcap_{k \in [j]} A_{i_{k}})$ (segue da (vi) per induzione, Principio di inclusione-esclusione ``probabilistico''),
+            \item $P(\bigcup_{i \in \NN} A_i) \leq \sum_{i \in \NN} P(A_i)$ ($\sigma$-subadditività).
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{remark}
+        Per $\Omega$ finito, la $\sigma$-additività finita implica la $\sigma$-additività per il Principio della piccionaia.
+    \end{remark}
+
+    \begin{proposition}[Comportamento di $P$ al limite]
+        Sia $(A_i)_{i \in \NN}$ una famiglia numerabile di
+        eventi in $\FF$ sullo spazio di probabilità
+        $(\Omega, \FF, P)$. Allora:
+
+        \begin{enumerate}[(i.)]
+            \item $A_i \goesup A \implies P(A_i) \goesup P(A)$,
+            \item $A_i \goesdown A \implies P(A_i) \goesdown P(A)$.
+        \end{enumerate}
+    \end{proposition}
+
+    \subsection{Eventi incompatibili, quasi certi e trascurabili, proprietà che accadono q.c.}
+
+    \begin{definition}[Eventi trascurabili e quasi certi]
+        Sia $A \in \FF$. Allora $A$ si dice \textbf{trascurabile} se
+        $P(A) = 0$; si dice \textbf{quasi certo} se $P(A) = 1$.
+    \end{definition}
+
+    \begin{definition}[Eventi incompatibili]
+        Due eventi $A$, $B \in \FF$ si dicono \textbf{incompatibili} se
+        $A \cap B = \emptyset$.
+    \end{definition}
+
+    \begin{definition}[$q$ accade \qc]
+        Si dice che una proprietà $q$ \textbf{accade quasi certamente (\qc)}
+        se esiste $A \in \FF$ quasi certo che soddisfa
+        $q$.
+    \end{definition}
+
+    \begin{remark}
+        Si osserva che la nozione di proprietà che accade \qc è perfettamente
+        coerente con la nozione di proprietà che accade \qc riferita a
+        $P$ come misura (e non specificatamente come misura di probabilità) su $\RR$, ovverosia $q$ accade \qc se esiste
+        $A \in \FF$ trascurabile tale per cui $A^c$ soddisfi $q$.
+    \end{remark}
+
+    \section{Probabilità condizionata}
+
+    \subsection{Definizione di \texorpdfstring{$P(\cdot \mid B)$}{P(•|B)}}
+
+    \begin{definition}[Probabilità condizionata su $B$]
+        Dato $B \in \FF$ evento non trascurabile (i.e.~$P(B) \neq 0$),
+        la \textbf{probabilità condizionata} su $B$ è la misura
+        di probabilità $P(\cdot \mid B)$ sullo stesso spazio misurabile
+        tale per cui:
+        \[
+            P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \forall A \in \FF.
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        $P(\cdot \mid B)$ è una misura di probabilità su $(\Omega, \FF)$.
+    \end{proposition}
+
+    \begin{remark}
+        La probabilità condizionata su $\Omega$ coincide con $P$.
+    \end{remark}
+
+    \begin{remark}
+        In generale $P(A \mid \cdot)$ non è una probabilità, dacché
+        per $\Omega$ si ricava che $P(A \mid \Omega) = P(A)$, che
+        potrebbe non essere $1$.
+    \end{remark}
+
+    \subsection{Regola della catena, formula delle probabilità totali e Teorema di Bayes}
+
+    \begin{lemma}[Regola della catena, o della torre]
+        Dati $(A_i)_{i \in [n]}$ con $P(\bigcap_{i \in [n]} A_i) > 0$, allora vale che
+        $P(\bigcap_{i \in [j]} A_i) > 0$ per ogni $j \leq n$. Inoltre vale che:
+        \[ P\left(\bigcap_{i \in [n]} A_i\right) = \left(\prod_{j \in [n-1]} P\left(A_j \,\middle\vert\, \bigcap_{i=j+1}^{n} A_i\right)\right) P(A_n), \]
+
+        che segue per induzione applicando $P(A \cap B) = P(A \mid B) P(B)$.
+    \end{lemma}
+
+    \begin{remark}
+        Per esempio, la regola della catena per $A$, $B$ e $C$ si riduce
+        a:
+        \[
+            P(A \cap B \cap C) = P(A \mid B \cap C) P(B \mid C) P(C).
+        \]
+    \end{remark}
+
+    \begin{definition}[Sistema di alternative]
+        Una famiglia $(B_i)_{i \in I}$ con $I = \NN$ o
+        $I = [n]$ si dice \textbf{sistema di alternative}
+        per $\Omega$ se $\Omega = \bigcupdot_{i \in I} B_i$
+        e $P(B_i) > 0$ per ogni $i \in I$ (ovverosia
+        $B_i$ non è mai trascurabile).
+    \end{definition}
+
+    Un sistema di alternative permette di calcolare più agevolmente
+    la probabilità di un evento riducendosi alle probabilità
+    condizionate, come mostra il:
+
+    \begin{lemma}[Formula delle probabilità totali, o formula della partizione]
+        Sia $(B_i)_{i \in I}$ un sistema di alternative per $\Omega$. Allora vale
+        che:
+        \[ 
+            P(A) = \sum_{i \in I} P(A \cap B_i) = \sum_{i \in I} P(A \mid B_i) P(B_i).
+        \]
+    \end{lemma}
+
+    Nella maggior parte dei casi è possibile ``invertire'' una probabilità
+    condizionata, ovverosia ricavare una probabilità tra $P(A \mid B)$,
+    $P(B \mid A)$, $P(A)$ e $P(B)$ conoscendone tre, a patto che
+    $A$ e $B$ non siano trascurabili, come mostra il:
+
+    \begin{theorem}[di Bayes]
+        Siano $A$ e $B$ due eventi non trascurabili. Allora vale che:
+        \[
+            P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}.
+        \]
+        Segue considerando le due scritture possibili di $P(A \cap B)$.
+    \end{theorem}
+
+    \begin{remark}
+        Applicando il Teorema di Bayes e la formula delle probabilità totali,
+        si ricava che per un sistema di alternative $(B_i)_{i \in I}$ e
+        $A$ non trascurabile vale che:
+
+        \[
+            P(B_i \mid A) = \frac{P(A \mid B_i) P(B_i)}{\sum_{j \in I} P(A \mid B_j) P(B_j)}, \quad \forall i \in I.
+        \]
+    \end{remark}
+
+    \begin{remark}
+        Applicando la regola della catena, la formula delle probabilità totali
+        e il Teorema di Bayes è possibile calcolare agevolmente la probabilità
+        di un'intersezione di eventi cononoscendone l'albero di sviluppo probabilistico.
+        In particolare, per calcolare la probabilità di un nodo è sufficiente
+        moltiplicare le probabilità dei rami facenti parte del percorso dal nodo
+        alla radice.
+    \end{remark}
+
+    \subsection{Rapporto di influenza, correlazione positiva e negativa}
+
+    \begin{definition}[Rapporto di influenza]
+        Siano $A$ e $B$ due eventi non trascurabili. Allora
+        il \textbf{rapporto di influenza} di $A$ e $B$
+        (o più brevemente, la loro \textit{influenza}) è
+        il parametro:
+        \[
+            L(A, B) \defeq \frac{P(A\mid B)}{P(A)},
+        \]
+        ed è tale per cui:
+        \[
+            P(A \mid B) = L(A, B) P(A).
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        $L(\cdot, \cdot)$ è simmetrica, ovverosia $L(A, B) = L(B, A)$ per
+        ogni evento $A$ e $B$. Segue dal Teorema di Bayes.
+    \end{proposition}
+
+    \begin{definition}[Correlazione positiva e negativa tra $A$ e $B$]
+        Se $A$ e $B$ sono due eventi non trascurabili, si dice
+        che $A$ è \textbf{positivamente correlato} a $B$ (o che
+        si \textit{dilata probabilisticamente} rispetto a $B$) se
+        $P(A \mid B) \geq P(A)$ (ovverosia se $L(A, B) > 1$). \smallskip
+        
+        Analogamente
+        si dice che $A$ è \textbf{negativamente correlato} a $B$
+        (o che si \textit{contrae probabilisticamente} rispetto a $B$) se
+        $P(A \mid B) \leq P(A)$ (ovverosia se $L(A, B) < 1$).
+    \end{definition}
+
+    \begin{remark}
+        Il caso in cui $L(A, B) = 1$ è discusso nella sezione \textit{\nameref{sec:indipendenza}} e corrisponde all'indipendenza
+        tra $A$ e $B$.
+    \end{remark}
+
+    \begin{remark}
+        Si può parlare più generalmente di correlazione tra $A$ e $B$
+        senza scegliere un evento ``rispetto'' a cui analizzarla, dacché
+        $L(\cdot, \cdot)$ è simmetrica per il Teorema di Bayes. Infatti,
+        se $P(A \mid B) \leq P(A)$, anche $P(B \mid A) \leq P(B)$, cioè
+        $A$ è correlato positivamente a $B$ se e solo se $B$ è correlato
+        positivamente ad $A$. \smallskip
+
+
+        Una correlazione positiva tra $A$ e $B$ indica che, accadendo $B$,
+        si amplifica la probabilità che accada $A$; viceversa, una correlazione
+        negativa inficia ridimensionando in contrazione la probabilità che accada $A$
+        se accade $B$.
+    \end{remark}
+
+    \section{Indipendenza stocastica tra eventi}
+    \label{sec:indipendenza}
+
+    \begin{definition}[Famiglia di eventi indipendenti]
+        Una famiglia $(A_i)_{i \in I}$ di eventi si dice \textbf{stocasticamente
+        indipendente}, o più semplicemente indipendente, se
+        per ogni $J \subseteq I$ finito vale che:
+        \[
+            P(\cap_{j \in J} A_j) = \prod_{j \in J} P(A_j).
+        \]
+
+        Nel caso di due eventi questo si riduce a verificare
+        che $P(A \cap B) = P(A) P(B)$. Si dice che gli $A_i$ sono
+        \textbf{collettivamente indipendenti}.
+    \end{definition}
+
+    \begin{remark}
+        Generalmente non è sufficiente verificare che ogni coppia di eventi distinti è
+        indipendente per verificare che la famiglia è globalmente indipendente.
+        Infatti, il significato dell'indipendenza in termini puramente probabilistici
+        è che una famiglia $\FF$ è indipendente se e solo se il ``verificarsi'' di
+        alcuni eventi della famiglia non influenza il ``verificarsi'' degli altri.
+    \end{remark}
+
+    \begin{remark}
+        Se $(A_i)_{i \in I}$ è una famiglia di eventi indipendenti, allora
+        per $J \subseteq I$, $(A_j)_{j \in J}$ è ancora una famiglia di
+        eventi indipendenti (l'indipendenza si tramanda per restrizione).
+    \end{remark}
+
+    \begin{proposition}
+        Se $P(B) > 0$, allora $A$ e $B$ sono indipendenti se
+        e solo se $P(A \mid B) = P(A)$. Inoltre, se
+        $(A_j)_{j \in J} \cup \{A\}$ è una famiglia finita di eventi
+        non trascurabili (eccetto eventualmente per $A$)
+        indipendenti tra loro, allora
+        $P(\bigcap_{j \in J} A_j) \neq 0$ e
+        $P(A \mid \bigcap_{j \in J} A_j) = P(A)$.
+    \end{proposition}
+
+    \begin{proposition}
+        Se $A$ e $B$ sono indipendenti, allora anche
+        $A^c$ e $B$ sono indipendenti. Analogamente
+        lo sono $A$ e $B^c$, così come
+        $A^c$ e $B^c$.
+
+
+        Da ciò segue che se $(A_i)_{i \in I}$ è una famiglia di eventi
+        indipendenti, allora $(A_i^{\alpha_i})_{i \in I}$ è una famiglia
+        di eventi indipendenti per qualsiasi scelta di $\alpha_i$ in
+        $\{1, c\}$.
+    \end{proposition}
+
+    \begin{proposition}
+        Sia $(A_i)_{i \in I}$ una famiglia di eventi indipendenti. Allora,
+        se $I$ è partizionato dagli $I_j$, ovverosia $I = \bigcupdot_{j \in J} I_j$,
+        allora $(\bigcap_{i \in I_j} A_{i})_{j \in J})$ è ancora una famiglia
+        di eventi indipendenti (ossia intersecando alcuni elementi della famiglia
+        e lasciandone invariati altri, la famiglia ottenuta è ancora indipendente).
+    \end{proposition}
+
+    \begin{theorem}
+        Sia $(A_i)_{i \in I}$ una famiglia di eventi indipendenti. Allora,
+        ogni operazione di unione, intersecazione o complementare di alcuni elementi della famiglia restituisce una famiglia ancora indipendente. \smallskip
+
+        Segue dalle due proposizioni precedenti (infatti $A \cup B = (A^c \cap B^c)^c$).
+    \end{theorem}
+
+    \begin{example}
+        Per esempio, se $A$, $B$ e $C$ sono indipendenti, anche $A \cup B$, $C^c$
+        è indipendente. Se $A$, $B$, $C$ e $D$ sono indipendenti, anche
+        $(A \cap B) \cup C^c$ e $D^c$ lo sono.
+    \end{example}
+
+    \begin{remark}
+        Un'evento $A$ è indipendente da ogni evento $B \in \FF$, incluso
+        sé stesso, se e solo se $P(A) \in \{0, 1\}$, ovvero se e solo
+        se $A$ è trascurabile o quasi certo (infatti si avrebbe che
+        $P(A) = P(A \cap A) = P(A)^2$).
+    \end{remark}
+
+    \begin{remark}
+        Due eventi incompatibili $A$ e $B$ sono indipendenti se e solo se
+        uno dei due è trascurabile.
+    \end{remark}
+\end{multicols*}

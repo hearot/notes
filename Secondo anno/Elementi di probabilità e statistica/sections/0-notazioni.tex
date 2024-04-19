@@ -1,0 +1,198 @@
+%--------------------------------------------------------------------
+\chapter*{Notazioni impiegate}
+\addcontentsline{toc}{chapter}{Notazioni impiegate}  
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+    \section*{Algebra lineare}
+    \begin{itemize}
+        \item $q_\varphi$ -- dato uno spazio vettoriale $V$ equipaggiato con un
+        prodotto scalare $\varphi$, $q_\varphi$ è la forma quadratica associatogli, ovverosia
+        $q_\varphi(v) = \varphi(v, v)$.
+        \item $\norm{v}_{\varphi}$ -- dato uno spazio vettoriale reale $V$ equipaggiato con
+        un prodotto scalare (semi)definito positivo $\varphi$, $\norm{\cdot}_{\varphi}$ è
+        la (semi)norma indotta da $\varphi$, ovverosia $\norm{v}_{\varphi} = \sqrt{q_{\varphi}(v)} = \sqrt{\varphi(v, v)}$.
+        \item vettore isotropo --
+        vettore che annulla la forma quadratica.
+        \item vettore anisotropo -- vettore non isotropo, vettore che non annulla la forma quadratica.
+        \item $\cos_\varphi(v, w)$, $\cos(v, w)$ -- dati due vettori anisotropi $v$, $w$ su uno spazio vettoriale reale $V$ equipaggiato
+        di un prodotto scalare semidefinito positivo $\varphi$, si definisce
+        $\cos_\varphi(v, w)$ (o $\cos(v, w)$ se $\varphi$ è noto dal contesto) in modo tale che:
+        \[
+            \cos_\varphi(v, w) = \frac{\varphi(v, w)}{\norm{v}_\varphi \cdot \norm{w}_\varphi}.
+        \]
+        \item vettore $v$ ortogonale a $w$ per $\varphi$ -- Due vettori $v$, $w$ tali
+        per cui $\varphi(v, w) = 0$.
+        \item $V^\perp_{\varphi}$ -- Radicale del prodotto scalare (o hermitiano) $\varphi$
+        sullo spazio $V$, ovverosia sottospazio dei vettori ortogonali ai vettori di tutto
+        lo spazio.
+        \item $\CI(\varphi)$ -- Sottoinsieme dei vettori di $V$ che annullano $q_{\varphi}$, ossia
+        sottoinsieme dei vettori isotropi.
+        \item $C_{\varphi}(v, w)$ -- coefficiente di Fourier di
+        $v$ rispetto a $w$, ossia $C(v, w) \defeq \frac{\varphi(v, w)}{\varphi(v, v)}$.
+    \end{itemize}
+
+    \section*{Analisi matematica}
+    \begin{itemize}
+        \item $f(A_i) \goesup x$ -- la successione $(f(A_i))_{i \in \NN}$ a valori
+        in $\RR$ è crescente al crescere di $i$ e ha come limite $x$.
+        \item $f(A_i) \goesdown x$ -- la successione $(f(A_i))_{i \in \NN}$ a valori
+        in $\RR$ è decrescente al crescere di $i$ e ha come limite $x$.
+        \item esponente coniugato di $p$ -- per $p > 1$, l'esponente coniugato
+        $p'$ di $p$ è un numero reale $p' > 1$ tale per cui:
+        \[
+            \frac{1}{p} + \frac{1}{p'} = 1.
+        \]
+        \item $\norm{x}_p$ -- norma $p$-esima del vettore $x \in \RR^n$, ovverosia:
+        \[
+            \norm{x}_p = \left(\sum_{i \in [n]} \abs{x_i}^p\right)^\frac{1}{p}.
+        \]
+        Per $p = 2$, si scrive semplicemente $\norm{x}$, e coincide con la norma
+        indotta dal prodotto scalare canonico di $\RR^n$.
+        \item $f > g$ -- Per una funzione $f$ a valori reali, come affermazione
+        corrisponde a dire che per un qualsiasi punto del dominio $x$, $f(x) > g(x)$. Si estende naturalmente a $<$, $\geq$, $\leq$ (eventualmente con
+        catene di disuguaglianze). Da non
+        confondersi con l'insieme $f > g$.
+        \item $a$ -- Per una costante $a \in \RR$ la mappa costante $D \ni d \mapsto a \in \RR$;
+        la sua interpretazione dipende dal contesto.
+        \item $f^+$ -- Parte positiva di una mappa $f$ a valori reali, ovverosia
+        $f^+(a)$ è uguale a $f(a)$ se $f(a) \geq 0$ e $0$ altrimenti.
+        \item $f^-$ -- Parte negativa di una mappa $f$ a valori reali, ovverosia
+        $f^-(a)$ è uguale a $-f(a)$ se $f(a) \leq 0$ e $0$ altrimenti. In questo
+        modo $f = f^+ - f^-$.
+        \item $\exp$ -- Funzione esponenziale $e^x$.
+        \item $\log \equiv \ln = \log_e$ -- Logaritmo naturale, ossia logaritmo in base $e$.
+    \end{itemize}
+
+    \section*{Combinatoria}
+    \begin{itemize}
+        \item $D_{n,k} = \frac{n!}{(n-k)!}$ -- numero di disposizioni ottenute prendendo
+        $k$ elementi tra $n$ oggetti.
+        \item $\binom{n}{k} = C_{n,k}$ -- il coefficiente binomiale $n$ su $k$,
+        ovverosia il numero di combinazioni possibili prendendo $k$ elementi tra $n$ oggetti; equivale a $\frac{n!}{(n-k)!k!} = D_{n,k}/k!$. Alternativamente,
+        il numero di sottoinsiemi di $k$ elementi in $[n]$.
+        \item $S(I)$ -- gruppo simmetrico relativo a $I$, gruppo delle permutazioni
+        di $I$.
+        \item $S_n$ -- $n$-esimo gruppo simmetrico, gruppo delle permutazioni
+        di $[n]$.
+    \end{itemize}
+
+    \section*{Teoria degli insiemi}
+    \begin{itemize}
+        \item $\PP(\Omega)$ -- insieme delle parti di $\Omega$, ossia insieme
+        dei sottoinsiemi di $\Omega$.
+        \item $A \cupdot B$ -- unione disgiunta di $A$ e $B$, ovverosia $A \cup B$ con
+        l'ipotesi che $A \cap B = \emptyset$ (la notazione si estende naturalmente a
+        una famiglia di insiemi a due a due disgiunti).
+        \item $A \Delta B = A \setminus B \cupdot B \setminus A$ -- differenza simmetrica
+        tra $A$ e $B$.
+        \item $[n]$ -- l'insieme $\{1, \ldots, n\}$.
+        \item $\prod_{i \in I} S_i$ con $S_i$ insieme e $I$ ordinato -- prodotto cartesiano degli $S_i$, ordinato secondo $I$.
+        \item $[[n]]$ -- l'insieme $\{0, \ldots, n\} = \{0\} \cup [n]$. 
+        \item $\#A$, $\abs{A}$ -- numero di elementi di $A$, o semplicemente la cardinalità di $A$.
+        \item insieme finito -- insieme in bigezione con $[n]$ per qualche $n \in \NN$.
+        \item insieme numerabile -- insieme in bigezione con $\NN$.
+        \item $A_i \goesup A$ -- la famiglia $(A_i)_{i \in \NN}$ è crescente e ha
+        come limite $A$, ovverosia $A_i \subseteq A_{i+1}$ per ogni $i \in \NN$ e
+        $\bigcup_{i \in \NN} A_i = A$.
+        \item $A_i \goesdown A$ -- la famiglia $(A_i)_{i \in \NN}$ è decrescente e ha
+        come limite $A$, ovverosia $A_i \supseteq A_{i+1}$ per ogni $i \in \NN$ e
+        $\bigcap_{i \in \NN} A_i = A$.
+        \item $\omega_i$ -- $i$-esima coordinata di $\omega \in \Omega$, se
+        $\Omega$ è un prodotto cartesiano di finiti termini o di un numero
+        numerabile di termini.
+        \item $A^1 \defeq A$ -- useremo questa notazione per comodità.
+        \item $A^c$ -- il complementare di $A$ riferito a $\Omega$, quindi $\Omega \setminus A$, in modo tale che $\Omega = A \cupdot A^c$.
+        \item $X\inv(A)$ -- controimmagine dell'insieme $A \subseteq C$ in riferimento
+        alla funzione $X : D \to C$, ovverosia $X\inv(A) = \{\omega \in D \mid X(\omega) \in A\}$.
+        \item $S_X$, $\im X$ -- immagine della funzione $X$.
+        \item $\supp X$ -- supporto di $X$, ovverosia sottoinsieme del
+        dominio degli elementi che non annullano $X$.
+        \item $1_A$, $I_A$ -- funzione indicatrice di $A$, ovverosia la
+        funzione $1_A : B \to [[1]] \subseteq \RR$ riferita ad $A \subseteq B$
+        tale per cui:
+        \[
+            1_A(b) = \begin{cases}
+                1 & \text{se } b \in A, \\
+                0 & \text{altrimenti}.
+            \end{cases}
+        \]
+        \item $\groupto$ -- simbolo utilizzato al posto $\to$ quando si elencano
+        più funzioni che condividono o lo stesso dominio o lo stesso codominio (e.g.~$f$, $g : A$, $B \groupto C$ elenca una funzione $f : A \to C$ e una $g : B \to C$; $f$, $g : A \groupto B$, $C$ elenca una funzione
+        $f : A \to B$ e una $g : A \to C$).
+        
+    \end{itemize}
+
+    \section*{Probabilità e teoria della misura}
+    \begin{itemize}
+        \item $\Omega$ -- spazio campionario, l'insieme di tutti i possibili esiti dell'esperimento aleatorio considerato.
+        \item $\sigma(\tau)$ -- $\sigma$-algebra generata dalla famiglia $\tau \subseteq \PP(\Omega)$.
+        \item $\sigma\{A_1, \ldots, A_n\}$ -- $\sigma$-algebra generata dalla famiglia
+        $\tau = \{A_1, \ldots, A_n\} \subseteq \PP(\Omega)$.
+        \item $\FF$ -- $\sigma$-algebra relativa a $\Omega$, ossia l'insieme dei possibili eventi.
+        \item $(\Omega, \FF)$ -- spazio misurabile.
+        \item $P$ -- misura di probabilità su uno spazio misurabile.
+        \item $(\Omega, \FF, P)$ -- spazio di probabilità.
+        \item \qc -- quasi certo/quasi certamente.
+        \item $p$ -- per $\Omega$ discreto, funzione di densità discreta.
+        \item \va -- variabile aleatoria.
+        \item $P^X$ -- legge della v.a.~$X$ rispetto a $P$.
+        \item $p_X$ -- densità della legge della v.a.~$X$, rispetto a $P$.
+        \item $X \in A$ -- per una \va $X : \Omega \to S$,
+        $X \in A$ è l'insieme $X\inv(A)$. Si estende naturalmente
+        al caso $\notin$.
+        \item $X = a$ -- per una \va $X : \Omega \to S$,
+        $X = a$ è l'insieme $X\inv(a)$. Si estende naturalmente
+        al caso $\neq$.
+        \item $X = Y$ -- per due \va $X, Y : \Omega \groupto S$
+        l'insieme $\{ \omega \in \Omega \mid X(\omega) = Y(\omega) \}$.
+        Si estende naturalmente al caso $\neq$ e in modo analogo a $>$, $<$, $\leq$, $\geq$.
+        \item $X > a$ -- per una \va reale $X : \Omega \to \RR$,
+        $X > a$ è l'insieme $X\inv((a, \infty))$; per una \va discreta
+        $X : \Omega \to \RR$ è l'insieme $X\inv(\{m \in \NN \mid m > a\})$.
+        Si estende naturalmente ai casi $<$, $\leq$, $\geq$ (eventualmente
+        anche con una catena di disuguaglianze). Da non confondersi con
+        l'affermazione $X > a$ per $X$ a valori reali.
+        \item $\varphi(X)$ -- per una \va, la composizione $\varphi \circ X$.
+        \item $\deq$, $\sim$ -- per due v.a.~$X, Y : \Omega_1, \Omega_2 \groupto S$
+        indica l'uguaglianza di legge, ovverosia $P_{\Omega_1}^X = P_{\Omega_2}^Y$.
+        \item i.d.~-- identicamente distribuite; utilizzato in relazione a un gruppo
+        di v.a.~che condividono la stessa legge (spesso rispetto a uno stesso $\Omega$).
+        \item i.i.d.~-- indipendenti e identicamente distribuite; utilizzato in relazione
+        a un gruppo di v.a.~indipendenti che condividono la stessa legge (spesso rispetto
+        a uno stesso $\Omega$).
+        \item $(X_i)_{i \in I}$ -- famiglia di v.a., oppure v.a.~congiunta.
+        \item $(X_1, \ldots, X_n)$ -- per una famiglia $(X_i : \Omega \to S_i)_{i \in [n]}$ di
+        v.a.~indica la v.a.~congiunta (multivariata) $(X_1, \ldots, X_n) : \Omega \to \prod_{i \in [n]} S_i$, $\omega \mapsto (X_1(\omega), \ldots, X_n(\omega))$. Se la
+        famiglia è composta da due variabili, si dice anche \textit{coppia bivariata}.
+        \item $P(A, B) \defeq P(A \cap B)$ -- notazione introdotta per scrivere
+        più comodamente $P(X = x, Y = y)$ in luogo di $P((X = x) \cap (Y = y))$. Si
+        generalizza in modo naturale a più eventi.
+        \item $L(A, B) \defeq \frac{P(A \mid B)}{P(A)}$ -- rapporto di influenza tra
+        $A$ e $B$.
+        \item $\bigotimes_{i \in [n]} P_i = P_1 \otimes \cdots \otimes P_n$ --
+        Date $P_i$ probabilità su $S_i$ discreto, $P_1 \otimes \cdots \otimes P_n \defeq P$ è la misura di probabilità naturale su $\prod_{i \in [n]} S_i$ tale per cui
+        le proiezioni $\pi_i$ siano v.a.~discrete indipendenti e per cui
+        $P(\pi_i = x_i) = p_i(x_i)$ per ogni $x_i \in S_i$, $i \in [n]$.
+        \item $\EE[X]$ -- valore atteso di $X$.
+        \item $\EE[X \mid A] = \defeq \frac{\EE[X \cdot 1_A]}{P(A)}$ -- valore atteso di $X$
+        condizionato a $A$.
+        \item $\Cov(X, Y) \defeq \EE[(X - \EE[X])(Y - \EE[Y])]$ -- covarianza di $X$ e $Y$.
+        \item $\Var(X) \defeq \Cov(X, X)$ -- varianza di $X$.
+        \item $\sigma(X) \defeq \sqrt{\Var(X)}$ -- deviazione standard di $X$.
+        \item $\rho(X, Y)$ -- coefficiente
+        di correlazione di Pearson, ovverosia
+        $\cos_{\Cov}(X, Y) = \frac{\Cov(X, Y)}{\sigma(X) \cdot \sigma(Y)}$.
+        \item $a^*$, $b^*$ -- date due
+        v.a.~$X$, $Y$, $a^*$ e $b^*$ sono
+        i parametri della retta di
+        regressione $y = a^*x + b^*$.
+        \item $I(t)$ -- trasformata di Cramer.
+        \item LGN - Legge dei Grandi Numeri.
+        \item TCL, TLC - Teorema Centrale del Limite.
+        \item $m$, $\sigma$ -- spesso nel contesto
+        della LGN e del TCL si usa $m$ per
+        indicare $\EE[X_1]$ e $\sigma$ per
+        indicare $\sigma(X_1)$.
+    \end{itemize}
+\end{multicols*}

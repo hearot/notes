@@ -1,0 +1,1214 @@
+%--------------------------------------------------------------------
+\chapter{Probabilità discreta}
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+
+Consideriamo in questa sezione soltanto i casi in cui $\Omega$ è
+un insieme discreto, cioè finito o numerabile. Gli associamo
+in modo naturale la $\sigma$-algebra $\PP(\Omega)$.
+
+\section{Funzione di densità discreta}
+
+\subsection{Definizione per il caso discreto}
+
+\begin{definition}[Funzione di densità discreta]
+    Per una probabilità $P$ su $\Omega$ si definisce
+    \textbf{funzione di densità discreta} (o di massa, o
+    più brevemenete di densità)
+    la funzione $p : \Omega \to \RR$ tale per cui:
+    \[ p(\omega) = P(\{\omega\}), \quad \forall \omega \in \Omega. \]
+\end{definition}
+
+\begin{proposition}[$P$ è univocamente determinata da $p$]
+    Sia $p : \Omega \to \RR$ una funzione tale per cui:
+    \begin{enumerate}[(i.)]
+        \item $\sum_{\omega \in \Omega} p(\omega) = 1$,
+        \item $p(\omega) \geq 0$ per ogni $\omega \in \Omega$.
+    \end{enumerate}
+    Allora esiste un'unica probabilità $P$ la cui funzione di densità
+    è $p$, e vale che:
+    \[
+        P(A) = \sum_{a \in A} p(a).
+    \]
+\end{proposition}
+
+\subsection{Range di una probabilità discreta e restrizione}
+
+\begin{definition}[Range di $P$]
+    Sia $P$ una probabilità su $\Omega$ discreto e
+    sia $p$ la sua funzione di densità. Si
+    definisce allora \textbf{range} $R_P$ di $P$ il
+    supporto di $p$, ovverosia:
+    \[ R_P \defeq \supp p = \{ \omega \in \Omega \mid p(\omega) > 0\} \subseteq \Omega. \]
+\end{definition}
+
+\begin{definition}[Restrizione di $P$ sul range]
+    Data $P$ probabilità su $\Omega$ discreto, si
+    definisce \textbf{probabilità ristretta sul range $R_P$}
+    la misura di probabilità $\restr{P}{R_P} : \PP(R_P)$ tale
+    per cui:
+    \[
+        \restr{P}{R_P}(A) = P(A).
+    \]
+\end{definition}
+
+\begin{remark}
+    La definizione data è una buona definizione dal momento che
+    $P(R_P) = 1$.
+\end{remark}
+
+\begin{proposition}[Proprietà della restrizione di $P$ sul range]
+    Sia $P$ una probabilità su $\Omega$ discreto e sia $p$ la
+    sua funzione di densità. Allora vale che $P(A) = \restr{P}{R_P}(A \cap R_P)$.
+\end{proposition}
+
+\subsection{Misure di probabilità discrete su spazi campionari non discreti e discretizzazione}
+
+\begin{definition}[Probabilità discreta su spazio campionario non discreto]
+    Dato $(\Omega, \FF, P)$ spazio di probabilità con $\{\omega\} \in \FF$ per
+    ogni $\omega \in \Omega$, la probabilità $P$ si dice \textbf{discreta} su
+    $\Omega$ se esiste $\Omega_0 \in \FF$ discreto e quasi certo ($P(\Omega_0) = 1$).
+    In tal caso si dice che $P$ si \textit{concentra} su $\Omega_0$.
+\end{definition}
+
+\begin{definition}[Discretizzazione di $P$ discreta su $\Omega$]
+    Se $P$ è una probabilità discreta su $\Omega$ concentrata su $\Omega_0$,
+    si definisce \textbf{discretizzazione di $P$} la misura di probabilità $P_0$
+    su $(\Omega_0, \PP(\Omega_0))$ la cui funzione di densità discreta
+    è la mappa $p$ per la quale $\Omega_0 \ni \omega_0 \mapsto P(\{\omega_0\})$. Equivalentemente
+    vale che:
+    \[
+        P_0(A) = \sum_{a \in A} p(a) = P(A), \quad \forall A \in \PP(\Omega_0).
+    \]
+\end{definition}
+
+\begin{proposition}[Proprietà della discretizzazione di $P$]
+    Se $P$ è una probabilità discreta su $\Omega$ concentrata su $\Omega_0$, allora
+    vale che:
+    \[ 
+        P(A) = P(A \cap \Omega_0) = P_0(A \cap \Omega_0) = \sum_{a \in A \cap \Omega_0} p(a),
+    \]
+    dove $p$ è la funzione di densità di $P_0$. Segue dall'identità $P(A \cup \Omega_0) = 1$ e dalla definizione di discretizzazione.
+\end{proposition}
+
+\begin{remark}
+    In perfetta analogia al caso totalmente discreto, la discretizzazione
+    di $P$ discreta su $\Omega$ e concentrata su $\Omega_0$ è univocamente
+    determinata da $p$.
+\end{remark}
+
+\begin{remark}
+    Se $\Omega$ è discreto, allora si può sempre discretizzare
+    $P$ al suo range $R_P$.
+\end{remark}
+
+\section{Variabili aleatorie discrete}
+
+\subsection{Definizione di v.a.~discreta e composizione}
+
+\begin{definition}[Variabile aleatoria discreta]
+    Dato $S \neq \emptyset$, si definisce \textbf{variabile
+    aleatoria} (discreta) su $\Omega$ discreto, abbreviata \va, una funzione
+    $X : \Omega \to S$. $X$ si dice \textbf{variabile aleatoria reale}
+    (v.a.~reale) se $S \subseteq \RR$ o \textbf{variabile aleatoria vettoriale}
+    (v.a.~vettoriale, o \textit{vettore aleatorio}) se $S \subseteq \RR^n$ per
+    qualche $n \in \NN$. \smallskip
+
+
+    Dato $S \neq \emptyset$, definiamo $\VA(\Omega, S)$ come l'insieme
+    delle v.a.~discrete di $\Omega$ che hanno $S$ per codominio.
+\end{definition}
+
+\begin{remark}
+    Si può dotare $\VA(\Omega, \RR)$ di una struttura di algebra, oltre che di
+    spazio vettoriale, dove le operazioni di somma vettoriale, di prodotto
+    esterno e di prodotto tra vettori sono completamente naturali. \medskip
+
+
+    Se $\Omega$ è finito, allora $\VA(\Omega, \RR)$ è naturalmente isomorfo
+    a $\RR^{\# \Omega}$ come spazio vettoriale, mentre
+    nel caso di $\Omega$ numerabile $\VA(\Omega, \RR)$ ammette una base non numerabile.
+\end{remark}
+
+\begin{definition}[Composizione di v.a.~discrete]
+    Data $X \in \VA(\Omega, S)$ e una funzione $F : S \to S'$,
+    si definisce la \textbf{composizione di $X$ tramite $F$}
+    come $F(X) = F \circ X \in \VA(\Omega, S')$.
+\end{definition}
+
+\subsection{Legge di una v.a.~\texorpdfstring{$X$}{X}}
+
+Nel caso di $\Omega$ discreto, $S_X$, ossia l'immagine della v.a.~$X$, è
+ancora un insieme discreto. Questo ci porta alla:
+
+\begin{proposition}
+    Sia $X : \Omega \to S$ una v.a.~discreta di $\Omega$.
+    Sia $P'$ la misura di probabilità sullo spazio misurabile
+    $(S, \PP(S))$ tale per cui:
+    \[
+        P'(A) = P(X \in A) = P(X\inv(A)).
+    \]
+    Allora $P'$ si concentra su $S_X$ e dunque vale che:
+    \[
+        P'(A) = P'(A \cap S_X).
+    \]
+\end{proposition}
+    
+\begin{definition}[Legge di $X$]
+    Data una v.a.~$X : \Omega \to S$, si definisce \textbf{legge di $X$} (o \textit{distribuzione
+    di $X$}) la discretizzazione $P^X = \restr{P'}{S_X}$ che
+    agisce sullo spazio misurabile $(S_X, \PP(S_X))$, dove
+    $P'$ è tale per cui $P'(A) = P(X \in A) = P(X\inv(A))$.
+    Equivalentemente vale che:
+    \[
+        P^X : \PP(S_X) \ni A \mapsto P(X \in A) = P(X\inv(A)).
+    \]
+
+
+    Si indica con $p_X$ la funzione di densità discreta di $P^X$.
+    Per $P^X(A)$ con $A \subseteq S$ si intenderà
+    $P^X(A \cap S_X)$, e analogamente $p_X(x)$ si estende in modo
+    tale che valga $0$ per $x \notin S_X$.
+\end{definition}
+
+\begin{remark}
+    Dalla definizione della legge di $X$ si ricava immediatamente che:
+    \[
+        P(X \in A) = P^X(A) = \sum_{x \in A} p_X(x) = \sum_{x \in A} P(X = x),
+    \]
+    dove si osserva che $X \in A = \bigcupdot_{x \in A} (X = x)$.
+\end{remark}
+
+\begin{remark}
+    Il range di $P^X$ è:
+    \[ R_X \defeq R_{P^X} = \{x \in S \mid p_X(x) = P(X = x) > 0\}, \]
+    ovverosia $R_{P^X}$ è composto dagli elementi di $S$ le cui
+    controimmagini non siano trascurabili rispetto a $P$.
+\end{remark}
+
+\begin{remark}
+    Dato uno spazio di probabilità $(S, \PP(S), Q)$ con
+    $\Omega$ discreto è sempre possibile trovare uno
+    spazio di probabilità $(\Omega, \PP(\Omega), P)$ e una
+    v.a.~$X : \Omega \to S$ tale per cui $P^X = Q$. \smallskip
+
+    È sufficiente porre $\Omega = S$, $P = Q$ e $X = \id_{S}$
+    (\textbf{costruzione canonica}). Infatti vale che:
+    \[
+        P^X(A) = P(X \in A)) = P(A) = Q(A).
+    \]
+\end{remark}
+
+\begin{proposition}
+    Data una v.a.~$X : \Omega \to S$ e una funzione $f : S \to E$,
+    vale la seguente identità:
+    \[
+        p_{f(X)}(e) = \sum_{x \in f\inv(e)} p_X(x).
+    \]
+    Equivalentemente vale che:
+    \[
+        P(f(X) = e) = \sum_{x \in f\inv(e)} P(X = x).
+    \]
+    Segue dal fatto che $(f(X) = e) = (X \in f\inv(e))$.
+\end{proposition}
+
+\subsection{Uguaglianza q.c., medesima legge e stabilità per composizione}
+
+\begin{definition}[Uguaglianza quasi certa tra v.a.]
+    Date $X$, $Y \in \VA(\Omega, S)$, si dice che
+    \textbf{$X$ è uguale a $Y$ quasi certamente} ($X = Y$ q.c.\footnote{
+        Nella definizione compare due volte la scrittura $X = Y$: la prima
+        volta si intende dire che la v.a.~$X$ è uguale a quella $Y$ q.c.,
+        mentre dove compare la seconda volta si intende l'insieme $(X=Y) \subseteq \Omega$.
+    }) rispetto
+    alla probabilità $P$ se
+    l'insieme $(X = Y) = \{\omega \in \Omega \mid X(\omega) = Y(\omega)\}$
+    è quasi certo rispetto a $P$.
+\end{definition}
+
+\begin{proposition}[Comportamento delle uguaglianze q.c.~sulla composizione]
+    Sia $F : S \to S'$. Siano $X$, $Y \in \VA(\Omega, S)$. Allora se
+    $X = Y$ q.c., $F(X) = F(Y)$ q.c. \smallskip
+
+    Segue considerando la seguente relazioni di insiemi: $(X = Y) \subseteq (F(X) = F(Y))$.
+\end{proposition}
+
+\begin{definition}[Uguaglianza di leggi tra v.a.]
+    Data $X \in \VA(\Omega_1, S)$ e $Y \in \VA(\Omega_2, S)$,
+    si dice che \textbf{$X$ e $Y$ hanno la stessa legge},
+    e si scrive che $X \deq Y$ o che $X \sim Y$, se
+    $P_{\Omega_1}^X \equiv P_{\Omega_2}^Y$.
+\end{definition}
+
+\begin{definition}[Variabili aleatorie i.d.]
+    Si dice che una famiglia di v.a.~sono \textbf{identicamente distribuite (i.d.)}
+    se condividono la stessa legge. \smallskip
+
+
+    Spesso sottintenderemo che tali v.a.~sono costruite sullo stesso $\Omega$.
+\end{definition}
+
+\begin{proposition}
+    Se $X = Y$ q.c., allora $X \deq Y$. Segue considerando che
+    $P$ è concentrata sull'insieme $X=Y$, e quindi ci si può sempre
+    restringere su questo insieme, interscambiando eventualmente
+    le v.a.
+\end{proposition}
+
+\begin{remark}
+    Per $X$, $Y \in \VA(\Omega, S)$ v.a. non è generalmente vero che
+    $X \deq Y$ implica $X = Y$ q.c. 
+\end{remark}
+
+\begin{proposition}[Comportamento delle uguaglianze di legge sulla composizione]
+    Sia $F : S \to S'$. Siano $X$, $Y : \Omega_1, \Omega_2 \groupto S$ v.a. Allora
+    se $X \deq Y$, $F(X) \deq F(Y)$.
+\end{proposition}
+
+\subsection{Variabile aleatoria multivariata, leggi congiunte e marginali}
+
+\begin{definition}[Variabile aleatoria multivariata, o congiunta]
+    Data una famiglia $(X_i : \Omega \to S_i)_{i \in I}$ di
+    v.a.~discrete di $\Omega$ con $I$ ordinato, si definisce la \textbf{v.a.~congiunta} (o
+    \textit{blocco multivariato}) la variabile discreta $(X_i)_{i \in I}$ tale per cui:
+    \[
+        (X_i)_{i \in I} : \Omega \ni \omega \mapsto (X_i(\omega))_{i \in I} \in \prod_{i \in I} S_i.
+    \]
+    Se $I = [n]$, scriviamo $(X_1, \ldots, X_n)$ al posto di $(X_i)_{i \in I}$.
+    Sottintenderemo sempre che $I$ è ordinato quando si nomina una famiglia
+    di v.a.~discrete.
+\end{definition}
+
+\begin{definition}[Legge e densità congiunta]
+    Data una famiglia $(X_i : \Omega \to S_i)_{i \in I}$ di
+    v.a.~discrete di $\Omega$ e $P$ probabilità su $\Omega$ discreto,
+    si dice \textbf{legge congiunta} delle $X_i$
+    la legge relativa alla loro v.a.~congiunta, ovverosia
+    $P^{(X_i)_{i \in I}}$. Analogamente, con il
+    termine \textbf{densità congiunta} ci si riferirà
+    alla densità discreta della legge congiunta.
+\end{definition}
+
+\begin{definition}[Leggi e densità marginali]
+    Data una famiglia $(X_i : \Omega \to S_i)_{i \in I}$ di
+    v.a.~discrete di $\Omega$ e $P$ probabilità su $\Omega$ discreto,
+    ci si riferisce con il termine di \textbf{legge marginale} a una qualsiasi
+    legge $P^{X_i}$ e con il termine di \textbf{densità marginale} alla relativa
+    funzione di densità discreta.
+\end{definition}
+
+\begin{remark}
+    La legge congiunta restituisce \textit{sempre} più informazioni rispetto
+    all'insieme delle leggi marginali. Infatti, si può sempre ricostruire una
+    legge marginale data la legge congiunta, ma non è sempre vero il
+    viceversa. \medskip
+\end{remark}
+
+\begin{remark}
+    Si osserva che vale la seguente identità:
+    \[
+        P^{(X_i)_{i \in I}}\left(\prod_{i \in I} A_i\right) = P\left(\bigcap_{i \in I} (X_i \in A_i)\right), \quad \forall A_i \subseteq S_i.
+    \]
+    Pertanto, nel caso finito vale che:
+    \[
+        P^{(X_1, \ldots, X_n)}\left(\prod_{i \in I} A_i\right) = P\left(X_1 \in A_1, \ldots, X_n \in A_n\right), \quad \forall A_i \subseteq S_i.
+    \]
+\end{remark}
+
+\begin{proposition}
+    Ogni densità marginale è univocamente determinata dalla densità
+    congiunta. In particolare nel caso finito vale che:
+    \[
+        p_{X_i}(x_i) = \sum_{\substack{x_j \in S_j \\ j \neq i}} p_{(X_1, \ldots, X_n)}(x_1, \ldots, x_n).
+    \]
+\end{proposition}
+
+\subsection{Indipendenza di variabili aleatorie discrete e stabilità per congiunzione e composizione}
+
+\begin{definition}[Indipendenza tra v.a.~discrete]
+    Sia $(X_i : \Omega \to S_i)_{i \in I}$ una famiglia di v.a.~discrete. Si dice che tale famiglia di v.a.~è \textbf{indipendente} se per ogni $n$ e ogni famiglia finita di
+    indici distinti $(i_j)_{j \in [n]} \subseteq I$ vale che:
+    \[
+        P(X_{i_1} \in A_{i_1}, \ldots, X_{i_n} \in A_{i_n}) = \prod_{j \in [n]} P(X_{i_j} \in A_{i_j}), \quad \forall A_{i_j} \subseteq S_{i_j}.
+    \]
+    Equivalentemente tale famiglia è indipendente se:
+    \[
+        P^{(X_{i_1}, \ldots, X_{i_n})}(A_{i_1} \times \cdots \times A_{i_n}) = \prod_{j \in [n]} P^{X_{i_j}}(A_{i_j}), \quad \forall A_{i_j} \subseteq S_{i_j}.
+    \]
+\end{definition}
+
+\begin{definition}[Variabili aleatorie i.i.d.]
+    Data una famiglia di variabili aleatorie, si dice che
+    queste sono \textbf{indipendenti e identicamente distribuite (i.i.d.)}
+    se formano una famiglia di v.a.~indipendenti e se condividono
+    la stessa legge. \smallskip
+
+    Spesso sottintenderemo che tali v.a.~sono costruite sullo stesso $\Omega$.
+\end{definition}
+
+\begin{remark}
+    La definizione è equivalente a richiedere che per ogni scelta di $A_{i_j} \subseteq S_{i_j}$,
+    $X_{i_1} \in A_{i_1}$, ..., $X_{i_n} \in A_{i_n}$ formino una famiglia di eventi
+    collettivamente indipendenti. Pertanto è possibile sfruttare tutte
+    le proposizioni viste nella sottosezione \textit{\nameref{sec:indipendenza}}. \smallskip
+
+    Inoltre, se la famiglia $(X_i)_{i \in I}$ è indipendente, lo è
+    chiaramente anche $(X_{\sigma(i)})_{i \in I}$ per ogni $\sigma \in S(I)$
+    (in riferimento in particolare alla seconda identità presente nella definizione
+    di indipendenza tra v.a.).
+\end{remark}
+
+\begin{remark}
+    Una v.a.~costante è sempre indipendente con altre v.a., dal momento che
+    le sue uniche controimmagini sono $\Omega$ e $\emptyset$, che sono indipendenti
+    da ogni evento.
+\end{remark}
+
+\begin{remark}
+    Si osserva che vale la seguente identità:
+    \[
+        P(X_1 \in A_1, \ldots, X_n \in A_n) = \sum_{x_i \in A_i} P(X_1 = x_1, \ldots, X_n = x_n).
+    \]
+\end{remark}
+
+\begin{proposition}
+    Sia $(X_i : \Omega \to S_i)_{i \in I}$ una famiglia di v.a.~discrete. Allora
+    tale famiglia è indipendente se per ogni $n$ e ogni famiglia finita di
+    indici distinti $(i_j)_{j \in [n]} \subseteq I$ vale che:
+    \[
+        P(X_{i_1} = x_{i_1}, \ldots, X_{i_n} = x_{i_n}) = \prod_{j \in [n]} P(X_{i_j} = x_{i_j}), \quad \forall x_{i_j} \in S_{i_j}.
+    \]
+    Equivalentemente, sono indipendenti se e solo se:
+    \[
+        p_{(X_{i_1}, \ldots, X_{i_n})}(x_{i_1}, \ldots, x_{i_n}) = \prod_{j \in [n]} p_{X_{i_j}}(x_{i_j}), \quad \forall x_{i_j} \in S_{i_j}.
+    \]
+    Segue dalla precedente osservazione.
+\end{proposition}
+
+\begin{proposition}
+    Sia $(A_i)_{i \in I}$ una famiglia di eventi. Allora tale famiglia
+    è indipendente se e solo se la famiglia di v.a.~$(1_{A_i})_{i \in I}$ è
+    indipendente. \smallskip
+
+
+    Segue dalla precedente proposizione; infatti $(1_{A_i} = 1) = A_i$ e
+    $(1_{A_i} = 0) = A_i^c$.
+\end{proposition}
+
+\begin{proposition}
+    \label{prop:indipendenza_composizione}
+    Sia $(X_i : \Omega \to S_i)_{i \in I}$ una famiglia di v.a.~discrete e
+    sia $(f_i : S_i \to S_{i}')_{i \in I}$ una famiglia di funzioni. Allora
+    se $(X_i)_{i \in I}$ è una famiglia di v.a.~indipendenti, anche
+    $(f_i(X_i))_{i \in I}$ lo è. \smallskip
+
+
+    Segue dal fatto che $(f_i(X_i) \in A_i) = (X_i \in f\inv(A_i))$.
+\end{proposition}
+
+\begin{proposition}
+    \label{prop:indipendenza_partizione}
+    Sia $(X_i : \Omega \to S_i)_{i \in I}$ una famiglia di v.a.~discrete e
+    sia $I$ partizionato dagli $I_j$, ovverosia $I = \bigcupdot_{j \in J} I_j$.
+    Allora se $(X_i)_{i \in I}$ è una famiglia di v.a.~indipendenti, anche
+    $((X_i)_{i \in I_j})_{j \in J}$ è una famiglia di v.a.~indipendenti. \smallskip
+
+
+    Segue applicando la definizione.
+\end{proposition}
+
+\begin{remark}
+    Le ultime due proposizioni permettono di ricavare molto velocemente l'indipendenza
+    di una certa famiglia di v.a.~discrete. Per esempio, se
+    $X_1$, $X_2$, $X_3$, $X_4$, $X_5 \in \VA(\Omega, \RR)$ sono indipendenti,
+    si ricava immediatamente che $X_1$, $X_2 + X_3$ e $\max(X_4, X_5)$ sono
+    indipendenti a partire dal seguente albero, dove ogni colonna è una famiglia
+    di v.a.~indipendenti:
+
+    \[\begin{tikzcd}[cramped,column sep=scriptsize,row sep=tiny]
+    	{X_1} && {X_1} && {X_1} \\
+    	{X_2} && {(X_2, X_3)} && {X_2+X_3} \\
+    	{X_3} && {(X_4, X_5)} && {\max(X_4, X_5)} \\
+    	{X_4} \\
+    	{X_5}
+    	\arrow[squiggly, from=1-1, to=1-3]
+    	\arrow[squiggly, from=2-1, to=2-3]
+    	\arrow[curve={height=6pt}, squiggly, from=3-1, to=2-3]
+    	\arrow[curve={height=6pt}, squiggly, from=5-1, to=3-3]
+    	\arrow[squiggly, from=4-1, to=3-3]
+    	\arrow["{\operatorname{id}}", from=1-3, to=1-5]
+    	\arrow["{+}", from=2-3, to=2-5]
+    	\arrow["\max", from=3-3, to=3-5]
+    \end{tikzcd}\]
+
+    Infatti la prima operazione restituisce una famiglia indipendente
+    per la \textit{Proposizione \ref{prop:indipendenza_partizione}}, e la seconda fa lo stesso
+    per la \textit{Proposizione \ref{prop:indipendenza_composizione}}.
+\end{remark}
+
+\begin{remark}
+    Data una famiglia di probabilità $(P_i)_{i \in [n]}$ su spazi misurabili discreti
+    $(S_i, \PP(S_i))$ è sempre possibile costruire uno
+    spazio discreto di probabilità $(\Omega, \PP(\Omega), P)$ equipaggiato di
+    una famiglia di v.a.~$(X_i : \Omega \to S_i)_{i \in [n]}$ tale per cui
+    \begin{enumerate}
+        \item la famiglia $(X_i)_{i \in [n]}$ è una famiglia di v.a.~indipendenti,
+        \item $P^{X_i} \equiv P_i$.
+    \end{enumerate}
+    È infatti sufficiente porre $\Omega = \prod_{i \in [n]} S_i$ (il prodotto finito di discreti è discreto), $X_i = \pi_i$ (la
+    proiezione dal prodotto cartesiano all'insieme $S_i$) con $P$ probabilità
+    univocamente determinata dalla relazione:
+    \[
+        p(x_1, \ldots, x_n) = \prod_{i \in [n]} p_i(x_i).
+    \]
+    Infatti in tal caso varrebbe che:
+    \[
+        P(X_1 = x_1, \ldots, X_n = x_n) =
+        p(x_1, \ldots, x_n) = \prod_{i \in [n]} P(X_i = x_i).
+    \]
+    Tale costruzione si indica come $P \defeq \bigotimes_{i \in [n]} P_i =
+    P_1 \otimes \cdots \otimes P_n$.
+\end{remark}
+
+\section{Valore atteso e momenti}
+
+\subsection{Valore atteso su v.a.~integrabili e/o non negative}
+
+\begin{definition}[Variabile aleatoria integrabile]
+    Sia $X$ v.a.~reale. Si dice che $X$ è \textbf{integrabile} (in senso discreto)
+    se:
+    \[
+        \EE[\abs{X}] \defeq \sum_{\omega \in \Omega} \abs{X(\omega)} p(\omega) < \infty,
+    \]
+    ovverosia se $\EE[\abs{X}]$, detto il \textbf{momento primo assoluto},
+    converge (l'unica altra possibilità è che diverga, dacché
+    è una serie a termini positivi).    
+\end{definition}
+
+\begin{definition}[Valore atteso di una v.a.]
+    Sia $X$ v.a.~reale. Se $X$ è integrabile si definisce
+    il \textbf{valore atteso} di $X$ (o \textit{momento primo}) come:
+    \[
+        \EE[X] \defeq \sum_{\omega \in \Omega} X(\omega) p(\omega) \in \RR,
+    \]
+    dove l'ultima appartenenza è data proprio dal fatto che $\EE[\abs{X}] < \infty$ (e
+    dunque vi è convergenza assoluta, dacché $p(\omega) \geq 0$). \smallskip
+
+    Se $X \geq 0$ q.c.~, si definisce allora stesso modo $\EE[X]$, che però può assumere come
+    valore anche $\infty$; e così per $X \leq 0$ q.c.~si pone
+    $\EE[X] \defeq -\EE[X^-]$. In questo modo ammettiamo eventualmente i valori
+    di $\infty$ o $-\infty$. \smallskip
+
+    Diciamo che $X$ \textbf{ha valore atteso}, se esiste un $\EE[X]$ associatogli.
+\end{definition}
+
+\begin{remark}
+    Il valore atteso è da associarsi a un ``baricentro'' della distribuzione di
+    $X$, ovverosia, su una popolazione $\Omega$, misura quanto vale in media
+    la caratteristica data da $X$.
+\end{remark}
+
+\begin{remark}
+    Per la v.a.~$1_A$ con $A \subseteq \Omega$ vale che
+    $\EE[1_A] = 1 \cdot P(1_A = 1) + 0 \cdot P (1_A = 0) = P(A)$.
+\end{remark}
+
+\begin{remark}
+    Per $X$ tale per cui $\EE[X^+]$, $\EE[X^-] < \infty$ vale che:
+    \[
+        \EE[X] = \EE[X^+] - \EE[X^-].
+    \]
+    Come vedremo, questo è un caso particolare della linearità di $\EE[\cdot]$
+    (infatti $X = X^+ - X^-$).
+\end{remark}
+
+\begin{lemma}[Valore atteso tramite la legge]
+    Per $X$ con valore atteso vale la seguente identità:
+    \[
+        \EE[X] = \sum_{x \in R_X} x \cdot p_X(x) = \sum_{x \in R_X} x \cdot P(X = x).
+    \]
+    Segue dal fatto che $\EE[X] = \sum_{x \in R_X} \sum_{s \in X\inv(x)} x \cdot p(s)$.
+\end{lemma}
+
+Questa proposizione può estendersi facilmente alla:
+
+\begin{proposition}[Valore atteso della composizione tramite la legge]
+    Sia $X : \Omega \to S$ v.a.~discreta e sia $\varphi : S \to \RR$. Allora vale che:
+    \begin{enumerate}[(i.)]
+        \item $\varphi(X)$ è integrabile se e solo se $\sum_{x \in R_X} \abs{\varphi(x)} P(X = x) < \infty$,
+        \item se $\varphi(X)$ ha valore atteso, allora:
+        \[
+            \EE[\varphi(X)] = \sum_{x \in R_X} \varphi(x) \cdot p_X(x) = \sum_{x \in R_X} \varphi(x) \cdot P(X = x).
+        \]
+    \end{enumerate}
+    Segue dal fatto che $\EE[\varphi(X)] = \sum_{x \in R_X} \sum_{s \in X\inv(x)} \varphi(x) \cdot p(s)$.
+\end{proposition}
+
+\begin{remark}[Uguaglianza di valori attesi per leggi uguali]
+    Dal momento che $\EE[\varphi(X)]$ dipende soltanto dalla legge di $p_X$,
+    $X \deq Y \implies \EE[\varphi(X)] = \EE[\varphi(Y)]$.
+\end{remark}
+
+\subsection{Proprietà del valore atteso e moltiplicatività per v.a.~indipendenti}
+
+\begin{proposition}
+    \label{prop:prop_valore_atteso}
+    Siano $X$ e $Y$ due v.a.~reali con valore atteso. Allora vale che:
+    \begin{enumerate}[(i.)]
+        \item Se $X=c$ q.c., allora $\EE[X] = c$,
+        \item Se $X \geq 0$ q.c./integrabile, allora per $a \in \RR^+$, $aX \geq 0$ q.c./integrabile,
+        \item Se $X$ ha valore atteso, allora per $a \in \RR$ pure $aX$ lo ha e $\EE[aX] = a \, \EE[X]$\footnote{
+            Si assume la convenzione per cui $0 \cdot \infty = 0$, $a \cdot \infty = \sgn(a) \infty$ per
+            $a \neq 0$.
+        }
+        \item Se $X \geq 0$ q.c.~o $X \leq 0$ q.c.~e $\EE[X] = 0$, allora $X = 0$ q.c.,
+        \item Se $X \leq Y$ q.c.~, allora $E[X] \leq E[Y]$,
+        \item Se $X$ e $Y$ hanno valore atteso e non sono uno $\infty$ e l'altro
+        $-\infty$, allora $\EE[X + Y] = \EE[X] + \EE[Y]$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    Siano $X$, $Y : \Omega \groupto S$, $S'$, due v.a.~indipendenti. Se $g$, $h : S$, $S' \groupto \RR$ sono funzioni e $g(X)$ e $h(Y)$ ammettono valore atteso\footnote{
+        Si ammette in questo caso la convenzione per cui $\infty \cdot \infty = \infty$ e
+        che $-\infty \cdot \infty = -\infty$.
+    }, allora vale che:
+    \[
+        \EE[g(X)h(Y)] = \EE[g(X)] \cdot \EE[h(Y)].
+    \]
+    Usando che $\EE[g(X)h(Y)] = \sum_{(x, y) \in R_{(X, Y)}} g(x) h(y) P(X = x, Y = y)$, segue, per
+    l'indipendenza di $X$ e $Y$, dal fatto che $R_{(X, Y)} = R_X \times R_Y$ e che $P(X = x, Y = y) = P(X = x) P(Y = y)$.
+\end{proposition}
+
+\begin{remark}
+    \label{remark:indipendenza_valore_atteso}
+    In particolare, per v.a.~reali $X$, $Y$ indipendenti che ammettono valore atteso
+    vale che:
+    \[
+        \EE[XY] = \EE[X] \cdot \EE[Y].
+    \]
+\end{remark}
+
+\begin{remark}
+    Dalla \textit{Proposizione \ref{prop:prop_valore_atteso}} si deduce che
+    $\EE[\cdot]$ è un funzionale di $\VA(\Omega, \RR)$ (ovverosia
+    $\EE[\cdot] \in \VA(\Omega, \RR)^*$).
+\end{remark}
+
+\begin{proposition}
+    Sia $X$ una v.a.~reale che assume valori naturali quasi certamente.
+    Allora vale che:
+    \[
+        \EE[X] = \sum_{n \in \NN} P(X > n).
+    \]
+    In generale se $X$ è una v.a.~reale che assume valori positivi il cui
+    range ordinato è $(x_i)_{i \in I}$ (con $I = \NN^+$ o $I = [k]$),
+    allora, posto $x_0 = 0$, vale che:
+    \[
+        \EE[X] = \sum_{n \in \NN} (x_{n+1} - x_n) P(X > x_n).
+    \]
+\end{proposition}
+
+\subsection{Valore atteso condizionale}
+
+\begin{definition}[Valore atteso condizionale]
+    Sia $X$ una v.a.~reale. Dato allora un evento
+    $A \in \PP(\Omega)$, si definisce il \textbf{valore atteso
+    condizionale} $\EE[X \mid A]$ in modo tale che:
+    \[
+        \EE[X \mid A] \defeq \frac{\EE[X \cdot 1_A]}{P(A)} = \sum_{\omega \in A} X(\omega) \cdot P(\{\omega\} \mid A).
+    \]
+    Alternativamente vale che:
+    \[
+        \EE[X \mid A] = \sum_{x \in R_X} x \cdot \frac{P((X = x) \cap A)}{P(A)} = \sum_{x \in R_X} x \cdot P(X=x \mid A).
+    \]
+\end{definition}
+
+Il valore atteso condizionale rimodula il valore atteso in modo
+tale da considerare solamente le immagini di $X$ possibili sotto
+l'ipotesi che sia accaduto l'evento $A$. Pertanto è naturale
+aspettarsi il seguente:
+
+\begin{lemma}[Formula dei valori attesi totali, o formula della partizione dei valori attesi]
+    Sia $X$ una v.a.~reale e sia $(A_i)_{i \in [n]}$ un sistema di alternative
+    finito per $\Omega$. Allora vale che:
+    \[
+        \EE[X] = \sum_{i \in [n]} \EE[X \mid A_i] P(A_i).
+    \]
+    Segue considerando che $X = X \cdot (\sum_{i \in [n]} 1_{A_i})$.
+\end{lemma}
+
+\subsection{Momenti (assoluti) \texorpdfstring{$n$}{n}-esimi}
+
+\begin{definition}[Momento $n$-esimo assoluto]
+    Data $X$ v.a.~reale e $n \in \RR^+$, definiamo il
+    \textbf{momento assoluto di ordine $n$} (\textit{momento
+    $n$-esimo assoluto}, se esiste, $\EE[\abs{X}^n]$. \smallskip
+
+    Generalmente si pone più attenzione ai momenti $n$-esimi assoluti
+    con $n$ intero positivo.
+\end{definition}
+
+\begin{definition}[Momento $n$-esimo]
+    Data $X$ v.a.~reale e $n \in \RR^+$, se $X$ ammette
+    momento $n$-esimo assoluto, allora $X^n$ ammette
+    $\EE[X^n]$, che viene detto \textbf{momento $n$-esimo di $X^n$}.
+\end{definition}
+
+\begin{lemma}
+    Data $X$ v.a.~reale e $1 \leq p \leq q$ in $\RR$,
+    se $\EE[\abs{X}^q] < \infty$ allora
+    $\EE[\abs{X}^p] < \infty$. \smallskip
+
+    Segue dal fatto che $\EE[\abs{X}^p]$ è uguale
+    a $\EE[\abs{X}^p \cdot 1_{{\abs{X}> 1}} + \abs{X}^p \cdot 1_{{\abs{X} \leq 1}}]$;
+    applicando la linearità di $\EE[\cdot]$ e che $x^p \leq x^q$ per $x \geq 1$, si
+    ricava così che $\EE[\abs{X}^p] \leq \EE[\abs{X}^q] + 1$.
+\end{lemma}
+
+\begin{remark}
+    Se $X$ è limitata quasi certamente ($\abs{X} \leq M$ q.c.~con $M > 0$),
+    allora $X$ ammette momento $n$-esimo assoluto per ogni $n \in \RR^+$
+    (segue dal fatto che $\EE[\abs{X}^n] \leq M^m$).
+\end{remark}
+
+\begin{remark}
+    La disuguaglianza impiegata nello scorso lemma ha una generalizzazione
+    più ampia, che non dimostriamo, ma che segue dalla \textit{Disuguaglianza di Hölder}:
+    \[
+        \EE[\abs{X}^p]^{\frac{1}{p}} \leq \EE[\abs{X}^q]^{\frac{1}{q}}, \quad 1 < p < q.
+    \]
+\end{remark}
+
+\begin{lemma}
+    Se $\EE[\abs{X}^p]$, $\EE[\abs{X}^p] < \infty$, allora
+    $\EE[\abs{aX+Y}^p] < \infty$ per ogni $a$, $b \in \RR$. \smallskip
+
+    Segue dal fatto che $\abs{aX+Y}^p \leq 2^{p-1} (\abs{a}^p \abs{X}^p + \abs{Y}^p)$.
+\end{lemma}
+
+\subsection{Disuguaglianza di Markov, di Hölder, di Cauchy-Schwarz e di Jensen}
+
+\begin{proposition}[Disuguaglianza di Markov]
+    Sia $X \geq 0$ v.a.~reale. Allora $\forall a > 0$ vale che:
+    \[
+        P(X \geq a) \leq \frac{\EE[X]}{a}.
+    \]
+    Segue considerando che $X \geq a \cdot 1_{X \geq a}$,
+    e dunque $\EE[X] \geq a \cdot \EE[1_{X \geq a}] = a \cdot P(X \geq a)$.
+\end{proposition}
+
+\begin{corollary}
+    Sia $X$ v.a.~reale. Allora $\forall a \neq 0$, $\forall p > 0$ vale che:
+    \[
+        P(\abs{X} \geq \abs{a}) \leq \frac{\EE[\abs{X}^p]}{\abs{a}^p}.
+    \]
+    Segue dalla disuguaglianza di Markov.
+\end{corollary}
+
+In generale la disuguaglianza di Markov si può esprimere per composizione
+con funzioni crescenti:
+
+\begin{corollary}
+    Sia $X$ v.a.~reale. Allora, se $f : \RR \to [0, \infty)$ è crescente, $\forall a \in \supp f$ (i.e.~$f(a) \neq 0$) vale che:
+    \[
+        P(X \geq a) \leq \frac{\EE[f(X)]}{f(a)}.
+    \]
+    Segue dalla disuguaglianza di Markov. Si osserva in particolare che non si è richiesto
+    che $X$ fosse t.c.~$X \geq 0$.
+\end{corollary}
+
+\begin{proposition}[Disuguaglianza di Hölder]
+    Siano $X$, $Y$ v.a.~reali. Siano $p$, $q > 1$ coniugati (ossia t.c.~$\frac{1}{p} + \frac{1}{q} = 1$). Allora, se $X$ ammette momento $p$-esimo assoluto e $Y$ ammette momento
+    $q$-esimo assoluto, entrambi finiti, vale che:
+    \[
+        \EE[\abs{XY}] \leq \EE[\abs{X}^p]^{\frac{1}{p}} \cdot \EE[\abs{Y}^q]^{\frac{1}{q}}.
+    \]
+    Segue dalla usuale disuguaglianza di Hölder in analisi.
+\end{proposition}
+
+\begin{proposition}[Disuguaglianza di Cauchy-Schwarz]
+    Siano $X$, $Y$ v.a.~reali. Allora, se $X$ e $Y$ ammettono momento secondo assoluto
+    finito, vale che:
+    \[
+        \EE[\abs{XY}] \leq \EE[\abs{X}^2]^{\frac{1}{2}} \cdot \EE[\abs{Y}^2]^{\frac{1}{2}}.
+    \]
+    Segue dalla usuale disuguaglianza di Cauchy-Schwarz in analisi o dalla disuguaglianza
+    di Hölder per $p = q = \frac{1}{2}$.
+\end{proposition}
+
+\begin{proposition}[Disuguaglianza di Jensen]
+    Sia $X$ una v.a.~reale che ammette valore atteso.
+    Allora, se $g : \RR \to \RR$ è una funzione
+    convessa che ammette valore atteso vale che:
+    \[
+        g(\EE[X]) \leq \EE[g(X)].
+    \]
+    Equivalentemente, se $g$ è concava vale la disuguaglianza con
+    $\geq$ al posto di $\leq$. Segue dall'usuale disuguaglianza di Jensen.
+\end{proposition}
+
+\section{Altri indici di centralità: moda e mediana}
+
+Il valore atteso $\EE[X]$ è considerato un \textbf{indice di centralità} dacché
+fornisce un'idea del baricentro della distribuzione di $X$. Di seguito
+sono definiti altri due indici di centralità celebri.
+
+\begin{definition}[Moda]
+    Data una v.a.~reale $X$, si dice che $x \in S_X$ è una \textbf{moda}
+    se $x$ è un massimo per $P_X$. Una distribuzione in generale può avere
+    più mode.
+\end{definition}
+
+\begin{definition}[Mediana]
+    Data una v.a.~reale $X$, si dice che $x \in S_X$ è una \textbf{mediana}
+    se $P(X \leq x) \geq \frac{1}{2}$ e $P(X \geq x) \geq \frac{1}{2}$.
+\end{definition}
+
+\begin{proposition}
+    Esistono sempre almeno una moda e almeno una mediana
+    per $X$ v.a.~reale.
+\end{proposition}
+
+\section{Indici di dispersione: covarianza, varianza, dev.~standard e coeff.~di correlazione}
+
+\subsection{Definizioni e covarianza come forma bilineare simmetrica}
+
+\begin{definition}[Covarianza e v.a.~scorrelate]
+    Date due v.a.~reali $X$, $Y$ con momento secondo finito,
+    si definisce \textbf{covarianza di $X$ e $Y$} il termine:
+    \[
+        \Cov(X, Y) \defeq \EE[(X - \EE[X])(Y - \EE[Y])].
+    \]
+    Si dice che $X$ e $Y$ sono \textbf{scorrelate} se $\Cov(X, Y) = 0$.
+\end{definition}
+
+\begin{definition}[Varianza]
+    Data una v.a.~reale $X$ con momento secondo finito, si
+    definisce \textbf{varianza di $X$} il termine:
+    \[
+        \Var(X) \defeq \Cov(X, X) = \EE[(X -\EE[X])^2] \geq 0,
+    \]
+    dove la non negatività segue dal fatto che $(X - \EE[X])^2 \geq 0$.
+\end{definition}
+
+\begin{proposition}
+    $\EE[X]$ è il termine che sostituito a $m$ minimizza il valore $\EE[(X - m)^2]$.
+\end{proposition}
+
+\begin{definition}[Deviazione standard]
+    Data una v.a.~reale $X$ che ammette varianza, si definisce
+    \textbf{deviazione standard di $X$} il termine:
+    \[
+        \sigma(X) \defeq \sqrt{\Var(X)}.
+    \]
+\end{definition}
+
+\begin{remark}
+    La deviazione standard misura quanto $X$ si discosta mediamente da
+    $\EE[X]$, se esiste.
+\end{remark}
+
+\begin{remark}
+    La varianza e la deviazione standard sono
+    detti \textbf{indici di dispersione} della distribuzione
+    di $X$, dacché misurano
+    quanto le immagini di $X$ distano mediamente dal valore
+    atteso $\EE[X]$.
+\end{remark}
+
+\begin{proposition}
+    \label{prop:cono_isotropo}
+    Sia $X$ una v.a.~reale che ammette varianza. Allora
+    $\Var(X) = 0$ se e solo se $X$ è costante q.c. \smallskip
+
+
+    Segue dal fatto che $\EE[(X -\EE[X])^2] = 0$ se e solo se
+    $\EE[X] = X$ q.c., ovverosia se e solo se $X$ è una costante.
+\end{proposition}
+
+\subsection{Identità sulla (co)varianza e disuguaglianza di Chebyshev}
+
+\begin{proposition}
+    \label{prop:indipendenza_cov}
+    $\Cov(\cdot, \cdot)$ è una funzione simmetrica e
+    lineare in ogni suo argomento. In particolare per
+    $X$ e $Y$ con momento secondo finito vale che:
+    \[
+        \Cov(X, Y) = \EE[XY] - \EE[X] \EE[Y].
+    \]
+    Pertanto due v.a.~indipendenti hanno covarianza nulla (i.e.~sono scorrelate)
+    per l'\textit{Osservazione \ref{remark:indipendenza_valore_atteso}}.
+    In particolare, la covarianza tra una qualsiasi costante q.c.~e
+    un'altra v.a.~reale è nulla.
+\end{proposition}
+
+\begin{remark}
+    La precedente proposizione mette ancora in luce come sia determinante la
+    legge congiunta $p_{(X, Y)}$, usata per calcolare $\EE[XY]$, che
+    in generale le leggi $p_X$ e $p_Y$, che pure si usano per calcolare
+    $\EE[X]$ e $\EE[Y]$, non riescono a ricostruire.
+\end{remark}
+
+\begin{remark}
+    A partire dalla precedente proposizione si ricava che per $X$ v.a.~reale
+    con momento secondo finito vale che:
+    \[
+        \Var(X) = \EE[X^2] - \EE[X]^2.
+    \]
+\end{remark}
+
+\begin{remark}
+    Viste le proprietà discusse nella precedente proposizione
+    si può concludere che la covarianza sul sottospazio di $\VA(\Omega, \RR)$
+    delle v.a.~con momento secondo finito
+    corrisponde a una forma bilineare simmetrica semidefinita positivo,
+    ovverosia a un prodotto scalare. \smallskip
+
+
+    Due v.a.~indipendenti sono ortogonali tramite $\Cov$ per la
+    \textit{Proposizione \ref{prop:indipendenza_cov}}. \smallskip
+
+    Al cono isotropo e al radicale di questo prodotto appartengono solo le costanti per la
+    \textit{Proposizione \ref{prop:cono_isotropo}}. \smallskip
+
+
+    Se $\varphi \defeq \Cov$, vale che $q_\varphi \equiv \Var$ e $\norm{\cdot}_\varphi \equiv \sigma$,
+    ovverosia la varianza $\Var$ è la forma quadratica associata alla covarianza $\Cov$,
+    mentre $\sigma$ ne è la norma.
+\end{remark}
+
+\begin{lemma}
+    Siano $X_1$, ..., $X_n$ v.a.~reali con momento secondo finito. Allora vale che:
+    \[
+        \Var(X_1 + \ldots + X_n) = \sum_{i \in [n]} \Var(X_i) + 2 \sum_{1 \leq i < j \leq n} \Cov(X_i, X_j).
+    \]
+    In particolare, se $(X_i)_{i \in [n]}$ è una famiglia di v.a.~scorrelate a due a due (e.g.~indipendenti) vale che:
+    \[
+        \Var(X_1 + \ldots + X_n) = \sum_{i \in [n]} \Var(X_i).
+    \]
+\end{lemma}
+
+\begin{lemma}
+    Sia $aX + b$ una v.a.~reale con $X$ che ammette momento secondo finito. Allora
+    vale che:
+    \[
+        \Var(aX + b) = a^2 \Var(X).
+    \]
+    Segue dal fatto che $aX$ e $b$ sono indipendenti, che $\Var(b) = 0$ e che
+    $\Var$ è la forma quadratica di $\Cov$.
+\end{lemma}
+
+\begin{proposition}[Disuguaglianza di Chebyshev]
+    Sia $X$ v.a.~reale con momento secondo finito. Allora $\forall a > 0$ vale
+    che:
+    \[
+        P(\abs{X - \EE[X]} > a) \leq \frac{\Var(X)}{a^2}.
+    \]
+    Segue dall'immediata applicazione della disuguaglianza di Markov.
+\end{proposition}
+
+\subsection{Coeff.~di correlazione e retta di regressione lineare}
+
+\begin{definition}[Coefficiente di correlazione di Pearson, PCC]
+    Date $X$, $Y$ v.a.~reali non costanti q.c.\footnote{
+        Infatti il coseno è definito solo per coppie di vettori anisotropi
+        ed il cono isotropo di $\Cov$ è costituito dalle sole costanti q.c.
+    }~e con momento secondo finito si definisce il \textbf{coefficiente di correlazione
+    di Pearson} (PCC) $\rho(X, Y)$, o più brevemente \textit{coefficiente di correlazione}, 
+     come il coseno di $X$ e $Y$ rispetto a $\Cov$, ovverosia:
+    \[
+        \rho(X, Y) \defeq \cos_{\Cov}(X, Y) = \frac{\Cov(X, Y)}{\sigma(X) \cdot \sigma(Y)}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    Date $X$, $Y$ v.a.~reali non costanti q.c.~e con momento secondo finito vale che:
+    \begin{enumerate}[(i.)]
+        \item $\abs{\rho(X, Y)} \leq 1$ (per la disuguaglianza di Cauchy-Schwarz),
+        \item $\rho(aX + b, cX + d) = \rho(X, Y)$ (per verifica diretta).
+    \end{enumerate}
+\end{lemma}
+
+\begin{theorem}
+    Siano $X$, $Y$ v.a.~reali con momento secondo finito e non costanti q.c. Allora
+    la funzione:
+    \[
+        \RR^2 \ni (a, b) \mapsto \EE[(Y - (aX + b))^2] \in \RR
+    \]
+    è ben definita e ammette un unico punto di minimo $(a^*, b^*)$, dove:
+    \[
+        a^* = C_{\Cov}(X, Y) = \frac{\Cov(X, Y)}{\Var(X)}, \quad b^* = \EE[Y] - a^* \EE[X].
+    \]
+    Inoltre il valore di tale minimo è:
+    \[
+        \EE[(Y - (a^* X + b^*))^2] = \Var(Y) \cdot (1 - \rho(X, Y)^2).
+    \]
+\end{theorem}
+
+\begin{definition}[Retta di regressione (lineare)]
+    Date $X$, $Y$ v.a.~reali con momento secondo finito e non costanti q.c.
+    si definisce \textbf{retta di regressione} (lineare) la retta $y = a^*x + b^*$.
+\end{definition}
+
+\begin{remark}
+    Dal precedente teorema si può ottenere una caratterizzazione della
+    correlazione lineare tra due v.a.~reali $X$ e $Y$ non costanti q.c.~e con
+    momento secondo finito. Infatti vale che:
+    \begin{itemize}
+        \item la retta di regressione di $X$ e $Y$ rappresenta la migliore approssimazione
+        lineare di $Y$ tramite $X$,
+        
+        \item $\rho(X, Y) \approx 0$ ($X$, $Y$ quasi scorrelate) $\implies$ poca correlazione lineare ($\EE[(Y - (a^* X + b^*))^2]$ assume approsimativamente il valore massimo possibile e dunque $Y$
+        dista mediamente tanto da ogni retta di $X$),
+        \item $\rho(X, Y) \approx 1 \implies$ forte correlazione lineare (infatti se
+        $\rho = 1$, $\EE[(Y - (a^* X + b^*))^2] = 0$, e dunque $Y = a^* X + b^*$ q.c.).
+    \end{itemize}
+    Si osserva inoltre che $\sgn(a^*) = \sgn(\rho(X, Y))$.
+\end{remark}
+
+\section{Legge dei grandi numeri (LGN), media campionaria e limite in senso probabilistico}
+
+\subsection{Definizioni ed enunciato}
+
+\begin{definition}[Media campionaria $n$-esima]
+    Data una famiglia di v.a.~reali $(X_i)_{i \in \NN}$ i.i.d.~dotate di momento secondo
+    finito\footnote{
+        Dal momento che le $X_i$ sono i.i.d.~è sufficiente che $X_1$ sia dotata di
+        momento secondo finito.
+    } si definisce \textbf{media campionaria $n$-esima} il termine:
+    \[
+        \overline{X_n} \defeq \frac{1}{n} \sum_{i \in [n]} X_i, 
+    \]
+    ovverosia la media aritmetica delle prime $n$ v.a.~della famiglia.
+\end{definition}
+
+\begin{definition}[Limite probabilistico]
+    Data una successione di v.a.~reali $(Y_i : \Omega \to \RR)_{i \in \NN}$ e data
+    una v.a.~reale $Y : \Omega \to \RR$ si
+    dice che $Y_n$ tende (probabilisticamente) a $Y$ ($Y_n \toprob Y$) per $n \to \infty$
+    se:
+    \[
+        \lim_{n \to \infty} P(\abs{Y_n - Y} > \eps) = 0, \quad \forall \eps > 0.
+    \]
+\end{definition}
+
+\begin{remark}
+    Una successione di v.a.~reali $(Y_i)_{i \in \NN}$ tende a $Y$ se si può
+    sempre scegliere un $n$ arbitrariamente grande tale per cui la probabilità che $Y_i$
+    sia pari a $Y$ (eccetto per un errore assoluto $\eps$ fissato) è certa entro un
+    errore arbitrario.
+\end{remark}
+
+\begin{theorem}[Legge (debole) dei grandi numeri, LGN]
+    Sia $(X_i)_{i \in \NN}$ una famiglia di v.a.~reali scorrelate e i.d.~(e.g.~i.i.d.) dotate di momento secondo
+    finito, ovverosia con $\EE[X_1^2] < \infty$. Allora vale che:
+    \[
+        \overline{X_n} \toprob \EE[X_1], \quad \text{per } n \to \infty.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Si osserva che $\EE[\overline{X_n}] = \EE[X_1]$ e che
+    $\Var(\overline{X_n}) = \frac{1}{n} \Var(X_1)$. Allora, se $\eps > 0$,
+    per la disuguaglianza di Chebyshev vale che:
+    \[
+        P\left(\abs{\overline{X_n} - \EE[X_1]} > \eps\right) \leq \frac{\Var(\overline{X_n})}{\eps^2} =
+        \frac{\Var(X_1)}{\eps^2 n}.
+    \]
+    Dal momento che $\frac{\Var(X_1)}{\eps^2 n} \to 0$ per $n \to \infty$, si ottiene
+    la tesi.
+\end{proof}
+
+\begin{remark}
+    In alcune occasioni, ovverosia quando $\Var(\overline{X_n}) \to 0$
+    per $n \to \infty$, è ancora possibile applicare la LGN seguendo la stessa
+    dimostrazione.
+\end{remark}
+
+\begin{remark}
+    La legge dei grandi numeri ci permette di ricondurre la definizione
+    assiomatica di Kolmogorov di probabilità a quella frequentista. Se
+    infatti fissiamo una probabilità $P$ e costruiamo un modello di prove
+    ripetute (come definito successivamente) il cui successo è dipeso
+    da se accade l'evento $A$, considerando come famiglia di
+    v.a.~i.i.d.~la famiglia $(1_{A_i})_{i \in \NN}$, dove $A_i$ è l'evento di successo di $A$ nella prova
+    $i$-esima, per la legge dei grandi numeri si ottiene che per $n \to \infty$ vale che:
+    \[
+        \overline{1_{A_n}} = \frac{\text{numero di volte che accade $A$}}{\text{numero di prove}} \toprob \EE[1_{A_1}] = P(A).
+    \]
+\end{remark}
+
+\subsection{Trasformata di Cramer per l'ottimizzazione della stima}
+
+Cerchiamo in questa sezione di ottenere, utilizzando la funzione
+esponenziale, una stima ottimale per
+$P(\overline{X_n} - m > \eps)$ con $\eps > 0$, $(X_i)_{i \in \NN}$ famiglia
+di v.a.~i.i.d.~e $m = \EE[X_1]$ finito. \smallskip
+
+Dacché $\exp : \RR \to (0, \infty)$ è crescente, vale che, per $\lambda > 0$:
+\begin{multline*}
+    P(\overline{X_n} - m > \eps) = P\left(\lambda \sum_{i \in [n]} (X_i - m) > \lambda n \eps\right) = \\ = P\left(\exp\left(\lambda \sum_{i \in [n]} (X_i - m)\right) > \exp(\lambda n \eps)\right).
+\end{multline*}
+
+Applicando la disuguaglianza di Markov si ottiene che:
+\begin{multline*}
+    P(\overline{X_n} - m > \eps) \leq \frac{1}{e^{\lambda n \eps}} \EE\left[\exp\left(\lambda \sum_{i \in [n]} (X_i - m)\right)\right] = \\
+    = \frac{1}{e^{\lambda n \eps}} \EE[\exp(\lambda(X_1 - m))]^n = \\
+    = \exp\left(-n\left(\lambda \eps - \log \, \EE\left[e^{\lambda(X_1-m)}\right]\right)\right).
+\end{multline*}
+dove si è utilizzato che le v.a.~sono indipendenti e identicamente distribuite.
+
+\begin{definition}[Trasformata di Cramer]
+    Dato $\eps > 0$, $(X_i)_{i \in \NN}$ famiglia
+di v.a.~i.i.d.~e $m = \EE[X_1]$ finito, si definisce \textbf{trasformata di Cramer}
+    il valore:
+    \[
+        I(t) = \sup_{\lambda > 0} \, \left(\lambda t - \log \, \EE\left[e^{\lambda(X_1-m)}\right]\right).
+    \]
+\end{definition}
+
+Ottimizzando dunque in $\lambda$, la precedente disuguaglianza di scrive come:
+\[
+    P(\overline{X_n} - m > \eps) \leq e^{-n \cdot I(\eps)}.
+\]
+Se dunque esiste $\lambda > 0$ per cui $\EE\left[e^{\lambda(X_1-m)}\right]$ è finito, allora $I(\eps) > 0$, e dunque $P(\overline{X_n} - m > \eps)$ tende esponenzialmente a $0$
+per $n \to \infty$.
+
+\section{Teorema centrale del limite (TCL, o TLC)}
+
+\subsection{Intuizione del TCL: \textit{zoom-in} e \textit{scaling}}
+Per la legge dei grandi numeri sappiamo già che
+$\overline{X_n} - m \toprob 0$ per $m = \EE[X_1]$, $n \to \infty$ e
+$(X_i)_{i \in [n]}$ famiglia di v.a.~i.i.d. Ciò è dipeso, come illustrato dalla dimostrazione, dal fatto che è presente un fattore $\frac{1}{n}$ in $\Var(\overline{X_n})$.
+\smallskip
+
+
+Se $\alpha > 0$ e consieriamo lo \textit{scaling} (o \textit{zoom-in}) $n^\alpha (\overline{X_n} - m)$
+vale che:
+\[
+    \Var(n^\alpha (\overline{X_n} - m)) = n^{2\alpha} \Var(\overline{X_n}) = n^{2\alpha - 1} \Var(X_1). 
+\]
+Pertanto, riapplicando la disuguaglianza di Chebyshev:
+\[
+    P\left(n^\alpha \abs{\overline{X_n} - m} > \eps\right) \leq \frac{1}{\eps^2} n^{2\alpha - 1} \Var(X_1).
+\]
+Per $\alpha < \frac{1}{2}$ si riottiene una tesi analoga a quella della LGN. È
+lecito dunque aspettarsi che per $\alpha = \frac{1}{2}$ possa accadere qualcosa
+di diverso, da cui l'intuizione del TCL.
+
+\subsection{Enunciato del TCL e Teorema di De Moivre-Laplace per la distr.~binomiale}
+\begin{theorem}[Teorema centrale del limite, TCL; oppure Teorema del limite centrale, TLC]
+    Sia $(X_i)_{i \in \NN}$ una famiglia di v.a.~i.i.d dotate di momento secondo
+    finito ($\EE[X_1^2] < \infty$) e non costanti q.c.~($\Var(X_1) > 0$). Sia
+    $\sigma = \sigma(X_1)$ e sia $m = \EE[X_1]$. Allora per ogni scelta di $a$, $b$
+    tali per cui $-\infty \leq a \leq b \leq \infty$\footnote{
+        Si ammettono dunque anche i casi $\pm \infty$.
+    } vale che per $n \to \infty$:
+    \[
+        P\left(a \leq \frac{\sqrt{n}}{\sigma} \left(\overline{X_n} - m\right) \leq b\right) \to \frac{1}{\sqrt{2\pi}}\int_a^b e^{-\frac{x^2}{2}} \dx. 
+    \]
+    Equivalentemente vale che:
+    \[
+        P\left(a \leq \frac{1}{\sqrt{n}\sigma} \left[\left(\sum_{i \in [n]} X_i\right) - nm\right] \leq b\right) \to \frac{1}{\sqrt{2\pi}}\int_a^b e^{-\frac{x^2}{2}} \dx. 
+    \]
+\end{theorem}
+
+\begin{warn}
+    Per il calcolo di $\frac{1}{\sqrt{2\pi}}\int_a^b e^{-\nicefrac{x^2}{2}} \dx$ mediante
+    la funzione $\Phi(x)$ si rimanda
+    alla \textit{Tabella \ref{tab:phi}} allegata nelle ultime pagine di queste schede riassuntive.
+\end{warn}
+
+\begin{corollary}[Teorema di De Moivre-Laplace]
+    Sia $Y_n \sim B(n, \pp)$. Allora per ogni scelta di $a$, $b$ tali per cui
+    $-\infty \leq a \leq b \leq \infty$ vale che per $n \to \infty$:
+    \begin{multline*}
+        P\left(n\pp + \sqrt{n \pp (1- \pp)} a  \leq Y_n \leq n\pp + \sqrt{n \pp (1 - \pp)} b\right) \\
+        \to \frac{1}{\sqrt{2\pi}}\int_a^b e^{-\frac{x^2}{2}} \dx.
+    \end{multline*}
+\end{corollary}
+
+\begin{proof}
+    Segue dal TCL dal momento che $Y_n$ è somma di $n$ v.a.~$X_i$ i.i.d. con $X_i \sim B(\pp)$. In particolare $m = \EE[X_1] = \pp$ e $\sigma = \sigma(X_1) = \sqrt{\EE[X_1^2] - \EE[X_1]^2} = \sqrt{\pp (1-\pp)}$.
+\end{proof}
+
+\section{Modelli probabilistici classici}
+
+\subsection{Probabilità uniforme}
+
+\begin{definition}[Probabilità uniforme]
+    Dato $\Omega$ finito, si definisce
+    \textbf{probabilità uniforme} l'unica probabilità
+    $P : \FF \to \RR$ la cui funzione di densità
+    è costante (\textit{equiprobabile}). Equivalentemente è la probabilità
+    $P$ tale per cui:
+    \[
+        P(A) = \frac{\#A}{\#\Omega}.
+    \]
+\end{definition}
+
+\begin{remark}
+    Non è possibile dotare $\Omega$ numerabile di una probabilità
+    uniforme. Infatti, se l'unica immagine della funzione $p : \Omega \to \RR$ è
+    $c$, $\sum_{\omega \in \Omega} p(\omega) = c \sum_{\omega \in \Omega} 1$, che
+    può valere solo $0$ o $\infty$, e dunque non $1$ (e pertanto non può indurre
+    una probabilità).
+\end{remark}
+
+\subsection{Sequenze di esperimenti e modello delle prove ripetute di Bernoulli}
+
+    Cerchiamo di modellare una sequenza ordinata (e potenzialmente infinita,
+    ma al più numerabile)
+    di esperimenti. Data una famiglia $(\Omega_i)_{i \in I}$, con $I = \NN$ o
+    $I = [n]$, dove ciascuno $\Omega_i$ indica l'$i$-esimo esperimento, definiamo
+    in tal caso:
+    \[ 
+        \Omega = \left\{ (\omega_1, \omega_2, \ldots) \,\middle\vert\, \omega_1 \in \Omega_1, \omega_2 \in \Omega_2^{(\omega_1)}, \omega_3 \in \Omega_3^{(\omega_1, \omega_2)}, \ldots\right\},
+    \]
+
+    dove la notazione $\Omega_i^{(\omega_j)_{j \in [i-1]}}$ indica il sottoinsieme
+    di $\Omega_i$ degli esiti dell'esperimento possibili una volta che nei precedenti
+    esperimenti sono successi $\omega_1$, \ldots, $\omega_{i-1}$. Se i precedenti
+    esperimenti non condizionano gli esiti dei successivi, allora
+    $\Omega = \prod_{i \in I} \Omega_i$. \medskip
+
+
+    Riduciamoci al caso di una sequenza (finita o infinita) di esperimenti tra di
+    loro non condizionati, ciascuno
+    con esito successo ($1$) o insuccesso ($0$). Un tale esperimento è
+    detto \textbf{prova di Bernoulli}. In tal caso $\Omega = \prod_{i \in I} [[1]]$. \medskip
+    
+    
+    Sia $A_i$ l'evento ``successo all''$i$-esima prova'', ossia:
+    \[
+        A_i = \{ \omega \in \Omega \mid \omega_i = 1 \}.
+    \]
+
+    Sia $p_i : [[1]] \to \RR$ la funzione di densità associata alla misura
+    di probabilità dell'esperimento $\Omega_i$. Associamo allora ad $\Omega$ la $\sigma$-algebra $\FF = \sigma(A_i)_{i \in I}$ generata
+    dagli $A_i$ (che è al più numerabile). Se $I$ è finito, $\FF = \PP(\Omega)$.
+
+    \begin{definition}[Modello della sequenza di prove]
+        Si definisce \textbf{probabilità del modello della sequenza di prove}
+        l'unica probabilità $P$ sullo spazio misurabile $(\Omega, \FF)$ tale
+        per cui $(A_i)_{i \in I}$ è una famiglia di eventi indipendenti e
+        per la quale $P(A_i) = p_i(1)$.
+    \end{definition}
+
+    \begin{remark}
+        Tale probabilità è univocamente determinata dal momento che
+        gli $A_i$ generano $\FF$ e che sono indipendenti.
+    \end{remark}
+
+    \begin{definition}[Modello delle prove ripetute]
+        Se $P$ è una probabilità del modello della sequenza di prove e
+        $p_i(1) = p_j(1)$ per ogni coppia $i$, $j$, allora il modello
+        prende il nome di \textbf{modello delle prove ripetute} e si dice
+        che $\pbern \defeq p_1(1)$ è il \textbf{parametro di Bernoulli}.
+    \end{definition}
+
+    A partire dal modello delle prove ripetute si possono formalizzare
+    numerose distribuzioni, come quelle della sezione successiva.
+\end{multicols*}

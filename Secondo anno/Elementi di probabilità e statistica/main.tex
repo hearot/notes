@@ -1,0 +1,33 @@
+\documentclass[10pt]{report}
+\input{preamble.tex}
+%PER CAMBIARE I MARGINI
+%\usepackage[margin=2cm]{geometry}
+
+%----------- Setup stilistico ----------------
+\renewcommand\thefootnote{\textcolor{blue}{\arabic{footnote}}}
+\renewcommand{\chaptername}{Parte}
+\addto\captionsitalian{\renewcommand{\chaptername}{Parte}}
+
+
+
+\title{\Huge{Schede riassuntive di \\ \textit{Elementi di Probabilità e Statistica}}}
+\date{A.A. 2023-2024 \\[0.6in] Ultimo aggiornamento: \today}
+\author{A cura di Gabriel Antonio Videtta\footnote{Basato su un layout di \underline{Luca Lombardo} e di \underline{Francesco Sorce}.} \\ \href{mailto:g.videtta1@studenti.unipi.it}{\texttt{g.videtta1@studenti.unipi.it}}}
+
+\begin{document}
+\maketitle
+
+\begin{multicols*}{2}
+    \tableofcontents
+\end{multicols*}
+
+\newpage
+\input{sections/0-notazioni.tex}
+\input{sections/0-prerequisiti.tex}
+\input{sections/0-identità-somme.tex}
+\input{sections/1-spazi-in-generale.tex}
+\input{sections/2-probabilità-discreta.tex}
+\input{sections/tabella-modelli-discreti.tex}
+\input{sections/tabella-phi.tex}
+
+\end{document}

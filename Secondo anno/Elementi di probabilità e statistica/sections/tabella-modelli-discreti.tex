@@ -1,0 +1,43 @@
+%--------------------------------------------------------------------
+\begin{landscape}
+
+\chapter*{Tabella e proprietà delle distribuzioni discrete}
+\addcontentsline{toc}{chapter}{Tabella e proprietà delle distribuzioni discrete}
+
+\vskip -0.3in
+
+\begin{table}[htb]
+\scalebox{0.74}{
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Nome distribuzione                                                                                             & Caso di utilizzo                                                                                                                                                                                                                                           & Parametri                                                                                                                                                     & Densità discreta                                                                                                                                 & Valore atteso                                                                         & Momento secondo                   & Varianza                                                                                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Distr. di Bernoulli\\ $X \sim B(\pp)$\end{tabular}                                  & \begin{tabular}[c]{@{}l@{}}Esperimento con esito\\ di successo ($1$) o\\ insuccesso ($0$).\end{tabular}                                                                                                                                                    & $\pp$ -- probabilità di successo.                                                                                                                             & $P(X=1) = \pp$, $P(X=0) = 1-\pp$                                                                                                                     & $\EE[X] = \pp$                                                                          & $\EE[X^2] = \pp$                    & $\Var(X) = \pp(1-\pp)$                                                                                         \\ \hline
+\begin{tabular}[c]{@{}l@{}}Distr. binomiale\\ $X \sim B(n, \pp)$\end{tabular}                                  & \begin{tabular}[c]{@{}l@{}}In una serie di $n$ esperimenti\\ col modello delle prove ripetute,\\ $X$ conta il numero di successi.\\ $X$ è in particolare somma di $n$\\ v.a.~i.i.d.~distribuite come $B(\pp)$.\end{tabular}                      & \begin{tabular}[c]{@{}l@{}}$n$ -- numero di esperimenti\\ $\pp$ -- probabilità di successo\\ dell'$i$-esimo esperimento\end{tabular}                          & \begin{tabular}[c]{@{}l@{}}$P(X=k) = \binom{n}{k}{\pp}^k (1-\pp)^{n-k}$\\ per $0 \leq k \leq n$ e $0$ altrimenti.\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}$\EE[X] = n \pp$\\ (è somma di $n$ Bernoulliane)\end{tabular} & $\EE[X^2] = n \pp + n(n-1)\pp^2$       & \begin{tabular}[c]{@{}l@{}}$\Var(X) = n \pp(1-\pp)$\\ (è somma di $n$\\ Bernoulliane indipendenti)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Distr. binomiale\\ negativa\\ $X \sim \BinNeg(h, \pp)$\end{tabular}                 & \begin{tabular}[c]{@{}l@{}}In una serie di infiniti esperimenti\\ col modello delle prove ripetute,\\ $X$ conta l'esperimento in cui si\\ ha l'$h$-esimo successo.\end{tabular}                                                                            & \begin{tabular}[c]{@{}l@{}}$h$ -- numero dei successi da misurare\\ $\pp \in (0, 1)$ -- probabilità di successo\\ dell'$i$-esimo esperimento\end{tabular}                & \begin{tabular}[c]{@{}l@{}}$P(X=k) = \binom{k-1}{h-1} \pp^h (1-\pp)^{k-h}$\\ laddove definibile e $0$ altrimenti.\end{tabular}                   & \begin{tabular}[c]{@{}l@{}}$\EE[X] = \frac{h}{\pp}$\\ (è somma di $h$ Geometriche)\end{tabular}                                                                & $\EE[X^2] = \frac{h(1+h-\pp)}{\pp^2}$ & \begin{tabular}[c]{@{}l@{}}$\Var(X) = \frac{h(1-\pp)}{\pp^2}$ \\ (è somma di $h$\\Geometriche indipendenti)\end{tabular}                                                                             \\ \hline
+\begin{tabular}[c]{@{}l@{}}Distr. geometrica\\ $X \sim \Geom(\pp)$\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}In una serie di infiniti esperimenti\\ col modello delle prove ripetute,\\ $X$ conta l'esperimento in cui si\\ ha il primo successo. È pari a\\ $\BinNeg(1, \pp)$\end{tabular}                                                  & \begin{tabular}[c]{@{}l@{}}$\pp \in (0, 1)$ -- probabilità di successo\\ all'$i$-esimo esperimento.\end{tabular}                                                         & \begin{tabular}[c]{@{}l@{}}$P(X=k) = \pp (1-\pp)^{k-1}$ per\\ $k \geq 1$ e $0$ per $k=0$.\end{tabular}                                               & $\EE[X] = \frac{1}{\pp}$                                                                & $\EE[X^2] = \frac{2-\pp}{\pp^2}$      & $\Var(X) = \frac{1-\pp}{\pp^2}$                                                                                \\ \hline
+\begin{tabular}[c]{@{}l@{}}Distr. ipergeometrica\\ $X \sim H(N, N_1, n)$\end{tabular}                          & \begin{tabular}[c]{@{}l@{}}In un'estrazione di $n$ palline in\\ un'urna di $N$ palline, di cui\\ $N_1$ sono rosse, $X$ conta\\ il numero di palline rosse estratte.\end{tabular}                                                                           & \begin{tabular}[c]{@{}l@{}}$N$ -- numero di palline nell'urna\\ $N_1$ -- numero di palline rosse\\ nell'urna\\ $n$ -- numero di palline estratte\end{tabular} & \begin{tabular}[c]{@{}l@{}}$P(X=k) = \frac{\binom{N_1}{k} \binom{N-N_1}{n-k}}{\binom{N}{n}}$\\ laddove definibile e $0$ altrimenti.\end{tabular} &                                                                                       &                                   &                                                                                                            \\ \hline
+\begin{tabular}[c]{@{}l@{}}Distri.di Poisson\\ (o degli eventi rari)\\ $X \sim \Poisson(\lambda)$\end{tabular} & \begin{tabular}[c]{@{}l@{}}In una sequenza di $n \gg 1$\\ esperimenti di parametro $\pp \ll 1$\\ con $n \pp \approx \lambda$,\\ $X$ misura il numero di successi.\\ Si può studiare come distribuzione\\ limite della distribuzione binomiale.\end{tabular} & $\lambda$ -- tasso di successo.                                                                                                                               & $P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda}$                                                                                                           & $\EE[X] = \lambda$                                                                    & $\EE[X^2] = 2\lambda$             & $\Var(X) = \lambda$                                                                                        \\ \hline
+\end{tabular}}
+\end{table}
+
+Valgono inoltre le seguenti altre proprietà:
+
+\small
+\begin{itemize}
+    \item Una somma di $n$ v.a.~i.i.d.~distribuite come $B(\pp)$ si
+    distribuisce come $B(n, \pp)$.
+    \item Se $X \sim B(n, \pp)$ e $Y \sim B(m, \pp)$ sono indipendenti, $X + Y$ si distribuisce come $B(n + m, \pp)$.
+    \item Se $X \sim \Poisson(\lambda)$ e $Y \sim \Poisson(\mu)$ sono indipendenti,
+    $X + Y$ si distribuisce come $\Poisson(\lambda + \mu)$.
+    \item Se $X \sim \Geom(\pp)$, allora $P(X = \infty) = 0$\footnote{
+        Ovverosia la probabilità che non vi siano mai successi è nulla.
+    }. Da ciò si deduce che $P(X > k) = (1-\pp)^k$.
+    \item Una $X \sim \BinNeg(h, \pp)$ è
+    somma di $h$ v.a.~i.i.d.~distribuite
+    come $\Geom(\pp)$.
+    \item Una v.a.~$X$ sui numeri naturali si dice che ha la \textit{proprietà di perdita di memoria} se $P(X > n + k \mid X > k) = P(X > n)$. Una v.a.~ha
+    la proprietà di perdita della memoria se e solo se è distribuita come
+    la distribuzione geometrica.
+\end{itemize}
+
+\end{landscape}

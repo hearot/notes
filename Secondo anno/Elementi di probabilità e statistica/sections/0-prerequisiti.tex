@@ -1,0 +1,138 @@
+%--------------------------------------------------------------------
+\chapter*{Prerequisiti matematici}
+\addcontentsline{toc}{chapter}{Prerequisiti matematici}  
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+
+\section*{Algebra lineare}
+
+\begin{itemize}
+    \item \textbf{Disuguaglianza di Cauchy-Schwarz} -- Se $\varphi(\cdot, \cdot)$
+    è un prodotto scalare (o hermitiano) definito positivo su uno spazio vettoriale $V$, allora vale la seguente disuguaglianza:
+    \[
+        \varphi(v, v) \varphi(w, w) \geq \abs{\varphi(v, w)}^2 , \quad \forall v, w \in V.
+    \]
+    Inoltre vale l'uguaglianza se e solo se $v$ è multiplo di $w$, o viceversa. Per
+    prodotti semidefiniti positivi la disuguaglianza vale ugualmente, ma in
+    tal caso $v$ si scrive come somma di un vettore del cono isotropo e del prodotto di $w$ per uno scalare. 
+    \item \textbf{Proprietà di $\cos(v, w)$} -- Vale che $\cos(v, w) \in [-1, 1]$ per
+    ogni $v$, $w \in V$ in spazi vettoriali reali dove $\cos$ è ben definito. Segue
+    dalla disuguaglianza di Cauchy-Schwarz.
+\end{itemize}
+
+\section*{Analisi matematica}
+
+\begin{itemize}
+    \item \textbf{Limite delle successioni monotone} -- Se una successione
+    $(a_i)_{i \in \NN}$ è monotona, allora ammette limite. Se $(a_i)_{i \in \NN}$
+    è crescente, allora $a_i \to \sup\{a_i \mid i \in \NN\}$ per $i \to \infty$ (e
+    dunque converge se la successione è limitata dall'alto); se
+    $(a_i)_{i \in \NN}$ è decrescente, allora $a_i \to \inf\{a_i \mid i \in \NN\}$ per $i \to \infty$ (e dunque converge se la successione è limitata dal basso).
+    \item \textbf{Convergenza delle serie a termini positivi} -- Se una serie è
+    a termini positivi, allora la successione delle somme parziali è crescente,
+    e dunque la serie ammette come valore un valore reale o $\infty$.
+    \item \textbf{Convergenza assoluta} -- Se una serie $\sum_{i \in \NN} \abs{a_i}$ converge
+    (l'unica altra opzione è che diverga, per la proprietà sopracitata), allora
+    $\sum_{i \in \NN} a_i$ converge. Non è vero il viceversa in generale.
+    \item \textbf{Disuguaglianza di Jensen} -- Sia $f : \RR \supseteq S \to \RR$ una funzione convessa a
+    valori reali. Allora vale che:
+    \[
+        f\left(\sum_{i \in [n]} a_i x_i\right) \leq \sum_{i \in [n]} a_i f(x_i), \quad \sum_{i \in [n]} a_i = 1, x_i.
+    \]
+    Se invece $f$ è concava, vale la disuguaglianza con $\geq$ al posto di $\leq$.
+    \item \textbf{Disuguaglianza di Young} -- Sia $p \geq 1$ e sia $p'$ il
+    suo esponente coniugato. Allora vale che:
+    \[
+        ab \leq \frac{a^p}{p} + \frac{b^p}{p}, \forall a, b > 0.
+    \]
+    Segue dalla disuguaglianza di Jensen applicata a $e^x$, che è convessa.
+    \item \textbf{Disuguaglianza di Hölder} -- Sia $p > 1$ e sia $p'$ il
+    suo esponente coniugato. Allora vale che:
+    \[
+        \sum_{i \in [n]} \abs{x_i y_i} \leq \norm{x}_p \norm{y}_p, \quad \forall x, y \in \RR^n, \forall n \in \NN.
+    \]
+    Per $p = 2$, è equivalente alla disuguaglianza di Cauchy-Schwarz sul
+    prodotto scalare canonico di $\RR^n$. Segue dalla disuguaglianza di Young.
+    \item \textbf{Disuguaglianza sulle potenze} -- Siano $x$, $y \in \RR$ e sia
+    $p \geq 1$. Allora vale che:
+    \[
+        \abs{x+y}^p \leq 2^{p-1} (\abs{x}^p + \abs{y}^p).
+    \]
+    Segue dalla disuguaglianza di Jensen applicata a $f(t) = t^p$ per
+    $\abs{x}$ e $\abs{y}$ ($t^p$ è convessa per $t \geq 0$).
+\end{itemize}
+
+\section*{Combinatoria}
+
+\begin{itemize}
+    \item \textbf{Principio di \textit{double counting}} -- Principio di dimostrazione per il quale
+    se vi sono due modi diversi, ma equivalenti, di contare lo stesso numero di scelte
+    di un qualsiasi sistema, allora le formule ricavate dai due modi devono
+    essere identicamente uguali.
+    \item \textbf{Principio di inclusione-esclusione} -- Teorema da cui discende che per $(A_i)_{i \in [n]}$ vale che: \[\abs{\bigcup_{i \in [n]} A_i} = \sum_{j \in [n]} (-1)^{j+1} \sum_{1 \leq i_1 < \cdots < i_j \leq n} \abs{\bigcap_{k \in [j]} A_{i_k}}.\]
+    Inoltre vale che $\abs{\bigcup_{i \in [n]} A_i} = \sum_{i \in [n]} \abs{A_i}$ se e solo se gli $A_i$ sono a due a due disgiunti. Per $n = 2$,
+    $\abs{A \cup B} = \abs{A} + \abs{B} - \abs{A \cap B}$.
+    \item \textbf{Principio della piccionaia} (\textit{Pigeonhole principle}) -- Teorema che
+    asserisce che per ogni funzione $f : [n+1] \to [n]$ esistono $i$, $j \in [n+1]$
+    tali per cui $f(i) = f(j)$. Più informalmente, se si hanno $n+1$ oggetti da
+    posizionare in $n$ buchi, esiste per forza un buco con due oggetti.
+    \item \textbf{Principio della piccionaia generalizzato} -- Teorema che asserisce che
+    per ogni funzione $f : [kn+1] \to [n]$ esistono $k+1$ elementi di $[kn+1]$ che
+    condividono la stessa immagine. Più informalmente, se si hanno $kn+1$ oggetti
+    da posizionare in $n$ buchi, esiste per forza un buco con $k+1$ oggetti. Segue per
+    induzione dal Principio della piccionaia.
+    \item \textbf{Principio moltiplicativo} -- Se una scelta può essere fatta in $N$
+    passi e all'$i$-esimo passo corrispondono $n_i$ scelte, allora la scelta globale
+    può essere fatta in $\prod_{i \in [N]} n_i$ modi.
+    \item \textbf{Permutazioni di $n$ oggetti} -- Dati $n$ oggetti, esistono
+    $n!$ modi di permutarli. Segue dal Principio moltiplicativo.
+    \item \textbf{Disposizioni semplici di $n$ oggetti in $k$ posti} -- Dati $n$ oggetti
+    e $k$ posti, allora esistono $D_{n,k}$ modi di disporre gli $n$ oggetti nei
+    $k$ posti se $k \leq n$. Se $k = n$, ci si riduce a contare le permutazioni.
+    \item \textbf{Disposizioni con ripetizione di $n$ oggetti in $k$ posti} -- Dati
+    $n$ oggetti e $k$ posti, allora esistono $n^k$ modi di disporre con ripetizione gli $n$ oggetti
+    nei $k$ posti. Segue dal Principio moltiplicativo.
+    \item \textbf{Combinazioni di $n$ oggetti in $k$ posti} -- Dati $n$ oggetti
+    e $k$ posti, allora esistono $C_{n,k} = \binom{n}{k} = \frac{n!}{(n-k)!k!}$ modi di disporre gli $n$ oggetti nei
+    $k$ posti non facendo contare l'ordine, se $k \leq n$. Segue dal Principio
+    moltiplicativo.
+    \item \textbf{Combinazioni con ripetizione di $n$ oggetti in $k$ buchi} -- Data
+    l'equazione $x_1 + \ldots + x_k = n$ con $x_i \in \NN$, esistono esattamente
+    $\binom{n+k-1}{k-1}$ soluzioni. Alternativamente, data la disequazione
+    $x_1 + \ldots + x_k \leq n$ con $x_i \in \NN$, esistono esattamente
+    $\binom{n+k}{k}$ soluzioni (dacché ha le stesse soluzioni di
+    $x_1 + \ldots + x_k + y = n$, dove $y \in \NN$). È un'applicazione di una
+    tecnica combinatorica standard denominata \textit{stars and bars}.
+    \item \textbf{Numero di scelte possibili per un'estrazione di $n$ palline rosse e nere da un insieme di $N_1$ palline rosse unito a un insieme di $N-N_1$ palline nere} -- Se $k$ è il numero di palline rosse estratte, le scelte possibili sono
+    $\binom{N_1}{k} \binom{N - N_1}{n-k}$. Si può generalizzare il problema a
+    un insieme di $N$ palline divise in $m$ gruppi da $N_i$ palline ciascuno
+    (e dunque $\sum_{i \in [m]} N_i = N$) dove se ne estrae $n$ e $k_i$ è il
+    numero di palline estratte dall'$i$-esimo gruppo (dunque $\sum_{i \in [m]} k_i = n$;
+    in tal caso le scelte possibili sono $\prod_{i \in [m]} \binom{N_i}{k_i}$. Segue
+    dal Principio moltiplicativo.
+    \item \textbf{Identità sulle cardinalità}
+\begin{itemize}
+    \item $\#\{(a_1, \ldots, a_n) \in [k]^n \mid a_1 < a_2 < \ldots < a_n\} = \binom{n}{k}$ se $k \leq n$ -- Infatti data una classe di disposizione, esiste un unica lista ordinata
+    in tale classe.
+    \item $\#\{(a_1, \ldots, a_n) \in [k]^n \mid a_1 \leq a_2 \leq \ldots \leq a_n\} = \binom{n + k - 1}{k - 1}$. -- È sufficiente osservare che si sta
+    contando esattamente le combinazioni con ripetizione in perfetta analogia con la precedente
+    cardinalità.
+\end{itemize}
+\end{itemize}
+
+\section*{Teoria degli insiemi}
+
+\begin{itemize}
+    \item \textbf{Leggi di De Morgan} -- Se $A$ e $B$ sono insiemi, allora
+    $(A \cup B)^c = A^c \cap B^c$ e $(A \cap B)^c = A^c \cup B^c$.
+    \item \textbf{Operazioni con $X\inv$ controimmagine} -- Se $X : D \to C$ è
+    una funzione e $\FF = (A_i)_{i \in I}$ è una famiglia di sottoinsiemi di $C$, allora vale che $X\inv(\bigcup_{i \in I} A_i) = \bigcup_{i \in I} X\inv(A_i)$,
+    $X\inv(\bigcap_{i \in I} A_i) = \bigcap_{i \in I} X\inv(A_i)$,
+    $X\inv(A_i^c) = X\inv(A_i)^c$, ovverosia $X\inv$ commuta con unioni ($\cup$),
+    intersezioni ($\cap$) e complementare ($^c$). $X\inv(\emptyset) = \emptyset$, e dunque $A_i \cap A_j = \emptyset \implies X\inv(A_i) \cap X\inv(A_j) = \emptyset$.
+    Inoltre per $Y : C \to C'$ vale che $(Y \circ X)\inv(A) = X\inv(Y\inv(A))$,
+    per $A \subseteq C'$.
+\end{itemize}
+
+\end{multicols*}
