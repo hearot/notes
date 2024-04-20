@@ -1,0 +1,78 @@
+%--------------------------------------------------------------------
+\chapter{Probabilità sulla retta reale}
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+
+Discutiamo in questa sezione la teoria della probabilità sulla
+retta reale, uscendo dunque dal caso discreto.
+
+Per restringere la $\sigma$-algebra su cui lavoreremo (ossia l'insieme degli
+eventi interessanti), siamo costretti a limitarci a una $\sigma$-algebra molto più
+piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di escludere
+``casi meno interessanti''.
+
+\section{Cenni di teoria della misura}
+
+\subsection{La \texorpdfstring{$\sigma$}{σ}-algebra di Borel}
+
+\begin{definition}[$\sigma$-algebra dei boreliani]
+    Dato uno spazio metrico separabile\footnote{
+        Si può generalizzare in modo naturale tale definizione a un qualsiasi spazio topologico.
+        Dal momento che considereremo solo spazi metrici separabili (in particolare $X \subseteq \RR^d$), concentreremo
+        le proprietà e le definizioni su questa classe di spazi topologici.} $X \neq \emptyset$
+    si definisce la \textbf{$\sigma$-algebra $\BB(X)$ dei boreliani di $X$} (o
+    $\sigma$-algebra di Borel)
+    come la $\sigma$-algebra generata dai suoi aperti, ovverosia:
+    \[
+        \BB(X) \defeq \sigma \{ A \subseteq X \mid A \text{ aperto}\, \}.
+    \]
+\end{definition}
+
+\begin{proposition}[Proprietà di $\BB(X)$]
+    Sia $X \neq \emptyset$ uno spazio metrico separabile. Allora valgono
+    le seguenti affermazioni:
+
+    \begin{enumerate}[(i.)]
+        \item $\BB(X)$ contiene tutti gli aperti e i chiusi di $X$ (infatti
+        metrico e separabile implica II-numerabile),
+        \item $\BB(X) = \sigma \{ A \subseteq X \mid A \text{ chiuso}\, \}$, ossia
+        $\BB(X)$ è generata anche dai chiusi di $X$ (infatti $\BB(X)$ è chiuso per
+        complementare),
+        \item se $Y \subseteq X$, $Y \neq \emptyset$ ha metrica indotta da $X$, allora
+        $\BB(Y) = \sigma \{ Y \cap B \mid B \in \BB(X) \} \subseteq \BB(X)$ (segue dal fatto che
+        gli aperti di $Y$ sono tutti e solo gli aperti di $X$ intersecati a $Y$).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Proprietà di $\BB(\RR^d)$]
+    Valgono le seguenti affermazioni:
+    \begin{enumerate}[(i.)]
+        \item $\BB(\RR)$ contiene tutti gli intervalli e tutte le semirette (infatti si ammettono anche intersezioni infinite di aperti),
+        \item $\BB(\RR)$ è generato dagli intervalli semiaperti, ovverosia $\BB(\RR) = \sigma \{ (a, b] \mid a, b \in \RR, a < b \}$,
+        \item $\BB(\RR)$ è generato dalle semirette, ovverosia $\BB(\RR) = \sigma \{ (-\infty, a) \mid a \in \RR \}$,
+        \item $\BB(\RR^d) = \sigma \{ (-\infty, a_1) \times \ldots \times (-\infty, a_n) \mid a_1, \ldots, a_n \in \RR \}$ (segue da (iii.)),
+        \item $\BB(\RR^d) \neq \PP(\RR^d)$ (segue dal controesempio di Vitali, oltre che da considerazioni sulle cardinalità).
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Definizione di misura e misura di Lebesgue}
+
+\begin{definition}[Misura]
+    Dato $(\Omega, \FF)$ spazio misurabile, una misura $\mu$ su $(\Omega, \FF)$ è una
+    funzione $\mu : \FF \to [0, \infty]$ con $\mu(\emptyset) = 0$ e per cui valga
+    la $\sigma$-additività, ovverosia:
+    \[
+        \mu\left(\bigcupdot_{i \in \NN} A_i\right) = \sum_{i \in \NN} \mu(A_i), \quad A_i \in \FF.
+    \]
+\end{definition}
+
+\begin{definition}[Insiemi $\mu$-trascurabili e proprietà $\mu$-quasi certe]
+    Un insieme $A \in \FF$ si dice \textbf{$\mu$-trascurabile} se
+    $\mu(A) = 0$. Una proprietà $M$ si dice che accade
+    $\mu$-quasi certamente se esiste $A \in \FF$ $\mu$-trascurabile per cui
+    $M$ accade per $A^c$.
+\end{definition}
+
+
+\end{multicols*}
