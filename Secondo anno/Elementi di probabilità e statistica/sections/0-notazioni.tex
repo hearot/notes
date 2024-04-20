@@ -5,6 +5,8 @@
 
 \begin{multicols*}{2}
     \section*{Algebra lineare}
+    \addcontentsline{toc}{section}{Teoria della misura}
+
     \begin{itemize}
         \item $q_\varphi$ -- dato uno spazio vettoriale $V$ equipaggiato con un
         prodotto scalare $\varphi$, $q_\varphi$ è la forma quadratica associatogli, ovverosia
@@ -33,6 +35,8 @@
     \end{itemize}
 
     \section*{Analisi matematica}
+    \addcontentsline{toc}{section}{Analisi matematica}
+
     \begin{itemize}
         \item $f(A_i) \goesup x$ -- la successione $(f(A_i))_{i \in \NN}$ a valori
         in $\RR$ è crescente al crescere di $i$ e ha come limite $x$.
@@ -65,6 +69,8 @@
     \end{itemize}
 
     \section*{Combinatoria}
+    \addcontentsline{toc}{section}{Combinatoria}
+
     \begin{itemize}
         \item $D_{n,k} = \frac{n!}{(n-k)!}$ -- numero di disposizioni ottenute prendendo
         $k$ elementi tra $n$ oggetti.
@@ -78,9 +84,12 @@
     \end{itemize}
 
     \section*{Teoria degli insiemi}
+    \addcontentsline{toc}{section}{Teoria degli insiemia}
+
     \begin{itemize}
         \item $\PP(\Omega)$ -- insieme delle parti di $\Omega$, ossia insieme
         dei sottoinsiemi di $\Omega$.
+        \item $\restr{f}{A}$ -- restrizione della funzione al dominio $A$.
         \item $A \cupdot B$ -- unione disgiunta di $A$ e $B$, ovverosia $A \cup B$ con
         l'ipotesi che $A \cap B = \emptyset$ (la notazione si estende naturalmente a
         una famiglia di insiemi a due a due disgiunti).
@@ -120,21 +129,37 @@
         \item $\groupto$ -- simbolo utilizzato al posto $\to$ quando si elencano
         più funzioni che condividono o lo stesso dominio o lo stesso codominio (e.g.~$f$, $g : A$, $B \groupto C$ elenca una funzione $f : A \to C$ e una $g : B \to C$; $f$, $g : A \groupto B$, $C$ elenca una funzione
         $f : A \to B$ e una $g : A \to C$).
-        
+    \end{itemize}
+
+    \section*{Topologia generale}
+    \addcontentsline{toc}{section}{Topologia generale}
+
+    \begin{itemize}
+        \item $\tau(X)$ -- dato $X$ spazio metrico, insieme degli aperti di $X$, ossia topologia di $X$.
+        \item spazio separabile -- spazio topologico contenente un denso, ossia un insieme la cui chiusura è tutto lo spazio (e.g.~$\QQ$ per $\RR$).
+        \item spazio II-numerabile -- spazio topologico che ammette una base numerabile.
     \end{itemize}
 
     \section*{Probabilità e teoria della misura}
+    \addcontentsline{toc}{section}{Probabilità e teoria della misura}
+
     \begin{itemize}
         \item $\Omega$ -- spazio campionario, l'insieme di tutti i possibili esiti dell'esperimento aleatorio considerato.
         \item $\sigma(\tau)$ -- $\sigma$-algebra generata dalla famiglia $\tau \subseteq \PP(\Omega)$.
         \item $\sigma\{A_1, \ldots, A_n\}$ -- $\sigma$-algebra generata dalla famiglia
         $\tau = \{A_1, \ldots, A_n\} \subseteq \PP(\Omega)$.
+        \item $\BB(X)$ -- $\sigma$-algebra dei boreliani, ossia $\sigma$-algebra generata dagli aperti di $X$ spazio metrico separabile.
         \item $\FF$ -- $\sigma$-algebra relativa a $\Omega$, ossia l'insieme dei possibili eventi.
         \item $(\Omega, \FF)$ -- spazio misurabile.
+        \item $\pi$-sistema -- insieme $I \subseteq \FF$, $I \neq \emptyset$ con $(\Omega, \FF)$ spazio misurabile, $\sigma(I) = \FF$ e $I$ chiuso per intersezioni.
+        \item $\mu$ -- misura su uno spazio misurabile.
+        \item $m$ -- misura di Lebesgue sullo spazio misurabile $(\RR, \BB(\RR))$.
         \item $P$ -- misura di probabilità su uno spazio misurabile.
         \item $(\Omega, \FF, P)$ -- spazio di probabilità.
         \item \qc -- quasi certo/quasi certamente.
         \item $p$ -- per $\Omega$ discreto, funzione di densità discreta.
+        \item f.d.r.~-- funzione di ripartizione, rispetto a una probabilità reale.
+        \item $F$, $F_P$ -- per una probabilità reale, funzione di ripartizione.
         \item \va -- variabile aleatoria.
         \item $P^X$ -- legge della v.a.~$X$ rispetto a $P$.
         \item $p_X$ -- densità della legge della v.a.~$X$, rispetto a $P$.
