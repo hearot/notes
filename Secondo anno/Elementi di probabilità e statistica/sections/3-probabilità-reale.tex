@@ -5,16 +5,23 @@
 \begin{multicols*}{2}
 
 Discutiamo in questa sezione la teoria della probabilità sulla
-retta reale, uscendo dunque dal caso discreto.
+retta reale, uscendo dunque dal caso discreto. \smallskip
 
 Per restringere la $\sigma$-algebra su cui lavoreremo (ossia l'insieme degli
 eventi interessanti), siamo costretti a limitarci a una $\sigma$-algebra molto più
 piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di escludere
-``casi meno interessanti''.
+``casi meno interessanti''. \smallskip
+
+\begin{warn}
+    Eccetto che nella prima sezione, assumeremo se non detto altrimenti
+    di star lavorando sullo spazio misurabile
+    $(\RR, \BB(\RR))$ dotato eventualmente della misura di Lebesgue $m$. $\BB(\RR)$ ed
+    $m$ sono definiti nella sezione seguente.
+\end{warn} 
 
 \section{Cenni di teoria della misura}
 
-\subsection{La \texorpdfstring{$\sigma$}{σ}-algebra di Borel}
+\subsection{La \texorpdfstring{$\sigma$}{σ}-algebra di Borel e funzioni boreliane}
 
 \begin{definition}[$\sigma$-algebra dei boreliani]
     Dato uno spazio metrico separabile\footnote{
@@ -27,6 +34,7 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     \[
         \BB(X) \defeq \sigma \{ A \subseteq X \mid A \text{ aperto}\, \}.
     \]
+    Gli elementi della $\sigma$-algebra di Borel sono detti \textit{boreliani}.
 \end{definition}
 
 \begin{proposition}[Proprietà di $\BB(X)$]
@@ -35,7 +43,8 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 
     \begin{enumerate}[(i.)]
         \item $\BB(X)$ contiene tutti gli aperti e i chiusi di $X$ (infatti
-        metrico e separabile implica II-numerabile),
+        metrico e separabile implica II-numerabile), pertanto se $\tau(X)$ è la
+        topologia di $X$ vale che $\tau(X) \subseteq \BB(X)$,
         \item $\BB(X) = \sigma \{ A \subseteq X \mid A \text{ chiuso}\, \}$, ossia
         $\BB(X)$ è generata anche dai chiusi di $X$ (infatti $\BB(X)$ è chiuso per
         complementare),
@@ -56,7 +65,23 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     \end{enumerate}
 \end{proposition}
 
-\subsection{Definizione di misura e misura di Lebesgue}
+\begin{definition}
+    Data una funzione $f : X \to Y$ con $X$ e $Y$ spazi metrici separabili, si dice che
+    $f$ è una \textbf{funzione boreliana} se $f\inv(A)$ è boreliano per ogni
+    $A$ boreliano di $Y$. Equivalentemente $f$ è boreliana se la controimmagine di ogni
+    boreliano è un boreliano.
+\end{definition}
+
+\begin{proposition}
+    Sia $f : X \to Y$ con $X$ e $Y$ spazi metrici separabili una funzione continua. Allora
+    $f$ è boreliana. \smallskip
+
+
+    Segue dal fatto che $\BB(Y)$ è generato dagli aperti di $Y$, le cui controimmagini sono
+    aperte, e dunque boreliane.
+\end{proposition}
+
+\subsection{Definizione e proprietà di misura, \texorpdfstring{$\pi$}{π}-sistemi per \texorpdfstring{$\sigma$}{σ}-algebre}
 
 \begin{definition}[Misura]
     Dato $(\Omega, \FF)$ spazio misurabile, una misura $\mu$ su $(\Omega, \FF)$ è una
@@ -67,12 +92,161 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     \]
 \end{definition}
 
-\begin{definition}[Insiemi $\mu$-trascurabili e proprietà $\mu$-quasi certe]
+\begin{remark}[Proprietà basilari di una misura]
+    Dal momento che si richiede per una misura valga $\mu(\emptyset) = 0$, si verifica
+    facilemente che vale la $\sigma$-additività finita. \smallskip
+
+
+    Inoltre, se $A \subseteq B$, allora $\mu(B) = \mu(B \setminus A \cupdot A) = \mu(B \setminus A) + \mu(A)$, e
+    dunque vale sempre che $\mu(A) \leq \mu(B)$. Vale inoltre ancora la $\sigma$-subadditività, con la stessa
+    dimostrazione data per la probabilità, e dunque:
+    \[
+        \mu\left(\bigcup_{i \in \NN} A_i\right) \leq \sum_{i \in \NN} \mu(A_i).
+    \]
+\end{remark}
+
+\begin{remark}[Comportamento di $\mu$ al limite]
+    Se $(A_i)_{i \in \NN}$ è una famiglia numerabile di
+    insiemi in $\FF$, allora, seguendo la stessa dimostrazione
+    data per le misure di probabilità, che:
+
+    \begin{enumerate}[(i.)]
+        \item $A_i \goesup A \implies \mu(A_i) \goesup \mu(A)$,
+        \item $A_i \goesdown A \implies \mu(A_i) \goesdown \mu(A)$.
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    Una misura $\mu$ su $(\Omega, \FF)$ si dice \textbf{misura finita} se $\mu(\Omega)$ è finito.
+\end{definition}
+
+\begin{proposition}[Proprietà di una misura finita $\mu$]
+    Sia $\mu$ una misura finita su $(\Omega, \FF)$. Allora valgono le seguenti affermazioni:
+    \begin{enumerate}[(i.)]
+        \item $P(A) = \frac{\mu(A)}{\mu(\Omega)}$ è una misura di probabilità,
+        \item $\mu(A)$ è sempre finito e $\mu(\Omega) = \mu(A) + \mu(A^c)$,
+        \item $A \subseteq B \implies \mu(B) = \mu(B \setminus A) + \mu(A)$,
+        \item $\mu(B \setminus A) = \mu(B) - \mu(A \cap B)$,
+        \item $\mu(A \cup B) = \mu(A \Delta B \cupdot A \cap B) = \mu(A) + \mu(B) - \mu(A \cap B)$,
+        \item $\mu\left(\bigcup_{i \in [n]} A_i\right) = \sum_{j \in [n]} (-1)^{j+1} \sum_{1 \leq i_1 < \cdots < i_j \leq n} \mu\left(\bigcap_{k \in [j]} A_{i_{k}}\right)$ (Principio di inclusione-esclusione per le misure finite).
+    \end{enumerate}
+
+    Tutte le affermazioni seguono immediatamente dalla prima.
+\end{proposition}
+
+\begin{definition}[Insiemi $\mu$-trascurabili e proprietà che accadono $\mu$-quasi sempre]
     Un insieme $A \in \FF$ si dice \textbf{$\mu$-trascurabile} se
     $\mu(A) = 0$. Una proprietà $M$ si dice che accade
-    $\mu$-quasi certamente se esiste $A \in \FF$ $\mu$-trascurabile per cui
+    $\mu$-quasi sempre ($\mu$-q.a.) se esiste $A \in \FF$ $\mu$-trascurabile per cui
     $M$ accade per $A^c$.
 \end{definition}
 
+\begin{definition}[\texorpdfstring{$\pi$}{π}-sistema di una $\sigma$-algebra]
+    Sia $(\Omega, \FF)$ uno spazio misurabile. Allora un sottoinsieme $\mathcal{C} \subseteq \FF$
+    si dice \textbf{$\pi$-sistema di $\FF$} se:
+    \begin{enumerate}[(i.)]
+        \item $A$, $B \in \mathcal{C} \implies A \cap B \in \mathcal{C}$ (chiusura per intersezioni),
+        \item $\sigma(C) = \FF$ (genera $\FF$).
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Un $\pi$-sistema di una $\sigma$-algebra svolge lo ``stesso ruolo'' che una
+    base svolge per una topologia.
+\end{remark}
+
+\begin{lemma}[di Dynkin, versione probabilistica]
+    Sia $(\Omega, \FF)$ uno spazio misurabile e sia $\mathcal{C}$ un suo $\pi$-sistema. Siano
+    $P$ e $Q$ due probabilità sullo spazio misurabile di $\Omega$. Se $P$ e $Q$ coincidono su
+    $\mathcal{C}$, allora $P \equiv Q$.
+\end{lemma}
+
+\begin{example}
+    Alcuni esempi di $\pi$-sistemi per $(\RR, \BB(\RR))$ sono:
+    \begin{itemize}
+        \item gli aperti, ovverosia $\mathcal{C} = \{ A \in \FF \mid A \text{ aperto}\, \}$ (oppure i chiusi),
+        \item le semirette (a sinistra), ovverosia $\mathcal{C} = \{ (-\infty, a] \mid a \in \RR \}$ (oppure le semirette a destra),
+        \item gli intervalli semiaperti (a sinistra), ovverosia $\mathcal{C} = \{ (a, b] \mid a, b \in \RR, b > a \}$ (oppure semiaperti a destra).
+    \end{itemize}
+\end{example}
+
+\subsection{La misura di Lebesgue}
+
+\begin{theorem}[Esistenza e unicità della misura di Lebesgue]
+    Esiste ed è unica la misura $m$ su $(\RR, \BB(\RR))$ tale per cui
+    $m([a, b]) = b-a$ per ogni $a$, $b \in \RR$ con $b > a$. Tale misura
+    è detta \textbf{misura di Lebesgue}. \smallskip
+
+
+    L'unicità segue dall'enunciato generale del lemma di Dynkin.
+\end{theorem}
+
+\begin{remark}
+    Dal momento che $m([0, 1]) = 1$,
+    la misura $\restr{m}{[0,1]}$ è una misura di probabilità su $([0,1], \BB([0, 1]))$,
+    detta \textit{probabilità uniforme su $[0,1]$}. Analogamente per $a$, $b \in \RR$
+    con $b > a$, $m([a, b]) = b-a$ e
+    dunque $P = \frac{1}{b-a} \restr{m}{[a,b]}$ è una misura di probabilità (detta
+    \textit{probabilità uniforme su $[a,b]$}). \smallskip
+
+
+    Assumendo l'assioma della scelta si può dimostrare che \underline{non} si può estendere in modo coerente
+    $\restr{m}{[0,1]}$ a $([0, 1], \PP([0, 1]))$.
+\end{remark}
+
+\section{Probabilità reale, funzione di ripartizione (f.d.r.) e proprietà}
+
+\begin{definition}
+    Si dice \textbf{probabilità reale} una qualsiasi
+    probabilità $P$ su $(\RR, \BB(\RR))$.
+\end{definition}
+
+\begin{definition}[Funzione di ripartizione di $P$]
+    Data una probabilità reale $P$ si definisce
+    allora la sua \textbf{funzione di ripartizione (f.d.r.)}
+    come la funzione $F : \RR \to [0, 1]$ tale per cui:
+    \[
+        F(x) = P((-\infty, x]), \quad \forall x \in \RR.
+    \]
+    Si definisce inoltre $F(\pm\infty) \defeq \lim_{x \to \pm\infty} F(x)$.
+    Indicheremo $F$ come $F_P$, e quando $P$ sarà nota dal contesto
+    ci limiteremo a scrivere $F$.
+\end{definition}
+
+\begin{proposition}[Proprietà della f.d.r.]
+    Sia $P$ una probabilità reale. Allora, se $F$ è la
+    sua f.d.r. vale che:
+    \begin{enumerate}[(i.)]
+        \item $F$ è crescente, ovvero $F(x) \geq F(y) \impliedby x \geq y$ (infatti $(-\infty, x] \supseteq (-\infty, y]$),
+        \item $F$ è continua a destra, ovverosia per ogni $\tilde{x} \in \RR$ vale che $\lim_{x \to \tilde{x}^+} F(x) = F(\tilde{x})$,
+        \item $F(-\infty) = 0 \impliedby ((-\infty, -i])_{i \in \NN} \goesdown \emptyset$,
+        \item $F(\infty) = 1 \impliedby ((-\infty, i])_{i \in \NN} \goesup \RR$.
+    \end{enumerate}
+
+
+    L'affermazione (ii.) segue dal fatto che per ogni successione decrecente da destra $(x_i)_{i \in \NN} \goesdown \tilde{x}$ è
+    tale per cui $((-\infty, x_i])_{i \in \NN} \goesdown (-\infty, \tilde{x})$, e dunque
+    $(P(x_i))_{i \in \NN} \goesdown P(\tilde{x})$.
+\end{proposition}
+
+% \begin{remark}
+%     La continuità a sinistra non è invece garantita dacché ogni successione da sinistra crescente $(x_i)_{i \in \NN} \goesup \tilde{x}$
+%     è tale per cui 
+% \end{remark}
+
+\begin{proposition}[$P$ è univocamente determinata da $F$]
+    Sia $F : \RR \to \RR$ una funzione tale per cui:
+    \begin{enumerate}[(i.)]
+        \item $F$ è crescente,
+        \item $F$ è continua a destra,
+        \item $\lim_{x \to \infty} F(x) = 1$,
+        \item $\lim_{x \to -\infty} F(x) = 0$.
+    \end{enumerate}
+    Allora $0 \leq F \leq 1$ ed esiste un'unica probabilità reale $P$ avente
+    $F$ come funzione di ripartizione. \smallskip
+
+
+    L'unicità segue dal lemma di Dynkin.
+\end{proposition}
 
 \end{multicols*}
