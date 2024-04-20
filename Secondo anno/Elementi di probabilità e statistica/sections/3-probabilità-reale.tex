@@ -196,6 +196,8 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 
 \section{Probabilità reale, funzione di ripartizione (f.d.r.) e proprietà}
 
+\subsection{Definizioni e corrispondenza tra f.d.r.~e probabilità reale}
+
 \begin{definition}
     Si dice \textbf{probabilità reale} una qualsiasi
     probabilità $P$ su $(\RR, \BB(\RR))$.
@@ -224,17 +226,11 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     \end{enumerate}
 
 
-    L'affermazione (ii.) segue dal fatto che per ogni successione decrecente da destra $(x_i)_{i \in \NN} \goesdown \tilde{x}$ è
+    L'affermazione (ii.)~segue dal fatto che per ogni successione decrecente da destra $(x_i)_{i \in \NN} \goesdown \tilde{x}$,
+    che esclude $\tilde{x}$, è
     tale per cui $((-\infty, x_i])_{i \in \NN} \goesdown (-\infty, \tilde{x}]$, e dunque
-    $(P(x_i))_{i \in \NN} \goesdown P(\tilde{x})$.
+    $(F(x_i))_{i \in \NN} = (P((-\infty, x_i]))_{i \in \NN} \goesdown P((-\infty, \tilde{x}]) = F(\tilde{x})$.
 \end{proposition}
-
-\begin{remark}
-    La continuità a sinistra non è invece garantita dacché non è vero che per ogni successione da sinistra crescente
-    $(x_i)_{i \in \NN} \goesup \tilde{x}$
-    vale che $((-\infty, x_i])_{i \in \NN} \goesup (-\infty, \tilde{x}]$. Infatti, se $\tilde{x}$ non appartiene a tale
-    successione, l'insieme limite è $(-\infty, \tilde{x})$ e non $(-\infty, \tilde{x}]$.
-\end{remark}
 
 \begin{proposition}[$P$ è univocamente determinata da $F$]
     Sia $F : \RR \to \RR$ una funzione tale per cui:
@@ -250,5 +246,41 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 
     L'unicità segue dal lemma di Dynkin.
 \end{proposition}
+
+\begin{remark}
+    La continuità a sinistra della f.d.r.~non è invece garantita dacché per ogni successione da sinistra crescente
+    $(x_i)_{i \in \NN} \goesup \tilde{x}$, che esclude $\tilde{x}$,
+    vale che $((-\infty, x_i])_{i \in \NN} \goesup (-\infty, \tilde{x})$, e non
+    $(-\infty, \tilde{x}]$. Dunque $\lim_{x \to \tilde{x}^-} F(x)$ esiste ed è $P((-\infty, x))$, indicato
+    comunemente come $F(x^-)$, che può non coincidere con $F(x)$. \smallskip
+
+    Dal momento che:
+    \[
+        P(\{x\}) = P((-\infty, x] \setminus (-\infty, x)) = F(x) - F(x^-),
+    \]
+    si deduce che $F$ è continua se e solo se $P(\{x\}) = 0$ (ossia se e solo se
+    $F(x) = F(x^-)$).
+\end{remark}
+
+\begin{remark}
+    Si deducono immediatamente dalla precedente osservazione le seguenti identità:
+    \begin{itemize}
+        \item $P([a, b]) = F(b) - F(a^-)$,
+        \item $P((a, b)) = F(b^-) - F(a)$,
+        \item $P([a, b)) = F(b^-) - F(a^-)$,
+        \item $P((a, b]) = F(b) - F(a)$.
+    \end{itemize} 
+\end{remark}
+
+\begin{definition}[$P$ continua]
+    Si dice che una probabilità reale $P$ è \textbf{continua} se
+    la sua f.d.r.~$F$ lo è, ossia se $P(\{a\}) = 0$ per ogni $a \in \RR$
+    (quest'ultima equivalenza deriva dalla penultima osservazione). 
+\end{definition}
+
+\begin{remark}
+    Per una probabilità $P$ continua la misura di un intervallo con estremi $a$ e $b$ è semplificata
+    a $F(b) - F(a)$ in tutti i casi (infatti $F(a^-) = F(a)$ e $F(b^-) = F(b)$).  
+\end{remark}
 
 \end{multicols*}
