@@ -225,14 +225,16 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 
 
     L'affermazione (ii.) segue dal fatto che per ogni successione decrecente da destra $(x_i)_{i \in \NN} \goesdown \tilde{x}$ è
-    tale per cui $((-\infty, x_i])_{i \in \NN} \goesdown (-\infty, \tilde{x})$, e dunque
+    tale per cui $((-\infty, x_i])_{i \in \NN} \goesdown (-\infty, \tilde{x}]$, e dunque
     $(P(x_i))_{i \in \NN} \goesdown P(\tilde{x})$.
 \end{proposition}
 
-% \begin{remark}
-%     La continuità a sinistra non è invece garantita dacché ogni successione da sinistra crescente $(x_i)_{i \in \NN} \goesup \tilde{x}$
-%     è tale per cui 
-% \end{remark}
+\begin{remark}
+    La continuità a sinistra non è invece garantita dacché non è vero che per ogni successione da sinistra crescente
+    $(x_i)_{i \in \NN} \goesup \tilde{x}$
+    vale che $((-\infty, x_i])_{i \in \NN} \goesup (-\infty, \tilde{x}]$. Infatti, se $\tilde{x}$ non appartiene a tale
+    successione, l'insieme limite è $(-\infty, \tilde{x})$ e non $(-\infty, \tilde{x}]$.
+\end{remark}
 
 \begin{proposition}[$P$ è univocamente determinata da $F$]
     Sia $F : \RR \to \RR$ una funzione tale per cui:
