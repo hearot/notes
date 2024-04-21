@@ -64,6 +64,7 @@ in modo naturale la $\sigma$-algebra $\PP(\Omega)$.
 \end{proposition}
 
 \subsection{Misure di probabilità discrete su spazi campionari non discreti e discretizzazione}
+\label{sec:discretizzazione}
 
 \begin{definition}[Probabilità discreta su spazio campionario non discreto]
     Dato $(\Omega, \FF, P)$ spazio di probabilità con $\{\omega\} \in \FF$ per
@@ -101,6 +102,17 @@ in modo naturale la $\sigma$-algebra $\PP(\Omega)$.
 \begin{remark}
     Se $\Omega$ è discreto, allora si può sempre discretizzare
     $P$ al suo range $R_P$.
+\end{remark}
+
+\begin{remark}
+    \label{remark:identità_discreta_dirac}
+    Se $P$ è una probabilità discreta e, per $a \in \Omega$, $\delta_a$ è il \textbf{delta di Dirac}, ovverosia
+    la probabilità per cui $\delta_a(A) = 1$ se $a \in A$ e $\delta_a(A) = 0$ se $a \notin A$, allora vale
+    la seguente identità:
+    \[
+        P = \sum_{\omega \in R_P} p(\omega) \, \delta_{\omega},
+    \]
+    dove si osserva che $R_P$ è numerabile (dacché $P$ è discreta).
 \end{remark}
 
 \section{Variabili aleatorie discrete}

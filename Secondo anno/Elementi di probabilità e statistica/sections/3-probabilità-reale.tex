@@ -175,7 +175,8 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 \begin{theorem}[Esistenza e unicità della misura di Lebesgue]
     Esiste ed è unica la misura $m$ su $(\RR, \BB(\RR))$ tale per cui
     $m([a, b]) = b-a$ per ogni $a$, $b \in \RR$ con $b > a$. Tale misura
-    è detta \textbf{misura di Lebesgue}. \smallskip
+    è detta \textbf{misura di Lebesgue} e corrisponde al concetto ``primitivo'' di
+    \textit{lunghezza}. \smallskip
 
 
     L'unicità segue dall'enunciato generale del lemma di Dynkin.
@@ -282,5 +283,71 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     Per una probabilità $P$ continua la misura di un intervallo con estremi $a$ e $b$ è semplificata
     a $F(b) - F(a)$ in tutti i casi (infatti $F(a^-) = F(a)$ e $F(b^-) = F(b)$).  
 \end{remark}
+
+\section{Classi di probabilità reale: discreta e assolutamente continua (AC)}
+
+Esistono due classi importanti, ma non esaustive, di probabilità reale: le
+probabilità discrete e quelle continue, contenenti quelle assolutamente
+continue. Le classi di probabilità reali
+si dividono dunque secondo il seguente schema:
+
+\begin{center}
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1,scale=0.8]
+    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+    
+    %Shape: Rectangle [id:dp7885262489349896] 
+    \draw   (220.19,65.28) -- (466.19,65.28) -- (466.19,196.28) -- (220.19,196.28) -- cycle ;
+    %Shape: Ellipse [id:dp8572353674963273] 
+    \draw   (229.69,95.79) .. controls (236.04,78.39) and (264.48,72.78) .. (293.2,83.27) .. controls (321.92,93.76) and (340.05,116.37) .. (333.7,133.77) .. controls (327.34,151.17) and (298.91,156.78) .. (270.19,146.29) .. controls (241.47,135.8) and (223.33,113.19) .. (229.69,95.79) -- cycle ;
+    %Shape: Ellipse [id:dp3583963732297444] 
+    \draw   (342.58,156.41) .. controls (332.85,131.07) and (350.75,100.63) .. (382.58,88.41) .. controls (414.4,76.19) and (448.08,86.82) .. (457.81,112.15) .. controls (467.54,137.48) and (449.63,167.93) .. (417.81,180.15) .. controls (385.99,192.37) and (352.31,181.74) .. (342.58,156.41) -- cycle ;
+    %Shape: Ellipse [id:dp5413476700533957] 
+    \draw   (393.91,107.98) .. controls (397.1,99.22) and (408.98,95.52) .. (420.44,99.7) .. controls (431.9,103.89) and (438.6,114.38) .. (435.4,123.13) .. controls (432.21,131.89) and (420.33,135.59) .. (408.87,131.41) .. controls (397.41,127.22) and (390.71,116.73) .. (393.91,107.98) -- cycle ;
+    
+    % Text Node
+    \draw (252,103) node [anchor=north west][inner sep=0.75pt]   [align=left] {discrete};
+    % Text Node
+    \draw (358,145) node [anchor=north west][inner sep=0.75pt]   [align=left] {continue};
+    % Text Node
+    \draw (403,105) node [anchor=north west][inner sep=0.75pt]   [align=left] {AC};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Probabilità discreta e f.d.r.}
+
+Come già discusso nella sezione della \textit{\hyperref[sec:discretizzazione]{Discretizzazione}},
+una probabilità reale $P$ si dice \textit{discreta} se esiste $\Omega_0 \subseteq \RR$
+discreto per cui $P$ è concentrata su $\Omega_0$. In tal caso, come già visto,
+$P(A) = P(A \cap \Omega_0)$ per ogni $A \in \BB(\RR)$, e dunque $P$ è univocamente determinata
+dalla densità discreta di $\restr{P}{\PP(\Omega_0)}$, che chiameremo $p$. \smallskip
+
+
+In questo caso il range $R_P$ è dunque numerabile e, se $F$ è la f.d.r.~di $P$, vale che:
+\[
+    F(x) = P((-\infty, x]) = \sum_{\substack{y \in R_P \\ y \leq x}} p(y).
+\]
+
+\begin{remark}
+    Se $P$ è discreta, come già osservato nella sezione della \textit{\hyperref[remark:identità_discreta_dirac]{Discretizzazione}},
+    allora vale che:
+    \[
+        P = \sum_{x \in R_P} p(x) \, \delta_x.
+    \]
+\end{remark}
+
+\begin{remark}
+    Se $R_P$ non ha punti di accumulazione, allora $F$ è costante a tratti con salti
+    negli $y \in R_P$ di ampiezza $p(y)$. \smallskip
+
+
+    Al contrario, presa una successione $(p_r)_{r \in \QQ}$ con $\sum_{r \in \QQ} p_r = 1$,
+    la probabilità $P = \sum_{r \in \QQ} p_r \, \delta_r$ è una probabilità discreta con
+    f.d.r.~non costante a tratti (infatti tutti i punti di $\QQ$ sono punti di accumulazione). 
+\end{remark}
+
+Pertanto, se una probabilità reale è discreta, ci si può effettivamente restringere a tutti
+i risultati della \textit{Parte 2}.
 
 \end{multicols*}
