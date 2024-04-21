@@ -409,14 +409,14 @@
 		$a_1$, ..., $a_n$ sono le radici di $p$,
 		$\Gal(L / K)$ agisce su $\{a_1, \ldots, a_n\}$
 		mediante $\Xi$, in modo tale che:
-		\vskip -0.3in
+		
 		\begin{equation*}
 		\begin{split}
 			\Xi : \Gal(&L / K) \to S(\{a_1, \ldots, a_n\}) \cong S_n, \\
 			&\varphi_i \xmapsto{\Xi} [a_j \mapsto \varphi_i(a_j)].
 		\end{split}
 		\end{equation*}
-		\vskip -0.2in
+
 		In particolare tale azione è transitiva (dunque $\Orb(a_i) = \{a_j\}_{j=1-n}$)e fedele. Poiché $\Xi$ è fedele, vale che
 		$\Gal(L / K) \mono S_n$. Se $\Gal(L / K)$ è abeliano
 		(e in tal caso si dice che $L$ è un'\textbf{estensione abeliana}), $\Xi$ è anche transitiva, e quindi
@@ -637,6 +637,32 @@
 			D_4 & \altrimenti.
 		\end{cases} \]
 		
+		
+		\subsection{Radici di primi in $\QQ$}
+		
+		Siano $p_1$, ..., $p_n$ numeri primi distinti.
+		Allora
+		vale che:
+		\[ \Gal(\QQ(\sqrt{p_1}, \ldots, \sqrt{p_n})/\QQ) \cong (\ZZmod{2})^n. \]
+		
+		\subsection{I polinomi ciclotomici $\Phi_n(x)$}
+		
+		Sia $\Phi_n(x)$ l'$n$-esimo polinomio ciclotomico, così definito:
+		\[ \Phi_n(x) = \prod_{\substack{1 \leq d \leq n \\ \MCD(d, n) = 1}} (x - \zeta_n^d), \]
+		dove $\zeta_n$ è una radice primitiva $n$-esima dell'unità. \medskip
+		
+		
+		Tale polinomio è sempre a coefficienti interi ed è inoltre primitivo
+		su $\ZZ[x]$. Vale inoltre che:
+		\[ x^n - 1 = \prod_{m \mid n} \Phi_m(x). \]
+		Il campo di spezzamento di $\Phi_n(x)$ su $\QQ$ è
+		$\QQ(\zeta_n)$, che è un'estensione normale, separabile e finita,
+		e pertanto di Galois. \medskip
+		
+		
+		Inoltre vale che:
+		\[ \Gal(\QQ(\zeta_n)/\QQ) \cong (\ZZmod{n})^\times, \]
+		e dunque $\Phi_n(x)$ è sempre irriducibile su $\QQ$.
 		
 		\vfill
 		\hrule
