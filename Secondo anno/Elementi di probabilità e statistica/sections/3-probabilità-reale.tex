@@ -197,7 +197,7 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 
 \section{Probabilità reale, funzione di ripartizione (f.d.r.) e proprietà}
 
-\subsection{Definizioni e corrispondenza tra f.d.r.~e probabilità reale}
+\subsection{Definizioni e proprietà della f.d.r.}
 
 \begin{definition}
     Si dice \textbf{probabilità reale} una qualsiasi
@@ -233,7 +233,10 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     $(F(x_i))_{i \in \NN} = (P((-\infty, x_i]))_{i \in \NN} \goesdown P((-\infty, \tilde{x}]) = F(\tilde{x})$.
 \end{proposition}
 
+\subsection{Corrispondenza tra f.d.r.~e probabilità, calcolo di \texorpdfstring{$P$}{P} tramite \texorpdfstring{$F$}{F} e probabilità continue}
+
 \begin{proposition}[$P$ è univocamente determinata da $F$]
+    \label{prop:unicita_fdr}
     Sia $F : \RR \to \RR$ una funzione tale per cui:
     \begin{enumerate}[(i.)]
         \item $F$ è crescente,
@@ -284,7 +287,7 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     a $F(b) - F(a)$ in tutti i casi (infatti $F(a^-) = F(a)$ e $F(b^-) = F(b)$).  
 \end{remark}
 
-\section{Classi di probabilità reale: discreta e assolutamente continua (AC)}
+\section{Classi principali di probabilità reale}
 
 Esistono due classi importanti, ma non esaustive, di probabilità reale: le
 probabilità discrete e quelle assolutamente
@@ -315,7 +318,28 @@ si dividono dunque secondo il seguente schema:
     \end{tikzpicture}
 \end{center}
 
-\subsection{Probabilità discreta e f.d.r.}
+\begin{example}[Esempio di probabilità né discreta né continua]
+    Sia $F : \RR \to \RR$ tale per cui:
+    \[
+        F(x) = \begin{cases}
+            0 & \text{se } x < 0, \\
+            x + \frac{1}{2} & \text{se } 0 \leq x \leq \frac{1}{2}, \\
+            1 & \text{altrimenti}.
+        \end{cases}
+    \]
+    Allora $F$ è crescente, continua a destra e tale per cui
+    $\lim_{x \to -\infty} F(x) = 0$, $\lim_{x \to \infty} F(x) = 1$.
+    Pertanto esiste un'unica probabilità $P$ avente $F$ come f.d.r. per la
+    \textit{Proposizione \ref{prop:unicita_fdr}}. \smallskip
+
+
+    Dal momento che $F$ non è continua a sinistra in $0$, $F$ non è continua, e dunque
+    $P$ non è continua. Inoltre $F$ non induce una probabilità discreta dacché
+    non è costante a tratti in $[0, \nicefrac{1}{2}]$. Pertanto $P$ non è né
+    continua né discreta.
+\end{example}
+
+\section{Probabilità discreta e rappresentazione della f.d.r.}
 
 Come già discusso nella sezione della \textit{\hyperref[sec:discretizzazione]{Discretizzazione}},
 una probabilità reale $P$ si dice \textit{discreta} se esiste $\Omega_0 \subseteq \RR$
@@ -350,12 +374,81 @@ In questo caso il range $R_P$ è dunque numerabile e, se $F$ è la f.d.r.~di $P$
 Pertanto, se una probabilità reale è discreta, ci si può effettivamente restringere a tutti
 i risultati della \textit{Parte 2}.
 
-\subsection{Probabilità assolutamente continue (AC)}
+\section{Probabilità assolutamente continue (AC)}
 
 \begin{warn}
     Si ricorda che con il simbolo $\int$ si intende l'integrale
     secondo Lebesgue e che si assume di star lavorando sempre con la
-    misura di Lebesgue.
+    misura di Lebesgue $m$.
 \end{warn}
+
+\subsection{Probabilità AC e funzione di densità}
+
+\begin{definition}[Probabilità assolutamente continua (AC) e densità]
+    Una probabilità $P$ si dice \textbf{assolutamente continua (AC)}
+    se esiste una funzione
+    boreliana $f : \RR \to \RR$ tale per cui:
+    \[
+        P(A) = \int_A f(x) \dx,
+    \]
+    dove si impiega l'integrale secondo Lebesgue. Tale funzione $f$ è
+    detta \textbf{densità} di $P$. \smallskip
+
+
+    Si assume implicitamente che $\int_\RR \abs{f(x)} \dx$ sia finito.
+\end{definition}
+
+\begin{remark}
+    Se $P$ è AC, allora la sua f.d.r. $F$ è in particolare
+    assolutamente continua, e dunque anche continua.
+\end{remark}
+
+\begin{remark}
+    Nella pratica l'integrale $\int_A f(x) \dx$ si riduce in molti casi
+    al più semplice integrale di Riemann, eventualmente improprio.
+\end{remark}
+
+\subsection{Proprietà e caratterizzazione della densità}
+
+\begin{proposition}[Unicità della densità a meno di $m$-trascurabilità]
+    Se $P$ è una probabilità AC con densità $f$ e $g$, allora
+    $f = g$ q.o.~(e dunque $m(f \neq g) = 0$, ossia l'insieme
+    $f \neq g$ è $m$-trascurabile).
+\end{proposition}
+
+\begin{remark}
+    Si osserva che se $P$ è una probabilità AC con densità
+    $f$, allora $f \geq 0$ q.o.~per continuità (altrimenti $P$ potrebbe
+    assumere valori negativi) e $\int_\RR f(x) \dx = P(\RR) = 1$.
+\end{remark}
+
+\begin{proposition}[La densità determina univocamente la probabilità]
+    Sia $f : \RR \to \RR$ una funzione boreliana tale per cui:
+    \begin{enumerate}[(i.)]
+        \item $f \geq 0$,
+        \item $\int_\RR f(x) \dx = 1$.
+    \end{enumerate}
+    Allora esiste un'unica probabilità reale $P$ avente $f$ come densità.
+\end{proposition}
+
+\begin{proposition}[Relazioni tra la densità e la f.d.r.]
+    Sia $P$ una probabilità reale con f.d.r. $F$. Allora valgono le seguenti affermazioni:
+    \begin{enumerate}[(i.)]
+        \item Se $P$ è AC con densità $f$, allora $F(x) = \int_{-\infty}^x f(y) \dy$. Viceversa
+        se esiste $f$ per cui $F(x) = \int_{-\infty}^x f(y) \dy$, allora $P$ è AC con densità
+        $f$.
+        \item Se $F$ è continua e $C^1$ a tratti (ovverosia si restringe a una funzione $C^1$ eccetto che per un insieme di punti isolati),
+        allora $P$ è AC con densità $f$ t.c.~$f = F'$ dove è definibile $F'$ e $f = 0$ altrimenti (segue dal Teorema fondamentale del calcolo integrale).
+    \end{enumerate}
+\end{proposition}
+
+\begin{remark}
+    Se $P$ è AC con densità $f$, allora $P(f = 0) = \int_{f = 0} f(x) \dx = 0$ e dunque
+    l'insieme $f = 0$ è trascurabile rispetto a $P$. Dunque, ristringendo il range si
+    ottiene che:
+    \[
+        P(A) = P(A \cap (f > 0)).
+    \]
+\end{remark}
 
 \end{multicols*}
