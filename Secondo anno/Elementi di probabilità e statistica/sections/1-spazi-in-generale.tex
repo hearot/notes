@@ -18,7 +18,7 @@
         esiti di un esperimento aleatorio.
     \end{definition}
 
-    \subsection{\texorpdfstring{$\sigma$}{σ}-algebre e spazi misurabili}
+    \subsection{\texorpdfstring{$\sigma$}{σ}-algebre, spazi e funzioni misurabili}
 
     \begin{definition}[$\sigma$-algebra]
         Una $\sigma$-algebra $\FF$ di $\Omega$ è un sottoinsieme $\FF \subseteq \PP(\Omega)$ tale per cui:
@@ -37,8 +37,29 @@
     \begin{definition}[Spazio misurabile]
         Si definisce \textbf{spazio misurabile} una coppia
         $(\Omega, \FF)$, dove $\FF$ è una $\sigma$-algebra
-        di $\Omega$.
+        di $\Omega$. Gli elementi di $\FF$ sono detti
+        \textbf{insiemi misurabili} (e nel caso della probabilità,
+        \textbf{eventi}).
     \end{definition}
+
+    \begin{definition}[Funzione misurabile]
+        Data una funzione $f$ dallo spazio misurabile $(X, \FF)$ allo spazio
+        $(Y, \cS)$ si dice \textbf{misurabile} se $f\inv(A) \in \FF$ per ogni
+        $A \in \cS$, ovverosia se la controimmagine di un insieme misurabile è
+        misurabile.
+    \end{definition}
+
+    \begin{remark}
+        Se $\mathcal{G}$ genera $\cS$, allora è sufficiente verifica che
+        $f\inv(A) \in \FF$ per ogni $A \in \mathcal{G}$ affinché
+        $f$ sia misurabile.
+    \end{remark}
+
+    \begin{remark}
+        Un insieme $A$ è misurabile in $(\Omega, \FF)$ se e solo se
+        $1_A$ è misurabile rispetto a $\{0,1\}$ e le sue parti (infatti
+        $1_A\inv(1) = A$ e $1_A\inv(0) = A^c$).
+    \end{remark}
 
     \subsection{Insiemi discreti e \texorpdfstring{$\sigma$}{σ}-algebra naturale}
 

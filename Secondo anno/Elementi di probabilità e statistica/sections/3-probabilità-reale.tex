@@ -65,11 +65,15 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     \end{enumerate}
 \end{proposition}
 
-\begin{definition}
+\begin{definition}[Funzione boreliana]
     Data una funzione $f : X \to Y$ con $X$ e $Y$ spazi metrici separabili, si dice che
     $f$ è una \textbf{funzione boreliana} se $f\inv(A)$ è boreliano per ogni
     $A$ boreliano di $Y$. Equivalentemente $f$ è boreliana se la controimmagine di ogni
-    boreliano è un boreliano.
+    boreliano è un boreliano. \smallskip
+
+
+    In particolare una funzione è boreliana se e solo se è misurabile rispetto
+    alle $\sigma$-algebre di Borel.
 \end{definition}
 
 \begin{proposition}
@@ -450,5 +454,243 @@ i risultati della \textit{Parte 2}.
         P(A) = P(A \cap (f > 0)).
     \]
 \end{remark}
+
+\section{Variabili aleatorie in generale}
+
+In questa sezione cerchiamo di generalizzare il concetto di variabile aleatoria
+al caso più generale usando il linguaggio delle $\sigma$-algebre e delle
+funzioni misurabili in modo tale da estendere coerentemente le v.a.~discrete.
+
+\subsection{Definizione e legge di una v.a.}
+
+\begin{definition}[Variabile aleatoria]
+    Sia $(\Omega, \FF, P)$ uno spazio di probabilità. Allora, se
+    $(S, \cS)$ è uno spazio misurabile e $X$ è una funzione misurabile
+    da $\Omega$ a $S$, allora si dice che $X$ è una \textbf{variabile aleatoria (v.a.)}.
+    Se $S = \RR$ e $\cS = \BB(\RR)$, si dice che $X$ è una \textit{v.a.~reale},
+    se $S = \RR^d$ e $\cS = \BB(\RR^d)$, si dice che $X$ è una \textit{v.a.~vettoriale}
+    o \textit{vettore aleatorio}.
+\end{definition}
+
+\begin{remark}
+    Se $\Omega$ è discreto, $\FF = \PP(\Omega)$, e dunque ogni funzione
+    $X : \Omega \to S$ è una variabile aleatoria. Pertanto la definizione
+    espressa è una perfetta estensione del concetto di v.a.~discreta.
+\end{remark}
+
+\begin{definition}[Legge di $X$]
+    Sia $(\Omega, \FF, P)$ uno spazio di probabilità e sia
+    $X : (\Omega, \FF) \to (S, \cS)$ una v.a. Allora si dice
+    \textbf{legge di $X$} (o \textit{distribuzione}) la probabilità
+    su $P^X$ su $(S, \cS)$ tale per cui:
+    \[
+        P^X(A) = P(X \in A) = P(X\inv(A)).
+    \]
+\end{definition}
+
+\subsection{F.d.r.~di una v.a.~reale, v.a.~discrete, continue e AC}
+
+\begin{definition}[F.d.r.~di una v.a.~reale]
+    Si definisce la \textbf{funzione di ripartizione (f.d.r.) di una
+    v.a.~$X$} come la f.d.r.~$F^X$ associata alla probabilità reale
+    $P^X$, ovverosia:
+    \[
+        F^X(x) = P(X\inv((-\infty, x])) = P(X \leq x).
+    \]
+\end{definition}
+
+\begin{definition}[V.a.~discreta]
+    Una v.a.~$X : \Omega \to S$ si dice \textbf{discreta} se
+    la probabilità $P^X$ è discreta con densità
+    $p_X : S \ni x \mapsto P(X = x)$. \smallskip
+
+
+    Tale definizione coincide con l'analoga definizione
+    di v.a.~discreta data precedentemente se ci restringiamo
+    a $\Omega$ discreto. Non è detto in generale che
+    $X$ sia una v.a.~discreta se e solo se $\Omega$ è discreto.
+\end{definition}
+
+\begin{example}
+    Sia $P$ una probabilità reale. Allora $X : \RR \to [1]$ che
+    associa a tutti i reali il numero $1$ è una funzione misurabile.
+    Inoltre $X$ è discreta dacché $[1]$ è discreto, ma $\RR$ non
+    lo è.
+\end{example}
+
+\begin{definition}[V.a.~continue e AC]
+    Una v.a.~reale $X$ si dice \textbf{continua} se $P^X$ è
+    continua. Analogamente $X$ si dice \textbf{assolutamente
+    continua (AC)} se $P^X$ è AC.
+\end{definition}
+
+\subsection{Composizione di v.a.}
+
+\begin{definition}
+    Sia $X : (\Omega, \FF) \to (S, \cS)$ una v.a. Allora, se
+    $\varphi : (S, \cS) \to (S', \cS')$ è una funzione tale per cui
+    $\varphi \circ X$ sia misurabile,
+    si definisce la v.a.~composta $\varphi(X) = \varphi \circ X$. 
+\end{definition}
+
+\begin{remark}
+    Se $\varphi$ è anch'essa misurabile, allora $\varphi \circ X$ è
+    sicuramente misurabile, e dunque $\varphi(X)$ è una v.a.
+\end{remark}
+
+\begin{remark}
+    Se $X$ è discreta, anche $\varphi(X)$ lo è, con range
+    $\varphi(R_X)$. Non è detto che se $X$ è continua (o AC),
+    $\varphi(X)$ sia continua (o AC).
+\end{remark}
+
+\subsection{Costruzione canonica, uguaglianza q.c.~e in legge}
+
+I concetti espressi nel titolo di questa sottosezione si estendono
+in modo del tutto naturale dal caso discreto, e pertanto si rimanda
+alla \textit{\hyperref[sec:uguaglianza_qc]{Parte 2}}.
+
+\section{Valore atteso come integrale secondo la misura \texorpdfstring{$P$}{P}}
+
+Cerchiamo in questa sottosezione di dare una definizione di valore
+atteso che estende la particolare nozione di valore atteso discreto
+in modo del tutto coerente. Successivamente tutte le disuguaglianze
+e tutti i risultati espressi nella sezione riguardante il caso
+discreto saranno tutti validi seguendo le stesse dimostrazioni o
+idee di dimostrazione.
+
+\subsection{Costruzione dell'integrale secondo la misura \texorpdfstring{$P$}{P}}
+
+Questa sezione tornerà familiare per i lettori che avranno già costruito
+l'integrale secondo Lebesgue (ovverosia l'integrale secondo la misura
+$m$). Infatti le stesse definizioni e le stesse proposizioni si
+estendono all'integrale secondo una misura generica $\mu$ (a patto
+che $\mu$ assuma valori finiti per le funzioni semplici).
+
+\begin{definition}[Funzione semplice]
+    Data una v.a.~reale $X$ dello spazio misurabile
+    $(\Omega, \FF)$, si dice che $X$ è una
+    \textbf{funzione semplice} (o \textit{v.a.~semplice}) se $X$ assume un numero
+    finito di valori, ovverosia se esistono $A_1$, ...,
+    $A_n \in \FF$ e $a_1$, ..., $a_n \in \RR$ tali
+    per cui:
+    \[
+        X = \sum_{i \in [n]} a_i 1_{A_i}.
+    \] 
+\end{definition}
+
+\begin{remark}
+    Si verifica alquanto agevolmente che si può ridefinire la
+    semplicità di $X$ richiedendo che gli $A_i$ siano
+    disgiunti (per esempio, se i $b_i$ rappresentano i valori finiti
+    e distinti assunti da $X$, gli insiemi $X = b_i$ sono dei possibili
+    candidati).
+\end{remark}
+
+\begin{proposition}
+    Data $X$ una v.a.~semplice sullo spazio di probabilità
+    $(\Omega, \FF, P)$, allora, per ogni scrittura $\sum_{i \in [n]} a_i 1_{A_i}$ di $X$,
+    il valore $\sum_{i \in [n]} a_i P(A_i)$ è lo stesso (ossia non dipende dagli
+    $a_i$ e dagli $A_i$). \smallskip
+
+
+    Segue dalle proprietà della $\sigma$-algebre e delle misure.
+\end{proposition}
+
+\begin{definition}[Integrale secondo la misura $P$ di $X$ v.a.~semplice]
+    Data $X$ una v.a.~semplice sullo spazio di probabilità
+    $(\Omega, \FF, P)$, allora si definisce l'\textbf{integrale di $X$ su
+    $\Omega$ secondo la misura $P$}
+    $\int_\Omega X \dP$ come il valore $\sum_{i \in [n]} a_i P(A_i)$, dove
+    $\sum_{i \in [n]} a_i 1_{A_i}$ è una scrittura di $X$.
+\end{definition}
+
+\begin{lemma}
+    Data $X$ v.a.~reale con $X \geq 0$, allora esiste una successione $(X_i)_{i \in \NN}$ di
+    v.a.~semplici con $X_i \geq 0$ tale per cui $X_i \goesup X$ puntualmente (ovverosia
+    $X_i(\omega) \goesup X(\omega)$ per ogni $\omega \in \Omega$).
+\end{lemma}
+
+\begin{proposition}
+    Data $X$ una v.a.~reale con $X \geq 0$ e data una successione $(X_i)_{i \in \NN}$ di
+    v.a.~semplici con $X_i \geq 0$ tale per cui $X_i \goesup X$ puntualmente (ovverosia
+    $X_i(\omega) \goesup X(\omega)$ per ogni $\omega \in \Omega$), allora il
+    valore $\lim_{i \to \infty} \int_\Omega X_i \dP$ esiste, è finito non negativo o infinito e
+    non dipende dalla successione $(X_i)_{i \in \NN}$.
+\end{proposition}
+
+\begin{definition}[Integrale su $\Omega$ secondo la misura $P$ di $X \geq 0$]
+    Data $X$ v.a.~reale con $X \geq 0$, si definisce l'\textbf{integrale di $X$
+    su $\Omega$ secondo la misura $P$},
+    $\int_\Omega X \dP$, il valore $\lim_{i \to \infty} \int_\Omega X_i \dP$ come
+    ottenuto dal lemma e la proposizione precedente.
+\end{definition}
+
+\begin{definition}[V.a.~integrabili e integrale in generale]
+    Una v.a.~$X$ si dice \textbf{integrabile (secondo $P$)} se
+    $\int_\Omega \abs{X} \dP$ è finito. In tal caso si definisce
+    l'\textbf{integrale di $X$ su $\Omega$ secondo la misura $P$} come:
+    \[
+        \int_\Omega X \dP = \int_\Omega X^+ \dP - \int_\Omega X^- \dP,
+    \]
+    dove $X^+$ e $X^-$ sono la parte positiva e negativa di $X$ ed
+    entrambi gli addendi del secondo membro sono finiti dacché
+    $\int_\Omega \abs{X} \dP$ lo è (infatti $\abs{X} = X^+ + X^-$).
+\end{definition}
+
+\begin{definition}[Integrale su un sottoinsieme $A \subseteq \Omega$]
+    Data $X$ v.a.~reale, si definisce l'integrale $\int_A X \dP$ come il valore
+    $\int_\Omega 1_A \cdot X \dP$, qualora definito.
+\end{definition}
+
+\begin{remark}
+    Si osserva che $\int_A 1 \dP = \int_\Omega 1_A \dP = P(A)$, ossia
+    $\int_\Omega$ misura in questo caso l'insieme $A$ secondo $P$.
+\end{remark}
+
+\subsection{Definizione di valore atteso e teoremi correlati}
+
+\begin{definition}[Valore atteso come integrale secondo la misura $P$]
+    Sia $X$ una v.a.~integrabile o tale per cui $X \geq 0$.
+    Allora si definisce il \textbf{valore
+    atteso di $X$} $\EE[X]$ come il valore $\int_\Omega X \dP$.
+\end{definition}
+
+\begin{remark}
+    In questo modo $X$ è integrabile se e solo se $\EE[\abs{X}]$ è finito.
+\end{remark}
+
+\begin{proposition}
+    I risultati della \textit{Proposizione \ref{prop:prop_valore_atteso}} passano
+    al caso reale.
+\end{proposition}
+
+\begin{lemma}[di Fatou]
+    Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali con $X_i \geq 0$. Allora vale che:
+    \[
+        \EE[\liminf X_i] \leq \liminf \; \EE[X_i].
+    \]
+
+    Segue la stessa idea di dimostrazione per il lemma nella sua forma per l'integrale di Lebesgue.
+\end{lemma}
+
+\begin{theorem}[di convergenza monotona]
+    Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali con $X_i \geq 0$ e con
+    $X_i \goesup X$ q.c.~(cioè $X_i \geq 0$, la successione è crescente e
+    $X_i(\omega) \to X(\omega)$ per $P$-quasi ovunque). Allora $\EE[X_i] \goesup \EE[X]$. \smallskip
+
+
+    Segue la stessa idea di dimostrazione per il teorema nella sua forma per l'integrale di Lebesgue.
+\end{theorem}
+
+\begin{theorem}[di convergenza dominata]
+    Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali e sia $X$ una v.a. reale tale per cui
+    $X_i \to X$ q.c. (cioè $X_i(\omega) \to X(\omega)$ per $P$-quasi ovunque). Se esiste una
+    v.a.~integrabile $Y \geq 0$ con $\abs{X_i} \leq Y$ q.c. per ogni $i \in \NN$. Allora $X_n$ e
+    $X$ sono integrabili e $\EE[X_i] \to \EE[X]$. \smallskip
+
+
+    Segue la stessa idea di dimostrazione per il teorema nella sua forma per l'integrale di Lebesgue.
+\end{theorem}
 
 \end{multicols*}
