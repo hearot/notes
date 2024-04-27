@@ -85,7 +85,7 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     aperte, e dunque boreliane.
 \end{proposition}
 
-\subsection{Definizione e proprietà di misura, \texorpdfstring{$\pi$}{π}-sistemi per \texorpdfstring{$\sigma$}{σ}-algebre}
+\subsection{Definizione e proprietà di misura, \texorpdfstring{$\pi$}{π}-sistemi per \texorpdfstring{$\sigma$}{σ}-algebre e lemma di Dynkin}
 
 \begin{definition}[Misura]
     Dato $(\Omega, \FF)$ spazio misurabile, una misura $\mu$ su $(\Omega, \FF)$ è una
@@ -155,22 +155,23 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 \end{definition}
 
 \begin{remark}
-    Un $\pi$-sistema di una $\sigma$-algebra svolge lo ``stesso ruolo'' che una
+    Un $\pi$-sistema contenente di una $\sigma$-algebra contenente $\Omega$ svolge lo ``stesso ruolo'' che una
     base svolge per una topologia.
 \end{remark}
 
 \begin{lemma}[di Dynkin, versione probabilistica]
-    Sia $(\Omega, \FF)$ uno spazio misurabile e sia $\mathcal{C}$ un suo $\pi$-sistema. Siano
+    Sia $(\Omega, \FF)$ uno spazio misurabile e sia $\mathcal{C}$ un suo $\pi$-sistema contenente
+    $\Omega$. Siano
     $P$ e $Q$ due probabilità sullo spazio misurabile di $\Omega$. Se $P$ e $Q$ coincidono su
     $\mathcal{C}$, allora $P \equiv Q$.
 \end{lemma}
 
 \begin{example}
-    Alcuni esempi di $\pi$-sistemi per $(\RR, \BB(\RR))$ sono:
+    Alcuni esempi di $\pi$-sistemi contenenti $\RR$ per $(\RR, \BB(\RR))$ sono:
     \begin{itemize}
         \item gli aperti, ovverosia $\mathcal{C} = \{ A \in \FF \mid A \text{ aperto}\, \}$ (oppure i chiusi),
-        \item le semirette (a sinistra), ovverosia $\mathcal{C} = \{ (-\infty, a] \mid a \in \RR \}$ (oppure le semirette a destra),
-        \item gli intervalli semiaperti (a sinistra), ovverosia $\mathcal{C} = \{ (a, b] \mid a, b \in \RR, b > a \}$ (oppure semiaperti a destra).
+        \item le semirette (a sinistra), ovverosia $\mathcal{C} = \{ (-\infty, a] \mid a \in \RR \cup \{\infty\} \}$ (oppure le semirette a destra),
+        \item gli intervalli semiaperti (a sinistra) con aggiunti $\emptyset$ e $\RR$, ovverosia $\mathcal{C} = \{ (a, b] \mid a, b \in \RR, b > a \} \cup \{\emptyset, \RR\}$ (oppure semiaperti a destra).
     \end{itemize}
 \end{example}
 
@@ -197,6 +198,13 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
 
     Assumendo l'assioma della scelta si può dimostrare che \underline{non} si può estendere in modo coerente
     $\restr{m}{[0,1]}$ a $([0, 1], \PP([0, 1]))$.
+\end{remark}
+
+\begin{remark}
+    La misura di Lebesgue è nulla su un punto di $\RR$. Infatti, se $a \in \RR$, $m(\{a\}) =
+    m([a-1, a] \cap [a, a+1]) = m([a-1, a]) + m([a, a+1]) - m([a-1, a] \cup [a, a+1]) =
+    1 + 1 - m([a-1, a+1]) = 1 + 1 - 2 = 0$. Dunque, $m$ è in particolare nulla su insiemi
+    numerabili (dacché si partizionano in modo numerabili sui punti). 
 \end{remark}
 
 \section{Probabilità reale, funzione di ripartizione (f.d.r.) e proprietà}
@@ -668,16 +676,16 @@ che $\mu$ assuma valori finiti per le funzioni semplici).
 \begin{lemma}[di Fatou]
     Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali con $X_i \geq 0$. Allora vale che:
     \[
-        \EE[\liminf X_i] \leq \liminf \; \EE[X_i].
+        \EE\left[\liminf_{i \to \infty} X_i\right] \leq \liminf_{i \to \infty} \; \EE[X_i].
     \]
 
     Segue la stessa idea di dimostrazione per il lemma nella sua forma per l'integrale di Lebesgue.
 \end{lemma}
 
-\begin{theorem}[di convergenza monotona]
-    Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali con $X_i \geq 0$ e con
-    $X_i \goesup X$ q.c.~(cioè $X_i \geq 0$, la successione è crescente e
-    $X_i(\omega) \to X(\omega)$ per $P$-quasi ovunque). Allora $\EE[X_i] \goesup \EE[X]$. \smallskip
+\begin{theorem}[di convergenza monotona, o di Beppo Levi]
+    Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali non negative q.c.~con
+    $X_i \goesup X$ q.c.~(cioè la successione è crescente e
+    $X_i(\omega) \to X(\omega)$ $P$-quasi ovunque). Allora $\EE[X_i] \goesup \EE[X]$. \smallskip
 
 
     Segue la stessa idea di dimostrazione per il teorema nella sua forma per l'integrale di Lebesgue.
@@ -685,7 +693,7 @@ che $\mu$ assuma valori finiti per le funzioni semplici).
 
 \begin{theorem}[di convergenza dominata]
     Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali e sia $X$ una v.a. reale tale per cui
-    $X_i \to X$ q.c. (cioè $X_i(\omega) \to X(\omega)$ per $P$-quasi ovunque). Se esiste una
+    $X_i \to X$ q.c. (cioè $X_i(\omega) \to X(\omega)$ $P$-quasi ovunque). Se esiste una
     v.a.~integrabile $Y \geq 0$ con $\abs{X_i} \leq Y$ q.c. per ogni $i \in \NN$. Allora $X_n$ e
     $X$ sono integrabili e $\EE[X_i] \to \EE[X]$. \smallskip
 

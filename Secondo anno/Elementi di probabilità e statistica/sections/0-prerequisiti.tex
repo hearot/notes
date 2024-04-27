@@ -22,8 +22,8 @@
     dalla disuguaglianza di Cauchy-Schwarz.
 \end{itemize}
 
-\section*{Analisi matematica}
-\addcontentsline{toc}{section}{Analisi matematica}  
+\section*{Analisi matematica e teoria della misura}
+\addcontentsline{toc}{section}{Analisi matematica e teoria della misura}  
 
 \begin{itemize}
     \item \textbf{Limite delle successioni monotone} -- Se una successione
@@ -63,6 +63,30 @@
     \]
     Segue dalla disuguaglianza di Jensen applicata a $f(t) = t^p$ per
     $\abs{x}$ e $\abs{y}$ ($t^p$ è convessa per $t \geq 0$).
+    \item \textbf{Una funzione crescente ammette un insieme discreto di discontinuità} --
+    È possibile costruire facilmente una funzione iniettiva da tale insieme a $\QQ$ sfruttando
+    i limiti sinistri nelle discontinuità.
+    \item \textbf{Lemma di Dynkin, versione probabilistica} -- Se
+    due misure di probabilità $P$ e $Q$ su $(\Omega, \FF)$ coincidono su un $\pi$-sistema di $\FF$
+    contenente $\Omega$, allora $P \equiv Q$.
+    \item \textbf{Esistenza e unicità della misura di Lebesgue} -- Esiste ed
+    è unica la misura $m$ su $(\RR, \BB(\RR))$ tale per cui
+    $m([a, b]) = b-a$. Segue dalla versione più generale del lemma di Dynkin.
+    \item \textbf{Lemma di Fatou} --
+    Sia $(X, \FF)$ uno spazio misurabile e sia $(f_i : X \to \RR)_{i \in \NN}$ una successione di funzioni misurabili rispetto
+    a $(\RR, m)$ con $f_i \geq 0$ e con
+    $f_i \goesup f$ puntualmente. Allora $\int_X \liminf_{i \to \infty} f_i \dm \leq \liminf_{i \to \infty} \int_X f_i \dm$.
+    \item \textbf{Teorema di convergenza monotona, o di Beppo Levi} --
+    Sia $(X, \FF)$ uno spazio misurabile e sia $(f_i : X \to \RR)_{i \in \NN}$ una successione di funzioni misurabili rispetto
+    a $(\RR, m)$ con $f_i \geq 0$ e con
+    $f_i \goesup f$ puntualmente. Allora $f$ è misurabile e $\int_X f \dm = \lim_{i \to \infty} \int_X f_i \dm$.
+    \item \textbf{Teorema di convergenza dominata} --
+    Sia $(X, \FF)$ uno spazio misurabile e sia $(f_i : X \to \RR)_{i \in \NN}$ una successione di funzioni misurabili rispetto
+    a $(\RR, m)$. Sia $f : X \to \RR$ tale per cui
+    $f_i \to f$ puntualmente. Se esiste una
+    $g : X \to \RR$ Lebesgue-integrabile con $g \geq 0$ con
+    $\abs{f_i} \leq g$ per ogni $i \in \NN$, allora le $f_i$ e $f$
+    sono Lebesgue-integrabili e $\lim_{i \to \infty} \int_X f_i \dm = \int_X \lim_{i \to \infty} f_i \dm = \int_X f \dm$.
 \end{itemize}
 
 \section*{Combinatoria}
@@ -138,16 +162,5 @@
     Inoltre per $Y : C \to C'$ vale che $(Y \circ X)\inv(A) = X\inv(Y\inv(A))$,
     per $A \subseteq C'$.
 \end{itemize}
-
-\section*{Teoria della misura}
-\addcontentsline{toc}{section}{Teoria della misura}
-
-Per quanto riguarda teoria della misura si è preferito
-riportare i risultati principali dati a lezione anche sotto la
-\textit{Parte 3}.
-
-% \begin{itemize}
-%     \item 
-% \end{itemize}
 
 \end{multicols*}
