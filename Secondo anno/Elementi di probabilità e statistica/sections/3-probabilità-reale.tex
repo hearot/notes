@@ -260,7 +260,9 @@ piccola di $\PP(\RR)$, la $\sigma$-algebra dei boreliani, che ci permette di esc
     $F$ come funzione di ripartizione. \smallskip
 
 
-    L'unicità segue dal lemma di Dynkin.
+    L'unicità segue dal lemma di Dynkin. Per l'esistenza è utile considerare
+    che l'insieme delle discontinuità di $F$ è discreto dacché
+    $F$ è crescente.
 \end{proposition}
 
 \begin{remark}
@@ -715,6 +717,35 @@ che $\mu$ assuma valori finiti per le funzioni semplici).
     Il risultato segue considerando in ordine a) le funzioni indicatrici, b) le funzioni semplici,
     c) le funzioni non negative e d) le funzioni integrabili, applicando il
     \hyperref[th:convergenza_monotona]{Teorema di convergenza monotona}. 
+\end{proposition}
+
+\begin{remark}
+    In particolare, per $X$ v.a.~assolutamente continua vale che:
+    \[
+        \EE[X] = \int_\RR x f(x) \dx.
+    \]
+\end{remark}
+
+\section{Momenti e disuguaglianze, (co)varianza, dev.~standard, mediana e moda}
+
+Tutti le disuguaglianze sul valore atteso (e.g.~Markov) e tutti i risultati
+riguardanti i momenti (assoluti e non), la covarianza, la varianza, la
+deviazione standard, la mediana e la moda passano direttamente al
+caso reale a partire dalle proprietà del funzionale lineare
+$\EE[\cdot]$. Si rimanda dunque alla \hyperref[sec:momenti_assoluti]{\textit{Parte 2}}.
+
+\begin{proposition}
+    Sia $X$ v.a.~reale e siano $A$ e $B$ tali per cui:
+    \[
+        A = \left\{t \in \RR \mid F(t) < \frac{1}{2} \right\}, \quad B = \left\{t \in \RR \mid F(t) > \frac{1}{2} \right\}.
+    \]
+    Allora $m$ è una mediana se e solo se $m \in [\underline{m}, \overline{m}]$, dove $\underline{m} = \sup \, A$ e
+    $\overline{m} = \inf \, B$. \smallskip
+
+    
+    Infatti ogni mediana $m$ è maggiorante di $A$ e minorante di $B$ per la monotonia di
+    $F$ (e dunque $m \in [\underline{m}, \overline{m}]$). Si verifica poi che ogni elemento
+    di tale intervallo è mediana.
 \end{proposition}
 
 \end{multicols*}
