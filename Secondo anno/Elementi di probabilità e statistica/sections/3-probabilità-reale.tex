@@ -683,6 +683,7 @@ che $\mu$ assuma valori finiti per le funzioni semplici).
 \end{lemma}
 
 \begin{theorem}[di convergenza monotona, o di Beppo Levi]
+    \label{th:convergenza_monotona}
     Sia $(X_i)_{i \in \NN}$ una successione di v.a.~reali non negative q.c.~con
     $X_i \goesup X$ q.c.~(cioè la successione è crescente e
     $X_i(\omega) \to X(\omega)$ $P$-quasi ovunque). Allora $\EE[X_i] \goesup \EE[X]$. \smallskip
@@ -700,5 +701,20 @@ che $\mu$ assuma valori finiti per le funzioni semplici).
 
     Segue la stessa idea di dimostrazione per il teorema nella sua forma per l'integrale di Lebesgue.
 \end{theorem}
+
+\subsection{Calcolo del valore atteso}
+
+\begin{proposition}
+    Sia $X : \Omega \to \RR$ una v.a.~assolutamente continua con densità $f$
+    e sia $\varphi : \RR \to \RR$ una funzione
+    boreliana. Allora valgono le seguenti affermazioni:
+    \begin{enumerate}[(i.)]
+        \item $\varphi(X)$ è integrabile se e solo se $\int_\RR \abs{\varphi(x)} f(x) \dx$ è finito.
+        \item se $\varphi(X)$ ammette valore atteso, allora $\EE[\varphi(X)] = \int_\RR \varphi(x) f(x) \dx$.
+    \end{enumerate}
+    Il risultato segue considerando in ordine a) le funzioni indicatrici, b) le funzioni semplici,
+    c) le funzioni non negative e d) le funzioni integrabili, applicando il
+    \hyperref[th:convergenza_monotona]{Teorema di convergenza monotona}. 
+\end{proposition}
 
 \end{multicols*}

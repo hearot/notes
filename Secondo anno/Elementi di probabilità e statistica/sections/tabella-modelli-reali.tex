@@ -4,31 +4,31 @@
     \chapter*{Tabella e proprietà delle distribuzioni assolutamente continue}
     \addcontentsline{toc}{chapter}{Tabella e proprietà delle distribuzioni assolutamente continue}
     
-    \vskip -0.3in
+    \vskip -0.45in
 
     \begin{center}
         \begin{table}[htb]
-            \scalebox{1.1}{
-                \begin{tabular}{|l|l|l|l|l|l|}
-                \hline
-                Nome distribuzione                                                                 & Caso di utilizzo                                                                                         & Parametri                                                                              & Densità                                                                        & Funzione di ripartizione                                                                                                                                                                                                                          & Probabilità                             \\ \hline
-                \begin{tabular}[c]{@{}l@{}}Distr. uniforme\\ $X \sim U(B)$\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Estrazione di un\\ punto reale a caso\\ su $B$ senza preferenze.\end{tabular} & \begin{tabular}[c]{@{}l@{}}$B \in \BB(\RR)$ -- insieme\\ da cui estrarre.\end{tabular} & $f(x) = \frac{1}{m(B)} 1_B(x)$                                                 & $F(x) = \frac{m((-\infty, x] \cap B)}{m(B)}$                                                                                                                                                                                    & $P(X \in A) = \frac{m(A \cap B)}{m(B)}$ \\ \hline
-                \begin{tabular}[c]{@{}l@{}}Distr. esponenz.\\ $X \sim \Exp(\lambda)$\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Processo di Poisson\\ in senso continuo.\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}$\lambda > 0$ -- parametro\\ di Poisson.\end{tabular}       & $f(x) = \lambda e^{-\lambda x} 1_{(0, \infty)} (x)$                            & \begin{tabular}[c]{@{}l@{}}$F(x) = 1-e^{-\lambda x}$\\ per $x \geq 0$, $0$ altrimenti.\end{tabular}                                                                                                                             &                                         \\ \hline
-                \begin{tabular}[c]{@{}l@{}}Distr. gamma\\ $X \sim \Gamma(r, \lambda)$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Estensione della distr.\\ binomiale in senso\\ continuo.\end{tabular}         & $r > 0$, $\lambda > 0$.                                                                & $f(x) = \frac{\lambda^r}{\Gamma(r)} x^{r-1} e^{-\lambda x} 1_{(0, \infty)}(x)$ &                                                                                                                                                                                                                                 &                                         \\ \hline
-                \begin{tabular}[c]{@{}l@{}}Distr. normale\\ $X \sim N(m, \sigma^2)$\end{tabular} &                                                                                                          & \begin{tabular}[c]{@{}l@{}}$m$ -- media.\\ $\sigma^2 > 0$ -- varianza.\end{tabular}  & $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\nicefrac{(x-m)^2}{2\sigma^2}}$   & \begin{tabular}[c]{@{}l@{}}$\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\nicefrac{t^2}{2}} \dt$\\ per $N(0, 1)$ e si standardizza\\ le altre distr. con il cambio\\ di var. $z = \nicefrac{(x-m)}{\sigma}$.\end{tabular} &                                         \\ \hline
+            \scalebox{1}{
+                \begin{tabular}{|l|l|l|l|l|l|l|}
+                    \hline
+                    Nome distribuzione                                                                 & Caso di utilizzo                                                                                         & Parametri                                                                              & Densità                                                                        & Funzione di ripartizione                                                                                                                                                                                                          & \begin{tabular}[c]{@{}l@{}}Valore atteso \\ e momenti\end{tabular}                                                                                                                                                     & Varianza                                                                                \\ \hline
+                    \begin{tabular}[c]{@{}l@{}}Distr. uniforme\\ $X \sim U(B)$\end{tabular}            & \begin{tabular}[c]{@{}l@{}}Estrazione di un\\ punto reale a caso\\ su $B$ senza preferenze.\end{tabular} & \begin{tabular}[c]{@{}l@{}}$B \in \BB(\RR)$ -- insieme\\ da cui estrarre.\end{tabular} & $f(x) = \frac{1}{m(B)} 1_B(x)$                                                 & $F(x) = \frac{m((-\infty, x] \cap B)}{m(B)}$                                                                                                                                                                                      & \begin{tabular}[c]{@{}l@{}}$\EE[X] = \frac{a+b}2$ se\\ $B = (a, b)$\end{tabular}                                                                                                                                       & \begin{tabular}[c]{@{}l@{}}$\Var(X) = \frac{(b-a)^2}{12}$\\ se $B = (a,b)$\end{tabular} \\ \hline
+                    \begin{tabular}[c]{@{}l@{}}Distr. esponenz.\\ $X \sim \Exp(\lambda)$\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Processo di Poisson\\ in senso continuo.\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}$\lambda > 0$ -- parametro\\ di Poisson.\end{tabular}       & $f(x) = \lambda e^{-\lambda x} 1_{(0, \infty)} (x)$                            & \begin{tabular}[c]{@{}l@{}}$F(x) = 1-e^{-\lambda x}$\\ per $x \geq 0$, $0$ altrimenti.\end{tabular}                                                                                                                               & $\EE[X] = \frac{1}{\lambda}$                                                                                                                                                                                           & $\Var(X) = \frac{1}{\lambda^2}$                                                         \\ \hline
+                    \begin{tabular}[c]{@{}l@{}}Distr. gamma\\ $X \sim \Gamma(r, \lambda)$\end{tabular} & \begin{tabular}[c]{@{}l@{}}Estensione della distr.\\ binomiale in senso\\ continuo.\end{tabular}         & $r > 0$, $\lambda > 0$.                                                                & $f(x) = \frac{\lambda^r}{\Gamma(r)} x^{r-1} e^{-\lambda x} 1_{(0, \infty)}(x)$ &                                                                                                                                                                                                                                   & $\EE[X] = \frac{r}{\lambda}$                                                                                                                                                                                           & $\Var(X) = \frac{r}{\lambda^2}$                                                         \\ \hline
+                    \begin{tabular}[c]{@{}l@{}}Distr. normale\\ $X \sim N(m, \sigma^2)$\end{tabular}   &                                                                                                          & \begin{tabular}[c]{@{}l@{}}$m$ -- media.\\ $\sigma^2 > 0$ -- varianza.\end{tabular}    & $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\nicefrac{(x-m)^2}{2\sigma^2}}$     & \begin{tabular}[c]{@{}l@{}}$\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\nicefrac{t^2}{2}} \dt$\\ per $N(0, 1)$ e si standardizza\\ le altre distr. con il cambio\\ di var. $z = \nicefrac{(x-m)}{\sigma}$.\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\EE[X] = m$. Inoltre\\ $\EE[(X-m)^p] = 0$ se\\ $p$ è dispari\\ e $\EE[(X-m)^p] =$ \\ $= \sigma^p(p-1)!!$\\ se $p$ è pari, dove\\ $!!$ indica il\\ \textit{doppio fattoriale}.\end{tabular} & $\Var(X) = \sigma^2$                                                                    \\ \hline
                 \end{tabular}
             }
-            \end{table}
+        \end{table}
     \end{center}
 
     Si ricorda che la funzione $\Gamma$ è definita in modo tale che $\Gamma(x) = \int_0^\infty t^{x-1} e^{-t} \dt$; si tratta
-    di un'estensione della nozione di fattoriale ai valori reali (infatti, $\Gamma(n+1) = n!$ per $n \in \NN$).
+    di un'estensione della nozione di fattoriale ai valori reali (infatti, $\Gamma(n+1) = n!$ per $n \in \NN$). \smallskip
     
-    % Valgono inoltre le seguenti altre proprietà:
-    %
-    % \small
-    % \begin{itemize}
-    %     \item
-    % \end{itemize}
+    Valgono inoltre le seguenti altre proprietà:
+    
+    \small
+    \begin{itemize}
+        \item La distribuzione $\Exp(\lambda)$ coincide con la distribuzione $\Gamma(1, \lambda)$.
+    \end{itemize}
     
     \end{landscape}
