@@ -726,7 +726,14 @@ che $\mu$ assuma valori finiti per le funzioni semplici).
     \]
 \end{remark}
 
-\section{Momenti e disuguaglianze, (co)varianza, dev.~standard, mediana e moda}
+\begin{remark}
+    La formula presentata si estende in modo naturale al caso di più variabili:
+    \[
+        \EE[\varphi(X_1, \ldots, X_n)] = \int_{\RR^n} \varphi(x_1, \ldots, x_n) f(x_1, \ldots, x_n) \dx_1 \cdots \dx_n.
+    \]
+\end{remark}
+
+\section{Momenti e disuguaglianze, varianza, covarianza, dev.~standard, mediana e moda}
 
 Tutti le disuguaglianze sul valore atteso (e.g.~Markov) e tutti i risultati
 riguardanti i momenti (assoluti e non), la covarianza, la varianza, la
@@ -747,5 +754,143 @@ $\EE[\cdot]$. Si rimanda dunque alla \hyperref[sec:momenti_assoluti]{\textit{Par
     $F$ (e dunque $m \in [\underline{m}, \overline{m}]$). Si verifica poi che ogni elemento
     di tale intervallo è mediana.
 \end{proposition}
+
+\section{Trasformazioni di variabili aleatorie}
+
+\begin{proposition}[Formula del cambio di variabili] Sia $X : \Omega \to \RR^d$ una v.a. assolutamente
+    continua con densità $f_X$ tale per cui $f_X \equiv 0$ fuori da un aperto $O \subseteq \RR^d$. Sia
+    $\varphi : O \to O'$ un diffeomorfismo con $O' \subseteq \RR^d$ aperto (i.e.~$\varphi$ è $C^1$, invertibile e
+    $\varphi\inv$ è $C^1$). Allora la v.a.~$Y = \varphi(X)$ è assolutamente continua con densità:
+    \[
+        f_Y(y) = f_X(\varphi\inv(y)) \, \abs{\det D\varphi\inv(y)} \, 1_O(y), \quad y \in \RR^d.
+    \]
+    Segue dall'usuale formula del cambio di variabili per l'integrale di Lebesgue.
+\end{proposition}
+
+\begin{proposition}[Densità della somma]
+    Siano $X$, $Y : \Omega \groupto \RR$ v.a.~reali con $(X, Y)$ AC di densità $f_{(X, Y)}$. Allora
+    $X+Y$ è assolutamente continua con densità:
+    \[
+        f_{X+Y}(z) = \int_\RR f_{(X, Y)}(x, z-x) \dx = \int_\RR f_{(X, Y)}(z-y, y) \dy.
+    \]
+\end{proposition}
+
+\begin{corollary}
+    Siano $X$, $Y : \Omega \groupto \RR$ v.a.~reali, AC con densità $f_X$ e $f_Y$, e indipendenti. Allora
+    $X+Y$ è assolutamente continua con densità:
+    \[
+        f_{X+Y}(z) = (f_X * f_Y)(z) = \int_\RR f_X(x) f_Y(z-x) \dx = \int_\RR f_X(z-y) f_Y(y) \dy.
+    \]
+\end{corollary}
+
+\begin{remark}
+    Per il caso discreto vale una formula analoga. In particolare:
+    \[
+        p_{X+Y}(k) = \sum_{j \in \ZZ} p_{(X,Y)}(j, k-j) = \sum_{j \in \ZZ} p_{(X,Y)}(k-j, j).
+    \]
+    Dunque, se $X$ e $Y$ sono indipendenti:
+    \[
+        p_{X+Y}(k) = \sum_{j \in \ZZ} p_X(j) p_Y(k-j) = \sum_{j \in \ZZ} p_X(k-j) p_Y(j).
+    \]
+\end{remark}
+
+\subsection{Standardizzazione e riproducibilità di v.a.~gaussiane}
+
+\begin{proposition}
+    Sia $X \sim N(m, \sigma^2)$ e siano $a$, $b \in \RR$ con $a \neq 0$. Allora
+    $aX + b \sim N(am+b, a^2 \sigma^2)$.
+\end{proposition}
+
+A partire da questa proposizione si enuncia il corollario riguardante la
+\textit{standardizzazione}, ovverosia il processo con cui si riconduce una
+qualsiasi gaussiana alla gaussiana standard:
+
+\begin{corollary}[Standardizzazione]
+    $X \sim N(m, \sigma^2) \iff \frac{X-m}{\sigma} \sim N(0, 1)$. Equivalentemente
+    $Z \sim N(0, 1) \iff \sigma Z + m \sim N(m, \sigma^2)$. 
+\end{corollary}
+
+\begin{remark}
+    Pertanto, tramite il processo di standardizzazione, si ricava facilmente che
+    per $X \sim N(m, \sigma^2)$ vale che:
+    \[
+        P(a \leq X \leq b) = \Phi\left(\frac{b-m}{\sigma}\right) - \Phi\left(\frac{a-m}{\sigma}\right).
+    \]
+\end{remark}
+
+\begin{proposition}[Riproducibilità delle gaussiane]
+    Siano $X \sim N(m_1, \sigma_1^2)$ e $Y \sim N(m_2, \sigma_2^2)$ indipendenti. Allora
+    $X+Y \sim N(m_1 + m_2, \sigma_1^2 + \sigma_2^2)$.
+\end{proposition}
+
+\section{Legge dei grandi numeri (LGN)}
+
+La legge (debole) dei grandi numeri segue lo stesso enunciato (e la stessa dimostrazione) del caso
+discreto, e si rimanda dunque alla \hyperref[sec:lgn]{\textit{Parte 2}}.
+
+\subsection{Metodo di Monte-Carlo per il calcolo di integrali}
+
+Tramite l'uso delle variabili aleatorie è possibile approssimare integrali sfruttando
+modelli di probabilità uniforme. Supponiamo di voler calcolare $\int_a^b \varphi(x) \dx$ con
+$\varphi : (a, b) \to \RR$ boreliana e integrabile. Si assuma anche che
+$\int_a^b \abs{\varphi(x)}^2 \dx < \infty$. \smallskip
+
+Si osserva che $\frac{1}{b-a} \int_a^b \varphi(x) \dx = \EE[\varphi(U)]$ con $U \sim U(a, b)$.
+Infatti vale che:
+\[
+     \EE[\varphi(U)] = \int_a^b \varphi(x) \underbrace{\frac{1}{b-a}}_{=\,f_U(x)} \dx. 
+\]
+Per la LGN\footnote{In questo momento si sfrutta l'ipotesi per cui $\varphi(U_i)$ ha momento secondo finito,
+ossia che $\int_a^b \abs{\varphi(x)}^2 \dx < \infty$. Questa ipotesi è tuttavia rimovibile.},
+prese $U_i$ i.i.d.~come $U(a, b)$, allora le $\varphi(U_i)$ sono a loro volta
+i.i.d.~e vale che $\frac{1}{n} \sum_{i=1}^n \varphi(U_i) \toprob \EE[\varphi(U)]$, ovverosia:
+\[
+    \frac{1}{n} \sum_{i=1}^n \varphi(U_i) \toprob \frac{1}{b-a} \int_a^b \varphi(x) \dx.
+\]
+Pertanto è sufficiente calcolare un ``grande numero'' di $\varphi(U_i)$ uniformi per approssimare
+l'integrale scelto. \smallskip
+
+Lo stesso procedimento si può applicare per calcolare integrali della forma $\int_{(a, b)^d} \varphi(x) \dx$ con
+$\varphi : (a, b)^d \to \RR$ boreliana, integrabile e tale per cui $\int_{(a, b)^d} \abs{\varphi(x)}^2 \dx$,
+approssimandolo con v.a.~i.i.d.~come $U((a, b)^d)$. \smallskip
+
+\section{Teorema centrale del limite (TCL, o TLC)}
+
+\begin{definition}[Convergenza in legge]
+    Si dice che una successione $(X_i)_{i \in I}$ di v.a.~reali con $I \subseteq \NN$ converge in legge
+    a $X$ se, detta $F_n$ la f.d.r.~di $X_n$ e $F$ la f.d.r.~di $X$, allora:
+    \[
+        \lim_{n \to \infty} F_n(x) = F(x), \quad \forall x \in \RR,
+    \]
+    ossia se $F_n$ converge puntualmente a $F$.
+\end{definition}
+
+\begin{theorem}[Teorema centrale del limite]
+    Sia $(X_i)_{i \in \NN^+}$ una successione di v.a.~reali i.i.d~dotate di momento
+    secondo finito e q.c.~non costanti. Siano $m = \EE[X_1]$, $\sigma^2 = \Var(X_1)$. Si definisca
+    la successione $(Z_i)_{i \in \NN^+}$ in modo tale che:
+    \[
+        Z_n = \frac{\left(\sum_{i=1}^n X_i\right)-nm}{\sqrt{n} \sigma} = \frac{\sqrt{n}}{\sigma} (\overline{X_n} - m).
+    \]
+    Allora la successione $(Z_i)_{i \in \NN^+}$ converge in legge a $N(0, 1)$, ovverosia:
+    \[
+        \lim_{n \to \infty} F_n(x) = \Phi(x), \quad \forall x \in \RR,
+    \]
+    dove $F_n$ è la f.d.r.~di $Z_n$.
+\end{theorem}
+
+\begin{remark}
+    Si può dimostrare che vale anche:
+    \[
+        \EE\left[\varphi\!\left(\frac{\sqrt{n}}{\sigma} (\overline{X_n} - m)\right)\right] \to \EE[\varphi(Z)],
+    \]
+    per ogni $\varphi \in C_b(\RR)$, ovverosia per ogni $\varphi$ continua limitata.
+\end{remark}
+
+\begin{remark}
+    Sfruttando il procedimento di standardizzazione si può dimostrare che
+    $\frac{1}{\sqrt{n}} \left(\sum_{i=1}^n X_i - nm\right) = \sqrt{n}(\overline{X_n} - m)$ converge
+    in legge a $Z_\sigma \sim N(0, \sigma^2)$.
+\end{remark}
 
 \end{multicols*}
