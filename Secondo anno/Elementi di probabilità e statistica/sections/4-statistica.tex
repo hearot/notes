@@ -1,0 +1,116 @@
+%--------------------------------------------------------------------
+\chapter{Statistica inferenziale}
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+
+Lo scopo della statistica inferenziale è quello di ottenere informazioni
+riguardanti la distribuzione di probabilità di un esperimento a partire
+dagli esiti di $n$ ripetizioni di quest'ultimo. \smallskip
+
+Nel caso di questo corso, studieremo situazioni di statistica inferenziale
+\textit{parametrica}, ovverosia situazioni in cui è conosciuto il modello
+di probabilità del singolo esperimento a meno di un singolo parametro
+(e.g.~l'esperimento $X$ è in legge uguale a $B(p)$, ma $p$ non è noto).
+
+\section{Definizioni preliminari}
+
+Si considerino dei dati statistici $x_1$, ...,
+$x_n \in \RR$. Si consideri come spazio di probabilità
+lo spazio discreto relativo a $[n]$ con distribuzione
+uniforme. \smallskip
+
+Si definisca su tale spazio la v.a.~$X : [n] \to \RR$ tale per cui
+$i \mapsto x_i$. Si osserva facilmente che $X$ ha
+range $r_x = \{x_1, ..., x_n\}$, e dunque il calcolo di tutti
+i suoi indici può essere ristretto a $r_x$. \smallskip
+
+Analogamente definiamo per dei dati $y_1$, ..., $y_n \in \RR$ la v.a.~$Y$.
+
+\subsection{Indici di centralità e di dispersione sui singoli dati}
+
+\begin{definition}[Media campionaria]
+    Si definisce \textbf{media campionaria} il seguente
+    indice di centralità:
+    \[
+        \overline{x} \defeq \frac{1}{n} \sum_{i=1}^n x_i. 
+    \]
+    Tale media coincide con il valore atteso di $X$.
+\end{definition}
+
+\begin{definition}[Mediana campionaria]
+    Si definisce \textbf{mediana campionaria} il seguente
+    indice di centralità:
+    \[
+        m_x \defeq \begin{cases}
+            x_{\nicefrac{(n+1)}{2}} & \mbox{se $n$ dispari}, \\
+            \nicefrac{\left(x_{\nicefrac{n}{2}} + x_{\nicefrac{(n+2)}{2}}\right)}{2} & \mbox{se $n$ pari}.
+        \end{cases}
+    \]
+    Tale indice è una mediana per $X$.
+\end{definition}
+
+\begin{definition}[Varianza campionaria \textit{corretta}]
+    Si definisce \textbf{varianza campionaria (corretta)} il seguente
+    indice di dispersione:
+    \[
+        s^2 = s_x^2 = \sigma_x^2 \defeq \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2.
+    \]
+\end{definition}
+
+\begin{warn}
+    A differenza della media e della mediana, la varianza campionaria appena
+    descritta \underline{non} coincide con la varianza che si calcolerebbe
+    sulla v.a.~$X$. Infatti vale che:
+    \[
+        \Var(X) = \EE\left[(X - \EE[X])^2\right] = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2,
+    \]
+    e dunque:
+    \[
+        s^2 = \frac{n}{n-1} \Var(X).
+    \]
+\end{warn}
+
+\subsection{Indici su coppie di dati}
+
+\begin{definition}[Coeff.~di correlazione campionario]
+    Date delle coppie di dati $(x_i, y_i)_{i \in [n]}$, si definisce
+    il \textbf{coefficiente di correlazione campionario} come:
+    \[
+        r \defeq \frac{\sum_{i=1}^n \left(x_i - \overline{x}\right)\left(y_i - \overline{y}\right)}{\sqrt{\sum_{i=1}^n \left(x_i - \overline{x}\right)^2 \cdot \sum_{i=1}^n \left(y_i - \overline{y}\right)^2}}.
+    \]
+    Tale valore coincide con l'usuale coefficiente di correlazione lineare di Bearson su
+    $X$ e $Y$, ovverosia:
+    \[
+        r = \cos_{\Cov}(X, Y) = \frac{\Cov(X, Y)}{\sqrt{\Var(X) \Var(Y)}},
+    \]
+    che, per la disuguaglianza di Cauchy-Schwarz, appartiene all'intervallo $[-1, 1]$.
+\end{definition}
+
+\subsection{Modello statistico}
+
+Come già osservato, la statistica inferenziale parametrica studia situazioni in cui
+è necessario ricavare o stimare un singolo parametro su un dato modello di probabilità al fine
+di ricavare la distribuzione di probabilità dei dati $x_1$, ..., $x_n$.
+
+\begin{notation}[Parametri $\theta$ e probabilità $Q_\theta$]
+    Denotiamo con $\Theta$ l'insieme dei possibili parametri $\theta$ per la distribuzione
+    di probabilità sui dati $x_1$, ..., $x_n$. \smallskip
+
+    Denotiamo con $Q_\theta$ la probabilità che si otterrebbe utilizzando il parametro $\sigma$
+    nel modello di probabilità noto a meno di parametro.
+\end{notation}
+
+\begin{definition}
+    Si definisce \textbf{modello statistico parametrico} una terna $(S, \cS, (Q_\theta)_{\theta \in \Theta})$,
+    dove $(S, \cS)$ è uno spazio misurabile e $(Q_\theta)_{\theta \in \Theta}$ è una famiglia di
+    misure di probabilità.
+\end{definition}
+
+\begin{example}
+    Supponiamo di star cercando di ricavare la probabilità $p$ con cui esce testa per una data moneta. Allora
+    un modello statistico che possiamo associare a questo problema è dato da $S = [1]$, $\cS = \PP([1])$ e
+    $Q_\theta \sim B(\theta)$, con $\Theta = [0, 1]$, dove $1$ identifica la testa e $0$ la croce.
+\end{example}
+
+\end{multicols*}
