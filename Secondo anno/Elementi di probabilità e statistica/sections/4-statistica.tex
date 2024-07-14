@@ -97,7 +97,7 @@ di ricavare la distribuzione di probabilità dei dati $x_1$, ..., $x_n$.
     Denotiamo con $\Theta$ l'insieme dei possibili parametri $\theta$ per la distribuzione
     di probabilità sui dati $x_1$, ..., $x_n$. \smallskip
 
-    Denotiamo con $Q_\theta$ la probabilità che si otterrebbe utilizzando il parametro $\sigma$
+    Denotiamo con $Q_\theta$ la probabilità che si otterrebbe utilizzando il parametro $\theta$
     nel modello di probabilità noto a meno di parametro.
 \end{notation}
 
@@ -123,44 +123,44 @@ statistico $(S, \cS, (Q_\theta)_{\theta \in \Theta})$.
 \begin{definition}[Campione i.i.d.~di taglia $n$]
     Dato un modello statistico, si dice
     che una famiglia di v.a.~$(X_i : \Omega \to S)_{i \in [n]}$ i.i.d.~è un \textbf{campione i.i.d.~di taglia $n$}
-    se per ogni $\sigma \in \Sigma$ esiste uno spazio di probabilità $(\Omega, \FF, P_\sigma)$ tale per cui
-    $(P_\sigma)^{X_i}$ è uguale in legge a $Q_\theta$.
+    se per ogni $\theta \in \Theta$ esiste uno spazio di probabilità $(\Omega, \FF, P_\theta)$ tale per cui
+    $(P_\theta)^{X_i}$ è uguale in legge a $Q_\theta$.
 \end{definition}
 
-Dato un campione di taglia $n$, useremo $P_\sigma$ per riferirci alla misura di probabilità
+Dato un campione di taglia $n$, useremo $P_\theta$ per riferirci alla misura di probabilità
 su $(\Omega, \FF)$ appena descritta. Scriveremo
-come apice $\sigma$ per indicare di star lavorando nello spazio
-di probabilità $(\Omega, \FF, P_\theta)$ (e.g.~$\EE^\sigma$ è riferito
+come apice $\theta$ per indicare di star lavorando nello spazio
+di probabilità $(\Omega, \FF, P_\theta)$ (e.g.~$\EE^\theta$ è riferito
 a $P_\theta$).
 
 \begin{definition}[Statistica e stimatore]
     Dato un campione i.i.d.~$(X_i)_{i \in [n]}$, si dice \textbf{statistica}
-    una v.a.~dipendente dalle v.a.~$X_i$ ed eventualmente dal parametro $\sigma$.
-    Si dice \textbf{stimatore} una statistica non dipendente direttamente da $\sigma$.
+    una v.a.~dipendente dalle v.a.~$X_i$ ed eventualmente dal parametro $\theta$.
+    Si dice \textbf{stimatore} una statistica non dipendente direttamente da $\theta$.
 \end{definition}
 
 \subsection{Correttezza di uno stimatore}
 
 \begin{definition}[Stimatore corretto]
     Si dice che uno stimatore $U$ è \textbf{corretto} (o \textit{non distorto}) rispetto
-    a $h : \Sigma \to \RR$ se per ogni $\sigma \in \Sigma$ vale che:
+    a $h : \Theta \to \RR$ se per ogni $\theta \in \Theta$ vale che:
     \begin{enumerate}[(i.)]
-        \item $U$ è $P_\sigma$-integrabile (i.e.~ammette valore atteso),
-        \item $\EE^\sigma[U] = h(\sigma)$.
+        \item $U$ è $P_\theta$-integrabile (i.e.~ammette valore atteso),
+        \item $\EE^\theta[U] = h(\theta)$.
     \end{enumerate}
 \end{definition}
 
 \begin{remark}
-    La media campionaria è uno stimatore corretto del valore atteso ($h : \sigma \mapsto \EE^\sigma[X_1]$). Infatti:
+    La media campionaria è uno stimatore corretto del valore atteso ($h : \theta \mapsto \EE^\theta[X_1]$). Infatti:
     \[
-        \EE^\sigma\!\left[\overline{X}\right] = \EE^\sigma[X_1].
+        \EE^\theta\!\left[\overline{X}\right] = \EE^\theta[X_1].
     \]
 \end{remark}
 
 \begin{remark}
-    La varianza campionaria è uno stimatore corretto della varianza ($h : \sigma \mapsto \Var^\sigma(X_1)$). Infatti:
+    La varianza campionaria è uno stimatore corretto della varianza ($h : \theta \mapsto \Var^\theta(X_1)$). Infatti:
     \[
-        \EE^\sigma[S^2] = \frac{1}{n-1} \left( n \EE^\sigma[X_1^2] - \EE^\sigma[X_1^2] - (n-1) \EE^\sigma[X_1]^2 \right) = \Var^\sigma(X_1).
+        \EE^\theta[S^2] = \frac{1}{n-1} \left( n \EE^\theta[X_1^2] - \EE^\theta[X_1^2] - (n-1) \EE^\theta[X_1]^2 \right) = \Var^\theta(X_1).
     \]
     Si verifica analogamente che il coeff.~di correlazione campionario è uno stimatore corretto del
     coeff.~di correlazione tra $X_i$ e $X_j$.
@@ -169,21 +169,21 @@ a $P_\theta$).
 \subsection{Consistenza e non distorsione di una successione di stimatori}
 
 \begin{definition}[Successione non distorta di stimatori]
-    Una successione di stimatori $(U_k)_{k \in \NN^+}$ di $h(\sigma)$ si dice
-    \textbf{asintoticamente non distorta} se $U_k$ è $P_\sigma$-integrabile
+    Una successione di stimatori $(U_k)_{k \in \NN^+}$ di $h(\theta)$ si dice
+    \textbf{asintoticamente non distorta} se $U_k$ è $P_\theta$-integrabile
     (i.e.~ammette valore atteso) e:
     \[
-        \lim_{k \to \infty} \EE^\sigma[U_k] = h(\sigma).
+        \lim_{k \to \infty} \EE^\theta[U_k] = h(\theta).
     \]
 \end{definition}
 
 \begin{definition}[Successione consistente di stimatori]
-    Una successione di stimatori $(U_k)_{k \in \NN^+}$ di $h(\sigma)$ si dice
+    Una successione di stimatori $(U_k)_{k \in \NN^+}$ di $h(\theta)$ si dice
     \textbf{consistente} se:
     \[
-        \lim_{k \to \infty} P_\sigma(\abs{U_k - h(\sigma)} > \eps) = 0, \quad \forall \eps > 0,
+        \lim_{k \to \infty} P_\theta(\abs{U_k - h(\theta)} > \eps) = 0, \quad \forall \eps > 0,
     \]
-    ovverosia se $U_k$ converge in $P_\sigma$-probabilità a $h(\sigma)$.
+    ovverosia se $U_k$ converge in $P_\theta$-probabilità a $h(\theta)$.
 \end{definition}
 
 \begin{remark}
@@ -200,22 +200,22 @@ a $P_\theta$).
 \subsection{Rischio quadratico e preferibilità}
 
 \begin{definition}[Rischio quadratico di uno stimatore]
-    Dato uno stimatore $U$ di $h : \Sigma \to \RR$, si definisce
-    \textbf{rischio quadratico} di $U$ per $\sigma$ il seguente valore:
+    Dato uno stimatore $U$ di $h : \Theta \to \RR$, si definisce
+    \textbf{rischio quadratico} di $U$ per $\theta$ il seguente valore:
     \[
-        R_\sigma(U) = \EE[(U - h(\sigma))^2].
+        R_\theta(U) = \EE[(U - h(\theta))^2].
     \]
 \end{definition}
 
 \begin{remark}
     Se $U$ è uno stimatore corretto di $h$, allora
-    $R_\sigma(U) = \Var^\sigma(U)$.
+    $R_\theta(U) = \Var^\theta(U)$.
 \end{remark}
 
 \begin{definition}[Preferibilità]
-    Dati due stimatori $U$, $V$ di $h : \Sigma \to \RR$, si dice
+    Dati due stimatori $U$, $V$ di $h : \Theta \to \RR$, si dice
     che $U$ è \textbf{preferibile} rispetto a $V$ se
-    $R_\sigma(U) \leq R_\sigma(V)$ per ogni $\sigma \in \Sigma$.
+    $R_\theta(U) \leq R_\theta(V)$ per ogni $\theta \in \Theta$.
 \end{definition}
 
 \subsection{Stimatore di massima verosomiglianza}
@@ -224,20 +224,20 @@ D'ora in avanti sottintenderemo di star lavorando sullo
 spazio misurabile $(\RR, \BB(\RR))$.
 
 \begin{notation}
-    Data la famiglia di probabilità $(Q_\sigma)_{\sigma \in \Sigma})$, usiamo
-    scrivere $m_\sigma$ per riferirci alla densità discreta $q_\sigma$ (o $p_\sigma$)
-    di $Q_\sigma$, qualora sia discreta, oppure alla sua funzione di densità
-    $f_\sigma$, qualora $Q_\sigma$ sia assolutamente continua.
+    Data la famiglia di probabilità $(Q_\theta)_{\theta \in \Theta})$, usiamo
+    scrivere $m_\theta$ per riferirci alla densità discreta $q_\theta$ (o $p_\theta$)
+    di $Q_\theta$, qualora sia discreta, oppure alla sua funzione di densità
+    $f_\theta$, qualora $Q_\theta$ sia assolutamente continua.
 \end{notation}
 
 \begin{definition}[Funzione di verosomiglianza]
     Dato un campione $(X_i)_{i \in [n]}$ i.i.d.~, si definisce
-    \textbf{funzione di verosomiglianza} la funzione $L : \Sigma \times \RR^n$
+    \textbf{funzione di verosomiglianza} la funzione $L : \Theta \times \RR^n$
     tale per cui:
     \[
-        (\sigma, (x_i)_{i \in [n]}) \xmapsto{L} L_\sigma(x_1, \ldots, x_n) \defeq m_\sigma(x_1) \cdots m_\sigma(x_n).
+        (\theta, (x_i)_{i \in [n]}) \xmapsto{L} L_\theta(x_1, \ldots, x_n) \defeq m_\theta(x_1) \cdots m_\theta(x_n).
     \]
-    Equivalentemente, $L_\sigma(x_1, \ldots, x_n)$ rappresenta la densità congiunta su $Q_\sigma$
+    Equivalentemente, $L_\theta(x_1, \ldots, x_n)$ rappresenta la densità congiunta su $Q_\theta$
     di $x_1$, ..., $x_n$.
 \end{definition}
 
@@ -245,11 +245,11 @@ spazio misurabile $(\RR, \BB(\RR))$.
     Scriveremo $L_U(X_1, \ldots, X_n)$ con $U$ v.a. e
     $(X_i)_{i \in [n]}$ famiglia di v.a.~reali sottintendendo
     l'insieme $L_{U(\omega)}(X_1(\omega), \ldots, X_n(\omega))$,
-    assumendo $U(\omega) \in \Sigma$.
+    assumendo $U(\omega) \in \Theta$.
 \end{notation}
 
-\begin{definition}[Stimatore di massima verosomiglianza di $\sigma$]
-    Si dice che uno stimatore $U$ è di \textbf{massima verosomiglianza di $\sigma$}
+\begin{definition}[Stimatore di massima verosomiglianza di $\theta$]
+    Si dice che uno stimatore $U$ è di \textbf{massima verosomiglianza di $\theta$}
     su un campione i.i.d.~$(X_i)_{i \in [n]}$ se:
     \[
         L_U(X_1, \ldots, X_n) = \sup_{\theta \in \Theta} L_\theta(X_1, \ldots, X_n), \quad \forall \omega \in S.
@@ -273,7 +273,7 @@ spazio misurabile $(\RR, \BB(\RR))$.
     Tale funzione ha massimo per $\theta = \overline{x}$, e dunque
     $\overline{X}$ è uno stimatore di massima verosomiglianza di $\theta$. \smallskip
 
-    In altre parole, la migliore stima di $\sigma$ data una sequenza di $n$ prove di Bernoulli è
+    In altre parole, la migliore stima di $\theta$ data una sequenza di $n$ prove di Bernoulli è
     la frequenza relativa di successi.
 \end{example}
 

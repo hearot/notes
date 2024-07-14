@@ -231,10 +231,41 @@
         regressione $y = a^*x + b^*$.
         \item $I(t)$ -- trasformata di Cramer.
         \item LGN - Legge dei Grandi Numeri.
-        \item TCL, TLC - Teorema Centrale del Limite.
+        \item TCL, TLC - Teorema Centrale del Limite (o Teorema del Limite Centrale).
+        \item $\overline{X}$, $\overline{X_n}$ -- media delle v.a.~$X_1$, ..., $X_n$, ovverosia $\frac{1}{n} \sum_{i=1}^n X_i$.
         \item $m$, $\sigma$ -- spesso nel contesto
         della LGN e del TCL si usa $m$ per
         indicare $\EE[X_1]$ e $\sigma$ per
         indicare $\sigma(X_1)$.
+        \item $Z$, $Z_1$ -- normale standard $N(0, 1)$-
+        \item $Z_\sigma$ -- normale $N(0, \sigma^2)$.
+    \end{itemize}
+
+    \section*{Statistica inferenziale}
+    \addcontentsline{toc}{section}{Statistica inferenziale}
+
+    \begin{itemize}
+        \item $x_1$, ..., $x_n$ -- dati statistici.
+        \item $\overline{x}$, $\overline{x_n}$ -- media campionaria dei dati $x_1$, ..., $x_n$, ovverosia $\frac{1}{n} \sum_{i=1}^n x_i$.
+        \item $\overline{X}$, $\overline{X_n}$ -- media campionaria delle v.a.~$X_1$, ..., $X_n$, ovverosia $\frac{1}{n} \sum_{i=1}^n X_i$.
+        \item $m_x$ -- mediana campionaria sui dati $x_1$, ..., $x_n$, ovverosia $x_{\nicefrac{n+1}{2}}$ se $n$ è dispari, oppure
+        $\nicefrac{\left(x_{\nicefrac{n}{2}} + x_{\nicefrac{(n+2)}{2}}\right)}{2}$ se $n$ è pari.
+        \item $s^2$, $s^2_x$, $\sigma_x^2$ -- varianza campionaria \textit{corretta}, ovverosia $\frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2$; da
+        non confondersi con l'usuale varianza, che è invece $\frac{n-1}{n} s^2$.
+        \item $S^2$ -- varianza campionaria \textit{corretta} nelle v.a. $X_i$, ovverosia $\frac{1}{n-1} \sum_{i=1}^n (X_i - \overline{X})^2$.
+        \item $r$ -- coefficiente di correlazione campionaria, ovverosia $\frac{\sum_{i=1}^n \left(x_i - \overline{x}\right)\left(y_i - \overline{y}\right)}{\sqrt{\sum_{i=1}^n \left(x_i - \overline{x}\right)^2 \cdot \sum_{i=1}^n \left(y_i - \overline{y}\right)^2}}$.
+        \item $(S, \cS)$ -- spazio misurabile relativa alla statistica di studio.
+        \item $\Theta$ -- insieme dei possibili parametri per la distribuzione di probabilità sui dati $x_1$, ..., $x_n$.
+        \item $Q_\theta$ -- probabilità ottenuta utilizzando il parametro $\theta \in \Theta$.
+        \item $(S, \cS, (Q_\theta)_{\theta \in \Theta})$ -- modello statistico (parametrico).
+        \item $\EE^\theta$ -- valore atteso relativo a $Q_\theta$.
+        \item $\Var^\theta$ -- varianza relativa a $Q_\theta$.
+        \item $R_\sigma(U)$ -- rischio quadratico dello stimatore $U$ di $h : \Theta \to \RR$ relativamente a $Q_\theta$, ovverosia $\EE[(U - h(\theta))^2]$. Pari a
+        a $\Var^\theta(U)$ se $U$ è uno stimatore corretto.
+        \item $m_\theta$ -- se $Q_\theta$ è discreta, densità discreta $q_\theta$ (o $p_\theta$); se $Q_\theta$ è assolutamente continua,
+        funzione di densità $f_\theta$.
+        \item $L$, $L_\theta$, $L_\theta(x_1, \ldots, x_n)$ -- funzione di verosomiglianza, ovverosia $L : \Theta \times \RR^n$ che
+        associa $(\theta, (x_i))$ a $L_\theta(x_1, \ldots, x_n) = \prod_i m_\theta(x_i)$.
+        \item $L_U$, $L_U(X_1, \ldots, X_n)$ -- si intende $L_{U(\omega)}(X_1(\omega), \ldots, X_n(\omega))$, per un dato $\omega \in S$.
     \end{itemize}
 \end{multicols*}
