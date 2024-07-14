@@ -87,7 +87,7 @@ Analogamente definiamo per dei dati $y_1$, ..., $y_n \in \RR$ la v.a.~$Y$.
     che, per la disuguaglianza di Cauchy-Schwarz, appartiene all'intervallo $[-1, 1]$.
 \end{definition}
 
-\subsection{Modello statistico}
+\section{Modello statistico}
 
 Come già osservato, la statistica inferenziale parametrica studia situazioni in cui
 è necessario ricavare o stimare un singolo parametro su un dato modello di probabilità al fine
@@ -111,6 +111,162 @@ di ricavare la distribuzione di probabilità dei dati $x_1$, ..., $x_n$.
     Supponiamo di star cercando di ricavare la probabilità $p$ con cui esce testa per una data moneta. Allora
     un modello statistico che possiamo associare a questo problema è dato da $S = [1]$, $\cS = \PP([1])$ e
     $Q_\theta \sim B(\theta)$, con $\Theta = [0, 1]$, dove $1$ identifica la testa e $0$ la croce.
+\end{example}
+
+\section{Teoria degli stimatori su campioni di taglia \texorpdfstring{$n$}{n}}
+
+\subsection{Campione, statistica e stimatore}
+
+D'ora in avanti, sottintenderemo di star lavorando sul modello
+statistico $(S, \cS, (Q_\theta)_{\theta \in \Theta})$.
+
+\begin{definition}[Campione i.i.d.~di taglia $n$]
+    Dato un modello statistico, si dice
+    che una famiglia di v.a.~$(X_i : \Omega \to S)_{i \in [n]}$ i.i.d.~è un \textbf{campione i.i.d.~di taglia $n$}
+    se per ogni $\sigma \in \Sigma$ esiste uno spazio di probabilità $(\Omega, \FF, P_\sigma)$ tale per cui
+    $(P_\sigma)^{X_i}$ è uguale in legge a $Q_\theta$.
+\end{definition}
+
+Dato un campione di taglia $n$, useremo $P_\sigma$ per riferirci alla misura di probabilità
+su $(\Omega, \FF)$ appena descritta. Scriveremo
+come apice $\sigma$ per indicare di star lavorando nello spazio
+di probabilità $(\Omega, \FF, P_\theta)$ (e.g.~$\EE^\sigma$ è riferito
+a $P_\theta$).
+
+\begin{definition}[Statistica e stimatore]
+    Dato un campione i.i.d.~$(X_i)_{i \in [n]}$, si dice \textbf{statistica}
+    una v.a.~dipendente dalle v.a.~$X_i$ ed eventualmente dal parametro $\sigma$.
+    Si dice \textbf{stimatore} una statistica non dipendente direttamente da $\sigma$.
+\end{definition}
+
+\subsection{Correttezza di uno stimatore}
+
+\begin{definition}[Stimatore corretto]
+    Si dice che uno stimatore $U$ è \textbf{corretto} (o \textit{non distorto}) rispetto
+    a $h : \Sigma \to \RR$ se per ogni $\sigma \in \Sigma$ vale che:
+    \begin{enumerate}[(i.)]
+        \item $U$ è $P_\sigma$-integrabile (i.e.~ammette valore atteso),
+        \item $\EE^\sigma[U] = h(\sigma)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    La media campionaria è uno stimatore corretto del valore atteso ($h : \sigma \mapsto \EE^\sigma[X_1]$). Infatti:
+    \[
+        \EE^\sigma\!\left[\overline{X}\right] = \EE^\sigma[X_1].
+    \]
+\end{remark}
+
+\begin{remark}
+    La varianza campionaria è uno stimatore corretto della varianza ($h : \sigma \mapsto \Var^\sigma(X_1)$). Infatti:
+    \[
+        \EE^\sigma[S^2] = \frac{1}{n-1} \left( n \EE^\sigma[X_1^2] - \EE^\sigma[X_1^2] - (n-1) \EE^\sigma[X_1]^2 \right) = \Var^\sigma(X_1).
+    \]
+    Si verifica analogamente che il coeff.~di correlazione campionario è uno stimatore corretto del
+    coeff.~di correlazione tra $X_i$ e $X_j$.
+\end{remark}
+
+\subsection{Consistenza e non distorsione di una successione di stimatori}
+
+\begin{definition}[Successione non distorta di stimatori]
+    Una successione di stimatori $(U_k)_{k \in \NN^+}$ di $h(\sigma)$ si dice
+    \textbf{asintoticamente non distorta} se $U_k$ è $P_\sigma$-integrabile
+    (i.e.~ammette valore atteso) e:
+    \[
+        \lim_{k \to \infty} \EE^\sigma[U_k] = h(\sigma).
+    \]
+\end{definition}
+
+\begin{definition}[Successione consistente di stimatori]
+    Una successione di stimatori $(U_k)_{k \in \NN^+}$ di $h(\sigma)$ si dice
+    \textbf{consistente} se:
+    \[
+        \lim_{k \to \infty} P_\sigma(\abs{U_k - h(\sigma)} > \eps) = 0, \quad \forall \eps > 0,
+    \]
+    ovverosia se $U_k$ converge in $P_\sigma$-probabilità a $h(\sigma)$.
+\end{definition}
+
+\begin{remark}
+    La successione di stimatori $(\overline{X_n})_{n \in \NN^+}$, corretti per
+    il valore atteso, è sia consistente che
+    asintoticamente non distorta, per la LGN.
+\end{remark}
+
+\begin{remark}
+    La successione di stimatori $(S^2_n)_{n \in \NN^+}$, corretti per la
+    varianza, consistente, sempre per la LGN.
+\end{remark}
+
+\subsection{Stimatore di massima verosomiglianza}
+
+D'ora in avanti sottintenderemo di star lavorando sullo
+spazio misurabile $(\RR, \BB(\RR))$.
+
+\begin{notation}
+    Data la famiglia di probabilità $(Q_\sigma)_{\sigma \in \Sigma})$, usiamo
+    scrivere $m_\sigma$ per riferirci alla densità discreta $q_\sigma$ (o $p_\sigma$)
+    di $Q_\sigma$, qualora sia discreta, oppure alla sua funzione di densità
+    $f_\sigma$, qualora $Q_\sigma$ sia assolutamente continua.
+\end{notation}
+
+\begin{definition}[Funzione di verosomiglianza]
+    Dato un campione $(X_i)_{i \in [n]}$ i.i.d.~, si definisce
+    \textbf{funzione di verosomiglianza} la funzione $L : \Sigma \times \RR^n$
+    tale per cui:
+    \[
+        (\sigma, (x_i)_{i \in [n]}) \xmapsto{L} L_\sigma(x_1, \ldots, x_n) \defeq m_\sigma(x_1) \cdots m_\sigma(x_n).
+    \]
+    Equivalentemente, $L_\sigma(x_1, \ldots, x_n)$ rappresenta la densità congiunta su $Q_\sigma$
+    di $x_1$, ..., $x_n$.
+\end{definition}
+
+\begin{notation}
+    Scriveremo $L_U(X_1, \ldots, X_n)$ con $U$ v.a. e
+    $(X_i)_{i \in [n]}$ famiglia di v.a.~reali sottintendendo
+    l'insieme $L_{U(\omega)}(X_1(\omega), \ldots, X_n(\omega))$,
+    assumendo $U(\omega) \in \Sigma$.
+\end{notation}
+
+\begin{definition}[Stimatore di massima verosomiglianza di $\sigma$]
+    Si dice che uno stimatore $U$ è di \textbf{massima verosomiglianza di $\sigma$}
+    su un campione i.i.d.~$(X_i)_{i \in [n]}$ se:
+    \[
+        L_U(X_1, \ldots, X_n) = \sup_{\theta \in \Theta} L_\theta(X_1, \ldots, X_n), \quad \forall \omega \in S.
+    \]
+    In altre parole, uno stimatore $U$ è di massima verosomiglianza su un campione se
+    per dei dati $x_1$, ..., $x_n$ restituisce il parametro $\theta$ che massimizza
+    $L_\theta(x_1, \ldots, x_n)$, ovverosia la densità consiunta dei dati
+    $x_1$, ..., $x_n$ (i.e.~la probabilità che si ottenga $x_1$, ..., $x_n$).
+\end{definition}
+
+\begin{example}[Prova di Bernoulli]
+    Sia $Q_\theta \sim B(\theta)$. Dati gli esiti $x_1$, ..., $x_n$ di $n$ prove,
+    ricaviamo che:
+    \[
+        L_\theta(x_1, \ldots, x_n) = \theta^{\sum_i x_i} (1 - \theta)^{n - \theta^{\sum_i x_i}},
+    \]
+    da cui:
+    \[
+        \log L_\theta(x_1, \ldots, x_n) = n \overline{x} \log(\theta) + n (1 - \overline{x}) \log(1 - \theta).
+    \]
+    Tale funzione ha massimo per $\theta = \overline{x}$, e dunque
+    $\overline{X}$ è uno stimatore di massima verosomiglianza di $\theta$. \smallskip
+
+    In altre parole, la migliore stima di $\sigma$ data una sequenza di $n$ prove di Bernoulli è
+    la frequenza relativa di successi.
+\end{example}
+
+\begin{example}
+    Sia $Q_\theta \sim U([0, \theta])$ con $\theta > 0$. Dati gli esiti $x_1$, ..., $x_n$ ricaviamo che:
+    \[
+        L_\theta(x_1, \ldots, x_n) = \frac{1}{\theta^n} \prod_i 1_{[0, \theta]}(x_i) =
+        \frac{1}{\theta^n} 1_{0 \leq \min_i x_i \leq \max_i x_i \leq \theta},
+    \]
+    che ha massimo per $\theta = \max_i x_i$. Pertanto $\max\{X_1, \ldots, X_n\}$ è uno stimatore
+    di massima somiglianza di $\theta$. \smallskip
+
+    In altre parole, dati degli esiti $x_1$, ..., $x_n$, una delle migliori stime che possiamo fare
+    su $\theta$ è $\max_i x_i$.
 \end{example}
 
 \end{multicols*}
