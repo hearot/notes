@@ -197,6 +197,27 @@ a $P_\theta$).
     varianza, consistente, sempre per la LGN.
 \end{remark}
 
+\subsection{Rischio quadratico e preferibilità}
+
+\begin{definition}[Rischio quadratico di uno stimatore]
+    Dato uno stimatore $U$ di $h : \Sigma \to \RR$, si definisce
+    \textbf{rischio quadratico} di $U$ per $\sigma$ il seguente valore:
+    \[
+        R_\sigma(U) = \EE[(U - h(\sigma))^2].
+    \]
+\end{definition}
+
+\begin{remark}
+    Se $U$ è uno stimatore corretto di $h$, allora
+    $R_\sigma(U) = \Var^\sigma(U)$.
+\end{remark}
+
+\begin{definition}[Preferibilità]
+    Dati due stimatori $U$, $V$ di $h : \Sigma \to \RR$, si dice
+    che $U$ è \textbf{preferibile} rispetto a $V$ se
+    $R_\sigma(U) \leq R_\sigma(V)$ per ogni $\sigma \in \Sigma$.
+\end{definition}
+
 \subsection{Stimatore di massima verosomiglianza}
 
 D'ora in avanti sottintenderemo di star lavorando sullo
