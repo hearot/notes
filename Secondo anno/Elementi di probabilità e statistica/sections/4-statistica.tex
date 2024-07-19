@@ -123,8 +123,10 @@ statistico $(S, \cS, (Q_\theta)_{\theta \in \Theta})$.
 \begin{definition}[Campione i.i.d.~di taglia $n$]
     Dato un modello statistico, si dice
     che una famiglia di v.a.~$(X_i : \Omega \to S)_{i \in [n]}$ i.i.d.~è un \textbf{campione i.i.d.~di taglia $n$}
-    se per ogni $\theta \in \Theta$ esiste uno spazio di probabilità $(\Omega, \FF, P_\theta)$ tale per cui
-    $(P_\theta)^{X_i}$ è uguale in legge a $Q_\theta$.
+    se esiste uno spazio misurabile $(\Omega, \FF)$ tale per cui,
+    per ogni $\theta \in \Theta$, esiste una probabilità $P_\theta$ su $(\Omega, \FF)$ tale per cui
+    $(P_\theta)^{X_i}$ è uguale in legge a $Q_\theta$. Un campione rappresenta generalmente il risultato di
+    $n$ esiti di un esperimento aleatorio.
 \end{definition}
 
 Dato un campione di taglia $n$, useremo $P_\theta$ per riferirci alla misura di probabilità
@@ -218,7 +220,7 @@ a $P_\theta$).
     $R_\theta(U) \leq R_\theta(V)$ per ogni $\theta \in \Theta$.
 \end{definition}
 
-\subsection{Stimatore di massima verosomiglianza}
+\subsection{Stimatore di massima verosomiglianza (MLE)}
 
 D'ora in avanti sottintenderemo di star lavorando sullo
 spazio misurabile $(\RR, \BB(\RR))$.
@@ -249,7 +251,8 @@ spazio misurabile $(\RR, \BB(\RR))$.
 \end{notation}
 
 \begin{definition}[Stimatore di massima verosomiglianza di $\theta$]
-    Si dice che uno stimatore $U$ è di \textbf{massima verosomiglianza di $\theta$}
+    Si dice che uno stimatore $U$ è di \textbf{massima verosomiglianza di $\theta$} (MLE, da
+    \textit{maximum likelihood estimator})
     su un campione i.i.d.~$(X_i)_{i \in [n]}$ se:
     \[
         L_U(X_1, \ldots, X_n) = \sup_{\theta \in \Theta} L_\theta(X_1, \ldots, X_n), \quad \forall \omega \in S.
@@ -289,5 +292,139 @@ spazio misurabile $(\RR, \BB(\RR))$.
     In altre parole, dati degli esiti $x_1$, ..., $x_n$, una delle migliori stime che possiamo fare
     su $\theta$ è $\max_i x_i$.
 \end{example}
+
+\section{Modello esponenziale, unicità e consistenza dello stimatore MLE}
+
+\begin{definition}[Modello statistico esponenziale]
+    Dato un modello statistico $(S, \cS, (Q_\theta)_{\theta \in \Theta})$, si dice che
+    tale modello è \textbf{esponenziale} nei seguenti due casi:
+    
+    \begin{enumerate}[(i.)]
+        \item[\scriptsize (caso discreto)] data $Q_\theta$ discreta, allora esistono
+    $g$, $T : \NN \to \RR$ e $c_\theta : \Theta \to \RR$ per cui
+    $p_\theta(k) = c_\theta g(k) e^{\theta T(k)}$ e tali che
+    $g$, $T$ dipendano solo da $k$ e $c_\theta$ solo da $\theta$.
+        \item[\scriptsize (caso ass.~cont.)] data $Q_\theta$ AC, allora esistono
+        $g$, $T : \RR \to \RR$ boreliane e $c_\theta : \Theta \to \RR$ per cui
+        $f_\theta(x) = c_\theta g(x) e^{\theta T(x)}$ e tali che
+        $g$, $T$ dipendano solo da $x$ e $c_\theta$ solo da $\theta$.
+    \end{enumerate}
+\end{definition}
+
+Per i modelli esponenziali valgono i seguenti fondamentali teoremi:
+
+\begin{theorem}[Unicità e consistenza dello stimatore MLE per densità discrete]
+    Si consideri il modello $(\RR, \BB(\RR), (Q_\theta)_{\theta \in \Theta})$ tale per cui:
+    \begin{itemize}
+        \item $\theta_1 \neq \theta_2 \implies Q_{\theta_1} \neq Q_{\theta_2}$,
+        \item $\Theta \subseteq \RR$ è un intervallo aperto,
+        \item $Q_\theta$ è esponenziale discreta di densità
+        $p_\theta(k) = c_\theta g(k) e^{\theta T(k)}$,
+        \item $\sum_{i \in \NN} g(k) T^2(k) e^{\theta T(k)^+} < \infty$ per ogni $\theta \in \Theta$.
+    \end{itemize}
+    Premesso ciò, se $(X_i)_{i \in [n]}$ è un campione i.i.d.~di taglia $n$ ed esiste uno stimatore
+    $U$ di massima verosomiglianza di $\theta$ rispetto a tale campione, allora, sempre rispetto
+    a $(X_i)_{i \in [n]}$,
+    $U$ è l'unico stimatore di massima verosomiglianza di $\theta$ ed è consistente rispetto a $\theta$. \smallskip
+
+    In particolare, fissati i dati $x_1$, ..., $x_n$, lo stimatore di massima verosomiglianza $\hat\theta$ risolve la seguente equazione:
+    \[
+        \frac{d \left[- \log(c_\theta)\right]}{d\theta} \left(\hat\theta\right) = \sum_{i \in [n]} T(x_i).
+    \]
+\end{theorem}
+
+\begin{theorem}[Unicità e consistenza dello stimatore MLE per densità AC]
+    Si consideri il modello $(\RR, \BB(\RR), (Q_\theta)_{\theta \in \Theta})$ tale per cui:
+    \begin{itemize}
+        \item $\theta_1 \neq \theta_2 \implies Q_{\theta_1} \neq Q_{\theta_2}$,
+        \item $\Theta \subseteq \RR$ è un intervallo aperto,
+        \item $Q_\theta$ è esponenziale assolutamente continua di densità
+        $f_\theta(x) = c_\theta g(x) e^{\theta T(x)}$,
+        \item $h : x \mapsto g(x) T^2(x) e^{\theta T(x)^+}$ è integrabile per ogni $\theta \in \Theta$.
+    \end{itemize}
+    Premesso ciò, se $(X_i)_{i \in [n]}$ è un campione i.i.d.~di taglia $n$ ed esiste uno stimatore
+    $U$ di massima verosomiglianza di $\theta$ rispetto a tale campione, allora, sempre rispetto
+    a $(X_i)_{i \in [n]}$,
+    $U$ è l'unico stimatore di massima verosomiglianza di $\theta$ ed è consistente rispetto a $\theta$.
+\end{theorem}
+
+\begin{remark}
+    L'enunciato precedente può essere generalizzato ad aperti $\Theta$ convessi in $\RR^d$
+    con funzione $T : \RR \to \RR^d$ boreliana, ponendo:
+    \[
+        f_\theta(x) = c_\theta g(x) \exp\left(\theta^\top T(x)\right).
+    \]
+\end{remark}
+
+\begin{remark}
+    A partire al precedente teorema si può dunque dimostrare che:
+    \begin{itemize}
+        \item $(\overline{X}, \frac{n-1}{n} S^2)$ è l'unico stimatore di massima verosomiglianza per $(m, \sigma^2)$ sul
+        modello $N(m, \sigma^2)$,
+        \item se $\sigma^2$ è nota, $\overline{X}$ è l'unico stimatore di massima verosomiglianza per
+        $m$ sul modello $N(m, \sigma^2)$,
+        \item se $m$ è nota, $\frac{n-1}{n} S^2$ è l'unico stimatore di massima verosomiglianza per
+        $\sigma^2$ sul modello $N(m, \sigma^2)$.
+    \end{itemize}
+\end{remark}
+
+\section{Intervalli di fiducia}
+
+\subsection{Regione di fiducia}
+
+\begin{definition}
+    Dato il modello statistico $(S, \cS, (Q_\theta)_{\theta \in \Theta})$ con campione
+    i.i.d.~$(X_i)_{i \in \NN}$, si definisce \textbf{regione di fiducia a livello $1-\alpha$}
+    per il parametro $\theta$ una mappa $D : \Theta \to \PP(\Omega)$, detta \textit{insieme aleatorio}, tale per cui:
+    \[
+        P_\theta(\theta \in D) \geq 1 - \alpha, \quad \forall \theta \in \Theta,
+    \]
+    dove $P_\theta$ è la probabilità relativa allo spazio misurabile del campione i.i.d.~e
+    $\{\theta \in D\} = \{\omega \in \Omega \mid \theta \in D(\omega)\} \in \FF$.
+\end{definition}
+
+\subsection{Quantili e distribuzione gaussiana}
+
+\begin{definition}
+    Data una probabilità $P$ su $(\RR, \BB(\RR))$, con funzione di ripartizione $F$ si
+    definisce \textbf{quantile di ordine $\beta$} con $\beta \in (0, 1)$ il valore:
+    \[ 
+        r_\beta = \inf \{ x \in \RR \mid F(x) \geq \beta \}.
+    \]
+    In altre parole, $r_\beta$ è l'estremo inferiore dell'insieme degli $x$ tali per cui
+    $P((-\infty, x)) \geq \beta$, ossia ``il primo valore'' per cui si supera la probabilità
+    $\beta$. \smallskip
+
+
+    Se $P$ si distribuisce come $N(0, 1)$, si denota $r_\beta$ come $q_\beta$.
+\end{definition}
+
+\begin{remark}
+    Per simmetria della f.d.r.~$\Phi$, vale che $q_{1-\beta} = -q_\beta$. Inoltre vale che:
+    \[
+        P(-q_{1-\alpha/2} \leq Z \leq q_{1-\alpha/2}) = 1-\alpha,
+    \]
+    dove $Z \sim N(0, 1)$ e $\alpha \in (0, 1)$. \smallskip
+
+    Queste due proprietà valgono in generale se la legge considerata ha densità pari, o ancora
+    più generalmente se ha la stessa legge al suo opposto.
+\end{remark}
+
+\subsection{Intervalli di fiducia per la media in una popolazione normale}
+
+Consideriamo il modello $(\RR, \BB(\RR), (Q_\theta)_{\theta \in \Theta})$ con $Q_\theta \sim N(m, \sigma^2)$, dove il
+parametro da ricercare è la media $m$. Sia $(X_i)_{i \in [n]}$ un campione i.i.d.~con $X_i \sim N(m, \sigma^2)$.
+Dal momento che $\overline{X}$ è uno stimatore
+di $m$, un intervallo di fiducia per il livello $1-\alpha$ è intuitivamente della forma $D = [\overline{X} \pm d]$ con $d \in \RR$.
+Dacché $\EE[\overline{X}] = m$ e $\Var(\overline{X}) = \sigma^2/n$, per riproducibilità delle variabili gaussiane si
+ricava che $\overline{X} \sim N(m, \sigma^2/n)$, ovverosia $\frac{\sqrt{n}}{\sigma}(\overline{X} - m) \sim N(0, 1)$ per
+standardizzazione. \smallskip
+
+Pertanto vale che:
+\[ P_m(m \in D) = P_m\left(\abs{\overline{X} - m} \leq d\right) = 2 \Phi\left(\frac{\sqrt{n}}{\sigma} d\right) - 1, \]
+e dunque, ponendo $P_m(m \in D) = 1-\alpha$, si ottiene che:
+\[
+    d = \frac{\sigma}{\sqrt{n}} q_{1-\alpha/2}.
+\]
 
 \end{multicols*}

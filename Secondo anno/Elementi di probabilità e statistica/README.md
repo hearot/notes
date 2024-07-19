@@ -3,9 +3,9 @@
 - [Programma del corso 📘](https://esami.unipi.it/programma.php?c=57989)
 - [Registro del corso 📑](https://unimap.unipi.it/registri/dettregistriNEW.php?re=10338931::::&ri=015863)
 
-Il corso di Elementi di probabilità e statistica (EPS) è ancora in corso, dunque questa cartella vedrà ancora aggiornamenti per il momento.
-Questa cartella contiene in particolar modo una *Scheda riassuntiva*, che, come suggerisce il nome, è un recap completo di tutta la
-teoria del corso. Tale scheda include inoltre le tabelle numeriche più utili per lo svolgimento degli esercizi.
+Il corso di Elementi di probabilità e statistica (EPS) è terminato, dunque questa cartella riceverà aggiornamenti senza alcuna costanza.
+Questa cartella contiene in particolar modo una *Scheda riassuntiva*, che, come suggerisce il nome, vorrebbe essere un recap completo di tutta la
+teoria del corso; è coperta tutta la teoria di probabilità (Parte I, Parte II, Parte III), e metà della teoria di statistica (Parte IV, fino tutta la teoria degli stimatori). Tale scheda include inoltre le tabelle numeriche più utili per lo svolgimento degli esercizi.
 
 Questo progetto non sarebbe mai stato realizzabile senza il meraviglioso
 aiuto di alcuni miei amici e colleghi, che ora elenco:
