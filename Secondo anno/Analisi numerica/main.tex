@@ -1,0 +1,1874 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{marvosym}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{notes_2023}
+\usepackage{quiver}
+
+\setlength{\extrarowheight}{0pt}
+
+\renewcommand{\sp}{\operatorname{sp}}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+
+\DeclareMathOperator{\DFT}{DFT}
+\DeclareMathOperator{\IDFT}{IDFT}
+
+\newcommand{\ff}{\mathcal{F}}
+
+\newcommand{\ein}{\varepsilon_{\text{in}}}
+\newcommand{\ealg}{\varepsilon_{\text{alg}}}
+\newcommand{\ean}{\varepsilon_{\text{an}}}
+\newcommand{\etot}{\varepsilon_{\text{tot}}}
+
+\renewcommand{\eps}{\varepsilon}
+
+%\pagestyle{empty}
+\newcommand{\tx}{\Tilde{x}}
+\newcommand{\ty}{\Tilde{y}}
+\newcommand{\tz}{\Tilde{z}}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\title{Schede riassuntive di Analisi Numerica}
+
+\begin{document}
+	
+	\parskip=0.7ex
+	
+	\raggedright
+	\footnotesize
+	
+	\begin{center}
+		\Large{\textbf{Schede riassuntive di Analisi Numerica}} \\
+	\end{center}
+	\begin{multicols}{3}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+
+  \section{Analisi dell'errore}
+
+  Se $\tilde{x}$ è un'approssimazione di $x$ definiamo $\tilde{x}-x$ come l'\textit{errore assoluto}, $\eps = (\tx-x)/x$ come l'\textit{errore relativo} (rispetto a $x$) e $\eta = (x-\tx)/\tx$ come l'\textit{errore relativo} (rispetto a $\tx$).
+  In particolare vale che $\tilde{x} = x(1+\eps) = x/(1+\eta)$.
+  
+  \subsection{Rappresentazione in base}
+  Sia $B\ge2$ un numero intero, vale allora il seguente risultato:
+
+  \begin{theorem}[di rappresentazione in base]
+  Per ogni numero reale $x\neq0$ esistono e sono unici un intero $p$ ed una successione $\{d_i\}_{i\ge1}$ con le seguenti proprietà:
+  \begin{enumerate}[(1.)]
+      \item $0\le d_i\le B-1$
+      \item $d_1\neq0$
+      \item per ogni $k>0$ esiste un $j\ge k$ tale che $d_j\neq B-1$
+      (ossia $\{d_i\}_{i \geq 1}$ è frequentemente diversa da $B-1$)
+      \item $x$ si scrive come: $$x=\text{sgn}(x)B^p\sum_{i\ge1}d_iB^{-i}$$
+  \end{enumerate}
+  \end{theorem}
+  
+  L'intero $B$ è detto \textit{base della rappresentazione}, gli interi $d_i$ sono dette \textit{cifre della rappresentazione} ed il numero $\sum_{i\ge1}d_iB^{-i}$ viene chiamato \textit{mantissa}. Si scrive $\pp(x)$ per indicare l'esponente $p$ relativo a $x$. \medskip
+  
+  
+  La condizione ($2$.) è detta di \textit{normalizzazione} e serve a garantire l'unicità della rappresentazione e a memorizzare il numero in maniera più efficiente, mentre la condizione $3$ esclude rappresentazioni con cifre uguali a $B-1$ da un certo punto in poi (per esempio la rappresentazione di $1$ come $0.\overline{9}$ è
+  esclusa).
+  
+  \subsection{Numeri \textit{floating point}}
+  
+  Dati gli interi $B\ge2$, $t\ge1$ ed $M$, $m>0$, si definisce l'insieme $\mathcal{F}(t,B,m,M)$ dei \textbf{numeri di macchina} o \textbf{dei numeri in virgola mobile} o ancora dei \textbf{numeri \textit{floating point}} come l'insieme:
+  $$\zeroset\cup\{\pm B^p\sum_i^td_iB^{-i}|d_1\neq0,0\le d_i\le B-1,-m\le p\le M\},$$
+  in particolare $B$ rappresenta la base della rappresentazione,
+  $t$ la lunghezza della mantissa, $B^{-m}$ il minimo numero che
+  moltiplica la mantissa e $B^M$ il massimo.
+
+  \subsubsection{Troncamento su \texorpdfstring{$\RR$}{ℝ} e \texorpdfstring{$\RR^n$}{ℝⁿ} e numero di macchina \texorpdfstring{$u$}{u}}
+  
+  Sia $x$ un numero reale. Se $-m \leq \pp(x) \leq M$, allora $x$ viene ben rappresentato in $\mathcal{F}$ dal numero $\tx=\fl(x)$,
+  dove:
+  \[ x=\sgn(x)B^p\sum_{i\ge1}d_iB^{-i} \implies \tx=\sgn(x)B^p\sum_{i=1}^t d_iB^{-i}, \]
+  ossia $\tx$ è ottenuto da $x$ troncandone la mantissa al
+  $t$-esimo termine (\textbf{troncamento}). Facendo così si ottiene
+ un errore relativo di rappresentazione tale per cui:
+ \[ \abs{\frac{\tx-x}{x}}<B^{1-t}, \quad \abs{\frac{\tx-x}{\tx}}<B^{1-t}, \]
+ e si definisce pertanto $u := B^{1-t}$ come la \textbf{precisione di macchina}. In generale, se $y$ è un'approssimazione di $x \in \RR$
+ tale per cui $\abs{(y-x)/x}$ è minore di $B^{1-c}$ con $c$ intero, si dice che $y$ ha $c$ \textit{cifre significative}. \medskip
+
+ 
+  Se invece $\pp(x)<-m$ o $\pp(x)>M$ il numero non è rappresentabile
+  e ci ritroviamo rispettivamente in una situazione di \textit{underflow} o di \textit{overflow}. \medskip
+
+  Dato $x\in\RR^n$, si definisce
+  la rappresentazione $\tx$ rispetto a $x$ in $\mathcal{F}$ come: \[ \tx=(\tx_i)=(\fl(x_i)=(x_i(1+\varepsilon_i)), \quad \abs{\varepsilon_i}<u. \]
+
+  \subsubsection{Precisione di un insieme \texorpdfstring{$\ff$}{ℱ}}
+  
+  Dati due sistemi floating point in base $B_1$ e $B_2$ di $t_1$ e $t_2$ cifre, il primo è più preciso del secondo se e solo se vale:
+  \[ B_1^{1-t_1} < B_2^{1-t_2} \iff t_1>(t_2-1)\frac{\log B_2}{\log B_1}+1 \]
+  Si può definire in modo analogo l'approssimazione per arrotondamento, osservando che in questo caso l'errore relativo di rappresentazione è limitato da $\frac{1}{2}B^{1-t} = \frac{1}2 u$.
+  
+  \subsubsection{Aritmetica di macchina}
+  
+  Siano $a$, $b\in\mathcal{F}(t,B,m,M)$ e sia $\op$ una delle quattro operazioni aritmetiche ($+$, $-$, $\cdot$ e $/$). Si consideri
+  $c=a \bop b$. Allora la macchina calcola $c$ con l'approssimazione $\hat{c} := \fl(c)$. Vale pertanto che:
+  \[ \hat{c}=\fl(a \bop b)=c(1+\delta)=c/(1+\eta)\;\con \abs\delta, \abs\eta<u. \]
+  Gli errori relativi $\delta$ e $\eta$ sono detti \textbf{errori locali} generati dall'operazione $\op$. Un'operazione del tipo $\fl \circ \op$ è detta
+  \textbf{flop}.
+
+  
+  \subsection{Errori nel calcolo di una funzione}
+
+  Si utilizza il simbolo $\doteq$ per indicare l'uguaglianza di termini
+  al \textit{primo ordine}. Si scrive $\varepsilon(x)$ per valutare
+  l'errore nella variabile $x$.
+
+  \subsubsection{Errore inerente}
+  
+  L'errore relativo di $f(\tx)$ rispetto $f(x)$ viene detto \textbf{errore inerente} e vale:
+  \[ \ein=\frac{f(\tx)-f(x)}{f(x)}. \]
+  Tale errore misura il \textit{condizionamento} di un problema, ossia
+  quanto varia il risultato perturbando l'input. \smallskip
+
+    Nel caso di funzioni $f:\RR^n \to \RR$ sufficientemente regolari vale che:
+    \[ \ein 
+\doteq \sum_{i=1}^n C_i \delta_i, \] 
+    dove:
+    \[ \delta_i:=\eps_{x_i}=\frac{\tx_i-x_i}{x_i}, \quad C_i=x_i \frac{\partial f/\partial x_i(x)}{f(x)}. \]
+    I termini $C_i$ sono detti \textbf{coefficienti di amplificazione} rispetto alla variabile $x_i$. \smallskip
+
+  Un problema si dice \textbf{ben condizionato} se una piccola variazione nelle condizioni iniziali produce una piccola variazione in output e si dice \textbf{mal condizionato}
+  altrimenti. Il condizionamento di un problema varia a seconda della grandezza in modulo dei coefficienti di amplificazione (più sono grandi, più il problema è mal condizionato).
+
+  Per le $4$ operazioni aritmetiche elementari $x \bop y$ sono presentati i relativi coeff.~di amplificazione:
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+     Operazione ($\op$) & $C_1$ & $C_2$ \\ \hline
+     addizione ($+$) & $x/(x+y)$ & $y/(x+y)$ \\ \hline
+     sottrazione ($-$) & $x/(x-y)$ & $-y/(x-y)$ \\ \hline
+     moltiplicazione ($\cdot$) & 1 & 1 \\ \hline
+     divisione ($/$) &  1 & -1 \\ \hline
+    \end{tabular}
+    \end{center}
+  
+  \subsubsection{Funzioni razionali ed errore algoritmico}
+  Si ricorda che una funzione $f$ si dice \textit{razionale} se
+  si può esprimere tramite una formula \textit{finita} che comprende le quattro
+  operazioni aritmetiche. \smallskip
+  
+  Se la funzione $f : \RR^n \to \RR$ è
+  razionale, si può agevolmente calcolarne l'approssimazione
+  $\varphi = \tilde{f}$ tramite troncamento. Generalmente esistono più modi di implementare la priorità delle operazioni, e una tale scelta di priorità $\varphi$
+  è detta \textit{algoritmo}. \smallskip
+
+  Il discostamento relativo di $\varphi(\tx)$ da $f(\tx)$ (il valore effettivamente
+  calcolato sull'input perturbato)
+  viene detto \textbf{errore algoritmico}, che pertanto è così definito:
+  \[ \ealg=\frac{\varphi(\tx)-f(\tx)}{f(\tx)}. \]
+
+  Un problema si dice \textbf{numericamente stabile} (in avanti) se $\abs{\ealg} < ku$ per $k$ costante, e \textbf{numericamente instabile} (in avanti) se non lo è.
+
+  \subsubsection{Funzioni regolari non razionali ed errore analitico}
+
+  Se $f : \RR^n \to \RR$ non è
+  razionale, ma è comunque sufficientemente regolare, si può approssimare $f$ tramite una funzione
+  razionale $g$. Chiamiamo \textbf{errore analitico} il discostamento relativo
+  di $g$ da $f$ sull'input non perturbato (ossia a priori dell'uso di
+  aritmetica di macchina):
+  \[ \ean=\frac{g(x)-f(x)}{f(x)}. \]
+  Questo errore può essere studiato attraverso gli strumenti
+  dell'analisi matematica e della teoria dell'approssimazione
+  delle funzioni (e.g.~polinomi di Taylor e resti di Peano, Lagrange, Cauchy o resto integrale).
+
+  \subsubsection{Errore totale}
+  
+  Definiamo l'\textbf{errore totale} come il discostamento relativo dell'algoritmo $\varphi$ valutato sull'input perturbato dal valore esatto $f(x)$: \[ \etot=\frac{\varphi(\tx)-f(x)}{f(x)}. \]
+  
+  \begin{proposition}
+      A meno di termini non lineari vale sempre che:
+      \[
+        \etot \doteq \ein + \ealg + \ean(\tx).
+      \]
+  \end{proposition}
+
+  Pertanto, se la funzione $f$ è razionale,
+  $\etot \doteq \ein + \ealg$. Questa proposizione giustifica
+  lo studio separato dei tre errori.
+  
+  \subsubsection{Calcolo dell'errore algoritmico e dell'errore totale (per funzioni razionali)}
+
+  L'unica differenza tra lo studio dell'errore algoritmico e dell'errore totale (per funzioni razionali)
+  secondo il metodo presentato sta nell'errore $\eps_{x_i}$ che viene dato alle variabili
+  di input. Infatti, nel caso dell'errore algoritmico, le variabili sono
+  già ben rappresentate come numeri di macchina e quindi non hanno errore,
+  mentre nel caso dell'errore totale lo hanno. Pertanto, se una traccia
+  richiede di calcolare un errore totale su dei numeri di macchina, ciò è
+  equivalente a calcolarne l'errore algoritmico. \smallskip
+
+  Per procedere allo studio dell'errore algoritmico conviene utilizzare dei grafi orientati con le op.~aritmetiche segnando ogni flop come un nuovo nodo,
+  a cui sono rivolte le frecce da tutte le variabili impiegate per portare
+  a termine l'op.~aritmetica. Il più
+  semplice di questi grafi, che rappresenta $S = A \bop B$, è presentato
+  di seguito:
+
+    % https://q.uiver.app/#q=WzAsNixbMSwwLCJBIl0sWzMsMCwiQiJdLFsyLDEsIlMiXSxbNCwwXSxbMCwwXSxbMiwyXSxbMCwyLCJDX0EiLDIseyJsYWJlbF9wb3NpdGlvbiI6NjB9XSxbMSwyLCJDX0IiLDAseyJsYWJlbF9wb3NpdGlvbiI6NjB9XSxbNSwyLCJcXGRlbHRhIiwxLHsibGFiZWxfcG9zaXRpb24iOjEwMCwib2Zmc2V0IjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwwLCJcXHZhcmVwc2lsb25fQSIsMCx7ImxhYmVsX3Bvc2l0aW9uIjo5MCwib2Zmc2V0Ijo1LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzLCJcXHZhcmVwc2lsb25fQiIsMCx7ImxhYmVsX3Bvc2l0aW9uIjoyMCwib2Zmc2V0Ijo1LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+    \[\begin{tikzcd}
+    	{} & A && B & {} \\
+    	&& S \\
+    	&& {}
+    	\arrow["{\varepsilon_A}"{pos=0.9}, shift right=5, draw=none, from=1-1, to=1-2]
+    	\arrow["{C_A}"'{pos=0.6}, from=1-2, to=2-3]
+    	\arrow["{\varepsilon_B}"{pos=0.2}, shift right=5, draw=none, from=1-4, to=1-5]
+    	\arrow["{C_B}"{pos=0.6}, from=1-4, to=2-3]
+    	\arrow["\delta"{description, pos=1}, shift right=2, draw=none, from=3-3, to=2-3]
+    \end{tikzcd}\]
+    \vskip -0.1in
+    In tal caso vale che:
+    \[ \eps_S=\delta+C_A\eps_A+C_B\eps_B. \]
+    Una volta ricavato l'errore, è sufficiente maggiorarlo in modulo con una
+    certa funzione di $u$ per determinare se l'algoritmo è stabile o meno.
+
+    \subsubsection{Cancellazione numerica}
+
+    In generale per la scelta di un algoritmo è consigliabile \underline{evitare} di \textit{sottrarre numeri dello stesso segno} o di \textit{sommare numeri discordi}. Infatti, se la somma o la differenza di tali numeri è molto vicina
+    a $0$, i coefficienti di amplificazione hanno modulo molto maggiore
+    di $1$, e dunque il problema diviene \textit{numericamente instabile}.
+
+    \subsubsection{Analisi dell'errore all'indietro}
+
+    Sia $f(x_1,\dots,x_n)$ una funzione razionale e si denoti con $\varphi(x_1,\dots,x_n)$ l'algoritmo definito su $\mathcal{F}^n$ i cui valori
+    sono ottenuti calcolando $f(x_1,\dots,x_n)$ con l'aritmetica di macchina.
+    
+    Nell'analisi \textit{all'indietro} dell'errore si cercano delle perturbazioni $\delta_i$ tali che denotando $\hat{x}_i=x_i(1+\delta_i)$ risulti:
+    \[ \varphi(x_1,\dots,x_n)=f(\hat{x}_1,\dots,\hat{x}_n), \]
+    ovverosia valutare l'algoritmo $\varphi$ su $(x_1, \ldots, x_n)$ diviene equivalente
+    a calcolare il valore esatto di $f(\hat{x}_1, \ldots, \hat{x}_n)$. \smallskip
+    
+    Agendo in questo modo per calcolare l'errore algoritmico $\ealg$ è
+    sufficiente calcolare in realtà l'errore inerente $\ein$ sulle perturbazioni $\delta_i$. \smallskip
+
+    Si riporta lo schema risolutivo di un tipico esercizio sull'analisi all'indietro:
+    \begin{itemize}
+        \item Si calcoli $f(\hat{x}_1, \ldots, \hat{x}_n)$, dove $\hat{x}_i = x(1+\delta_i)$ e i vari $\delta_i$ sono variabili libere.
+        \item Si calcoli $\varphi(x_1, \ldots, x_n)$ sostituendo a ogni $j$-esima flop
+        $\fl(\tilde{s_1} \bop \tilde{s_2})$ il valore esatto $(\tilde{s_1} \bop \tilde{s_2})(1+\eps_j)$ dove $\abs{\eps_j} < u$, procedendo poi a ritroso
+        nelle flop di $\tilde{s_1}$ e di $\tilde{s_2}$.
+        \item Si risolva il sistema $f(\hat{x}_1, \ldots, \hat{x}_n) = \varphi(x_1, \ldots, x_n)$ nei $\delta_i$ in funzione degli $\eps_j$, maggiorandoli alla fine.
+    \end{itemize}
+    
+    Un algoritmo si dice \textbf{numericamente stabile all'indietro} se è
+    possibile effettuare un analisi all'indietro per cui $\ealg < ku$ con
+    $k$ costante.
+
+    \section{Algebra lineare numerica}
+
+    \subsection{Matrici di permutazione e matrici riducibili}
+
+    \begin{definition}
+        Si dice che $P \in \CC^{n \times n}$ è una \textbf{matrice di permutazione}
+        se esiste $\sigma \in S_n$ tale per cui $P^j = e_{\sigma(j)}$; e in
+        tal caso si scrive $P_\sigma := P$ per rimarcare la permutazione a cui
+        $P$ è associata.
+    \end{definition}
+
+    Si osserva in particolare che $\sigma \mapsto P_\sigma$ è un omomorfismo
+    da $S_n$ alle matrici di permutazioni, che dunque formano un gruppo moltiplicativo. Per le matrici di permutazioni valgono dunque le seguenti
+    proprietà:
+
+    \begin{itemize}
+        \item $P_\sigma \in \RR^{n \times n}$,
+        \item $P_\sigma P_\tau = P_{\sigma \circ \tau}$,
+        \item $P_\sigma^T P_\sigma = P_\sigma P_\sigma^T = I$ ($P_\sigma$ è ortogonale e unitaria),
+        \item $P_\sigma^{-1} = P_\sigma^T = P_{\sigma^{-1}}$,
+        \item $\det(P_\sigma) = \sgn(\sigma)$,
+        \item $P_\sigma$ rappresenta la matrice di cambio di base da quella
+        canonica a quella canonica permutata secondo $\sigma$, ovverosia
+        da $(e_1, \ldots, e_n)$ a $\left(e_{\sigma(1)}, \ldots, e_{\sigma(n)}\right)$,
+        \item Se $A \in \CC^{n \times n}$ e $B = P_\sigma^T A P_\sigma$, allora
+        $b_{ij} = a_{\sigma(i)\sigma(j)}$.
+        \item Analogamente, se $A \in \CC^{n \times n}$ e $B = P_\sigma A P_\sigma^T = P_{\sigma^{-1}}^T A P_{\sigma^{-1}}$, allora
+        $b_{ij} = a_{\sigma^{-1}(i)\sigma^{-1}(j)}$, e dunque
+        $b_{\sigma(i)\sigma(j)} = a_{ij}$.
+    \end{itemize}
+
+    \begin{definition}[Matrice riducibile]
+        Una matrice $A\in \CC^{n \times n}$ si dice \textbf{riducibile} se esiste una matrice di permutazione $P$ per cui:
+        \[ PAP^\top=PAP\inv=\begin{pmatrix}
+            A_{11} & A_{12} \\
+            0 & A_{22} \\
+        \end{pmatrix} \]
+    con $A_{11}$ e $A_{22}$ matrici quadrate, ovverosia se $PAP^\top$ è triangolare a blocchi. \smallskip
+
+    Una matrice si dice \textbf{irriducibile} se non è riducibile.
+    \end{definition}
+
+    \vskip -0.1in
+    
+    Equivalentemente una matrice è riducibile se esiste un sottoinsieme proprio
+    non vuoto $I$ di $\{e_1, \ldots, e_n\}$ tale per cui $A\cdot I \subseteq \Span(I)$, ovverosia se $I$ è $A$-invariante.
+
+    \subsubsection{Grafo associato a una matrice}
+    
+    Data $A\in \CC^{n \times n}$ si definisce \textbf{grafo associato} $G[A]$ ad $A$ come
+    il grafo \underline{orientato} con le seguenti proprietà:
+    
+    \begin{itemize}
+        \item $G[A]$ ha come nodi $\{1, \ldots, n\}$,
+        \item Esiste un arco orientato da $i$ a $j$ se e solo se $a_{ij} \neq 0$. 
+    \end{itemize}
+
+    Un cammino è una sequenza di archi $i_1 \to i_2 \to \cdots i_m$.
+    Un grafo si dice \textbf{fortemente connesso} se $\forall i$, $j$ esiste
+    un cammino da $i$ a $j$.
+
+    Se $P$ è una matrice di permutazione, $B := PAP^\top$ ha lo stesso
+    grafo di $A$ a meno di rinominare i nodi secondo $\sigma$, ovverosia
+    esiste un arco da $\sigma(i)$ a $\sigma(j)$ in $G[B]$ se e solo se
+    esiste un arco da $i$ a $j$ in $G[A]$. Pertanto
+    il grafo di $A$ è fortemente connesso se e solo se
+    quello di $PAP^\top$ lo è. Questo fatto risulta fondamentale nel
+    dimostrare il seguente teorema:
+
+    \begin{theorem}
+    $A$ è irriducibile se e solo se il suo grafo associato
+    è fortemente connesso. Equivalentemente, $A$ è riducibile se e solo se
+    il suo grafo associato \underline{non} è fortemente connesso.
+    \end{theorem}
+    
+    \subsection{Teoremi di Gershgorin e applicazioni}
+
+    Sia $A\in \CC^{n \times n}$. Allora si definisce l'$i$-esimo \textbf{cerchio di
+    Gershgorin} come l'insieme $K_i \subset \CC$ tale per cui:
+    \[
+        K_i=\left\{z\in\CC:\abs{z-a_{ii}} \leq r_i\right\},
+    \]
+    dove
+    \[
+        r_i = \sum_{j=1, \, j\neq i}^n\abs{a_{ij}}
+    \]
+    è detto $i$-esimo \textbf{raggio di Gershgorin}. In particolare
+    $K_i$ è un cerchio in $\CC \cong \RR^2$ di centro $a_{ii}$ e raggio
+    $r_i$.
+
+    \subsubsection{Primo teorema di Gershgorin}
+
+    \begin{theorem}[Gershgorin I]
+    Data $A\in \CC^{n \times n}$, gli autovalori di $A$ appartengono all'insieme
+    $\bigcup_{i=1}^n K_i$, ossia per ogni autovalore $\lambda$ di $A$ esiste
+    un $i$ tale per cui $\lambda$ appartiene all'$i$-esimo cerchio $K_i$ di
+    Gershgorin. \smallskip
+
+    Inoltre, se $v$ è un autovettore relativo all'autovalore $\lambda$,
+    $\lambda \in K_h$, dove $h = \argmax  \abs{v_i}$, ovverosia
+    $h$ è l'indice tra gli $i$ per cui $\abs{v_i}$ è massimo. 
+    \end{theorem}
+
+
+    Dal momento che $A^\top$ è simile ad $A$, $A^\top$ e $A$ condividono gli stessi autovalori. Si può dunque rafforzare la tesi del
+    teorema cercando gli autovalori nell'intersezione delle unioni dei cerchi relativi ad $A$ e a $A^\top$, ovverosia, se $H_i$ rappresenta l'$i$-esimo cerchio di Gershgorin di $A^\top$, ogni autovalore di $A$ appartiene a:
+    \[ \left(\bigcup_{i=1}^n K_i\right) \cap \left(\bigcup_{i=1}^n H_i\right). \]
+    Per lo stesso motivo è utile coniugare $A$ per similitudine, specie se si coniuga $A$ utilizzando matrici diagonali, dacché il coniugio per matrice diagonale, oltre a non alterare gli autovalori, lascia invariati i centri dei cerchi e riscalare i raggi. \smallskip
+
+    In particolare, se $D = \diag(d_1, \ldots, d_n)$, allora
+    $DAD\inv = (d_i a_{ij} d_j^{-1})$ e $D\inv A D = (d_i^{-1} a_{ij} d_j)$.
+    Pertanto vale il seguente teorema:
+
+    \begin{theorem}
+        Sia $A \in \CC^{n \times n}$. Allora gli autovalori di $A$ appartengono
+        all'insieme:
+        \[
+            \bigcap_{d \in D} \bigcup_{i=1}^n \left\{ z \in \CC : \abs{z - a_{ii}} \leq \frac{1}{\abs{d_i}} \sum_{j=1, \, j\neq i}^n \abs{a_{ij}} \abs{d_j} \right\},
+        \]
+        dove $D$ è un sottoinsieme non vuoto di $\CC^n$.
+    \end{theorem}
+
+    \subsubsection{Matrici fortemente dominanti diagonali}
+
+    Una matrice $A$ si dice \textbf{fortemente dominante diagonale} se $\abs{a_{ii}}>r_i = \sum_{j=1, \, j\neq i}^n \abs{a_{ij}}$ $\forall i=1$, ..., $n$. Per il primo teorema di
+    Gershgorin, $A$ non può essere singolare ($0$ non appartiene
+    per ipotesi a nessun cerchio). Ogni sottomatrice principale di una
+    matrice fortemente diagonale in senso stretto è allo stesso
+    modo fortemente diagonale. In particolare, se $A$ è fortemente dominante
+    diagonale, allora $a_{ii} \neq 0$. \medskip
+
+    Si possono definire in modo analogo le matrici dominanti diagonali (in senso debole) cambiando $>$ in $\geq$, ma non è detto che tali matrici siano non singolari. Un controesempio
+    è infatti la matrice: \[\begin{pmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{pmatrix}. \]
+
+    \subsubsection{Secondo teorema di Gershgorin}
+
+    \begin{theorem}[Secondo teorema di Gershgorin]
+    Sia $A\in \CC^{n \times n}$ e sia $K=\bigcup_{i=1}^n K_i$ l'unione dei
+    cerchi $K_i$ relativi ad $A$. Sia inoltre
+    \[ K=M_1\cup M_2\;\con M_1\cap M_2=\emptyset, \]
+    dove $M_1$ è costituito da $n_1$ cerchi e $M_2$ è costituito da $n_2$ cerchi. Allora $M_1$ contiene $n_1$ autovalori e
+    $M_2$ ne contiene $n_2$.
+    \end{theorem}
+
+    \begin{note}
+        La dimostrazione di questo teorema sfrutta un argomento di
+        continuità riguarda al segmento $A(t) = D + t(A-D)$ con
+        $t \in [0, 1]$ e $D = \diag(A)$. Un simile argomento di continuità
+        può risultare utile in altri contesti.
+    \end{note}
+
+    Quest'ultimo teorema risulta utile per dimostrare che una matrice
+    $A \in \RR^{n \times n}$ ha un autovalore reale. Se infatti $K_i$ è un cerchio di $A$ disgiunto dagli altri, allora $K_i$ contiene un unico autovalore, che deve essere dunque necessariamente reale (altrimenti, siccome $A$ è reale, vi sarebbe anche il suo coniugato, e quindi vi sarebbero almeno
+    $2$ autovalori, assurdo).
+    
+    \subsubsection{Terzo teorema di Gershgorin}
+
+    \begin{theorem}[Terzo teorema di Gershgorin]
+    Sia $\lambda$ un autovalore di $A$. Si ipotizzi che val le seguenti
+    condizioni
+
+    \begin{enumerate}[(1.)]
+        \item $A$ è irriducibile,
+        \item $\lambda \in K_i \implies \lambda \in \partial K_i$ (dove $\partial K_i$ è la frontiera di $K_i$).
+    \end{enumerate}
+
+    Allora $\lambda \in \bigcap \partial K_i$.
+    \end{theorem}
+
+    \subsubsection{Matrici irriducibilmente dominanti diagonali (i.d.d.)}
+
+    Una matrice $A\in \CC^{n \times n}$ si dice \textbf{irriducibilmente dominante diagonale} se \begin{enumerate}[(i)]
+        \item $A$ è irriducibile,
+        \item $A$ è dominante diagonale \underline{in senso debole},
+        \item $\exists h$ t.c.~$\abs{a_{hh}}>r_h = \sum_{j=1, \, j\neq h}^n{a_{hj}}$ (ossia con $0 \notin K_h$).
+    \end{enumerate}
+    Per il terzo teorema di Gershgorin le matrici i.d.d.~sono non singolari.
+    Inoltre, se $A$ è i.d.d., allora $a_{ii} \neq 0$ per ogni $i$.
+    %\\Sia $p(x)=x^n+\sum_{i=0}^{n-1}a_ix^i$ un polinomio a coefficienti in $\CC$. Sia $C$ la matrice compagna di $p(x)$ allora trovare gli zeri di $p(x)$ corrispondono agli autovalori di $C$. (si mostra per induzione che $\det(xI-C)=p(x)$). Si possono dunque localizzare gli zeri di un polinomio tramite i teoremi di Gershgorin. Se $a_0\neq0$ si può utilizzare lo stesso risultato a $q(x)=(1/a_0)x^np(x\inv)$ che fornisce inclusioni per i reciproci degli zeri. \\Un'altra localizzazione degli zeri consiste nel costruire la matrice $A=D-ue^t$ dove $D=diag(x_1,\dots,x_n),e^t=(1,\dots,1)\E u=(u_i)\;\con u_i=p(x_i)/\prod_{j=1,j\neq i}(x_i-x_j)$. Il teorema di Gershgorin applicato ad A fornisce delle stime dell'errore con cui i valori $x_i$ approssimano gli zeri. 
+
+    \subsection{Forma normale di Schur}
+
+    \begin{theorem}
+        Data $A\in \CC^{n \times n}$, esiste una matrice $U\in \CC^{n \times n}$ unitaria, ovverosia tale per cui $U^HU=UU^H=I_n$, tale che: \[ U^HAU=T\in T_+(n,\CC), \]
+        ovverosia con $U^H A U$ triangolare superiore.
+        Si dice in tal caso che $T$ è una \textbf{forma normale di Schur}
+        di $A$.
+    \end{theorem}
+
+    Generalmente esistono più forme normali di Schur per una matrice,
+    e possono essere ottenute riordinando gli autovalori e/o le
+    basi scelte.
+
+    \subsubsection{Teorema spettrale}
+
+    \begin{theorem}[spettrale]
+        Se $A$ è hermitiana, allora una sua forma normale di Schur è
+        sempre una matrice diagonale con elementi reali, ovverosia
+        $A$ è ortogonalmente diagonalizzabile con autovalori reali.
+
+        Se invece $A$ è anti-hermitiana ($A^H = -A$), allora una sua
+        forma normale di Schur è una matrice diagonale con elementi
+        immaginari puri, ovverosia $A$ è ortogonalmente diagonalizzabile
+        con autovalori immaginari puri.
+    \end{theorem}
+
+    \subsubsection{Caratterizzazione delle matrici normali}
+
+    \begin{definition}
+        Una matrice $A \in \CC^{n \times n}$ si dice \textbf{normale}
+        se $A A^H = A^H A$.
+    \end{definition}
+        
+    Si enuncia una caratterizzazione delle matrici triangolari
+    normali:
+
+    \begin{proposition}
+        Una matrice triangolare $T$ è normale se e solo se è
+        diagonale.
+    \end{proposition}
+
+    Dalla precedente proposizione si ottiene facilmente la seguente
+    fondamentale altra caratterizzazione:
+
+    \begin{theorem}
+        Una matrice $A \in \CC^{n \times n}$ è normale
+        se e solo se la sua forma normale di Schur è diagonale (i.e.~è
+        ortogonalmente diagonalizzabile).
+    \end{theorem}
+
+    \subsubsection{Autovalori di una matrice unitaria}
+
+    Gli autovalori di una matrice unitaria $A$ hanno modulo $1$.
+    Se infatti $v$ è un autovettore relativo all'autovalore $\lambda$,
+    vale che:
+    \[ A v = \lambda v \implies v^H A^H = \overline\lambda v^H, \]
+    da cui:
+    \[ v^H v = v^H A^H A v = \overline\lambda v^H A v = \overline\lambda \lambda v^H v \implies \abs{\lambda} = 1. \]
+    In particolare, se $A$ è reale, $\lambda \in \{\pm1\}$.
+    
+    \subsubsection{Forma normale di Schur reale}
+
+    \begin{definition}[Matrice quasi-triangolare superiore]
+        Una matrice $T\in \RR^{n \times n}$ si dice \textbf{quasi-triangolare superiore} se si può scrivere nella forma:
+        \[ \begin{pmatrix}
+            T_{11} & \dots & T_{1n} \\
+            & \ddots & \vdots \\
+            & & T_{mm}
+        \end{pmatrix}, \]
+        dove i blocchi matriciali $T_{ii}$ possono essere matrici $2 \times 2$ oppure matrici $1 \times 1$, ossia numeri reali.
+    \end{definition}
+
+    Si definisce analogamente la nozione di matrice quasi-triangolare
+    \textit{inferiore}. \smallskip
+
+    Gli autovalori di una matrice quasi-triangolare $T$ sono gli autovalori delle sottomatrici $T_{ii}$. Il polinomio caratteristico di $T$ è
+    il prodotto dei polinomi dei blocchi $T_{ii}$. Il determinante di $T$
+    è il prodotto dei determinanti dei blocchi $T_{ii}$, la traccia è
+    la somma delle tracce dei blocchi $T_{ii}$. \smallskip
+
+    Usando la nozione di matrice quasi-triangolare si può enunciare
+    un teorema analogo a quello della forma normale di Schur, ma
+    riadattato per le matrici reali:
+
+    \begin{theorem}[Forma normale di Schur reale]
+        Per ogni matrice $A\in \RR^{n \times n}$ esistono $T\in \RR^{n \times n}$ quasi-triangolare superiore e $Q \in O(n)$ tali per cui:
+        \[ Q^tAQ=T. \]
+    \end{theorem}
+
+    \subsection{Norme di vettori}
+    
+    Una \textbf{norma} (vettoriale) su $\CC^n$ è un'applicazione
+    \[ \norm{\cdot}:\CC^n\longrightarrow\RR \]
+    tale per cui:
+    \begin{enumerate}[(1.)]
+        \item $\forall x\in\CC^n$, $\norm{x} \geq 0$ e $\norm{x}=0\iff x=0$ (definitezza positiva).
+        \item $\forall\alpha\in\CC$, $\forall x\in\CC^n$, $\norm{\alpha x}=\abs\alpha\norm{x}$ (omogeneità).
+        \item $\forall x$, $y\in\CC^n$, $\norm{x+y}\le\norm{x}+\norm{y}$ (disuguaglianza triangolare).
+    \end{enumerate}
+
+    Ogni prodotto hermitiano $\langle \cdot, \cdot \rangle$ definito positivo di $\CC^n$ induce una norma ponendo $\norm{v} = \sqrt{\langle v, v \rangle}$. \medskip
+
+    Per $p \in [1, \infty)$ si dice \textbf{norma di Hölder} di ordine $p$ la norma:
+    \[ \norm{x}_p=\left(\sum_{i=1}^n|x_i|^p\right)^{\frac{1}{p}}. \]
+    Alcuni esempi noti di norme di Hölder sono:
+    \begin{itemize}
+        \item $\norm{x}_1=\sum_{i=1}^n \abs{x_i}$, la norma $1$,
+        \item $\norm{x}_2=\left(\sum_{i=1}^nx_i^2\right)^{\frac{1}{2}} = \sqrt{x^H x}$, detta anche \textit{norma euclidea}, indotta dal prodotto hermitiano standard di $\CC^n$,
+        \item $\norm{x}_{\infty}:=\lim_{p \to \infty} \norm{x}_p = \max_{i}\abs{x_i}$.
+    \end{itemize}
+
+    Per una norma l'insieme $S = \{x\in\CC^n \mid \norm{x}\le1\}$ è un insieme convesso. Da ciò si deduce che per $0<p<1$ l'espressione (generalizzata) $\norm{x}_p$ non è una norma. \smallskip
+
+
+    Data una norma $\norm{\cdot}$ su $\CC^n$ e data $S\in \CC^{n \times n}$ non singolare, allora esiste la norma (indotta da) $S$, definita in
+    modo tale che:
+    \[ \norm{\cdot}_S:x\mapsto\norm{Sx}. \]
+
+    Inoltre vale la seguente caratterizzazione:
+    \begin{proposition}
+         Una norma $\norm{\cdot}$ è indotta da un prodotto scalare se e solo se vale la \textit{legge del parallelogramma},
+        ossia se e solo se:
+        \[ \norm{x+y}^2+\norm{x-y}^2=2(\norm{x}^2+\norm{y}^2) \]
+    \end{proposition}
+
+    A partire da questo risultato, si deduce che le norme $1$ e $\infty$ non sono indotte da nessun prodotto scalare. \medskip
+
+    Ogni norma è una \textbf{funzione uniformemente continua}, cioè vale che, $\forall \varepsilon > 0$, esiste $\delta > 0$ tale per cui:
+    \[ \forall x,y\in\CC^n, \norm{x-y}_2 < \delta \implies \abs{\norm{x}-\norm{y}} < \varepsilon, \]
+    espressione che segue dal fatto che una norma è Lipschitziana (deriva dalla \textit{disuguaglianza triangolare}).
+    Equivalentemente vale che per ogni $\eps > 0$ esiste $\delta > 0$ tale
+    per cui:
+    \[ \forall x,y\in\CC^n, \abs{x_i-y_i} < \delta \implies \abs{\norm{x}-\norm{y}} \leq \varepsilon. \]
+    A partire da questo risultato si può dimostrare il seguente fondamentale
+    teorema:
+
+    \begin{theorem}[Equivalenza tra norme]
+        Per ogni coppia di norme $\norm{\cdot}'$ e $\norm{\cdot}''$ su $\CC^n$, esistono due costanti positive $\alpha$ e $\beta$ (dipendenti da $n$) tali per cui:
+        \[ \alpha\norm{x}'\le\norm{x}''\le\beta\norm{x}' \quad \forall x\in\CC^n. \]
+        In altre parole, le norme su $\CC^n$ sono bi-lipschitziane tra loro.
+    \end{theorem}
+
+    Infatti $S = \{ x \in \CC^n \mid \norm{x}_2 = 1 \}$ è un compatto euclideo (essendo chiuso e limitato, per il teorema di Heine-Borel),
+    e $\norm{\cdot}$ è continua sulla topologia euclidea. Pertanto tutte le norme di $\CC^n$ inducono la stessa topologia,
+    ossia quella indotta da $\norm{\cdot}_2$, e quindi coincidono tutti
+    gli aperti e i chiusi. \smallskip
+
+    In particolare per le norme $1$, $2$ e $\infty$ vale che:
+    \begin{itemize}
+        \item $\norm{x}_\infty \leq \norm{x}_1 \leq n \norm{x}_\infty$,
+        \item $\norm{x}_2 \leq \norm{x}_1 \leq \sqrt{n} \norm{x}_2$,
+        \item $\norm{x}_\infty \leq \norm{x}_2 \leq \sqrt{n} \norm{x}_\infty$.
+    \end{itemize}
+
+    Se $U$ è una matrice unitaria, allora $U$ agisce lasciando invariata
+    la norma $2$, ovverosia $\norm{Ux}_2 = \norm{x}_2$.
+    
+    \subsection{Norme di matrici}
+    
+    Una \textbf{norma matriciale} è un'applicazione \[ \norm{\cdot}:\CC^{n \times n}\to\RR \]
+    per la quale valgono le seguenti quattro proprietà:
+    \begin{enumerate}[(1.)]
+        \item $\forall A\in \CC^{n \times n}$, $\norm{A}\ge0$ e $\norm{A}=0\iff A=0$ (definitezza positiva),
+        \item $\forall \lambda\in\CC$, $\forall A\in \CC^{n \times n}$, $\norm{\lambda A}=\abs\lambda\norm{A}$ (omogeneità),
+        \item $\norm{A+B}\le\norm{A}+\norm{B}$ $\forall A$,$B\in \CC^{n \times n}$ (disuguauglianza triangolare),
+        \item $\norm{AB}\le\norm{A}\norm{B}$ $\forall A$, $B\in \CC^{n \times n}$ (proprietà submoltiplicativa).
+    \end{enumerate}
+
+    \subsubsection{Norma di Frobenius}
+    
+    Si definisce la \textbf{norma di Frobenius} l'applicazione che
+    agisce su $A \in \CC^{n \times n}$ in modo tale che:
+    \[ \norm{A}_F=\left(\sum_{i=1}^n\sum_{j=1}^n\abs{a_{ij}}^2\right)^{\frac{1}{2}}=\sqrt{\tr(A^HA)}. \]
+    In particolare la norma di Frobenius è esattamente la norma euclidea
+    dello spazio $\CC^{n \times n}$ immerso in $\CC^{n^2}$
+    a cui è naturalmente isomorfo associando ad $A$ il vettore
+    $(A_i^\top)_i$ ottenuto trasponendo le righe e sovrapponendole
+    ordinatamente.
+
+    \subsubsection{Norme matriciali indotte}
+
+    \begin{note}
+        Si ricorda che, data una norma $\norm{\cdot}$, l'insieme $S=\{x\in\CC^n \tc \norm{x}=1\}$ è chiuso e limitato (in tutte le topologie indotte da norme, essendo
+        equivalenti). Allora, per il teorema di Heine-Borel, $S$ è
+        compatto, e dunque una funzione continua $f : S \to \RR$ ammette massimo
+        per il teorema di Weierstrass.
+    \end{note}
+
+    \begin{note}
+        Una mappa lineare da $\CC^n$ in sé è continua. Dunque è possibile applicare
+        il teorema di Weierstrass alla funzione
+        $\norm{ \cdot } \circ f_A$ ristretta su $S$, dove $f_A$ è l'app.~indotta da una matrice $A$.
+    \end{note}
+
+    \begin{definition}
+        Data una norma vettoriale $\norm{\cdot}:\CC^n\to\RR$, si definisce la \textbf{norma matriciale indotta} (o la corrispondente \textit{norma operatore}), come la norma che agisce su $A \in \CC^{n \times n}$ in modo
+        tale che:
+        \[ \norm{A}:=\max_{\norm{x}=1} \norm{Ax}=\max_{x \in S} \norm{Ax}=\max_{x \in \CC^n \setminuszero} \frac{\norm{Ax}}{\norm{x}}. \]    
+    \end{definition}
+    
+    Per ogni norma operatore valgono le due seguenti aggiuntive
+    proprietà, \textit{oltre quelle caratterizzanti una norma}:
+    \begin{enumerate}[(1.)]
+        \item $\norm{Ax}\le\norm{A}\norm{x}$, $\forall A\in \CC^{n \times n}$, $\forall x\in \CC^n$,
+        \item $\norm{I}=1$.
+    \end{enumerate}
+
+    Poiché $\norm{I}_F = \sqrt{n}$, la norma di Frobenius non è in generale indotta
+    da alcuna norma vettoriale. \smallskip    
+
+    Per le norme $1$, $2$, $\infty$ valgono le seguenti identità: \begin{itemize}
+        \item $\displaystyle \norm{A}_1=\max_{j=1,\dots,n}\sum_{i=1}^n \abs{a_{ij}} = \max_{j=1,\ldots,n} \norm{A^j}_1$,
+        \item $\displaystyle \norm{A}_\infty=\max_{i=1,\dots,n}\sum_{j=1}^n \abs{a_{ij}} = \max_{i=1,\ldots,n} \norm{A_i}_1$,
+        \item $\norm{A}_2=\sqrt{\rho(A^HA)}$, dove $\rho(A^H A)$ è l'autovalore di valore assoluto maggiore di $A^H A$ (\textit{raggio spettrale}).
+    \end{itemize}
+    Si osserva immediatamente che la norma matriciale $2$ è computazionalmente più difficile
+    da calcolare rispetto alle norme $1$ e $\infty$. Inoltre, se $A$ è simmetrica, le norme $1$ e $\infty$ coincidono. \smallskip
+
+    Poiché $\norm{A}_F = \sqrt{\tr(A^H A)}$ è la radice della somma degli autovalori di $A^H A$, vale in particolare che $\norm{A}_F \geq \norm{A}_2$. Si osserva che $A^H A$ è semidefinita positiva, e dunque i suoi autovalori sono non negativi. \smallskip
+    
+    Se $U$ è unitaria e $B = UA$, vale che:
+    \[ B^H B = (UA)^H UA = A^H U^H U A = A^H A, \]
+    e quindi $B$ e $A$ condividono la stessa norma di Frobenius e
+    la stessa norma $2$. Analogamente si vede che $AU$ e $A$ condividono
+    le stesse due norme. Equivalentemente, la moltiplicazione per matrice unitaria (sia a destra che a sinistra) lascia invariata sia la norma $2$ che quella di Frobenius. In particolare, se $U$ e $V$ sono
+    unitarie, $\norm{UAV}_2 = \norm{A}_2$ e $\norm{UAV}_F = \norm{A}_F$. \smallskip
+
+    Se $A$ è normale, allora gli autovalori di $A^H A$ sono i moduli
+    quadrati degli autovalori di $A$. Pertanto, per $A$ normale,
+    $\norm{A}_2 = \max_{\lambda \in \sp(A)} \abs{\lambda} = \rho(A)$
+    e $\norm{A}_F = \sqrt{\sum_{\lambda \in \sp(A)} \abs{\lambda}^2}$.
+    Si è usato che la forma normale di Schur di $A$ è diagonale e che le
+    trasformazioni unitarie non variano né $\norm{A}_2$ né
+    $\norm{A}_F$. \smallskip
+
+    Valgono inoltre le seguenti altre due disuguaglianze:
+    \begin{itemize}
+        \item $\norm{A}_F \leq \sqrt{r} \norm{A}_2 \leq \sqrt{n} \norm{A}_2$, dove $r = \rg(A)$,
+        \item $\norm{A}_2^2 \leq \norm{A}_1 \cdot \norm{A}_\infty$.
+    \end{itemize}
+
+    \subsubsection{Norma indotta da una matrice non singolare \texorpdfstring{$S$}{S}}
+
+    Sia $\norm{\cdot}$ una norma vettoriale e $S\in \CC^{n \times n}$ una matrice non singolare. Allora, data la
+    norma vettoriale $\norm{x}_S := \norm{Sx}$, vale che:
+    \[ \norm{A}_S=\max_{\norm{x}_S=1}\norm{Ax}_S=\max_{\norm{x}_S=1}\norm{SAx}=
+    \max_{\norm{Sx}=1}{\norm{SAS\inv Sx}}, \]
+    e quindi, sfruttando che $S$ è non singolare:
+    \[ \norm{A}_S=\max_{\norm{y}=1}{\norm{SAS\inv y}}, \]
+    ossia vale che:
+    \[ \norm{A}_S = \norm{SAS\inv}. \]
+
+    \subsubsection{Norme e raggi spettrali}
+
+    \begin{definition}
+        Data $A\in \CC^{n \times n}$, si definisce \textbf{raggio spettrale} $\rho(A)$
+        il modulo dell'autovalore massimo di $A$, ossia:
+        \[ \rho(A)=\max\{\abs\lambda \mid \lambda\text{ autovalore di } A\}. \]
+    \end{definition}
+
+    Se $x$ è un autovettore relativo a $\rho(A)$ di modulo unitario
+    rispetto a una norma $\norm{\cdot}$, allora vale che:
+    \[ \norm{Ax} = \norm{\rho(A) x} = \rho(A) \norm{x} = \rho(A), \]
+    e dunque $\rho(A) \leq \norm{A}$ per ogni $A$. In particolare
+    $\norm{A} \geq \abs{\lambda}$ per ogni autovalore $\lambda$. \smallskip
+
+
+    Si enunciano inoltre i seguenti teoremi:
+
+    \begin{theorem}
+        Sia $A \in \CC^{n \times n}$. Allora per ogni $\varepsilon > 0$ esiste
+        una norma indotta $\norm{\cdot}$ tale per cui:
+        \[ \rho(A) \leq \norm{A} \leq \rho(A) + \varepsilon. \]
+        Inoltre, se gli autovalori di modulo massimo di $A$ appartengono solo
+        a blocchi di Jordan di taglia $1$, allora esiste una norma
+        per cui $\norm{A} = \rho(A)$.
+    \end{theorem}
+
+    \begin{theorem}
+        Sia $\norm{\cdot}$ una norma matriciale. Allora vale la seguente identità:
+        \[ \lim_{k\to+\infty}\norm{A^k}^{\frac{1}{k}}=\rho(A). \]
+    \end{theorem}
+    
+    Se $A\in \CC^{n \times n}$ è tale per cui $\norm{A}<1$ dove $\norm{\cdot}$ è una norma matriciale indotta, allora $1$ non
+    può essere autovalore di $A$, e dunque $I-A$ è invertibile. Inoltre
+    vale che:\[ \norm{(I-A)\inv}\le\frac{1}{1-\norm{A}}. \]
+
+    
+
+    
+    \subsection{Condizionamento di un sistema lineare e numero di condizionamento}
+    
+    Data $A\in \CC^{n \times n}$ non singolare e dato un vettore $b\in\CC^n\setminuszero$ si vuole studiare il condizionamento del problema $Ax=b$, ossia di un sistema lineare. \medskip
+
+    
+    Consideriamo il problema $(A+\delta_A)y=b+\delta_b$, dove perturbiamo il sistema originale mediante dei parametri $\delta_A$ e
+    $\delta_B$ di cui conosciamo i rapporti $\frac{\norm{\delta_b}}{\norm{b}}$ e $\frac{\norm{\delta_A}}{\norm{A}}$, cercando di ottenere informazioni riguardo
+    $\frac{\norm{\delta_x}}{\norm{x}}$, sostituendo $y=x+\delta_x$. \medskip
+
+    \begin{definition}
+        Si dice \textbf{numero di condizionamento} $\mu(A)$ di $A$ nella norma $\norm{\cdot}$ il valore:
+        \[ \mu(A)=\norm{A}\norm{A\inv}. \]
+        Si scrive $\mu_p(A)$ per intendere $\norm{A}_p \norm{A\inv}_p$.
+    \end{definition}
+    
+    Studiamo in particolare la perturbazione di $Ax=b$ nel caso in cui $\delta_A=0$.
+
+    \begin{proposition}
+        Se $\delta_A = 0$, allora vale la seguente disuguaglianza:
+        \[ \frac{\norm{\delta_x}}{\norm{x}}\le\norm{A}\norm{A\inv}\frac{\norm{\delta_b}}{\norm{b}} = \mu(A) \frac{\norm{\delta_b}}{\norm{b}}. \]
+        In generale, per $\delta_A \neq 0$ e
+        $A + \delta_A$ invertibile, vale che:
+        \[ \varepsilon_x\le\frac{\norm{A}\norm{A\inv}}{1-\varepsilon_A\norm{A}\norm{A\inv}}(\varepsilon_A+\varepsilon_B), \]
+        dove $\eps_t = \norm{\delta_t}/\norm{t}$.
+    \end{proposition}
+    
+    Pertanto il sistema è \textbf{ben condizionato} se $\mu(A)$ è
+    relativamente piccolo. \smallskip
+
+    Per il numero di condizionamento valgono le seguenti proprietà:
+
+    \begin{itemize}
+        \item $\mu(A) \geq \norm{I}$ per la \textit{proprietà submoltiplicativa},
+        \item $\mu(A) \geq 1$ per $\norm{\cdot}$ norma operatore ($\norm{I} = 1$),
+        \item $\mu_2(U)=1$ per $U$ unitaria.
+    \end{itemize}
+
+    Per $A$ normale vale la seguente identità:
+        \[\mu_2(A) = \frac{\max_{\lambda \in \sp(A)} \abs{\lambda}}{\min_{\lambda \in \sp(A)} \abs{\lambda}}. \]
+    Inoltre vale la seguente disuguaglianza:
+    \[
+        \mu_2(A) \leq \mu(A),
+    \]
+    dove $\mu(A)$ è riferito a qualsiasi altra norma operatore.
+
+    \section{Metodi diretti per sistemi lineari}
+
+    Ci si propone di risolvere il sistema $Ax=b$ scrivendo $A$ come prodotto di matrici ``consone'' e facilmente invertibili.  Se
+    infatti $A=PQ$, allora il sistema $PQx=b$ può essere risolto
+    come:
+    \[
+        \begin{cases}
+            Py=b \\
+            Qx=y
+        \end{cases}
+    \]
+
+    risolvendo dunque prima $Py=b$ e poi $Qx=y$.
+
+    \subsection{Risoluzione di \texorpdfstring{$Ax=b$}{Ax=b} per \texorpdfstring{$A$}{A} triangolare o unitaria}
+
+    Sono presentati di seguito tre tipi di matrice per le quali
+    l'invertibilità è garantita e per cui il sistema $Ax=b$ è facilmente
+    risolvibile. \smallskip
+
+    Se $A$ è \textbf{triangolare inferiore} con $a_{ii}\neq0$ $\forall i$, allora, per risolvere $Ax=b$, è possibile applicare il \textit{metodo di sostituzione in avanti} ponendo: \[ x_1=\frac{b_1}{a_1}, \quad x_i=\frac{1}{a_{ii}}\left(b_i-\sum_{j=1}^{i-1}a_{ij}x_j\right)\;\,\con i\geq 2. \]
+
+    Se $A$ è \textbf{triangolare superiore} con $a_{ii}\neq0$ $\forall i$, allora, per risolvere $Ax=b$, è possibile applicare il \textit{metodo di sostituzione all'indietro} ponendo: \[ x_n=\frac{b_n}{a_n}, \quad x_i=\frac{1}{a_{ii}}\left(b_i-\sum_{j=i+1}^n a_{ij} x_j\right)\;\,\con i < n.\]
+    
+    I due algoritmi presentati hanno un costo computazionale di $n^2$ flops e sono entrambi numericamente stabili all'indietro. \smallskip
+    
+    Se $A$ è \textbf{unitaria}, $Ax=b \implies x=A^Hb$, e dunque
+    si verifica che:
+    \[ x_j=\sum_{i=1}^n \overline{a_{ij}} b_i. \]
+    Questo algoritmo richiede un costo computazionale di $2n^2-n$ flops ed
+    è ancora numericamente stabile all'indietro.
+
+    \subsection{Fattorizzazione classiche di matrici}
+
+    In letteratura esistono $4$ fattorizzazioni classiche:
+    \begin{enumerate}
+        \item $A=LU$ con $L$ triangolare inferiore con tutti $1$ sulla diagonale e $U$ triangolare superiore (possibile solo per alcune classi di matrici);
+        \item $A=PLU$ con $L$, $U$ come sopra e $P$ matrice di permutazione (sempre possibile);
+        \item $A=P_1LUP_2$ con $L$, $U$ come sopra e $P_1$, $P_2$ matrici di permutazione (sempre possibile);
+        \item $A=QR$ con $Q$ unitaria e $R$ triangolare superiore (sempre possibile).
+    \end{enumerate}
+
+    \subsubsection{Condizioni per l'esistenza e l'unicità di una fattorizzazione LU}
+
+    \begin{definition}
+        Si dicono \textbf{sottomatrici principali di testa} le sottomatrici di $A$ di cui prendiamo le prime $k$ righe e colonne. Quando si utilizza
+        l'aggettivo \textit{proprie}, si esclude $A$ stessa.
+    \end{definition}
+
+    Vale la seguente condizione sufficiente per l'esistenza e
+    l'unicità di una
+    fattorizzazione LU:
+
+    \begin{proposition}
+        Se tutte le sottomatrici principali di testa proprie sono non singolari allora esiste ed è unica la fattorizzazione $LU$ di $A$.
+    \end{proposition}
+
+    Se non sono verificate le ipotesi può comunque esistere una fattorizzazione $LU$. Per esempio:
+    \[ \begin{pmatrix}
+        0 & 1 \\
+        0 & 2
+    \end{pmatrix}=\begin{pmatrix}
+        1 & 0 \\
+        1 & 1
+    \end{pmatrix}\begin{pmatrix}
+        0 & 1 \\
+        0 & 1
+    \end{pmatrix}. \]
+
+    Se $A$ è invertibile, allora la non singolarità delle sottomatrici
+    principali di testa diventa una condizione necessaria oltre che
+    sufficiente per l'esistenza e l'unicità della fattorizzazione LU. \smallskip
+
+    Le seguenti classi di matrici ammettono sempre un'unica fattorizzazione
+    LU:
+    \begin{itemize}
+        \item Matrici fortemente dominanti diagonali, le cui sottomatrici
+        principali di testa sono fortemente dominanti diagonali e dunque
+        invertibili,
+        \item Matrici hermitiane definite positive (criterio di Sylvester),
+        \item Matrici hermitiane definite positive su $\Span(e_1, \ldots, e_{n-1})$ e semidefinite positive su $\CC^n$ (metodo di Jacobi, criterio di Sylvester).
+    \end{itemize}
+
+    \subsection{Matrici elementari}
+
+    Dati $\sigma\in\CC$, $u$, $v\in\CC^n$ si dice \textbf{matrice elementare} una matrice $M$ del tipo:
+    \[M=I-\sigma uv^H.\]
+    Si osserva che $uv^H$ è della seguente forma:
+    \[ uv^H = (u_i \overline{v_j})_{ij}. \]
+    Inoltre $\rg(uv^H) \leq \rg(u) \leq 1$. Se
+    $u$ o $v$ sono nulli $uv^H$ è necessariamente
+    nullo. \underline{Non} si deve confondere $uv^H$ con
+    $u^H v$, che invece è il prodotto hermitiano
+    complesso computato su $u$ e $v$. \medskip
+
+
+    Un vettore $x$ è autovettore di $M$ se:
+    \begin{itemize}
+        \item $x=u \implies Mu=(1-\sigma(v^Hu))u$, e
+        dunque $u$ è relativo all'autovalore $1-\sigma(v^Hx)$;
+        \item $x$ t.c.~$v^Hx=0$ ($x$ è ortogonale a $v$) $\implies Mx=x$, il cui relativo autovalore è $1$.
+    \end{itemize}
+
+    Supponiamo che $\sigma(v^H u)$ sia diverso da $0$.
+    La traccia di $M$ è:
+    \[ \tr(M)=\tr(I)-\sigma \cdot \tr(uv^H))=(n-1) + (1-\sigma v^Hu). \]
+    Dal momento che $v^\perp$ ha dimensione $n-1$ -- il
+    prodotto hermitiano è positivo definito --, allora $\mu_{g}(1) \geq n-1$. \smallskip
+
+    Osservando allora che $\tr(M)$ è la somma degli autovalori di
+    $M$ e che $\mu_{g}(1-\sigma(v^H u)) \geq 1$, si conclude
+    che gli unici autovalori di $M$ sono proprio $1$, con molteplicità
+    algebrica e geometrica $n-1$, e $1-\sigma(v^H u)$, con
+    molteplicità $1$. In particolare $M$ è sempre diagonalizzabile e
+    vale la seguente proposizione:
+
+    \begin{proposition}
+        Se $\sigma(v^H u) \neq 0$,
+        gli unici autovettori di $M$ sono i vettori ortogonali a
+        $v$, che sono punti fissi, e i multipli di $u$.
+    \end{proposition}
+    
+    $M$ è non singolare se e solo se $0$ non è autovalore, ossia se
+    e solo se:
+    \[ 1-\sigma(v^H u) \neq 0 \iff \sigma(v^H u) \neq 1. \]
+    
+    Se $M$ è non singolare, allora vale che:
+    \[ M\inv=I-\tau uv^H\;\con \tau=\frac{-\sigma}{1-\sigma v^Hu}, \]
+    e dunque anche $M\inv$ è una matrice elementare.
+
+    \begin{proposition}
+        Per ogni $x$ e $y \in \CC^n\setminuszero$ esiste $M$ matrice elementare con $\det M \neq0$ tale che $Mx=y$.
+        In particolare è sufficiente scegliere $v$ non ortogonale
+        sia a $x$ che a $y$ e porre $\sigma u=\frac{x-y}{v^Hx}$.
+    \end{proposition}
+
+    \subsubsection{Matrici elementari di Gauss e applicazione alla fattorizzazione LU}
+
+    \begin{definition}
+        Dato $x\in\CC^n$ con $x_1\neq0$ si definisce la relativa \textbf{matrice elementare di Gauss} come la matrice elementare:
+        \[ M=I-ue_1^T, \quad u^T=\frac{1}{x_1}(0, x_2, \ldots, x_n). \]    
+    \end{definition}
+    
+    Vale sempre $Mx=x_1 \, e_1$. Inoltre
+    una matrice elementare di Gauss è sempre invertibile, e
+    $M^{-1}=I+ue_1^T$. Vale sempre $\det(M) = 1$. Una matrice elementare di Gauss corrisponde a uno step di annichilimento
+    degli elementi sotto il \textit{pivot}
+    dell'algoritmo di Gauss. \smallskip
+    
+    In particolare:
+    \[ M=\begin{pmatrix}
+        1 & 0 & \dots & 0 \\
+        -u_2 & 1 & 0 \\
+        \vdots & 0 &\ddots \\
+        -u_n & 0 & \dots & 1
+    \end{pmatrix}\E M\inv=\begin{pmatrix}
+        1 & 0 & \dots & 0 \\
+        u_2 & 1 & 0 \\
+        \vdots & 0 &\ddots \\
+        u_n & 0 & \dots & 1
+    \end{pmatrix}. \]
+
+    \begin{algorithm}[Fattorizzazione LU con le matrici di Gauss]
+        Sia $A\in \CC^{n \times n}$ che soddisfa l'esistenza e unicità della fattorizzazione $LU$. Se $M_1$ è la matrice elementare di Gauss associata alla prima colonna di $A$, allora:
+        \[ M_1A=\begin{pmatrix}
+            a_{11} & \dots & a_{1n} \\
+            0  \\
+            \vdots & {A_1} \\
+            0
+        \end{pmatrix}. \]
+        Se $A_1=(a_{ij}^{(1)})_{i,j>1}$, allora $a_{ij}^{(1)}=a_{ij}-\frac{a_{i1}}{a_{11}} a_{1j}$. Se $\hat{M}_2$ è la matrice elementare di Gauss che annulla la prima colonna di $A_1$, si definisce $M_2$ in modo tale che:
+        \[ M_2=\begin{pmatrix}
+            1 & 0 \\
+            0 & \hat{M}_2
+        \end{pmatrix}. \]
+        Iterando questo procedimento si ottiene il seguente prodotto:
+        \[ M_{n-1}\dots M_1 A=U, \quad M_1\inv\dots M_{n-1}\inv=L, \]
+        dove $L$ è triangolare inferiore con $1$ sulla diagonale
+        e $U$ è triangolare superiore. \smallskip
+
+        In particolare vale che $\diag(U)=(a_{11},a_{22}^{(1)},\dots,a_{nn}^{(n-1)})$ e la $j$-esima colonna di $L=(\ell_{ij})$ è la $j$-esima colonna di $M_j$ cambiata di segno. Sono espresse di seguite le relazioni
+        di ricorrenza:
+        \[ \begin{cases}
+            a_{ij}^{(k+1)}=a_{ij}^{(k)}+m_{ij}^{(k)}a_{jk}^{(k)} & i,j=k+1,\dots,n \\
+            m_{ik}^{(k)}=-\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}} & i=k+1,\dots,n \\
+            \ell_{ij} = -m_{ij}^{(j)} & i \geq j
+        \end{cases} \]
+
+        Nel caso della risoluzione di un sistema lineare $Ax=b$, l'algoritmo
+        può essere esteso aggiornando $b$ ad ogni step; in particolare
+        $b^{(k+1)} = M_k b^{(k)}$ dove $M_k$ è la $k$-esima matrice di Gauss. In tal caso vale che:
+        \[
+            b_i^{(k+1)} = b_i^{(k)} + m_{ik}^{(k)} b_k^{(k)}, \quad i = k+1, \ldots, n.
+        \]
+
+        Il costo totale dell'algoritmo è di $\frac{2}{3}n^3+O(n^2)$ operazioni aritmetiche. Se $A$ è anche tridiagonale il costo è $O(n)$.
+    \end{algorithm}
+
+    Riguardo al precedente algoritmo vale la seguente proposizione:
+
+    \begin{proposition}
+        Sia $A \in \CC^{n \times n}$ una matrice con sottomatrici principali proprie di testa non singolari per cui esiste ed è unica la fattorizzazione $A = LU$. Se $\tilde{L}$ e $\tilde{U}$ i valori effettivamente calcolati di $L$ e $U$ tramite il precedente algoritmo in aritmetica di macchina e sia $\Delta_A=A-\tilde{L}\tilde{U}$. Allora vale
+        elemento per elemento di $\Delta_A$ la seguente disuguaglianza:
+        \[ \abs{\Delta_A}\le 2nu\left(\abs{A}+|\Tilde{L}|\,|\Tilde{U}|\right)+O(u^2), \]
+        dove $|T| := (|t_{ij}|)$. \smallskip
+
+        Se $\tilde{y}$ è la soluzione del sistema $\tilde{L}y=b$
+        calcolato realmente in aritmetica di macchina mediante
+        l'algoritmo di sostituzione in avanti e $\tx$ è il
+        vettore effettivamente calcolato risolvendo $\tilde{U}x = \tilde{y}$ mediante sostituzione all'indietro, allora
+        vale che:
+        \[ (A + \hat{\Delta}_A) \tx = b, \]
+        con
+        \[
+            |\hat{\Delta}_A| \leq 4nu\left(\abs{A}+|\Tilde{L}|\,|\Tilde{U}|\right)+O(u^2), \]
+        dove $|T| := (|t_{ij}|)$.
+    \end{proposition}
+
+    In particolare questa proposizione mostra che i valori $\tilde{L}$
+    e $\tilde{U}$ formano una decomposizione $LU$ di una perturbazione
+    di $A$, e dunque è possibile effettuare un'analisi all'indietro
+    dell'algoritmo di Gauss. Se i valori in modulo di $A$ sono troppo
+    grandi, ci si
+    può aspettare un mal funzionamento in senso numerico del metodo
+    di eliminazione gaussiana (anche per il calcolo della soluzione $\tx$).
+
+    \subsubsection{Strategia di \textit{pivoting} parziale per la decomposizione PLU}
+
+    Permutando i pivot è sempre possibile fornire una fattorizzazione
+    del tipo $PLU$. La \textbf{strategia del \textit{pivoting parziale}} (\textit{massimo pivot parziale}) consiste
+    nel scegliere al passo $k$ come pivot il termine $a^{(k)}_{hk}$ con $h\ge k$ tale che $|a_{hk}^{(k)}|\ge|a_{ik}^{(k)}|$ per $i=k,\dots,n$. In questo modo se $a^{(k)}_{hk}=0$, allora tutta la parte di colonna
+    è nulla e si può procedere allo step successivo dell'algoritmo; altrimenti si può scambiare la riga $h$-esima con la riga $k$-esima e
+    applicare poi l'algoritmo di Gauss. \smallskip
+    
+    In questo modo si sta moltiplicando per una matrice di permutazione $P$ relativa alla trasposizione $\tau=(h, k)$. Nel caso in
+    cui $a^{(k)}_{hk}\neq 0$ vale allora che:
+    \[ A_{k+1}=M_k(P_kA_k). \]
+    In particolare vale sempre $m_{ij}^{k} \leq 1$ per $i\geq j$. \smallskip
+
+    Si osserva inoltre che:
+    \[
+        M_k P_k = P_k \tilde{M_k},
+    \]
+    dove, se $M_k = I - u e_q^T$, allora
+    $\tilde{M_k} = I - P_k u e_q^T$ (infatti $\tilde{M_k} = P_k^T M_k P_k$).
+    Applicando questa strategia ad ogni passo si ottiene allora una fattorizzazione $PA=LU$ dove $P$ è un'opportuna matrice di permutazione, e dunque si ottiene una fattorizzazione $PLU$.
+
+    \subsubsection{Matrici elementari di Householder e applicazioni alla fattorizzazione QR}
+
+    \begin{definition}
+        Si definiscono \textbf{matrici elementari di Householder} le
+        matrici elementari della forma:
+        \[ M=I-\beta uu^H, \]
+        con $u\in\CC^n$ e $\beta\in\RR$.
+    \end{definition}
+
+    Se $u \neq 0$ e $\beta = 0$ o $\beta = 2/(u^Hu) = 2/\langle u, u \rangle$, allora una matrice di Householder è unitaria. Inoltre
+    una matrice di Householder è sempre hermitiana.
+
+    \begin{proposition}
+        Per ogni $x\in\CC^n\setminuszero$ esiste $M$ matrice elementare di Householder tale per cui $Mx=\alpha e_1$ per un dato $\alpha = \theta \norm{x}_2$, dove:
+        \[ \theta=\begin{cases}
+            \pm 1 & \text{se } x_1=0, \\
+            \pm \frac{x_1}{|x_1|} & \text{se } x_1\neq0.
+        \end{cases}\]
+        Tale matrice $M$ si ottiene ponendo $u^t=x-\alpha e_1 = (x_1-\alpha,x_2,\dots,x_n)$ e $\beta=\frac{2}{u^Hu}$.
+    \end{proposition}
+    
+    
+    Per evitare le cancellazioni nell'implementazione del calcolo di una matrice di Householder, e dunque
+    migliorare la stabilità numerica, è consigliato scegliere sempre $\theta=-\frac{x_1}{\abs{x_1}}$ per $x_1 \neq 0$ (nel caso
+    in cui $x_1 = 0$, la scelta è indiffernete). \medskip
+
+    \begin{algorithm}
+        Applicando la stessa filosofia dell'algoritmo di Gauss si possono
+        utilizzare le matrici di Householder per calcolare la fattorizzazione
+        $QR$ di una matrice $A$. Sia $u^{(k)}$ il vettore relativo alla $k$-esima matrice di Householder. Allora vale che:
+        \[
+            u_i^{(k)} = \begin{cases}
+                0 & \se i < k, \\
+                a_{kk}^{(k)}\left(1 + \frac{\sqrt{\sum_{i=k}^n \abs{a_{ik}^{(k)}}^2}}{\abs{a_{kk}^{(k)}}}\right) & \se i = k, \\
+                a_{ik}^{(k)} & \altrimenti.
+            \end{cases}
+        \]
+        mentre il parametro $\beta^{(k)}$ della stessa matrice è così
+        dato:
+        \[
+            \beta^{(k)} = 2\bigg/\sum_{i=k}^n \abs{u_i^{(k)}}^2
+        \]
+        A partire da questi, si ottengono i termini di $A_{k+1}$:
+        \[
+            a_{i, j}^{(k+1)} = \begin{cases}
+                a_{ij}^{(k)} & \se j < k, \se i \leq k, \\
+                0 & \se j = k, \E i > k, \\
+                a_{ij}^{(k)} - \beta^{(k)} u_i^{(k)} \sum_{r=k}^n \overline{u}_r^{(k)} a_{rj}^{(k)} & \se i \geq k, j > k.
+            \end{cases}
+        \]
+    
+        Nel caso della risoluzione di un sistema lineare $Ax=b$, l'algoritmo
+        può essere esteso aggiornando $b$ ad ogni step; in particolare
+        $b^{(k+1)} = M_k b^{(k)}$ dove $M_k$ è la $k$-esima matrice di Householder. In tal caso vale che:
+        \[
+            b_i^{(k+1)} = b_i^{(k)} - \beta^{(k)} u_i^{(k)} \sum_{r=k}^n \overline{u}_r^{(k)} b_r^{(k)}, \quad i=k, \ldots, n.
+        \]
+
+        Il costo totale è di $\frac{4}{3}n^3 + O(n^2)$ operazioni, il
+        \textit{doppio} di quello dell'algoritmo gaussiano.
+    \end{algorithm}
+
+    Riguardo a quest'ultimo algoritmo vale la seguente proposizione:
+
+    \begin{proposition}
+        Sia $A \in \CC^{n \times n}$ e sia $\tilde{R}$ la matrice triangolare
+        superiore ottenuta in aritmetica di macchina applicando il metodo di Householder con l'algoritmo
+        dato in precedenza. Sia inoltre $\tx$ la soluzione ottenuta risolvendo
+        in aritmetica di macchina il sistema $Ax=b$ con il metodo di Householder,
+        aggiornando le entrate di $b$. Allora $\tx$ risolve il sistema
+        $(A + \Delta_A) \tx = b + \delta_b$, dove:
+        \[
+            \norm{\Delta_A}_F \leq u(\gamma n^2 \norm{A}_F + n \norm{\tilde{R}}_F) + O(u^2),
+        \]
+        \[
+            \norm{\delta_b}_2 \leq \gamma n^2 u \norm{b}_2 + O(u^2),
+        \]
+        dove $\gamma$ è una costante positiva. Inoltre $\norm{\tilde{R}}_F$
+        differisce da $\norm{\tilde{R}}_F = \norm{\tilde{A}}_F$ ($A = QR$) per un termine proporzionale a $u$, e dunque:
+        \[
+            \norm{\Delta_A}_F \leq \gamma u(n^2 + n) \norm{A}_F + O(u^2).
+        \]
+    \end{proposition}
+
+    In particolare, il metodo di Householder è numericamente stabile.
+    
+    \section{Metodi stazionari iterativi per sistemi lineari}
+
+    \begin{definition}
+        Dato il sistema lineare $Ax=b$ con $A\in \CC^{n \times n}$ si definisce
+        un generico \textbf{partizionamento additivo di $A$} una
+        partizione della forma $A=M-N$ con $\det M\neq0$.        
+    \end{definition}
+    
+    A partire da ciò possiamo riscrivere equivalentemente il sistema come $Mx=Nx+b$, il quale riconduce alla seguente scrittura equivalente del sistema originale:
+    \[ x=Px+q, \quad P=M\inv N, \, q=M\inv b. \]
+    Questa formulazione del sistema viene detta \textbf{problema di punto fisso}.
+    Una volta fissato $x^{(0)}\in\CC^n$ si può generare in modo naturale una successione di vettori:
+    \[ x^{(k+1)}=Px^{(k)}+q. \]
+    Se tale successione ammette limite $x^*$, allora il punto limite $x^*$ è un punto fisso di $Px+q$, ed è dunque l'unica soluzione di $Ax=b$. Questo metodo è detto \textbf{metodo iterativo stazionario}. La matrice $P$ ed il vettore $q$ sono indipendenti da $k$, e quindi la matrice $P$ viene detta \textbf{matrice di iterazione} del metodo. \medskip
+
+    Si dice che il metodo iterativo è \textbf{convergente} se per ogni scelta del vettore $x^{(0)}$ la successione $x^{(k)}$ converge alla soluzione $x^*$ del sistema. \smallskip
+
+    Se $A$ è invertibile, definiamo la successione $e^{(k)}=x^{(k)}-x^*$ dove $x^*$ è soluzione del sistema. Allora
+    $e^{(k+1)} = Px^{(k)} + Q - (Px^* + Q) = P e^{(k)}$. A partire da
+    questa osservazione si dimostra il seguente teorema:
+
+    \begin{theorem}
+        Se esiste una norma di matrice indotta $\norm{\cdot}$ tale che $\norm{P}<1$, allora la matrice $A$ è invertibile. In tal caso
+        il metodo iterativo è convergente ($\lim_{k \to \infty} \norm{e^{(k)}} \leq \lim_{k \to \infty} \norm{P}^k \norm{e^{(0)}} = 0$).
+    \end{theorem}
+
+    \begin{theorem}
+        Il metodo iterativo è convergente e $\det A \neq 0$ se e solo se $\rho(P)<1$.
+    \end{theorem}
+
+      Il quoziente $\norm{e^{(k)}}/\norm{e^{(k-1)}}$ rappresenta la riduzione dell'errore al passo $k$-esimo del metodo iterativo rispetto alla norma scelta. Se si considera la media geometrica $\theta_k\left(e^{(0)}\right)$ delle prime $k$ riduzioni, si ricava che: 
+    \[ \theta_k\left(e^{(0)}\right)=\left(\frac{\norm{e^{(1)}}}{\norm{e^{(0)}}}\dots\frac{\norm{e^{(k)}}}{\norm{e^{(k-1)}}}\right)^{\frac{1}{k}}=\left(\frac{\norm{P^ke^{(0)}}}{\norm{e^{(0)}}}\right)^{\frac{1}{k}}\le\norm{P^k}^{\frac{1}{k}}. \]
+
+    \begin{definition}
+        Si definisce \textbf{riduzione asintotica media per passo} di un metodo iterativo con errore iniziale $e^{(0)}$ il valore:
+         \[ \theta(e^{(0)})=\lim_{k \to \infty}\theta_k(e^{(0)}). \]
+        Tale riduzione rappresenta la velocità di convergenza del metodo:
+        più è piccolo il valore, più veloce è il metodo.
+    \end{definition}
+
+    In particolare vale che:
+    \[
+        \theta(e^{(0)}) \leq \lim_{k \to \infty}\norm{P^k}^{\frac{1}{k}}=\rho(P).
+    \]
+    
+    L'uguaglianza è raggiunta per $e^{(0)}$ pari ad un autovettore
+    relativo al raggio spettrale di $P$. Se $P$ è nilpotente, allora il metodo
+    converge in un numero finito di passi. \medskip
+
+    
+    Un esempio di metodo iterativo è dato dal \textbf{metodo di Richardson}, che
+    pone $P = I - \alpha A$, $q = M\inv b = \alpha A$. In particolare tale
+    metodo genera la successione $x^{(k+1)}=x^{(k)}-\alpha(Ax^{(k)}-b)$,
+    dove $\alpha \neq 0$ è un opportuno parametro e $Ax_n - b$ è detto
+    \textit{errore residuo}. \smallskip
+    
+    Poiché il metodo converge se $\rho(P) < 1$,
+    l'idea naturale è quella di scegliere $\alpha$ in modo tale che $\rho(P)$ sia
+    minimo, ricordandosi che $\lambda$ è autovalore di $P$ se e solo se
+    $\alpha (\lambda + 1)$ è autovalore di $A$. Infatti: \[ \det(\lambda I- P) = \det(\lambda I + I - \alpha A) = \frac{1}{\alpha^n} \det(\alpha(\lambda + 1)I - A).\] Se la matrice è hermitiana e definita positiva, allora $\alpha=1/\norm{A}$, dove
+    $\norm{\cdot}$ è una norma indotta, garantisce la convergenza del metodo.
+
+    \subsubsection{I metodi di Jacobi e Gauss-Seidel}
+
+    Sia $A$ tale per cui $a_{ii} \neq 0$. Si può allora decomporre $A$ nel seguente modo:
+    \[ A=D-B-C, \]
+    dove:
+    \begin{itemize}
+        \item $D$ è diagonale con $d_{ii}=a_{ii}\neq 0$ ($D = \diag(A)$, $D$ invertibile);
+        \item $B$ è strettamente triangolare inferiore con $b_{ij}=-a_{ij}$ con $i>j$ ($B = -\tril(A)$);
+        \item $C$ è strettamente triangolare superiore con $c_{ij}=-a_{ij}$ con $i<j$ ($C = -\triu(A)$).
+    \end{itemize}
+    Il metodo iterativo ottenuto con il partizionamento additivo $M=D$ e $N=B+C$ è detto \textbf{metodo di Jacobi}, mentre
+    ponendo $M=D-B$ e $N=C$ si applica il \textbf{metodo di Gauss-Seidel}. \smallskip
+    
+    Le matrici di iterazione $P=M\inv N$ dei due metodi illustrati sono rispettivamente:
+    \[ J=D\inv(B+C), \quad G=(D-B)\inv C. \]
+
+    \begin{theorem}
+        Se vale una delle seguenti condizioni allora $\rho(J)$ e $\rho(G)<1$ (e quindi $A$ è invertibile e il metodo iterativo è convergente):
+        \begin{enumerate}
+            \item $A$ è fortemente dominante diagonale;
+            \item $A^T$ è fortemente dominante diagonale;
+            \item $A$ è irriducibilmente dominante diagonale (i.d.d.);
+            \item $A^T$ è irriducibilmente dominante diagonale (i.d.d.).
+        \end{enumerate}
+    \end{theorem}
+    
+    L'iterazione del metodo di Jacobi si scrive come:
+    \[x^{(k+1)}=D\inv((B+C)x^{(k)}+b),\]
+    che diventa:
+    \[x_i^{(k+1)}=\frac{1}{a_{ii}}\left(b_i-\sum_{j=1, \,j\neq i}^na_{ij}x_j^{(k)}\right),\]
+    richiedendo $O(n^2)$ flops. \smallskip
+
+    L'iterazione del metodo di Gauss-Seidel si scrive invece come
+    \[ x^{(k+1)}=(D-B)\inv(Cx^{(k)}+b),\] \[ x^{(k+1)}=D\inv(Bx^{(k+1)}+Cx^{(k)}+b), \]
+    che diventa:
+    \[ x_i^{(k+1)}=\frac{1}{a_{ii}}\left(b_i-\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\sum_{j=i+1}^na_{ij}x_j^{(k)}\right), \]
+    richiedendo sempre $O(n^2)$ flops. \smallskip
+
+    Il metodo di Jacobi esegue le operazioni su $x^{(k)}$ mentre quello di Gauss-Siedel usa anche le componenti già aggiornate di $x^{(k+1)}$. In generale dunque, il metodo di Gauss-Siedel ha migliori proprietà di convergenza, anche se non è sempre così.
+
+
+    \begin{theorem}[di Stein-Rosenberg]
+        Se $a_{ii}\neq0$ $\forall i$ e $J$ ha elementi non negativi allora vale una sola delle seguenti proprietà:
+        
+        \begin{itemize}
+                \item $\rho(J)=\rho(G)=0$;
+                \item $0<\rho(G)<\rho(J)<1$;
+                \item $\rho(J)=\rho(G)=1$;
+                \item $1<\rho(J)<\rho(G)$.
+        \end{itemize}
+    \end{theorem}
+
+    \begin{theorem}
+        Se $A$ è una matrice tridiagonale con elementi diagonali non nulli, allora per ogni autovalore $\lambda$ di $J$ esiste un autovalore $\mu$ di $G$ tale che $\mu=\lambda^2$. 
+        Per ogni autovalore non nullo di $G$ esiste un autovalore $\lambda$ di $J$ tale che $\mu=\lambda^2$. In particolare $\rho(G)=\rho(J)^2$.
+    \end{theorem}
+
+    \subsubsection{Metodi a blocchi}
+
+    Se $A\in M_{nm}(\CC)$ è partizionata in $n^2$ blocchi $m\times n$ $A=(A_{ij})$ possiamo considerare una decomposizione additiva $A=D-B-C$ dove $D$ matrice diagonale a blocchi con blocchi diagonali uguali a $A_{ii}$, $B$ la matrice triangolare inferiore a blocchi tale che $B_{ij}=-A_{ij}\;\con i>j\E C$ la matrice triangolare superiore a blocchi tale che $C_{ij}=-A_{ij}\;\con i<j$. \medskip
+
+    
+    In questo modo se i blocchi diagonali $A_{ii}$ sono non singolari possiamo considerare i metodi iterativi con $M=D$ e $N=B+C$, e con $M=D-B$ e $N=C$. Il primo è detto \textbf{metodo di Jacobi a blocchi}, mentre il secondo è detto \textbf{metodo di Gauss-Siedel a blocchi}.
+
+
+    \begin{theorem}
+        Sia $A=(A_{ij})$ una matrice tridiagonale a blocchi, cioè tale che $A_{ij}=0\;\se|i-j|\ge2$ con blocchi diagonali $A_{ii}$ non singolari. Siano $J_B$ e $G_B$ le matrici di iterazione dei metodi di Jacobi a blocchi e di Gauss-Siedel a blocchi. \nl Allora per ogni autovalore $\lambda$ di $J_B$ esiste un autovalore $\mu$ di $G_B$ tale che $\mu=\lambda^2$. Per ogni autovalore non nullo $\mu$ di $G_B$ esiste un autovalore $\lambda$ di $J_B$ tale che $\mu=\lambda^2$. In particolare vale che $\rho(G_B)=\rho(J_B)^2$.
+    \end{theorem}
+
+    \section{Calcolo di zeri di funzioni continue su \texorpdfstring{$\RR$}{ℝ}}
+    
+    Sia $f: [a,b] \to \RR$ continua tale per cui $f(a)f(b)<0$ (i.e.~$f(a)$ ed $f(b)$ sono discordi). Allora, per il teorema degli zeri (o di Bolzano), esiste un punto $\alpha\in[a,b]$ tale
+    per cui $f(\alpha)=0$, ossia esiste uno zero in $(a, b)$. Lo scopo di questa
+    sezione è illustrare i metodi
+    che permettono di generare una successione $\{x_k\}$ che converga ad un
+    tale $\alpha$.
+
+    \subsection{Metodo di bisezione (o \textit{dicotomico})}
+
+    Uno dei metodi più semplici, e il più costruttivo per la dimostrazione
+    del teorema degli zeri, è il metodo di \textbf{bisezione} (o \textit{dicotomico}). Innanzitutto
+    si presuppone $f(b) > 0$ (e dunque $f(a) < 0$);
+    altrimenti è sufficiente applicare l'algoritmo al contrario
+    a $-f(x)$. \smallskip
+
+    Al passo $(k+1)$-esimo si considera
+    $c_k = (a_k + b_k)/2$, dove
+    $a_0 = a$ e $b_0 = b$. Se $f(c_k) = 0$,
+    l'algoritmo termina; altrimenti,
+    se $f(c_k) > 0$, $b_{k+1} = c_k$ e
+    $a_{k+1} = a_k$, e se $f(c_k) < 0$,
+    $b_{k+1} = b_k$ e $a_{k+1} = c_k$. \smallskip
+
+    Dal momento che gli intervalli $I_k = [a_k, b_k]$
+    hanno lunghezza $(b-a)/2^k$, per $k \to \infty$
+    la successione $x_k$ ha limite $\alpha$, che è tale
+    per cui $f(\alpha) = 0$. Inoltre l'intervallo si dimezza
+    a ogni step, e dunque il metodo converge esponenzialmente
+    (non per questo è veloce, anzi: come vedremo, ci sono
+    metodi estremamenti più veloci che convergono in modo
+    \textit{doppiamente esponenziale}).
+
+    \subsection{Metodi del punto fisso}
+    
+    I metodi del punto fisso si ottengono trasformando il problema $f(x)=0$ in un problema del tipo $g(x)=x$. Questa trasformazione si può ottenere in infiniti modi diversi. Ad esempio, data una qualsiasi funzione $h(x)$ (diversa da zero nei punti del
+    dominio di $f(x)$), si può porre: 
+    \[ g(x)=x-\frac{f(x)}{h(x)}, \]
+    i cui punti fissi sono gli zeri di $f(x)$. \smallskip
+
+    Se $g(x)$ è continua, la successione
+    $x_{k+1} = g(x_k)$, con $x_0 \in \RR$,
+    se convergente, converge ad un punto fisso
+    di $g(x)$ (e dunque ad uno zero di $f(x)$).
+    Questo metodo è detto \textbf{metodo del punto fisso} (o \textit{di iterazione funzionale}) associato a $g(x)$.
+
+    \begin{theorem}[del punto fisso]
+        Sia $\mathcal{I}=[\alpha-\rho,\alpha+\rho]$ e $g(x)\in C^1(\mathcal{I})$ dove $\alpha=g(\alpha)$ e $\rho>0$. Si denoti con $\lambda=\max_{x \in \mathcal{I}}\lvert g'(x) \rvert$.
+        Se $\lambda<1$ allora per ogni $x_0\in\mathcal{I}$, posto $x_{k+1}=g(x_k)$, vale che:
+        \[ \lvert x_k-\alpha \rvert \le\lambda^k\rho. \]
+        Pertanto $x_k\in\mathcal{I}$ e $\lim_k x_k=\alpha$. Inoltre $\alpha$ è l'unico punto fisso di $g(x)$ in $\mathcal{I}$.
+    \end{theorem}
+
+
+    Supponiamo di avere un intervallo $[a,b]$ in cui è presente un punto fisso
+    $\alpha$ e che $\lvert g'(x) \rvert<1$ su tale intervallo. Sotto queste ipotesi siamo certi che almeno con una delle due scelte $x_0=a$ o $x_0=b$ la successione è ben definita e converge al punto fisso $\alpha$. Infatti basta prendere rispettivamente $\rho=\alpha-a$ o $\rho=b-\alpha$ ed applicare il teorema. Se la successione $x_k$ cade fuori dall'intervallo, allora si arrestano le iterazioni e si riparte con $x_0$ uguale all'altro estremo. \smallskip
+    
+    In questo caso la convergenza vale in un intorno opportuno del punto fisso $\alpha$. Denotiamo questo fatto con l'espressione \textbf{convergenza locale}.
+    Si parla di \textbf{convergenza globale} qualora la convergenza vi sia per
+    ogni scelta iniziale. \smallskip
+    
+    Nell'aritmetica a virgola mobile il teorema diventa:
+    \begin{theorem}
+        Nelle ipotesi del teorema del punto fisso sia:
+        \[ \Tilde{x}_{k+1}=g(\Tilde{x}_k)+\delta_k, \]
+        dove $\lvert \delta_k \rvert \le\delta$ è l'errore commesso nel calcolo di $g(\Tilde{x}_k)$ e $\delta$ è una quantità nota. Posto $\sigma=\delta/(1-\lambda),\se\sigma<\rho$ allora: \[ \lvert\Tilde{x}_k-\alpha\rvert \le(\rho-\sigma)\lambda^k+\sigma. \]
+    \end{theorem}
+
+    
+    Questo teorema ci dice che la distanza di $\Tilde{x}_k$ da $\alpha$ è limitata dalla somma di due parti. La prima converge a zero in modo esponenziale su base $\lambda$. La seconda è costante e rappresenta l'intervallo di incertezza sotto il quale non è consentito andare. \smallskip    
+    
+    Per la funzione $g(x)=x-f(x)$ l'intervallo di incertezza è:
+    \[ I=\left[\alpha-\frac{\delta}{\lvert f'(\alpha) \rvert},\alpha+\frac{\delta}{\lvert f'(\alpha) \rvert}\right]. \]
+    Se $g'(x)>0$, allora $I\subseteq [\alpha-\sigma,\alpha+\sigma]$. \smallskip
+
+    Si ricorda che:
+    \[ x_{k+1}-\alpha=g'(\xi_k)(x_k-\alpha), \]
+    dove $\xi_k \in (\alpha, x_k)$ viene dall'applicazione del teorema di Lagrange. Ciò implica che se $0<g'(x)<1$ con $x\in[\alpha-\rho,\alpha+\rho]$ allora $x_{k+1}-\alpha$ ha lo stesso segno di $x_k-\alpha$. Vale
+    quindi che:
+    \[ x_0>\alpha\Rightarrow x_k>\alpha \; \forall k, \quad \alpha<x_{k+1}<x_k, \]
+    cioè la successione è decrescente. Analogamente se $x_0<\alpha$ la successione è crescente. \medskip
+
+    Se invece $-1<g'(x)<0$, la differenza di un punto con $\alpha$ alterna segno,
+    in particolare per $x_0 > \alpha$ la sottosuccessione $\{x_{2k}\}$ cresce mentre $\{x_{2k+1}\}$ decresce (entrambe al punto $\alpha$).
+
+    \subsubsection{Velocità di convergenza}
+
+    \begin{definition}
+        Sia $\{x_k\}$ una successione tale che $\lim_kx_k=\alpha$. Si ponga
+        allora $e_k = x_k - \alpha$ come l'errore assoluto al passo $k$-esimo. Supponiamo esista il limite della riduzione dell'errore al passo $k$-esimo:
+        \[ \gamma=\lim_k \abs{\frac{x_{k+1}-\alpha}{x_k-\alpha}} = \lim_k \abs{\frac{e_{k+1}}{e_k}}. \] 
+        La convergenza di $\{x_k\}$ a $\alpha$ è detta allora:
+        \begin{itemize}
+            \item lineare (o geometrica) se $0<\gamma<1$;
+            \item sublineare se $\gamma=1$;
+            \item superlineare se $\gamma=0$.
+        \end{itemize}
+    \end{definition}
+
+    Nel caso di convergenza superlineare, se $p>1$ ed esiste il limite:
+    \[ \lim_k \abs{\frac{x_{k+1}-\alpha}{(x_k-\alpha)^p}} =\sigma, \quad 0<\sigma<\infty \] si dice che la successione \textbf{converge con ordine $p$}.
+
+    \begin{remark}
+        L'ordine di convergenza non è obbligatoriamente intero.
+    \end{remark}
+
+    \begin{theorem}
+        Sia $g(x)\in C^1([a,b])$ e $\alpha\in(a,b)$ t.c.~$g(\alpha)=\alpha$. Se esiste un $x_0\in[a,b]$ tale che la successione $x_{k+1}=g(x_k)$ converge linearmente ad $\alpha$ con fattore $\gamma$ allora:
+        \[ \lvert g'(\alpha)\rvert=\gamma. \]
+        Viceversa, se $0<\lvert g'(\alpha)\rvert<1$ allora esiste un intorno $I$ di $\alpha$ contenuto in $[a,b]$ tale che per ogni $x_0\in I$ la successione $\{x_k\}$ converge ad $\alpha$ in modo lineare con fattore $\gamma=\lvert g'(\alpha) \rvert$.
+    \end{theorem}
+
+    \begin{theorem}
+        Sia $g(x)\in C^1([a,b])$ e $\alpha\in (a,b)$ t.c.~$g(\alpha)=\alpha$. Se esiste un $x_0\in[a,b]$ tale che la successione $x_{k+1}=g(x_k)$ converge sublinearmente ad $\alpha$ allora:
+        \[ \abs{g'(\alpha)}=1. \] Viceversa, se $\abs{g'(\alpha)}=1$ esiste un intorno $I$ di $\alpha$ contenuto in $[a,b]$ tale che per ogni $x\in I$, $x\neq\alpha$ vale $\abs{g'(x)}<1$ e $g'(x)$ non cambia segno su $I$ allora tutte le successioni $\{x_k\}$ con $x_0\in I$ convergono ad $\alpha$ in modo sublineare.
+    \end{theorem}
+
+    \begin{theorem}
+        Sia $g(x)\in C^p([a,b])$ con $p>1$ intero e $\alpha\in(a,b)$ t.c.~$g(\alpha)=\alpha$. Se esiste un $x_0\in[a,b]$ tale che la successione $x_{k+1}=g(x_k)$ converge superlinearmente ad $\alpha$ con ordine di convergenza $p$ allora:
+        \[ \abs{g^{(k)}(\alpha)}=0 \;\;\;\, 1 \leq k \leq p-1, \quad g^{(p)}(\alpha)\neq0. \] Viceversa se $\abs{g^{(k)}(\alpha)}=0$ per $k=1,\dots,p-1\E g^{(p)}(\alpha)\neq0$ allora esiste un intorno $I$ di $\alpha$ tale che per ogni $x_0\in I$ tutte le successioni $\{x_k\}$ convergono ad $\alpha$ in modo superlineare con ordine $p$.
+    \end{theorem}
+
+    \begin{definition}
+        La successione $\{x_k\}$ converge ad $\alpha$ \textbf{con ordine almeno $p$} se esiste una costante $\beta$ tale che \[ \abs{x_{k+1}-\alpha}\le\beta \, \abs{x_k-\alpha}^p. \]
+    \end{definition}
+
+    Se una successione converge con ordine $q\ge p$ allora converge anche con ordine almeno $p$. \smallskip
+
+    Se una successione $x_k$ converge ad $\alpha$ in modo che l'errore relativo $\eps_k$ al passo $k$-esimo è limitato nel seguente modo:
+    \[ \varepsilon_k=\abs{x_k-\alpha/\alpha}\le\beta\gamma^{p^k}\]
+    allora il numero di cifre significative ($1+\log_2(\varepsilon_k\inv)$) è tale che
+    \[ 1+\log_2 \, \varepsilon_k\inv \ge1+\log_2 \, \beta\inv+p^k\log_2 \,\gamma\inv. \]
+
+    \subsubsection{Confronto tra metodi}
+
+    Siano dati due metodi iterativi del punto fisso definiti da due funzioni $g_1(x)$ e $g_2(x)$. Si supponga che siano entrambi siano o a convergenza lineare o a convergenza superlineare. Denotiamo con $c_1$, $c_2$ il numero di flops per passo dei due metodi. Se siamo nel caso di convergenza lineare, detti $\gamma_1$, $\gamma_2$ i due fattori di convergenza allora il primo metodo risulta più conveniente se \[ \frac{c_1}{c_2}<\frac{\log{\gamma_1}}{\log{\gamma_2}}. \]
+    Nel caso di convergenza superlineare, se $p_1$ e $p_2$ sono i due ordini di convergenza, il primo metodo è più efficiente del secondo se \[\frac{c_1}{c_2}<\frac{\log{p_1}}{\log{p_2}}.\]
+
+    \subsection{Alcuni metodi del punto fisso}
+
+    \subsubsection{Metodo delle secanti}
+
+    Sia $f(x)\in C^1([a,b])\E\alpha\in[a,b]\tc f(\alpha)=0$. Il metodo definito dalla funzione $$g(x)=x-\frac{f(x)}{m}$$ 
+    dove $m$ è un'opportuna costante è detto \textbf{metodo delle costanti}. \smallskip
+
+    Il metodo consiste nel tracciare la retta passante per il punto $(x_k,f(x_k))$ di coefficiente angolare $m$ e considerare come $x_{k+1}$ l'ascissa dell'intersezione di tale retta con l'asse delle ascisse, reiterando. \smallskip
+    
+    Una condizione sufficiente di convergenza è che valga $\abs{1-f'(x)/m}<1$ in un intorno di circolare di $\alpha$. È sufficiente quindi scegliere $m$ in modo che abbia lo stesso segno di $f'(x)$ e $\abs{m}>\frac{1}{2}\abs{f'(x)}$. Se $f'(\alpha)$ fosse nota, la scelta $m=f'(\alpha)$ darebbe una convergenza superlineare.
+
+    \subsubsection{Metodo delle tangenti di Newton}
+
+    La funzione $g(x)$ del \textbf{metodo di Newton} è definita nel modo seguente: \[ g(x)=x-\frac{f(x)}{f'(x)}. \]
+    Per tale metodo vale:
+    \[
+        g'(x)=1-\frac{f'(x)^2 - f''(x)f(x)}{f'(x)^2} = \frac{f''(x) f(x)}{f'(x)^2}.
+    \]
+    Il metodo consiste nel tracciare la retta passante per il punto $(x_k,f(x_k))$ e tangente a esso e considerare come $x_{k+1}$ l'ascissa dell'intersezione di tale retta con l'asse delle ascisse, reiterando.
+
+    \begin{theorem}
+        Sia $f(x)\in C^2([a,b])$ e sia $\alpha\in(a,b)$ t.c.~$f(\alpha)=0$. Se $f'(\alpha)\neq0$, allora esiste un intorno $I=[\alpha-\rho,\alpha+\rho]\subset[a,b]$ tale che per ogni $x_0\in I$ la successione generata dal metodo di Newton converge ad $\alpha$.
+
+        Inoltre se $f''(\alpha)\neq0$ la convergenza è superlineare di ordine $2$, se $f''(\alpha)=0$ la convergenza è di ordine almeno $2$.
+    \end{theorem}
+
+    \begin{theorem}
+        Sia $f(x)\in C^p([a,b])$ con $p>2$ e $\alpha\in(a,b)$ t.c.~$f(\alpha)=0$. Se $f'(\alpha)=\dots=f^{(p-1)}(\alpha)=0$, $f^{(p)}(\alpha)\neq0$ e $f'(x)\neq0$ per $x\neq\alpha$, allora esiste un intorno $I=[\alpha-\rho,\alpha+\rho]\subset[a,b]$ in cui $f'(x)\neq0$ per $x\in I,x\neq\alpha$ e tale che per ogni $x_0\in I$, la successione generata dal metodo di Newton converge ad $\alpha$. Inoltre $\alpha$ è l'unico zero di $f(x)$ in $I$. La convergenza è lineare con fattore di convergenza $\gamma = 1-1/p$.
+    \end{theorem}
+
+    \begin{theorem}
+        Se la funzione $f(x)$ è di classe $C^2$ sull'intervallo $I=[\alpha,\alpha+\rho]$ ed è tale che $f'(x)f''(x)>0$ per $x\in I$ allora per ogni $x_0\in I$ la successione generata dal metodo di Newton applicato ad $f(x)$ converge decrescendo ad $\alpha$ con ordine $2$.
+        Un risultato analogo vale su intervalli del tipo $[\alpha-\rho,\alpha]$, su
+        cui invece la successione cresce.
+    \end{theorem}
+    
+    \begin{example}[Calcolo del reciproco di un numero $a$]
+        Per calcolare $1/a$ si può porre $f(x)=a-1/x$ e poi applicare il metodo di
+        Newton.
+    \end{example}
+
+    \begin{example}[Calcolo della radice $p$-esima di un numero $a$]
+        Per calcolare $\sqrt[p]{a}$ è sufficiente applicare il metodo di Newton
+        con $f(x) = (x^p-a)x^{-q}$, dove $q\geq 0$.
+    \end{example}
+
+    \begin{example}[Metodo di Aberth]
+        Se si hanno delle approssimazione $t_1$, ..., $t_n$ di zeri
+        di $p(x)$, si può applicare il metodo di Newton su
+        $f(x) = p(x) \big/ \prod_{i=1}^n (x-t_i)$, in modo tale
+        che $f(t_i)$ sia sempre più grande, diminuendo gli errori e migliorando
+        le approssimazioni.
+    \end{example}
+
+    \section{Interpolazione di funzioni}
+    Siano $\varphi_0(x)$, ..., $\varphi_n(x) : [a,b] \to \RR$ funzioni
+    linearmente indipendenti. Siano $(x_i,y_i)$ $n+1$ valori assegnati (\textit{nodi}) tali che $x_i\in[a,b]$ e $x_i\neq x_j$ se $i\neq j$. \smallskip
+    
+    Il problema dell'interpolazione consiste nel determinare i coefficienti
+    $a_i \in \RR$ tali per cui:
+    \[
+        f(x)=\sum_{i=0}^na_i \, \varphi_i(x), \qquad f(x_i)=y_i\;\forall i.
+    \]
+    Tali condizioni sono dette \textbf{condizioni di interpolazione}.
+
+    \subsection{Interpolazione polinomiale}
+
+    L'interpolazione polinomiale ricerca il polinomio $p$ di grado $n+2$ che
+    soddisfi le condizioni di interpolazione di $n+1$ nodi. Sia pertanto $\varphi_i(x)=x^i$. Siano $(x_i, y_i)$ per $i = 0$, ..., $n+1$ i nodi
+    dell'interpolazione.
+
+    \subsubsection{Interpolazione monomiale}
+
+    \begin{definition}
+        Si dice \textbf{matrice di Vandermonde} nei nodi $x_0$, ..., $x_n$ la matrice di taglia $n+2$:
+        \[
+            V_n=\begin{pmatrix}
+            1 & x_0 & \dots & x_0^n \\
+            1 & x_1 & \dots & x_1^n \\
+            \vdots & \vdots & &\vdots \\
+            1 & x_n & \dots & x_n^n
+        \end{pmatrix}
+        \]
+    \end{definition}
+
+    \begin{theorem}
+        Vale $\det V_n=\prod_{j<i}(x_i-x_j)$.
+    \end{theorem}
+
+    Se $a=(a_i)$ è il vettore dei coefficienti di $p(x)$ e $y=(y_i)$ è il vettore
+    delle immagini nei nodi, il problema dell'interpolazione polinomiale si
+    riduce a risolvere il sistema lineare $V_n a = y$. \smallskip
+
+    Il problema ha dunque un costo computazionale di $\frac{2}{3} (n+2)^3$ (ossia
+    quello di risoluzione di un sistema lineare), ma risulta essere
+    numericamente instabile.
+
+    \subsubsection{Interpolazione di Lagrange}
+
+    \begin{definition}[polinomio di Lagrange]
+        Si definisce l'$i$-esimo polinomio di Lagrange $L_i(x)$ come:
+        \[
+            L_i(x) = \frac{\prod_{j=0,j\neq i}^n(x-x_j)}{\prod_{j=0,j\neq i}^n(x_i-x_j)}.
+        \]
+        Questo polinomio è tale per cui $L_i(x_i) = 1$ e $L_i(x_j) = 0$ per
+        $j \neq i$.
+    \end{definition}
+
+    Considerando dunque come base dell'interpolazione $\phi_i = L_i$,
+    si ottiene che:
+    \[
+        p(x) = \sum_{i=0}^n y_i L_i(x).
+    \]
+    Infatti, dacché $V_n$ è invertibile ($\det V_n \neq 0$), allora
+    esiste un solo polinomio di grado al più $n+2$ che interpola i nodi
+    $(x_i, y_i)$, e $p(x)$ soddisfa le condizioni di interpolazione.
+
+    Inoltre, per $x \neq x_i$, vale la seguente riscrittura:
+    \[
+        p(x) = \left[ \prod_{i=0}^n (x-x_i) \right] \left[ \sum_{i=0}^n \frac{y_i/\theta_i}{x-x_i} \right], \quad \theta_i = \prod_{\substack{j=0 \\ j \neq i}}^n (x_i - x_j).
+    \]
+
+    Tramite questa riscrittura il calcolo del primo valore di $p(x)$ impiega $O(n^2)$ flops, ed il costo della valutazione in un nuovo valore costa solo $O(n)$ flops (dacché $\sigma_i$ è già calcolato).
+
+    \subsection{Resto dell'interpolazione polinomiale}
+
+    Se $f(x)$ è sufficientemente regolare, allora definiamo il \textbf{resto dell'interpolazione} come:
+    \[ r_n(x)=f(x)-p_n(x), \]
+    dove $p_n(x)$ è il polinomio di interpolazione di $f(x)$ relativo ai nodi $x_0<\dots<x_n$.
+
+    \begin{theorem}
+        Sia $f(x)\in C^{n+1}([a,b])$ e sia $p_n(x)$ il polinomio di interpolazione di $f(x)$ relativo ai nodi $a\le x_0<\dots<x_n\le b$.
+        Allora per ogni $x\in[a,b]$ esiste $\xi\in(a,b)$ tale per cui: \[r_n(x)=\left[\prod_{i=0}^n(x-x_i)\right]\frac{f^{(n+1)}(\xi)}{(n+1)!}.\]
+    \end{theorem}
+    
+    \theorem{Sia $f(x)\in C^{n+1}[a,b]\E p(x)$ il polinomio di interpolazione di $f(x)$ relativo ai nodi $a\le x_0<\dots<x_n\le b$. Per ogni $x\in[a,b]$ esiste $\xi\in(a,b)$ tale che $$r_n(x)=\prod_{i=0}^n(x-x_i)\frac{f^{(n+1)}(\xi)}{(n+1)!}$$}
+
+    \begin{remark}
+        Avvicinandosi con tutti i nodi a $x_i$ si ottiene un'espressione simile
+        a quella del resto di Lagrange (ponendo infatti $x_i = x_j$ per ogni $i$, $j$, la formula è proprio quella del resto di Lagrange).
+    \end{remark}
+
+    \subsection{Interpolazione polinomiale nelle radici \texorpdfstring{$n$}{n}-esime dell'unità}
+
+    \begin{definition}
+        Si dice \textbf{radice $n$-esima dell'unità} una radice
+        di $x^n - 1$ su $\CC$. Si dice \textbf{radice primitiva $n$-esima
+        dell'unità} il numero complesso $\omega_n$ tale per cui:
+        \[
+            \omega_n=\cos{\frac{2\pi}{n}}+i\sin{\frac{2\pi}{n}}.
+        \]
+    \end{definition}
+
+    Si verifica facilmente che le radici $n$-esime dell'unità formano
+    un gruppo moltiplicativo generato da $\omega_n$. Le radici dell'unità
+    soddisfano la seguente proposizione:
+
+    \begin{proposition}
+        Vale l'identità:
+        \[ \sum_{i=0}^{n-1}\omega_n^{ki}=\begin{cases}
+            n & \se k\equiv0\!\!\!\pmod{n}, \\
+            0 & \altrimenti\end{cases} \]
+    \end{proposition}
+
+    Scegliamo come nodi dell'interpolazione le radici $n$-esime dell'unità, detti
+    \textit{nodi di Fourier}.
+    Dato il vettore $y=(y_0,\dots,y_{n-1})$, il nostro obiettivo è dunque 
+    trovare i coefficienti $z=(z_0,\dots,z_{n-1})$ del polinomio 
+    $p(t)=\sum_{j=0}^{n-1}z_jt^j$ che soddisfa $p(\omega_n^i)=y_i$ $\forall i$.
+
+    \begin{definition}
+        Si definisce $z = \DFT_n(y) = \DFT(y)$ come la
+        \textbf{trasformata discreta di Fourier}, e
+        $y = \IDFT_n(z) = \IDFT(z)$ come la \textbf{trasformata discreta
+        inversa di Fourier} (l'inverso è ben definito
+        dal momento che le radici $n$-esime sono distinte).
+    \end{definition}
+
+    \begin{definition}
+        Si definisce \textbf{matrice di Fourier} di taglia $n-1$ la
+        matrice di Vandermonde nei nodi di Fourier:
+        \[
+            \Omega_n = (\omega_n^{ij}) = (\omega_n^{ij \bmod{n}}).
+        \]
+        $\Omega_n$ soddisfa la relazione $\DFT(y) = \Omega_n^{-1} y$ e
+        $\IDFT(z) = \Omega_n z$.
+    \end{definition}
+
+    \begin{proposition}
+        Valgono le seguenti proprietà per la matrice di Fourier:
+        \begin{itemize}
+            \item $\Omega_n=\Omega_n^T$;
+            \item $\Omega_n^H\Omega_n=nI$ (pertanto $F_n := \Omega_n/\sqrt{n}$ è unitaria);
+            \item $\Omega_n^2=n \, \Pi_n$, dove $\Pi_n$ è la matrice di permutazione corrispondente alla permutazione $\sigma$ su $\{0, \ldots, n-1\}$ tale per cui $\sigma(0)=0$ e $\sigma(j)=n-j$ per $j > 0$, ovverosia:
+            \[
+                \Pi_n = \begin{pmatrix}
+                    1 & 0 \\
+                    0 & P_{n-1}
+                \end{pmatrix},
+            \]
+            dove $P_{n-1}$ è la matrice identità specchiata orizzontalmente (ossia con soli $1$ sull'antidiagonale), che è tale per cui $P_{n-1}^2 = I$.
+        \end{itemize}
+    \end{proposition}
+
+    Come corollario della precedente proposizione, si ottiene che
+    $\Omega_n^{-1} = \frac{1}{n} \Omega_n^H$ e che
+    $\Omega_n^{-1} = \frac{1}{n} \Pi_n \Omega_n = \frac{1}{n} \Omega_n \Pi_n$.
+
+    Dunque il problema dell'interpolazione si risolve ponendo $z= \Omega_n^{-1} y$ e applicando una delle formule proposte precedentemente.
+
+    \begin{remark}
+        La matrice $F_n=\Omega_n/\sqrt{n}$ è unitaria, e dunque $\norm{F_n}_2=1$. Ciò implica che $\norm{\Omega_n}_2=\sqrt{n}$, dunque il numero di condizionamento di $\Omega_n$ è $1$, ovverosia il problema dell'interpolazione ai nodi di Fourier è ben condizionato.
+    \end{remark}
+
+    \subsection{Calcolo di (I)DFT: \textit{Fast Fourier Transform} (FFT)}
+    
+    Consideriamo il caso del calcolo di $\IDFT(y)$, dove abbiamo i coefficienti $z_0$, ..., $z_{n-1}$ e vogliamo trovare i valori $y_i$ tali per cui
+    $\Omega_n (z_i) = (y_i)$. Il calcolo di $\DFT(z)$ si può poi fare
+    eseguendo $\IDFT(z)$ e applicando le relazioni introdotte nella proposizione precedente, aggiungendo
+    $n$ divisioni e permutando gli indici. \medskip
+
+    Consideriamo il caso in cui $n=2^q$. Allora:
+    \[
+        y_i = \sum_{j=0}^{n-1} \omega_n^{ij} z_j.
+    \]
+    Ricordando che $\omega_n^2 = \omega_{\frac{n}{2}}$, allora, separando
+    gli indici pari da quelli dispari, vale che:
+    \[
+        y_i =\sum_{j=0}^{\frac{n}{2}-1}\omega_{\frac{n}{2}}^{ij}z_{2j}+\omega_n^i \sum_{j=0}^{\frac{n}{2}-1}\omega_{\frac{n}{2}}^{ij}z_{2j+1}.
+    \]
+    Pertanto, detti $Y = \left(y_0,\dots,y_{\frac{n}{2}-1}\right)^\top$, $Y' = \left(y_{\frac{n}{2}},\dots,y_{n-1}\right)^\top$ e $D_n = \diag\left(1,\omega_n,\dots,\omega_n^{\frac{n}{2}-1}\right)$, valgono le seguenti due identità:
+    \[ Y=\IDFT_{\frac{n}{2}}(z_{\text{pari}})+D_n \, \IDFT_{\frac{n}{2}}(z_\text{disp}), \]
+    \[ Y'=\IDFT_{\frac{n}{2}}(z_\text{pari})-D_n \, \IDFT_{\frac{n}{2}}(z_\text{disp}). \]
+
+    In forma matriciale le due identità si scrivono infine come: \[ y=\begin{pmatrix}
+        \Omega_{\frac{n}{2}}z_\text{pari} \\
+        \Omega_{\frac{n}{2}}z_\text{pari}
+    \end{pmatrix}+\begin{pmatrix}
+        D_n\Omega_{\frac{n}{2}}z_\text{disp} \\
+        -D_n\Omega_{\frac{n}{2}}z_\text{disp}
+    \end{pmatrix}. \]
+
+    Poiché $n$ è potenza di $2$ possiamo ripetere questa strategia per calcolare le due trasformate di ordine $\frac{n}{2}$ mediante quattro trasformate di ordine $\frac{n}{4}$, ecc... fino ad avere trasformate di ordine $1$ che non richiedono alcuna operazione. \medskip
+    
+    Il costo $c(n)$ di flops di una IDFT su $n$ nodi con questo metodo è ricorsivamente:
+    \[
+        c(n)=2 \, c\!\left(\frac{n}{2}\right)+\frac{n}{2}+n=2 \, c\!\left(\frac{n}{2}\right)+\frac{3}{2}n,
+    \]
+    dove $n/2$ sono le moltiplicazioni effettuate e $n$ le addizioni. \smallskip
+    
+    Dacché $c(1)=0$ e $n=2^q$ vale che: 
+    \[ c(n)=\frac{3}{2}n\log_2n=3q2^{q-1}. \]
+
+    In generale, l'algoritmo ha dunque complessità $O(n \log_2(n))$.
+    L'algoritmo per il calcolo della IDFT che si ottiene in questo modo è noto come \textbf{algoritmo di Cooley-Tukey}. 
+
+    \subsubsection{Applicazioni della FFT: calcolo del prodotto di polinomi}
+
+    Dati $a(t)$, $b(t)\in\CC[x]$ allora $c(t)=a(t)b(t)$ si può calcolare trovando i coefficienti $c_i=\sum_{j+k=i}a_jb_k$. Se $a(t)$, $b(t)$ hanno grado rispettivamente $p$, $q$, questo algoritmo ha complessità $O((p+q)^2)$. \medskip
+
+
+    Sia $n = 2^q \geq p+q$. Con la FFT posso valutare $a(t)$, $b(t)$ nelle radici $n$-esime dell'unità. Dopo aver moltiplicato i valori ottenuti, si può applicare una DFT, ricavando i coefficienti di $c(t)$. Questo algoritmo utilizza $2$ IDFT, $n$ moltiplicazioni ed una DFT; pertanto ha un costo di $O(n\log_2(n))$ flops.
+
+    \section{Metodi dell'integrazione approssimata}
+
+    In questa sezione si illustrano alcuni metodi per approssimare
+    gli integrali su un intervallo.
+
+    \begin{definition}
+        Data $f : [a, b] \to \RR$ continua e $n+1$ nodi $x_0$, ..., $x_n$ si definiscono le due quantità:
+        \[ S[f]=\int_a^bf(x)\,dx, \quad S_{n+1}[f]=\sum_{i=0}^nw_if(x_i), \]
+        dove i termini $w_i$ sono positivi reali detti \textit{pesi}, possibilmente
+        variabili. Una scelta di pesi corrisponde a una \textbf{formula di integrazione
+        approssimata}.
+    \end{definition}
+
+    \begin{definition}
+        Si dice \textbf{resto} il valore
+        \[ r_{n+1}=S[f]-S_{n+1}[f]. \]
+    \end{definition}
+
+    \begin{definition}
+        Si dice che una formula di integrazione approssimata ha \textbf{grado di precisione} (massimo) $k\ge0$ se vale \[ r_{n+1}=0 \impliedby f(x)=x^{j}, \quad 0 \leq j \leq k \] e se \[ r_{n+1}\neq0 \impliedby f(x)=x^{k+1}. \]
+    \end{definition}
+
+    \subsection{Formule di integrazione dell'interpolazione di Lagrange}
+
+    Si può approssimare un integrale utilizzando l'interpolazione di Lagrange sui nodi, ponendo
+    \[ S_{n+1}[f] = \int_a^b \tilde{f}(x)\,dx = \sum_{i=0}^n \left[ f(x_i) \int_a^b L_i(x)\,dx\right], \]
+    dove $\tilde{f}(x)$ è il polinomio ottenuto applicando l'interpolazione
+    di Lagrange su $f$ dati i nodi $(x_0, f(x_0))$, ..., $(x_n, f(x_n))$ e i pesi sono tali per cui $w_i = \int_a^b L_i(x)\,dx$. \smallskip
+
+    Le formule di integrazione interpolatorie hanno grado di precisione almeno $n$
+    (infatti se $j \leq n$, $x^j$ è il polinomio che interpola i nodi dati) ed hanno grado di precisione massimo $2n+1$. Se una formula di integrazione ha grado di precisione almeno $n$, allora è interpolatoria. \smallskip
+
+    Se $f\in C^{(n+1)}([a,b])$ e $\abs{f^{(n+1)}(x)}\le M$ allora
+    \[ \abs{r_{n+1}}\leq\frac{M}{(n+1)!}\abs{\int_a^b\prod_{j=0}^n(x-x_j) \, dx}. \]
+    
+    \subsection{Formule di Newton-Cotes (semplici)}
+    Scegliendo nodi equispaziati, con $h=\frac{b-a}{n}$, si ottengono le
+    formule di Newton-Cotes. nel caso $n=1$ vale \[ w_0=\int_a^bL_0(x)\,dx=\frac{h}{2}=w_1\Rightarrow S_2[f]=\frac{h}{2}(f(x_0)+f(x_1)), \]
+    ovverosia corrisponde all'area del trapezio con di base $\abs{x_0}$ e
+    $\abs{x_1}$ e con altezza $h$. Il resto $r_2$ corrisponde invece a \[ \int_a^bf(x)\,dx-S_2[f]=-\frac{1}{12}h^3f''(\xi), \quad \xi\in(a,b). \]
+    Nel caso $n=2$ invece \[ w_0=w_2=\frac{h}{3}, \quad w_1=\frac{4}{3}h \] ed il resto è dunque
+    \[ \int_a^bf(x)\,dx-S_3[f]=-\frac{1}{90}h^5f^{(4)}(\xi),\quad \xi\in(a,b) \]
+
+    \subsection{Formule di Newton-Cotes composte (trapezi, Cavalieri-Simpson)}
+    Si può rendere più precisa la formula di integrazione introducendo altri nodi equispaziati $z_0$, ..., $z_N$ e risolvendo \[ \int_a^bf(x)\,dx=\sum_{i=0}^{N-1}\int_{z_i}^{z_{i+1}}f(x)\,dx, \]
+    approssimando ciascuno degli integrali con le formule di Newton-Cotes semplici per $n=1$ o $2$. \smallskip
+
+    Scegliendo sempre $n=1$ si ottiene la \textbf{formula dei trapezi}, per la quale: \[ J_2^{(n)}[f]=\sum_{i=0}^{n-1}S_2^{(i)}[f]=\frac{b-a}{2n}\left[f(z_0)+f(z_n)+2\sum_{i=1}^{n-1}f(z_i)\right] \]
+    Inoltre vale che:
+    \[ S[f]-J_2^{(nN)}[f]=-\frac{(b-a)h^2}{12}f''(\xi). \]
+
+    Scegliendo invece sempre $n=2$ si ottiene la \textbf{formula di Cavalieri-Simpson}, per la quale:
+    \begin{multline*}
+         J_3^{(n)}[f] = \frac{b-a}{6n} \!\left[f(z_0) + f(z_n) + 2 \sum_{k=1}^{n-1} f(z_k) + \right. \\ \left.+ 4 \sum_{k=0}^{n-1} f\!\left(\frac{z_k + z_{k+1}}{2}\right) \right].
+    \end{multline*}
+
+    \section{Risoluzione di problemi di Cauchy con metodi a un passo}
+
+    Sia $I \subseteq \RR$ un intervallo e consideriamo una funzione
+    $f(t, y) : I \times \RR \to \RR$ continua. Dati i parametri
+    iniziali $t_0 \in I$, $y_0 \in \RR$ si associa a questi il seguente
+    \textit{problema di Cauchy}:
+    \[
+        \begin{cases}
+            y'(t) = f(t, y(t)), \\
+            y(t_0) = y_0,
+        \end{cases}
+    \]
+    su cui si ipotizza che l'incognita $y$ è $C^1(I, \RR)$. \smallskip
+
+    Se $f(t, y)$ è Lipschitziana rispetto a $y$, ovverosia esiste
+    $L \in \RR$ t.c.~$\abs{f(t, y_1) - f(t, y_2)} \leq L \abs{y_1 - y_2}$ per
+    ogni $t \in I$, $y_1$, $y_2 \in \RR$, allora esiste ed è unica
+    la soluzione $y$ al problema di Cauchy proposto.
+
+    \begin{notation}[Intervallo destro di $t_0$ e successione per passi]
+        Per intervallo destro di un $t_0 \in \RR$ intendiamo
+        un intervallo della forma $[t_0, t_0 + T]$ con $t > 0$. \smallskip
+
+        Dato $h > 0$, definiamo $t_n := t_0 + nh$ per $n = 0$, ...,
+        $N_h$, dove $N_h$ è il massimo naturale $p$ per cui
+        $ph \leq T$ (ossia il massimo naturale per cui la successione
+        definita sta dentro l'intervallo destro definito).
+    \end{notation}
+
+    \begin{notation}[Approssimazioni]
+        Scriveremo $y_n$ per indicare $y(t_n)$ e $u_n$ per indicare
+        l'approssimazione ricavata di $y(t_n)$, mentre
+        $f_n := f(t_n, u_n)$.
+    \end{notation}
+
+    \begin{definition}[Metodo a un passo]
+        Si dice \textbf{metodo a un passo} un metodo di
+        risoluzione approssimato di un problema di Cauchy
+        che imposti una sequenza della forma:
+        \[
+            \begin{cases}
+                u_{n+1} = u_n + h \phi(t_n, u_n, f_n, h) & 0 \leq n \leq N_h - 1, \\
+                u_0 = y_0.
+            \end{cases}
+        \]
+    \end{definition}
+
+    \begin{definition}
+        Sia $\eps_{n+1} := y_{n+1} - (y_n + h \phi(t_n, y_n, f(t_n, y_n), h))$ la differenza
+        tra il valore esatto $y_{n+1} = y(t_{n+1})$ e quello dato dal
+        metodo applicato al valore esatto $y_{n+1} = y(t_{n+1})$.
+        Si definisce allora \textbf{errore locale di troncamento} al
+        nodo $(n+1)$-esimo il valore:
+        \[
+            \tau_{n+1}(h) = \frac{\eps_{n+1}}{h}.
+        \]
+        Si definisce inoltre l'\textbf{errore globale di troncamento} come
+        massimo del modulo degli errori locali:
+        \[
+            \tau(h) = \max_{n=0,\ldots,N_h - 1} \abs{\tau_{n+1}(h)}.
+        \]
+    \end{definition}
+
+    \begin{definition}[Consistenza del metodo]
+        Si dice che un metodo è consistente di ordine $p$ per il problema se $\tau(h) = o(h)$ ($\lim_{h \to 0} \tau(h) = 0$) e
+        se $\tau(h) = O(h^p)$ per $h \to 0$.
+    \end{definition}
+
+    \begin{definition}[Convergenza del metodo]
+        Posto $e_n = y_n - u_n$, detto \textit{errore globale}, un
+        metodo si dice \textbf{convergente} di ordine $p$ se esiste
+        $C(h) = o(h)$ ($\lim_{h \to 0} C(h) = 0$), $C(h) = O(h^p)$ per
+        $h \to 0$ tale per cui
+        $\abs{y_n - u_n} \leq C(h)$ per ogni $n$ della successione.
+    \end{definition}
+
+    \subsection{Metodo di Eulero}
+
+    Si definisce \textbf{metodo di Eulero} il metodo a un passo
+    che si ottiene imponendo $\phi(t_n, u_n, f_n, h) = f_n$, ovverosia:
+    \[
+        \begin{cases}
+            u_{n+1} = u_n + h f_n & 0 \leq n \leq N_h - 1, \\
+            u_0 = y_0.
+        \end{cases}
+    \]
+    L'idea del metodo di Eulero è quella di approssimare innanzitutto
+    i reali con una successione $t_n$ prendendo $h \ll 1$ (in questo
+    modo $N_h \gg 1$ e si ottiene una sequenza arbitrariamente lunga
+    di reali). In questo modo l'equazione
+    \[
+        y'(t) = f(t, y(t))
+    \]
+    può essere approssimata ponendo l'equazione vera sui $t_n$ con $y'(t) \approx \frac{u_{n+1} - u_n}{h}$ e $f(t, y(t)) \approx f_n$. La
+    seconda equazione $y(t_0) = y_0$ si riconduce invece facilmente
+    a $u_0 = y_0$. \smallskip
+
+    Per ottenere dunque un'approssimazione è dunque necessario
+    risolvere la relazione di ricorrenza tra $u_{n+1}$ e $u_n$,
+    ponendo $u_0 = y_0$, o calcolare direttamente la sequenza.
+
+    Per il metodo di Eulero vale che:
+    \[
+        \eps_{n+1} = y_{n+1} - (y_n + h f(t_n, y_n)). 
+    \]
+    Il metodo di Eulero è sempre consistente di ordine $1$
+    ed è sempre convergente, ancora di ordine $1$.
+
+    \subsubsection{Metodo di Eulero implicito}
+
+    Si definisce \textbf{metodo di Eulero implicito} il metodo 
+    che si ottiene sostituendo a $\phi(t_n, u_n, f_n, h)$ il valore $f_{n+1}$, ovverosia:
+    \[
+        \begin{cases}
+            u_{n+1} = u_n + h f_{n+1} & 0 \leq n \leq N_h - 1, \\
+            u_0 = y_0.
+        \end{cases}
+    \]
+    Tale metodo è consistente di ordine $1$ e convergente, ancora
+    di ordine $1$.
+
+    \begin{example}[Problema test di Dahlquist]
+        Si consideri il seguente problema di Cauchy:
+        \[
+            \begin{cases}
+                y' = \lambda y, \\
+                y(0) = 1,
+            \end{cases}
+        \]
+        con $I = [0, \infty)$. Applicando il metodo di Eulero implicito
+        si deve risolvere il sistema:
+        \[
+            \begin{cases}
+                u_{n+1} = u_n + \lambda u_{n+1},
+                u_0 = 1,
+            \end{cases}
+        \]
+        che ha come soluzione $u_n = \left(\frac{1}{1-h\lambda}\right)^n$.
+    \end{example}
+
+    \vfill
+    \hrule
+    ~\\
+    Opera originale di Mario Zito, modifiche e aggiornamenti
+    a cura di Gabriel Antonio Videtta.
+    ~\\Reperibile su
+    \url{https://notes.hearot.it}.
+  \end{multicols} 
+\end{document}
