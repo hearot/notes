@@ -4,4 +4,165 @@
 
 \begin{multicols*}{2}
 
+    Qualora non specificato, assumeremo l'utilizzo di funzioni di classe $C^\infty$. \smallskip
+
+    Se $\vec{x} \in \RR^3$ e $f$ è una funzione relativa a una curva $\alpha$, ammettiamo l'abuso di notazione
+    $f(\vec{x})$, intendendo $f(\alpha\inv(\vec{x}))$ (e.g., $k(P)$ per intendere $k(\alpha\inv(P)))$).
+
+    \section{Definizioni preliminari}
+
+    \subsection{Curve, tracce e velocità}
+
+    \begin{definition}[Curva parametrizzata]
+        Una \textbf{curva parametrizzata} (o semplicemente \textit{curva})
+        è una mappa $\alpha : I \subseteq \RR \to \RR^3$
+        di classe $C^\infty$, dove $I$ è un intervallo
+    \end{definition}
+
+    \begin{definition}[Traccia di una curva]
+        Si dice \textbf{traccia} (o \textit{supporto}) di una curva
+        parametrizzata $\alpha : I \to \RR^3$, la sua immagine $\alpha(I)$.
+    \end{definition}
+
+    \begin{definition}[Velocità di una curva]
+        Si definisce la \textbf{velocità} di una curva parametrizzata
+        $\alpha(t) = (x(t), y(t), z(t))$ come la curva indotta dalla derivata di $\alpha$:
+        \[ \alpha'(t) = \lim_{h \to 0} \frac{\alpha(t + h) - \alpha(t)}{h} = (x'(t), y'(t), z'(t)). \]
+    \end{definition}
+
+    \subsection{Lunghezza e intuizione geometrica}
+
+    \begin{definition}[Lunghezza di una curva]
+        Si definisce la \textbf{lunghezza} $\ell(\alpha)$ di una curva
+        $\alpha : I \to \RR^3$ come:
+        \[
+            \ell(\alpha) \defeq \int_I \norm{\alpha'(t)} \dt.
+        \]
+    \end{definition}
+
+    \begin{remark}
+        La definizione data per la lunghezza di una curva corrisponde alla nostra
+        idea intuitiva di lunghezza tramite i seguenti due risultati:
+
+        \begin{enumerate}
+            \item \textbf{Validità sul segmento:} Su un segmento lineare $\alpha(t) = A + t(B-A)$ con $I = [0, 1]$,
+                  $\ell(\alpha) = \norm{B-A}$.
+            \item \textbf{Approssimazione poligonale:} La lunghezza $\ell(\alpha)$ è il limite delle lunghezze delle poligonali
+                  inscritte nella curva. In termini teorici:
+
+                  \begin{quote}
+                      Sia dato $\eps > 0$. Allora esiste $\delta > 0$ tale per cui, per ogni partizione $\{t_i\}_{i=0}^n$
+                      di $I$ di finezza inferiore a $\delta$ (i.e., $\max \abs{t_{i+1} - t_i} < \delta$), vale $\norm{S - \ell(\alpha)} < \eps$,
+                      dove $S \defeq \sum_{i=0}^{n-1} \norm{\alpha(t_{i+1}) - \alpha(t_{i})}$.
+                  \end{quote}
+        \end{enumerate}
+    \end{remark}
+
+    \section{(Ri)parametrizzazioni, regolarità e parametrizzazioni p.l.a.}
+
+    \subsection{Riparametrizzazione e prime proprietà}
+
+    \begin{definition}[Riparametrizzazione di una curva]
+        Data una curva $\alpha : I \to \RR^3$, una \textbf{riparametrizzazione $\beta$ di $\alpha$}
+        è una curva $\beta : J \to \RR^3$ tale per cui esiste un diffeomorfismo liscio
+        $h : I \to J$ con $\alpha = \beta \circ h$.
+        \[\begin{tikzcd}
+                I && {\RR^3} \\
+                \\
+                J
+                \arrow["\alpha"', from=1-1, to=1-3]
+                \arrow["h", from=1-1, to=3-1]
+                \arrow["\beta", from=3-1, to=1-3]
+            \end{tikzcd}\]
+        Se $h' > 0$, si dice che $h$ mantiene l'orientazione di $\alpha$; se $h' < 0$,
+        $h$ inverte l'orientazione.
+    \end{definition}
+
+    \begin{proposition}
+        Se $\beta$ è una riparametrizzazione di $\alpha$, allora $\ell(\beta) = \ell(\alpha)$.
+    \end{proposition}
+
+    \subsection{Regolarità e coordinate date dalla lunghezza d'arco}
+
+    \begin{definition}[Curva regolare]
+        Si dice che una curva $\alpha : I \to \RR^3$ è \textbf{regolare} se
+        $\alpha'(t) \neq 0$ per ogni $t \in I$.
+    \end{definition}
+
+    \begin{definition}[Curva parametrizzata a lunghezza d'arco]
+        Si dice che una curva $\alpha : I \to \RR^3$ è \textbf{parametrizzata
+            a lunghezza d'arco} (\textbf{p.l.a.}) se $\alpha'$ è un vettore
+        unitario (i.e., $\norm{\alpha'} = 1$).
+        In tal caso, $\ell\left(\restr{\alpha}{[a, b]}\right) = b-a$.
+    \end{definition}
+
+    \begin{proposition}[Riparametrizzazione a lunghezza d'arco]
+        Se $\alpha : [a, b] \to \RR^3$ è una curva regolare, allora $\alpha$
+        ammette una riparametrizzazione a lunghezza d'arco, ossia ammette
+        una riparametrizzazione $\beta : J \to \RR^3$ tale per cui
+        $\beta$ sia p.l.a.
+    \end{proposition}
+
+    \begin{proof}
+        Poiché $\alpha$ è regolare, la funzione $s : I \to [0, \ell(\alpha)]$ tale per cui
+        \[ s(t) = \int_{a}^t \norm{\alpha'(t)} \dt \]
+        è un diffeomorfismo liscio. Quindi $\beta = \alpha \circ s\inv$ è una riparametrizzazione
+        di $\alpha$, e vale:
+        \[
+            \beta'(s) = \frac{\alpha'(s\inv(s))}{s'(s\inv(s))} = \frac{\alpha'(s\inv(s))}{\norm{\alpha'(s\inv(s))}},
+        \]
+        che è un vettore unitario.
+    \end{proof}
+
+    \section{Il triedro di Frenet (caso p.l.a.)}
+
+    In tutta questa sezione consideriamo una curva p.l.a. $\beta$.
+
+    \subsection{Versore tangente e curvatura di una curva}
+
+    \begin{definition}[Versore tangente]
+        Sia $\beta$ una curva p.l.a., allora si definisce il
+        suo \textbf{versore tangente} $T_\beta$ come $\beta'$.
+    \end{definition}
+
+    \begin{definition}[Curvatura]
+        Sia $\beta$ una curva p.l.a., allora si definisce la
+        \textbf{curvatura} $k_\beta(s)$ di $\beta$ al tempo $s$ come
+        $\norm{T_\beta'(s)}$. \smallskip
+
+        Laddove è chiaro dal contesto quale sia $\beta$, scriviamo solo $k(s)$.
+    \end{definition}
+
+    \subsection{Curve di Frenet, versore normale e binormale}
+
+    \begin{definition}[Curva di Frenet]
+        Una curva p.l.a.~$\beta$ si dice \textbf{curva di Frenet} se
+        ad ogni tempo $s$, la curvatura è positiva ($k_\beta(s) > 0$).
+    \end{definition}
+
+    \begin{definition}[Versore normale]
+        Se $\beta$ è una curva di Frenet, allora è ben definito
+        a ogni tempo $s$ il \textbf{versore normale} $N_\beta(s)$ così
+        definito:
+        \[
+            N_\beta(s) = \frac{T_\beta(s)}{\norm{T_\beta(s)}}.
+        \]
+    \end{definition}
+
+    \begin{definition}[Versore binormale]
+        Se $\beta$ è una curva di Frenet, allora è ben definito
+        a ogni tempo $s$ il \textbf{versore binormale} $B_\beta(s)$ così
+        definito:
+        \[
+            B_\beta(s) = T_\beta(s) \times N_\beta(s).
+        \]
+    \end{definition}
+
+    \begin{remark}[Triedro di Frenet]
+        Se $\beta$ è di Frenet, allora, dacché $\dot{T_\beta} \perp T_\beta$,
+        $N_\beta$ e $T_\beta$ sono linearmente indipendenti. Dunque
+        $\{T_\beta, N_\beta, B_\beta\}$ formano una base ortonormale a ogni tempo
+        $s$. Tale base è detta \textbf{triedro di Frenet}.
+    \end{remark}
+    \subsection{Equazioni di Frenet}
 \end{multicols*}

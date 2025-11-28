@@ -47,8 +47,8 @@
               $\vec{y} : (t_0 - \delta, t_0 + \delta) \to \RR^n$ di classe $C^1$ che risolve il problema di Cauchy:
               \[
                   \begin{cases}
-                      \vec{y}'(t) = \vec{f}(t, \vec{y}(t)) \\
-                      \vec{y}(t_0) = \vec{y_0}
+                      \vec{y}'(t) = \vec{f}(t, \vec{y}(t)), \\
+                      \vec{y}(t_0) = \vec{y_0}.
                   \end{cases}
               \]
 
@@ -58,7 +58,14 @@
               problema di Cauchy con dato iniziale $\vec{y}(t_0) = \vec{y_0}$. \smallskip
 
               Allora l'insieme di definizione del flusso:
-              \[ \mathcal{D} = \big\{ (t, t_0, \vec{y_0}) \in \RR \times \Omega : \text{la soluzione esiste al tempo } t \big\} \]
+              \[
+                  \mathcal{D} = \left\{ (t, t_0, \vec{y_0}) \in \RR \times \Omega :
+                  \begin{array}{c}
+                      \text{la soluzione } \vec{y}(t, t_0, \vec{y_0}) \\
+                      \text{esiste al tempo } t
+                  \end{array}
+                  \right\}
+              \]
               è un aperto di $\RR \times \Omega$ e l'applicazione $\Phi : \mathcal{D} \to \RR^n$ è di classe $C^k$.
     \end{itemize}
 
