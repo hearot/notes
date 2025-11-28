@@ -7,7 +7,7 @@
     Qualora non specificato, assumeremo l'utilizzo di funzioni di classe $C^\infty$. \smallskip
 
     Se $\vec{x} \in \RR^3$ e $f$ è una funzione relativa a una curva $\alpha$, ammettiamo l'abuso di notazione
-    $f(\vec{x})$, intendendo $f(\alpha\inv(\vec{x}))$ (e.g., $k(P)$ per intendere $k(\alpha\inv(P)))$).
+    $f(\vec{x})$, intendendo $f(\alpha\inv(\vec{x}))$ (e.g., $\kappa(P)$ per intendere $\kappa(\alpha\inv(P)))$).
 
     \section{Definizioni preliminari}
 
@@ -127,17 +127,17 @@
 
     \begin{definition}[Curvatura]
         Sia $\beta$ una curva p.l.a., allora si definisce la
-        \textbf{curvatura} $k_\beta(s)$ di $\beta$ al tempo $s$ come
+        \textbf{curvatura} $\kappa_\beta(s)$ di $\beta$ al tempo $s$ come
         $\norm{T_\beta'(s)}$. \smallskip
 
-        Laddove è chiaro dal contesto quale sia $\beta$, scriviamo solo $k(s)$.
+        Laddove è chiaro dal contesto quale sia $\beta$, scriviamo solo $\kappa(s)$.
     \end{definition}
 
     \subsection{Curve di Frenet, versore normale e binormale}
 
-    \begin{definition}[Curva di Frenet]
+    \begin{definition}[Curva di Frenet p.l.a.]
         Una curva p.l.a.~$\beta$ si dice \textbf{curva di Frenet} se
-        ad ogni tempo $s$, la curvatura è positiva ($k_\beta(s) > 0$).
+        ad ogni tempo $s$, la curvatura è positiva ($\kappa_\beta(s) > 0$).
     \end{definition}
 
     \begin{definition}[Versore normale]
@@ -164,5 +164,57 @@
         $\{T_\beta, N_\beta, B_\beta\}$ formano una base ortonormale a ogni tempo
         $s$. Tale base è detta \textbf{triedro di Frenet}.
     \end{remark}
-    \subsection{Equazioni di Frenet}
+
+    \subsection{Torsione ed equazioni di Frenet}
+
+    Assumiamo in questa sezione di star lavorando con curve di Frenet p.l.a.
+
+    \begin{proposition}[Prima equazione di Frenet]
+        Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
+        equazione:
+        \begin{equation} \label{eq:frenet_1} \tag{F1}
+            \dot{T_\beta}(s) = \kappa_\beta(s) \cdot N_\beta(s).
+        \end{equation}
+    \end{proposition}
+
+    \begin{remark}
+        Osserviamo che $\dot{N_\beta}$ è ortogonale in ogni tempo
+        a $N_\beta$, e dunque $\dot{N_\beta}$ sarà contenuto in
+        $\Span(T_\beta, B_\beta)$. \medskip
+
+        Inoltre, derivando $N_\beta(s) \cdot T_\beta(s) = 0$, otteniamo:
+        \[ \dot{N_\beta}(s) \cdot T_\beta(s) = -N_\beta(s) \cdot \dot{T_\beta}(s) = -\kappa_\beta(s). \]
+    \end{remark}
+
+    \begin{definition}[Torsione]
+        Sia $\beta$ una curva di Frenet p.l.a. Allora definiamo la
+        \textbf{torsione} $\tau_\beta(s)$ come il coefficiente di $\dot{N_\beta}(s)$ in
+        $B_\beta(s)$, ovverosia:
+        \[ \tau_\beta(s) = \dot{N_\beta}(s) \cdot B_\beta(s). \]
+    \end{definition}
+
+    \begin{proposition}[Seconda equazione di Frenet]
+        Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
+        equazione:
+        \begin{equation} \label{eq:frenet_2} \tag{F2}
+            \dot{N_\beta}(s) = - \kappa_\beta(s) \, T_\beta(s) + \tau_\beta(s) \, B_\beta(s).
+        \end{equation}
+    \end{proposition}
+
+    \begin{remark}
+        Dal momento che $B_\beta = T_\beta \times N_\beta$, derivando
+        $B_\beta$ otteniamo:
+        \[ \dot{B_\beta} = \dot{T_\beta} \times N_\beta + T_\beta \times \dot{N_\beta}, \]
+        da cui, applicando le prime due equazioni di Frenet:
+        %TODO
+    \end{remark}
+
+    \begin{proposition}[Terza equazione di Frenet]
+        Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
+        equazione:
+        \begin{equation} \label{eq:frenet_3} \tag{F3}
+            \dot{B_\beta}(s) = -\tau_\beta(s) \, N_\beta(s),
+        \end{equation}
+        e quindi $\tau_\beta(s) = -\dot{B_\beta}(s) \cdot N_\beta(s)$.
+    \end{proposition}
 \end{multicols*}
