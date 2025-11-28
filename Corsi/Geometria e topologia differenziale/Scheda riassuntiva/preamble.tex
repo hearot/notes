@@ -1,26 +1,33 @@
 \usepackage[top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-\usepackage{amsmath,amssymb,amsfonts,amsthm,stmaryrd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
 \usepackage{mathrsfs} % per mathscr
-\usepackage{graphicx}% ruota freccia per le azioni
-\usepackage{marvosym}% per il \Lightning
+\usepackage{graphicx} % ruota freccia per le azioni
+\usepackage{marvosym} % per il \Lightning
 \usepackage{array}
 \usepackage{faktor} % per gli insiemi quoziente
 \usepackage[colorlinks=false]{hyperref}
-\usepackage{xparse} % Per nuovi comandi con tanti input opzionali
+\usepackage{xparse} % per nuovi comandi con tanti input opzionali
 \usepackage{relsize} % per \mathlarger
 \usepackage{tikz-cd}
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{cancel}
-\usepackage{fourier}
 \usepackage{enumerate}
 \usepackage{soul}
 \usepackage{nicefrac}
 \usepackage{longtable}
 \usepackage{pdflscape}
 \usepackage{mathtools}
+\usepackage{lmodern}
+\usepackage{accents}
+
+\renewcommand{\vec}[1]{{\underaccent{\bar}{{#1}}}}
 
 \newtheorem*{warn}{\warning \; Attenzione}
 
@@ -36,8 +43,6 @@
 {\topsep}{\topsep}
 {\normalfont}{}{\itshape}{.}{\newline}{}
 
-\usepackage{fourier}
-
 \theoremstyle{customth}
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -52,99 +57,56 @@
 \newtheorem{notation}[theorem]{Notazione}
 \newtheorem{example}[theorem]{Esempio}
 
-\DeclareMathOperator{\BinNeg}{BinNeg}
-\DeclareMathOperator{\Geom}{Geom}
-\DeclareMathOperator{\Poisson}{Poisson}
-
 \makeatletter
 \renewenvironment{proof}[1][\proofname]{\par
   \pushQED{\qed}%
   \normalfont \topsep6\p@\@plus6\p@\relax
   \trivlist
   \item[\hskip\labelsep
-        \itshape
-    #1\@addpunct{.}]\mbox{}\\*
+              \itshape
+              #1\@addpunct{.}]\mbox{}\\*
 }{%
   \popQED\endtrivlist\@endpefalse
 }
 \makeatother
 
 %============ Simboli standard =================
-\newcommand{\FF}{\mathcal{F}}
-\newcommand{\PP}{\mathcal{P}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\QQ}{\mathbb{Q}}
 
-\newcommand{\pp}{\text{p\hspace{-0.7em}\raisebox{-3.4pt}{--}}\,\,}
-\newcommand{\pbern}{\pp}
-
-
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
-\newcommand{\deq}{\overset{\mathrm{(d)}}{=}}
-\newcommand{\toprob}{\overset{\mathbb{P}}{\to}}
-\DeclareMathOperator{\VA}{VA}
+
 \DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\shape}{S}
 
-\DeclareMathOperator{\Exp}{Exp}
-
-\DeclareMathOperator{\CI}{CI}
 \newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+
+\newcommand{\der}[2]{\frac{\mathop{}\!\textnormal{\slshape d} #1}{\mathop{}\!\textnormal{\slshape d} #2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
 
 \newcommand*\dif{\mathop{}\!\textnormal{\slshape d}}
 \newcommand{\dx}{\dif{x}}
 \newcommand{\dy}{\dif{y}}
-\newcommand{\dz}{\dif{z}}
+\newcommand{\du}{\dif{u}}
+\newcommand{\dv}{\dif{v}}
+\newcommand{\ds}{\dif{s}}
 \newcommand{\dt}{\dif{t}}
-\newcommand{\dP}{\dif{P}}
-\newcommand{\dm}{\dif{\mathrm{\ \!\!m}}}
-
 
 %\setcounter{secnumdepth}{1}
 
-\newcommand{\groupto}{\rightrightarrows}
-
 \newcommand{\restr}[2]{
-	#1\arrowvert_{#2}
+  #1\arrowvert_{#2}
 }
-
-\makeatletter
-\def\moverlay{\mathpalette\mov@rlay}
-\def\mov@rlay#1#2{\leavevmode\vtop{%
-   \baselineskip\z@skip \lineskiplimit-\maxdimen
-   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
-\newcommand{\charfusion}[3][\mathord]{
-    #1{\ifx#1\mathop\vphantom{#2}\fi
-        \mathpalette\mov@rlay{#2\cr#3}
-      }
-    \ifx#1\mathop\expandafter\displaylimits\fi}
-\makeatother
-
-\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
-\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
-
-\newcommand{\goesup}{\nearrow}
-\newcommand{\goesdown}{\searrow}
-\newcommand{\qc}{q.c.\ \!}
-\newcommand{\qo}{q.o.\ \!}
-\newcommand{\va}{v.a.\ \!}
-
-\newcommand{\BB}{\mathcal{B}}
-\newcommand{\EE}{\mathbb{E}}
-\DeclareMathOperator{\Var}{Var}
-\DeclareMathOperator{\Cov}{Cov}
-
-\newcommand{\cS}{\mathcal{S}}
 
 \newcommand{\inv}{^{-1}}
 
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
-
 
 \NeedsTeXFormat{LaTeX2e}
 %\ProvidesPackage{quiver}[2021/01/11 quiver]
@@ -160,12 +122,12 @@
 
 % A TikZ style for curved arrows of a fixed height, due to AndréC.
 \tikzset{curve/.style={settings={#1},to path={(\tikztostart)
-    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
-    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
-    .. (\tikztotarget)\tikztonodes}},
-    settings/.code={\tikzset{quiver/.cd,#1}
-        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
-    quiver/.cd,pos/.initial=0.35,height/.initial=0}
+          .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+          and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+          .. (\tikztotarget)\tikztonodes}},
+  settings/.code={\tikzset{quiver/.cd,#1}
+      \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+  quiver/.cd,pos/.initial=0.35,height/.initial=0}
 
 % TikZ arrowhead/tail styles.
 \tikzset{tail reversed/.code={\pgfsetarrowsstart{tikzcd to}}}

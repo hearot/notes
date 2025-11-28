@@ -4,10 +4,27 @@
 \setlength{\parindent}{2pt}
 
 \begin{multicols*}{2}
-    \section*{Analisi o quel che è}
-    \addcontentsline{toc}{section}{Analisi o quel che è}
+    Impiegheremo caratteri latini ($x$, $y$, $z$) per indicare quantità reali;
+    caratteri latini sottolineati ($\vec{x}$, $\vec{y}$, $\vec{z}$) per indicare
+    vettori o campi vettoriali; caratteri greci minuscoli ($\alpha$, $\beta$, $\gamma$) per indicare
+    curve; e caratteri greci maiuscoli ($\Sigma$) per indicare superfici.
+
+    \section*{Analisi matematica}
+    \addcontentsline{toc}{section}{Analisi matematica}
 
     \begin{itemize}
-        \item uwu.
+        \item $f_i$ -- nel caso di una funzione $f : \RR^n \to \RR^m$, la proiezione di $f$ sulla $i$-esima coordinata, ovverosia
+              $\pi_i \circ f : \RR^n \to \RR$.
+        \item $\der{f}{t}(x)$, $f'(x)$ -- derivata di una funzione $f : I \subseteq \RR \to \RR^n$. Nel caso $n > 1$, coincide con
+              il vettore $({f_i}'(t))_i)$. La notazione può essere iterata per ottenere le derivate successive.
+        \item $\partial_{x_i} f(\vec{x})$, $\pd{f}{x_i}(\vec{x})$, $f_{x_i}(\vec{x})$ -- derivata parziale nella $i$-esima coordinata
+              di una funzione $f : \RR^n \to \RR$ nel punto $\vec{x}$. La notazione può essere iterata per ottenere le
+              derivate successive.
+        \item $\nabla f(\vec{x})$ -- gradiente di una funzione $f : \RR^n \to \RR$, ovverosia il vettore $(\partial_{x_i} f(\vec{x}))_i^\top$.
+        \item $J f(\vec{x})$ -- jacobiano di una funzione $f : \RR^n \to \RR^m$ nel punto $x$, ovverosia la matrice
+              $(\partial_{x_j} f_i (\vec{x}))_{i, j} = (\nabla f_i(\vec{x}))_{i}$.
+        \item $J_{\vec{y}} f(\vec{p})$ -- nel caso di una funzione $f : \RR^{m} \times \RR^{n} \to \RR^{n}$,
+              la sottomatrice $n \times n$ quadrata di $J f(\vec{p})$ date dalle ultime $n$ colonne. Coincide
+              con $J (\pi_{\RR^n} \circ f)(\vec{p})$.
     \end{itemize}
 \end{multicols*}
