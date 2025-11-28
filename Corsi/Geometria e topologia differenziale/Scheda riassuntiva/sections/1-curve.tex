@@ -114,7 +114,22 @@
         che è un vettore unitario.
     \end{proof}
 
-    \section{Il triedro di Frenet (caso p.l.a.)}
+    \begin{remark}
+        Tutte le riparametrizzazioni p.l.a.~di una curva regolare $\alpha$ sono ottenibili da una
+        singola riparametrizzazione p.l.a.~$\beta$ come $\beta(\pm t + v)$, al variare di $v \in \RR$.
+        In particolare, le riparametrizzazioni che mantengono l'orientazione sono quelle della forma
+        $\beta(t + v)$, mentre quelle che la invertono sono della forma $\beta(-t + v)$. \medskip
+
+        Se infatti $\gamma$ è una riparametrizzazione p.l.a.~di $\beta$ (e quindi di $\alpha$), deve valere
+        $\beta = \gamma \circ f$ per $f$ diffeomorfismo. Quindi, per ogni tempo possibile di $\beta$, vale:
+        \[ \beta'(s) = \gamma'(f(s)) f'(s). \]
+        Dal momento che $\beta'(s)$ e $\gamma'(f(s))$ sono vettori unitari per ipotesi, $f'(s)$ può assumere
+        solo $\pm 1$ come valore.
+        Dacché il dominio di $f$ è connesso e $f'$ è liscia, $f'$ è costantemente $1$ o $-1$, e dunque
+        $f(t)$ è della forma $\pm t + v$ con $v \in \RR$.
+    \end{remark}
+
+    \section{Curvatura, torsione e triedro di Frenet (caso p.l.a.)}
 
     In tutta questa sezione consideriamo una curva p.l.a. $\beta$.
 
@@ -167,7 +182,7 @@
 
     \subsection{Torsione ed equazioni di Frenet}
 
-    Assumiamo in questa sezione di star lavorando con curve di Frenet p.l.a.
+    Assumiamo in questa sottosezione di star lavorando con curve di Frenet p.l.a.
 
     \begin{proposition}[Prima equazione di Frenet]
         Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
@@ -201,14 +216,6 @@
         \end{equation}
     \end{proposition}
 
-    \begin{remark}
-        Dal momento che $B_\beta = T_\beta \times N_\beta$, derivando
-        $B_\beta$ otteniamo:
-        \[ \dot{B_\beta} = \dot{T_\beta} \times N_\beta + T_\beta \times \dot{N_\beta}, \]
-        da cui, applicando le prime due equazioni di Frenet:
-        %TODO
-    \end{remark}
-
     \begin{proposition}[Terza equazione di Frenet]
         Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
         equazione:
@@ -217,4 +224,60 @@
         \end{equation}
         e quindi $\tau_\beta(s) = -\dot{B_\beta}(s) \cdot N_\beta(s)$.
     \end{proposition}
+
+    \begin{remark}
+        Dal momento che $B_\beta = T_\beta \times N_\beta$, derivando
+        $B_\beta$ otteniamo:
+        \[ \dot{B_\beta} = \dot{T_\beta} \times N_\beta + T_\beta \times \dot{N_\beta}, \]
+        dal quale, applicando le prime due equazioni di Frenet, ricaviamo \eqref{eq:frenet_3}.
+    \end{remark}
+
+    \begin{remark}
+        In termini matriciali, le tre equazioni di Frenet possono scriversi
+        in modo più compatto come:
+        \[
+            \begin{pmatrix}
+                \dot{T} \\
+                \dot{N} \\
+                \dot{B}
+            \end{pmatrix} =
+            \begin{pmatrix}
+                0       & \kappa & 0    \\
+                -\kappa & 0      & \tau \\
+                0       & -\tau  & 0
+            \end{pmatrix} \cdot
+            \begin{pmatrix}
+                T \\
+                N \\
+                B
+            \end{pmatrix}.
+        \]
+    \end{remark}
+
+    \subsection{Compatibilità di curvatura, torsione e triedro tra le riparametrizzazioni p.l.a. di una stessa curva}
+
+    \begin{proposition}
+        Sia $\gamma : J \to \RR^3$ una riparametrizzazione p.l.a.~di una curva p.l.a.~$\beta : I \to \RR^3$.
+        Allora le curvature delle due curve coincidono nei
+        punti delle tracce. \medskip
+
+        In altre parole, se $f : I \to J$ è il diffeomorfismo per cui
+        $\beta = \gamma \circ f$, allora:
+        \[
+            \kappa_\gamma(s) = \kappa_\beta(f\inv(s)).
+        \]
+        Inoltre, se $\beta$ è di Frenet, anche $\gamma$ è di Frenet, e se $f$ preserva l'orientazione,
+        allora i triedri di Frenet e la torsione coincidono nei punti delle tracce, ossia:
+        \[
+            T_\gamma(s) = T_\beta(f\inv(s)), \quad N_\gamma(s) = N_\beta(f\inv(s)),
+        \]
+        \[
+            B_\gamma(s) = B_\beta(f\inv(s)), \quad \tau_\gamma(s) = \tau_\beta(f\inv(s)).
+        \]
+        Qualora $f$ non preservasse l'orientazione, le quantità sopracitate di $\gamma$
+        coincidono con quelle di $\gamma$ nei punti, ma sono cambiate di segno (eccetto per la normale
+        $N_\gamma$, che invece ha stesso verso).
+    \end{proposition}
+
+    %TODO: \section{Curvatura, torsione e triedro di Frenet (caso generale)}
 \end{multicols*}
