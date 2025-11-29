@@ -35,7 +35,7 @@
         Si definisce la \textbf{lunghezza} $\ell(\alpha)$ di una curva
         $\alpha : I \to \RR^3$ come:
         \[
-            \ell(\alpha) \defeq \int_I \norm{\alpha'(t)} \dt.
+            \boxed{\ell(\alpha) \defeq \int_I \norm{\alpha'(t)} \dt.}
         \]
     \end{definition}
 
@@ -189,7 +189,7 @@
         Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
         equazione:
         \begin{equation} \label{eq:frenet_1} \tag{F1}
-            \dot{T_\beta}(s) = \kappa_\beta(s) \cdot N_\beta(s).
+            \boxed{\dot{T_\beta}(s) = \kappa_\beta(s) \cdot N_\beta(s).}
         \end{equation}
     \end{proposition}
 
@@ -206,14 +206,14 @@
         Sia $\beta$ una curva di Frenet p.l.a. Allora definiamo la
         \textbf{torsione} $\tau_\beta(s)$ come il coefficiente di $\dot{N_\beta}(s)$ in
         $B_\beta(s)$, ovverosia:
-        \[ \tau_\beta(s) = \dot{N_\beta}(s) \cdot B_\beta(s). \]
+        \[ \boxed{\tau_\beta(s) = \dot{N_\beta}(s) \cdot B_\beta(s).} \]
     \end{definition}
 
     \begin{proposition}[Seconda equazione di Frenet]
         Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
         equazione:
         \begin{equation} \label{eq:frenet_2} \tag{F2}
-            \dot{N_\beta}(s) = - \kappa_\beta(s) \, T_\beta(s) + \tau_\beta(s) \, B_\beta(s).
+            \boxed{\dot{N_\beta}(s) = - \kappa_\beta(s) \, T_\beta(s) + \tau_\beta(s) \, B_\beta(s).}
         \end{equation}
     \end{proposition}
 
@@ -221,9 +221,9 @@
         Sia $\beta$ una curva di Frenet p.l.a. Allora vale la seguente
         equazione:
         \begin{equation} \label{eq:frenet_3} \tag{F3}
-            \dot{B_\beta}(s) = -\tau_\beta(s) \, N_\beta(s),
+            \boxed{\dot{B_\beta}(s) = -\tau_\beta(s) \, N_\beta(s),}
         \end{equation}
-        e quindi $\tau_\beta(s) = -\dot{B_\beta}(s) \cdot N_\beta(s)$.
+        e quindi $\boxed{\tau_\beta(s) = -\dot{B_\beta}(s) \cdot N_\beta(s)}$.
     \end{proposition}
 
     \begin{remark}
@@ -386,7 +386,7 @@
     \begin{proposition}[Formula per il versore tangente]
         Sia $\alpha$ una curva regolare. Allora vale:
         \[
-            T_\alpha(t) = \frac{\alpha'(t)}{\norm{\alpha'(t)}},
+            \boxed{T_\alpha(t) = \frac{\alpha'(t)}{\norm{\alpha'(t)}},}
         \]
         ovverosia il versore tangente è dato dalla normalizzazione
         della derivata al tempo $t$.
@@ -409,7 +409,7 @@
     \begin{proposition}[Formula per la curvatura]
         Sia $\alpha$ una curva regolare. Allora vale:
         \[
-            \kappa_\alpha(t) = \frac{\norm{\alpha'(t) \times \alpha''(t)}}{\norm{\alpha'(t)}^3}.
+            \boxed{\kappa_\alpha(t) = \frac{\norm{\alpha'(t) \times \alpha''(t)}}{\norm{\alpha'(t)}^3}.}
         \]
     \end{proposition}
 
@@ -426,7 +426,7 @@
     \begin{proposition}[Formula per il versore binormale]
         Sia $\alpha$ una curva di Frenet. Allora vale:
         \[
-            B_\alpha(t) = \frac{\alpha'(t) \times \alpha''(t)}{\norm{\alpha'(t) \times \alpha''(t)}},
+            \boxed{B_\alpha(t) = \frac{\alpha'(t) \times \alpha''(t)}{\norm{\alpha'(t) \times \alpha''(t)}},}
         \]
         ovverosia il versore binormale è dato dalla normalizzazione
         di $\alpha' \times \alpha''$ al tempo $t$.
@@ -434,7 +434,7 @@
 
     \begin{remark}[Formula per il versore normale]
         Per calcolare $N_\alpha(t)$ si sfrutta la relazione:
-        \[ N_\alpha(t) = B_\alpha(t) \times T_\alpha(t). \]
+        \[ \boxed{N_\alpha(t) = B_\alpha(t) \times T_\alpha(t).} \]
     \end{remark}
 
     \begin{remark}
@@ -455,7 +455,7 @@
     \begin{proposition}[Formula per la torsione]
         Sia $\alpha$ una curva di Frenet. Allora vale:
         \[
-            \tau_\alpha(t) = \frac{(\alpha'(t) \times \alpha''(t)) \cdot \alpha'''(t)}{\norm{\alpha'(t) \times \alpha''(t)}^2}.
+            \boxed{\tau_\alpha(t) = \frac{(\alpha'(t) \times \alpha''(t)) \cdot \alpha'''(t)}{\norm{\alpha'(t) \times \alpha''(t)}^2}.}
         \]
     \end{proposition}
 \end{multicols*}
