@@ -458,4 +458,128 @@
             \boxed{\tau_\alpha(t) = \frac{(\alpha'(t) \times \alpha''(t)) \cdot \alpha'''(t)}{\norm{\alpha'(t) \times \alpha''(t)}^2}.}
         \]
     \end{proposition}
+
+    \section{Proprietà di curvatura e torsione}
+
+    \subsection{Torsione e piano osculatore}
+
+    La torsione rappresenta ``quanto una curva è distante dall'essere un piano''.
+    Più $\tau_\alpha(t)$ si avvicina a $0$ e più la curva $\alpha$ in $0$ è
+    localmente simile a un piano, in particolare il piano osculatore:
+
+    \begin{definition}[Piano osculatore]
+        Sia $\alpha$ una curva di Frenet. Allora si definisce
+        il \textbf{piano osculatore} $\Pi_\alpha(t)$ al tempo $t$ di
+        $\alpha$ come il seguente piano affine:
+        \[ \boxed{\Pi_\alpha(t) \defeq \alpha(t) + \Span(T_\alpha(t), N_\alpha(t)).} \]
+    \end{definition}
+
+    L'intuizione presentata precedentemente è formalizzata dal seguente risultato:
+
+    \begin{proposition}
+        Sia $\alpha$ una curva di Frenet con $\tau_\alpha \equiv 0$. Allora
+        $\Pi_\alpha(t)$ è costante e la traccia di $\alpha$ è contenuta in
+        $\Pi_\alpha$.
+    \end{proposition}
+
+    \begin{proof}
+        Possiamo assumere senza perdita di generalità che $\alpha : I \to \RR^3$ sia p.l.a.
+        Allora da \eqref{eq:frenet_3}, si ricava $\dot{B_\alpha} \equiv 0$,
+        e quindi $B_\alpha$ è costante. Poiché $B_\alpha$ è costante, la normale
+        di $\Pi_\alpha(t)$ è costante. \smallskip
+
+        Osserviamo che $T_\alpha \in B_\alpha^\perp$,
+        da cui $T_\alpha \cdot B_\alpha = \alpha' \cdot B_\alpha = 0$. Ciò, unito al fatto
+        che $I$ è connesso, implica che $\alpha(t) \cdot B_\alpha$ sia costante. Pertanto
+        $(\alpha(t) - \alpha(t_0)) \cdot B_\alpha = 0$ per ogni $t_0$ in $I$ su tutto $I$.
+        Questa è esattamente l'equazione di appartenenza al piano $\Pi_\alpha(t_0)$: si conclude
+        allora che $\Pi_\alpha(t)$ è costante e che la traccia di $\alpha$ è contenuta in
+        $\Pi_\alpha$.
+    \end{proof}
+
+    \subsection{Raggio di curvatura, rette affini e cerchio osculatore}
+
+    La curvatura rappresenta ``quanto una curva è distante dall'essere una retta''.
+    Più $\kappa_\alpha(t)$ si avvicina a $0$ e più la curva $\alpha$ in $0$ è localmente
+    simile a una retta. \smallskip
+
+    I due seguenti risultati formalizzano proprio questa intuizione.
+
+    \begin{proposition}
+        Sia $\alpha$ una curva regolare con $\kappa_\alpha \equiv 0$. Allora
+        $\alpha$ è contenuta in una retta affine. Viceversa, una retta affine
+        si parametrizza con una curva avente curvatura nulla.
+    \end{proposition}
+
+    \begin{proof}
+        Possiamo supporre senza perdita di generalità che $\alpha$ sia p.l.a. Allora
+        $\kappa_\alpha \equiv 0$ implica che $\dot{T_\alpha} \equiv 0$, ovverosia
+        che $T_\alpha$ è costante. Pertanto $\alpha(t) = T_\alpha \cdot t + P$ per un
+        $P \in \RR^3$. \smallskip
+
+        Il viceversa è poi immediato.
+    \end{proof}
+
+    \begin{definition}[Raggio di curvatura]
+        Sia $\alpha$ una curva di Frenet. Allora si definisce il
+        \textbf{raggio di curvatura} $R_\alpha(t)$ al tempo $t$ di $\alpha$
+        come:
+        \[
+            \boxed{R_\alpha(t) \defeq \frac{1}{\kappa_\alpha(t)}.}
+        \]
+    \end{definition}
+
+    \begin{definition}[Cerchio osculatore]
+        Sia $\alpha$ una curva di Frenet. Si definisce il
+        \textbf{cerchio osculatore} $\CC_\alpha(t)$ al tempo $t$ di $\alpha$ come
+        il cerchio di raggio $R_\alpha(t)$ e centro $\alpha(t) + R_\alpha(t) N_\alpha(t)$, ovverosia:
+        \[
+            \boxed{\CC_\alpha(t) \defeq \CC(\alpha(t) + R_\alpha(t) N_\alpha(t), R_\alpha(t)).}
+        \]
+        Osserviamo che, per definizione, il cerchio osculatore $\CC_\alpha(t)$ è contenuto
+        nel piano osculatore $\Pi_\alpha(t)$.
+    \end{definition}
+
+    \begin{proposition}[Il raggio di curvatura è il raggio del cerchio che meglio approssima $\alpha$ in un punto]
+        Sia $\alpha$ una curva p.l.a.~di Frenet. Si ponga:
+        \[
+            f_{P, R}(t) \defeq \norm{\alpha(t) - P}^2 - R^2.
+        \]
+        Si pongano le seguenti condizioni:
+        \begin{itemize}
+            \item $f_{P, R}(t_0) = 0$, ovverosia il cerchio $\CC(P, R)$ passa per $\alpha(t_0)$;
+            \item $f_{P, R}'(t_0) = f_{P, R}''(t_0) = 0$, ovverosia il
+                  cerchio $\CC(P, R)$ approssima $\alpha$ in $t_0$ fino al secondo ordine.
+        \end{itemize}
+        Allora l'unico cerchio $\CC(P, R)$ contenuto nel piano osculatore $\Pi_\alpha(t_0)$ e
+        soddisfacente le sopracitate condizioni
+        è il cerchio osculatore $\CC_\alpha(t_0)$ al tempo $t_0$ di $\alpha$.
+    \end{proposition}
+
+    \begin{proof}
+        Osserviamo che:
+        \[ f_{P, R}'(t) = 2 \alpha'(t) \cdot (\alpha(t) - P), \]
+        e quindi $f_{P, R}'(t_0) = 0$ implica $T_{\alpha}(t_0) \perp \alpha(t_0) - P$.
+        Dal momento che il cerchio $\CC(P, R)$ deve essere contenuto nel piano osculatore
+        di $\alpha(t_0)$, allora $\alpha(t_0) - P \parallel N_\alpha(t_0)$. \medskip
+
+        Inoltre:
+        \[ f_{P, R}''(t) = 2 (\alpha''(t) \cdot (\alpha(t) - P) + \norm{\alpha'(s)}^2), \]
+        da cui, ponendo $f_{P, R}''(t_0) = 0$, si ottiene:
+        \[ P = \alpha(t_0) + R_\alpha(t_0) N_\alpha(t_0). \]
+
+        Infine, usando che $f_{P, R}(t_0)$, si conclude che $R = R_\alpha(t_0)$.
+    \end{proof}
+
+    \subsection{Teorema fondamentale della teoria delle curve}
+
+    La curvatura e la torsione delineano essenzialmente un'unica curva:
+
+    \begin{theorem}[fondamentale della teoria delle curve]
+        Due due curve p.l.a.
+        di Frenet $\alpha$, $\hat{\alpha} : I \to \RR^3$ hanno curvatura e torsione
+        coincidente se e solo se la traccia di una curva è ottenibile dall'altra tramite
+        movimento rigido dello spazio \textnormal{(i.e., isometria con
+            parte lineare in $\SO(3)$)}.
+    \end{theorem}
 \end{multicols*}
