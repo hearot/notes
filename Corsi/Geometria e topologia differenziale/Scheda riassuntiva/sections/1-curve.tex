@@ -3,7 +3,6 @@
 \setlength{\parindent}{2pt}
 
 \begin{multicols*}{2}
-
     Qualora non specificato, assumeremo l'utilizzo di funzioni di classe $C^\infty$. \smallskip
 
     Se $\vec{x} \in \RR^3$ e $f$ è una funzione relativa a una curva $\alpha$, ammettiamo l'abuso di notazione
@@ -258,7 +257,7 @@
 
     \subsection{Compatibilità di curvatura, torsione e triedro tra le riparametrizzazioni p.l.a. di una stessa curva}
 
-    \begin{proposition}
+    \begin{proposition} \label{prop:compatibilità_riparametrizzazioni_pla}
         Sia $\gamma : J \to \RR^3$ una riparametrizzazione p.l.a.~di una curva p.l.a.~$\beta : I \to \RR^3$.
         Allora le curvature delle due curve coincidono nei
         punti delle tracce. \medskip
@@ -281,5 +280,182 @@
         $N_\gamma$, che invece ha stesso verso).
     \end{proposition}
 
-    %TODO: \section{Curvatura, torsione e triedro di Frenet (caso generale)}
+    \section{Curvatura, torsione e triedro di Frenet (caso generale)}
+
+    \subsection{Definizioni per passaggio al caso p.l.a.}
+
+    \begin{definition}[Curva di Frenet]
+        Sia $\alpha$ una curva regolare. Allora si dice che $\alpha$
+        è una \textbf{curva di Frenet} se una sua qualsiasi
+        riparametrizzazione p.l.a.~è di Frenet.
+    \end{definition}
+
+    \begin{remark}
+        Per la Proposizione \ref{prop:compatibilità_riparametrizzazioni_pla},
+        se $\alpha$ è di Frenet, allora \textit{ogni} sua riparametrizzazione
+        p.l.a.~è di Frenet. \smallskip
+
+        Possiamo estendere questa idea anche per definire il triedro di Frenet
+        e la torsione.
+    \end{remark}
+
+    \begin{definition}[Versore tangente]
+        Sia $\alpha$ una curva regolare. Allora si definisce
+        il \textbf{versore tangente} di $\alpha$ al tempo $t$ come:
+        \[
+            T_\alpha(t) = T_\beta(f(s)),
+        \]
+        dove $\beta$ è una riparametrizzazione p.l.a.~di $\alpha$ con
+        $\alpha = \beta \circ f$ e $f$ diffeomorfismo \textit{che preserva
+            l'orientazione}.
+    \end{definition}
+
+    \begin{remark}
+        Se $t$ è un tempo in cui $\alpha'(t) \neq 0$, allora, per
+        continuità, esiste un intorno di $t$ in cui $\alpha$ è regolare (i.e.,
+        $\alpha$ è localmente regolare in $t$). Questo ci permette di definire
+        la curvatura come segue:
+    \end{remark}
+
+    \begin{definition}[Curvatura]
+        Sia $\alpha$ una curva regolare al tempo $t$. Allora si definisce
+        la \textbf{curvatura} al tempo $t$ come:
+        \[
+            \kappa_\alpha(t) = \kappa_\beta(f(s)),
+        \]
+        dove $\beta$ è una riparametrizzazione locale p.l.a.~di $\alpha$ con
+        $\alpha = \beta \circ f$ e $f$ diffeomorfismo. \smallskip
+
+        Qualora $\alpha$ \underline{non} fosse regolare in $t$
+        (i.e., $\alpha'(t) = 0$), si pone $\kappa_\alpha(t) = 0$.
+    \end{definition}
+
+    \begin{proposition}
+        Una curva $\alpha$ è regolare e di Frenet se e solo se
+        $\kappa_\alpha(t) > 0$ per ogni $t$.
+    \end{proposition}
+
+    \begin{definition}[Versore normale]
+        Sia $\alpha$ una curva di Frenet. Allora si definisce
+        il \textbf{versore normale} di $\alpha$ al tempo $t$ come:
+        \[
+            N_\alpha(t) = N_\beta(f(s)),
+        \]
+        dove $\beta$ è una riparametrizzazione p.l.a.~di $\alpha$ con
+        $\alpha = \beta \circ f$ e $f$ diffeomorfismo.
+    \end{definition}
+
+    \begin{definition}[Versore binormale]
+        Sia $\alpha$ una curva di Frenet. Allora si definisce
+        il \textbf{versore binormale} di $\alpha$ al tempo $t$ come:
+        \[
+            B_\alpha(t) = B_\beta(f(s)),
+        \]
+        dove $\beta$ è una riparametrizzazione p.l.a.~di $\alpha$ con
+        $\alpha = \beta \circ f$ e $f$ diffeomorfismo \textit{che preserva
+            l'orientazione}.
+    \end{definition}
+
+    \begin{definition}[Torsione]
+        Sia $\alpha$ una curva di Frenet. Allora si definisce
+        la \textbf{torsione} di $\alpha$ al tempo $t$ come:
+        \[
+            \tau_\alpha(t) = \tau_\beta(f(s)),
+        \]
+        dove $\beta$ è una riparametrizzazione p.l.a.~di $\alpha$ con
+        $\alpha = \beta \circ f$ e $f$ diffeomorfismo \textit{che preserva
+            l'orientazione}.
+    \end{definition}
+
+    \begin{proposition}
+        Valgono le equazioni di Frenet (\ref{eq:frenet_1}, \ref{eq:frenet_2}, \ref{eq:frenet_3})
+        anche nel caso generale.
+    \end{proposition}
+
+    \subsection{Formule per calcolare la curvatura, la torsione e il triedro di Frenet nel caso generale}
+
+    \begin{remark}
+        Se $\alpha$ è una curva regolare e $\alpha = \beta \circ f$, dove $\beta$ è una
+        sua riparametrizzazione p.l.a. e $f$ è un diffeomorfismo, allora:
+        \begin{equation} \label{eq:derivata_1_riparametrizzazione_pla}
+            \alpha'(t) = \beta'(f(t)) f'(t) = T_\alpha(t) f'(t),
+        \end{equation}
+        da cui si ricava applicando $f'(t) = \norm{\alpha'(t)}$ la seguente proposizione:
+    \end{remark}
+
+    \begin{proposition}[Formula per il versore tangente]
+        Sia $\alpha$ una curva regolare. Allora vale:
+        \[
+            T_\alpha(t) = \frac{\alpha'(t)}{\norm{\alpha'(t)}},
+        \]
+        ovverosia il versore tangente è dato dalla normalizzazione
+        della derivata al tempo $t$.
+    \end{proposition}
+
+    \begin{remark}
+        Derivando ulteriormente l'eq. \eqref{eq:derivata_1_riparametrizzazione_pla}, si ottiene:
+        \begin{equation} \label{eq:derivata_2_riparametrizzazione_pla}
+            \alpha''(t) = \dot{T_\alpha}(t) \norm{\alpha''(t)}^2 + T_\alpha(t) f''(t).
+        \end{equation}
+        Applicando $\alpha'(t) \times -$ all'eq. \eqref{eq:derivata_2_riparametrizzazione_pla} e
+        sfruttando che $\alpha' \parallel T_\alpha$ si ricava:
+        \begin{equation} \label{eq:derivata_2_riparametrizzazione_pla_B}
+            \alpha'(t) \times \alpha''(t) = \norm{\alpha''(t)}^2 (\alpha'(t) \times \dot{T_\alpha}(t)),
+        \end{equation}
+        dalla quale, usando che $\alpha'(t) \perp \dot{T_\alpha}$, e prendendo le norme, si ottiene
+        la seguente proposizione:
+    \end{remark}
+
+    \begin{proposition}[Formula per la curvatura]
+        Sia $\alpha$ una curva regolare. Allora vale:
+        \[
+            \kappa_\alpha(t) = \frac{\norm{\alpha'(t) \times \alpha''(t)}}{\norm{\alpha'(t)}^3}.
+        \]
+    \end{proposition}
+
+    \begin{remark}
+        Assumendo che $\alpha$ sia di Frenet, applicando \eqref{eq:frenet_1}
+        all'eq. \eqref{eq:derivata_2_riparametrizzazione_pla_B}, si ottiene:
+        \[
+            \alpha'(t) \times \alpha''(t) = \kappa_\alpha(t) \norm{\alpha''(t)}^3 (T_\alpha(t) \times N_\alpha(t)),
+        \]
+        dalla quale equazione, usando che $B_\alpha(t) = T_\alpha(t) \times N_\alpha(t)$, si ottengono subito
+        la seguente proposizione:
+    \end{remark}
+
+    \begin{proposition}[Formula per il versore binormale]
+        Sia $\alpha$ una curva di Frenet. Allora vale:
+        \[
+            B_\alpha(t) = \frac{\alpha'(t) \times \alpha''(t)}{\norm{\alpha'(t) \times \alpha''(t)}},
+        \]
+        ovverosia il versore binormale è dato dalla normalizzazione
+        di $\alpha' \times \alpha''$ al tempo $t$.
+    \end{proposition}
+
+    \begin{remark}[Formula per il versore normale]
+        Per calcolare $N_\alpha(t)$ si sfrutta la relazione:
+        \[ N_\alpha(t) = B_\alpha(t) \times T_\alpha(t). \]
+    \end{remark}
+
+    \begin{remark}
+        Deriviamo per l'ultima volta l'eq. \eqref{eq:derivata_2_riparametrizzazione_pla}, e sostituendovi
+        \eqref{eq:frenet_2}, otteniamo:
+        \begin{equation} \label{eq:derivata_3_riparametrizzazione_pla}
+            \begin{aligned}
+                \alpha'''(t) & = \left(f'''(t) - \kappa_\alpha(t) f'(t)^3\right) \underline{\mathbf{T}_\alpha}(t)                                  \\
+                             & \quad + \left({\kappa_\alpha}'(t) f'(t)^3 + 3 \kappa_\alpha(t) f'(t) f''(t)\right) \underline{\mathbf{N}_\alpha}(t) \\
+                             & \quad + \kappa_\alpha(t) \tau_\alpha(t) f'(t)^3 \underline{\mathbf{B}_\alpha}(t).
+            \end{aligned}
+        \end{equation}
+        Applicando $(\alpha'(t) \times \alpha''(t)) \cdot -$ all'eq. \eqref{eq:derivata_3_riparametrizzazione_pla},
+        e usando che $\alpha'(t) \times \alpha''(t)$ è
+        ortogonale a $T_\alpha$, $N_\alpha$, ma parallelo a $B_\alpha$, ricaviamo la seguente proposizione:
+    \end{remark}
+
+    \begin{proposition}[Formula per la torsione]
+        Sia $\alpha$ una curva di Frenet. Allora vale:
+        \[
+            \tau_\alpha(t) = \frac{(\alpha'(t) \times \alpha''(t)) \cdot \alpha'''(t)}{\norm{\alpha'(t) \times \alpha''(t)}^2}.
+        \]
+    \end{proposition}
 \end{multicols*}
