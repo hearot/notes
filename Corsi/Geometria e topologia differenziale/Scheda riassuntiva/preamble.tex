@@ -62,14 +62,14 @@
 
 \makeatletter
 \renewenvironment{proof}[1][\proofname]{\par
-  \pushQED{\qed}%
-  \normalfont \topsep6\p@\@plus6\p@\relax
-  \trivlist
-  \item[\hskip\labelsep
-              \itshape
-              #1\@addpunct{.}]\mbox{}\\*
+      \pushQED{\qed}%
+      \normalfont \topsep6\p@\@plus6\p@\relax
+      \trivlist
+      \item[\hskip\labelsep
+                  \itshape
+                  #1\@addpunct{.}]\mbox{}\\*
 }{%
-  \popQED\endtrivlist\@endpefalse
+      \popQED\endtrivlist\@endpefalse
 }
 \makeatother
 
@@ -79,8 +79,10 @@
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\CC}{\mathcal{C}}
+\newcommand{\TT}{\mathbb{T}}
 
 \DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\rk}{rk}
 
 \DeclareMathOperator{\Span}{span}
 
@@ -109,7 +111,7 @@
 %\setcounter{secnumdepth}{1}
 
 \newcommand{\restr}[2]{
-  #1\arrowvert_{#2}
+      #1\arrowvert_{#2}
 }
 
 \newcommand{\inv}{^{-1}}
@@ -131,12 +133,12 @@
 
 % A TikZ style for curved arrows of a fixed height, due to AndréC.
 \tikzset{curve/.style={settings={#1},to path={(\tikztostart)
-          .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
-          and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
-          .. (\tikztotarget)\tikztonodes}},
-  settings/.code={\tikzset{quiver/.cd,#1}
-      \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
-  quiver/.cd,pos/.initial=0.35,height/.initial=0}
+                              .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+                              and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+                              .. (\tikztotarget)\tikztonodes}},
+      settings/.code={\tikzset{quiver/.cd,#1}
+                  \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+      quiver/.cd,pos/.initial=0.35,height/.initial=0}
 
 % TikZ arrowhead/tail styles.
 \tikzset{tail reversed/.code={\pgfsetarrowsstart{tikzcd to}}}

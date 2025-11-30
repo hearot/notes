@@ -3,5 +3,146 @@
 \setlength{\parindent}{2pt}
 
 \begin{multicols*}{2}
+    Qualora non specificato, assumeremo l'utilizzo di funzioni di classe $C^\infty$. \smallskip
 
+    Se $\vec{x}$ è una parametrizzazione regolare o una funzione con dominio un sottinsieme di $\RR^2$,
+    ammettiamo l'abuso di notazione $\vec{x}(P)$ per sottintendere $\vec{x}(\vec{y}\inv(P))$, dove
+    $\vec{y}$ è una parametrizzazione regolare di $P$ sulla superficie studiata.
+
+    \section{Definizioni preliminari}
+
+    \subsection{Parametrizzazioni regolare}
+
+    \begin{definition}[Parametrizzazione regolare]
+        Si dice \textbf{parametrizzazione regolare} una mappa
+        $\vec{x} : U \to \RR^3$ con $U$ aperto di $\RR^3$ tale che:
+        \begin{itemize}
+            \item $\vec{x}$ è iniettiva;
+            \item $\vec{x_u} \times \vec{x_v} \neq 0$ per ogni $(u, v) \in U$ (\textbf{regolarità});
+            \item $\vec{x\inv}$ è continua.
+        \end{itemize}
+    \end{definition}
+
+    \begin{remark}
+        Osserviamo che $J \vec{x} = [\vec{x_u} \;\; \vec{x_v}]$.
+        Allora richiedere la regolarità è equivalente a richiedere che $\rk(J \vec{x})$ sia sempre massimo,
+        ovvero:
+        \[ \rk(J \vec{x}) = 2. \]
+    \end{remark}
+
+    \begin{proposition} \label{prop:parametrizzazione_è_cinf}
+        Ogni parametrizzazione regolare è un diffeomorfismo $C^\infty$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $\vec{x} : U \to \Sigma$ una parametrizzazione regolare surgettiva su $\Sigma$. Sia $(u_0, v_0) \in U$.
+        Dal momento che $\vec{x}$ è regolare, esiste un minore $2 \times 2$ in $J \vec{x}(u_0, v_0)$ invertibile.
+        Sia $\pi$ la proiezione da $\RR^3$ sul piano $\Span(e_i, e_j) \cong \RR^2$, dove $i$ e $j$ sono gli indici delle
+        righe del minore rispetto a $J \vec{x}(u_0, v_0)$. \smallskip
+
+        Allora $J (\pi \circ \vec{x})(u_0, v_0)$ è invertibile,
+        e per il teorema di invertibilità locale, $\pi \circ \vec{x}$ è localmente invertibile. Dacché
+        $\vec{x}\inv$ è localmente uguale a $(\pi \circ \vec{x})\inv \circ \pi\inv$, che è composizione di
+        funzioni $C^\infty$, si ricava che $\vec{x}$ è un diffeomorfismo $C^\infty$ locale. Dal momento che
+        $\vec{x}$ è però iniettiva, si ricava che è anche un diffeomorfismo $C^\infty$.
+    \end{proof}
+
+    \subsection{Superficie}
+
+    \begin{definition}[Superficie]
+        Una \textbf{superficie} è un sottinsieme $\Sigma$ di $\RR^3$ tale per cui
+        ogni punto $P$ di $\Sigma$ ammette una parametrizzazione regolare $\vec{x_P}$ la cui immagine
+        sia contenuta in $\Sigma$ e che sia intorno di $P$ in $\Sigma$. Ci riferiremo a
+        $\vec{x_P}$ come a una \textbf{parametrizzazione regolare per $P$}.
+    \end{definition}
+
+    \begin{remark}
+        Chiaramente, se $\vec{x} : U \to \RR^3$ è una parametrizzazione regolare, allora $\vec{x}(U)$ è una
+        superficie.
+    \end{remark}
+
+    \section{Classi fondamentali di superfici}
+
+    \subsection{Superfici di rotazione}
+    \begin{definition}[Superficie di rotazione]
+        Sia $\alpha : I \to \RR^3$ una curva parametrizzata della forma
+        $(a(t), 0, b(t))$ tale che $\alpha$ è regolare e omeomorfismo locale.
+        Si definisce allora la \textbf{superficie di rotazione} (intorno
+        all'asse $z$) di $\alpha$ come l'immagine della seguente parametrizzazione:
+        \[
+            \vec{x}(u, v) = (a(u) \cos(v), a(u) \sin(v), b(u)).
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        Una superficie di rotazione è effettivamente una superficie, poiché
+        la sua parametrizzazione canonica è regolare.
+    \end{proposition}
+
+    \subsection{Grafici, valori regolari e superfici di livello}
+    \begin{proposition}[Il grafico di una funzione $C^\infty$ a valori reali con dominio $U \subseteq \RR^2$ è una superficie] \label{prop:grafici_sono_superfici}
+        Il grafico $\Gamma_f$ di una funzione $f : U \to \RR$ con $U \subseteq \RR^2$ è
+        parametrizzato come $\vec{x}(u, v) = (u, v, f(u, v))$, ed è dunque una superficie.
+    \end{proposition}
+
+    \begin{definition}
+        Sia $f : A \to \RR$ con $A \subseteq \RR^3$ una funzione liscia. Allora si dice che
+        $a \in f(A)$ è un \textbf{valore regolare} per $f$ se:
+        \[
+            \nabla f(p) \neq 0, \quad \forall p \in f\inv(a).
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        Sia $f : A \to \RR$ con $A \subseteq \RR^3$ una funzione liscia. Allora, se
+        $a$ è un valore regolare per $f$, $f\inv(a)$ è una superficie.
+    \end{proposition}
+
+    \begin{proof}
+        La tesi discende direttamente come applicazione del teorema della funzione
+        implicita. Infatti, se $a$ è un valore regolare, $f\inv(a)$ è localmente
+        un grafico su ogni suo punto. Allora, per la Proposizione \ref{prop:grafici_sono_superfici},
+        $f\inv(a)$ è una superficie.
+    \end{proof}
+
+    \section{Piano tangente e orientabilità}
+
+    \subsection{Piano tangente e compatibilità tra parametrizzazioni regolari diverse}
+
+    \begin{definition}
+        Siano $\vec{x}$, $\vec{y} : U, U' \to \RR^3$ due parametrizzazioni regolari per $P$
+        su una superficie $\Sigma$ aventi stessa immagine. Si definisce allora la
+        \textbf{funzione di transizione} $f_{\vec{x}, \vec{y}} : U \to U'$ da $\vec{x}$ a $\vec{y}$ come:
+        \[
+            f_{\vec{x}, \vec{y}} = \vec{y}\inv \circ \vec{x},
+        \]
+        in modo tale che il seguente diagramma commuti:
+        \[\begin{tikzcd}
+                & \Sigma \\
+                \\
+                U && {U'}
+                \arrow["{\vec{x}}"', from=3-1, to=1-2]
+                \arrow["f_{\vec{x}, \vec{y}}", from=3-1, to=3-3]
+                \arrow["{\vec{y}}", from=3-3, to=1-2]
+            \end{tikzcd}\]
+    \end{definition}
+
+    \begin{proposition}
+        Una funzione di transizione $f_{\vec{x}, \vec{y}}$ è
+        un diffeomorfismo $C^\infty$.
+    \end{proposition}
+
+    \begin{proof}
+        Dal momento che $\vec{x}$ e $\vec{y}$ sono diffeomorfismi $C^\infty$ per
+        la Proposizione \ref{prop:parametrizzazione_è_cinf}, essendo
+        $f$ composizione di variazioni di queste, anche $f$ lo è.
+    \end{proof}
+
+    \begin{proposition}
+        Siano $\vec{x}$ e $\vec{y}$ due parametrizzazioni regolari per $P$ su una
+        superficie $\Sigma$. Allora vale:
+        \[ \Span(\vec{x_u}(P), \vec{x_v}(P)) = \Span(\vec{y_u}(P), \vec{y_v}(P)). \]
+    \end{proposition}
+
+    % TODO
 \end{multicols*}
