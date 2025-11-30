@@ -61,6 +61,29 @@
         superficie.
     \end{remark}
 
+    \begin{proposition}
+        $\Sigma$ è una superficie se e solo se ogni suo punto ammette una parametrizzazione
+        regolare della forma $\vec{x} : B_\eps(0) \subseteq \RR^2 \to \Sigma$.
+    \end{proposition}
+
+    \begin{proof}
+        Siccome ogni parametrizzazione regolare $\vec{x} : U \to \Sigma$ ha come dominio
+        è un aperto, possiamo restringerci a una palla di raggio $\eps$ di $\vec{x}\inv(P)$.
+        Tramite traslazione possiamo infine riportare $\vec{x}\inv(P)$ al centro,
+        ottenendo una parametrizzazione del tipo desiderato.
+    \end{proof}
+
+    \begin{proposition}
+        Se $\Sigma$ è una superficie, una funzione $f : \Sigma \to \RR^n$ è
+        continua se e solo se $f \circ \vec{x}$ è una funzione continua
+        per ogni parametrizzazione regolare $\vec{x}$ di un punto di $\Sigma$.
+    \end{proposition}
+
+    \begin{proof}
+        Deriva dal fatto che una funzione è continua se e solo se è
+        localmente continua.
+    \end{proof}
+
     \section{Classi fondamentali di superfici}
 
     \subsection{Superfici di rotazione}
@@ -95,7 +118,8 @@
 
     \begin{proposition}
         Sia $f : A \to \RR$ con $A \subseteq \RR^3$ una funzione liscia. Allora, se
-        $a$ è un valore regolare per $f$, $f\inv(a)$ è una superficie.
+        $a$ è un valore regolare per $f$, $f\inv(a)$ è una superficie ed è detta
+        \textbf{superficie di livello $a$ rispetto a $f$}.
     \end{proposition}
 
     \begin{proof}
@@ -109,12 +133,12 @@
 
     \subsection{Piano tangente e compatibilità tra parametrizzazioni regolari diverse}
 
-    \begin{definition}
+    \begin{definition}[Funzione di transizione]
         Siano $\vec{x}$, $\vec{y} : U, U' \to \RR^3$ due parametrizzazioni regolari per $P$
         su una superficie $\Sigma$ aventi stessa immagine. Si definisce allora la
         \textbf{funzione di transizione} $f_{\vec{x}, \vec{y}} : U \to U'$ da $\vec{x}$ a $\vec{y}$ come:
         \[
-            f_{\vec{x}, \vec{y}} = \vec{y}\inv \circ \vec{x},
+            \boxed{f_{\vec{x}, \vec{y}} \defeq \vec{y}\inv \circ \vec{x},}
         \]
         in modo tale che il seguente diagramma commuti:
         \[\begin{tikzcd}
@@ -138,11 +162,84 @@
         $f$ composizione di variazioni di queste, anche $f$ lo è.
     \end{proof}
 
-    \begin{proposition}
+    \begin{proposition} \label{prop:stesso_piano_tangente_param_regolari}
         Siano $\vec{x}$ e $\vec{y}$ due parametrizzazioni regolari per $P$ su una
         superficie $\Sigma$. Allora vale:
         \[ \Span(\vec{x_u}(P), \vec{x_v}(P)) = \Span(\vec{y_u}(P), \vec{y_v}(P)). \]
     \end{proposition}
 
-    % TODO
+    \begin{proof}
+        Possiamo assumere senza perdita di generalità che le immagini di $\vec{x}$ e $\vec{y}$ (basta
+        prendere l'intersezione delle immagini). \smallskip
+
+        Posto allora $f_{\vec{x}, \vec{y}}(s, t) = (u(s, t), v(s, t))$,
+        vale $\vec{x}(s, t) = \vec{y}(u(s, t), v(s, t))$, e quindi:
+        \[
+            \begin{cases}
+                \vec{x_s}(P) = u_s(P) \cdot \vec{y_u}(P) + v_s(P) \cdot \vec{y_t}(P), \\
+                \vec{x_t}(P) = u_t(P) \cdot \vec{y_u}(P) + v_t(P) \cdot \vec{y_t}(P).
+            \end{cases}
+        \]
+
+        Dal momento che $J f_{\vec{x}, \vec{y}}(P)$ ha rango $2$, allora
+        il precedente sistema induce un cambio di base da $\{\vec{x_u}(P), \vec{x_v}(P)\}$
+        a $\{\vec{y_u}(P), \vec{y_v}(P)\}$, da cui la tesi.
+    \end{proof}
+
+    \begin{definition}[Piano tangente]
+        Sia $\Sigma$ una superficie. Allora, se $P$ è un punto di $\Sigma$, si definisce
+        il \textbf{piano tangente di $T_P \Sigma$ di $P$ su $\Sigma$} come:
+        \[
+            \boxed{T_P \Sigma \defeq \Span(\vec{x_u}(P), \vec{x_v}(P)),}
+        \]
+        dove $\vec{x}$ è una qualsiasi parametrizzazione regolare di $P$.
+    \end{definition}
+
+    \subsection{Versori normali e orientabilità}
+
+    \begin{definition}[Versore normale su $\vec{x}$]
+        Sia $\vec{x}$ una parametrizzazione regolare di un punto $P$ su
+        una superficie $\Sigma$. Definiamo il \textbf{versore normale}
+        $n_\vec{x}(P)$ come:
+        \[ \boxed{n_\vec{x}(P) \defeq \frac{\vec{x_u} \times \vec{x_v}}{\norm{\vec{x_u} \times \vec{x_v}}}.} \]
+    \end{definition}
+
+    \begin{proposition}
+        Due parametrizzazioni regolari $\vec{x}$, $\vec{y} : U, U' \to \Sigma$
+        con stessa immagine hanno stessa normale in ogni punto se e solo se
+        la funzione di transizione ha in ogni punto jacobiano di determinante
+        positivo.
+    \end{proposition}
+
+    \begin{proof}
+        Segue dal sistema trovato nella dimostrazione della Proposizione
+        \ref{prop:stesso_piano_tangente_param_regolari}.
+    \end{proof}
+
+    \begin{definition}[Parametrizzazioni regolari compatibili]
+        Due parametrizzazioni regolari $\vec{x}$, $\vec{y} : U, U' \to \Sigma$
+        si dicono \textbf{compatibili} se l'intersezione delle immagini è vuota o
+        se hanno stessa normale sull'intersezione delle immagini.
+    \end{definition}
+
+    \begin{definition}[Superficie orientabile]
+        Una superficie $\Sigma$ si dice \textbf{orientabile} se è ricoperta
+        da parametrizzazioni regolari a due a due compatibili.
+    \end{definition}
+
+    \begin{proposition} \label{prop:normale_continua}
+        Una superficie $\Sigma$ è orientabile se e solo se esiste una
+        funzione continua $\vec{n} : \Sigma \to \RR^3$ tale per cui
+        $\vec{n}(P)$ sia unitario e perpendicolare a $T_P \Sigma$ per
+        ogni punto $P$ di $\Sigma$.
+    \end{proposition}
+
+    \begin{corollary}
+        Ogni superficie $\Sigma$ di livello $\ell$ rispetto a $f$, per $f$ liscia e $\ell$ regolare, è orientabile.
+    \end{corollary}
+
+    \begin{proof}
+        Il gradiente $\nicefrac{\nabla f}{\norm{\nabla f}}$ è un campo vettoriale unitario e
+        ortogonale a $T_P \Sigma$ per ogni punto $P$. Si conclude per la Proposizione \ref{prop:normale_continua}.
+    \end{proof}
 \end{multicols*}
