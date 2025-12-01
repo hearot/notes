@@ -247,7 +247,7 @@
         Segue immediatamente dal Lemma \ref{lem:formula_operatore_forma}.
     \end{proof}
 
-    \begin{proposition}
+    \begin{proposition} \label{prop:formula_forme}
         Scelta una parametrizzazione $\vec{x}$ di $P$, le rappresentazioni
         matriciali di $\I_P$, $\II_P$ e $S_P$ rispetto a $\vec{x}$ soddisfano
         la seguente relazione:
@@ -255,7 +255,7 @@
             \boxed{\II_P = \I_P \cdot S_P.}
         \]
         In particolare vale:
-        \[ \boxed{\det(S_P) = \frac{\det(\II_P)}{\det(\I_P)} = \frac{\ell n - m}{EF-G^2}.} \]
+        \[ \det(S_P) = \frac{\det(\II_P)}{\det(\I_P)} = \frac{\ell n - m}{EF-G^2}. \]
     \end{proposition}
 
     \subsection{Interpretazione geometrica della II forma fondamentale e curvatura normale}
@@ -302,8 +302,10 @@
         e quindi la quantità $\vec{n}(P) \cdot \dot{T_\alpha}(0)$ non dipende da $\alpha$. \smallskip
 
         Scegliendo la normale di $\pi$ in $T_P \Sigma$, $\dot{T_\alpha}(0)$ è parallelo a $\vec{n}(P)$.
-        Ora possono esservi due casi:
+        Ora possono esservi tre casi:
         \begin{enumerate}
+            \item Se $\dot{T_\alpha}(0)$ è nullo, allora
+                  \[ S_w P \cdot w = \kappa_\alpha(P) = 0. \]
             \item Se $\dot{T_\alpha}(0)$ è parallelo positivamente a $\vec{n}(P)$, allora
                   \[ S_w P \cdot w = \kappa_\alpha(P). \]
             \item Se $\dot{T_\alpha}(0)$ è parallelo negativamente a $\vec{n}(P)$, allora:
@@ -328,4 +330,138 @@
         in modo tale che la giacitura di $\pi \cap P + T_P \Sigma$ sia
         generata da $w$.
     \end{definition}
+
+    \begin{remark}
+        È immediato osservare che le curvature normali sono ``invarianti per rototraslazioni'',
+        ovverosia sono le stesse nei punti e nei vettori associati.
+    \end{remark}
+
+    \subsection{Direzioni e curvature principali, formula di Eulero}
+
+    \begin{definition}[Direzioni e curvature principali]
+        Sia $P$ un punto su una superficie $\Sigma$. Gli autospazi
+        dell'operatore forma $S_P$ sono detti \textbf{direzioni principali in $P$},
+        mentre gli autovalori sono detti \textbf{curvature principali in $P$}, e sono
+        usualmente denotati come $\kappa_1$ e $\kappa_2$.
+    \end{definition}
+
+    \begin{remark}
+        Calcolare la curvatura normale $\kappa_n(P, v) = S_P v \cdot v$ su un $S_P$-autovettore unitario $v$ restituisce la
+        curvatura principale ad esso relativo.
+    \end{remark}
+
+    \begin{remark}
+        Poiché $S_P$ è autoaggiunto, $S_P$ è ortogonalmente diagonalizzabile,
+        ovverosia esiste una base ortonormale di $T_P \Sigma$ composta da
+        $S_P$-autovettori. \smallskip
+
+        Osserviamo inoltre che le curvature principali in
+        $P$ sono distinte se e solo se $S_P$ \underline{non} è un multiplo
+        dell'identità.
+    \end{remark}
+
+    \begin{proposition}[Formula di Eulero]
+        Sia $P$ un punto su una superficie $\Sigma$ con $S_P$-autospazi
+        distinti. Se $\{v_1, v_2\}$ è una base ortonormali di $S_P$-autovettori con
+        $v_1$ relativo alla curvatura $\kappa_1$ e $v_2$ relativo a $\kappa_2$, allora
+        vale la \textbf{formula di Eulero}:
+        \begin{equation} \label{eq:eulero} \tag{Eulero}
+            \kappa_n(P, w_\theta) = \cos(\theta)^2 \kappa_1 + \sin(\theta)^2 \kappa_2,
+        \end{equation}
+        dove $w_\theta \defeq \cos(\theta) \kappa_1 + \sin(\theta) \kappa_2$.
+    \end{proposition}
+
+    \begin{proof}
+        Si tratta di una verifica diretta che sfrutta la definizione di
+        $\kappa_n(P, w_\theta)$.
+    \end{proof}
+
+    \begin{proposition}
+        Sia $P$ un punto su una superficie $\Sigma$. Se $\kappa_1 \leq \kappa_2$ sono
+        le due curvature principali di $P$ (eventualmente coincidenti), allora
+        tutte le curvature normali relative a $P$ sono contenute in $[\kappa_1, \kappa_2]$.
+    \end{proposition}
+
+    \begin{proof}
+        Segue immediatamente da \eqref{eq:eulero}.
+    \end{proof}
+
+    \subsection{Curvatura guassiana, media e classificazione di superfici e punti}
+
+    \begin{definition}[Curvatura gaussiana]
+        Sia $P$ un punto su una superficie $\Sigma$. Si definisce allora
+        la \textbf{curvatura gaussiana} $\kappa(P)$ nel punto $P$ come il prodotto delle
+        sue curvature principali, ovverosia:
+        \[
+            \boxed{\kappa(P) \defeq \kappa_1 \cdot \kappa_2 = \det(S_P).}
+        \]
+    \end{definition}
+
+    \begin{proposition}[Formula per la curvatura gaussiana]
+        Sia $P$ un punto su una superficie $\Sigma$. Vale allora la seguente formula:
+        \[
+            \boxed{\kappa(P) = \frac{\ell n - m}{EG - F^2}.}
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Segue direttamente dalla Proposizione $\ref{prop:formula_forme}$.
+    \end{proof}
+
+    \begin{proposition}[Curvatura media]
+        Sia $P$ un punto su una superficie $\Sigma$. Si definisce allora
+        la \textbf{curvatura media} $H(p)$ nel punto $P$ come la media delle sue
+        curvature principali, ovverosia:
+        \[
+            \boxed{H(P) \defeq \frac{\kappa_1 + \kappa_2}{2} = \frac{1}{2} \tr(S_P).}
+        \]
+    \end{proposition}
+
+    \begin{remark}
+        La curvatura gaussiana rimane invariata cambiando la "normale locale" presa, mentre
+        quella media può cambiare al massimo di segno. In particolare, che
+        una delle due sia nulla è invariante per cambio di parametrizzazione locale.
+    \end{remark}
+
+    \begin{definition}[Superfici piatte e minimi]
+        Sia $P$ un punto su una superficie $\Sigma$. Una superficie
+        si dice \textbf{piatta} se $K \equiv 0$ su tutta $\Sigma$, e
+        \textbf{minima} se invece $H \equiv 0$.
+    \end{definition}
+    \fbox{%
+        \parbox{0.95\linewidth}{%
+            \begin{definition}[Punti ellittici, iperbolici, parabolici e planari]
+                Sia $P$ un punto su una superficie $\Sigma$. Allora $P$ si dice:
+                \begin{itemize}
+                    \item \textbf{ellittico}: se $\kappa(P) > 0$ (tutte le curvature normali sono concordi),
+                    \item \textbf{iperbolico}: se $\kappa(P) < 0$ (esistono curvature normali discordi),
+                    \item \textbf{parabolico}: se $\kappa(P) = 0$, ma $S_P \neq 0$ (tutte le curvature normali sono concordi, e ne esiste una nulla),
+                    \item \textbf{planare}: se $S_P = 0$ (tutte le curvature normali sono nulle).
+                \end{itemize}
+            \end{definition}
+        }%
+    }
+
+    \begin{proposition}
+        Sia $\Sigma \subseteq \RR^3$ una superficie compatta non vuota. Allora
+        $\Sigma$ ammette un punto ellittico.
+    \end{proposition}
+
+    \begin{proof}
+        È sufficiente studiare localmente un punto di norma massima di $\Sigma$ e
+        mostrare che in tal punto la curvatura gaussiana è positiva.
+    \end{proof}
+
+    \begin{proposition}
+        Sia $P$ un punto su una superficie $\Sigma$. \smallskip
+
+        Se $P$ è un punto ellittico, allora esiste un intorno di $P$ su
+        $\Sigma$ contenuto interamente in uno dei due semispazi indotti
+        dal taglio di $\RR^3$ tramite $T_P \Sigma$. \smallskip
+
+        Se $P$ è iperbolico, allora un tale intorno invece \underline{non}
+        può esistere.
+    \end{proposition}
+
+    %TODO: idea di dimostrazione?
 \end{multicols*}
