@@ -32,7 +32,7 @@
 
 \renewcommand{\vec}[1]{{\underaccent{\bar}{{#1}}}}
 
-\newtheorem*{warn}{\warning \; Attenzione}
+\newtheorem*{warn}{{\fontencoding{U}\fontfamily{futs}\selectfont\char 49\relax} \; Attenzione}
 
 \newtheoremstyle{customth}
 {\topsep}{\topsep}
@@ -98,6 +98,8 @@
 
 \newcommand{\der}[2]{\frac{\mathop{}\!\textnormal{\slshape d} #1}{\mathop{}\!\textnormal{\slshape d} #2}}
 \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\dertime}[1]{\frac{\mathop{}\!\textnormal{\slshape d}}{\mathop{}\!\textnormal{\slshape d} t} \bigg|_{#1}}
 
 \newcommand*\dif{\mathop{}\!\textnormal{\slshape d}}
 

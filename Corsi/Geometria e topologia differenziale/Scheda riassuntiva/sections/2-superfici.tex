@@ -91,10 +91,18 @@
         Sia $\alpha : I \to \RR^3$ una curva parametrizzata della forma
         $(a(t), 0, b(t))$ tale che $\alpha$ è regolare e omeomorfismo locale.
         Si definisce allora la \textbf{superficie di rotazione} (intorno
-        all'asse $z$) di $\alpha$ come l'immagine della seguente parametrizzazione:
+        all'asse $z$) di $\alpha$ come l'immagine della seguente
+        parametrizzazione canonica:
         \[
             \vec{x}(u, v) = (a(u) \cos(v), a(u) \sin(v), b(u)).
         \]
+    \end{definition}
+
+    \begin{definition}[Paralleli e meridiani]
+        Sia $\Sigma$ una superficie di rotazione con parametrizzazione canonica
+        $\vec{x}$. Allora l'immagine della curva $\alpha_{u_0}(t) = \vec{x}(u_0, t)$
+        è detta \textbf{parallelo}, mentre quella della curva
+        $\gamma_{v_0}(t) = \vec{x}(t, v_0)$ è detta \textbf{meridiano}.
     \end{definition}
 
     \begin{proposition}
@@ -242,4 +250,10 @@
         Il gradiente $\nicefrac{\nabla f}{\norm{\nabla f}}$ è un campo vettoriale unitario e
         ortogonale a $T_P \Sigma$ per ogni punto $P$. Si conclude per la Proposizione \ref{prop:normale_continua}.
     \end{proof}
+
+    \begin{warn}
+        Ogni superficie è localmente orientabile! \\[0.5em]
+        È sufficiente prendere per ogni
+        punto come ricoprimento la sua stessa parametrizzazione regolare.
+    \end{warn}
 \end{multicols*}

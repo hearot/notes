@@ -1,0 +1,90 @@
+%--------------------------------------------------------------------
+\chapter{Curve su superfici}
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+    \section{Piano tangente e derivata direzionale}
+
+    \subsection{Coordinate di una curva rispetto a una parametrizzazione regolare}
+
+    \begin{proposition} \label{prop:coordinate_curva_parametrizzazione}
+        Sia $\vec{x} : U \to \RR^3$ una parametrizzazione regolare e sia $\alpha : I \to \vec{x}(U)$
+        una curva. Allora $\alpha$ si scrive come:
+        \[
+            \alpha(t) = \vec{x}(u(t), v(t)),
+        \]
+        con $u(t)$, $v(t) : I \to U$ funzioni di classe $C^\infty$.
+    \end{proposition}
+
+    \begin{proof}
+        Segue immediatamente dalla Proposizione \ref{prop:parametrizzazione_è_cinf}.
+    \end{proof}
+
+    \subsection{Relazione tra il piano tangente e le velocità delle curve}
+
+    \begin{proposition}[Il piano tangente è l'insieme delle velocità delle curve sulla superficie considerata]
+        Sia $\Sigma$ una superficie. Allora vale:
+        \[
+            T_P \Sigma = \{ \alpha'(P) \mid \alpha : I \to \Sigma \textnormal{ curva con } P \in \alpha(I) \}.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Sia $P = \vec{x}(0, 0)$, dove $\vec{x} : B_\eps \to \Sigma$ è una parametrizzazione regolare di $P$.
+        È sufficiente osservare che ogni vettore tangente è una combinazione lineare della forma
+        $\lambda \vec{x_u} + \mu \vec{x_v}$; allora la curva
+        $\alpha(t) = \vec{x}(t \lambda, t \mu)$ ha velocità $\lambda \vec{x_u} + \mu \vec{x_v}$ in
+        $P$.
+    \end{proof}
+
+    \subsection{Funzioni lisce sulla superficie e derivata direzionale}
+
+    \begin{definition}[Funzioni $C^\infty$ sulla superficie]
+        Sia $\Sigma$ una superficie. Una funzione $f : \Sigma \to \RR^n$ si
+        dice di classe $C^\infty$ se per ogni parametrizzazione regolare
+        $\vec{x}$ di ogni punto $P \in \Sigma$, $f \circ \vec{x}$ è di
+        classe $C^\infty$.
+    \end{definition}
+
+    \begin{proposition}
+        Sia $\Sigma$ una superficie. Sia $P \in \Sigma$ e venga dato
+        $\xi \in T_P \Sigma$. Sia data una funzione $f : \Sigma \to \RR^n$.
+        Se $\alpha$, $\beta$ sono due curve su $\Sigma$
+        passanti per $P$ al tempo $0$ con $\alpha'(0) = \beta'(0) = \xi$, allora:
+        \[
+            (f \circ \alpha)'(0) = (f \circ \beta)'(0).
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Sia $\vec{x}$ una parametrizzazione regolare di $P$ rispetto a $\Sigma$.
+        Allora, per la Proposizione \ref{prop:coordinate_curva_parametrizzazione},
+        $\alpha(t) = (u(t), v(t))$ e $\beta(t) = (p(t), q(t))$, con $u$, $v$, $p$, $q$ lisce. \smallskip
+
+        Pertanto:
+        \[
+            \begin{aligned}
+                (f \circ \alpha)'(0) & = \dertime{t=0} (f \circ x)(u(t), v(t))      \\[1em]
+                                     & = (f \circ x)_u u'(0) + (f \circ x)_v v'(0).
+            \end{aligned}
+        \]
+
+        Osserviamo che $(u'(0), v'(0)) = (p'(0), q'(0))$, dal momento che rappresentano le coordinate
+        in $U$ del vettore $\xi$.
+        La tesi segue allora dal fatto
+        che il membro a destra diventa $(f \circ \beta)'(0)$.
+    \end{proof}
+
+    \begin{definition}[Derivata direzionale]
+        Sia $\Sigma$ una superficie. Sia $P \in \Sigma$ e venga dato
+        $\xi \in T_P \Sigma$. Allora, data una funzione $f : \Sigma \to \RR^n$,
+        la derivata direzionale $D_\xi f(P)$ è definita come:
+        \[
+            D_\xi f(P) \defeq (f \circ \alpha)'(0),
+        \]
+        dove $\alpha$ è una qualsiasi curva su $\Sigma$
+        passante per $P$ al tempo $0$ con $\alpha'(0) = \xi$.
+    \end{definition}
+
+    %\section{Operatore forma, I e II forma fondamentale}
+\end{multicols*}
