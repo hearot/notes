@@ -25,7 +25,7 @@
     \begin{proposition}[Il piano tangente è l'insieme delle velocità delle curve sulla superficie considerata]
         Sia $\Sigma$ una superficie. Allora vale:
         \[
-            T_P \Sigma = \{ \alpha'(P) \mid \alpha : I \to \Sigma \textnormal{ curva con } P \in \alpha(I) \}.
+            \boxed{T_P \Sigma \defeq \{ \alpha'(P) \mid \alpha : I \to \Sigma \textnormal{ curva con } P \in \alpha(I) \}.}
         \]
     \end{proposition}
 
@@ -80,11 +80,181 @@
         $\xi \in T_P \Sigma$. Allora, data una funzione $f : \Sigma \to \RR^n$,
         la derivata direzionale $D_\xi f(P)$ è definita come:
         \[
-            D_\xi f(P) \defeq (f \circ \alpha)'(0),
+            \boxed{D_\xi f(P) \defeq (f \circ \alpha)'(0),}
         \]
         dove $\alpha$ è una qualsiasi curva su $\Sigma$
         passante per $P$ al tempo $0$ con $\alpha'(0) = \xi$.
     \end{definition}
 
-    %\section{Operatore forma, I e II forma fondamentale}
+    \section{Operatore forma, I e II forma fondamentale}
+
+    \subsection{Operatore forma e prime proprietà}
+
+    \begin{proposition}
+        Sia $\vec{x}$ una parametrizzazione regolare di un punto
+        $P$ su $\Sigma$. Allora $D_\xi \vec{n}(P) \in T_P \Sigma$,
+        dove $\vec{n}$ è la normale indotta da $\vec{x}$ localmente.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $\alpha$ una curva su $\Sigma$ passante per $P$ al tempo $0$
+        con $\alpha'(0) = \xi$.
+        Osserviamo che $\vec{n}(\alpha(t)) \cdot \vec{n}(\alpha(t)) = 1$,
+        e quindi:
+        \[
+            2 (D_\xi \, \vec{n}(P) \cdot \vec{n}(P)) = 0,
+        \]
+        da cui la tesi.
+    \end{proof}
+
+    \begin{definition}[Operatore forma]
+        Data una $\vec{x}$ una parametrizzazione regolare di un
+        punto $P$ su $\Sigma$, si definisce \textbf{operatore forma}
+        l'endomorfismo $S_P(\xi) : T_P \Sigma \to T_P \Sigma$ tale per cui:
+        \[
+            \boxed{S_P(\xi) \defeq - D_\xi \, \vec{n}(P).}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Osserviamo che l'operatore forma è ``essenzialmente unico'', dal momento
+        che, al variare delle parametrizzazioni, può solo cambiare segno (quello della
+        normale). Tutte le proprietà che ci interessano sono invarianti per cambio di
+        segno, e quindi la scrittura $S_P$ è ``ben definita''.
+    \end{remark}
+
+    \begin{lemma} \label{lem:formula_operatore_forma}
+        Sia $P$ un punto su una superficie $\Sigma$. Sia $\vec{x}$ una
+        parametrizzazione di $P$. Allora per $\{i, j\} \subseteq \{u, v\}$ vale:
+        \[
+            \boxed{S_P(\vec{x_i}) \cdot \vec{x_j}(P) = \vec{n}(P) \cdot \vec{x_{ij}}(P).}
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Senza perdita di generalità assumiamo $P = \vec{x}(0, 0)$.
+        Sia $\vec{n}$ la normale indotta dalla parametrizzazione $\vec{x}$. Allora vale:
+        \[
+            \begin{cases}
+                \vec{n} \cdot \vec{x_u} = 0, \\
+                \vec{n} \cdot \vec{x_v} = 0.
+            \end{cases}
+        \]
+        Derivando le due equazioni del sistema lungo la curva $\alpha(t) = \vec{x}(t, 0)$,
+        otteniamo:
+        \[
+            \begin{cases}
+                S_P(\vec{x_u}) \cdot \vec{x_u}(P) = \vec{n}(P) \cdot \vec{x_{uu}}(P), \\
+                S_P(\vec{x_u}) \cdot \vec{x_v}(P) = \vec{n}(P) \cdot \vec{x_{uv}}(P),
+            \end{cases}
+        \]
+        dove nell'ultima espressione si è applicato il teorema di Schwarz per sostituire $x_{uv}$
+        a $x_{vu}$. Analogamente si ottiene la formula per gli altri due casi.
+    \end{proof}
+
+    \begin{proposition}[L'operatore forma è autoaggiunto] \label{prop:forma_autoaggiunta}
+        Sia $P$ un punto su una superficie $\Sigma$. Allora l'operatore
+        forma $S_P$ è autoaggiunto.
+    \end{proposition}
+
+    \begin{proof}
+        Per dimostrare che $S_P$ è autoaggiunto è sufficiente mostrare
+        che:
+        \[ S_P(\vec{x_u}) \cdot \vec{x_v} = \vec{x_u} \cdot S_P(\vec{x_v}), \]
+        dacché $\{\vec{x_u}(P), \vec{x_v}(P)\}$ è una base di $T_P \Sigma$. Questo
+        però è immediato dal Lemma \ref{lem:formula_operatore_forma} e dal teorema
+        di Schwarz.
+    \end{proof}
+
+    \subsection{I e II forma fondamentale}
+
+    \begin{definition}[I forma fondamentale]
+        Sia $\Sigma$ una superficie. Si definisce \textbf{I forma fondamentale}
+        di $\Sigma$ in $P$ il prodotto scalare $\I_P : T_P \Sigma \times T_P \Sigma \to \RR$
+        definito come:
+        \[
+            \boxed{\I_P(v, w) \defeq v \cdot w,}
+        \]
+        ovverosia è il prodotto canonico di $\RR^3$ ristretto
+        a $T_P \Sigma$.
+    \end{definition}
+
+    \begin{definition}[II forma fondamentale]
+        Sia $\Sigma$ una superficie. Si definisce \textbf{II forma fondamentale}
+        di $\Sigma$ in $P$ il prodotto scalare $\II_P : T_P \Sigma \times T_P \Sigma \to \RR$
+        definito come:
+        \[
+            \boxed{\II_P(v, w) \defeq \I_P(S_P(v), w) = S_P(v) \cdot w.}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Osserviamo che la II forma fondamentale è ben definita dal momento che
+        $S_P$ è autoaggiunto per la Proposizione \ref{prop:forma_autoaggiunta}
+    \end{remark}
+
+    \begin{remark}
+        Scelta una parametrizzazione $\vec{x}$ di $P$, le due forme fondamentali
+        e l'operatore forma
+        si rappresentano canonicamente come matrici $2 \times 2$ nella
+        base $\{\vec{x_u}, \vec{x_v}\}$.
+    \end{remark}
+
+    \begin{definition}[I forma fondamentale matriciale]
+        Scelta una parametrizzazione $\vec{x}$ di $P$ e data la rappresentazione
+        matriciale di $\I_P$ rispetto a $\vec{x}$, definiamo $E$, $F$ e $G$ (relativi
+        a $P$) di
+        modo che:
+        \[
+            \begin{pmatrix}
+                E & F \\
+                F & G
+            \end{pmatrix} =
+            \begin{pmatrix}
+                \vec{x_u} \cdot \vec{x_u} & \vec{x_u} \cdot \vec{x_v} \\
+                \vec{x_u} \cdot \vec{x_v} & \vec{x_v} \cdot \vec{x_v}
+            \end{pmatrix}.
+        \]
+    \end{definition}
+
+    \begin{definition}[II forma fondamentale matriciale]
+        Scelta una parametrizzazione $\vec{x}$ di $P$ e data la rappresentazione
+        matriciale di $\II_P$ rispetto a $\vec{x}$, definiamo $\ell$, $m$, $n$ (relativi
+        a $P$) di
+        modo che:
+        \[
+            \begin{pmatrix}
+                \ell & m \\
+                m    & n
+            \end{pmatrix} =
+            \begin{pmatrix}
+                S_P(\vec{x_u}) \cdot \vec{x_u} & S_P(\vec{x_u}) \cdot \vec{x_v} \\
+                S_P(\vec{x_u}) \cdot \vec{x_v} & S_P(\vec{x_v}) \cdot \vec{x_v}
+            \end{pmatrix}.
+        \]
+    \end{definition}
+
+    \begin{proposition}[Formula per $\ell$, $m$ e $n$]
+        Gli elementi della rappresentazione matriciale di $\II_P$ rispetto a $\vec{x}$
+        si calcolano come segue:
+        \[
+            \boxed{\ell = \vec{n} \cdot \vec{x_{uu}}, \quad m = \vec{n} \cdot \vec{x_{uv}}, \quad n = \vec{n} \cdot \vec{x_{vv}},}
+        \]
+        dove $\vec{n}$ è la normale indotta da $\vec{x}$.
+    \end{proposition}
+
+    \begin{proof}
+        Segue immediatamente dal Lemma \ref{lem:formula_operatore_forma}.
+    \end{proof}
+
+    \begin{proposition}
+        Scelta una parametrizzazione $\vec{x}$ di $P$, le rappresentazioni
+        matriciali di $\I_P$, $\II_P$ e $S_P$ rispetto a $\vec{x}$ soddisfano
+        la seguente relazione:
+        \[
+            \boxed{\II_P = \I_P \cdot S_P.}
+        \]
+        In particolare vale:
+        \[ \boxed{\det(S_P) = \frac{\det(\II_P)}{\det(\I_P)} = \frac{\ell n - m}{EF-G^2}.} \]
+    \end{proposition}
 \end{multicols*}
