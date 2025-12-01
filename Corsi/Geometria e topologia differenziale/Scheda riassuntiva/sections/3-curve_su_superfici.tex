@@ -148,8 +148,8 @@
                 S_P(\vec{x_u}) \cdot \vec{x_v}(P) = \vec{n}(P) \cdot \vec{x_{uv}}(P),
             \end{cases}
         \]
-        dove nell'ultima espressione si è applicato il teorema di Schwarz per sostituire $x_{uv}$
-        a $x_{vu}$. Analogamente si ottiene la formula per gli altri due casi.
+        dove nell'ultima espressione si è applicato il teorema di Schwarz per sostituire $\vec{x_{uv}}$
+        a $\vec{x_{vu}}$. Analogamente si ottiene la formula per gli altri due casi.
     \end{proof}
 
     \begin{proposition}[L'operatore forma è autoaggiunto] \label{prop:forma_autoaggiunta}
@@ -257,4 +257,75 @@
         In particolare vale:
         \[ \boxed{\det(S_P) = \frac{\det(\II_P)}{\det(\I_P)} = \frac{\ell n - m}{EF-G^2}.} \]
     \end{proposition}
+
+    \subsection{Interpretazione geometrica della II forma fondamentale e curvatura normale}
+
+    \begin{proposition}
+        Sia $\pi$ un piano in $\RR^3$ passante
+        per un punto $p$ di una superficie $\Sigma$. Se $\pi \neq P + T_P \Sigma$,
+        allora $\pi \cap \Sigma$ è localmente parametrizzato come una curva regolare
+        intorno a $P$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $\vec{x} : U \to \Sigma$ è una parametrizzazione regolare di $P$ e sia $\pi$
+        il piano associato all'equazione $(a, b) \cdot \vec{x} = d$. Assumiamo che
+        $P = \vec{x}(u_0, v_0)$. \smallskip
+
+        Consideriamo la funzione liscia $f$ a valori reali tale per cui:
+        \[ f(u, v) = (a, b) \cdot \vec{x}(u, v). \]
+        Osserviamo innanzitutto che $f\inv(d) = \pi \cap \vec{x}(U)$. Mostriamo
+        che $f\inv(d)$ è una curva regolare intorno a $P$ mostrando che $d$ è
+        un valore regolare per $f$ in $(u_0, v_0)$:
+        \[
+            \nabla f(u_0, v_0) = (a, b) \cdot (\vec{x_u}(P), \vec{x_v}(P)).
+        \]
+        Dal momento che $\pi$ è diverso da $P + T_P \Sigma$, la normale $(a, b)$ del piano
+        $\pi$ non può essere ortogonale a $(\vec{x_u}(P), \vec{x_v}(P))$, e quindi
+        $\nabla f(u_0, v_0) \neq 0$, da cui la tesi.
+    \end{proof}
+
+    \begin{remark}
+        Se $\pi$ è un piano con $\pi \neq P + T_P \Sigma$, allora la curva che parametrizza
+        localmente in $P$ l'intersezione $\pi \cap \Sigma$ ha come versore tangente uno
+        dei due possibili vettori unitari della giacitura di $\pi \cap (P + T_P \Sigma)$. \smallskip
+
+        In particolare esiste una curva p.l.a.~$\alpha : (-\eps, \eps) \to \Sigma$ che parametrizza
+        l'intersezione $\pi \cap \Sigma$ localmente in $P$ con $\alpha(0) = P$ e
+        $\alpha'(0) = w$, dove $w$ è il versore sopracitato. \smallskip
+
+        Per tale curva $\alpha$ vale $\vec{n}(\alpha(s)) \cdot \alpha'(s) = 0$, dove
+        $\vec{n}$ è una normale (locale). Quindi, derivando:
+        \[
+            \boxed{S_w P \cdot w = \vec{n}(P) \cdot \dot{T_\alpha}(0),}
+        \]
+        e quindi la quantità $\vec{n}(P) \cdot \dot{T_\alpha}(0)$ non dipende da $\alpha$. \smallskip
+
+        Scegliendo la normale di $\pi$ in $T_P \Sigma$, $\dot{T_\alpha}(0)$ è parallelo a $\vec{n}(P)$.
+        Ora possono esservi due casi:
+        \begin{enumerate}
+            \item Se $\dot{T_\alpha}(0)$ è parallelo positivamente a $\vec{n}(P)$, allora
+                  \[ S_w P \cdot w = \kappa_\alpha(P). \]
+            \item Se $\dot{T_\alpha}(0)$ è parallelo negativamente a $\vec{n}(P)$, allora:
+                  \[ S_w P \cdot w = -\kappa_\alpha(P). \]
+        \end{enumerate}
+
+        Queste osservazioni ci permettono di dare un'ottima interpretazione
+        geometrica al prodotto $S_w P \cdot w$, come segue:
+    \end{remark}
+
+    \begin{definition}[Curvatura normale]
+        Sia $P$ un punto su una superficie $\Sigma$. Dato un vettore unitario
+        $w \in T_P \Sigma$, si definisce la \textbf{curvatura normale $\kappa_n(P, w)$ in $P$
+            di direzione $w$}
+        come:
+        \[
+            \boxed{\kappa_n(P, w) \defeq S_w P \cdot w,}
+        \]
+        che è quindi, a meno di segno, per l'osservazione precedente, la curvatura di una curva
+        $\alpha$ passante per $P$ e ottenuta come intersezione del piano
+        tangente affine $P + T_P \Sigma$ e di un piano $\pi$ ad esso ortogonale,
+        in modo tale che la giacitura di $\pi \cap P + T_P \Sigma$ sia
+        generata da $w$.
+    \end{definition}
 \end{multicols*}
