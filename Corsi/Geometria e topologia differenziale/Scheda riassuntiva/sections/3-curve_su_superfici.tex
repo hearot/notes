@@ -464,4 +464,153 @@
     \end{proposition}
 
     %TODO: idea di dimostrazione?
+
+    \section{Superfici localmente isometriche e Theorema egregium}
+
+    \subsection{Conservazione delle lunghezze su superfici localmente isometriche}
+
+    \begin{proposition}
+        Data una parametrizzazione $\vec{x} : U \to \RR^3$,
+        si ha $\ell(\overline{\alpha}) = \ell(\vec{x} \circ \overline{\alpha})$
+        per ogni curva $\overline{\alpha} : [a, b] \to U$ se e solo se
+        $\I_P = I_2$ per ogni punto $P$ in $\vec{x}(U)$. \smallskip
+
+        In altre parole, $\vec{x}$ preserva le lunghezze delle curve se e solo se
+        $E \equiv G \equiv 1$ e $F \equiv 0$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $P$ un punto di $\vec{x}(U)$ con $P = \vec{x}(u_0, v_0)$. Siano $\lambda$,
+        $\mu \in \RR$. Si può scegliere una curva $\overline{\alpha}$ su $U$
+        con $\overline{\alpha}(0) = (u_0, v_0)$ e $\overline{\alpha}'(0) = (\lambda, \mu)$. \smallskip
+
+        Preservare le lunghezze di ogni curva vuol dire anche
+        preservare le lunghezze di ogni porzione di $\overline{\alpha}$. Questo implica
+        $\norm{\overline{\alpha}'} = \norm{\alpha'}$, dove $\alpha = \vec{x} \circ \overline{\alpha}$. \smallskip
+
+        Se $\overline{\alpha}(t) = (u(t), v(t))$, allora:
+        \[
+            \alpha'(0) = \lambda \vec{x_u}(P) + \mu \vec{x_v}(P).
+        \]
+        L'arbitrarietà di $\lambda$ e $\mu$ implica
+        che la mappa $(a, b) \mapsto a \, \vec{x_u}(P) + b \, \vec{x_v}(P)$ sia
+        un'isometria per ogni punto $P$,
+        e quindi che $\I_P$ sia l'identità $I_2$.
+    \end{proof}
+
+    \begin{definition}[Isometria locale]
+        Una parametrizzazione regolare $\vec{x}$ si dice
+        \textbf{isometria locale} se su tutti i punti di
+        $\vec{x}(U)$ si ha $E \equiv G \equiv 1$ e $F \equiv 0$
+        tramite $\vec{x}$.
+    \end{definition}
+
+    \begin{definition}[Superfici localmente isometriche]
+        Siano $\Sigma$ e $\Sigma^*$ due superfici di $\RR^3$. Siano
+        $P \in \Sigma$ e $P^* \in \Sigma^*$. Si dice che $\Sigma$ e
+        $\Sigma^*$ sono \textbf{localmente isometriche} intorno a
+        $P$ e $P^*$ se esistono
+        $\vec{x} : U \to \Sigma$ parametrizzazione di $P$, e $\vec{x^*} : U \to \Sigma^*$
+        parametrizzazione di $P^*$ con $E \equiv E^*$, $F \equiv F^*$ e
+        $G \equiv G^*$ su $U$.
+    \end{definition}
+
+    \begin{remark}
+        Passare da un intorno di una superficie a un intorno di una superficie ad essa
+        localmente isometrica conserva le lunghezze. \smallskip
+
+        \[\begin{tikzcd}
+                && \Sigma \\
+                {[a, b]} & U \\
+                && {\Sigma^*}
+                \arrow["f"{description}, from=1-3, to=3-3]
+                \arrow["\alpha"{description}, curve={height=-12pt}, from=2-1, to=1-3]
+                \arrow["{\overline{\alpha}}", from=2-1, to=2-2]
+                \arrow["{\alpha^*}"{description}, curve={height=12pt}, from=2-1, to=3-3]
+                \arrow["{\vec{x}}", from=2-2, to=1-3]
+                \arrow["{\vec{x^*}}"', from=2-2, to=3-3]
+            \end{tikzcd}\]
+
+        Se $\alpha$ è una curva su $\Sigma$, allora si può fattorizzare come $\vec{x} \circ \overline{\alpha}$ con
+        $\overline{\alpha}(t) = (u(t), v(t))$
+        (vd. Proposizione \ref{prop:coordinate_curva_parametrizzazione}); analogamente si fattorizza la
+        curva ottenuta sulla superficie $\Sigma^*$ come $\alpha^* \defeq \vec{x^*} \circ \overline{\alpha}$. \smallskip
+
+        La tesi è equivalente a mostrare che $f \defeq \vec{x^*} \circ \vec{x}$ conserva le velocità delle curve.
+        Ma questo è vero, infatti:
+        \[
+            \norm{\alpha'(t)}^2 = \overline{\alpha}'(t)^\top \I_P \overline{\alpha}'(t) = \overline{\alpha}'(t)^\top \I_P^* \overline{\alpha}'(t) = \norm{(\alpha^*)'(t)}^2,
+        \]
+        e $\I_P = \I_P^*$.
+    \end{remark}
+
+    \begin{remark}
+        Una superficie $\Sigma^*$ ottenuta come rototraslazione o riflessione di una superficie $\Sigma$ è
+        localmente isometrica a $\Sigma$ nei punti associati.
+    \end{remark}
+
+    \subsection{Theorema Egregium, simboli di Christoffel e conseguenze}
+
+    \begin{remark}
+        Osserviamo che, se $\vec{x}$ è una parametrizzazione regolare,
+        allora $\{\vec{x_u}, \vec{x_v}, \vec{n}\}$ -- dove $\vec{n}$ è la
+        normale indotta da $\vec{x}$ -- è una base di $\RR^3$ in ogni punto.
+        Pertanto anche $\vec{x_{uu}}$, $\vec{x_{uv}}$ e $\vec{x_{vv}}$ dovranno
+        scriversi in questa base.
+    \end{remark}
+
+    \begin{definition}[Simbolo di Christoffel]
+        Sia $\vec{x}$ una parametrizzazione regolare. Si indica con
+        il \textbf{simbolo di Christoffel} $\Gamma_{ij}^k$ il coefficiente di $\vec{x_k}$
+        del vettore $\vec{x_{ij}}$, dove
+        $\{i, j, k\} \subseteq \{u, v\}$.
+    \end{definition}
+
+    \begin{remark}
+        Si osserva subito che vale la seguente formula:
+        \[
+            \boxed{\begin{pmatrix}
+                    \vec{x_u} \cdot \vec{x_{ij}} \\
+                    \vec{x_v} \cdot \vec{x_{ij}}
+                \end{pmatrix} =
+                \I \begin{pmatrix}
+                    \vec{\Gamma_{ij}^u} \\
+                    \vec{\Gamma_{ij}^v}.
+                \end{pmatrix},}
+        \]
+        dove $\I$ è la I forma fondamentale in forma matriciale.
+    \end{remark}
+
+    \begin{theorem}[Theorema Egregium di Gauss]
+        Sia $\Sigma$ una superficie di $\RR^3$. Allora la sua
+        curvatura gaussiana $\kappa$ è localmente esprimibile in funzione
+        di $E$, $F$, $G$ e le loro derivate.
+    \end{theorem}
+
+    \begin{proof}
+        La dimostrazione segue questo schema:
+        \begin{enumerate}[(i.)]
+            \item Dall'osservazione precedente, i simboli di Christoffel si
+                  scrivono in funzione degli $\vec{x_k} \cdot \vec{x_{ij}}$ tramite
+                  la I forma fondamentale.
+            \item I $\vec{x_k} \cdot \vec{x_{ij}}$ si scrivono utilizzando le derivate
+                  di $E$, $F$ e $G$, e quindi anche i simboli di Christoffel.
+            \item Il termine $\ell d - m b$, dove $b$ e $d$ sono gli elementi della
+                  seconda riga della II forma fondamentale, si scrive come $E \cdot \kappa$.
+            \item Sviluppando $\vec{x_{uuv}}$ e $\vec{x_{uvu}}$ e applicando il teorema
+                  di Schwarz, si ottiene un'espressione di $\ell d - m b$ in termini dei
+                  simboli di Christoffel.
+            \item Allora $\ell d - m b$ si scrive in termini di $E$, $F$ e $G$ per (ii.) e (iv.),
+                  e così anche $\kappa$ per (iii.).
+        \end{enumerate}
+    \end{proof}
+
+    \begin{corollary}
+        Due superfici localmente isometriche hanno stessa curvatura gaussiana nei
+        punti associati.
+    \end{corollary}
+
+    \begin{corollary}
+        Un piano e la sfera \underline{non} sono localmente isometrici.
+    \end{corollary}
 \end{multicols*}
