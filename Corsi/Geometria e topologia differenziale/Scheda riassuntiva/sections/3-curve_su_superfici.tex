@@ -594,13 +594,15 @@
                   scrivono in funzione degli $\vec{x_k} \cdot \vec{x_{ij}}$ tramite
                   la I forma fondamentale.
             \item I $\vec{x_k} \cdot \vec{x_{ij}}$ si scrivono utilizzando le derivate
-                  di $E$, $F$ e $G$, e quindi anche i simboli di Christoffel.
+                  di $E$, $F$ e $G$, e quindi i simboli di Christoffel si scrivono
+                  in termini di $E$, $F$, $G$ e derivate.
             \item Il termine $\ell d - m b$, dove $b$ e $d$ sono gli elementi della
                   seconda riga della II forma fondamentale, si scrive come $E \cdot \kappa$.
             \item Sviluppando $\vec{x_{uuv}}$ e $\vec{x_{uvu}}$ e applicando il teorema
                   di Schwarz, si ottiene un'espressione di $\ell d - m b$ in termini dei
                   simboli di Christoffel.
-            \item Allora $\ell d - m b$ si scrive in termini di $E$, $F$ e $G$ per (ii.) e (iv.),
+            \item Allora $\ell d - m b$ si scrive in termini di $E$, $F$ e $G$ e le loro derivate
+                  per (ii.) e (iv.),
                   e così anche $\kappa$ per (iii.).
         \end{enumerate}
     \end{proof}
@@ -613,4 +615,117 @@
     \begin{corollary}
         Un piano e la sfera \underline{non} sono localmente isometrici.
     \end{corollary}
+
+    \section{Trasporto parallelo e geodetiche}
+
+    \subsection{Campi vettoriali e derivata covariante}
+
+    \begin{definition}[Campo vettoriale (tangente)]
+        Sia $\Sigma$ una superficie. Un \textbf{campo vettoriale} (tangente) su $\Sigma$
+        è una mappa liscia $X : \Sigma \to \RR^3$ tale per cui
+        $X(P) \in T_P \Sigma$ per ogni $P \in \Sigma$.
+    \end{definition}
+
+    \begin{definition}[Derivata covariante]
+        Sia $X$ un campo vettoriale di $\Sigma$. Si definisce allora
+        la sua \textbf{derivata covariante} in direzione $v$ su un punto $P$ come:
+        \[
+            \boxed{\nabla_v X(P) \defeq (D_v X(P))^\top \defeq \pi_{T_P \Sigma}(D_v X(P)).}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        In realtà, per definire la derivata covariante di $X$ in direzione $v$ è sufficiente
+        che $X$ sia definita lungo una curva $\alpha$ passante per $P$ con velocità
+        $v$.
+    \end{remark}
+
+    \subsection{Campi paralleli lungo una curva e proprietà del trasporto parallelo}
+
+    \begin{definition}[Campo parallelo]
+        Un campo vettoriale (tangente) $X$ su $\Sigma$ si dice \textbf{parallelo lungo
+            una curva $\alpha : I \to \Sigma$} se:
+        \[
+            \boxed{\nabla_{\alpha'(t)} X(\alpha(t)) = 0, \quad \forall t \in I.}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Sia $X$ un campo vettoriale e sia $\alpha$ una curva su $\Sigma$. Poiché
+        $X$ è una mappa liscia sulla superficie $\Sigma$, $X \circ \alpha$
+        si scrive come:
+        \[
+            X(\alpha(t)) = a(t) \vec{x_u}(\alpha(t)) + b(t) \vec{x_v}(\alpha(t)).
+        \]
+        Dunque, usando la definizione di campo parallelo, $X$ è parallelo lungo $\alpha$ se
+        e solo se soddisfa il seguente sistema, detto \textbf{sistema delle equazioni del
+            trasporto parallelo}:
+        \begin{equation*} \label{eq:TP}
+            \boxed{\textnormal{(TP):  } \begin{cases}
+                    a' + a (\Gamma_{uu}^u u' + \Gamma_{uv}^u v') + b(\Gamma_{vv}^u v' + \Gamma_{uv}^u u') = 0, \\
+                    b' + a (\Gamma_{uu}^v u' + \Gamma_{uv}^v v') + b(\Gamma_{vv}^v v' + \Gamma_{uv}^v u') = 0,
+                \end{cases}}
+        \end{equation*}
+        dove $\alpha(t) = (u(t), v(t))$.
+    \end{remark}
+
+    \begin{proposition}[Esistenza e unicità del trasporto parallelo]
+        Sia $\alpha : [0, 1] \to \Sigma$ una curva su una superficie $\Sigma$.
+        Sia $X_0$ un vettore di $T_{\alpha(0)} \Sigma$. Allora esiste un
+        unico campo vettoriale $X$ parallelo lungo $\alpha$ tale per cui
+        $X(\alpha(0)) = X_0$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $\{\vec{x_P}\}_{P \in \alpha([0, 1])}$ una famiglia di
+        parametrizzazioni. Per compattezza di $[0, 1]$ e continuità di $\alpha$, anche $\alpha([0, 1])$
+        è compatto. Dunque $\alpha(I)$ è contenuto in un numero finito delle parametrizzazioni della
+        famiglia scelta in partenza. \smallskip
+
+        È sufficiente dimostrare ora la proposizione sfruttando un'unica parametrizzazione e poi ``incollando''
+        i campi ottenuti. Tuttavia questo è ovvio dal momento per il Teorema di esistenza e unicità globale
+        per sistemi lineari di equazioni differenziali applicato al sistema dell'Osservazione \ref{eq:TP}.
+    \end{proof}
+
+    \begin{definition}
+        L'immagine in $\alpha(1)$ del campo $X$ ottenuto dalla proposizione precedente per estensione parallela
+        da un vettore $X_0 \in T_{\alpha(0)} \Sigma$ si dice ottenuta per \textbf{trasporto parallelo} sulla
+        curva $\alpha$.
+    \end{definition}
+
+    \begin{remark}
+        Dal momento che il sistema delle equazioni del trasporto parallelo è lineare e omogeneo,
+        combinazioni lineari di soluzioni sono soluzioni, e quindi l'operazione di trasporto parallelo
+        è lineare.
+    \end{remark}
+
+    \begin{proposition}[Il trasporto parallelo conserva le distanze]
+        L'operazione di trasporto parallelo conserva il prodotto scalare dei vettori,
+        e quindi anche le distanze. Inoltre, manda basi di un piano tangente all'altro
+        mantenendone l'orientazione.
+    \end{proposition}
+
+    \begin{proof}
+        Siano $X$ e $Y$ due campi paralleli lungo una stessa curva $\alpha : [0, 1] \to \Sigma$.
+        Si definisce la funzione $f : [0, 1] \to \RR$ in modo tale che:
+        \[
+            f(t) = X(\alpha(t)) \cdot Y(\alpha(t)).
+        \]
+        Derivando $f$ in $t$ otteniamo:
+        \begin{align*}
+            f'(t) & = D_{\alpha'(t)} X(\alpha(t)) \cdot Y(\alpha(t))        \\
+                  & \quad + X(\alpha(t)) \cdot D_{\alpha'(t)} Y(\alpha(t)).
+        \end{align*}
+        Poiché $X$ e $Y$ sono paralleli lungo $\alpha$, le due derivate direzionali sono
+        parallele alla normale (locale) in $\alpha(t)$, mentre i termini non derivati
+        ne sono perpendicolari. Dunque $f'(t)$ è nullo, e quindi il prodotto scalare si conserva. \smallskip
+
+        Consideriamo ora la funzione $\varphi : [0, 1] \to \RR$ tale per cui:
+        \[
+            \varphi(t) = (X(\alpha(t)) \cdot Y(\alpha(t))) \cdot \vec{n}.
+        \]
+        Poiché $\varphi$ è continua e non può essere $\varphi(t) = 0$ ad alcun tempo $t$,
+        essendo $[0, 1]$ connesso, deve essere necessariamente $\varphi > 0$ o
+        $\varphi < 0$ su tutto $[0, 1]$, da cui la tesi.
+    \end{proof}
 \end{multicols*}
