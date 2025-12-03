@@ -285,7 +285,7 @@
         $\nabla f(u_0, v_0) \neq 0$, da cui la tesi.
     \end{proof}
 
-    \begin{remark}
+    \begin{remark} \label{rmk:curvatura_normale}
         Se $\pi$ è un piano con $\pi \neq P + T_P \Sigma$, allora la curva che parametrizza
         localmente in $P$ l'intersezione $\pi \cap \Sigma$ ha come versore tangente uno
         dei due possibili vettori unitari della giacitura di $\pi \cap (P + T_P \Sigma)$. \smallskip
@@ -328,7 +328,13 @@
         $\alpha$ passante per $P$ e ottenuta come intersezione del piano
         tangente affine $P + T_P \Sigma$ e di un piano $\pi$ ad esso ortogonale,
         in modo tale che la giacitura di $\pi \cap P + T_P \Sigma$ sia
-        generata da $w$.
+        generata da $w$. \smallskip
+
+        Data $\alpha$ su $\Sigma$, definiamo la sua curvatura normale $\kappa_n$ in $P$
+        come:
+        \[
+            \boxed{\kappa_{\alpha, n} \defeq \kappa_n(P, T_\alpha(P)).}
+        \]
     \end{definition}
 
     \begin{remark}
@@ -386,7 +392,7 @@
         Segue immediatamente da \eqref{eq:eulero}.
     \end{proof}
 
-    \subsection{Curvatura guassiana, media e classificazione di superfici e punti}
+    \subsection{Curvatura gaussiana, media e classificazione di superfici e punti}
 
     \begin{definition}[Curvatura gaussiana]
         Sia $P$ un punto su una superficie $\Sigma$. Si definisce allora
@@ -833,7 +839,7 @@
         \end{itemize}
     \end{remark}
 
-    \subsection{Lemma di Gauss e minimizzazione locale delle distante}
+    \subsection{Lemma di Gauss e minimizzazione locale delle distanze}
 
     \begin{lemma}[Gauss, le geodetiche sono ortogonali ai cerchi indotti dalla mappa esponenziale] \label{lem:gauss}
         Sia $\{\vec{e_1}, \vec{e_2}\}$ una base ortonormale di $T_P \Sigma$.
@@ -897,5 +903,97 @@
         \]
         dove si è usato che $u(0) = 0$ ($P$ nelle coordinate normali corrisponde a $(0, 0)$) e che
         $u(1) = 1$ ($P'$ ha già raggio $k$).
+    \end{proof}
+
+    \subsection{Relazione di Clairaut per le geodetiche sulle superfici di rotazione}
+
+    \begin{definition}[Angolo di una curva con il parallelo]
+        Sia $\Sigma$ una superficie di rotazione con parametrizzazione
+        canonica $\vec{x}$. Data una curva $\gamma$ su
+        di essa, si definisce $\phi(\gamma(t))$ come segue:
+        \[
+            \boxed{\phi(\gamma(t)) \defeq \theta(\gamma'(t), \vec{x_v}(\gamma(t))),}
+        \]
+        ovverosia $\phi(\gamma(t))$ è \textbf{l'angolo tra la curva $\gamma$ in $\gamma(t)$ e il
+            parallelo a cui appartiene $\gamma(t)$}.
+    \end{definition}
+
+    \begin{definition}[Raggio di una curva rispetto all'asse $z$]
+        Sia $\Sigma$ una superficie di rotazione.
+        Sia data una curva $\gamma$ su di
+        essa. Si definisce
+        allora il \textbf{raggio di $\gamma$ rispetto all'asse di rotazione $z$}
+        come la distanza di $\gamma$ dall'asse $z$, ovverosia:
+        \[
+            \boxed{r(\gamma(t)) \defeq \norm{\pi_{xy}(\gamma(t))}.}
+        \]
+    \end{definition}
+
+    \begin{proposition}[Relazione di Clairaut]
+        Sia $\gamma$ una geodetica su una superficie di rotazione $\Sigma$. Allora
+        $\gamma$ soddisfa la \textbf{relazione di Clairaut}:
+        \begin{equation} \label{eq:clairaut} \tag{Clairaut}
+            \boxed{r(\gamma(t)) \cdot \cos(\phi(\gamma(t))) = \textnormal{cost.}}
+        \end{equation}
+        Inoltre una curva soddisfacente la relazione di Clairaut che non parametrizza un parallelo è
+        una geodetica.
+    \end{proposition}
+
+    \begin{remark}
+        Sono geodetiche anche le curve soddisfacenti \eqref{eq:clairaut} che parametrizzano paralleli, a patto
+        che, se $\Sigma$ è una rotazione sulla funzione $f$, valga $f' = 0$ sui punti
+        della geodetica; ovverosia, in un certo senso, sono geodetiche i ``paralleli stazionari''.
+    \end{remark}
+
+    \subsection{Curvatura geodetica}
+
+    \begin{remark}
+        Sia $\alpha$ una curva di Frenet su una superficie $\Sigma$.
+        Osserviamo che $N_\alpha$ è perpendicolare a $T_\alpha$, e
+        quindi dovrà scriversi in una qualche combinazione lineare
+        della base ortonormale $\{\vec{n}, \vec{n} \times T_\alpha\}$
+        di $(T_\alpha)^\perp$,
+        dove $\vec{n}$ è una normale (locale). \smallskip
+
+        Sappiamo già dall'Osservazione \ref{rmk:curvatura_normale} che
+        $\dot{T_\alpha} \cdot \vec{n}$ è la curvatura normale
+        $\kappa_{\alpha, n}$. Ha quindi senso definire il seguente
+        oggetto matematico:
+    \end{remark}
+
+    \begin{definition}[Curvatura geodetica]
+        Sia $\alpha$ una curva di Frenet su una superficie $\Sigma$.
+        Si definisce la \textbf{curvatura geodetica} di $\alpha$
+        nel punto $P$ come:
+        \[
+            \boxed{\kappa_{\alpha, g} = \dot{T_\alpha}(P) \cdot (\vec{n}(P) \times T_\alpha(P)),}
+        \]
+        dove $\vec{n}$ è una normale (locale) su $\Sigma$.
+    \end{definition}
+
+    \begin{remark}
+        Quindi $N_\alpha$ si scrive come:
+        \[
+            N_\alpha = \kappa_{\alpha, n} \vec{n} + \kappa_{\alpha, g} (\vec{n} \times T_\alpha),
+        \]
+        da cui si ricava immediatamente la seguente relazione:
+        \[
+            \boxed{\kappa_\alpha^2 = \kappa_{\alpha, n}^2 + \kappa_{\alpha, g}^2.}
+        \]
+    \end{remark}
+
+    \begin{proposition}[In una geodetica curvatura normale e curvatura della curva coincidono]
+        Sia $\alpha$ una curva p.l.a. di Frenet su una superficie $\Sigma$. Allora
+        $\alpha$ è una geodetica se e solo se:
+        \[ \boxed{\kappa_{\alpha, g} \equiv 0,} \]
+        ovverosia se e solo se:
+        \[ \boxed{\kappa_{\alpha} \equiv \kappa_{\alpha, n}.} \]
+    \end{proposition}
+
+    \begin{proof}
+        Infatti, se $\alpha$ è una geodetica, allora $\alpha''$ è perpendicolare a
+        $T_P \Sigma$. Quindi, dal momento che $\alpha$ è p.l.a., si deve avere
+        $N_\alpha(P)$ perpendicolare a $T_P \Sigma$, ossia parallelo
+        a $\vec{n}$. Il viceversa è analogo.
     \end{proof}
 \end{multicols*}
