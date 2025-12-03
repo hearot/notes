@@ -728,4 +728,83 @@
         essendo $[0, 1]$ connesso, deve essere necessariamente $\varphi > 0$ o
         $\varphi < 0$ su tutto $[0, 1]$, da cui la tesi.
     \end{proof}
+
+    \subsection{Geodetiche}
+
+    \begin{definition}
+        Una curva $\alpha$ su una superficie $\Sigma$ si dice
+        \textbf{geodetica} se il campo $\alpha'$ è parallelo lungo
+        $\alpha$, ovverosia se:
+        \[
+            \boxed{\nabla_{\alpha'} \alpha' = (\alpha'')^\top = 0.}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Per le geodetiche è necessario specializzare correttamente
+        le equazioni del trasporto parallelo. Ponendo
+        $\alpha(t) = \vec{x}(u(t), v(t))$, otteniamo:
+        \begin{equation*} \label{eq:Geo}
+            \boxed{\textnormal{(Geo):  } \begin{cases}
+                    u'' + \Gamma_{uu}^u \, (u')^2 + 2 \Gamma_{uv}^u \, u'v' + \Gamma_{vv}^u \, (v')^2 = 0, \\
+                    v'' + \Gamma_{uu}^v \, (u')^2 + 2 \Gamma_{uv}^v \, u'v' + \Gamma_{vv}^v \, (v')^2 = 0,
+                \end{cases}}
+        \end{equation*}
+    \end{remark}
+
+    \begin{proposition}
+        Sia $\Sigma$ una superficie e $q$ un suo punto. Allora per ogni $v \in T_q \Sigma$ esiste $\eps > 0$ e
+        un'unica geodetica $\gamma_v : (-\eps, \eps) \to \Sigma$ tale per cui $\gamma_v(0) = q$ e
+        $\gamma_v'(0) = v$.
+    \end{proposition}
+
+    \begin{proof}
+        Segue dall'applicazione del Teorema di Cauchy-Lipschitz per l'esistenza e l'unicità locale di una
+        soluzione per una sistema di equazioni differenziali al sistema dell'Osservazione \ref{eq:Geo}.
+    \end{proof}
+
+    \begin{remark}
+        Possiamo in realtà assumere che $\gamma_v(t)$ sia definita su $[0, 1]$ senza alcuna perdita di generalità.
+        Infatti, se $\gamma_v(t)$ è definita su $(-\eps, \eps)$, la curva
+        $\gamma_v(st)$ è ben definita per $t \in [0, 1]$, dove $s \in (0, \eps)$. Per unicità di $\gamma_{sv}(t)$, dal momento che
+        $\gamma_v(st)$ ne rispetta le condizioni iniziali, si ha $\gamma_v(st) = \gamma_{sv}(t)$. \smallskip
+    \end{remark}
+
+    \begin{remark} \label{rmk:geodetiche}
+        Per compattezza di $\{v \in T_P \Sigma \mid \norm{v} = 1\}$, esiste un $\eps_{\textnormal{min}}$ per il
+        quale per ogni vettore $v$ di norma $\norm{v} < \eps_{\textnormal{min}}$ possiamo considerare la geodetica
+        $\gamma_v : [0, 1] \to \Sigma$. \smallskip
+
+        Dal Teorema di dipendenza liscia dai dati iniziali è ben definita e liscia allora l'applicazione
+        $v \mapsto \gamma_v(1)$, dove $v \in U_q$.
+    \end{remark}
+
+    \begin{definition}[Mappa esponenziale]
+        Sia $P$ un punto su una superficie $\Sigma$ e sia $\vec{x}$ una sua parametrizzazione.
+        Sia:
+        \[
+            U_q = \{ v \in T_P \Sigma \mid \norm{v} < \eps_{\textnormal{min}} \},
+        \]
+        dove $\eps_{\textnormal{min}}$ è definito secondo l'Osservazione \ref{rmk:geodetiche}. \smallskip
+
+        Si definisce allora la \textbf{mappa esponenziale} $\exp_P : U_q \to \vec{x}(U_q)$ come l'applicazione
+        con la seguente proprietà:
+        \[
+            \exp_P(v) = \gamma_v(1).
+        \]
+    \end{definition}
+
+    \begin{definition}[Intorno normale]
+        Sia $P$ un punto su una superficie $\Sigma$ e sia $\vec{x}$ una sua parametrizzazione.
+        Si dice che l'immagine $\exp_P(U_q)$ è un \textbf{intorno normale} di $P$.
+    \end{definition}
+
+    \begin{remark}
+        Una volta ben definita la mappa esponenziale $\exp_P$, possiamo riparametrizzare
+        $\Sigma$ utilizzando $\exp_P$, definendo sul suo dominio naturale l'applicazione:
+        \[
+            \vec{y}(u, v) = \exp_P(u \vec{e_1} + v \vec{e_2}),
+        \]
+        dove $\{\vec{e_1}, \vec{e_2}\}$ è una base ortonormale di $T_P \Sigma$.
+    \end{remark}
 \end{multicols*}
