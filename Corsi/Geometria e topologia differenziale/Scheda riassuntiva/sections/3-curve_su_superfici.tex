@@ -996,4 +996,247 @@
         $N_\alpha(P)$ perpendicolare a $T_P \Sigma$, ossia parallelo
         a $\vec{n}$. Il viceversa è analogo.
     \end{proof}
+
+    \section{Integrazione e teorema di Gauss-Bonnet}
+
+    \subsection{Prime definizioni}
+
+    \begin{definition}[Curva chiusa]
+        Una curva (non necessariamente liscia) $\alpha : [a, b] \to \Sigma$ si dice
+        \textbf{chiusa} se $\alpha(a) = \alpha(b)$.
+    \end{definition}
+
+    \begin{definition}[Curva semplice]
+        Una curva (non necessariamente liscia) $\alpha : [a, b] \to \Sigma$ si dice
+        \textbf{semplice} se $\alpha(t) = \alpha(t')$ può avvenire solo
+        sugli estremi $a$, $b$, ovverosia non è autointersecante.
+    \end{definition}
+
+    \begin{definition}[Curva regolare a tratti]
+        Una curva (non necessariamente liscia) $\alpha : [a, b] \to \Sigma$ si dice
+        \textbf{regolare a tratti} se esiste una partizione $a = t_0 < t_1 < \cdots < t_\ell = b$
+        di $[a, b]$ tale per cui $\restr{\alpha}{[t_i, t_{i+1}]}$ è regolare per ogni
+        $i < \ell$.
+    \end{definition}
+
+    \subsection{Regione di una superficie e area}
+
+    \begin{definition}[Regione]
+        Un sottinsieme $R$ di una superficie $\Sigma$ si dice \textbf{regione} se
+        è un chiuso nella topologia di $\Sigma$, il cui bordo è traccia di una
+        curva semplice, chiusa e regolare a tratti.
+    \end{definition}
+
+    \begin{remark} \label{rmk:invarianza_area}
+        Dal sistema trovato nella dimostrazione della Proposizione \ref{prop:stesso_piano_tangente_param_regolari}
+        segue $\vec{x_s} \times \vec{x_t} = \det(J f_{\vec{x}, \vec{y}}) (\vec{y_u} \times \vec{y_v})$.
+        Da ciò segue facilmente tramite un cambio di variabili che:
+        \[
+            \iint_{\vec{x}\inv(R)} \norm{\vec{x_s} \times \vec{x_t}} \ds \dt = \iint_{\vec{y}\inv(R)} \norm{\vec{y_u} \times \vec{y_v}} \du \dv.
+        \]
+    \end{remark}
+
+    \begin{definition}[Area di una regione]
+        Sia $R$ una regione di $\Sigma$ contenuta dentro l'immagine
+        di una parametrizzazione $\vec{x}$. Si definisce allora la sua \textbf{area}
+        come:
+        \[
+            \boxed{A(R) \defeq \iint_{\vec{x}\inv(R)} \norm{\vec{x_u} \times \vec{x_v}} \du \dv,}
+        \]
+        che, per l'Osservazione \ref{rmk:invarianza_area}, è invariante al cambio
+        di parametrizzazione.
+    \end{definition}
+
+    \begin{proposition}[Formula per $\norm{\vec{x_u} \times \vec{x_v}}$]
+        Per ogni coppia di vettori $v$, $w$ vale la seguente relazione:
+        \[
+            \norm{v \times w}^2 + \norm{v \cdot w}^2 = \norm{v}^2 \norm{w}^2.
+        \]
+        Applicando questa identità a $\vec{x_u}$ e $\vec{x_v}$, si ottiene
+        la seguente formula (relativa a $\vec{x}$):
+        \[
+            \boxed{\norm{\vec{x_u} \times \vec{x_v}} = \sqrt{EG - F^2}.}
+        \]
+    \end{proposition}
+
+    \subsection{Integrazione rispetto a una regione}
+
+    \begin{definition}[Integrazione rispetto all'area]
+        Se $\varphi : \Sigma \to \RR$ è una funzione liscia, si
+        definisce il suo integrale rispetto a una regione $R$ di $\Sigma$
+        come segue:
+        \[
+            \boxed{\int_R \varphi \dA \defeq \iint_{\vec{x}\inv(R)} (\varphi \circ \vec{x}) \, \norm{\vec{x_u} \times \vec{x_v}} \du \dv.}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Ponendo $\varphi \equiv 1$, si ottiene:
+        \[
+            \int_R \dA = A(R).
+        \]
+    \end{remark}
+
+    \subsection{Angoli esterni, teorema di Gauss-Bonnet locale e corollario}
+
+    \begin{definition}[Angoli esterni]
+        Sia $R$ una regione di una superficie $\Sigma$. Se $\alpha$ ne
+        parametrizza il bordo, ed è regolare a tratti con tempi
+        di non regolarità $t_1$, $t_2$, ..., $t_n$ si definiscono
+        gli \textbf{angoli esterni} di $R$ come:
+        \[
+            \boxed{\eps_i \defeq \theta(\alpha_+'(t_i), \alpha_-'(t_{i+1})),}
+        \]
+        dove $\alpha_+$ e $\alpha_-$ indicano rispettivamente la
+        derivata sinistra e quella destra.
+    \end{definition}
+
+    \begin{theorem}[Gauss-Bonnet locale] \label{thm:GBL}
+        Sia $R \subseteq \vec{x}(U) \subseteq \Sigma$ una regione
+        \underline{semplicemente connessa} con angoli esterni
+        $\eps_1$, ..., $\eps_n$. Allora vale la seguente identità:
+        \begin{equation*} \tag{GBL} \label{eq:GBL}
+            \boxed{\int_{\partial R} \kappa_g \ds + \int_R \kappa \dA + \sum_{i=1}^n \eps_i = 2\pi.}
+        \end{equation*}
+    \end{theorem}
+
+    \begin{definition}[Angoli interni]
+        Sia $R$ una regione di una superficie $\Sigma$. Se $\alpha$ ne
+        parametrizza il bordo, ed è regolare a tratti con tempi
+        di non regolarità $t_1$, $t_2$, ..., $t_n$ si definiscono
+        gli \textbf{angoli interni} di $R$ come:
+        \[
+            \boxed{\iota_i \defeq \pi - \eps_i,}
+        \]
+        dove $\alpha_+$ e $\alpha_-$ indicano rispettivamente la
+        derivata sinistra e quella destra.
+    \end{definition}
+
+    \begin{corollary} \label{cor:angoli_triangolo}
+        Sia $T \subseteq \vec{x}(U) \subseteq \Sigma$ una triangolo
+        su $\Sigma$, ovverosia una regione con tre punti non regolari sul
+        bordo, collegati tramite geodetiche. Allora vale:
+        \[
+            \boxed{\int_R \kappa \dA = \iota_1 + \iota_2 + \iota_3 - \pi.}
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Segue immediatamente dalla definizione di angolo interno e dal Teorema di Gauss-Bonnet locale (\ref{thm:GBL}), dacché
+        $\kappa_g \equiv 0$ lungo le geodetiche.
+    \end{proof}
+
+    \begin{corollary}
+        In un piano, la somma degli angoli interni di un triangolo
+        è esattamente $\pi$. Sulla sfera, invece è strettamente maggiore
+        di $\pi$. Su una sella è invece strettamente minore.
+    \end{corollary}
+
+    \begin{proof}
+        Segue immediatamente dal Corollario \ref{cor:angoli_triangolo}, visto
+        che su un piano si ha $\kappa \equiv 0$, su una sfera $\kappa > 0$ e
+        su una sella $\kappa < 0$.
+    \end{proof}
+
+    \subsection{Superfici orientate con bordo e triangolarizzazione}
+
+    \begin{definition}[Superficie orientata con bordo]
+        Si dice che $\Sigma$ è una \textbf{superficie orientata con bordo} (eventualmente
+        sconnesso) se:
+        \[
+            \Sigma = \overline{\hat{\Sigma} \setminus \left( \bigcup_{i=1}^n R_i \right)},
+        \]
+        dove $\hat{\Sigma}$ è una superficie orientata, compatta con $\partial \hat{\Sigma} = \emptyset$,
+        e le $R_i$ sono regioni di $\hat{\Sigma}$. \smallskip
+
+        In tal caso si pone:
+        \[
+            \boxed{\partial \Sigma \defeq \bigcup_{i=1}^n \partial R_i,}
+        \]
+        mentre i suoi angoli interni/esterni diventano quelli delle singoli regioni.
+    \end{definition}
+
+    \begin{definition}[Triangolarizzazione]
+        Una \textbf{triangolarizzazione} di una superficie $\Sigma$ è una famiglia
+        $\{ \Delta_\lambda \}_{\lambda=1}^n$ di insiemi tali per cui valgono
+        le seguenti proprietà:
+        \begin{itemize}
+            \item $\Sigma = \bigcup_{\lambda=1}^n \Delta_\lambda$,
+            \item $\Delta_\lambda$ è l'immagine di un triangolo euclideo tramite una
+                  parametrizzazione regolare compatibile con l'orientazione
+                  di $\Sigma$.
+            \item Se $\lambda \neq \mu$, allora $\Delta_\lambda \cap \Delta_\mu$ può essere
+                  vuoto, un lato comune e un singolo vertice.
+            \item Se $\Delta_\lambda$ e $\Delta_\mu$ hanno in comune un lato, allora lo percorrono con
+                  orientazioni opposte.
+            \item $\Delta_\lambda \cap \partial \Sigma$ può essere vuoto, un lato o un vertice.
+        \end{itemize}
+    \end{definition}
+
+    \subsection{Teorema di Radó e caratteristica di Eulero}
+
+    \begin{theorem}[Radó] \label{thm:rado}
+        Ogni superficie orientata con bordo ammette una triangolarizzazione.
+    \end{theorem}
+
+    \begin{definition}[Caratteristica di Eulero]
+        Sia $\tau = \{ \Delta_\lambda \}_{\lambda=1}^n$ una triangolarizzazione di
+        una superficie orientata con bordo. Allora si definisce la sua
+        \textbf{caratteristica di Eulero} come:
+        \[
+            \boxed{\chi(\Sigma) \defeq V - L + T,}
+        \]
+        dove $V$ è il numero di vertici di $\tau$, $L$ è il numero di lati e
+        $T$ è il numero di triangoli.
+    \end{definition}
+
+    \begin{fact}
+        La caratteristica di Eulero \underline{non} dipende dalla
+        triangolarizzazione scelta.
+    \end{fact}
+
+    \subsection{Teorema di Gauss-Bonnet globale e classificazione delle superfici chiuse, orientabili e connesse}
+
+    \begin{theorem}[Gauss-Bonnet globale] \label{thm:GBG}
+        Sia $\Sigma$ una superficie orientata con bordo con angoli esterni $\{\eps_i\}_i$. Allora vale
+        la seguente identità:
+        \begin{equation} \label{eq:GBG} \tag{GBG}
+            \boxed{\int_{\partial \Sigma} \kappa_g \ds + \int_\Sigma \kappa \dA + \sum_i \eps_i = 2\pi \chi(\Sigma).}
+        \end{equation}
+    \end{theorem}
+
+    \begin{proof}
+        La dimostrazione segue i prossimi due punti:
+        \begin{enumerate}
+            \item Si sceglie una triangolarizzazione di $\Sigma$ grazie al Teorema di Radó (\ref{thm:rado}) e si applica il Teorema di Gauss-Bonnet locale
+                  (\ref{thm:GBL}) ad ogni triangolo.
+            \item Si sommano le varie identità date da \eqref{eq:GBL}. In questo modo i bordi interni si semplificano
+                  (sono lati in comune tra due triangoli, quindi percorsi in sensi opposti), ottenendo
+                  $\int_{\partial \Sigma} \kappa_g \ds$. Allora stesso modo gli angoli interni della triangolarizzazione si sommano
+                  a $2\pi (L - V)$, mentre i $2\pi$ si sommano a $T$.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{corollary}
+        Se $\Sigma$ è una superficie orientata compatta con $\partial \Sigma = \emptyset$, allora:
+        \[
+            \boxed{\int_\Sigma \kappa \dA = 2\pi \chi(\Sigma).}
+        \]
+    \end{corollary}
+
+    \begin{definition}[Superficie chiusa]
+        Una superficie $\Sigma$ si dice \textbf{chiusa} se è
+        compatta e $\partial \Sigma = \emptyset$.
+    \end{definition}
+
+    \begin{theorem}[classificazione delle superfici chiuse, orientabili e connesse]
+        A meno di omeomorfismo, le superfici chiuse, orientabili e connesse
+        sono le \underline{superfici di genere}, tali per cui $\chi(\Sigma_g) = 2-2g$.
+    \end{theorem}
+
+    \begin{corollary}
+        Sia $\Sigma$ una superficie chiusa e orientabile \underline{non}
+        omeomorfa alla sfera. Allora su $\Sigma$ esistono sia punti ellittici,
+        che iperbolici, che parabolici.
+    \end{corollary}
 \end{multicols*}
