@@ -64,7 +64,7 @@
         Pertanto:
         \[
             \begin{aligned}
-                (f \circ \alpha)'(0) & = \dertime{t=0} (f \circ x)(u(t), v(t))      \\[1em]
+                (f \circ \alpha)'(0) & = \dertime{(f \circ x)(u(t), v(t))}{t=0}     \\[1em]
                                      & = (f \circ x)_u u'(0) + (f \circ x)_v v'(0).
             \end{aligned}
         \]
@@ -616,7 +616,7 @@
         Un piano e la sfera \underline{non} sono localmente isometrici.
     \end{corollary}
 
-    \section{Trasporto parallelo e geodetiche}
+    \section{Trasporto parallelo e campi vettoriali}
 
     \subsection{Campi vettoriali e derivata covariante}
 
@@ -729,7 +729,9 @@
         $\varphi < 0$ su tutto $[0, 1]$, da cui la tesi.
     \end{proof}
 
-    \subsection{Geodetiche}
+    \section{Geodetiche}
+
+    \subsection{Relazione tra geodetiche e trasporto parallelo}
 
     \begin{definition}
         Una curva $\alpha$ su una superficie $\Sigma$ si dice
@@ -751,6 +753,19 @@
                 \end{cases}}
         \end{equation*}
     \end{remark}
+
+    \begin{proposition}
+        Sia $\alpha$ una geodetica su $\Sigma$. Allora
+        $\norm{\alpha'}$ è costante.
+    \end{proposition}
+
+    \begin{proof}
+        Derivando $\alpha' \cdot \alpha'$ si ottiene
+        $2 (\alpha'' \cdot \alpha')$, che però è nullo dal momento
+        che $\alpha'' \perp T_{\alpha} \Sigma$, da cui la tesi.
+    \end{proof}
+
+    \subsection{Mappa esponenziale, coordinate normali e intorno normale}
 
     \begin{proposition}
         Sia $\Sigma$ una superficie e $q$ un suo punto. Allora per ogni $v \in T_q \Sigma$ esiste $\eps > 0$ e
@@ -776,27 +791,27 @@
         $\gamma_v : [0, 1] \to \Sigma$. \smallskip
 
         Dal Teorema di dipendenza liscia dai dati iniziali è ben definita e liscia allora l'applicazione
-        $v \mapsto \gamma_v(1)$, dove $v \in U_q$.
+        $v \mapsto \gamma_v(1)$, dove $\norm{v} < \eps_{\textnormal{min}}$.
     \end{remark}
 
     \begin{definition}[Mappa esponenziale]
         Sia $P$ un punto su una superficie $\Sigma$ e sia $\vec{x}$ una sua parametrizzazione.
         Sia:
         \[
-            U_q = \{ v \in T_P \Sigma \mid \norm{v} < \eps_{\textnormal{min}} \},
+            \boxed{U_P = \{ v \in T_P \Sigma \mid \norm{v} < \eps_{\textnormal{min}} \},}
         \]
         dove $\eps_{\textnormal{min}}$ è definito secondo l'Osservazione \ref{rmk:geodetiche}. \smallskip
 
-        Si definisce allora la \textbf{mappa esponenziale} $\exp_P : U_q \to \vec{x}(U_q)$ come l'applicazione
+        Si definisce allora la \textbf{mappa esponenziale} $\exp_P : U_P \to \vec{x}(U_P)$ come l'applicazione
         con la seguente proprietà:
         \[
-            \exp_P(v) = \gamma_v(1).
+            \boxed{\exp_P(v) = \gamma_v(1).}
         \]
     \end{definition}
 
     \begin{definition}[Intorno normale]
         Sia $P$ un punto su una superficie $\Sigma$ e sia $\vec{x}$ una sua parametrizzazione.
-        Si dice che l'immagine $\exp_P(U_q)$ è un \textbf{intorno normale} di $P$.
+        Si dice che l'immagine $N_P \defeq \exp_P(U_P)$ è un \textbf{intorno normale} di $P$.
     \end{definition}
 
     \begin{remark}
@@ -805,6 +820,82 @@
         \[
             \vec{y}(u, v) = \exp_P(u \vec{e_1} + v \vec{e_2}),
         \]
-        dove $\{\vec{e_1}, \vec{e_2}\}$ è una base ortonormale di $T_P \Sigma$.
+        dove $\{\vec{e_1}, \vec{e_2}\}$ è una base ortonormale di $T_P \Sigma$. \smallskip
+
+        Questa mappa, detta indotta dalle \textbf{coordinate normali}, soddisfa alcune
+        importanti proprietà:
+        \begin{itemize}
+            \item $\vec{y}(0, 0) = P$,
+            \item $\vec{y}_u(0, 0) = \dertime{\exp_P(t \vec{e_1})}{t=0} =
+                      \dertime{\gamma_{t \vec{e_1}}(1)}{t=0} =
+                      \dertime{\gamma_{\vec{e_1}} (u)}{t=0} = \vec{e_1}$,
+            \item $\vec{y}_v(0, 0) = \cdots = \vec{e_2}$.
+        \end{itemize}
     \end{remark}
+
+    \subsection{Lemma di Gauss e minimizzazione locale delle distante}
+
+    \begin{lemma}[Gauss, le geodetiche sono ortogonali ai cerchi indotti dalla mappa esponenziale] \label{lem:gauss}
+        Sia $\{\vec{e_1}, \vec{e_2}\}$ una base ortonormale di $T_P \Sigma$.
+        Sia $\eps$ lo stesso valore che definisce $U_P$.
+        Sia
+        $v_k : [0, 2\pi] \to U_P$ la curva definita come:
+        \[
+            v_k(t) = k(\cos(t) \vec{e_1} + \sin(t) \vec{e_2}), \quad k < \eps.
+        \]
+        Allora ogni geodetica
+        $\gamma_w$ è ortogonale a $\exp_P \circ \, v_k$ per $k < \eps$ e $w \in U_P$.
+    \end{lemma}
+
+    \begin{proof}
+        Sia $\vec{x} : [0, 1] \cdot \RR \to \Sigma$ definita come:
+        \[ \vec{x}(u, t) = \exp_P(u \cdot v_k(t)) = \gamma_{v_k(t)}(u). \]
+        Dimostriamo la tesi mostrando che $\vec{x}_u$ (che parametrizza le geodetiche) e $\vec{x}_t$ (che parametrizza
+        i cerchi) sono ortogonali. \smallskip
+
+        Osserviamo che:
+        \[ (\vec{x}_u \cdot \vec{x}_t)_u = \vec{x}_{uu} \cdot \vec{x}_t + \vec{x}_u \cdot \vec{x}_{tu}. \]
+        Inoltre $\vec{x}_{uu}(u, t_0) = (\gamma_{v_k(t_0)}(u))''$ è normale a $T_P \Sigma$ dacché
+        $\gamma_{v_k(t_0)}$ è una geodetica, e quindi $\vec{x}_{uu} \cdot \vec{x}_t = 0$. \smallskip
+
+        Ancora $\vec{x}_u \cdot \vec{x}_u = \norm{v_k(t)}^2 = k^2$ è costante, e quindi, derivando
+        $\vec{x}_u \cdot \vec{x}_u$ per $t$, si ottiene anche $\vec{x}_u \cdot \vec{x}_{ut} = 0$. \smallskip
+
+        Pertanto $\vec{x}_u \cdot \vec{x}_t$ è costante lungo $u$. È sufficiente allora mostrare la tesi per
+        $u = 0$:
+        \[
+            \vec{x}(0, t) = P \implies \vec{x}_t(0, t) = 0,
+        \]
+        e quindi $\vec{x}_u \cdot \vec{x}_t = 0$ lungo $u = 0$.
+    \end{proof}
+
+    \begin{corollary}[Le geodetiche minimizzano localmente le distanze]
+        Sia $P' = \gamma_v(1)$ con $v \in U_P$ un punto distinto da $P$. Se $\alpha : [0, 1] \to N_P$
+        è una curva liscia con $\alpha(0) = P$ e $\alpha(1) = P'$, allora:
+        \[
+            \boxed{\ell(\alpha) \geq \ell(\gamma_{v}).}
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Parametrizziamo $N_P$ usando $\vec{x}$ come definita nella dimostrazione del
+        Lemma di Gauss (\ref{lem:gauss}) per un $k = \norm{v}$. \smallskip
+
+        Per la Proposizione \ref{prop:coordinate_curva_parametrizzazione},
+        $\alpha$ si scrive come:
+        \[
+            \alpha(t) = \vec{x}(u(t), \tau(t)),
+        \]
+        con $u$ e $\tau$ lisce. Allora, derivando $\alpha$ e applicando il Lemma di Gauss
+        (\ref{lem:gauss}) si ottiene:
+        \[
+            \norm{\alpha'}^2 \geq (u')^2 \norm{v}^2.
+        \]
+        Allora:
+        \[
+            \ell(\alpha) = \int_0^1 \norm{\alpha'} \dt \geq \norm{v} (u(1) - u(0)) = \norm{v} = \ell(\gamma_v),
+        \]
+        dove si è usato che $u(0) = 0$ ($P$ nelle coordinate normali corrisponde a $(0, 0)$) e che
+        $u(1) = 1$ ($P'$ ha già raggio $k$).
+    \end{proof}
 \end{multicols*}
