@@ -148,7 +148,7 @@
                 S_P(\vec{x_u}) \cdot \vec{x_v}(P) = \vec{n}(P) \cdot \vec{x_{uv}}(P),
             \end{cases}
         \]
-        dove nell'ultima espressione si è applicato il teorema di Schwarz per sostituire $\vec{x_{uv}}$
+        dove nell'ultima espressione si è applicato il Teorema di Schwarz per sostituire $\vec{x_{uv}}$
         a $\vec{x_{vu}}$. Analogamente si ottiene la formula per gli altri due casi.
     \end{proof}
 
@@ -162,7 +162,7 @@
         che:
         \[ S_P(\vec{x_u}) \cdot \vec{x_v} = \vec{x_u} \cdot S_P(\vec{x_v}), \]
         dacché $\{\vec{x_u}(P), \vec{x_v}(P)\}$ è una base di $T_P \Sigma$. Questo
-        però è immediato dal Lemma \ref{lem:formula_operatore_forma} e dal teorema
+        però è immediato dal Lemma \ref{lem:formula_operatore_forma} e dal Teorema
         di Schwarz.
     \end{proof}
 
@@ -434,19 +434,17 @@
         si dice \textbf{piatta} se $K \equiv 0$ su tutta $\Sigma$, e
         \textbf{minima} se invece $H \equiv 0$.
     \end{definition}
-    \fbox{%
-        \parbox{0.95\linewidth}{%
-            \begin{definition}[Punti ellittici, iperbolici, parabolici e planari]
-                Sia $P$ un punto su una superficie $\Sigma$. Allora $P$ si dice:
-                \begin{itemize}
-                    \item \textbf{ellittico}: se $\kappa(P) > 0$ (tutte le curvature normali sono concordi),
-                    \item \textbf{iperbolico}: se $\kappa(P) < 0$ (esistono curvature normali discordi),
-                    \item \textbf{parabolico}: se $\kappa(P) = 0$, ma $S_P \neq 0$ (tutte le curvature normali sono concordi, e ne esiste una nulla),
-                    \item \textbf{planare}: se $S_P = 0$ (tutte le curvature normali sono nulle).
-                \end{itemize}
-            \end{definition}
-        }%
-    }
+
+    \begin{definition}[Punti ellittici, iperbolici, parabolici e planari]
+        Sia $P$ un punto su una superficie $\Sigma$. Allora $P$ si dice:
+        \begin{itemize}
+            \item \textbf{ellittico}: se $\kappa(P) > 0$ (tutte le curvature normali sono concordi),
+            \item \textbf{iperbolico}: se $\kappa(P) < 0$ (esistono curvature normali discordi),
+            \item \textbf{parabolico}: se $\kappa(P) = 0$, ma $S_P \neq 0$ (tutte le curvature normali sono concordi, e ne esiste una nulla),
+            \item \textbf{planare}: se $S_P = 0$ (tutte le curvature normali sono nulle).
+        \end{itemize}
+    \end{definition}
+
 
     \begin{proposition}
         Sia $\Sigma \subseteq \RR^3$ una superficie compatta non vuota. Allora
@@ -555,7 +553,7 @@
         localmente isometrica a $\Sigma$ nei punti associati.
     \end{remark}
 
-    \subsection{Theorema Egregium, simboli di Christoffel e conseguenze}
+    \subsection{Theorema egregium, simboli di Christoffel e conseguenze}
 
     \begin{remark}
         Osserviamo che, se $\vec{x}$ è una parametrizzazione regolare,
@@ -587,7 +585,7 @@
         dove $\I$ è la I forma fondamentale in forma matriciale.
     \end{remark}
 
-    \begin{theorem}[Theorema Egregium di Gauss]
+    \begin{theorem}[Theorema egregium di Gauss]
         Sia $\Sigma$ una superficie di $\RR^3$. Allora la sua
         curvatura gaussiana $\kappa$ è localmente esprimibile in funzione
         di $E$, $F$, $G$ e le loro derivate.
@@ -604,7 +602,7 @@
                   in termini di $E$, $F$, $G$ e derivate.
             \item Il termine $\ell d - m b$, dove $b$ e $d$ sono gli elementi della
                   seconda riga della II forma fondamentale, si scrive come $E \cdot \kappa$.
-            \item Sviluppando $\vec{x_{uuv}}$ e $\vec{x_{uvu}}$ e applicando il teorema
+            \item Sviluppando $\vec{x_{uuv}}$ e $\vec{x_{uvu}}$ e applicando il Teorema
                   di Schwarz, si ottiene un'espressione di $\ell d - m b$ in termini dei
                   simboli di Christoffel.
             \item Allora $\ell d - m b$ si scrive in termini di $E$, $F$ e $G$ e le loro derivate

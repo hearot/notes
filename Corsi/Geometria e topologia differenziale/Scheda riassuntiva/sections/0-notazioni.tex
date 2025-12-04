@@ -4,7 +4,7 @@
 \setlength{\parindent}{2pt}
 
 \begin{multicols*}{2}
-      Impiegheremo caratteri latini ($x$, $y$, $z$) per indicare quantità reali;
+      Cercheremo di impiegare caratteri latini ($x$, $y$, $z$) per indicare quantità reali;
       caratteri latini sottolineati ($\vec{x}$, $\vec{y}$, $\vec{z}$) per indicare
       vettori o campi vettoriali; caratteri greci minuscoli ($\alpha$, $\beta$, $\gamma$) per indicare
       curve; e caratteri greci maiuscoli ($\Sigma$) per indicare superfici.
@@ -33,13 +33,59 @@
             \item diffeomorfismo di classe $C^k$ -- funzione di classe $C^k$ con inversa di classe $C^k$.
       \end{itemize}
 
-      \section*{Geometria}
-      \addcontentsline{toc}{section}{Geometria}
+      \section*{Geometria differenziale}
+      \addcontentsline{toc}{section}{Geometria differenziale}
 
       \begin{itemize}
             \item $B_R(P, \RR^n)$, $B_R(P)$ -- la palla $n$-dimensionale di raggio $R$ e centro $P$. Ometteremo $\RR^n$ quando la dimensione si deduce dal contesto.
-            \item $S_a^i(P)$ -- l'ipersfera $i$-dimensionale di raggio $a$ e centro $P$, ovverosia $\{\vec{x} \in \RR^{i+1} \mid \norm{\vec{x} - p} = p\}$.
+            \item $S_a^i(P)$ -- l'ipersfera $i$-dimensionale di raggio $a$ e centro $P$, ovverosia $\{\vec{x} \in \RR^{i+1} \mid \norm{\vec{x} - P} = a\}$.
             \item $\TT_{a, b}$ -- toro di raggio maggiore $a$ e raggio minore $b$.
+            \item $\ell(\alpha)$ -- lunghezza di una curva $\alpha$.
+            \item p.l.a.~-- parametrizzata a lunghezza d'arco, ovverosia con velocità unitaria.
+            \item $\kappa_\alpha$ -- curvatura di una curva $\alpha$ in un punto.
+            \item $\tau_\alpha$ -- torsione di una curva $\alpha$ in un punto.
+            \item $T_\alpha$ -- versore tangente di una curva regolare in un punto.
+            \item $N_\alpha$ -- versore normale di una curva di Frenet in un punto.
+            \item $B_\alpha$ -- versore binormale di una curva di Frenet in un punto.
+            \item $\Pi_\alpha$ -- piano osculatore di $\alpha$ in un punto.
+            \item $R_\alpha$ -- raggio di curvatura di $\alpha$ in un punto.
+            \item $T_P \Sigma$ -- piano tangente di $P$ rispetto a $\Sigma$.
+            \item $\vec{n}$, $n_{\vec{x}}$ -- (versore) normale (eventualmente locale) di una superficie o di una parametrizzazione regolare.
+            \item $D_\xi f(P)$ -- derivata direzionale con direzione $\xi$ della funzione $f$ nel punto $P$ di una superficie.
+            \item $S_P$ -- operatore forma nel punto $P$ di una superficie.
+            \item $\I_P$ -- I forma fondamentale nel punto $P$ di una superficie.
+            \item $\II_P$ -- II forma fondamentale nel punto $P$ di una superficie.
+            \item $E$, $F$, $G$ -- elementi della rappresentazione matriciale della I forma fondamentale: $\I_P = \begin{pmatrix}
+                              E & F \\ F & G
+                        \end{pmatrix}$.
+            \item $\ell$, $m$, $n$ -- elementi della rappresentazione matriciale della II forma fondamentale: $\II_P = \begin{pmatrix}
+                              \ell & m \\ m & n
+                        \end{pmatrix}$.
+            \item $a$, $b$, $c$, $d$ -- elementi della rappresentazione matriciale dell'operatore forma: $S_P = \begin{pmatrix}
+                              a & c \\ b & d
+                        \end{pmatrix}$.
+            \item $\kappa_n$ -- curvatura normale di una superficie in un punto $P$ secondo un dato vettore unitario.
+            \item $\kappa_{\alpha, n}$ -- curvatura normale di $\alpha$ rispetto a una superficie.
+            \item $\kappa_1$, $\kappa_2$ -- curvature principali di una superficie in un punto.
+            \item $\kappa$ -- curvatura gaussiana di una superficie in un punto.
+            \item $H$ -- curvatura media di una superficie in un punto.
+            \item $\Gamma_{ij}^k$ -- simbolo di Christoffel, ovverosia coefficiente di $\vec{x_k}$ in $\vec{x_{ij}}$.
+            \item $\nabla_v X(P)$ -- derivata covariante di un campo vettoriale $X$ tangente alla superficie $\Sigma$ in direzione $v$ nel punto $P$.
+            \item $(\cdot)^\top$ -- proiezione di $\cdot$ sul piano tangente $T_P \Sigma$.
+            \item $\gamma_v$ -- geodetica locale di direzione $v$.
+            \item $U_P$ -- intorno di definizione della mappa esponenziale in un punto $P$.
+            \item $\exp_P$ -- mappa esponenziale in un punto $P$.
+            \item $v_k$ -- data una base ortonormale $\vec{e_1}$, $\vec{e_2}$, la mappa $t \mapsto k(\cos(t) \vec{e_1} + \sin(t) \vec{e_2})$.
+            \item $N_P$ -- intorno normale di un punto $P$.
+            \item $\varphi(\gamma(t))$ -- angolo tra la curva $\gamma$ e il parallelo di $\gamma(t)$ al tempo $t$.
+            \item $r(\gamma(t))$ -- distanza di $\gamma(t)$ dall'asse di rotazione.
+            \item $k_{\alpha, g}$ -- curvatura geodetica di una curva $\alpha$ rispetto a una superficie $\Sigma$.
+            \item $A(R)$ -- area di una regione $R$ di una superficie $\Sigma$.
+            \item $\int_R \varphi \dA$ -- integrazione rispetto all'area in una regione $R$, equivalente a $\iint_{\vec{x}\inv(R)} (\varphi \circ \vec{x}) \, \norm{\vec{x_u} \times \vec{x_v}} \du \dv$.
+            \item $\eps_i$ -- angolo esterno $i$-esimo di una regione o superficie con bordo.
+            \item $\iota_i$ -- angolo interno $i$-esimo di una regione o superficie con bordo.
+            \item $\partial \Sigma$ -- bordo di una superficie con bordo, come unione delle tracce delle regioni con cui è definita per differenza.
+            \item $\chi(\Sigma)$ -- caratteristica di Eulero di una superficie con bordo.
       \end{itemize}
 
 \end{multicols*}
