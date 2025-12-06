@@ -6,7 +6,7 @@
     Qualora non specificato, assumeremo l'utilizzo di funzioni di classe $C^\infty$. \smallskip
 
     Se $\vec{x} \in \RR^3$ e $f$ è una funzione relativa a una curva $\alpha$, ammettiamo l'abuso di notazione
-    $f(\vec{x})$, intendendo $f(\alpha\inv(\vec{x}))$ (e.g., $\kappa(P)$ per intendere $\kappa(\alpha\inv(P)))$).
+    $f(\vec{x})$, intendendo $f(\alpha\inv(\vec{x}))$; per esempio useremo $\kappa(P)$ per intendere $\kappa(\alpha\inv(P))$.
 
     \section{Definizioni preliminari}
 
@@ -144,7 +144,7 @@
     \begin{definition}[Curvatura]
         Sia $\beta$ una curva p.l.a., allora si definisce la
         \textbf{curvatura} $\kappa_\beta(s)$ di $\beta$ al tempo $s$ come
-        $\norm{T_\beta'(s)}$. \smallskip
+        $\norm{\dot{T_\beta}(s)}$. \smallskip
 
         Laddove è chiaro dal contesto quale sia $\beta$, scriviamo solo $\kappa(s)$.
     \end{definition}
@@ -161,7 +161,7 @@
         a ogni tempo $s$ il \textbf{versore normale} $N_\beta(s)$ così
         definito:
         \[
-            N_\beta(s) \defeq \frac{T_\beta(s)}{\norm{T_\beta(s)}}.
+            N_\beta(s) \defeq \frac{\dot{T_\beta}(s)}{\norm{\dot{T_\beta}(s)}}.
         \]
     \end{definition}
 
