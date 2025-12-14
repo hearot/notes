@@ -1,0 +1,120 @@
+%--------------------------------------------------------------------
+\chapter{Varietà e teoria del grado}
+\setlength{\parindent}{2pt}
+
+\begin{multicols*}{2}
+    \section{Varietà differenziabili e prime definizioni}
+
+    \subsection{Mappe \texorpdfstring{$C^\infty$}{C∞} e diffeomorfismi}
+
+    \begin{definition}[Mappe lisce tra due sottinsiemi] Siano $X \subseteq \RR^k$,
+        $Y \subseteq \RR^\ell$ sottinsiemi qualsiasi. Allora una funzione
+        $f : X \to Y$ si dice di classe $C^\infty$ (o \textit{liscia}) se per ogni
+        $x \in X$ esistono un aperto $W_x$ e una funzione $F : W_x \to \RR^\ell$,
+        chiamata \textit{estensione}, di classe $C^\infty$ per cui:
+        \[
+            \restr{F}{W_x \cap X} = \restr{f}{W_x \cap X}.
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Osserviamo che i sottinsiemi di $X$ della forma $W \cap X$ con $W$ aperto sono esattamente gli
+        aperti per la topologia di sottospazio di $X$.
+    \end{remark}
+
+    \begin{definition}[Diffeomorfismo]
+        Siano $X \subseteq \RR^k$,
+        $Y \subseteq \RR^\ell$ sottinsiemi qualsiasi.
+        Allora una funzione $f : X \to Y$ si dice \textbf{diffeomorfismo} se
+        è un omeomorfismo, è liscia e ammette inversa liscia.
+    \end{definition}
+
+    \begin{remark}
+        Le definizioni di mappa liscia e diffeomorfismo date sono chiaramente compatibili
+        con le usuali definizioni date su aperti di $\RR^n$.
+    \end{remark}
+
+    \begin{proposition}
+        La composizione di mappe lisce è liscia. La restrizione di una mappa liscia
+        è liscia.
+    \end{proposition}
+
+    \begin{proof}
+        Siano $f : X \to Y$ e $g : Y \to Z$ due mappe lisce con $X \subseteq \RR^k$,
+        $Y \subseteq \RR^\ell$, $Z \subseteq \RR^p$. Sia $x \in X$. Allora,
+        poiché $f$ è liscia, esistono $W_x \subseteq \RR^k$ aperto e $F : W_x \to \RR^\ell$ liscia tale per cui:
+        \[
+            \restr{F}{W_x \cap X} = \restr{f}{W_x \cap X}.
+        \]
+        Analogamente, per $f(x) \in Y$ esistono $U_{f(x)} \subseteq \RR^\ell$ aperto e
+        $G : U_{f(x)} \to \RR^p$ liscia tale per cui:
+        \[
+            \restr{G}{U_{f(x)} \cap Y} = \restr{g}{U_{f(x)} \cap Y}.
+        \]
+        Pertanto, a meno di restringere $W_x$ per ottenere $F(W_x \cap X) \subseteq U_{f(x)} \cap Y$,
+        si ha:
+        \[
+            \restr{G \circ F}{W_x \cap X} = \restr{g \circ f}{W_x \cap X},
+        \]
+        dove $g \circ f$ è liscia.
+    \end{proof}
+
+    \subsection{Varietà differenziabili, carte, atlanti e parametrizzazioni locali}
+
+    \begin{definition}[Varietà differenziabile liscia in $\RR^k$]
+        Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia) di dimensione $m>0$} se per ogni
+        suo punto $x$ esistono un intorno aperto $W_x$ in $\RR^k$ e un diffeomorfismo
+        $f_x : W_x \cap M \to U$ verso un aperto $U$ in $\RR^m$. Per $m = 0$, si richiede invece
+        che ogni $W_x \cap M$ sia un singoletto. \medskip
+
+        Gli insiemi della forma $W_x \cap M$ si dicono \textbf{carte locali}, e formano un \textbf{atlante} della varietà. L'inversa di
+        $f_x$ si dice invece \textbf{parametrizzazione locale} di $x$ in $M$.
+    \end{definition}
+
+    \begin{remark}
+        Le varietà di dimensione zero sono esattamente le unioni di punti isolati.
+    \end{remark}
+
+    \begin{remark}
+        Le carte locali inducono un ricoprimento aperto di $M$, e quindi, qualora $M$ fosse compatta, si potrebbe
+        sempre prendere un atlante finito.
+    \end{remark}
+
+    \begin{remark}
+        Ogni aperto di $\RR^k$ è una varietà di dimensione $k$. Le superfici sono invece varietà
+        di dimensione $2$, le cui parametrizzazioni locali sono date dalle parametrizzazioni
+        regolari.
+    \end{remark}
+
+    \section{Spazio tangente}
+
+    \subsection{Differenziale e spazio tangente}
+
+    Ricordiamo la definizione di differenziale per mappe su aperti di spazi reali:
+
+    \begin{definition}[Differenziale per $f : U \subseteq \RR^k \to \RR^\ell$]
+        Sia $U$ un aperto di $\RR^k$ e sia $f : U \to \RR^\ell$ una funzione liscia.
+        Allora il \textbf{differenziale $df_x : \RR^k \to \RR^\ell$} nel
+        punto $x \in U$ è la funzione tale per cui:
+        \[
+            df_x(h) \defeq \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}.
+        \]
+        Equivalentemente $df_x$ è l'unica funzione lineare tale per cui:
+        \[
+            f(x+h) = f(x) + df_x(h) + o(\norm{h}).
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Il differenziale $df_x$ rispetta alcune proprietà fondamentali:
+        \begin{enumerate}[(i.)]
+            \item La matrice di $df_x$ è data dallo jacobiano $Jf(x) = (\partial_{x_j} f_i(x))_{i, j}$.
+            \item Il differenziale rispetta la \textit{regola della catena} (chain rule):
+                  \[ d(f \circ g)_x = df_{g(x)} \circ dg_x. \]
+            \item Data $\id_U$ su un aperto $U \subseteq \RR^k$, allora $d(\id_U)_x = \id_{\RR^k}$ per ogni $x \in U$.
+            \item Dati $U' \subseteq U \subseteq \RR^k$ con $U'$ aperto, l'inclusione $\iota : U' \to U$ è tale per cui
+                  $d(\iota)_x = \id_{\RR^k}$ per ogni $x \in U'$.
+            \item Se $L : U \to \RR^\ell$ è lineare, allora $d L_x = L$ per ogni $x \in U$.
+        \end{enumerate}
+    \end{remark}
+\end{multicols*}
