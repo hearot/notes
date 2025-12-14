@@ -34,7 +34,7 @@
         con le usuali definizioni date su aperti di $\RR^n$.
     \end{remark}
 
-    \begin{proposition}
+    \begin{proposition} \label{prop:comp_liscia}
         La composizione di mappe lisce è liscia. La restrizione di una mappa liscia
         è liscia.
     \end{proposition}
@@ -86,35 +86,182 @@
         regolari.
     \end{remark}
 
-    \section{Spazio tangente}
+    \section{Spazio tangente e differenziale su mappe tra varietà}
 
-    \subsection{Differenziale e spazio tangente}
+    \subsection{Differenziale su aperti di \texorpdfstring{$\RR^n$}{ℝⁿ}}
 
     Ricordiamo la definizione di differenziale per mappe su aperti di spazi reali:
 
     \begin{definition}[Differenziale per $f : U \subseteq \RR^k \to \RR^\ell$]
         Sia $U$ un aperto di $\RR^k$ e sia $f : U \to \RR^\ell$ una funzione liscia.
-        Allora il \textbf{differenziale $df_x : \RR^k \to \RR^\ell$} nel
+        Allora il \textbf{differenziale $\dif f_x : \RR^k \to \RR^\ell$} nel
         punto $x \in U$ è la funzione tale per cui:
         \[
-            df_x(h) \defeq \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}.
+            \boxed{\dif f_x(h) \defeq \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}.}
         \]
-        Equivalentemente $df_x$ è l'unica funzione lineare tale per cui:
+        Equivalentemente $\dif f_x$ è l'unica funzione lineare tale per cui:
         \[
-            f(x+h) = f(x) + df_x(h) + o(\norm{h}).
+            f(x+h) = f(x) + \dif f_x(h) + o(\norm{h}).
         \]
     \end{definition}
 
     \begin{remark}
-        Il differenziale $df_x$ rispetta alcune proprietà fondamentali:
+        Il differenziale $\dif f_x$ rispetta alcune proprietà fondamentali:
         \begin{enumerate}[(i.)]
-            \item La matrice di $df_x$ è data dallo jacobiano $Jf(x) = (\partial_{x_j} f_i(x))_{i, j}$.
+            \item La matrice di $\dif f_x$ è data dallo jacobiano $Jf(x) = (\partial_{x_j} f_i(x))_{i, j}$.
             \item Il differenziale rispetta la \textit{regola della catena} (chain rule):
-                  \[ d(f \circ g)_x = df_{g(x)} \circ dg_x. \]
-            \item Data $\id_U$ su un aperto $U \subseteq \RR^k$, allora $d(\id_U)_x = \id_{\RR^k}$ per ogni $x \in U$.
+                  \[ \dif(f \circ g)_x = \dif f_{g(x)} \circ \dif g_x. \]
+            \item Data $\id_U$ su un aperto $U \subseteq \RR^k$, allora $\dif (\id_U)_x = \id_{\RR^k}$ per ogni $x \in U$.
             \item Dati $U' \subseteq U \subseteq \RR^k$ con $U'$ aperto, l'inclusione $\iota : U' \to U$ è tale per cui
-                  $d(\iota)_x = \id_{\RR^k}$ per ogni $x \in U'$.
-            \item Se $L : U \to \RR^\ell$ è lineare, allora $d L_x = L$ per ogni $x \in U$.
+                  $\dif \iota_x = \id_{\RR^k}$ per ogni $x \in U'$.
+            \item Se $L : U \to \RR^\ell$ è lineare, allora $\dif L_x = L$ per ogni $x \in U$.
         \end{enumerate}
     \end{remark}
+
+    \begin{proposition} \label{prop:diffeomorfismo_iso_diff}
+        Siano $U \subseteq \RR^k$, $V \subseteq \RR^\ell$ aperti. Sia $f : U \to V$ un diffeomorfismo.
+        Allora $k = \ell$ e $\dif f_x$ è un isomorfismo di $\RR^k$ per ogni $x \in U$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $g : V \to U$ l'inversa di $f$. Poiché $f$ è un diffeomorfismo, $g$ è liscia. Sia $x \in U$. Allora:
+        \begin{enumerate}[(i.)]
+            \item $\id_{\RR^k} = \dif (\id_U)_x = \dif (g \circ f)_x = \dif g_{f(x)} \circ \dif f_x$,
+            \item $\id_{\RR^\ell} = \dif (\id_V)_{f(x)} = \dif (f \circ g)_{f(x)} = \dif f_x \circ \dif g_{f(x)}$.
+        \end{enumerate}
+        Da (i.) si deduce che $\dif f_x$ è iniettiva, mentre da (ii.) si deduce che è surgettiva. Dunque
+        $\dif f_x$ è un isomorfismo (e quindi vale anche $k = \ell$).
+    \end{proof}
+
+    \subsection{Spazio tangente in un punto di una varietà}
+
+    \begin{remark}[Lo spazio tangente è ben definito]
+        Sia $M$ una varietà di dimensione $m$. Siano $g : U \to W \cap M$ e
+        $h : U' \to W' \cap M$ due parametrizzazioni locali di $x \in M$
+        con $g(u) = h(u') = x$. \smallskip
+
+        Supponiamo senza perdita di generalità che $W' = W$ (è sufficiente restringere
+        le immagini). La funzione
+        $g \circ h\inv$ è un diffeomorfismo in quanto composizione di diffeomorfismi
+        (vd. Proposizione \ref{prop:comp_liscia}). Allora per la Proposizione \ref{prop:diffeomorfismo_iso_diff}
+        $\dif (h\inv \circ g)_u$ è un isomorfismo. \smallskip
+
+        Osserviamo che:
+        \[
+            \dif g_u = \dif (h \circ (h\inv \circ g))_u = \dif h_{u'} \circ \dif (h\inv \circ g)_u.
+        \]
+        Dal momento che $\dif (h\inv \circ g)_u$ è in particolare surgettiva, si ha:
+        \[
+            \dif g_u(\RR^m) = \dif h_{u'}(\RR^m).
+        \]
+    \end{remark}
+
+    \begin{definition}[Spazio tangente]
+        Sia $x$ un punto di una varietà $M$ di dimensione $m$. Presa una
+        parametrizzazione locale $g : U \subseteq \RR^m \to W \cap M$ di
+        $x$ con $g(u) = x$, si definisce lo \textbf{spazio tangente di $M$ in $x$} come:
+        \[
+            \boxed{T_x M \defeq \dif g_u(\RR^m).}
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        Sia $x$ un punto di una varietà $M$ di dimensione $m$. Allora:
+        \[
+            \boxed{\dim T_x M = m.}
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Si prenda una parametrizzazione locale
+        $g : U \subseteq \RR^m \to W \cap M$ di
+        $x$ con $g(u) = x$. È sufficiente dimostrare
+        che $\dif g_u$ è una mappa iniettiva. \smallskip
+
+        La mappa $g$ è indotta dalla carta locale tramite
+        un'estensione $F : W \to \RR^m$ con:
+        \[
+            \restr{F}{W \cap M} = g\inv.
+        \]
+        Osserviamo allora che:
+        \[
+            \id_{\RR^m} = \dif (F \circ g)_u = \dif F_{x} \circ \dif g_u,
+        \]
+        da cui si deduce che $\dif g_u$ ammette un'inversa sinistra, ed è
+        dunque iniettiva.
+    \end{proof}
+
+    \subsection{Differenziale per mappe lisce tra varietà}
+
+    \begin{remark}[Il differenziale per mappe lisce è ben definito]
+        Siano $M \subseteq \RR^k$ una varietà di dimensione $m$, $N \subseteq \RR^\ell$
+        un'altra varietà, e sia
+        $f : M \to N$ una mappa liscia tra varietà. \smallskip
+
+        Sia $F : W \to \RR^\ell$ un'estensione di $f$ per un intorno aperto di
+        $x \in M$. Siano $g : U \subseteq \RR^m \to W \cap M$ una parametrizzazione
+        locale di $x$ e $h : V \to N$ una parametrizzazione locale di $f(x)$ con
+        $g(u) = x$ e $h(v) = f(x)$.
+
+        \[\begin{tikzcd}
+                M && W && N \\
+                \\
+                U &&&& V
+                \arrow["\iota", from=1-1, to=1-3]
+                \arrow["F", from=1-3, to=1-5]
+                \arrow["g", from=3-1, to=1-1]
+                \arrow["{h\inv \circ F \circ g}"', dashed, from=3-1, to=3-5]
+                \arrow["h"', from=3-5, to=1-5]
+            \end{tikzcd}\]
+
+        Dal diagramma commutativo si deduce che:
+        \[
+            \dif F_x \circ \dif g_u = \dif h_v \circ \dif (h\inv \circ F \circ g)_u.
+        \]
+        Pertanto $\dif F_x(T_x M)$ \underline{non} dipende dalla scelta dell'estensione $F$ e vale:
+        \[ \dif F_x(T_x M) \subseteq T_{f(x)} N. \]
+    \end{remark}
+
+    \begin{definition}[Differenziale su mappe tra varietà]
+        Sia $f : M \to N$ una mappa tra varietà. Se $F$ è un'estensione di $f$
+        in $x$, si definisce il \textbf{differenziale di $f$ in $x$}
+        $\dif f_x : T_x M \to T_{f(x)} N$ come segue:
+        \[
+            \boxed{\dif f_x \defeq \restr{\dif F_x}{T_x M}.}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Le proprietà del differenziale su aperti di $\RR^n$ si trasferiscono
+        facilmente al differenziale su mappe tra varietà:
+        \begin{enumerate}[(i.)]
+            \item Il differenziale rispetta la \textit{regola della catena} (chain rule):
+                  \[ \dif(f \circ g)_x = \dif f_{g(x)} \circ \dif g_x. \]
+            \item Data $\id_M$ per una varietà $M$, allora $\dif (\id_M)_x = \id_{T_x M}$ per ogni $x \in M$.
+            \item Dati $M'$ e $M$ sono varietà con $M' \subseteq M$, l'inclusione $\iota : M' \to M$ è liscia,
+                  $\dif \iota_x : T_x M' \to T_x M$ è iniettiva e $T_x M'$ è un sottospazio di $T_x M$.
+            \item Se $f : M \to N$ è un diffeomorfismo, allora $\dif f_x$ è un isomorfismo per ogni $x \in M$.
+        \end{enumerate}
+    \end{remark}
+
+    \subsection{Punti e valori regolari o critici}
+
+    \begin{definition}[Punti regolari o critici]
+        Sia $f : M \to N$ una mappa liscia tra varietà, con
+        $\dim M = m$ e $\dim N = n$. \smallskip
+
+        Sia $x \in M$. Si dice che $x$ è un \textbf{punto critico}
+        se $\rk(\dif f_x) < n$, e altrimenti si dice che è un
+        \textbf{punto regolare}.
+    \end{definition}
+
+    \begin{definition}[Valori regolari o critici]
+        Sia $f : M \to N$ una mappa liscia tra varietà, con
+        $\dim M = m$ e $\dim N = n$. \smallskip
+
+        Sia $y \in N$. Si dice che $y$ è un \textbf{valore critico}
+        se è immagine di almeno un punto critico, e altrimenti si dice che
+        è un \textbf{valore regolare} (in particolare lo è se
+        $f\inv(y) = \emptyset$).
+    \end{definition}
 \end{multicols*}
