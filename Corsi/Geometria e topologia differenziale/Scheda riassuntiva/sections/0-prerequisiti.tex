@@ -5,8 +5,8 @@
 
 \begin{multicols*}{2}
 
-    \section*{Analisi matematica}
-    \addcontentsline{toc}{section}{Analisi matematica}
+    \section*{Analisi matematica e teoria della misura}
+    \addcontentsline{toc}{section}{Analisi matematica e teoria della misura}
 
     \begin{itemize}
         \item \textbf{Teorema di Schwarz} -- Sia $f : \RR^n \to \RR$ una funzione che ammette derivate seconde
@@ -71,6 +71,17 @@
                   \right\}
               \]
               è un aperto di $\RR \times \Omega$ e l'applicazione $\Phi : \mathcal{D} \to \RR^n$ è di classe $C^k$.
+
+        \item \textbf{Caratterizzazione dell'annullamento della misura di Lebesgue} -- Sia $A$ un sottinsieme di $\RR^n$. Allora
+              $A$ ha misura nulla se e solo se, per ogni scelta di $\eps > 0$, esiste una famiglia numerabile $\{B_i\}_{i \geq 0}$
+              di rettangoli $B_i \subseteq \RR^n$ tali per cui:
+              \[ A \subseteq \bigcup_{i \geq 0} B_i, \quad \sum_{i \geq 0} \vol(B_i) < \eps. \]
+
+        \item \textbf{Lemma per la nullità della misura su un unione numerabile di insiemi di misura nulla} -- Se $\{A_k\}_{k \geq 0}$
+              è una famiglia di sottinsiemi di misura nulla di $\RR^n$, allora anche $\bigcup_{k \geq 0} A_k$ ha misura nulla.
+
+        \item \textbf{Teorema di Sard sugli aperti di $\RR^n$} -- Sia $U \subseteq \RR^n$ aperto, e sia $f : U \to \RR^n$ una mappa
+              liscia. Allora l'insieme $\crit(f)$ dei valori critici di $f$ ha misura nulla.
     \end{itemize}
 
 \end{multicols*}

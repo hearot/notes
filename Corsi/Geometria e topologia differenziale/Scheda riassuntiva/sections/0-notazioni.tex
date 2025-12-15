@@ -9,10 +9,18 @@
       vettori o campi vettoriali; caratteri greci minuscoli ($\alpha$, $\beta$, $\gamma$) per indicare
       curve; e caratteri greci maiuscoli ($\Sigma$) per indicare superfici.
 
+      \section*{Algebra lineare}
+      \addcontentsline{toc}{section}{Algebra lineare}
+
+      \begin{itemize}
+            \item $\rk$ -- rango di un'applicazione lineare o di una matrice.
+      \end{itemize}
+
       \section*{Analisi matematica}
       \addcontentsline{toc}{section}{Analisi matematica}
 
       \begin{itemize}
+            \item $\restr{f}{A}$ -- restrizione di una funzione $f$ al sottinsieme $A$ del dominio.
             \item $f_i$ -- nel caso di una funzione $f : \RR^n \to \RR^m$, la proiezione di $f$ sulla $i$-esima coordinata, ovverosia
                   $\pi_i \circ f : \RR^n \to \RR$.
             \item $\der{f}{t}(x)$, $f'(x)$, $\dot{f}$ -- derivata di una funzione $f : I \subseteq \RR \to \RR^n$. Nel caso $n > 1$, coincide con
@@ -33,8 +41,8 @@
             \item diffeomorfismo di classe $C^k$ -- funzione di classe $C^k$ con inversa di classe $C^k$.
       \end{itemize}
 
-      \section*{Geometria differenziale}
-      \addcontentsline{toc}{section}{Geometria differenziale}
+      \section*{Geometria differenziale delle curve e delle superfici}
+      \addcontentsline{toc}{section}{Geometria differenziale delle curve e delle superfici}
 
       \begin{itemize}
             \item $B_R(P, \RR^n)$, $B_R(P)$ -- la palla $n$-dimensionale di raggio $R$ e centro $P$. Ometteremo $\RR^n$ quando la dimensione si deduce dal contesto.
@@ -88,4 +96,33 @@
             \item $\chi(\Sigma)$ -- caratteristica di Eulero di una superficie con bordo.
       \end{itemize}
 
+      \section*{Teoria della misura}
+      \addcontentsline{toc}{section}{Teoria della misura}
+
+      \begin{itemize}
+            \item $\vol$ -- applicazione per calcolare il volume di un rettangolo in $\RR^n$; tale per cui
+                  $\vol([a_1, b_1] \times \cdots \times [a_n, b_n]) = \prod_i {(b_i - a_i)}$.
+            \item $m$ -- misura di Lebesgue su $\RR^n$.
+      \end{itemize}
+
+      \section*{Teoria delle varietà}
+      \addcontentsline{toc}{section}{Teoria delle varietà}
+
+      \begin{itemize}
+            \item $\dim M$ -- dimensione di una varietà $M$.
+            \item $(f, W \cap M)$ -- carta locale di una varietà $M$; si sottintende che $W$ sia un aperto dello spazio ambiente in cui è contenuto $M$ e
+                  che $f$ sia un diffeomorfismo con dominio $W \cap M$ verso un aperto di $\RR^{\dim M}$.
+            \item $T_x M$ -- spazio tangente di un punto $x$ di una varietà $M$.
+            \item $\dif f_x$ -- differenziale di una mappa liscia $f : M \to N$ tra varietà nel punto $x$.
+            \item $\crit(f)$ -- insieme dei punti critici di una mappa liscia $f : M \to N$ tra varietà.
+      \end{itemize}
+
+      \section*{Topologia}
+      \addcontentsline{toc}{section}{Topologia}
+
+      \begin{itemize}
+            \item II-numerabile -- spazio topologico che ammette una base numerabile.
+            \item T1 -- spazio topologico i cui singoletti sono insiemi chiusi.
+            \item T2 -- spazio topologico in cui per due punti distinti esiste una coppia di intorni disgiunti dei due punti.
+      \end{itemize}
 \end{multicols*}

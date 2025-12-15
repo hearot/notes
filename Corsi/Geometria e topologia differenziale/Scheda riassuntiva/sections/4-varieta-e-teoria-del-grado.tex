@@ -67,7 +67,7 @@
         $f_x : W_x \cap M \to U$ verso un aperto $U$ in $\RR^m$. Per $m = 0$, si richiede invece
         che ogni $W_x \cap M$ sia un singoletto. \medskip
 
-        Gli insiemi della forma $W_x \cap M$ si dicono \textbf{carte locali}, e formano un \textbf{atlante} della varietà. L'inversa di
+        Le coppie della forma $(f_x, W_x \cap M)$ si dicono \textbf{carte locali}, e formano un \textbf{atlante} della varietà. L'inversa di
         $f_x$ si dice invece \textbf{parametrizzazione locale} di $x$ in $M$.
     \end{definition}
 
@@ -77,7 +77,9 @@
 
     \begin{remark}
         Le carte locali inducono un ricoprimento aperto di $M$, e quindi, qualora $M$ fosse compatta, si potrebbe
-        sempre prendere un atlante finito.
+        sempre prendere un atlante finito. \smallskip
+
+        Inoltre, poiché $\RR^k$ è II-numerabile, si può sempre prendere un atlante numerabile.
     \end{remark}
 
     \begin{remark}
@@ -244,7 +246,9 @@
         \end{enumerate}
     \end{remark}
 
-    \subsection{Punti e valori regolari o critici}
+    \section{Valori regolari e critici}
+
+    \subsection{Prime definizioni}
 
     \begin{definition}[Punti regolari o critici]
         Sia $f : M \to N$ una mappa liscia tra varietà, con
@@ -252,7 +256,10 @@
 
         Sia $x \in M$. Si dice che $x$ è un \textbf{punto critico}
         se $\rk(\dif f_x) < n$, e altrimenti si dice che è un
-        \textbf{punto regolare}.
+        \textbf{punto regolare}. \smallskip
+
+        Indichiamo con $\crit(f)$ l'insieme dei punti critici di
+        $f$.
     \end{definition}
 
     \begin{definition}[Valori regolari o critici]
@@ -264,4 +271,115 @@
         è un \textbf{valore regolare} (in particolare lo è se
         $f\inv(y) = \emptyset$).
     \end{definition}
+
+    \begin{remark}
+        È immediato osservare che l'insieme dei valori critici di
+        $f$ è esattamente $f(\crit(f))$.
+    \end{remark}
+
+    \subsection{Teorema di invertibilità locale per varietà e lemma della pila di dischi}
+
+    \begin{theorem}[di invertibilità locale per varietà] \label{thm:invertibilità_locale_varietà}
+        Siano $M$ e $N$ due varietà di stessa dimensione. Sia
+        $f : M \to N$ una mappa liscia. Se $x \in M$ è regolare,
+        allora esiste un intorno $A$ di $x$ in $M$ tale per cui
+        $\restr{f}{A} : A \to f(A)$ è un diffeomorfismo.
+    \end{theorem}
+
+    \begin{proof}
+        Sia $g : U \to g(U)$ una parametrizzazione locale di $x$ in $M$
+        con $g(u) = x$.
+        Sia $h : V \to h(V)$ una parametrizzazione locale di $f(x)$ in $N$
+        con $h(v) = f(x)$.
+        A meno di restringere il dominio di $g$, possiamo supporre che
+        $f(g(U)) \subseteq h(V)$.
+
+        \[\begin{tikzcd}
+                M && N \\
+                \\
+                U && V
+                \arrow["f"{description}, from=1-1, to=1-3]
+                \arrow["g", from=3-1, to=1-1]
+                \arrow["{h\inv \circ f \circ g}"{description}, dashed, from=3-1, to=3-3]
+                \arrow["h", from=3-3, to=1-3]
+            \end{tikzcd}\]
+
+        Osserviamo che:
+        \[ \dif f_x \circ \dif g_u = \dif h_{f(x)} \circ \dif (h\inv \circ f \circ g)_u. \]
+        Dal momento che $x$ è regolare, $\dif f_x$ è un isomorfismo. Poiché anche $\dif g_u$
+        e $\dif h_{f(x)}$ sono isomorfismi ($g$ e $h$ sono diffeomorfismi, vd. Proposizione
+        \ref{prop:diffeomorfismo_iso_diff}), allora anche $\dif (h\inv \circ f \circ g)_u$ è
+        un isomorfismo. \smallskip
+
+        Per il Teorema di invertibilità locale sugli aperti di $\RR^n$, allora esiste un
+        aperto $A'$ di $U$ su cui $\restr{h\inv \circ f \circ g}{A'}$ è un diffeomorfismo.
+        Osserviamo che:
+        \[
+            \restr{f}{g(A')} = \restr{h}{h\inv(f(g(A')))} \circ \restr{h\inv \circ f \circ g}{A'} \circ \restr{g\inv}{g(A')}.
+        \]
+        Quindi $\restr{f}{g(A')}$ è un diffeomorfismo in quanto composizione di restrizioni di
+        diffeomorfismi (vd. Proposizione \ref{prop:comp_liscia}), e $A \defeq g(A')$ è l'intorno cercato.
+    \end{proof}
+
+    \begin{proposition} \label{prop:controimmagine_regolare_finita}
+        Sia $M$ una varietà compatta. Sia $f : M \to N$ una mappa liscia tra varietà della
+        \underline{stessa dimensione}. Se $y \in N$ è un valore regolare, allora $f\inv(y)$ è un insieme finito.
+    \end{proposition}
+
+    \begin{proof}
+        Poiché $N$ è T1, $f\inv(y)$ è un chiuso di $M$; pertanto, essendo $M$ compatta, $f\inv(y)$ è
+        un compatto. \smallskip
+
+        Mostriamo ora che $f\inv(y)$ è discreto. Sia $x \in f\inv(y)$. Dal momento che $y$ è un valore regolare,
+        $x$ è un punto regolare. Quindi esiste per il Teorema \ref{thm:invertibilità_locale_varietà} un
+        intorno aperto $A \subseteq M$ di $x$ per cui $\restr{f}{A}$ è un diffeomorfismo. In questo intorno $x$
+        è l'unica controimmagine di $y$ mediante $f$, e quindi $f\inv(y)$ è discreto. \smallskip
+
+        Dal momento che $f\inv(y)$ è sia compatto che discreto, $f\inv(y)$ è finito.
+    \end{proof}
+
+    \begin{lemma}[della pila dei dischi] Siano $M$ e $N$ varietà della \underline{stessa dimensione}.
+        Sia $M$ compatta. Sia $f : M \to N$ una mappa liscia con $y \in N$ valore regolare.
+        Allora esiste un intorno $V$ di $y$ tale per cui:
+        \[
+            \abs{f\inv(y')} = \abs{f\inv(y)}, \quad \forall y' \in V.
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Sappiamo dalla Proposizione \ref{prop:controimmagine_regolare_finita} che
+        $f\inv(y)$ è finito. Se $f\inv(y) = \{x_1, \ldots, x_n\}$, riprendendo gli intorni aperti $A_i$
+        come definiti nella dimostrazione della Proposizione \ref{prop:controimmagine_regolare_finita},
+        allora possiamo definire:
+        \[
+            V \defeq \bigcap_{i = 1}^n f(A_i) \setminus f(M \setminus \bigcup_{i = 1}^n A_i).
+        \]
+        Gli $f(A_i)$ sono aperti dal momento che $f$ è un diffeomorfismo. L'insieme $M \setminus \bigcup_{i = 1}^n A_i$
+        è un chiuso in un compatto, e quindi è compatto; allora $f(M \setminus \bigcup_{i = 1}^n A_i)$ è compatto,
+        e dunque chiuso essendo $N$ uno spazio T2. Quindi $f(M \setminus \bigcup_{i = 1}^n A_i)^c$ è aperto.
+        Si conclude dunque che $V$ è aperto. \smallskip
+
+        Su $V$, $\abs{f\inv(\cdot)}$ è necessariamente costante: la prima intersezione assicura che esistano
+        almeno $\abs{f\inv(y)}$ controimmagini, e la sottrazione insiemistica assicura che non possano esisterne di più.
+    \end{proof}
+
+    \subsection{Misura nulla e teoremi di Sard e Brown}
+
+    \begin{definition}[Sottinsiemi di varietà di misura nulla]
+        Sia $A$ un sottinsieme di una varietà $M$ di dimensione $m$.
+        Si dice che
+        $A$ ha \textbf{misura nulla (rispetto a $M$)} se per ogni
+        carta locale $(f, W \cap M)$, $f(A \cap W)$ ha misura nulla
+        in $\RR^m$.
+    \end{definition}
+
+    \begin{theorem}[di Sard, per le varietà] Sia $f : M \to N$ una
+        mappa liscia tra due varietà. Allora l'insieme dei valori
+        critici $f(\crit(f))$ ha misura nulla in $N$.
+    \end{theorem}
+
+    \begin{corollary}[di Brown] Sia $f : M \to N$ una
+        mappa liscia tra due varietà. Allora l'insieme dei valori
+        regolari di $f$ è denso in $N$.
+    \end{corollary}
 \end{multicols*}
