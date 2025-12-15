@@ -88,6 +88,23 @@
         regolari.
     \end{remark}
 
+    \subsection{Prodotto di varietà}
+
+    \begin{proposition}[Prodotto di varietà]
+        Siano $M \subseteq \RR^k$ e $N \subseteq \RR^\ell$ varietà di dimensione
+        $m$ e $n$. Allora $M \times N \subseteq \RR^{k+\ell}$ è una varietà
+        di dimensione $m + n$. \smallskip
+
+        Un atlante per $M \times N$ è $\{(f_i \times g_j, (W_i \times Q_j) \cap (M \times N))\}_{i, j}$,
+        dove $\{(f_i, W_i \cap M)\}_i$ è un atlante di $M$
+        e $\{(g_i, Q_j \cap N)\}_j$ è un atlante di $N$.
+    \end{proposition}
+
+    \begin{proof}
+        Segue dal fatto che i prodotti $f_i \times g_j$ sono diffeomorfismi in quanto prodotti
+        di diffeomorfismi.
+    \end{proof}
+
     \section{Spazio tangente e differenziale su mappe tra varietà}
 
     \subsection{Differenziale su aperti di \texorpdfstring{$\RR^n$}{ℝⁿ}}
@@ -192,6 +209,15 @@
         da cui si deduce che $\dif g_u$ ammette un'inversa sinistra, ed è
         dunque iniettiva.
     \end{proof}
+
+    \begin{proposition}[Spazio tangente in un prodotto di varietà]
+        Siano $M$ e $N$ due varietà di dimensione $m$ e $n$. Allora vale:
+        \[
+            \boxed{T_{(m, n)} (M \times N) \cong \dif \iota^M_{m}(T_m M) \oplus \dif \iota^N_{n}(T_{n} N),}
+        \]
+        dove $\iota^M$ è l'immersione di $M$ in $M \times N$ che fissa $n$ nella seconda componente,
+        e $\iota^N$ è l'immersione di $N$ che fissa $m$ nella prima.
+    \end{proposition}
 
     \subsection{Differenziale per mappe lisce tra varietà}
 
@@ -373,13 +399,52 @@
         in $\RR^m$.
     \end{definition}
 
-    \begin{theorem}[di Sard, per le varietà] Sia $f : M \to N$ una
+    \begin{theorem}[di Sard, per le varietà] \label{thm:sard}
+        Sia $f : M \to N$ una
         mappa liscia tra due varietà. Allora l'insieme dei valori
         critici $f(\crit(f))$ ha misura nulla in $N$.
     \end{theorem}
+
+    \begin{proof}
+        Sia $\{(f_i, W_i \cap M)\}_{i \geq 1}$ un atlante numerabile di $M$ e
+        sia $(g, Z \cap N)$ una carta locale di $N$. Poniamo:
+        \[
+            h_i \defeq g \circ \restr{f}{W_i \cap M} \circ f_i.
+        \]
+        A meno di restringere o ignorare $W_i$, possiamo
+        supporre $f(W_i \cap M) \subseteq Z \cap N$.
+        \[\begin{tikzcd}
+                {W_i \cap M} && {Z \cap N} \\
+                \\
+                U && V
+                \arrow["{\restr{f}{W_i \cap M}}", from=1-1, to=1-3]
+                \arrow["{f_i}"', from=1-1, to=3-1]
+                \arrow["g"', from=1-3, to=3-3]
+                \arrow["{h_i = g \circ \restr{f}{W_i \cap M} \circ f_i}"', dashed, from=3-1, to=3-3]
+            \end{tikzcd}\]
+        Osserviamo che:
+        \[
+            \dif (h_i)_u = \dif g_{f(f_i\inv(u))} \circ \dif f_{f_i\inv(u)} \circ \dif (f_i\inv)_u
+        \]
+        Allora, poiché $\dif g_{f(f_i\inv(u))}$ e $\dif (f_i\inv)_u$ sono isomorfismi
+        ($f_i$ e $g$ sono diffeomorfismi, vd. Proposizione \ref{prop:diffeomorfismo_iso_diff}),
+        i valori critici di $f$ sono in corrispondenza con quelli degli $h_i$ tramite $g$. \medskip
+
+        Per il Teorema di Sard sugli aperti di $\RR^n$, $g(f(\crit(f) \cap W_i) \cap Z)$ ha allora
+        misura zero. Allora, $g(f(\crit(f)) \cap Z)$, che è un unione numerabile di insiemi di misura
+        nulla, ha misura nulla. Quindi $f(\crit(f))$ ha misura nulla per definizione.
+    \end{proof}
 
     \begin{corollary}[di Brown] Sia $f : M \to N$ una
         mappa liscia tra due varietà. Allora l'insieme dei valori
         regolari di $f$ è denso in $N$.
     \end{corollary}
+
+    \begin{proof}
+        È sufficiente verificare che in un intorno di un valore critico $y \in N$ ci
+        sia almeno un valore regolare. Se così \underline{non} fosse, tramite una carta
+        locale si troverebbe la chiusura di un rettangolo di soli valori critici, il
+        cui volume è non nullo. Allora $f(\crit(f))$ non avrebbe misura nulla, che
+        è assurdo per il Teorema \ref{thm:sard}.
+    \end{proof}
 \end{multicols*}
