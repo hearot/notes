@@ -62,10 +62,10 @@
     \subsection{Varietà differenziabili, carte, atlanti e parametrizzazioni locali}
 
     \begin{definition}[Varietà differenziabile liscia in $\RR^k$]
-        Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia) di dimensione $m>0$} se per ogni
+        Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia) di dimensione $m>0$} (o $m$-varietà) se per ogni
         suo punto $x$ esistono un intorno aperto $W_x$ in $\RR^k$ e un diffeomorfismo
         $f_x : W_x \cap M \to U$ verso un aperto $U$ in $\RR^m$. Per $m = 0$, si richiede invece
-        che ogni $W_x \cap M$ sia un singoletto. \medskip
+        che ogni $W_x \cap M$ sia un singoletto. \smallskip
 
         Le coppie della forma $(f_x, W_x \cap M)$ si dicono \textbf{carte locali}, e formano un \textbf{atlante} della varietà. L'inversa di
         $f_x$ si dice invece \textbf{parametrizzazione locale} di $x$ in $M$.
@@ -90,7 +90,7 @@
 
     \subsection{Prodotto di varietà}
 
-    \begin{proposition}[Prodotto di varietà]
+    \begin{proposition}[Prodotto di varietà] \label{prop:prodotto_varietà}
         Siano $M \subseteq \RR^k$ e $N \subseteq \RR^\ell$ varietà di dimensione
         $m$ e $n$. Allora $M \times N \subseteq \RR^{k+\ell}$ è una varietà
         di dimensione $m + n$. \smallskip
@@ -272,6 +272,14 @@
         \end{enumerate}
     \end{remark}
 
+    \begin{proposition}[Differenziale per prodotti di varietà] \label{prop:diff_prodotto}
+        Sia $f : M \to N \times O$ una mappa liscia, dove $M$, $N$ e $O$ sono varietà.
+        Se $f(x) = (g(x), p(x))$, allora $g$ e $p$ sono lisce e vale:
+        \[
+            \boxed{df_x(h) = (dg_x(h), dp_x(h)).}
+        \]
+    \end{proposition}
+
     \section{Valori regolari e critici}
 
     \subsection{Prime definizioni}
@@ -378,11 +386,11 @@
         come definiti nella dimostrazione della Proposizione \ref{prop:controimmagine_regolare_finita},
         allora possiamo definire:
         \[
-            V \defeq \bigcap_{i = 1}^n f(A_i) \setminus f(M \setminus \bigcup_{i = 1}^n A_i).
+            V \defeq \bigcap_{i = 1}^n f(A_i) \setminus f\left(M \setminus \bigcup_{i = 1}^n A_i\right).
         \]
         Gli $f(A_i)$ sono aperti dal momento che $f$ è un diffeomorfismo. L'insieme $M \setminus \bigcup_{i = 1}^n A_i$
-        è un chiuso in un compatto, e quindi è compatto; allora $f(M \setminus \bigcup_{i = 1}^n A_i)$ è compatto,
-        e dunque chiuso essendo $N$ uno spazio T2. Quindi $f(M \setminus \bigcup_{i = 1}^n A_i)^c$ è aperto.
+        è un chiuso in un compatto, e quindi è compatto; allora $f\left(M \setminus \bigcup_{i = 1}^n A_i\right)$ è compatto,
+        e dunque chiuso essendo $N$ uno spazio T2. Quindi $f\left(M \setminus \bigcup_{i = 1}^n A_i\right)^c$ è aperto.
         Si conclude dunque che $V$ è aperto. \smallskip
 
         Su $V$, $\abs{f\inv(\cdot)}$ è necessariamente costante: la prima intersezione assicura che esistano
@@ -447,4 +455,135 @@
         cui volume è non nullo. Allora $f(\crit(f))$ non avrebbe misura nulla, che
         è assurdo per il Teorema \ref{thm:sard}.
     \end{proof}
+
+    \subsection{Varietà a partire da valori regolari}
+
+    \begin{theorem}
+        Sia $f : M \to N$ una mappa liscia tra varietà con $\dim M = m \geq n = \dim N$. Se
+        $y \in N$ è regolare, allora $f\inv(y)$ è una varietà di dimensione $m - n$
+        \textnormal{(codimensione $n$)}.
+    \end{theorem}
+
+    \begin{proof}
+        Sia $x \in f\inv(y)$. Allora $x$ è per ipotesi un punto regolare, e quindi
+        $\dif f_x : T_x M \to T_y N$ è una mappa surgettiva, con:
+        \[
+            \dim \ker(\dif f_x) = m - n.
+        \]
+        Sia $L : \RR^k \to \RR^{m-n}$ una mappa lineare, dove $T_x M \subseteq \RR^k$
+        e $\restr{L}{T_x M}$ è isomorfismo. \smallskip
+
+        Consideriamo la mappa $F : M \to N \times \RR^{m-n}$ tale per cui:
+        \[
+            F(m) = (f(m), L(m)).
+        \]
+        Allora, per la Proposizione \ref{prop:diff_prodotto}, vale:
+        \[
+            dF_x(v) = (df_x(v), dL_x(v)) = (df_x(v), L(v)),
+        \]
+        dove si è usato che $L$ è una mappa lineare. $dF_x(v)$ si annulla solo
+        per $v = 0$, essendo $\restr{L}{T_x M}$ un isomorfismo; quindi
+        $dF_x(v)$ è invertibile, e $x$ è regolare per $F$. \smallskip
+
+        Osserviamo che $F$ è una mappa tra varietà della stessa dimensione (vd. Proposizione
+        \ref{prop:prodotto_varietà}), e quindi, per la Proposizione
+        \ref{thm:invertibilità_locale_varietà}, esiste un intorno $U$ di $x$ in $M$ tale per cui
+        $\restr{F}{U} : U \to V \defeq F(U)$ è un diffeomorfismo. \smallskip
+
+        La restrizione $\restr{F}{U}$ mappa $U \cap f\inv(y)$ su un aperto di $V \cap (\{y\} \times \RR^{m-n})$,
+        che è diffeomorfo a un aperto di $\RR^{m-n}$ ($\{y\} \times \RR^{m-n} \cong \RR^{m-n}$). In particolare
+        induce una carta locale per $x$, e quindi $f\inv(y)$ è una varietà di dimensione $m-n$.
+    \end{proof}
+
+    \begin{proposition} \label{prop:tangente_valore_regolare}
+        Sia $f : M \to N$ una mappa liscia tra varietà con $\dim M = m \geq n = \dim N$. Se
+        $y \in N$ è regolare, posto $P \defeq f\inv(y)$, si ha:
+        \[
+            \boxed{T_x P = \ker \dif f_x, \quad \forall x \in P.}
+        \]
+        Inoltre $\restr{\dif f_x}{(T_x P)^\perp}$ è un isomorfismo.
+    \end{proposition}
+
+    \begin{proof}
+        Poiché $P = f\inv(y)$, l'inclusione $\iota : P \to M$ è tale
+        per cui $f \circ \iota$ è costante. Tuttavia una mappa costante
+        ha differenziale nullo, e dunque:
+        \[
+            \dif f_x \circ \iota_{T_x P} = 0 \implies T_x P \subseteq \ker(\dif f_x).
+        \]
+        Poiché $\dim T_x P = m - n = \ker(\dif f_x)$, si ottiene
+        l'uguaglianza $T_x P = \ker(\dif f_x)$. \smallskip
+
+        Osserviamo che $\dim (T_x P)^\perp = n$ e che $(T_x P)^\perp \cap T_x P = \{0\}$.
+        Allora $\restr{\dif f_x}{(T_x P)^\perp}$ è iniettiva, e per uguaglianza dimensionale
+        tra $(T_x P)^\perp$ e $T_y N$ si conclude che è un isomorfismo.
+    \end{proof}
+
+    \begin{proposition}
+        $S^n \subseteq \RR^{n+1}$ è una varietà di dimensione $n$ e $T_x S^n = x^\perp \subseteq \RR^{n+1}$.
+    \end{proposition}
+
+    \begin{proof}
+        Presa $f : \RR^{n+1} \to \RR$ tale per cui:
+        \[
+            f(x) \defeq x_1^2 + \ldots + x_{n+1}^2,
+        \]
+        si ha $S^n = f\inv(1)$. Osserviamo che:
+        \[
+            Jf(x) = 2x.
+        \]
+        Dunque l'unico valore critico di $f$ è $0$. Pertanto
+        $S^n = f\inv(1)$ è una varietà di dimensione $(n+1)-1 = n$. \smallskip
+
+        Poiché $\dif f_x(h) = Jf(x) \cdot h = 2x^\top h$, per la
+        Proposizione \ref{prop:tangente_valore_regolare} vale
+        anche $T_x S^n = \ker \dif f_x = x^\perp$.
+    \end{proof}
+
+    \begin{proposition}
+        $O(n) \subseteq M(n)$ è una varietà di dimensione $\frac{n(n-1)}{2}$.
+    \end{proposition}
+
+    \begin{proof}
+        Presa $f : M(n) \cong \RR^{n^2} \to S(n) \cong \RR^{\frac{n(n+1)}{2}}$ tale per cui:
+        \[ f(A) = AA^\top, \]
+        si ha $O(n) = f\inv(I)$. Osserviamo che:
+        \[ df_A : M(n) \to S(n), \quad df_A(B) = AB^\top + B A^\top. \]
+        Mostriamo che $df_A$ è surgettiva per $A \in f\inv(I) = O(n)$.
+        Se $AB^\top + BA^\top = C \in S(n)$, $C$ si può spezzare
+        nella sua parte simmetrica:
+        \[
+            C = \frac{1}{2} C + \frac{1}{2} C^\top,
+        \]
+        e quindi, ponendo $\frac{1}{2} C = BA^\top$, si ottiene come
+        soluzione:
+        \[
+            B = \frac{1}{2} CA.
+        \]
+        Dunque $I$ è un valore regolare, e $O(n)$ è una varietà
+        di dimensione $n^2 - \frac{n(n+1)}{2} = \frac{n(n-1)}{2}$.
+    \end{proof}
+
+    \section{Varietà con bordo}
+
+    \subsection{Semispazio superiore e prime definizioni}
+
+    \begin{definition}[Semispazio superiore]
+        Si definisce il \textbf{semispazio superiore} $H^n$ in $\RR^n$ come:
+        \[
+            \boxed{H^n \defeq \{x \in \RR^n \mid x_n \geq 0\}.}
+        \]
+    \end{definition}
+
+    \begin{definition}[$m$-varietà con bordo]
+        Si dice che $M \subseteq \RR^k$ è una \textbf{$m$-varietà con bordo} se
+        ogni punto di $M$ ammette un intorno diffeomorfo ad un aperto del semispazio
+        superiore $H^n$. Gli intorni e i diffeomorfismi citati formano le
+        \textbf{carte locali} della varietà, e le inverse di tali diffeomorfismi
+        sono dette \textbf{parametrizzazioni locali}. \smallskip
+
+        Si dice \textbf{bordo} della varietà $M$ l'insieme dei punti che è immagine
+        di un punto di $\partial H^n$ tramite qualche parametrizzazione locale, e
+        si indica con $\partial M$.
+    \end{definition}
 \end{multicols*}
