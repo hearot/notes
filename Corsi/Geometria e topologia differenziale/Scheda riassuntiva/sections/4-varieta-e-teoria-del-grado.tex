@@ -566,7 +566,7 @@
 
     \section{Varietà con bordo}
 
-    \subsection{Semispazio superiore e prime definizioni}
+    \subsection{Semispazio superiore e varietà con bordo}
 
     \begin{definition}[Semispazio superiore]
         Si definisce il \textbf{semispazio superiore} $H^n$ in $\RR^n$ come:
@@ -586,4 +586,70 @@
         di un punto di $\partial H^n$ tramite qualche parametrizzazione locale, e
         si indica con $\partial M$.
     \end{definition}
+
+    \subsection{Differenziale e spazio tangente su varietà con bordo}
+
+    \begin{remark}[Il differenziale sul bordo di $H^n$ è ben definito]
+        ia $g : U \to \RR^k$ una mappa liscia da un aperto $U \subseteq H^n$.
+        Supponiamo $\tilde{g}$ e $\hat{g}$ siano due estensioni di $g$ in
+        un intorno aperto di $x \in U \cap \partial H^n$. Supponiamo a meno di restringimento
+        che $\tilde{g}$ e $\hat{g}$ condividano lo stesso dominio. \smallskip
+
+        Il differenziale $\dif \tilde{g}_x$ coincide allora con
+        $\dif \hat{g}_x$. Sia infatti ${u_i}_{i \geq 0}$ è una successione
+        in $H^n \setminus \partial H^n$ con $u_i \to x$. Poiché $\tilde{g}$
+        e $\hat{g}$ sono lisce, il differenziale vara con continuità, ovverosia:
+        \[
+            \dif \tilde{g}_x = \lim_{i \to \infty} \dif \tilde{g}_{u_i} =
+            \lim_{i \to \infty} \dif \hat{g}_{u_i} = \dif \hat{g}_x,
+        \]
+        dove si è usato che sugli $u_i$ i differenziali certamente coincidono,
+        potendoci restringere a un aperto in $U$ non intersecante il bordo.
+    \end{remark}
+
+    \begin{definition}[Differenziale su $H^n$]
+        Sia $g : U \to \RR^k$ una mappa liscia da un aperto $U \subseteq H^n$. \smallskip
+
+        Per $x \in U \setminus \partial H^n$, il differenziale $dg_x$ è
+        definito come l'usuale differenziale dato dalla restrizione di $g$ a un aperto
+        di $\RR^n$. \smallskip
+
+        Per $x \in U \cap \partial H^n$, il differenziale $dg_x$ è indotto dal
+        differenziale di una qualsiasi estensione $\tilde{g}$ di $g$ in un intorno
+        aperto di $x$, ovverosia:
+        \[
+            \boxed{dg_x \defeq d \hat{g}_x.}
+        \]
+    \end{definition}
+
+    \begin{remark}
+        Come nel caso di una parametrizzazione locale da un aperto di $\RR^n$,
+        anche il differenziale di una parametrizzazione locale di una varietà con
+        bordo è iniettiva per motivi analoghi.
+    \end{remark}
+
+    \begin{definition}[Spazio tangente per varietà con bordo]
+        Sia $M \subseteq \RR^k$ una $m$-varietà con bordo. Sia
+        $x$ un punto di $M$. Si definisce allora lo \textbf{spazio tangente
+            di $x$ su $M$} come:
+        \[
+            \boxed{T_x M \defeq \dif g_u(\RR^m),}
+        \]
+        dove $g$ è una parametrizzazione locale di un intorno di $x$ in $M$
+        con $g(u) = x$.
+    \end{definition}
+
+    \begin{remark}
+        Come per il caso di una varietà senza bordo, si dimostra che il
+        differenziale è ben definito. Valgono inoltre ancora le usuali
+        proprietà del differenziale, inclusa la regola della composizione
+        (\textit{chain rule}).
+    \end{remark}
+
+    \subsection{Bordo di una varietà}
+
+    \begin{proposition}
+        Sia $M$ una $m$-varietà con bordo. Allora $\partial M$ è
+        una varietà senza bordo di dimensione $m-1$.
+    \end{proposition}
 \end{multicols*}
