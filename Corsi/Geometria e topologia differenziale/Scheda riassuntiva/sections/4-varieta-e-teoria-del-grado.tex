@@ -646,10 +646,118 @@
         (\textit{chain rule}).
     \end{remark}
 
+    \begin{remark}
+        A partire da queste definizioni, si definiscono in modo analogo i
+        concetti di punto regolare/critico e di valore regolare/critico.
+    \end{remark}
+
     \subsection{Bordo di una varietà}
 
     \begin{proposition}
         Sia $M$ una $m$-varietà con bordo. Allora $\partial M$ è
         una varietà senza bordo di dimensione $m-1$.
     \end{proposition}
+
+    \begin{remark}
+        Osserviamo innanzitutto che $\partial H^m \cong \RR^{m-1}$,
+        su cui si fonda l'idea della dimostrazione.
+    \end{remark}
+
+    \begin{proof}
+        Sia $x \in \partial M$. Allora esiste una parametrizzazione locale
+        $g : U \subseteq H^m \to M$ con $g(u) = x$ e $u \in \partial U = U \cap \partial H^m$. \smallskip
+
+        La restrizione $\restr{g}{\partial U}$ è un diffeomorfismo. Mostriamo
+        che $g(\partial U) = g(U) \cap \partial M$: questo ci permetterebbe di concludere
+        che $(\restr{g}{\partial U})\inv$ è una carta locale per $\partial M$,
+        e quindi, poiché $\partial U \cong \RR^{m-1}$, che $\partial M$ è una varietà di dimensione $m-1$. \smallskip
+
+        L'inclusione $g(\partial U) \subseteq g(U) \cap \partial M$ è chiara per
+        costruzione. \smallskip
+
+        Supponiamo che esista $y \in g(U) \cap \partial M$ non
+        appartenente a $g(\partial U)$.
+
+        \begin{itemize}
+            \item Dal momento che $y \in \partial M$, esiste
+                  una parametrizzazione locale $h : V \subseteq H^m \to M$ tale per cui esiste
+                  $v \in \partial V$ con $h(v) = y$.
+            \item Dacché $y \in g(U)$, ma $y \notin g(\partial U)$, esiste $u' \notin \partial U$
+                  tale per cui $g(u') = y$.
+        \end{itemize}
+
+        A meno di restringimenti di $g$, consideriamo la funzione di transizione
+        $h\inv \circ g$. Dacché è composizione di diffeomorfismi, $h\inv \circ g$ stessa
+        è un diffeomorfismo liscio. Dal momento che $u' \notin \partial U$,
+        $h\inv \circ g$ induce un diffeomorfismo tra un intorno aperto di $u'$ in $\underline{\RR^m}$ e uno
+        di $v$; tuttavia questo è assurdo perché implicherebbe $H^m \cong \RR^m$.
+    \end{proof}
+
+    \subsection{Varietà con bordo da valori regolari}
+
+    \begin{lemma}
+        Sia $f : M \to \RR$ una mappa liscia tra varietà, dove $M$ è una varietà con bordo di dimensione
+        $m$. Se
+        $y \in N$ è un valore regolare, allora $\{x \in M \mid f(x) \geq y\}$ è una
+        varietà di dimensione $m$ con bordo $f\inv(y)$.
+    \end{lemma}
+
+    \begin{proof}
+        L'insieme $\{x \in M \mid f(x) \geq y\}$ è un aperto di $M$, e quindi
+        eredita la struttura di varietà da $M$ intersecandosi con le carte locali di $M$.
+
+        ...
+    \end{proof}
+
+    \begin{proposition}
+        $D^n$ è una varietà $n$-dimensionale con bordo $S^{n-1}$.
+    \end{proposition}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \begin{lemma}
+        Sia $f : M \to N$ una mappa liscia tra varietà, dove $M$ è una varietà con bordo di dimensione $m$,
+        e $N$ ha dimensione $n$. Se $y \in N$ è un valore regolare sia per $f$ che per $\restr{f}{\partial M}$,
+        allora $f\inv(y)$ è una varietà $(m-n)$-dimensionale con bordo $f\inv(y) \cap \partial M$.
+    \end{lemma}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \subsection{Mappe dalla varietà al bordo}
+
+    \begin{theorem}
+        Una varietà compatta di dimensione uno con bordo è necessariamente un'unione
+        di copie di $S^1$ e di intervalli chiusi di $\RR$.
+    \end{theorem}
+
+    \begin{lemma}
+        Sia $M$ una varietà compatta con bordo $\partial M \neq \emptyset$. Allora \underline{non}
+        esistono mappe lisce $f$ da $M$ in $\partial M$ che fissano il bordo (i.e., con $\restr{f}{\partial M} = \id_{\partial M}$).
+    \end{lemma}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \begin{lemma}
+        Ogni mappa liscia $f : D^n \to D^n$ ammette almeno un punto fisso.
+    \end{lemma}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \begin{theorem}[del punto fisso di Brouwer]
+        Ogni mappa continua $f : D^n \to D^n$ ammette almeno un punto fisso.
+    \end{theorem}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \section{Teoria del grado modulo \texorpdfstring{$2$}{2}}
 \end{multicols*}
