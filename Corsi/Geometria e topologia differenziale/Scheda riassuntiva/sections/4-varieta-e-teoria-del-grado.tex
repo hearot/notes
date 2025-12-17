@@ -372,7 +372,8 @@
         Dal momento che $f\inv(y)$ è sia compatto che discreto, $f\inv(y)$ è finito.
     \end{proof}
 
-    \begin{lemma}[della pila dei dischi] Siano $M$ e $N$ varietà della \underline{stessa dimensione}.
+    \begin{lemma}[della pila dei dischi] \label{lem:pila}
+        Siano $M$ e $N$ varietà della \underline{stessa dimensione}.
         Sia $M$ compatta. Sia $f : M \to N$ una mappa liscia con $y \in N$ valore regolare.
         Allora esiste un intorno $V$ di $y$ tale per cui:
         \[
@@ -729,7 +730,7 @@
 
     \subsection{Mappe dalla varietà al bordo}
 
-    \begin{theorem}
+    \begin{theorem} \label{thm:classificazione_dim_1}
         Una varietà compatta di dimensione uno con bordo è necessariamente un'unione
         di copie di $S^1$ e di intervalli chiusi di $\RR$.
     \end{theorem}
@@ -760,4 +761,153 @@
     \end{proof}
 
     \section{Teoria del grado modulo \texorpdfstring{$2$}{2}}
+
+    \subsection{Omotopie \texorpdfstring{$C^\infty$}{C∞}}
+
+    \begin{definition}[Omotopia $C^\infty$ e funzioni $C^\infty$-omotope]
+        Siano $f$ e $g$ due funzioni da una varietà $M$ in una $N$.
+        Un'\textbf{omotopia $C^\infty$} da $f$ a $g$ è una funzione liscia
+        $H : M \times [0, 1] \to N$ tale per cui:
+        \begin{itemize}
+            \item $H(-, 0) = f$,
+            \item $H(-, 1) = g$.
+        \end{itemize}
+
+        Due funzioni $f$ e $g$ per le quali esiste un'omotopia
+        da $f$ a $g$ si dicono \textbf{$C^\infty$-omotope}.
+    \end{definition}
+
+    \begin{lemma}[di omotopia]
+        Siano $f$ e $g$ due funzioni $C^\infty$-omotope da una varietà $M$ in una $N$,
+        con $M$ compatta e $\dim M = \dim N$. Se
+        $y \in N$ è un valore regolare sia per $f$ che per $g$, allora:
+        \[
+            \boxed{\abs{f\inv(y)} \equiv \abs{g\inv(y)} \pmod{2}.}
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Sia $H$ una omotopia $C^\infty$ da $f$ a $g$. Allora, poiché $M$ è compatta,
+        per il Lemma \ref{lem:pila}:
+        \begin{itemize}
+            \item esiste un intorno $V_1$ di $y \in N$ su cui $\abs{f\inv(\cdot)}$ è costante;
+            \item esiste un intorno $V_2$ di $y \in N$ su cui $\abs{g\inv(\cdot)}$ è costante.
+        \end{itemize}
+        È sufficiente allora mostrare la tesi per un qualsiasi valore $y' \in V_1 \cap V_2$;
+        poiché i valori regolari sono densi, possiamo prendere $y'$ valore regolare di $H$. \smallskip
+
+        Allora $H\inv(y')$ è una varietà di dimensione $1$, il cui bordo ha un numero pari
+        di punti per il Teorema \ref{thm:classificazione_dim_1}. \smallskip
+
+        Osserviamo che $\partial (M \times [0, 1]) = M \times \{0\} \sqcup M \times \{1\}$. Allora:
+        \[
+            \partial H\inv(y') = (f\inv(y') \times \{0\}) \sqcup (g\inv(y') \times \{1\}).
+        \]
+        Quindi:
+        \[
+            0 \equiv \abs{\partial H\inv(y')} \equiv \abs{f\inv(y)} + \abs{g\inv(y)} \pmod{2}.
+        \]
+    \end{proof}
+
+    \subsection{Isotopie e lemma di omogeneità}
+
+    \begin{definition}[Isotopia]
+        Una omotopia $C^\infty$ $H : M \times [0, 1] \to N$ si dice
+        \textbf{isotopia} se per ogni $t \in [0, 1]$, $H(-, t)$ è un
+        diffeomorfismo liscio.
+    \end{definition}
+
+    \begin{definition}[Isotopia a supporto compatto]
+        Un'isotopia $H : N \times [0, 1] \to N$ si dice \textbf{a supporto compatto} se esiste
+        un compatto $K \subseteq N$ tale per cui $\restr{H(-, t)}{N \setminus K} = \id_{N \setminus K}$
+        per ogni $t \in [0, 1]$.
+    \end{definition}
+
+    \begin{definition}[Punti isotopi di una varietà]
+        Due punti $y$, $z \in N$, dove $N$ è una varietà, si dicono
+        \textbf{isotopi} se esiste un diffeomorfismo $h : N \to N$
+        con $h(y) = z$ e un'isotopia a supporto compatto da $h$ a
+        $\id_{N}$.
+    \end{definition}
+
+    \begin{remark}
+        È immediato osservare che la relazione ``essere isotopi'' sui punti di una varietà è una relazione di equivalenza.
+    \end{remark}
+
+    \begin{lemma}[di omogeneità]
+        Sia $N$ una varietà connessa e siano $y$, $z$ due suoi punti. Allora
+        $y$ e $z$ sono isotopi.
+    \end{lemma}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \subsection{Grado modulo $2$ e buona definizione}
+
+    \begin{theorem}
+        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ compatta
+        e $N$ connessa. Siano $y$ e $z$ due valori regolari di una
+        funzione $f : M \to N$ liscia. Allora:
+        \[ \abs{f\inv(y)} \equiv \abs{f\inv(z)} \pmod{2}. \]
+    \end{theorem}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \begin{definition}[Grado modulo $2$ di una funzione liscia]
+        Sia $f : M \to N$ una funzione liscia da una varietà compatta $M$
+        a una di stessa dimensione e connessa $N$. Allora si definisce
+        il \textbf{grado modulo $2$ di $f$} come:
+        \[
+            \boxed{\deg_2 f \defeq \abs{f\inv(y)} \bmod 2,}
+        \]
+        dove $y$ è un qualsiasi valore regolare di $f$.
+    \end{definition}
+
+    \begin{theorem} \label{thm:fondamentale_grado_2}
+        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ compatta
+        e $N$ connessa. Se $f$ e $g$ sono due mappe lisce $C^\infty$-omotope da $M$ in $N$,
+        allora:
+        \[
+            \boxed{\deg_2 f = \deg_2 g.}
+        \]
+    \end{theorem}
+
+    \begin{corollary}
+        La mappa costante $c_{x_0} : S^n \to S^n$ \underline{non} è
+        $C^\infty$-omotopa a $\id_{S^n}$.
+    \end{corollary}
+
+    \begin{proof}
+        Poiché $c_{x_0}$ non è surgettiva, $\deg_2 c_{x_0} = 0$; mentre
+        $\deg_2 \id_{S^n} = 1$. Quindi per il Teorema \ref{thm:fondamentale_grado_2}
+        le due mappe non possono essere $C^\infty$-omotope.
+    \end{proof}
+
+    \section{Teoria del grado su \texorpdfstring{$\ZZ$}{ℤ}}
+
+    \subsection{Orientazione di basi su spazi vettoriali}
+
+    \begin{definition}[Stessa orientazione]
+        Si dice che due basi (ordinate) $\basis$, $\basis'$ di un $\RR$-spazio vettoriale finito-dimensionale
+        \textbf{hanno la stessa orientazione} se la matrice del cambio di base da $\basis$
+        a $\basis'$ ha determinante positivo.
+    \end{definition}
+
+    \begin{remark}
+        È immediato verificare che ``avere la stessa orientazione'' è
+        una relazione d'equivalenza sulle basi dello spazio in esame.
+    \end{remark}
+
+    \begin{definition}[Orientazione canonica]
+        Si definisce l'\textbf{orientazione canonica} $\Theta_0$ di $\RR^n$
+        come la classe di equivalenza indotta dall'orientazione della base
+        canonica.
+    \end{definition}
+
+    \subsection{Orientazione su varietà}
+
+
 \end{multicols*}
