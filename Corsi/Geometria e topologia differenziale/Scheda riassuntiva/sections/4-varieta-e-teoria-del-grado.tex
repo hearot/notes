@@ -93,6 +93,13 @@
         regolari.
     \end{remark}
 
+    \begin{remark}[Gli aperti di varietà sono sottovarietà] \label{rmk:aperti_di_varietà_sono_varietà}
+        Se $N$ è un aperto di una $m$-varietà $M$, $N$ eredita da $M$ una
+        struttura di $m$-varietà per la quale l'atlante è dato dalle intersezioni
+        delle carte locali con $N$ stesso. Infatti $N$ è aperto, e dunque
+        l'immagine di una carta locale sarà anch'esso un aperto su $\RR^m$.
+    \end{remark}
+
     \begin{definition}[Funzione di transizione]
         Date due parametrizzazioni locali $f : U \to f(U)$ e $g : V \to g(V)$ con intersezione
         delle immagini \underline{non} vuota, si
@@ -744,19 +751,39 @@
 
     \subsection{Varietà con bordo da valori regolari}
 
-    \begin{lemma}
-        Sia $f : M \to \RR$ una mappa liscia tra varietà, dove $M$ è una varietà con bordo di dimensione
-        $m$. Se
-        $y \in N$ è un valore regolare, allora $\{x \in M \mid f(x) \geq y\}$ è una
-        varietà di dimensione $m$ con bordo $f\inv(y)$.
+    \begin{lemma} \label{lem:varietà_bordata_da_valore_regolare_su_R}
+        Sia $f : M \to \RR$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà senza bordo. Se
+        $0 \in N$ è un valore regolare, allora $\{ f \geq 0 \}$ è una
+        $m$-varietà con bordo $f\inv(0)$.
     \end{lemma}
 
     \begin{proof}
-        L'insieme $\{x \in M \mid f(x) \geq y\}$ è un aperto di $M$, e quindi
-        eredita la struttura di varietà da $M$ intersecandosi con le carte locali di $M$.
+        L'insieme $\{f > 0\}$ è un aperto di $M$ dal momento che $f$ è continua, e quindi
+        eredita la struttura di varietà di $M$ (vd. Osservazione \ref{rmk:aperti_di_varietà_sono_varietà}).
+        Dunque, conosciamo già le carte locali di un punto $x \in \{f > 0\}$. \smallskip
 
-        ...
+        Sia $x$ un punto di $\{f = 0\} = f\inv(0)$. Poiché $0$ è un valore regolare, $\dif f_x$ è
+        surgettiva, e quindi $\dim \ker \dif f_x = m - 1$. Supponiamo che $k$ sia tale per cui $M \subseteq \RR^k$.
+        Allora possiamo costruire un'applicazione lineare $L : \RR^k \to \RR^{m-1}$ tale per cui
+        $\restr{L}{\ker \dif f_x}$ è un isomorfismo. \smallskip
+
+        Consideriamo la mappa $F : M \to \RR^{m-1} \times \RR$ tale per cui:
+        \[
+            F(m) = (L(m), f(m)).
+        \]
+        Allora $F$ è una mappa liscia tra varietà, il cui differenziale in $x$ è un isomorfismo. Dunque, per il
+        Teorema \ref{thm:invertibilità_locale_varietà}, esiste un intorno aperto $U$ di $x$ in $M$ per il quale
+        $\restr{F}{U} : U \to V \defeq F(U)$ è un diffeomorfismo. \smallskip
+
+        Tramite $\restr{F}{U}$ si induce allora un diffeomorfismo tra l'aperto $(\RR^{m-1} \times \RR_{\geq 0}) \cap V = H^m \cap V$
+        di $H^m$ e l'aperto $F\inv(H^m \cap V) = \{ f > 0 \} \cap U$, tramite il quale il punto $x$ viene
+        mappato su $\partial H^m \cap V$. Dunque $\{ f \geq 0 \}$ è una $m$-varietà con bordo $f\inv(0)$.
     \end{proof}
+
+    \begin{remark}
+        Chiaramente il Lemma \ref{lem:varietà_bordata_da_valore_regolare_su_R} si generalizza
+        a un valore regolare qualunque.
+    \end{remark}
 
     \begin{proposition}
         $D^n$ è una varietà $n$-dimensionale con bordo $S^{n-1}$.
