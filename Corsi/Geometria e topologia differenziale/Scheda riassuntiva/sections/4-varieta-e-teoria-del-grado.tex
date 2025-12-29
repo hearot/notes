@@ -547,7 +547,7 @@
         tra $(T_x P)^\perp$ e $T_y N$ si conclude che è un isomorfismo.
     \end{proof}
 
-    \begin{proposition}
+    \begin{proposition} \label{prop:sn_è_varietà}
         $S^n \subseteq \RR^{n+1}$ è una varietà di dimensione $n$ e $T_x S^n = x^\perp \subseteq \RR^{n+1}$.
     \end{proposition}
 
@@ -558,7 +558,7 @@
         \]
         si ha $S^n = f\inv(1)$. Osserviamo che:
         \[
-            Jf(x) = 2x.
+            Jf_x = 2x^\top.
         \]
         Dunque l'unico valore critico di $f$ è $0$. Pertanto
         $S^n = f\inv(1)$ è una varietà di dimensione $(n+1)-1 = n$. \smallskip
@@ -782,7 +782,8 @@
 
     \begin{remark}
         Chiaramente il Lemma \ref{lem:varietà_bordata_da_valore_regolare_su_R} si generalizza
-        a un valore regolare qualunque.
+        a qualsiasi insieme della forma $\{ f \operatorname{op} a \}$ con $\operatorname{op} \in \{\leq, \geq\}$
+        e $a$ valore regolare di $f$.
     \end{remark}
 
     \begin{proposition}
@@ -790,7 +791,13 @@
     \end{proposition}
 
     \begin{proof}
-        ...
+        Sia $f : \RR^n \to \RR$ tale per cui:
+        \[
+            f(x) \defeq x \cdot x = x_1^2 + \ldots + x_{n}^2.
+        \]
+        Allora, come visto per la Proposizione \ref{prop:sn_è_varietà},
+        $1$ è valore regolare di $f$, e quindi $D^n = \{ f \leq 1 \}$ è
+        una $n$-varietà con bordo $S^{n-1}$.
     \end{proof}
 
     \begin{lemma}
