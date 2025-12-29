@@ -9,9 +9,9 @@
 
     \begin{definition}[Mappe lisce tra due sottinsiemi] Siano $X \subseteq \RR^k$,
         $Y \subseteq \RR^\ell$ sottinsiemi qualsiasi. Allora una funzione
-        $f : X \to Y$ si dice di classe $C^\infty$ (o \textit{liscia}) se per ogni
+        $f : X \to Y$ si dice di \textbf{classe $C^\infty$} (o \textit{liscia}) se per ogni
         $x \in X$ esistono un aperto $W_x$ e una funzione $F : W_x \to \RR^\ell$,
-        chiamata \textit{estensione}, di classe $C^\infty$ per cui:
+        chiamata \textbf{estensione}, di classe $C^\infty$ per cui:
         \[
             \restr{F}{W_x \cap X} = \restr{f}{W_x \cap X}.
         \]
@@ -26,7 +26,7 @@
         Siano $X \subseteq \RR^k$,
         $Y \subseteq \RR^\ell$ sottinsiemi qualsiasi.
         Allora una funzione $f : X \to Y$ si dice \textbf{diffeomorfismo} se
-        è un omeomorfismo, è liscia e ammette inversa liscia.
+        è un \underline{omeomorfismo}, è liscia e ammette inversa liscia.
     \end{definition}
 
     \begin{remark}
@@ -56,13 +56,18 @@
         \[
             \restr{G \circ F}{W_x \cap X} = \restr{g \circ f}{W_x \cap X},
         \]
-        dove $g \circ f$ è liscia.
+        dove $g \circ f$ è liscia; questo dimostra che la composizione di mappe
+        lisce è liscia. \smallskip
+
+        La restrizione di una mappa è liscia dal momento che è composizione
+        di una mappa liscia con una mappa di inclusione, che è liscia in quanto
+        si estende all'identità.
     \end{proof}
 
     \subsection{Varietà differenziabili, carte, atlanti e parametrizzazioni locali}
 
-    \begin{definition}[Varietà differenziabile liscia in $\RR^k$]
-        Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia) di dimensione $m>0$} (o $m$-varietà) se per ogni
+    \begin{definition}[Varietà differenziabile liscia senza bordo]
+        Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia senza bordo) di dimensione $m>0$} (o $m$-varietà) se per ogni
         suo punto $x$ esistono un intorno aperto $W_x$ in $\RR^k$ e un diffeomorfismo
         $f_x : W_x \cap M \to U$ verso un aperto $U$ in $\RR^m$. Per $m = 0$, si richiede invece
         che ogni $W_x \cap M$ sia un singoletto. \smallskip
@@ -79,7 +84,7 @@
         Le carte locali inducono un ricoprimento aperto di $M$, e quindi, qualora $M$ fosse compatta, si potrebbe
         sempre prendere un atlante finito. \smallskip
 
-        Inoltre, poiché $\RR^k$ è II-numerabile, si può sempre prendere un atlante numerabile.
+        Inoltre, poiché $\RR^k$ è II-numerabile, si può sempre prendere un \underline{atlante numerabile}.
     \end{remark}
 
     \begin{remark}
@@ -95,7 +100,8 @@
         $m$ e $n$. Allora $M \times N \subseteq \RR^{k+\ell}$ è una varietà
         di dimensione $m + n$. \smallskip
 
-        Un atlante per $M \times N$ è $\{(f_i \times g_j, (W_i \times Q_j) \cap (M \times N))\}_{i, j}$,
+        Un atlante per $M \times N$ è dato da:
+        \[ \{(f_i \times g_j, (W_i \times Q_j) \cap (M \times N))\}_{i, j}, \]
         dove $\{(f_i, W_i \cap M)\}_i$ è un atlante di $M$
         e $\{(g_i, Q_j \cap N)\}_j$ è un atlante di $N$.
     \end{proposition}
@@ -210,14 +216,20 @@
         dunque iniettiva.
     \end{proof}
 
-    \begin{proposition}[Spazio tangente in un prodotto di varietà]
-        Siano $M$ e $N$ due varietà di dimensione $m$ e $n$. Allora vale:
+    \begin{remark}[Spazio tangente in un prodotto di varietà] \label{rmk:tangente_prodotto}
+        Siano $M$ e $N$ due varietà di dimensione $m$ e $n$.
+        Se $f_i \times g_j$ è una carta locale di $M \times N$,
+        come ottenuto nella Proposizione \ref{prop:prodotto_varietà}, allora:
+        \begin{align*}
+            T_{(m, n)}(M \times N) & = d(f_i^{-1} \times g_j^{-1})_{(m, n)}(\mathbb{R}^{m+n})         \\
+                                   & \cong d(f_i^{-1})(\mathbb{R}^m) \times d(g_j^{-1})(\mathbb{R}^n) \\
+                                   & = T_m M \times T_n N
+        \end{align*}
+        Quindi vale il seguente isomorfismo canonico, ottenuto proiettando sulle componenti:
         \[
-            \boxed{T_{(m, n)} (M \times N) \cong \dif \iota^M_{m}(T_m M) \oplus \dif \iota^N_{n}(T_{n} N),}
+            \boxed{T_{(m, n)} (M \times N) \cong T_m M \times T_n N.}
         \]
-        dove $\iota^M$ è l'immersione di $M$ in $M \times N$ che fissa $n$ nella seconda componente,
-        e $\iota^N$ è l'immersione di $N$ che fissa $m$ nella prima.
-    \end{proposition}
+    \end{remark}
 
     \subsection{Differenziale per mappe lisce tra varietà}
 
@@ -466,7 +478,8 @@
     \end{theorem}
 
     \begin{proof}
-        Sia $x \in f\inv(y)$. Allora $x$ è per ipotesi un punto regolare, e quindi
+        Sia $k$ tale per cui $M \subseteq \RR^k$, e sia $x \in f\inv(y)$.
+        Allora $x$ è per ipotesi un punto regolare, e quindi
         $\dif f_x : T_x M \to T_y N$ è una mappa surgettiva, con:
         \[
             \dim \ker(\dif f_x) = m - n.
@@ -474,7 +487,7 @@
         Sia $L : \RR^k \to \RR^{m-n}$ una mappa lineare, dove $T_x M \subseteq \RR^k$
         e $\restr{L}{T_x M}$ è isomorfismo. \smallskip
 
-        Consideriamo la mappa $F : M \to N \times \RR^{m-n}$ tale per cui:
+        Consideriamo la mappa $F : M \subseteq \RR^k \to N \times \RR^{m-n}$ tale per cui:
         \[
             F(m) = (f(m), L(m)).
         \]
@@ -510,7 +523,7 @@
         per cui $f \circ \iota$ è costante. Tuttavia una mappa costante
         ha differenziale nullo, e dunque:
         \[
-            \dif f_x \circ \iota_{T_x P} = 0 \implies T_x P \subseteq \ker(\dif f_x).
+            \dif f_x \circ \underbrace{\iota_{T_x P}}_{= \dif \iota^P_x} = 0 \implies T_x P \subseteq \ker(\dif f_x).
         \]
         Poiché $\dim T_x P = m - n = \ker(\dif f_x)$, si ottiene
         l'uguaglianza $T_x P = \ker(\dif f_x)$. \smallskip
@@ -527,7 +540,7 @@
     \begin{proof}
         Presa $f : \RR^{n+1} \to \RR$ tale per cui:
         \[
-            f(x) \defeq x_1^2 + \ldots + x_{n+1}^2,
+            f(x) \defeq x \cdot x = x_1^2 + \ldots + x_{n+1}^2,
         \]
         si ha $S^n = f\inv(1)$. Osserviamo che:
         \[
@@ -549,17 +562,18 @@
         Presa $f : M(n) \cong \RR^{n^2} \to S(n) \cong \RR^{\frac{n(n+1)}{2}}$ tale per cui:
         \[ f(A) = AA^\top, \]
         si ha $O(n) = f\inv(I)$. Osserviamo che:
-        \[ df_A : M(n) \to S(n), \quad df_A(B) = AB^\top + B A^\top. \]
-        Mostriamo che $df_A$ è surgettiva per $A \in f\inv(I) = O(n)$.
-        Se $AB^\top + BA^\top = C \in S(n)$, $C$ si può spezzare
-        nella sua parte simmetrica:
+        \[ \dif f_A : M(n) \to S(n), \quad \dif f_A(B) = AB^\top + B A^\top. \]
+        Mostriamo che $\dif f_A$ è surgettiva per $A \in f\inv(I) = O(n)$. \smallskip
+
+        Sia $C \in S(n)$ simmetrica. Allora $C$ è uguale
+        alla sua parte simmetrica:
         \[
             C = \frac{1}{2} C + \frac{1}{2} C^\top,
         \]
-        e quindi, ponendo $\frac{1}{2} C = BA^\top$, si ottiene come
-        soluzione:
+        e quindi, ponendo $\frac{1}{2} C = AB^\top$, si ottiene la seguente
+        soluzione a $AB^\top + BA^\top = C$:
         \[
-            B = \frac{1}{2} CA.
+            B = \frac{1}{2} C^TA.
         \]
         Dunque $I$ è un valore regolare, e $O(n)$ è una varietà
         di dimensione $n^2 - \frac{n(n+1)}{2} = \frac{n(n-1)}{2}$.
@@ -587,6 +601,14 @@
         di un punto di $\partial H^n$ tramite qualche parametrizzazione locale, e
         si indica con $\partial M$.
     \end{definition}
+
+    \begin{remark}
+        La definizione data è coerente con la definizione di varietà senza bordo: una
+        varietà senza bordo $M$ è esattamente una varietà con bordo $M$ tale per cui
+        $\partial M = \emptyset$. \smallskip
+
+        Utilizzeremo dunque indistintamente le due caratterizzazioni.
+    \end{remark}
 
     \subsection{Differenziale e spazio tangente su varietà con bordo}
 
@@ -843,7 +865,7 @@
         ...
     \end{proof}
 
-    \subsection{Grado modulo $2$ e buona definizione}
+    \subsection{Grado modulo \texorpdfstring{$2$}{2} e buona definizione}
 
     \begin{theorem}
         Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ compatta
