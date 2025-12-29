@@ -64,7 +64,7 @@
         si estende all'identità.
     \end{proof}
 
-    \subsection{Varietà differenziabili, carte, atlanti e parametrizzazioni locali}
+    \subsection{Varietà differenziabili, carte, atlanti, parametrizzazioni locali e funzioni di transizione}
 
     \begin{definition}[Varietà differenziabile liscia senza bordo]
         Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia senza bordo) di dimensione $m>0$} (o $m$-varietà) se per ogni
@@ -92,6 +92,13 @@
         di dimensione $2$, le cui parametrizzazioni locali sono date dalle parametrizzazioni
         regolari.
     \end{remark}
+
+    \begin{definition}[Funzione di transizione]
+        Date due parametrizzazioni locali $f : U \to f(U)$ e $g : V \to g(V)$ con intersezione
+        delle immagini \underline{non} vuota, si
+        definisce la \textbf{funzione di transizione da $f$ a $g$} come la seguente funzione:
+        \[ \boxed{g\inv \circ f : f\inv(g(V)) \to g\inv(f(U)).} \]
+    \end{definition}
 
     \subsection{Prodotto di varietà}
 
@@ -288,7 +295,7 @@
         Sia $f : M \to N \times O$ una mappa liscia, dove $M$, $N$ e $O$ sono varietà.
         Se $f(x) = (g(x), p(x))$, allora $g$ e $p$ sono lisce e vale:
         \[
-            \boxed{df_x(h) = (dg_x(h), dp_x(h)).}
+            \boxed{\dif f_x(h) = (\dif g_x(h), \dif p_x(h)).}
         \]
     \end{proposition}
 
@@ -493,11 +500,11 @@
         \]
         Allora, per la Proposizione \ref{prop:diff_prodotto}, vale:
         \[
-            dF_x(v) = (df_x(v), dL_x(v)) = (df_x(v), L(v)),
+            \dif F_x(v) = (\dif f_x(v), \dif L_x(v)) = (\dif f_x(v), L(v)),
         \]
-        dove si è usato che $L$ è una mappa lineare. $dF_x(v)$ si annulla solo
+        dove si è usato che $L$ è una mappa lineare. $\dif F_x(v)$ si annulla solo
         per $v = 0$, essendo $\restr{L}{T_x M}$ un isomorfismo; quindi
-        $dF_x(v)$ è invertibile, e $x$ è regolare per $F$. \smallskip
+        $\dif F_x(v)$ è invertibile, e $x$ è regolare per $F$. \smallskip
 
         Osserviamo che $F$ è una mappa tra varietà della stessa dimensione (vd. Proposizione
         \ref{prop:prodotto_varietà}), e quindi, per la Proposizione
@@ -590,12 +597,20 @@
         \]
     \end{definition}
 
+    \begin{remark} \label{rmk:hn_diffeo_rn-1}
+        Osserviamo che in modo naturale vale il seguente diffeomorfismo:
+        \[
+            \boxed{\partial H^n = \{ x \in \RR^n \mid x_n = 0 \} \cong \RR^{n-1}.}
+        \]
+    \end{remark}
+
     \begin{definition}[$m$-varietà con bordo]
         Si dice che $M \subseteq \RR^k$ è una \textbf{$m$-varietà con bordo} se
         ogni punto di $M$ ammette un intorno diffeomorfo ad un aperto del semispazio
         superiore $H^n$. Gli intorni e i diffeomorfismi citati formano le
         \textbf{carte locali} della varietà, e le inverse di tali diffeomorfismi
-        sono dette \textbf{parametrizzazioni locali}. \smallskip
+        sono dette \textbf{parametrizzazioni locali}. Analogamente si definiscono
+        le \textbf{funzioni di transizione}. \smallskip
 
         Si dice \textbf{bordo} della varietà $M$ l'insieme dei punti che è immagine
         di un punto di $\partial H^n$ tramite qualche parametrizzazione locale, e
@@ -609,6 +624,59 @@
 
         Utilizzeremo dunque indistintamente le due caratterizzazioni.
     \end{remark}
+
+    \subsection{Proprietà del bordo di una varietà con bordo}
+
+    \begin{lemma}[I punti di bordo sono sempre immagini di elementi di bordo] \label{lem:punti_di_bordo}
+        Sia $x$ un punto del bordo $\partial M$ di una $m$-varietà con bordo $M$. Se
+        $g$ è una parametrizzazione locale di $x$, allora $x$ è immagine di un
+        punto di bordo di $H^n$ tramite $g$. Equivalentemente, $x$ è un punto di
+        $\partial M$ se e solo se è immagine di un valore di bordo per
+        ogni sua parametrizzazione locale.
+    \end{lemma}
+
+    \begin{proof}
+        Sia $g : U \subseteq H^m \to g(U)$ una parametrizzazione locale di $x$ con
+        $g(u) = x$. Poiché $x$ è un punto di $\partial M$,
+        allora esiste una parametrizzazione locale $f : V \subseteq H^m \to f(V)$
+        di $x$ tale per cui esiste $v \in \partial V = \partial H^m \cap V$ con
+        $f(v) = x$. \smallskip
+
+        Se $f = g$, la tesi è dimostrata. Se $f \neq g$ e per assurdo $u \notin \partial U$,
+        allora la funzione di transizione $g\inv \circ f$ si restringerebbe a
+        un diffeomorfismo tra un aperto di $\RR^m$ diffeomorfo a $\RR^m$ e
+        un aperto di $H^m$ diffeomorfo a $H^m$. Tuttavia $\RR^m$ e
+        $H^m$ non sono diffeomorfi, \Lightning. Dunque $u \in \partial U$.
+    \end{proof}
+
+    \begin{corollary}[Il bordo si trasporta naturalmente tramite parametrizzazione locale] \label{cor:bordo_param_locale}
+        Sia $g : U \to g(U)$ una parametrizzazione locale di una $m$-varietà con bordo $M$. Allora:
+        \[
+            \boxed{g(\partial U) = g(U) \cap \partial M.}
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        L'inclusione $g(\partial U) \subseteq g(U) \cap \partial M$ è ovvia.
+        L'inclusione opposta invece è data dal Lemma \ref{lem:punti_di_bordo}.
+    \end{proof}
+
+    \begin{proposition}
+        Sia $M$ una $m$-varietà con bordo. Allora $\partial M$ è
+        una varietà senza bordo di dimensione $m-1$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $x \in \partial M$. Allora esiste una parametrizzazione locale
+        $g : U \subseteq H^m \to M$ con $g(u) = x$ e $u \in \partial U = U \cap \partial H^m$. \smallskip
+
+        La restrizione $\restr{g}{\partial U}$ è un diffeomorfismo (vd. Proposizione \ref{prop:comp_liscia}). Ricordiamo che
+        $g(\partial U) = g(U) \cap \partial M$ dal Corollario \ref{cor:bordo_param_locale}. Allora, poiché
+        $\partial H^m \cong \RR^{m-1}$, possiamo identificare
+        $\partial U$ come aperto in $\RR^{m-1}$. Quindi
+        $(\restr{g}{\partial U})\inv$ induce una carta locale per $\partial M$,
+        e si conclude che $\partial M$ è una varietà di dimensione $m-1$. \smallskip
+    \end{proof}
 
     \subsection{Differenziale e spazio tangente su varietà con bordo}
 
@@ -633,15 +701,15 @@
     \begin{definition}[Differenziale su $H^n$]
         Sia $g : U \to \RR^k$ una mappa liscia da un aperto $U \subseteq H^n$. \smallskip
 
-        Per $x \in U \setminus \partial H^n$, il differenziale $dg_x$ è
+        Per $x \in U \setminus \partial H^n$, il differenziale $\dif g_x$ è
         definito come l'usuale differenziale dato dalla restrizione di $g$ a un aperto
         di $\RR^n$. \smallskip
 
-        Per $x \in U \cap \partial H^n$, il differenziale $dg_x$ è indotto dal
+        Per $x \in U \cap \partial H^n$, il differenziale $\dif g_x$ è indotto dal
         differenziale di una qualsiasi estensione $\tilde{g}$ di $g$ in un intorno
         aperto di $x$, ovverosia:
         \[
-            \boxed{dg_x \defeq d \hat{g}_x.}
+            \boxed{\dif g_x \defeq \dif \hat{g}_x.}
         \]
     \end{definition}
 
@@ -673,48 +741,6 @@
         A partire da queste definizioni, si definiscono in modo analogo i
         concetti di punto regolare/critico e di valore regolare/critico.
     \end{remark}
-
-    \subsection{Bordo di una varietà}
-
-    \begin{proposition}
-        Sia $M$ una $m$-varietà con bordo. Allora $\partial M$ è
-        una varietà senza bordo di dimensione $m-1$.
-    \end{proposition}
-
-    \begin{remark}
-        Osserviamo innanzitutto che $\partial H^m \cong \RR^{m-1}$,
-        su cui si fonda l'idea della dimostrazione.
-    \end{remark}
-
-    \begin{proof}
-        Sia $x \in \partial M$. Allora esiste una parametrizzazione locale
-        $g : U \subseteq H^m \to M$ con $g(u) = x$ e $u \in \partial U = U \cap \partial H^m$. \smallskip
-
-        La restrizione $\restr{g}{\partial U}$ è un diffeomorfismo. Mostriamo
-        che $g(\partial U) = g(U) \cap \partial M$: questo ci permetterebbe di concludere
-        che $(\restr{g}{\partial U})\inv$ è una carta locale per $\partial M$,
-        e quindi, poiché $\partial U \cong \RR^{m-1}$, che $\partial M$ è una varietà di dimensione $m-1$. \smallskip
-
-        L'inclusione $g(\partial U) \subseteq g(U) \cap \partial M$ è chiara per
-        costruzione. \smallskip
-
-        Supponiamo che esista $y \in g(U) \cap \partial M$ non
-        appartenente a $g(\partial U)$.
-
-        \begin{itemize}
-            \item Dal momento che $y \in \partial M$, esiste
-                  una parametrizzazione locale $h : V \subseteq H^m \to M$ tale per cui esiste
-                  $v \in \partial V$ con $h(v) = y$.
-            \item Dacché $y \in g(U)$, ma $y \notin g(\partial U)$, esiste $u' \notin \partial U$
-                  tale per cui $g(u') = y$.
-        \end{itemize}
-
-        A meno di restringimenti di $g$, consideriamo la funzione di transizione
-        $h\inv \circ g$. Dacché è composizione di diffeomorfismi, $h\inv \circ g$ stessa
-        è un diffeomorfismo liscio. Dal momento che $u' \notin \partial U$,
-        $h\inv \circ g$ induce un diffeomorfismo tra un intorno aperto di $u'$ in $\underline{\RR^m}$ e uno
-        di $v$; tuttavia questo è assurdo perché implicherebbe $H^m \cong \RR^m$.
-    \end{proof}
 
     \subsection{Varietà con bordo da valori regolari}
 

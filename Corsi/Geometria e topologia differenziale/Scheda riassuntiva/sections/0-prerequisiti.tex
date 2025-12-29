@@ -5,83 +5,83 @@
 
 \begin{multicols*}{2}
 
-    \section*{Analisi matematica e teoria della misura}
-    \addcontentsline{toc}{section}{Analisi matematica e teoria della misura}
+      \section*{Analisi matematica e teoria della misura}
+      \addcontentsline{toc}{section}{Analisi matematica e teoria della misura}
 
-    \begin{itemize}
-        \item \textbf{Teorema di Schwarz} -- Sia $f : \RR^n \to \RR$ una funzione che ammette derivate seconde
-              miste continue in $\vec{x}$. Allora $\partial_{x_i x_j} f(\vec{x}) = \partial_{x_j x_i} f(\vec{x})$ per
-              ogni variabile $x_i$, $x_j$.
+      \begin{itemize}
+            \item \textbf{Teorema di Schwarz} -- Sia $f : \RR^n \to \RR$ una funzione che ammette derivate seconde
+                  miste continue in $\vec{x}$. Allora $\partial_{x_i x_j} f(\vec{x}) = \partial_{x_j x_i} f(\vec{x})$ per
+                  ogni variabile $x_i$, $x_j$.
 
-        \item \textbf{Teorema della funzione implicita} -- Sia $U$ un aperto di $\RR^m \times \RR^n$ e sia
-              $f : U \to \RR^n$ una funzione di classe $C^k$ con $k \geq 1$. Sia $\vec{p} = (\vec{x_0}, \vec{y_0})$ un punto in $U$ con
-              $f(\vec{x_0}, \vec{y_0}) = \vec{a}$ e $J_{\vec{y}} f(\vec{p})$ invertibile. \smallskip
+            \item \textbf{Teorema della funzione implicita} -- Sia $U$ un aperto di $\RR^m \times \RR^n$ e sia
+                  $f : U \to \RR^n$ una funzione di classe $C^k$ con $k \geq 1$. Sia $\vec{p} = (\vec{x_0}, \vec{y_0})$ un punto in $U$ con
+                  $f(\vec{x_0}, \vec{y_0}) = \vec{a}$ e $J_{\vec{y}} f(\vec{p})$ invertibile. \smallskip
 
-              Allora esiste un
-              intorno $A = I_{\vec{x}} \times I_{\vec{y}}$  di $\vec{p}$ in $U$ all'interno del quale esiste un'unica
-              funzione $g : I_{\vec{x}} \to I_{\vec{y}}$ di classe $C^k$ per cui:
-              \[ \vec{y} = g(\vec{x}) \iff f(\vec{x}, \vec{y}) = \vec{a}, \quad \text{(in $A$)}. \]
-              Inoltre per tale $g$ vale:
-              \[ J g(\vec{x_0}) = - J_{\vec{y}} f(\vec{p})\inv J_{\vec{x}} f(\vec{p}). \]
+                  Allora esiste un
+                  intorno $A = I_{\vec{x}} \times I_{\vec{y}}$  di $\vec{p}$ in $U$ all'interno del quale esiste un'unica
+                  funzione $g : I_{\vec{x}} \to I_{\vec{y}}$ di classe $C^k$ per cui:
+                  \[ \vec{y} = g(\vec{x}) \iff f(\vec{x}, \vec{y}) = \vec{a}, \quad \text{(in $A$)}. \]
+                  Inoltre per tale $g$ vale:
+                  \[ J g(\vec{x_0}) = - J_{\vec{y}} f(\vec{p})\inv J_{\vec{x}} f(\vec{p}). \]
 
-        \item \textbf{Teorema di invertibilità locale} -- Sia $U$ un aperto di $\RR^n$ e sia $f : U \to \RR^n$ una
-              funzione di classe $C^k$, con $k \geq 1$. Sia $\vec{x_0}$ un punto in $U$ con $J f(\vec{x_0})$ invertibile. \smallskip
+            \item \textbf{Teorema di invertibilità locale} (o \textit{della funzione inversa}) -- Sia $U$ un aperto di $\RR^n$ e sia $f : U \to \RR^n$ una
+                  funzione di classe $C^k$, con $k \geq 1$. Sia $\vec{x_0}$ un punto in $U$ con $J f(\vec{x_0})$ invertibile. \smallskip
 
-              Allora esiste un
-              intorno $A$ di $\vec{x_0}$ in $U$ dentro al quale $\restr{f}{A}$ ha un'inversa $g$, anch'essa di classe
-              $C^k$, per la quale $J g(f(\vec{x})) = J f(\vec{x})\inv$.
+                  Allora esiste un
+                  intorno $A$ di $\vec{x_0}$ in $U$ dentro al quale $\restr{f}{A}$ ha un'inversa $g$, anch'essa di classe
+                  $C^k$, per la quale $J g(f(\vec{x})) = J f(\vec{x})\inv$.
 
-        \item \textbf{Teorema di esistenza e unicità globale per sistemi lineari di equazioni differenziali} --
-              Sia $I \subseteq \RR$ un intervallo aperto e siano date due funzioni continue:
-              \[ A : I \to \RR^{n \times n} \quad \text{e} \quad \vec{b} : I \to \RR^n. \]
-              Fissato $(t_0, \vec{y_0}) \in I \times \RR^n$, esiste un'unica soluzione $\vec{y} : I \to \RR^n$
-              del problema di Cauchy:
-              \[
-                  \begin{cases}
-                      \vec{y}'(t) = A(t)\vec{y}(t) + \vec{b}(t), \\
-                      \vec{y}(t_0) = \vec{y_0}.
-                  \end{cases}
-              \]
+            \item \textbf{Teorema di esistenza e unicità globale per sistemi lineari di equazioni differenziali} --
+                  Sia $I \subseteq \RR$ un intervallo aperto e siano date due funzioni continue:
+                  \[ A : I \to \RR^{n \times n} \quad \text{e} \quad \vec{b} : I \to \RR^n. \]
+                  Fissato $(t_0, \vec{y_0}) \in I \times \RR^n$, esiste un'unica soluzione $\vec{y} : I \to \RR^n$
+                  del problema di Cauchy:
+                  \[
+                        \begin{cases}
+                              \vec{y}'(t) = A(t)\vec{y}(t) + \vec{b}(t), \\
+                              \vec{y}(t_0) = \vec{y_0}.
+                        \end{cases}
+                  \]
 
-        \item \textbf{Teorema di Cauchy-Lipschitz per l'esistenza e l'unicità locale} --
-              Sia $\Omega$ un aperto di $\RR \times \RR^n$ e sia $\vec{f} : \Omega \to \RR^n$ una funzione continua.
-              Si supponga inoltre che $\vec{f}$ sia \emph{localmente lipschitziana} rispetto alla seconda variabile. \smallskip
+            \item \textbf{Teorema di Cauchy-Lipschitz per l'esistenza e l'unicità locale} --
+                  Sia $\Omega$ un aperto di $\RR \times \RR^n$ e sia $\vec{f} : \Omega \to \RR^n$ una funzione continua.
+                  Si supponga inoltre che $\vec{f}$ sia \emph{localmente lipschitziana} rispetto alla seconda variabile. \smallskip
 
-              Allora, per ogni $(t_0, \vec{y_0}) \in \Omega$, esistono $\delta > 0$ e un'unica funzione
-              $\vec{y} : (t_0 - \delta, t_0 + \delta) \to \RR^n$ di classe $C^1$ che risolve il problema di Cauchy:
-              \[
-                  \begin{cases}
-                      \vec{y}'(t) = \vec{f}(t, \vec{y}(t)), \\
-                      \vec{y}(t_0) = \vec{y_0}.
-                  \end{cases}
-              \]
+                  Allora, per ogni $(t_0, \vec{y_0}) \in \Omega$, esistono $\delta > 0$ e un'unica funzione
+                  $\vec{y} : (t_0 - \delta, t_0 + \delta) \to \RR^n$ di classe $C^1$ che risolve il problema di Cauchy:
+                  \[
+                        \begin{cases}
+                              \vec{y}'(t) = \vec{f}(t, \vec{y}(t)), \\
+                              \vec{y}(t_0) = \vec{y_0}.
+                        \end{cases}
+                  \]
 
-        \item \textbf{Teorema di dipendenza liscia dai dati iniziali} --
-              Sia $\Omega$ un aperto di $\RR \times \RR^n$ e sia $\vec{f} : \Omega \to \RR^n$ una funzione di classe
-              $C^k$ con $k \geq 1$. Indichiamo con $\Phi(t, t_0, \vec{y_0})$ la soluzione massimale del
-              problema di Cauchy con dato iniziale $\vec{y}(t_0) = \vec{y_0}$. \smallskip
+            \item \textbf{Teorema di dipendenza liscia dai dati iniziali} --
+                  Sia $\Omega$ un aperto di $\RR \times \RR^n$ e sia $\vec{f} : \Omega \to \RR^n$ una funzione di classe
+                  $C^k$ con $k \geq 1$. Indichiamo con $\Phi(t, t_0, \vec{y_0})$ la soluzione massimale del
+                  problema di Cauchy con dato iniziale $\vec{y}(t_0) = \vec{y_0}$. \smallskip
 
-              Allora l'insieme di definizione del flusso:
-              \[
-                  \mathcal{D} = \left\{ (t, t_0, \vec{y_0}) \in \RR \times \Omega :
-                  \begin{array}{c}
-                      \text{la soluzione } \vec{y}(t, t_0, \vec{y_0}) \\
-                      \text{esiste al tempo } t
-                  \end{array}
-                  \right\}
-              \]
-              è un aperto di $\RR \times \Omega$ e l'applicazione $\Phi : \mathcal{D} \to \RR^n$ è di classe $C^k$.
+                  Allora l'insieme di definizione del flusso:
+                  \[
+                        \mathcal{D} = \left\{ (t, t_0, \vec{y_0}) \in \RR \times \Omega :
+                        \begin{array}{c}
+                              \text{la soluzione } \vec{y}(t, t_0, \vec{y_0}) \\
+                              \text{esiste al tempo } t
+                        \end{array}
+                        \right\}
+                  \]
+                  è un aperto di $\RR \times \Omega$ e l'applicazione $\Phi : \mathcal{D} \to \RR^n$ è di classe $C^k$.
 
-        \item \textbf{Caratterizzazione dell'annullamento della misura di Lebesgue} -- Sia $A$ un sottinsieme di $\RR^n$. Allora
-              $A$ ha misura nulla se e solo se, per ogni scelta di $\eps > 0$, esiste una famiglia numerabile $\{B_i\}_{i \geq 0}$
-              di rettangoli $B_i \subseteq \RR^n$ tali per cui:
-              \[ A \subseteq \bigcup_{i \geq 0} B_i, \quad \sum_{i \geq 0} \vol(B_i) < \eps. \]
+            \item \textbf{Caratterizzazione dell'annullamento della misura di Lebesgue} -- Sia $A$ un sottinsieme di $\RR^n$. Allora
+                  $A$ ha misura nulla se e solo se, per ogni scelta di $\eps > 0$, esiste una famiglia numerabile $\{B_i\}_{i \geq 0}$
+                  di rettangoli $B_i \subseteq \RR^n$ tali per cui:
+                  \[ A \subseteq \bigcup_{i \geq 0} B_i, \quad \sum_{i \geq 0} \vol(B_i) < \eps. \]
 
-        \item \textbf{Lemma per la nullità della misura su un unione numerabile di insiemi di misura nulla} -- Se $\{A_k\}_{k \geq 0}$
-              è una famiglia di sottinsiemi di misura nulla di $\RR^n$, allora anche $\bigcup_{k \geq 0} A_k$ ha misura nulla.
+            \item \textbf{Lemma per la nullità della misura su un unione numerabile di insiemi di misura nulla} -- Se $\{A_k\}_{k \geq 0}$
+                  è una famiglia di sottinsiemi di misura nulla di $\RR^n$, allora anche $\bigcup_{k \geq 0} A_k$ ha misura nulla.
 
-        \item \textbf{Teorema di Sard sugli aperti di $\RR^n$} -- Sia $U \subseteq \RR^n$ aperto, e sia $f : U \to \RR^n$ una mappa
-              liscia. Allora l'insieme $\crit(f)$ dei valori critici di $f$ ha misura nulla.
-    \end{itemize}
+            \item \textbf{Teorema di Sard sugli aperti di $\RR^n$} -- Sia $U \subseteq \RR^n$ aperto, e sia $f : U \to \RR^n$ una mappa
+                  liscia. Allora l'insieme $\crit(f)$ dei valori critici di $f$ ha misura nulla.
+      \end{itemize}
 
 \end{multicols*}
