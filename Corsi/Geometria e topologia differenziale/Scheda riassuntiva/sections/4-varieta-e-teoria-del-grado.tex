@@ -485,7 +485,7 @@
 
     \subsection{Varietà a partire da valori regolari}
 
-    \begin{theorem}
+    \begin{theorem} \label{thm:varietà_da_valore_regolare}
         Sia $f : M \to N$ una mappa liscia tra varietà con $\dim M = m \geq n = \dim N$. Se
         $y \in N$ è regolare, allora $f\inv(y)$ è una varietà di dimensione $m - n$
         \textnormal{(codimensione $n$)}.
@@ -547,9 +547,9 @@
         tra $(T_x P)^\perp$ e $T_y N$ si conclude che è un isomorfismo.
     \end{proof}
 
-    \begin{proposition} \label{prop:sn_è_varietà}
+    \begin{corollary} \label{cor:sn_è_varietà}
         $S^n \subseteq \RR^{n+1}$ è una varietà di dimensione $n$ e $T_x S^n = x^\perp \subseteq \RR^{n+1}$.
-    \end{proposition}
+    \end{corollary}
 
     \begin{proof}
         Presa $f : \RR^{n+1} \to \RR$ tale per cui:
@@ -568,9 +568,9 @@
         anche $T_x S^n = \ker \dif f_x = x^\perp$.
     \end{proof}
 
-    \begin{proposition}
+    \begin{corollary}
         $O(n) \subseteq M(n)$ è una varietà di dimensione $\frac{n(n-1)}{2}$.
-    \end{proposition}
+    \end{corollary}
 
     \begin{proof}
         Presa $f : M(n) \cong \RR^{n^2} \to S(n) \cong \RR^{\frac{n(n+1)}{2}}$ tale per cui:
@@ -751,11 +751,11 @@
 
     \subsection{Varietà con bordo da valori regolari}
 
-    \begin{lemma} \label{lem:varietà_bordata_da_valore_regolare_su_R}
+    \begin{theorem} \label{lem:varietà_bordata_da_valore_regolare_su_R}
         Sia $f : M \to \RR$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà senza bordo. Se
-        $0 \in N$ è un valore regolare, allora $\{ f \geq 0 \}$ è una
+        $0$ è un valore regolare per $f$, allora $\{ f \geq 0 \}$ è una
         $m$-varietà con bordo $f\inv(0)$.
-    \end{lemma}
+    \end{theorem}
 
     \begin{proof}
         L'insieme $\{f > 0\}$ è un aperto di $M$ dal momento che $f$ è continua, e quindi
@@ -786,36 +786,83 @@
         e $a$ valore regolare di $f$.
     \end{remark}
 
-    \begin{proposition}
+    \begin{corollary}
         $D^n$ è una varietà $n$-dimensionale con bordo $S^{n-1}$.
-    \end{proposition}
+    \end{corollary}
 
     \begin{proof}
         Sia $f : \RR^n \to \RR$ tale per cui:
         \[
             f(x) \defeq x \cdot x = x_1^2 + \ldots + x_{n}^2.
         \]
-        Allora, come visto per la Proposizione \ref{prop:sn_è_varietà},
+        Allora, come visto per il Corollario \ref{cor:sn_è_varietà},
         $1$ è valore regolare di $f$, e quindi $D^n = \{ f \leq 1 \}$ è
         una $n$-varietà con bordo $S^{n-1}$.
     \end{proof}
 
-    \begin{lemma}
-        Sia $f : M \to N$ una mappa liscia tra varietà, dove $M$ è una varietà con bordo di dimensione $m$,
-        e $N$ ha dimensione $n$. Se $y \in N$ è un valore regolare sia per $f$ che per $\restr{f}{\partial M}$,
-        allora $f\inv(y)$ è una varietà $(m-n)$-dimensionale con bordo $f\inv(y) \cap \partial M$.
+    \begin{lemma} \label{lem:varietà_bordata_da_valore_regolare_caso_particolare}
+        Sia $f : H^m \to \RR^n$ con $m > n$ una mappa liscia. Se $y \in \RR^n$ è un valore regolare
+        sia per $f$ che per $\restr{f}{\partial H^m}$ con $f\inv(y) \neq \emptyset$, allora $f\inv(y)$ è una $(m-n)$-varietà con bordo
+        $\partial f\inv(y) = f\inv(y) \cap \partial H^m$.
     \end{lemma}
 
     \begin{proof}
         ...
     \end{proof}
 
+    \begin{theorem} \label{thm:varietà_bordata_da_valore_regolare}
+        Sia $f : M \to N$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà,
+        $N$ è una $n$-varietà senza bordo e $m > n$. \smallskip
+
+        Se $y \in N$ è un valore regolare sia per $f$ che per $\restr{f}{\partial M}$ con $f\inv(y) \neq \emptyset$,
+        allora $f\inv(y)$ è una $(m-n)$-varietà con bordo $\partial f\inv(y) = f\inv(y) \cap \partial M$.
+    \end{theorem}
+
+    \begin{proof}
+        Sia $g : U \subseteq H^m \to g(U) \subseteq M$ una parametrizzazione locale di $x \in f\inv(y)$
+        con $g(u) = x$. Sia $h : V \subseteq \RR^n \to h(V) \subseteq N$ una parametrizzazione
+        locale di $y$ con $g(v) = y$. \smallskip
+
+        \[\begin{tikzcd}
+                M && N \\
+                \\
+                U && V
+                \arrow["f"{description}, from=1-1, to=1-3]
+                \arrow["g", from=3-1, to=1-1]
+                \arrow["{h\inv \circ f \circ g}"{description}, from=3-1, to=3-3]
+                \arrow["h", from=3-3, to=1-3]
+            \end{tikzcd}\]
+
+        A meno di restringere i domini delle due mappe, possiamo considerare $p = h\inv \circ f \circ g$.
+        Allora $v = h\inv(y)$ è regolare per la mappa $p$. Per possiamo
+        restringerci a una palla aperta come intorno aperto di $u$ in $p\inv(v)$: se questa è diffeomorfa a $\RR^m$, una carta locale per $u$
+        in $p\inv(v)$ è già data dal Teorema \ref{thm:varietà_da_valore_regolare}; se invece è diffeomorfa a
+        $H^m$, la carta locale è ereditata tramite il Lemma \ref{lem:varietà_bordata_da_valore_regolare_caso_particolare}. \smallskip
+
+        La carta locale trovata si trasferisce tramite $g$ al punto $x$ di $M$, e applicando il Corollario \ref{cor:bordo_param_locale}
+        il bordo della varietà si trasferisce coerentemente a sua volta.
+    \end{proof}
+
     \subsection{Mappe dalla varietà al bordo}
 
-    \begin{theorem} \label{thm:classificazione_dim_1}
-        Una varietà compatta di dimensione uno con bordo è necessariamente un'unione
-        di copie di $S^1$ e di intervalli chiusi di $\RR$.
+    \begin{theorem} \label{thm:classificazione_dim_1_generale}
+        Una $1$-varietà con bordo è diffeomorfa a unioni di copie di $S^1$ e
+        di intervalli di $\RR$.
     \end{theorem}
+
+    \begin{proof}
+        Si veda l'appendice di [Milnor, J. (1965). \textit{Topology from the Differentiable Viewpoint}. University Press of Virginia].
+    \end{proof}
+
+    \begin{corollary} \label{thm:classificazione_dim_1}
+        Una $1$-varietà compatta con bordo è necessariamente un'unione
+        di copie di $S^1$ e di intervalli chiusi di $\RR$.
+    \end{corollary}
+
+    \begin{proof}
+        Discende immediatamente dal Teorema \ref{thm:classificazione_dim_1_generale}
+        utilizzando l'ipotesi di compattezza.
+    \end{proof}
 
     \begin{lemma}
         Sia $M$ una varietà compatta con bordo $\partial M \neq \emptyset$. Allora \underline{non}
