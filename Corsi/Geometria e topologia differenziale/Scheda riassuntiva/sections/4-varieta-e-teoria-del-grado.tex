@@ -491,7 +491,7 @@
         nulla, ha misura nulla. Quindi $f(\crit(f))$ ha misura nulla per definizione.
     \end{proof}
 
-    \begin{corollary}[di Brown] Sia $f : M \to N$ una
+    \begin{corollary}[di Brown] \label{cor:brown} Sia $f : M \to N$ una
         mappa liscia tra due varietà. Allora l'insieme dei valori
         regolari di $f$ è denso in $N$.
     \end{corollary}
@@ -767,7 +767,11 @@
 
     \begin{remark}
         A partire da queste definizioni, si definiscono in modo analogo i
-        concetti di punto regolare/critico e di valore regolare/critico.
+        concetti di punto regolare/critico e di valore regolare/critico. \smallskip
+
+        Si generalizza facilmente in questo senso
+        il Teorema di Sard (Teorema \ref{thm:sard}), così come quello di
+        Brown (Corollario \ref{cor:brown}).
     \end{remark}
 
     \subsection{Varietà con bordo da valori regolari}
@@ -917,9 +921,9 @@
         il bordo della varietà si trasferisce coerentemente a sua volta.
     \end{proof}
 
-    \subsection{Mappe dalla varietà al bordo}
+    \subsection{Classificazione delle \texorpdfstring{$1$}{1}-varietà, lemma di non retrazione sul bordo e teorema del punto fisso di Brouwer}
 
-    \begin{theorem} \label{thm:classificazione_dim_1_generale}
+    \begin{theorem}[Classificazione delle $1$-varietà con bordo] \label{thm:classificazione_dim_1_generale}
         Una $1$-varietà con bordo è diffeomorfa a unioni di copie di $S^1$ e
         di intervalli di $\RR$.
     \end{theorem}
@@ -928,7 +932,7 @@
         Si veda l'appendice di [Milnor, J. (1965). \textit{Topology from the Differentiable Viewpoint}. University Press of Virginia].
     \end{proof}
 
-    \begin{corollary} \label{thm:classificazione_dim_1}
+    \begin{corollary}[Classificazzione delle $1$-varietà compatte con bordo] \label{cor:classificazione_dim_1}
         Una $1$-varietà compatta con bordo è necessariamente un'unione
         di copie di $S^1$ e di intervalli chiusi di $\RR$.
     \end{corollary}
@@ -938,21 +942,67 @@
         utilizzando l'ipotesi di compattezza.
     \end{proof}
 
-    \begin{lemma}
+    \begin{lemma}[di non retrazione sul bordo] \label{lem:non_retrazione}
         Sia $M$ una varietà compatta con bordo $\partial M \neq \emptyset$. Allora \underline{non}
-        esistono mappe lisce $f$ da $M$ in $\partial M$ che fissano il bordo (i.e., con $\restr{f}{\partial M} = \id_{\partial M}$).
+        esistono mappe lisce $f$ da $M$ in $\partial M$ che fissano il bordo, ovverosia
+        con $\restr{f}{\partial M} = \id_{\partial M}$.
     \end{lemma}
 
     \begin{proof}
-        ...
+        Supponiamo esista una tale mappa $f$. Allora per il Teorema di Brown (Corollario \ref{cor:brown}, generalizzato alle varietà
+        bordate), sappiamo che i valori regolari di $f$ sono densi in $\partial M$, e che in particolare
+        esiste almeno un valore regolare. \smallskip
+
+        Sia $y$ un
+        tale valore regolare. Allora, poiché $\restr{f}{\partial M} = \id_{\partial M}$,
+        $y$ è valore regolare anche per $\restr{f}{\partial M}$. \smallskip
+
+        Pertanto, per il Teorema \ref{thm:varietà_bordata_da_valore_regolare}, $f\inv(y)$ è una
+        $1$-varietà con bordo $f\inv(y) \cap \partial M$. Poiché $\{y\}$ è chiuso in $\partial M$
+        (è T1), $f\inv(y)$ è un chiuso in un compatto, e dunque è una $1$-varietà compatta. \smallskip
+
+        Osserviamo che il bordo di $f\inv(y)$ si semplifica a $\{y\}$ dacché $\restr{f}{\partial M} = \id_{\partial M}$. Tuttavia questo
+        è un assurdo, dal momento che le $1$-varietà compatte con bordo finito hanno un numero pari di elementi sul
+        bordo per il Corollario \ref{cor:classificazione_dim_1}. Quindi $f$ \underline{non} può esistere.
     \end{proof}
 
-    \begin{lemma}
+    \begin{lemma} \label{lem:punto_fisso_cinf}
         Ogni mappa liscia $f : D^n \to D^n$ ammette almeno un punto fisso.
     \end{lemma}
 
     \begin{proof}
-        ...
+        Supponiamo per assurdo che $f$ \underline{non} ammetta alcun punto fisso.
+        Definiamo $u_x$ in modo tale che:
+        \[
+            u_x \defeq \frac{x - f(x)}{\norm{x - f(x)}}, \quad \forall x \in D^n.
+        \]
+        Poiché $f$ non ammette punti fissi, $u_x \neq 0$ per ogni $x \in D^n$. \smallskip
+
+        Costruiamo $f : D^n \to S^{n-1}$ liscia tale per cui $f(x) = x + t u_x$ e
+        $\restr{f}{S^{n-1}} = \id_{S^{n-1}}$. \smallskip
+
+        Allora deve valere $\norm{f(x)}^2 = 1$, e quindi:
+        \begin{equation*}
+            \begin{aligned}
+                t^2 + 2(x \cdot u_x) t + (\|x\|^2 - 1) = 0 \implies \\
+                t_{\pm} = - x \cdot u_x \pm \sqrt{(x \cdot u_x)^2 - \|x\|^2 + 1}.
+            \end{aligned}
+        \end{equation*}
+        Scegliamo $t \defeq t_+$. Affinché $f$ sia liscia, occorre che l'espressione
+        $h(x) \defeq (x \cdot u_x)^2 - \|x\|^2 + 1$ dentro la radice quadrata in $t$ sia sempre maggiore di $0$. \smallskip
+
+        Osserviamo che per $x \in D^n$ si ha $h(x) \geq (x \cdot u_x)^2 \geq 0$. Se allora $h(x) > (x \cdot u_x)^2$,
+        $h(x)$ è maggiore strettamente di $0$. Se invece $h(x) = (x \cdot u_x)^2$, necessariamente $\norm{x}^2 = 1$,
+        e quindi $x \in S^{n-1}$. Ma allora:
+        \[
+            x \cdot u_x = \frac{1 - x \cdot f(x)}{\norm{x - g(x)}}.
+        \]
+        Dal momento che $x$ non può essere un punto fisso di $f$, $x \cdot f(x)$ \underline{non} può essere uguale a $1$; quindi
+        $x \cdot u_x > 0$ per $x \in S^{n-1}$. Si conclude allora che $h(x) > 0$ per ogni $x \in D^n$, e quindi $f$
+        è una funzione liscia. \smallskip
+
+        Si verifica facilmente che $\restr{f}{S^{n-1}} = \id_{S^{n-1}}$. Questo tuttavia è un assurdo
+        per il Lemma \ref{lem:non_retrazione}, \Lightning. Quindi $f$ ammette almeno un punto fisso.
     \end{proof}
 
     \begin{theorem}[del punto fisso di Brouwer]
@@ -960,7 +1010,32 @@
     \end{theorem}
 
     \begin{proof}
-        ...
+        Supponiamo per assurdo che $f$ \underline{non} ammetta alcun punto fisso. Poiché $D^n$
+        è compatto, per il Teorema di approssimazione di Weierstrass, per ogni $\eps > 0$
+        esiste una funzione polinomiale $P_\eps : \RR^n \to \RR^n$ tale per cui
+        $\norm{P_\eps(x) - f(x)} < \eps$ per ogni $x \in D^n$. \smallskip
+
+        Osserviamo che:
+        \[
+            \norm{P_\eps(x)} \leq \norm{P_\eps(x) - f(x)} + \norm{f(x)} < \eps + 1,
+        \]
+        quindi $Q_\eps \defeq \frac{1}{\eps + 1} P_\eps$ si restringe su $D^n$ a
+        un'endofunzione $\restr{Q_\eps}{D^n} : D^n \to D^n$. \smallskip
+
+        Dal momento che $f$ non ammette alcun punto fisso, $\mu \defeq \min_{x \in D^n} \norm{f(x) - x}$ è
+        tale per cui $\mu > 0$. \smallskip
+
+        Osserviamo che:
+        \begin{equation*}
+            \begin{aligned}
+                \|Q_\eps(x) - f(x)\| & = \frac{1}{\eps + 1} (\|P_\eps(x) - f(x)\| + \eps \|f(x)\|) \\[0.1in]
+                                     & \leq \frac{2 \eps}{\eps + 1}.
+            \end{aligned}
+        \end{equation*}
+        Scegliendo allora $\eps$ tale per cui $\frac{2 \eps}{\eps + 1} < \mu$, $Q_\eps$ \underline{non} può ammettere
+        punti fissi: un punto fisso violerebbe infatti la minimalità di $\mu$ secondo la scorsa disuguaglianza.
+        Tuttavia $Q_\eps$ è una funzione liscia, e per il Lemma \ref{lem:punto_fisso_cinf} deve ammettere
+        punti fissi, \Lightning. Dunque $f$ ammette almeno un punto fisso.
     \end{proof}
 
     \section{Teoria del grado modulo \texorpdfstring{$2$}{2}}
@@ -1000,7 +1075,7 @@
         poiché i valori regolari sono densi, possiamo prendere $y'$ valore regolare di $H$. \smallskip
 
         Allora $H\inv(y')$ è una varietà di dimensione $1$, il cui bordo ha un numero pari
-        di punti per il Teorema \ref{thm:classificazione_dim_1}. \smallskip
+        di punti per il Corollario \ref{cor:classificazione_dim_1}. \smallskip
 
         Osserviamo che $\partial (M \times [0, 1]) = M \times \{0\} \sqcup M \times \{1\}$. Allora:
         \[
