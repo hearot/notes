@@ -337,6 +337,27 @@
         $f$ è esattamente $f(\crit(f))$.
     \end{remark}
 
+    \begin{remark}[I punti regolari formano un aperto] \label{rmk:punti_regolari_formano_aperto}
+        Se $x$ è un punto regolare di una mappa liscia
+        $f : M \to N$, esiste sempre un intorno aperto $U$
+        di $x$ in $M$ composto di soli punti regolari. \smallskip
+
+        Scelta una parametrizzazione locale $g : U \to g(U)$ di un intorno aperto di $x$,
+        si può scegliere infatti una base ``comune'' per ogni $T_y M$ al
+        variare di $y$ in $g(U)$, e così si può rappresentare
+        $\dif f_y$ matricialmente. \smallskip
+
+        Poiché $x$ è regolare, $\dif f_x$ è surgettiva. Allora
+        $\dif f_x$ ammette un minore di taglia massima di
+        determinante \underline{non} nullo. Il determinante di questo minore,
+        al variare di $y \in g(U)$, varia continuamente; in particolare, per
+        il Teorema della permanenza del segno, esiste un intorno di $x$
+        in cui continua a essere \underline{non} nullo. \smallskip
+
+        Equivalentemente esiste un intorno aperto di $x$ in cui tutti i punti
+        sono regolari.
+    \end{remark}
+
     \subsection{Teorema di invertibilità locale per varietà e lemma della pila di dischi}
 
     \begin{theorem}[di invertibilità locale per varietà] \label{thm:invertibilità_locale_varietà}
@@ -537,7 +558,7 @@
         per cui $f \circ \iota$ è costante. Tuttavia una mappa costante
         ha differenziale nullo, e dunque:
         \[
-            \dif f_x \circ \underbrace{\iota_{T_x P}}_{= \dif \iota^P_x} = 0 \implies T_x P \subseteq \ker(\dif f_x).
+            \dif f_x \circ \underbrace{\iota_{T_x P}}_{\mathclap{= \, \dif \iota^P_x}} = 0 \implies T_x P \subseteq \ker(\dif f_x).
         \]
         Poiché $\dim T_x P = m - n = \ker(\dif f_x)$, si ottiene
         l'uguaglianza $T_x P = \ker(\dif f_x)$. \smallskip
@@ -751,7 +772,7 @@
 
     \subsection{Varietà con bordo da valori regolari}
 
-    \begin{theorem} \label{lem:varietà_bordata_da_valore_regolare_su_R}
+    \begin{theorem} \label{thm:varietà_bordata_da_valore_regolare_su_R}
         Sia $f : M \to \RR$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà senza bordo. Se
         $0$ è un valore regolare per $f$, allora $\{ f \geq 0 \}$ è una
         $m$-varietà con bordo $f\inv(0)$.
@@ -781,7 +802,7 @@
     \end{proof}
 
     \begin{remark}
-        Chiaramente il Lemma \ref{lem:varietà_bordata_da_valore_regolare_su_R} si generalizza
+        Chiaramente il Teorema \ref{thm:varietà_bordata_da_valore_regolare_su_R} si generalizza
         a qualsiasi insieme della forma $\{ f \operatorname{op} a \}$ con $\operatorname{op} \in \{\leq, \geq\}$
         e $a$ valore regolare di $f$.
     \end{remark}
@@ -797,21 +818,74 @@
         \]
         Allora, come visto per il Corollario \ref{cor:sn_è_varietà},
         $1$ è valore regolare di $f$, e quindi $D^n = \{ f \leq 1 \}$ è
-        una $n$-varietà con bordo $S^{n-1}$.
+        una $n$-varietà con bordo $S^{n-1}$ per il Teorema \ref{thm:varietà_bordata_da_valore_regolare_su_R}.
     \end{proof}
 
     \begin{lemma} \label{lem:varietà_bordata_da_valore_regolare_caso_particolare}
-        Sia $f : H^m \to \RR^n$ con $m > n$ una mappa liscia. Se $y \in \RR^n$ è un valore regolare
+        Sia $f : H^m \to \RR^n$ con $m > n$ una mappa liscia. \smallskip
+
+        Se $y \in \RR^n$ è un valore regolare
         sia per $f$ che per $\restr{f}{\partial H^m}$ con $f\inv(y) \neq \emptyset$, allora $f\inv(y)$ è una $(m-n)$-varietà con bordo
         $\partial f\inv(y) = f\inv(y) \cap \partial H^m$.
     \end{lemma}
 
     \begin{proof}
-        ...
+        Sia $x \in f\inv(y)$. Supponiamo valga $x \in \Int(H^m) = H^m \setminus \partial H^m$. Possiamo
+        restringerci a un intorno aperto $U$ di $x$ in $\RR^m$, per il quale $\restr{f}{U}$ diventa una mappa tra
+        varietà senza bordo. Allora $\restr{f}{U}\inv(y)$ è una $(m-n)$ varietà senza bordo per il
+        Teorema \ref{thm:varietà_da_valore_regolare}. Quindi $x$ eredita da questa varietà le carte locali su $f\inv(y)$;
+        inoltre $x$ \underline{non} potrà appartenere al bordo di $f\inv(y)$, essendo nell'immagine di una parametrizzazione
+        di un aperto di $\RR^{m-n}$. \smallskip
+
+        Supponiamo valga adesso $x \in \partial H^m$. Poiché $f$ è liscia, esistono un intorno aperto $W$
+        di $x$ in $\RR^m$ e un'estensione liscia $F : W \to \RR^n$ per cui:
+        \[
+            \restr{F}{W \cap H^m} = \restr{f}{W \cap H^m}.
+        \]
+        Dal momento che $\dif F_x = \dif f_x$, e $x$ è un punto regolare per $f$, allora $\dif F_x$ è surgettiva,
+        e $x$ è punto regolare anche per $F$. Dal momento che i punti regolari formano un aperto (vd. Osservazione
+        \ref{rmk:punti_regolari_formano_aperto}), possiamo supporre, a meno di restringere $W$, che \underline{non}
+        vi siano punti critici in $W$. Pertanto, $y$ sarà valore regolare per $F$ e $F\inv(y)$ è dunque una $(m-n)$-varietà
+        senza bordo per il Teorema \ref{thm:varietà_da_valore_regolare}. \smallskip
+
+        Sia $\pi : \RR^m \to \RR$ la proiezione tale per cui $x \mapsto x_m$. Allora $\pi$ è una mappa liscia. \smallskip
+
+        Mostriamo che $0$ è un valore regolare per $\restr{\pi}{F\inv(y)}$. Osserviamo innanzitutto che:
+        \[
+            (\restr{\pi}{F\inv(y)})\inv(0) = F\inv(y) \cap \partial H^m \underbrace{=}_{\mathclap{(W \setminus H^m) \cap \partial H^m = \emptyset}} f\inv(y) \cap \partial H^m.
+        \]
+        Sia $y^* \in f\inv(y) \cap \partial H^m$. Osserviamo che:
+        \begin{enumerate}[(i.)]
+            \item $T_{y^*} F\inv(y) = \ker \dif F_{y^*} = \ker \dif f_{y^*}$ per la Proposizione \ref{prop:tangente_valore_regolare}, e questo spazio
+                  ha dimensione $m-n$.
+            \item $T_{y^*} \partial H^m = \ker \dif \pi_{y^*}$ per la Proposizione \ref{prop:tangente_valore_regolare}.
+            \item $\ker \dif (\restr{f}{\partial H^m})_{y^*} = \ker \restr{\dif f_{y^*}}{T_{y^*} \partial H^m}$ ha dimensione
+                  $m-n-1$ dal momento che $y$ è per ipotesi un valore regolare di $\restr{f}{\partial H^m}$, dove per l'uguaglianza
+                  dei due nuclei si è utilizzato che:
+                  \[
+                      \restr{f}{\partial H^m} = f \circ \iota^{\partial H^m},
+                  \]
+                  e successivamente la \textit{chain rule}.
+            \item Grazie a (i.), (ii.) e (iii.), possiamo scrivere:
+                  \[
+                      \ker \dif (\restr{f}{\partial H^m})_{y^*} = T_{y^*} F\inv(y) \cap (\ker \dif \pi_{y^*}).
+                  \]
+        \end{enumerate}
+
+        Osserviamo che $y^*$ è un punto critico per $\restr{\pi}{F\inv(y)}$ se e solo se $\dif (\restr{\pi}{F\inv(y)})_{y^*}$ è nullo,
+        dacché $\pi$ è una mappa in una $1$-varietà.
+        Questo accade se e solo se $T_{y^*} F\inv(y) \subseteq \ker \dif \pi_{y^*}$. Tuttavia, se vi fosse questa inclusione, si avrebbe per (iv.)
+        $\ker \dif (\restr{f}{\partial H^m})_{y^*} = T_{y^*} F\inv(y)$, che è assurdo dal momento che il primo spazio ha dimensione $m-n-1$ per (iii.)
+        e il secondo ha dimensione $m-n$ per (i.). Quindi $0$ è regolare per $\restr{\pi}{F\inv(0)}$. \smallskip
+
+        Dal momento che $0$ è regolare per $\restr{\pi}{F\inv(0)}$, per il Teorema \ref{thm:varietà_bordata_da_valore_regolare_su_R}
+        $\{\pi \geq 0\} = f\inv(y) \cap H^m$ è una $(m-n)$-varietà con bordo $\{\pi = 0\} = f\inv(y) \cap \partial H^m \ni x$.
+        Quindi $x$ eredita da questa varietà le carte locali su $f\inv(y)$; inoltre $x$ appartiene al bordo di $f\inv(y)$,
+        essendo immagine di un punto di bordo tramite una parametrizzazione locale.
     \end{proof}
 
     \begin{theorem} \label{thm:varietà_bordata_da_valore_regolare}
-        Sia $f : M \to N$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà,
+        Sia $f : M \to N$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà con bordo $\partial M$ \underline{non} vuoto,
         $N$ è una $n$-varietà senza bordo e $m > n$. \smallskip
 
         Se $y \in N$ è un valore regolare sia per $f$ che per $\restr{f}{\partial M}$ con $f\inv(y) \neq \emptyset$,

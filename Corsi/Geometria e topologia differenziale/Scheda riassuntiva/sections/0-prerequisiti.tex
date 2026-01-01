@@ -4,9 +4,17 @@
 \setlength{\parindent}{2pt}
 
 \begin{multicols*}{2}
+      \section*{Algebra lineare}
+      \addcontentsline{toc}{section}{Algebra lineare}
 
-      \section*{Analisi matematica e teoria della misura}
-      \addcontentsline{toc}{section}{Analisi matematica e teoria della misura}
+      \begin{itemize}
+            \item \textbf{Caratterizzazione del rango di una matrice} -- Sia $M \in \RR^{m \times n}$ una matrice. Allora $\rk(M) = k$ se e solo se
+                  i minori di taglia superiore a $k$ in $M$ hanno tutti determinante nullo ed esiste un minore di
+                  taglia $k$ con determinante \underline{non} nullo.
+      \end{itemize}
+
+      \section*{Analisi matematica}
+      \addcontentsline{toc}{section}{Analisi matematica}
 
       \begin{itemize}
             \item \textbf{Teorema di Schwarz} -- Sia $f : \RR^n \to \RR$ una funzione che ammette derivate seconde
@@ -72,6 +80,17 @@
                   \]
                   è un aperto di $\RR \times \Omega$ e l'applicazione $\Phi : \mathcal{D} \to \RR^n$ è di classe $C^k$.
 
+            \item \textbf{Teorema di Sard sugli aperti di $\RR^n$} -- Sia $U \subseteq \RR^n$ aperto, e sia $f : U \to \RR^n$ una mappa
+                  liscia. Allora l'insieme $\crit(f)$ dei valori critici di $f$ ha misura nulla.
+
+            \item \textbf{Teorema di approssimazione di Weierstrass} -- Sia $K \subseteq \RR^n$ un compatto, e sia $f : K \to \RR$ una mappa
+                  continua. Allora per ogni $\eps > 0$ esiste una funzione polinomiale $P : K \to \RR$ tale per cui $\norm{f-P}_\infty < \eps$.
+      \end{itemize}
+
+      \section*{Teoria della misura}
+      \addcontentsline{toc}{section}{Teoria della misura}
+
+      \begin{itemize}
             \item \textbf{Caratterizzazione dell'annullamento della misura di Lebesgue} -- Sia $A$ un sottinsieme di $\RR^n$. Allora
                   $A$ ha misura nulla se e solo se, per ogni scelta di $\eps > 0$, esiste una famiglia numerabile $\{B_i\}_{i \geq 0}$
                   di rettangoli $B_i \subseteq \RR^n$ tali per cui:
@@ -80,11 +99,6 @@
             \item \textbf{Lemma per la nullità della misura su un unione numerabile di insiemi di misura nulla} -- Se $\{A_k\}_{k \geq 0}$
                   è una famiglia di sottinsiemi di misura nulla di $\RR^n$, allora anche $\bigcup_{k \geq 0} A_k$ ha misura nulla.
 
-            \item \textbf{Teorema di Sard sugli aperti di $\RR^n$} -- Sia $U \subseteq \RR^n$ aperto, e sia $f : U \to \RR^n$ una mappa
-                  liscia. Allora l'insieme $\crit(f)$ dei valori critici di $f$ ha misura nulla.
-
-            \item \textbf{Teorema di approssimazione di Weierstrass} -- Sia $K \subseteq \RR^n$ un compatto, e sia $f : K \to \RR$ una mappa
-                  continua. Allora per ogni $\eps > 0$ esiste una funzione polinomiale $P : K \to \RR$ tale per cui $\norm{f-P}_\infty < \eps$.
       \end{itemize}
 
 \end{multicols*}

@@ -4,136 +4,139 @@
 \setlength{\parindent}{2pt}
 
 \begin{multicols*}{2}
-      Cercheremo di impiegare caratteri latini ($x$, $y$, $z$) per indicare quantità reali;
-      caratteri latini sottolineati ($\vec{x}$, $\vec{y}$, $\vec{z}$) per indicare
-      vettori o campi vettoriali; caratteri greci minuscoli ($\alpha$, $\beta$, $\gamma$) per indicare
-      curve; e caratteri greci maiuscoli ($\Sigma$) per indicare superfici.
+    Cercheremo di impiegare caratteri latini ($x$, $y$, $z$) per indicare quantità reali;
+    caratteri latini sottolineati ($\vec{x}$, $\vec{y}$, $\vec{z}$) per indicare
+    vettori o campi vettoriali; caratteri greci minuscoli ($\alpha$, $\beta$, $\gamma$) per indicare
+    curve; e caratteri greci maiuscoli ($\Sigma$) per indicare superfici.
 
-      \section*{Algebra lineare}
-      \addcontentsline{toc}{section}{Algebra lineare}
+    \section*{Algebra lineare}
+    \addcontentsline{toc}{section}{Algebra lineare}
 
-      \begin{itemize}
-            \item $\rk$ -- rango di un'applicazione lineare o di una matrice.
-            \item $M(n)$ -- matrici $n \times n$ a elementi reali.
-            \item $S(n)$ -- matrici simmetriche $n \times n$ a elementi reali.
-      \end{itemize}
+    \begin{itemize}
+        \item $\rk$ -- rango di un'applicazione lineare o di una matrice.
+        \item $M(n)$ -- matrici $n \times n$ a elementi reali.
+        \item $S(n)$ -- matrici simmetriche $n \times n$ a elementi reali.
+    \end{itemize}
 
-      \section*{Analisi matematica}
-      \addcontentsline{toc}{section}{Analisi matematica}
+    \section*{Analisi matematica}
+    \addcontentsline{toc}{section}{Analisi matematica}
 
-      \begin{itemize}
-            \item $\{f \operatorname{op} a\}$ -- data una funzione $f : X \to \RR$ a valori reali, $\{f \operatorname{op} a\}$ denota
-                  l'insieme $\{ x \in X \mid f(x) \operatorname{op} a\}$, dove $a \in \RR$.
-            \item $f \times g$ -- date due funzioni $f : A \to C$, $g : B \to D$, la funzione $f \times g : (A \times B) \to (C \times D)$ è
-                  definita in modo tale che $(f \times g)(a, b) = (f(a), g(b))$.
-            \item $\restr{f}{A}$ -- restrizione di una funzione $f$ al sottinsieme $A$ del dominio.
-            \item $f_i$ -- nel caso di una funzione $f : \RR^n \to \RR^m$, la proiezione di $f$ sulla $i$-esima coordinata, ovverosia
-                  $\pi_i \circ f : \RR^n \to \RR$.
-            \item $\der{f}{t}(x)$, $f'(x)$, $\dot{f}$ -- derivata di una funzione $f : I \subseteq \RR \to \RR^n$. Nel caso $n > 1$, coincide con
-                  il vettore $({f_i}'(t))_i)$. La notazione può essere iterata per ottenere le derivate successive.
-            \item $\partial_{x_i} f(\vec{x})$, $\pd{f}{x_i}(\vec{x})$, $f_{x_i}(\vec{x})$ -- derivata parziale nella $i$-esima coordinata
-                  di una funzione $f : \RR^n \to \RR$ nel punto $\vec{x}$. La notazione può essere iterata per ottenere le
-                  derivate successive.
-            \item $\vec{x_i}$ -- derivate parziali nella $i$-esima coordinata di un campo $\vec{x}$ da $\RR^n$ a $\RR^m$, ovverosia
-                  $((x_1)_i, \ldots, (x_m)_i)^\top$.
-            \item $\nabla f(\vec{x})$, $\nabla f_{\vec{x}}$ -- gradiente di una funzione $f : \RR^n \to \RR$, ovverosia il vettore $(\partial_{x_i} f(\vec{x}))_i^\top$.
-            \item $J f(\vec{x})$, $J f_\vec{x}$ -- jacobiano di una funzione $f : \RR^n \to \RR^m$ nel punto $x$, ovverosia la matrice
-                  $(\partial_{x_j} f_i (\vec{x}))_{i, j} = (\nabla f_i(\vec{x}))_{i}$.
-            \item $J_{\vec{y}} f(\vec{p})$ -- nel caso di una funzione $f : \RR^{m} \times \RR^{n} \to \RR^{n}$,
-                  la sottomatrice $n \times n$ quadrata di $J f(\vec{p})$ date dalle ultime $n$ colonne. Coincide
-                  con $J (\pi_{\RR^n} \circ f)(\vec{p})$.
-            \item $C^n$ -- classe delle funzioni dotate di derivate parziali continue fino all'ordine $n$. Per $n = 0$, coincide con la classe delle funzioni continue ($C^0$).
-            \item $C^\infty$, liscio -- classe delle funzioni derivabili parzialmente per un numero arbitrario di volte con continuità.
-            \item diffeomorfismo di classe $C^k$ -- funzione di classe $C^k$ con inversa di classe $C^k$.
-      \end{itemize}
+    \begin{itemize}
+        \item $\{f \operatorname{op} a\}$ -- data una funzione $f : X \to \RR$ a valori reali, $\{f \operatorname{op} a\}$ denota
+              l'insieme $\{ x \in X \mid f(x) \operatorname{op} a\}$, dove $a \in \RR$.
+        \item $f \times g$ -- date due funzioni $f : A \to C$, $g : B \to D$, la funzione $f \times g : (A \times B) \to (C \times D)$ è
+              definita in modo tale che $(f \times g)(a, b) = (f(a), g(b))$.
+        \item $\restr{f}{A}$ -- restrizione di una funzione $f$ al sottinsieme $A$ del dominio.
+        \item $f_i$ -- nel caso di una funzione $f : \RR^n \to \RR^m$, la proiezione di $f$ sulla $i$-esima coordinata, ovverosia
+              $\pi_i \circ f : \RR^n \to \RR$.
+        \item $\der{f}{t}(x)$, $f'(x)$, $\dot{f}$ -- derivata di una funzione $f : I \subseteq \RR \to \RR^n$. Nel caso $n > 1$, coincide con
+              il vettore $({f_i}'(t))_i)$. La notazione può essere iterata per ottenere le derivate successive.
+        \item $\partial_{x_i} f(\vec{x})$, $\pd{f}{x_i}(\vec{x})$, $f_{x_i}(\vec{x})$ -- derivata parziale nella $i$-esima coordinata
+              di una funzione $f : \RR^n \to \RR$ nel punto $\vec{x}$. La notazione può essere iterata per ottenere le
+              derivate successive.
+        \item $\vec{x_i}$ -- derivate parziali nella $i$-esima coordinata di un campo $\vec{x}$ da $\RR^n$ a $\RR^m$, ovverosia
+              $((x_1)_i, \ldots, (x_m)_i)^\top$.
+        \item $\nabla f(\vec{x})$, $\nabla f_{\vec{x}}$ -- gradiente di una funzione $f : \RR^n \to \RR$, ovverosia il vettore $(\partial_{x_i} f(\vec{x}))_i^\top$.
+        \item $J f(\vec{x})$, $J f_\vec{x}$ -- jacobiano di una funzione $f : \RR^n \to \RR^m$ nel punto $x$, ovverosia la matrice
+              $(\partial_{x_j} f_i (\vec{x}))_{i, j} = (\nabla f_i(\vec{x}))_{i}$.
+        \item $J_{\vec{y}} f(\vec{p})$ -- nel caso di una funzione $f : \RR^{m} \times \RR^{n} \to \RR^{n}$,
+              la sottomatrice $n \times n$ quadrata di $J f(\vec{p})$ date dalle ultime $n$ colonne. Coincide
+              con $J (\pi_{\RR^n} \circ f)(\vec{p})$.
+        \item $C^n$ -- classe delle funzioni dotate di derivate parziali continue fino all'ordine $n$. Per $n = 0$, coincide con la classe delle funzioni continue ($C^0$).
+        \item $C^\infty$, liscio -- classe delle funzioni derivabili parzialmente per un numero arbitrario di volte con continuità.
+        \item diffeomorfismo di classe $C^k$ -- funzione di classe $C^k$ con inversa di classe $C^k$.
+    \end{itemize}
 
-      \section*{Geometria differenziale delle curve e delle superfici}
-      \addcontentsline{toc}{section}{Geometria differenziale delle curve e delle superfici}
+    \section*{Geometria differenziale delle curve e delle superfici}
+    \addcontentsline{toc}{section}{Geometria differenziale delle curve e delle superfici}
 
-      \begin{itemize}
-            \item $B_R(P, \RR^n)$, $B_R(P)$ -- la palla $n$-dimensionale di raggio $R$ e centro $P$. Ometteremo $\RR^n$ quando la dimensione si deduce dal contesto.
-            \item $S_a^i(P)$ -- l'ipersfera $i$-dimensionale di raggio $a$ e centro $P$, ovverosia $\{\vec{x} \in \RR^{i+1} \mid \norm{\vec{x} - P} = a\}$.
-            \item $\TT_{a, b}$ -- toro di raggio maggiore $a$ e raggio minore $b$.
-            \item $\ell(\alpha)$ -- lunghezza di una curva $\alpha$.
-            \item p.l.a.~-- parametrizzata a lunghezza d'arco, ovverosia con velocità unitaria.
-            \item $\kappa_\alpha$ -- curvatura di una curva $\alpha$ in un punto.
-            \item $\tau_\alpha$ -- torsione di una curva $\alpha$ in un punto.
-            \item $T_\alpha$ -- versore tangente di una curva regolare in un punto.
-            \item $N_\alpha$ -- versore normale di una curva di Frenet in un punto.
-            \item $B_\alpha$ -- versore binormale di una curva di Frenet in un punto.
-            \item $\Pi_\alpha$ -- piano osculatore di $\alpha$ in un punto.
-            \item $R_\alpha$ -- raggio di curvatura di $\alpha$ in un punto.
-            \item $T_P \Sigma$ -- piano tangente di $P$ rispetto a $\Sigma$.
-            \item $\vec{n}$, $n_{\vec{x}}$ -- (versore) normale (eventualmente locale) di una superficie o di una parametrizzazione regolare.
-            \item $D_\xi f(P)$ -- derivata direzionale con direzione $\xi$ della funzione $f$ nel punto $P$ di una superficie.
-            \item $S_P$ -- operatore forma nel punto $P$ di una superficie.
-            \item $\I_P$ -- I forma fondamentale nel punto $P$ di una superficie.
-            \item $\II_P$ -- II forma fondamentale nel punto $P$ di una superficie.
-            \item $E$, $F$, $G$ -- elementi della rappresentazione matriciale della I forma fondamentale: $\I_P = \begin{pmatrix}
-                              E & F \\ F & G
-                        \end{pmatrix}$.
-            \item $\ell$, $m$, $n$ -- elementi della rappresentazione matriciale della II forma fondamentale: $\II_P = \begin{pmatrix}
-                              \ell & m \\ m & n
-                        \end{pmatrix}$.
-            \item $a$, $b$, $c$, $d$ -- elementi della rappresentazione matriciale dell'operatore forma: $S_P = \begin{pmatrix}
-                              a & c \\ b & d
-                        \end{pmatrix}$.
-            \item $\kappa_n$ -- curvatura normale di una superficie in un punto $P$ secondo un dato vettore unitario.
-            \item $\kappa_{\alpha, n}$ -- curvatura normale di $\alpha$ rispetto a una superficie.
-            \item $\kappa_1$, $\kappa_2$ -- curvature principali di una superficie in un punto.
-            \item $\kappa$ -- curvatura gaussiana di una superficie in un punto.
-            \item $H$ -- curvatura media di una superficie in un punto.
-            \item $\Gamma_{ij}^k$ -- simbolo di Christoffel, ovverosia coefficiente di $\vec{x_k}$ in $\vec{x_{ij}}$.
-            \item $\nabla_v X(P)$ -- derivata covariante di un campo vettoriale $X$ tangente alla superficie $\Sigma$ in direzione $v$ nel punto $P$.
-            \item $(\cdot)^\top$ -- proiezione di $\cdot$ sul piano tangente $T_P \Sigma$.
-            \item $\gamma_v$ -- geodetica locale di direzione $v$.
-            \item $U_P$ -- intorno di definizione della mappa esponenziale in un punto $P$.
-            \item $\exp_P$ -- mappa esponenziale in un punto $P$.
-            \item $v_k$ -- data una base ortonormale $\vec{e_1}$, $\vec{e_2}$, la mappa $t \mapsto k(\cos(t) \vec{e_1} + \sin(t) \vec{e_2})$.
-            \item $N_P$ -- intorno normale di un punto $P$.
-            \item $\varphi(\gamma(t))$ -- angolo tra la curva $\gamma$ e il parallelo di $\gamma(t)$ al tempo $t$.
-            \item $r(\gamma(t))$ -- distanza di $\gamma(t)$ dall'asse di rotazione.
-            \item $k_{\alpha, g}$ -- curvatura geodetica di una curva $\alpha$ rispetto a una superficie $\Sigma$.
-            \item $A(R)$ -- area di una regione $R$ di una superficie $\Sigma$.
-            \item $\int_R \varphi \dA$ -- integrazione rispetto all'area in una regione $R$, equivalente a $\iint_{\vec{x}\inv(R)} (\varphi \circ \vec{x}) \, \norm{\vec{x_u} \times \vec{x_v}} \du \dv$.
-            \item $\eps_i$ -- angolo esterno $i$-esimo di una regione o superficie con bordo.
-            \item $\iota_i$ -- angolo interno $i$-esimo di una regione o superficie con bordo.
-            \item $\partial \Sigma$ -- bordo di una superficie con bordo, come unione delle tracce delle regioni con cui è definita per differenza.
-            \item $\chi(\Sigma)$ -- caratteristica di Eulero di una superficie con bordo.
-      \end{itemize}
+    \begin{itemize}
+        \item $B_R(P, \RR^n)$, $B_R(P)$ -- la palla $n$-dimensionale di raggio $R$ e centro $P$. Ometteremo $\RR^n$ quando la dimensione si deduce dal contesto.
+        \item $S_a^i(P)$ -- l'ipersfera $i$-dimensionale di raggio $a$ e centro $P$, ovverosia $\{\vec{x} \in \RR^{i+1} \mid \norm{\vec{x} - P} = a\}$.
+        \item $\TT_{a, b}$ -- toro di raggio maggiore $a$ e raggio minore $b$.
+        \item $\ell(\alpha)$ -- lunghezza di una curva $\alpha$.
+        \item p.l.a.~-- parametrizzata a lunghezza d'arco, ovverosia con velocità unitaria.
+        \item $\kappa_\alpha$ -- curvatura di una curva $\alpha$ in un punto.
+        \item $\tau_\alpha$ -- torsione di una curva $\alpha$ in un punto.
+        \item $T_\alpha$ -- versore tangente di una curva regolare in un punto.
+        \item $N_\alpha$ -- versore normale di una curva di Frenet in un punto.
+        \item $B_\alpha$ -- versore binormale di una curva di Frenet in un punto.
+        \item $\Pi_\alpha$ -- piano osculatore di $\alpha$ in un punto.
+        \item $R_\alpha$ -- raggio di curvatura di $\alpha$ in un punto.
+        \item $T_P \Sigma$ -- piano tangente di $P$ rispetto a $\Sigma$.
+        \item $\vec{n}$, $n_{\vec{x}}$ -- (versore) normale (eventualmente locale) di una superficie o di una parametrizzazione regolare.
+        \item $D_\xi f(P)$ -- derivata direzionale con direzione $\xi$ della funzione $f$ nel punto $P$ di una superficie.
+        \item $S_P$ -- operatore forma nel punto $P$ di una superficie.
+        \item $\I_P$ -- I forma fondamentale nel punto $P$ di una superficie.
+        \item $\II_P$ -- II forma fondamentale nel punto $P$ di una superficie.
+        \item $E$, $F$, $G$ -- elementi della rappresentazione matriciale della I forma fondamentale: $\I_P = \begin{pmatrix}
+                      E & F \\ F & G
+                  \end{pmatrix}$.
+        \item $\ell$, $m$, $n$ -- elementi della rappresentazione matriciale della II forma fondamentale: $\II_P = \begin{pmatrix}
+                      \ell & m \\ m & n
+                  \end{pmatrix}$.
+        \item $a$, $b$, $c$, $d$ -- elementi della rappresentazione matriciale dell'operatore forma: $S_P = \begin{pmatrix}
+                      a & c \\ b & d
+                  \end{pmatrix}$.
+        \item $\kappa_n$ -- curvatura normale di una superficie in un punto $P$ secondo un dato vettore unitario.
+        \item $\kappa_{\alpha, n}$ -- curvatura normale di $\alpha$ rispetto a una superficie.
+        \item $\kappa_1$, $\kappa_2$ -- curvature principali di una superficie in un punto.
+        \item $\kappa$ -- curvatura gaussiana di una superficie in un punto.
+        \item $H$ -- curvatura media di una superficie in un punto.
+        \item $\Gamma_{ij}^k$ -- simbolo di Christoffel, ovverosia coefficiente di $\vec{x_k}$ in $\vec{x_{ij}}$.
+        \item $\nabla_v X(P)$ -- derivata covariante di un campo vettoriale $X$ tangente alla superficie $\Sigma$ in direzione $v$ nel punto $P$.
+        \item $(\cdot)^\top$ -- proiezione di $\cdot$ sul piano tangente $T_P \Sigma$.
+        \item $\gamma_v$ -- geodetica locale di direzione $v$.
+        \item $U_P$ -- intorno di definizione della mappa esponenziale in un punto $P$.
+        \item $\exp_P$ -- mappa esponenziale in un punto $P$.
+        \item $v_k$ -- data una base ortonormale $\vec{e_1}$, $\vec{e_2}$, la mappa $t \mapsto k(\cos(t) \vec{e_1} + \sin(t) \vec{e_2})$.
+        \item $N_P$ -- intorno normale di un punto $P$.
+        \item $\varphi(\gamma(t))$ -- angolo tra la curva $\gamma$ e il parallelo di $\gamma(t)$ al tempo $t$.
+        \item $r(\gamma(t))$ -- distanza di $\gamma(t)$ dall'asse di rotazione.
+        \item $k_{\alpha, g}$ -- curvatura geodetica di una curva $\alpha$ rispetto a una superficie $\Sigma$.
+        \item $A(R)$ -- area di una regione $R$ di una superficie $\Sigma$.
+        \item $\int_R \varphi \dA$ -- integrazione rispetto all'area in una regione $R$, equivalente a $\iint_{\vec{x}\inv(R)} (\varphi \circ \vec{x}) \, \norm{\vec{x_u} \times \vec{x_v}} \du \dv$.
+        \item $\eps_i$ -- angolo esterno $i$-esimo di una regione o superficie con bordo.
+        \item $\iota_i$ -- angolo interno $i$-esimo di una regione o superficie con bordo.
+        \item $\partial \Sigma$ -- bordo di una superficie con bordo, come unione delle tracce delle regioni con cui è definita per differenza.
+        \item $\chi(\Sigma)$ -- caratteristica di Eulero di una superficie con bordo.
+    \end{itemize}
 
-      \section*{Teoria della misura}
-      \addcontentsline{toc}{section}{Teoria della misura}
+    \section*{Teoria della misura}
+    \addcontentsline{toc}{section}{Teoria della misura}
 
-      \begin{itemize}
-            \item $\vol$ -- applicazione per calcolare il volume di un rettangolo in $\RR^n$; tale per cui
-                  $\vol([a_1, b_1] \times \cdots \times [a_n, b_n]) = \prod_i {(b_i - a_i)}$.
-            \item $m$ -- misura di Lebesgue su $\RR^n$.
-      \end{itemize}
+    \begin{itemize}
+        \item $\vol$ -- applicazione per calcolare il volume di un rettangolo in $\RR^n$; tale per cui
+              $\vol([a_1, b_1] \times \cdots \times [a_n, b_n]) = \prod_i {(b_i - a_i)}$.
+        \item $m$ -- misura di Lebesgue su $\RR^n$.
+    \end{itemize}
 
-      \section*{Teoria delle varietà}
-      \addcontentsline{toc}{section}{Teoria delle varietà}
+    \section*{Teoria delle varietà}
+    \addcontentsline{toc}{section}{Teoria delle varietà}
 
-      \begin{itemize}
-            \item $\dim M$ -- dimensione di una varietà $M$.
-            \item $(f, W \cap M)$ -- carta locale di una varietà $M$; si sottintende che $W$ sia un aperto dello spazio ambiente in cui è contenuto $M$ e
-                  che $f$ sia un diffeomorfismo con dominio $W \cap M$ verso un aperto di $\RR^{\dim M}$.
-            \item $T_x M$ -- spazio tangente di un punto $x$ di una varietà $M$.
-            \item $\dif f_x$ -- differenziale di una mappa liscia $f : M \to N$ tra varietà nel punto $x$.
-            \item $\crit(f)$ -- insieme dei punti critici di una mappa liscia $f : M \to N$ tra varietà.
-            \item $S^n$ -- sfera $n$-dimensionale reale, ovverosia $\{\vec{x} \in \RR^{n+1} \mid \norm{\vec{x}} = 1\}$.
-            \item $D^n$ -- disco $n$-dimensionale reale, ovverosia $\{\vec{x} \in \RR^{n} \mid \norm{\vec{x}} \leq 1\}$.
-            \item $H^n$ -- semispazio $\{ x \in \RR^n \mid x_m \geq 0 \}$.
-            \item $\partial H^n$ -- bordo del semispazio $\{ x \in \RR^n \mid x_m \geq 0 \}$, ovverosia $\{ x \in \RR^n \mid x_m = 0 \} \cong \RR^{n-1}$.
-            \item $\partial M$ -- bordo di una varietà bordata $M$.
-      \end{itemize}
+    \begin{itemize}
+        \item $\dim M$ -- dimensione di una varietà $M$.
+        \item $(f, W \cap M)$ -- carta locale di una varietà $M$; si sottintende che $W$ sia un aperto dello spazio ambiente in cui è contenuto $M$ e
+              che $f$ sia un diffeomorfismo con dominio $W \cap M$ verso un aperto di $\RR^{\dim M}$.
+        \item $T_x M$ -- spazio tangente di un punto $x$ di una varietà $M$.
+        \item $\dif f_x$ -- differenziale di una mappa liscia $f : M \to N$ tra varietà nel punto $x$.
+        \item $\crit(f)$ -- insieme dei punti critici di una mappa liscia $f : M \to N$ tra varietà.
+        \item $S^n$ -- sfera $n$-dimensionale reale, ovverosia $\{\vec{x} \in \RR^{n+1} \mid \norm{\vec{x}} = 1\}$.
+        \item $D^n$ -- disco $n$-dimensionale reale, ovverosia $\{\vec{x} \in \RR^{n} \mid \norm{\vec{x}} \leq 1\}$.
+        \item $H^n$ -- semispazio $\{ x \in \RR^n \mid x_m \geq 0 \}$.
+        \item $\partial H^n$ -- bordo del semispazio $\{ x \in \RR^n \mid x_m \geq 0 \}$, ovverosia $\{ x \in \RR^n \mid x_m = 0 \} \cong \RR^{n-1}$.
+        \item $\partial M$ -- bordo di una varietà bordata $M$.
+    \end{itemize}
 
-      \section*{Topologia}
-      \addcontentsline{toc}{section}{Topologia}
+    \section*{Topologia}
+    \addcontentsline{toc}{section}{Topologia}
 
-      \begin{itemize}
-            \item II-numerabile -- spazio topologico che ammette una base numerabile.
-            \item T1 -- spazio topologico i cui singoletti sono insiemi chiusi.
-            \item T2 -- spazio topologico per cui due punti distinti ammettono l'esistenza di una coppia di intorni disgiunti.
-      \end{itemize}
+    \begin{itemize}
+        \item II-numerabile -- spazio topologico che ammette una base numerabile.
+        \item T1 -- spazio topologico i cui singoletti sono insiemi chiusi.
+        \item T2 -- spazio topologico per cui due punti distinti ammettono l'esistenza di una coppia di intorni disgiunti.
+        \item $\overline{X}$ -- chiusura di un insieme.
+        \item $\Int(X)$ -- parte interna di un insieme.
+        \item $\partial X$ -- frontiera di un insieme, ovverosia $\overline{X} \setminus \Int(X)$.
+    \end{itemize}
 \end{multicols*}
