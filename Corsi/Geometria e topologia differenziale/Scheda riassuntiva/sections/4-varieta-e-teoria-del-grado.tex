@@ -1176,8 +1176,19 @@
 
     \begin{remark}
         È immediato verificare che ``avere la stessa orientazione'' è
-        una relazione d'equivalenza sulle basi dello spazio in esame.
+        una relazione d'equivalenza sulle basi dello spazio in esame. \smallskip
+
+        È sempre immediato verificare che esistono solo due classi di equivalenza
+        per le orientazioni.
     \end{remark}
+
+    \begin{definition}[Orientazione]
+        Definiamo \textbf{orientazione} una classe di equivalenza per la relazione
+        ``avere la stessa orientazione''. \smallskip
+
+        Data un'orientazione $\Theta$ indichiamo con $-\Theta$ l'altra
+        classe di equivalenza.
+    \end{definition}
 
     \begin{definition}[Orientazione canonica]
         Si definisce l'\textbf{orientazione canonica} $\Theta_0$ di $\RR^n$
@@ -1185,7 +1196,108 @@
         canonica.
     \end{definition}
 
+    \begin{remark}
+        Un isomorfismo $L : V \to V'$ induce una mappa dalle orientazioni
+        di $V$ a quelle di $V'$.
+    \end{remark}
+
     \subsection{Orientazione su varietà}
 
+    \begin{definition}[$m$-varietà orientata, $m > 1$ o $\partial M = \emptyset$]
+        Una \textbf{varietà orientata di dimensione $m$} (con $\underline{m>1}$ o $\underline{\partial M = \emptyset}$)
+        è una coppia $(M, \Theta)$, dove $M$ è una $m$-varietà, eventualmente con bordo, e $\Theta = \{\Theta_x\}_{x \in M}$
+        è una famiglia di orientazioni degli spazi tangenti dei punti di $M$ tale per cui:
 
+        \begin{quote}
+            Per ogni $x \in M$ esiste una parametrizzazione locale $g : U \subseteq \RR^m \to g(U) \subseteq M$ con
+            $\dif g_u (\Theta_0) = \Theta_{g(U)}$ per ogni $u \in U$ (\textbf{condizione di compatibilità di $g$ con $\Theta$}).
+        \end{quote}
+
+        Una varietà $M$ per cui esiste una famiglia di orientazioni tali per cui $(M, \Theta)$ è orientata si
+        dice \textbf{orientabile}.
+    \end{definition}
+
+    \begin{definition}[$1$-varietà compatta orientata bordata]
+        Un'orientazione su una $1$-varietà connessa compatta con bordo è per definizione una famiglia
+        $\Theta = \{\dif \varphi_t(\Theta_0)\}_{t \in [0, 1]}$ dove
+        $\varphi : [0, 1] \to M$ è un diffeomorfismo. \smallskip
+
+        Se $M$ è sconnessa, un'orientazione è un'orientazione su ciascuna componente connessa.
+    \end{definition}
+
+    \begin{proposition}
+        Una varietà connessa, eventualmente con bordo, ammette al più due orientazioni.
+    \end{proposition}
+
+    \begin{proof} Si fissi un'orientazione $\Theta$ per la varietà $M$. Sia $\Theta'$ un'altra orientazione.
+        Dividiamo la dimostrazione in due casi:
+        \begin{itemize}
+            \item $\boxed{\dim M > 1}$ Si definiscano i seguenti due insiemi:
+                  \begin{equation*}
+                      \begin{aligned}
+                          A & \defeq \{ x \in M \mid \Theta_x = \Theta'_x \},  \\[1ex]
+                          B & \defeq \{ x \in M \mid \Theta_x = -\Theta'_x \}.
+                      \end{aligned}
+                  \end{equation*}
+                  Osserviamo che $A$ e $B$ sono disgiunti, e che la loro unione è la varietà $M$. Poiché
+                  $M$ è connessa, mostrando che $A$ e $B$ sono aperti, uno dei due sarebbe vuoto, da cui la tesi. \smallskip
+
+                  Dimostriamo dunque la tesi. Senza perdita di generalità, mostriamo solo che $A$ è aperto. Sia
+                  $g : U \to g(U)$ una parametrizzazione locale di $x$ compatibile con $\Theta$ e $g(u) = x$, e sia $h : V \to h(V)$
+                  una parametrizzazione compatibile con $\Theta'$ e $h(v) = x$. Assumiamo senza perdita di generalità che $g(U) = h(V)$. \smallskip
+
+                  Poiché $g$ è compatibile con $\Theta$, si ha $\dif g(\Theta_0) = \Theta_x$, e così
+                  per $h$ si ha $\dif h_x(\Theta_0) = \Theta'_x$. Quindi:
+                  \[
+                      \dif g_u(\Theta_0) = \dif h_v(\Theta_0) \implies \dif (g\inv \circ h)_v (\Theta_0) = \Theta_0.
+                  \]
+                  Pertanto $\det(J(g\inv \circ h)_v) > 0$. Per continuità esiste allora un intorno $J$ di $v$ in cui:
+                  \[
+                      \det(J(g\inv \circ h)_{v'}) > 0, \quad \forall v' \in J.
+                  \]
+                  Questo si traduce nell'avere $\Theta_{h(v')} = \Theta'_{h(v')}$ su tutto $J$, e quindi
+                  $h(J)$ è un aperto di $M$ contenente $x$ e contenuto in $A$; dunque $A$ è aperto.
+
+            \item $\boxed{\dim M = 1}$ Se $\varphi$ e $\psi$ sono due diffeomorfismi da $[0, 1]$ in $M$ che inducono
+                  $\Theta$ e $\Theta'$, allora $\varphi\inv \circ \psi$ è un diffeomorfismo da $[0, 1]$ in sé. In quanto
+                  tale, la sua derivata è ovunque non nulla, e il suo segno determina se $\Theta'$ è $\Theta$ o $-\Theta$.
+        \end{itemize}
+    \end{proof}
+
+    \begin{definition}[Varietà di orientazione opposta]
+        Data $(M, \Theta)$ una varietà orientata, indichiamo con $-M$ la varietà
+        $(M, -\Theta)$, dove $-\Theta$ è l'unica altra orientazione possibile.
+    \end{definition}
+
+    \subsection{Orientazione sul bordo della varietà}
+
+    \begin{remark}
+        L'orientazione di una $m$-varietà $M$ con bordo determina la scelta di uno dei semispazi di
+        $T_x M \setminus T_x \partial M$ per ogni $x$. \smallskip
+
+        Se infatti $g : U \to g(U)$ è una parametrizzazione di un punto $x$ sul bordo $\partial M$ con $g(u) = x$,
+        il semispazio scelto è proprio $\dif g_u (H^n \setminus \partial H^n)$. \smallskip
+
+        Questo semispazio non dipende dalla parametrizzazione scelta.
+        ...
+    \end{remark}
+
+    \begin{definition}
+        Data una varietà orientata $M$, i vettori appartenenti al semispazio
+        scelto di $T_x M \setminus T_x \partial M$ si dicono \textbf{interni},
+        mentre quelli del semispazio complementare sono detti \textbf{esterni}.
+    \end{definition}
+
+    \begin{lemma}[L'orientazione indotta sul bordo è ben definita]
+        ...
+    \end{lemma}
+
+    \begin{definition}
+        Data una varietà orientata $M$ con bordo e $\dim M > 1$, la famiglia $\{ \Theta_x^{\partial M} \}_{x \in \partial m}$
+        di orientazioni di $T_x \partial M$ indotte dall'orientazione di $M$ è un'orientazione su $\partial M$
+        detta \textbf{orientazione indotta sul bordo} (o \textit{orientazione di bordo}). \smallskip
+
+        Per $M$ orientata tramite un diffeomorfismo $\varphi : [0, 1] \to M$, si associa
+        $-1$ a $\varphi(0)$ e $+1$ a $\varphi(1)$.
+    \end{definition}
 \end{multicols*}
