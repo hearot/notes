@@ -64,7 +64,7 @@
         si estende all'identità.
     \end{proof}
 
-    \subsection{Varietà differenziabili, carte, atlanti, parametrizzazioni locali e funzioni di transizione}
+    \subsection{Varietà differenziabili, varietà chiuse, carte, atlanti, parametrizzazioni locali e funzioni di transizione}
 
     \begin{definition}[Varietà differenziabile liscia senza bordo]
         Un insieme $M \subseteq \RR^k$ si dice \textbf{varietà (differenziabile liscia senza bordo) di dimensione $m>0$} (o $m$-varietà) se per ogni
@@ -74,6 +74,10 @@
 
         Le coppie della forma $(f_x, W_x \cap M)$ si dicono \textbf{carte locali}, e formano un \textbf{atlante} della varietà. L'inversa di
         $f_x$ si dice invece \textbf{parametrizzazione locale} di $x$ in $M$.
+    \end{definition}
+
+    \begin{definition}[Varietà chiusa]
+        Si dice \textbf{varietà chiusa} una varietà (senza bordo) che è compatta.
     \end{definition}
 
     \begin{remark}
@@ -779,7 +783,7 @@
     \begin{theorem} \label{thm:varietà_bordata_da_valore_regolare_su_R}
         Sia $f : M \to \RR$ una mappa liscia tra varietà, dove $M$ è una $m$-varietà senza bordo. Se
         $0$ è un valore regolare per $f$, allora $\{ f \geq 0 \}$ è una
-        $m$-varietà con bordo $f\inv(0)$.
+        $m$-varietà con bordo $f\inv(0) = \{f = 0\}$.
     \end{theorem}
 
     \begin{proof}
@@ -932,7 +936,7 @@
         Si veda l'appendice di [Milnor, J. (1965). \textit{Topology from the Differentiable Viewpoint}. University Press of Virginia].
     \end{proof}
 
-    \begin{corollary}[Classificazzione delle $1$-varietà compatte con bordo] \label{cor:classificazione_dim_1}
+    \begin{corollary}[Classificazione delle $1$-varietà compatte con bordo] \label{cor:classificazione_dim_1}
         Una $1$-varietà compatta con bordo è necessariamente un'unione
         di copie di $S^1$ e di intervalli chiusi di $\RR$.
     \end{corollary}
@@ -940,6 +944,15 @@
     \begin{proof}
         Discende immediatamente dal Teorema \ref{thm:classificazione_dim_1_generale}
         utilizzando l'ipotesi di compattezza.
+    \end{proof}
+
+    \begin{corollary} \label{cor:punti_pari_su_1varietà}
+        Una $1$-varietà compatta con bordo ha un numero pari di punti sul bordo
+    \end{corollary}
+
+    \begin{proof}
+        Deriva immediatamente dal Corollario \ref{cor:classificazione_dim_1}, dal momento che
+        il segmento chiuso ha due punti sul bordo e $S^1$ non ne ha nessuno.
     \end{proof}
 
     \begin{lemma}[di non retrazione sul bordo] \label{lem:non_retrazione}
@@ -963,7 +976,7 @@
 
         Osserviamo che il bordo di $f\inv(y)$ si semplifica a $\{y\}$ dacché $\restr{f}{\partial M} = \id_{\partial M}$. Tuttavia questo
         è un assurdo, dal momento che le $1$-varietà compatte con bordo finito hanno un numero pari di elementi sul
-        bordo per il Corollario \ref{cor:classificazione_dim_1}. Quindi $f$ \underline{non} può esistere.
+        bordo per il Corollario \ref{cor:punti_pari_su_1varietà}. Quindi $f$ \underline{non} può esistere.
     \end{proof}
 
     \begin{lemma} \label{lem:punto_fisso_cinf}
@@ -1042,6 +1055,16 @@
 
     \subsection{Omotopie \texorpdfstring{$C^\infty$}{C∞}}
 
+    \begin{remark}[{$M \times [0,1]$} è una varietà con bordo]
+        Sia $M$ una $m$-varietà senza bordo. Allora, per la Proposizione \ref{prop:prodotto_varietà},
+        $M \times \RR$ è una $(m+1)$-varietà senza bordo. \smallskip
+
+        Consideriamo la mappa liscia $f : M \times \RR \to \RR$ tale per cui
+        $f(x, t) = t(t-1)$. Allora per il Teorema \ref{thm:varietà_bordata_da_valore_regolare_su_R}
+        $\{f \leq 0\} = M \times [0, 1]$ è una $(m+1)$-varietà con bordo
+        $\{f = 0\} = M \times \{0\} \sqcup M \times \{1\}$.
+    \end{remark}
+
     \begin{definition}[Omotopia $C^\infty$ e funzioni $C^\infty$-omotope]
         Siano $f$ e $g$ due funzioni da una varietà $M$ in una $N$.
         Un'\textbf{omotopia $C^\infty$} da $f$ a $g$ è una funzione liscia
@@ -1054,6 +1077,11 @@
         Due funzioni $f$ e $g$ per le quali esiste un'omotopia
         da $f$ a $g$ si dicono \textbf{$C^\infty$-omotope}.
     \end{definition}
+
+    \begin{remark}
+        È immediato verificare che ``essere $C^\infty$-omotope'' è una
+        relazione di equivalenza per le funzioni lisce da $M$ a $N$.
+    \end{remark}
 
     \begin{lemma}[di omotopia]
         Siano $f$ e $g$ due funzioni $C^\infty$-omotope da una varietà $M$ in una $N$,
@@ -1072,10 +1100,11 @@
             \item esiste un intorno $V_2$ di $y \in N$ su cui $\abs{g\inv(\cdot)}$ è costante.
         \end{itemize}
         È sufficiente allora mostrare la tesi per un qualsiasi valore $y' \in V_1 \cap V_2$;
-        poiché i valori regolari sono densi, possiamo prendere $y'$ valore regolare di $H$. \smallskip
+        poiché i valori regolari sono densi per il Teorema di Brown (per le varietà, Corollario \ref{cor:brown}),
+        possiamo prendere $y' \in V_1 \cap V_2$ valore regolare di $H$. \smallskip
 
         Allora $H\inv(y')$ è una varietà di dimensione $1$, il cui bordo ha un numero pari
-        di punti per il Corollario \ref{cor:classificazione_dim_1}. \smallskip
+        di punti per il Corollario \ref{cor:punti_pari_su_1varietà}. \smallskip
 
         Osserviamo che $\partial (M \times [0, 1]) = M \times \{0\} \sqcup M \times \{1\}$. Allora:
         \[
@@ -1112,13 +1141,24 @@
         È immediato osservare che la relazione ``essere isotopi'' sui punti di una varietà è una relazione di equivalenza.
     \end{remark}
 
+    \begin{lemma} \label{lem:classi_equivalenza_aperte}
+        Le classi di equivalenza della relazione ``essere isotopi'' sui
+        punti di una varietà sono aperti della varietà.
+    \end{lemma}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
     \begin{lemma}[di omogeneità]
         Sia $N$ una varietà connessa e siano $y$, $z$ due suoi punti. Allora
         $y$ e $z$ sono isotopi.
     \end{lemma}
 
     \begin{proof}
-        ...
+        Poiché $N$ è connessa, per il Lemma \ref{lem:classi_equivalenza_aperte} esiste
+        allora un'unica classe di equivalenza per la relazione ``essere isotopi'', da
+        cui segue immediatamente la tesi.
     \end{proof}
 
     \subsection{Grado modulo \texorpdfstring{$2$}{2} e buona definizione}
