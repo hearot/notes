@@ -1073,6 +1073,10 @@
             \item $H(-, 0) = f$,
             \item $H(-, 1) = g$.
         \end{itemize}
+        Definiamo inoltre:
+        \[
+            \boxed{H_t \defeq H(-, t).}
+        \]
 
         Due funzioni $f$ e $g$ per le quali esiste un'omotopia
         da $f$ a $g$ si dicono \textbf{$C^\infty$-omotope}.
@@ -1083,7 +1087,7 @@
         relazione di equivalenza per le funzioni lisce da $M$ a $N$.
     \end{remark}
 
-    \begin{lemma}[di omotopia]
+    \begin{lemma}[di omotopia] \label{lem:omotopia}
         Siano $f$ e $g$ due funzioni $C^\infty$-omotope da una varietà $M$ in una $N$,
         con $M$ compatta e $\dim M = \dim N$. Se
         $y \in N$ è un valore regolare sia per $f$ che per $g$, allora:
@@ -1143,14 +1147,62 @@
 
     \begin{lemma} \label{lem:classi_equivalenza_aperte}
         Le classi di equivalenza della relazione ``essere isotopi'' sui
-        punti di una varietà sono aperti della varietà.
+        punti di una varietà (senza bordo) $M$ sono aperti della varietà.
     \end{lemma}
 
     \begin{proof}
-        ...
+        Sia $x$ un punto di $M$. Supponiamo $M$ sia una $(n+1)$-varietà.
+        Usando le carte locali, eventualmente riparametrizzate
+        per avere come immagine una palla di centro $0$, è sufficiente mostrare
+        che per ogni $r$, esiste $0 < r_0 \leq r$ tale per cui
+        tutti i punti di $B_{r_0}(0) \subseteq B_r(0) \subseteq \RR^{n+1}$ sono isotopi a $0$. \smallskip
+
+        Possiamo ridurre il problema ulteriormente concentrandoci sui punti
+        della forma $z = (a, 0, \ldots, 0)$ con $a < r_0$, dal momento che una rotazione
+        permette poi di rendere isotopi tutti gli altri punti di $\partial B_a(0)$. Se
+        infatti $H$ è un isotopia a supporto compatto che porta $z$ in $0$, allora:
+        \[ H'(-, t) \defeq R_\theta\inv \circ H(-, t) \circ R_\theta \]
+        è l'isotopia cercata, dove $R_\theta$ è l'opportuna rotazione scelta. \smallskip
+
+        Siano $\rho : \RR \to [0, 1]$ e $\sigma : \RR^n \to [0, 1]$ due funzioni di test
+        (\textit{bump function}) lisce con $\rho(0) = \sigma(0) = 1$ e:
+        \[ \abs{x} > 1 \implies \rho(x) = 0, \quad \norm{y} > 1 \implies \sigma(y) = 0. \]
+        Osserviamo che:
+        \[
+            \abs{x} > \eps \implies \rho\left(\frac{x}{\eps}\right) = 0, \quad \norm{y} > \delta \implies \sigma\left(\frac{y}{\delta}\right) = 0.
+        \]
+
+        Scelti allora $\eps$ e $\delta$ di modo che $\eps^2 + \delta^2 < r_0^2$, definiamo allora l'omotopia $C^\infty$ $H$ tale per cui:
+        \begin{equation*}
+            \begin{aligned}
+                H : \overbrace{\mathbb{R} \times \mathbb{R}^n}^{\mathclap{\mathbb{R}^{n+1}}} \times [0, 1] & \to \overbrace{\mathbb{R} \times \mathbb{R}^n}^{\mathclap{\mathbb{R}^{n+1}}},                         \\
+                H(x, y, t)                                                                                 & = \left(x + a t \rho\left(\frac{x}{\varepsilon}\right) \sigma\left(\frac{y}{\delta}\right), y\right).
+            \end{aligned}
+        \end{equation*}
+
+        Osserviamo subito che $H_0 = \id_N$, $H_1(0) = z$ e che $H_t$ fissa tutto ciò che è fuori
+        da $B_{r_0}(0)$. Mostriamo che per $r_0$ sufficientemente piccolo $H_t$ è un diffeomorfismo. \smallskip
+
+        Lo jacobiano di $H_t$ è il seguente:
+        \[
+            J H_t = \begin{pmatrix}
+                1 + \frac{a t}{\varepsilon} \sigma\left(\frac{y}{\delta}\right) \rho'\left(\frac{x}{\varepsilon}\right) & \vline & *   \\[0.06in]
+                \hline
+                0                                                                                                       & \vline & I_n
+            \end{pmatrix}.
+        \]
+        Si verifica facilmente che si può scegliere $r_0$, e successivamente $\eps$ e $\delta$ in modo tale che:
+        \[
+            \abs{\frac{a t}{\varepsilon} \sigma\left(\frac{y}{\delta}\right) \rho'\left(\frac{x}{\varepsilon}\right)} < 1, \quad \forall a, x, y,
+        \]
+        e conseguentemente $\det(J H_t) > 0$, da cui si deduce che $H_t$ è un diffeomorfismo locale. Analogamente, $H_t$ è
+        bigettiva sulle rette $\{y = \text{cost.}\}$ dal momento che la derivata sulle rette è strettamente
+        positiva. Dunque $H_t$ è bigettiva e diffeomorfismo locale, e quindi è diffeomorfismo. \smallskip
+
+        Si conclude che $H$ è l'isotopia cercata, e quindi ogni classe di isotopia è aperta.
     \end{proof}
 
-    \begin{lemma}[di omogeneità]
+    \begin{lemma}[di omogeneità] \label{lem:omogeneità}
         Sia $N$ una varietà connessa e siano $y$, $z$ due suoi punti. Allora
         $y$ e $z$ sono isotopi.
     \end{lemma}
@@ -1164,14 +1216,29 @@
     \subsection{Grado modulo \texorpdfstring{$2$}{2} e buona definizione}
 
     \begin{theorem}
-        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ compatta
-        e $N$ connessa. Siano $y$ e $z$ due valori regolari di una
+        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ chiusa (ovverosia
+        anche compatta) e $N$ connessa. Siano $y$ e $z$ due valori regolari di una
         funzione $f : M \to N$ liscia. Allora:
         \[ \abs{f\inv(y)} \equiv \abs{f\inv(z)} \pmod{2}. \]
     \end{theorem}
 
     \begin{proof}
-        ...
+        Poiché $N$ è connessa, per il Lemma \ref{lem:omogeneità} esiste un diffeomorfismo
+        $h : N \to N$ con $h(y) = z$ e un'isotopia a supporto compatto
+        $H : N \times [0, 1] \to N$ da $\id_N$ a $h$.
+        \[\begin{tikzcd}
+                {M \times [0, 1]} && {N \times [0, 1]} && N
+                \arrow["{f \times \id_{[0, 1]}}", from=1-1, to=1-3]
+                \arrow["H", from=1-3, to=1-5]
+            \end{tikzcd}\]
+        Poiché $y$ è regolare per $f$ e $h$ è diffeomorfismo, si deduce che
+        $z$ è regolare per $h \circ f$. Consideriamo l'omotopia
+        $H' = H \circ (f \times \id_{[0,1]})$. Osserviamo che
+        $H'_0 = f$ e che $H'_1 = h \circ f$.
+        Quindi, per il Lemma \ref{lem:omotopia}, si conclude che:
+        \[
+            \abs{f\inv(z)} \equiv \abs{(h \circ f)\inv(z)} \equiv \abs{f\inv(y)} \pmod{2}.
+        \]
     \end{proof}
 
     \begin{definition}[Grado modulo $2$ di una funzione liscia]
@@ -1185,7 +1252,8 @@
     \end{definition}
 
     \begin{theorem} \label{thm:fondamentale_grado_2}
-        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ compatta
+        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ chiusa (ovverosia
+        anche compatta)
         e $N$ connessa. Se $f$ e $g$ sono due mappe lisce $C^\infty$-omotope da $M$ in $N$,
         allora:
         \[
@@ -1193,13 +1261,28 @@
         \]
     \end{theorem}
 
+    \begin{proof}
+        Dall'Osservazione \ref{rmk:punti_regolari_formano_aperto} sappiamo che
+        i punti regolari di $f$ formano un aperto di $M$; dunque i punti critici
+        formano un chiuso di $M$. Dacché $M$ è compatta, in particolare i punti
+        critici formano un compatto di $M$. Tramite $f$, si deduce che i valori
+        critici formano un compatto di $N$, che, essendo $N$ T2, è dunque
+        chiuso in $N$. \smallskip
+
+        Allora i valori regolari di $f$ formano un aperto in $N$: per il Teorema
+        di Brown (per varietà, Corollario \ref{cor:brown}) esiste in questo
+        aperto anche un valore regolare di $g$. Per il Lemma \ref{lem:omotopia},
+        allora $f$ e $g$ condividono lo stesso grado modulo $2$.
+    \end{proof}
+
     \begin{corollary}
         La mappa costante $c_{x_0} : S^n \to S^n$ \underline{non} è
         $C^\infty$-omotopa a $\id_{S^n}$.
     \end{corollary}
 
     \begin{proof}
-        Poiché $c_{x_0}$ non è surgettiva, $\deg_2 c_{x_0} = 0$; mentre
+        Poiché $c_{x_0}$ non è surgettiva, $\deg_2 c_{x_0} = 0$ (ogni punto diverso da $x_0$ è
+        valore regolare con controimmagine vuota); mentre
         $\deg_2 \id_{S^n} = 1$. Quindi per il Teorema \ref{thm:fondamentale_grado_2}
         le due mappe non possono essere $C^\infty$-omotope.
     \end{proof}
