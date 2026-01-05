@@ -1319,12 +1319,14 @@
     \end{definition}
 
     \begin{remark}
-        Un isomorfismo $L : V \to V'$ induce una mappa dalle orientazioni
+        Un isomorfismo $L : V \to V'$ induce una bigezione dalle orientazioni
         di $V$ a quelle di $V'$ tramite:
         \[
             [\basis] \mapsto [L(\basis)].
         \]
-        Infatti la matrice di cambio di base è invariante per isomorfismo.
+        Infatti la matrice di cambio di base è invariante per isomorfismo. \smallskip
+
+        Indicheremo tale mappa con il simbolo dell'isomorfismo da cui è indotta.
     \end{remark}
 
     \subsection{Orientazione su varietà}
@@ -1343,22 +1345,53 @@
         dice \textbf{orientabile}.
     \end{definition}
 
+    \begin{remark} \label{rmk:orientazione_opposta_1}
+        Sia $(M, \Theta = \{ \Theta_x \}_{x \in M})$ una $m$-varietà orientata (con $\dim M > 1$ o $\partial M = \emptyset$).
+        Allora si può definire l'\textbf{orientazione opposta} $-\Theta$:
+        \[
+            \boxed{-\Theta \defeq \{ -\Theta_x \}_{x \in M}.}
+        \]
+        In effetti $(M, -\Theta)$ è orientata: presa una parametrizzazione locale $g$ compatibile con
+        $\Theta$, ristretta e traslata eventualmente a una palla di centro $0$, è sufficiente precomporla con una riflessione rispetto a un asse
+        della palla per ottenere una parametrizzazione locale compatibile con $-\Theta$. \smallskip
+    \end{remark}
+
+    Questo ragionamento \underline{non} è attuabile sul bordo di una $1$-varietà:
+    su $H^1$ una riflessione come quella sopracitata non è possibile. Questo ci suggerisce
+    di modificare la definizione per il caso delle $1$-varietà bordate:
+
     \begin{definition}[$1$-varietà compatta orientata bordata]
-        Un'orientazione su una $1$-varietà connessa compatta con bordo è per definizione una famiglia
+        Sia $M$ una $1$-varietà connessa compatta con bordo (questo succede, per il Corollario \ref{cor:classificazione_dim_1}, se e solo se $M \cong [0, 1]$).
+        Allora un'orientazione su $M$ è per definizione una famiglia
         $\Theta = \{\dif \varphi_t(\Theta_0)\}_{t \in [0, 1]}$ dove
         $\varphi : [0, 1] \to M$ è un diffeomorfismo. \smallskip
 
         Se $M$ è sconnessa, un'orientazione è un'orientazione su ciascuna componente connessa.
     \end{definition}
 
+    \begin{remark} \label{rmk:orientazione_opposta_2}
+        Se $M$ è una $1$-varietà connessa compatta con bordo, e $\Theta = \{\dif \varphi_t(\Theta_0)\}_{t \in [0, 1]}$ è
+        una sua orientazione, allora
+        \[
+            \boxed{-\Theta \defeq \{-\dif \varphi_t(\Theta_0)\}_{t \in [0, 1]}}
+        \]
+        è una sua altra orientazione, indotta dalla precomposizione del diffeomorfismo $\varphi$ con
+        una riflessione di $[0, 1]$ (e.g., $\psi(x) = 1-x$).
+    \end{remark}
+
     \begin{proposition}
-        Una varietà connessa, eventualmente con bordo, ammette al più due orientazioni.
+        Una varietà orientata e connessa, eventualmente con bordo, ammette esattamente due orientazioni.
     \end{proposition}
 
-    \begin{proof} Si fissi un'orientazione $\Theta$ per la varietà $M$. Sia $\Theta'$ un'altra orientazione.
+    \begin{proof}
+        Poiché una varietà orientata ammette almeno due orientazioni (vd. Osservazione \ref{rmk:orientazione_opposta_1}
+        e Osservazione \ref{rmk:orientazione_opposta_2}), per concludere la dimostrazione mostriamo che esistono al
+        più due orientazioni. \smallskip
+
+        Si fissi un'orientazione $\Theta$ per la varietà $M$. Sia $\Theta'$ un'altra orientazione.
         Dividiamo la dimostrazione in due casi:
         \begin{itemize}
-            \item $\boxed{\dim M > 1}$ Si definiscano i seguenti due insiemi:
+            \item $\boxed{\dim M > 1 \text{ o } \partial M = \emptyset}$ Si definiscano i seguenti due insiemi:
                   \begin{equation*}
                       \begin{aligned}
                           A & \defeq \{ x \in M \mid \Theta_x = \Theta'_x \},  \\[1ex]
@@ -1366,14 +1399,25 @@
                       \end{aligned}
                   \end{equation*}
                   Osserviamo che $A$ e $B$ sono disgiunti, e che la loro unione è la varietà $M$. Poiché
-                  $M$ è connessa, mostrando che $A$ e $B$ sono aperti, uno dei due sarebbe vuoto, da cui la tesi. \smallskip
+                  $M$ è connessa, mostrando che $A$ e $B$ sono aperti, necessariamente uno dei due deve essere
+                  vuoto, da cui la tesi. \smallskip
 
-                  Dimostriamo dunque la tesi. Senza perdita di generalità, mostriamo solo che $A$ è aperto. Sia
+                  Senza perdita di generalità, mostriamo solo che $A$ è aperto. Sia
                   $g : U \to g(U)$ una parametrizzazione locale di $x$ compatibile con $\Theta$ e $g(u) = x$, e sia $h : V \to h(V)$
-                  una parametrizzazione compatibile con $\Theta'$ e $h(v) = x$. Assumiamo senza perdita di generalità che $g(U) = h(V)$. \smallskip
-
+                  una parametrizzazione compatibile con $\Theta'$ e $h(v) = x$. Assumiamo senza perdita di generalità che $g(U) = h(V)$.
+                  \[\begin{tikzcd}
+                          & M \\
+                          U && V
+                          \arrow["g", from=2-1, to=1-2]
+                          \arrow["h"', from=2-3, to=1-2]
+                          \arrow["{g\inv \circ h}", from=2-3, to=2-1]
+                      \end{tikzcd}\]
+                  Osserviamo che:
+                  \[
+                      \dif h_{v'} = \dif g_{g\inv(h(v'))} \circ \dif (g\inv \circ h)_{v'}.
+                  \]
                   Poiché $g$ è compatibile con $\Theta$, si ha $\dif g(\Theta_0) = \Theta_x$, e così
-                  per $h$ si ha $\dif h_x(\Theta_0) = \Theta'_x$. Quindi:
+                  per $h$ si ha $\dif h_x(\Theta_0) = \Theta'_x$. Quindi, per la precedente equazione:
                   \[
                       \dif g_u(\Theta_0) = \dif h_v(\Theta_0) \implies \dif (g\inv \circ h)_v (\Theta_0) = \Theta_0.
                   \]
@@ -1384,7 +1428,7 @@
                   Questo si traduce nell'avere $\Theta_{h(v')} = \Theta'_{h(v')}$ su tutto $J$, e quindi
                   $h(J)$ è un aperto di $M$ contenente $x$ e contenuto in $A$; dunque $A$ è aperto.
 
-            \item $\boxed{\dim M = 1}$ Se $\varphi$ e $\psi$ sono due diffeomorfismi da $[0, 1]$ in $M$ che inducono
+            \item $\boxed{M \cong [0, 1]}$ Se $\varphi$ e $\psi$ sono due diffeomorfismi da $[0, 1]$ in $M$ che inducono
                   $\Theta$ e $\Theta'$, allora $\varphi\inv \circ \psi$ è un diffeomorfismo da $[0, 1]$ in sé. In quanto
                   tale, la sua derivata è ovunque non nulla, e il suo segno determina se $\Theta'$ è $\Theta$ o $-\Theta$.
         \end{itemize}
