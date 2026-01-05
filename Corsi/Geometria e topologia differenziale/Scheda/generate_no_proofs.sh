@@ -6,6 +6,8 @@ MAIN_FILE="main.tex"
 PREAMBLE_FILE="preamble.tex"
 OUTPUT_PDF="no_proofs.pdf"
 
+NEW_TITLE="\\\\title{\\\\Huge{Teoria del corso di \\\\\\\\ \\\\textit{Geometria e topologia differenziale} \\\\\\\\ (senza dimostrazioni)}}"
+
 # 1. Crea la struttura della directory temporanea
 mkdir -p "$TEMP_DIR/sections"
 
@@ -13,7 +15,8 @@ mkdir -p "$TEMP_DIR/sections"
 remove_proofs() {
     local src=$1
     local dest=$2
-    awk '/\\begin{proof}/, /\\end{proof}/ {next} 1' "$src" > "$dest"
+    awk '/\\begin{proof}/, /\\end{proof}/ {next} 1' "$src" | \
+    sed "s/\\\\title{.*}/$NEW_TITLE/" > "$dest"
 }
 
 # 2. Elabora il file principale e il preambolo

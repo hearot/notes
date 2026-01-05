@@ -1299,9 +1299,8 @@
 
     \begin{remark}
         È immediato verificare che ``avere la stessa orientazione'' è
-        una relazione d'equivalenza sulle basi dello spazio in esame. \smallskip
-
-        È sempre immediato verificare che esistono solo due classi di equivalenza
+        una relazione d'equivalenza sulle basi dello spazio in esame
+        avente solo due classi di equivalenza
         per le orientazioni.
     \end{remark}
 
@@ -1309,7 +1308,7 @@
         Definiamo \textbf{orientazione} una classe di equivalenza per la relazione
         ``avere la stessa orientazione''. \smallskip
 
-        Data un'orientazione $\Theta$ indichiamo con $-\Theta$ l'altra
+        Data un'orientazione $\Theta$ indichiamo con $-\Theta$ l'unica altra
         classe di equivalenza.
     \end{definition}
 
@@ -1321,7 +1320,11 @@
 
     \begin{remark}
         Un isomorfismo $L : V \to V'$ induce una mappa dalle orientazioni
-        di $V$ a quelle di $V'$.
+        di $V$ a quelle di $V'$ tramite:
+        \[
+            [\basis] \mapsto [L(\basis)].
+        \]
+        Infatti la matrice di cambio di base è invariante per isomorfismo.
     \end{remark}
 
     \subsection{Orientazione su varietà}
