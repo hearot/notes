@@ -693,7 +693,7 @@
         L'inclusione opposta invece è data dal Lemma \ref{lem:punti_di_bordo}.
     \end{proof}
 
-    \begin{proposition}
+    \begin{proposition} \label{prop:bordo_è_varietà}
         Sia $M$ una $m$-varietà con bordo. Allora $\partial M$ è
         una varietà senza bordo di dimensione $m-1$.
     \end{proposition}
@@ -776,6 +776,19 @@
         Si generalizza facilmente in questo senso
         il Teorema di Sard (Teorema \ref{thm:sard}), così come quello di
         Brown (Corollario \ref{cor:brown}).
+    \end{remark}
+
+    \begin{remark}[$T_x \partial M$ è un iperpiano di $T_x M$]
+        Sia $M$ una $m$-varietà con bordo. Grazie alla Proposizione \ref{prop:bordo_è_varietà}
+        sappiamo che $\partial M$ è una $(m-1)$-varietà. \smallskip
+
+        Consideriamo l'inclusione $\iota : \partial M \to M$. Chiaramente $\iota$ è una
+        mappa liscia tra varietà con differenziale l'inclusione $T_x \partial M \hookrightarrow T_x M$.
+        In particolare vale:
+        \[
+            \boxed{T_x \partial M \subseteq T_x M}
+        \]
+        per ogni punto $x \in \partial M$.
     \end{remark}
 
     \subsection{Varietà con bordo da valori regolari}
@@ -1439,23 +1452,63 @@
         $(M, -\Theta)$, dove $-\Theta$ è l'unica altra orientazione possibile.
     \end{definition}
 
+    \begin{remark}
+        Una varietà è sempre ``localmente orientabile'': è sufficiente
+        prendere l'orientazione indotta da un'unica parametrizzazione locale.
+    \end{remark}
+
     \subsection{Orientazione sul bordo della varietà}
 
-    \begin{remark}
-        L'orientazione di una $m$-varietà $M$ con bordo determina la scelta di uno dei semispazi di
-        $T_x M \setminus T_x \partial M$ per ogni $x$. \smallskip
+    \begin{remark}[Il semispazio interno è ben definito]
+        L'orientazione locale di una $m$-varietà $M$ con bordo determina sempre la scelta di uno dei semispazi di
+        $T_x M \setminus T_x \partial M$ per ogni $x$ sul bordo $\partial M$. \smallskip
 
-        Se infatti $g : U \to g(U)$ è una parametrizzazione di un punto $x$ sul bordo $\partial M$ con $g(u) = x$,
-        il semispazio scelto è proprio $\dif g_u (H^n \setminus \partial H^n)$. \smallskip
+        Se infatti $g : U \to g(U)$ è una parametrizzazione di un punto $x \in \partial M$ con $g(u) = x$,
+        il semispazio scelto è proprio:
+        \[ \dif g_u (H^m \setminus \partial H^m). \]
+        Questo semispazio non dipende dalla parametrizzazione scelta. Se infatti $h : V \to h(V)$ è
+        un'altra parametrizzazione con $h(v) = x$, a meno di restringere le mappe possiamo considerare
+        la funzione di transizione $h\inv \circ g$. Osserviamo che:
+        \[
+            \dif g_u = \dif h_v \circ \dif (h\inv \circ g)_u.
+        \]
+        Mostrando allora che $\dif (h\inv \circ g)_u(H^m \setminus \partial H^m) = H^m \setminus \partial H^m$,
+        otteniamo la tesi. \smallskip
 
-        Questo semispazio non dipende dalla parametrizzazione scelta.
-        ...
+        Osserviamo che $h\inv \circ g$ è una funzione da un aperto intersecante il bordo di $H^m$ in
+        un altro aperto dello stesso tipo. Pertanto $\dif (h\inv \circ g) : \RR^{m-1} \times \RR \to \RR^{m-1} \times \RR$
+        deve mandare lo spazio tangente $T_u \partial U = \partial H^m$ in $T_v \partial V = \partial H^m$, dal momento che $h\inv \circ g$
+        si restringe a una parametrizzazione di $\partial V$ a partire da $\partial U$. \smallskip
+
+        Quindi $J(h\inv \circ g)_u$ deve essere della seguente forma:
+        \[
+            J(h\inv \circ g)_u = \begin{pmatrix}
+                * & \vline & *       \\
+                \hline
+                0 & \vline & \lambda
+            \end{pmatrix}.
+        \]
+        Se $h\inv \circ g = (\Psi_1, \Psi_2)$, con $\Psi_1$ funzione a valori in $\RR^{m-1}$ e
+        $\Psi_2$ a valori in $\RR$, allora:
+        \[
+            \lambda = \pd{\Psi_2}{x_m}(u) = \lim_{\eps \to 0^+} \frac{\overbrace{\Psi_2(x + \eps x_m)}^{\mathclap{\geq \, 0}} - \overbrace{\Psi_2(x)}^{\mathclap{= \, 0}}}{\eps} \geq 0.
+        \]
+        Quindi $\dif (h\inv \circ g)_u(H^m) = H^m$, da cui segue poi facilmente la tesi.
     \end{remark}
 
     \begin{definition}
-        Data una varietà orientata $M$, i vettori appartenenti al semispazio
-        scelto di $T_x M \setminus T_x \partial M$ si dicono \textbf{interni},
-        mentre quelli del semispazio complementare sono detti \textbf{esterni}.
+        Data una $m$-varietà bordata $M$ e un punto $x$ appartenente al bordo
+        $\partial M$, si definisce il \textbf{semispazio interno} riferito a
+        $x$ come:
+        \[
+            \boxed{\dif g_u(H^m \setminus \partial H^m),}
+        \]
+        dove $g$ è una parametrizzazione locale di $x$ con $g(u) = x$. I suoi
+        vettori sono detti \textbf{interni}. \smallskip
+
+        Si dice \textbf{semispazio esterno} il semispazio complementare a quello
+        interno rispetto al taglio dell'iperpiano $T_x \partial M$ in
+        $T_x M$, e i suoi vettori sono detti \textbf{esterni}.
     \end{definition}
 
     \begin{lemma}[L'orientazione indotta sul bordo è ben definita]
