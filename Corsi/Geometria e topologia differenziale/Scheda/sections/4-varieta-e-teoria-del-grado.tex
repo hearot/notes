@@ -1300,9 +1300,9 @@
         le due mappe non possono essere $C^\infty$-omotope.
     \end{proof}
 
-    \section{Teoria del grado su \texorpdfstring{$\ZZ$}{ℤ}}
+    \section{Varietà orientate}
 
-    \subsection{Orientazione di basi su spazi vettoriali}
+    \subsection{Orientazione di basi su spazi vettoriali, orientazione canonica di \texorpdfstring{$\RR^n$}{ℝⁿ}}
 
     \begin{definition}[Stessa orientazione]
         Si dice che due basi (ordinate) $\basis$, $\basis'$ di un $\RR$-spazio vettoriale finito-dimensionale
@@ -1342,7 +1342,7 @@
         Indicheremo tale mappa con il simbolo dell'isomorfismo da cui è indotta.
     \end{remark}
 
-    \subsection{Orientazione su varietà}
+    \subsection{Orientazione su varietà e prime proprietà}
 
     \begin{definition}[$m$-varietà orientata, $m > 1$ o $\partial M = \emptyset$]
         Una \textbf{varietà orientata di dimensione $m$} (con $\underline{m>1}$ o $\underline{\partial M = \emptyset}$)
@@ -1447,6 +1447,12 @@
         \end{itemize}
     \end{proof}
 
+    \begin{definition}[Base positiva o negativa per $T_x M$]
+        Sia $(M, \Theta)$ una varietà orientata. Allora una base per $T_x M$ si dice
+        \textbf{positiva} se è della stessa orientazione di $\Theta_x$; altrimenti
+        si dice \textbf{negativa}.
+    \end{definition}
+
     \begin{definition}[Varietà di orientazione opposta]
         Data $(M, \Theta)$ una varietà orientata, indichiamo con $-M$ la varietà
         $(M, -\Theta)$, dove $-\Theta$ è l'unica altra orientazione possibile.
@@ -1457,7 +1463,33 @@
         prendere l'orientazione indotta da un'unica parametrizzazione locale.
     \end{remark}
 
-    \subsection{Orientazione sul bordo della varietà}
+    \begin{proposition}[$m$-varietà immerse in $\RR^m$ sono orientabili] \label{prop:orientazione_immersa_Rm}
+        Sia $M$ una $m$-varietà immersa in $\RR^m$. Allora
+        $M$ è orientabile secondo l'orientazione canonica di $\RR^m$.
+    \end{proposition}
+
+    \begin{proof}
+        Sia $x \in M$. Osserviamo
+        che deve valere necessariamente $T_x M = \RR^m$, dal momento che
+        $T_x M$ è uno spazio vettoriale $m$-dimensionale immerso in $\RR^m$.
+        Definiamo allora $\Theta_x \defeq \Theta_0$,
+        dove $\Theta_0$ è l'orientazione canonica di $\RR^m$. \smallskip
+
+        Se $g : U \subseteq H^m \to g(U)$ è una parametrizzazione locale di $x$, possiamo restringere e
+        riparametrizzare $g$
+        in modo tale che il suo dominio sia una semipalla di $\RR^m$. Se $\dif g_{-}$ preserva
+        l'orientazione canonica, scegliamo $g$ come parametrizzazione locale compatibile
+        per $\Theta \defeq \{\Theta_x\}_{x \in M}$. Altrimenti possiamo precomporre $g$
+        con una riflessione rispetto all'asse della semipalla e ottenere una nuova parametrizzazione,
+        stavolta compatibile. \smallskip
+
+        Infatti, $g$ si estende a un diffeomorfismo tra aperti di $\RR^m$ e,
+        per il Teorema della permanenza del segno, lo jacobiano deve essere localmente o positivo
+        o negativo, e quindi $g$ preserva localmente l'orientazione.
+        Dunque $M$ è orientabile secondo l'orientazione canonica di $\RR^m$.
+    \end{proof}
+
+    \subsection{Orientazione sul bordo della varietà, semispazio interno o esterno}
 
     \begin{remark}[Il semispazio interno è ben definito]
         L'orientazione locale di una $m$-varietà $M$ con bordo determina sempre la scelta di uno dei semispazi di
@@ -1511,16 +1543,110 @@
         $T_x M$, e i suoi vettori sono detti \textbf{esterni}.
     \end{definition}
 
-    \begin{lemma}[L'orientazione indotta sul bordo è ben definita]
-        ...
-    \end{lemma}
+    \begin{remark}[L'orientazione indotta sul bordo è ben definita -- \textit{esistenza}]
+        Sia $x \in \partial M$ un punto della $m$-varietà orientata $(M, \Theta)$, con $m > 1$.
+        Sia $g : U \subseteq H^m \to g(U)$ una parametrizzazione locale di $x$ con $g(u) = x$ che
+        sia compatibile con l'orientazione $\Theta$. Allora:
 
-    \begin{definition}
-        Data una varietà orientata $M$ con bordo e $\dim M > 1$, la famiglia $\{ \Theta_x^{\partial M} \}_{x \in \partial m}$
-        di orientazioni di $T_x \partial M$ indotte dall'orientazione di $M$ è un'orientazione su $\partial M$
-        detta \textbf{orientazione indotta sul bordo} (o \textit{orientazione di bordo}). \smallskip
+        \begin{itemize}
+            \item per definizione, $\dif g_u(-e_m)$ è
+                  un vettore \textit{esterno} per $x$;
+            \item $\{\dif g_u(e_i)\}_{i=1 -- m-1}$ è una base
+                  di $T_x \partial M$, dacché $\restr{g}{\partial H^m}$
+                  si identifica come una parametrizzazione locale di $x$
+                  in $\partial M$;
+            \item $\{\dif g_u(e_i)\}_{i=1 -- m}$ è una base positiva
+                  di $T_x M$, dacché $g$ è compatibile e $\{e_i\}_i$ ha
+                  l'orientazione canonica in $\RR^m$.
+        \end{itemize}
+    \end{remark}
 
-        Per $M$ orientata tramite un diffeomorfismo $\varphi : [0, 1] \to M$, si associa
+    \begin{remark}[L'orientazione indotta sul bordo è ben definita -- \textit{unicità}]
+        Sia $x \in \partial M$ un punto della $m$-varietà orientata $(M, \Theta)$, con $m > 1$.
+        Sia $\{v_1, \ldots, v_n\}$ una base di $T_x M$ tale per cui
+        $v_1$ un vettore \underline{esterno} per $x \in \partial M$ e
+        $\{v_2, \ldots, v_n\}$ è base di $T_x \partial M$. \smallskip
+
+        Sia $\{v_1', \ldots, v_n'\}$ un'altra tale base di $T_x M$.
+        Sia $g : U \to g(U)$ una parametrizzazione locale di $x$ con
+        $g(u) = x$. Allora $\dif g_u$ è un isomorfismo, e in quanto tale
+        lascia invariate le relazioni di orientazioni delle basi di $T_u U = \RR^m$
+        quando portate in $T_x M$. \smallskip
+
+        Sia $w_i = \dif g_u\inv(v_i)$ e sia $w_i' = \dif g_u\inv(v_i')$. Dal momento
+        che $v_1$ e $v_1'$ sono vettori esterni, si deve avere necessariamente
+        $(w_1)_m$, $(w_1')_m < 0$. Dal momento che $\restr{g}{\partial H^m}$ si identifica
+        naturalmente come una parametrizzazione locale di $x$ in $\partial M$, e che i $v_i$ e i $v_i'$ per $i > 1$ formano
+        una base di $T_x \partial M$, si ha $(w_i)_m = (w_i')_m = 0$ per ogni $i > 1$. \smallskip
+
+        Dunque la matrice di cambio di base da $\{v_1, \ldots, v_n\}$ a
+        $\{v_1', \ldots, v_n'\}$ è della seguente forma:
+        \[
+            M = \begin{pmatrix}
+                \lambda & \vline & 0 \\
+                \hline
+                *       & \vline & A
+            \end{pmatrix},
+        \]
+        dove $\lambda > 0$ affinché $w_1$ e $w_1'$ abbiano ancora lo stesso segno
+        sull'ultima coordinata. Dal momento che $\{v_1, \ldots, v_n\}$ e
+        $\{v_1', \ldots, v_n'\}$ sono basi positive di $T_x M$, allora hanno
+        stesso orientazione, e quindi $\det(M) > 0$. Ne segue che $\det(A) > 0$. \smallskip
+
+        Osserviamo che $A$ è proprio la matrice di cambio di base da $\{v_2, \ldots, v_n\}$ a
+        $\{v_2', \ldots, v_n'\}$. Dunque queste due basi hanno stessa orientazione.
+    \end{remark}
+
+    \begin{remark}[L'orientazione indotta sul bordo è ben definita -- \textit{è effettivamente un'orientazione}]
+        Sia $x \in \partial M$ un punto della $m$-varietà orientata $(M, \Theta)$, con $m > 1$.
+        Denotiamo con $\Theta_x^{\partial M}$ l'orientazione indotta da $\{v_2, \ldots, v_n\}$
+        su $T_x \partial M$ da una base positiva $\{v_1, v_2, \ldots, v_n\}$ di $T_x M$
+        con $v_1$ \underline{esterno} e $\{v_2, \ldots, v_n\}$ base di $T_x \partial M$. \smallskip
+
+        Definiamo:
+        \[ \Theta^{\partial M} \defeq \{ \Theta_x^{\partial M} \}_{x \in \partial M}. \]
+        Data $g : U \subseteq H^m \to g(U) \subseteq M$ parametrizzazione locale
+        compatibile di
+        $x \in \partial M$ in $M$, $\restr{g}{\partial U}$, identificata come parametrizzazione da $\RR^{m-1}$,
+        è compatibile rispetto a $\Theta^{\partial M}$, a meno di restringimento del dominio a una palla
+        con conseguente riflessione rispetto a un asse. \smallskip
+
+        Si può infatti estendere in tal caso la base canonica di $\RR^{m-1} \cong \partial H^m$ a una base di $\RR^m$ con l'aggiunta di
+        un vettore la cui immagine tramite $\dif g_{-}$ risulta essere sempre esterna. Quindi
+        $\Theta^{\partial M}$ è un'orientazione per $\partial M$.
+    \end{remark}
+
+    \begin{definition}[Orientazione indotta sul bordo]
+        Sia $(M, \Theta)$ una $m$-varietà bordata e orientata con $m > 1$. Per $x \in \partial M$ denotiamo con
+        $\Theta_x^{\partial M}$ l'orientazione indotta da $\{v_2, \ldots, v_n\}$ su $T_x \partial M$ da una base positiva $\{v_1, v_2, \ldots, v_n\}$ di $T_x M$
+        con $v_1$ \underline{esterno} e $\{v_2, \ldots, v_n\}$ base di $T_x \partial M$. \smallskip
+
+        Si definisce allora $\Theta^{\partial M} = \{ \Theta_x^{\partial M} \}_{x \in \partial M}$ come
+        l'\textbf{orientazione indotta sul bordo} (o \textit{orientazione di bordo}) per $\partial M$.
+
+        Per $M \cong [0, 1]$ orientata tramite un diffeomorfismo $\varphi : [0, 1] \to M$, si associa
         $-1$ a $\varphi(0)$ e $+1$ a $\varphi(1)$.
     \end{definition}
+
+    \begin{corollary} \label{cor:bordo_orientabile_immersa_Rm}
+        Sia $M$ una $m$-varietà orientabile immersa in $\RR^m$. Allora
+        $\partial M$ è orientabile con l'orientazione indotta sul bordo dall'orientazione
+        canonica di $\RR^m$.
+    \end{corollary}
+
+    \begin{proof}
+        Segue immediatamente dalla Proposizione \ref{prop:orientazione_immersa_Rm}.
+    \end{proof}
+
+    \begin{corollary}
+        $S^n$ è orientabile per ogni $n$.
+    \end{corollary}
+
+    \begin{proof}
+        Segue immediatamente dal Corollario \ref{cor:bordo_orientabile_immersa_Rm},
+        dacché $S^n = \partial D^{n+1}$ e $D^{n+1}$ è una $(n+1)$-varietà immersa
+        in $\RR^{n+1}$.
+    \end{proof}
+
+    %\section{Teoria del grado su \texorpdfstring{$\ZZ$}{ℤ}}
 \end{multicols*}
