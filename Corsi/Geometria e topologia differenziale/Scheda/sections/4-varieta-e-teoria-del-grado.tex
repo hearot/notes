@@ -445,7 +445,7 @@
         e dunque chiuso essendo $N$ uno spazio T2. Quindi $f\left(M \setminus \bigcup_{i = 1}^n A_i\right)^c$ è aperto.
         Si conclude dunque che $V$ è aperto. \smallskip
 
-        Su $V$, $\abs{f\inv(\cdot)}$ è necessariamente costante: la prima intersezione assicura che esistano
+        Su $V$, $\abs{f\inv(-)}$ è necessariamente costante: la prima intersezione assicura che esistano
         almeno $\abs{f\inv(y)}$ controimmagini, e la sottrazione insiemistica assicura che non possano esisterne di più.
     \end{proof}
 
@@ -1113,8 +1113,8 @@
         Sia $H$ una omotopia $C^\infty$ da $f$ a $g$. Allora, poiché $M$ è compatta,
         per il Lemma \ref{lem:pila}:
         \begin{itemize}
-            \item esiste un intorno $V_1$ di $y \in N$ su cui $\abs{f\inv(\cdot)}$ è costante;
-            \item esiste un intorno $V_2$ di $y \in N$ su cui $\abs{g\inv(\cdot)}$ è costante.
+            \item esiste un intorno $V_1$ di $y \in N$ su cui $\abs{f\inv(-)}$ è costante;
+            \item esiste un intorno $V_2$ di $y \in N$ su cui $\abs{g\inv(-)}$ è costante.
         \end{itemize}
         È sufficiente allora mostrare la tesi per un qualsiasi valore $y' \in V_1 \cap V_2$;
         poiché i valori regolari sono densi per il Teorema di Brown (per le varietà, Corollario \ref{cor:brown}),
@@ -1264,6 +1264,22 @@
         dove $y$ è un qualsiasi valore regolare di $f$.
     \end{definition}
 
+    \begin{lemma} \label{lem:valori_regolari_aperto}
+        Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ chiusa (ovverosia
+        anche compatta)
+        e $N$ connessa. Se $f : M \to N$ è liscia, allora i valori regolari di $f$
+        formano un aperto di $N$.
+    \end{lemma}
+
+    \begin{proof}
+        Dall'Osservazione \ref{rmk:punti_regolari_formano_aperto} sappiamo che
+        i punti regolari di $f$ formano un aperto di $M$; dunque i punti critici
+        formano un chiuso di $M$. Dacché $M$ è compatta, in particolare i punti
+        critici formano un compatto di $M$. Tramite $f$, si deduce che i valori
+        critici formano un compatto di $N$, che, essendo $N$ T2, è dunque
+        chiuso in $N$. Quindi i valori regolari formano un aperto.
+    \end{proof}
+
     \begin{theorem} \label{thm:fondamentale_grado_2}
         Siano $M$ e $N$ varietà della stessa dimensione. Sia $M$ chiusa (ovverosia
         anche compatta)
@@ -1275,17 +1291,12 @@
     \end{theorem}
 
     \begin{proof}
-        Dall'Osservazione \ref{rmk:punti_regolari_formano_aperto} sappiamo che
-        i punti regolari di $f$ formano un aperto di $M$; dunque i punti critici
-        formano un chiuso di $M$. Dacché $M$ è compatta, in particolare i punti
-        critici formano un compatto di $M$. Tramite $f$, si deduce che i valori
-        critici formano un compatto di $N$, che, essendo $N$ T2, è dunque
-        chiuso in $N$. \smallskip
+        \smallskip
 
-        Allora i valori regolari di $f$ formano un aperto in $N$: per il Teorema
-        di Brown (per varietà, Corollario \ref{cor:brown}) esiste in questo
+        Per il Lemma \ref{lem:valori_regolari_aperto}, i valori regolari di $f$ formano un aperto in $N$. Allora, per il Teorema
+        di Brown (per varietà, Corollario \ref{cor:brown}), esiste in questo
         aperto anche un valore regolare di $g$. Per il Lemma \ref{lem:omotopia},
-        allora $f$ e $g$ condividono lo stesso grado modulo $2$.
+        dunque $f$ e $g$ condividono lo stesso grado modulo $2$.
     \end{proof}
 
     \begin{corollary}
@@ -1489,7 +1500,7 @@
         Dunque $M$ è orientabile secondo l'orientazione canonica di $\RR^m$.
     \end{proof}
 
-    \subsection{Orientazione sul bordo della varietà, semispazio interno o esterno}
+    \subsection{Semispazio interno o esterno}
 
     \begin{remark}[Il semispazio interno è ben definito]
         L'orientazione locale di una $m$-varietà $M$ con bordo determina sempre la scelta di uno dei semispazi di
@@ -1542,6 +1553,33 @@
         interno rispetto al taglio dell'iperpiano $T_x \partial M$ in
         $T_x M$, e i suoi vettori sono detti \textbf{esterni}.
     \end{definition}
+
+    \begin{lemma} \label{lem:0_interno_1_esterno}
+        Sia $M \cong [0, 1]$. Si fissi un diffeomorfismo
+        $\varphi : [0, 1] \to M$. Allora
+        $\dif \varphi_0(1)$ è un vettore interno,
+        mentre $\dif \varphi_1(1)$ è esterno.
+    \end{lemma}
+
+    \begin{proof}
+        Si fissi $\eps$ tale per cui $0 < \eps < 1$. Poniamo
+        $I_0 = [0, \eps)$ e $I_1 = (\eps, 1]$.
+        Osserviamo che $\restr{\varphi}{I_0}$ è una
+        parametrizzazione locale di $\varphi(0)$, una
+        volta identificato $I_1$ naturalmente con $H^1$.
+
+        Allora $\dif \varphi_0(1)$ è interno dal momento
+        che $\dif \varphi_0\inv(\dif \varphi_0(1)) = 1 > 0$. \smallskip
+
+        Per quanto riguarda invece $\varphi(1)$, una parametrizzazione
+        locale è data su $I_1$ con $H^1$
+        secondo $\Psi(t) = \varphi(1-t)$. \smallskip
+
+        Osserviamo che $\dif \Psi_0\inv (\dif \varphi_1(1)) = -1 < 0$, e dunque
+        $\dif \varphi_1(1)$ è invece esterno.
+    \end{proof}
+
+    \subsection{Orientazione sul bordo della varietà}
 
     \begin{remark}[L'orientazione indotta sul bordo è ben definita -- \textit{esistenza}]
         Sia $x \in \partial M$ un punto della $m$-varietà orientata $(M, \Theta)$, con $m > 1$.
@@ -1648,5 +1686,123 @@
         in $\RR^{n+1}$.
     \end{proof}
 
-    %\section{Teoria del grado su \texorpdfstring{$\ZZ$}{ℤ}}
+    \section{Teoria del grado su \texorpdfstring{$\ZZ$}{ℤ}}
+
+    \subsection{Grado intero rispetto a un valore regolare}
+
+    \begin{definition}[Segno di un differenziale in un punto]
+        Sia $M$ una varietà orientata con $\Theta^M$ e $N$ orientata
+        con $\Theta^N$ e $\dim M = \dim N$. Se $f : M \to N$ è una mappa liscia, si definisce
+        il \textbf{segno di $\dif f_x$} per un punto regolare $x \in M$ come:
+        \[
+            \boxed{\sgn(\dif f_x) = \begin{cases}
+                    +1 & \text{se } \dif f_x(\Theta^M) = \Theta^N,  \\
+                    -1 & \text{se } \dif f_x(\Theta^M) = -\Theta^N.
+                \end{cases}}
+        \]
+    \end{definition}
+
+    \begin{definition}[Grado intero di un valore regolare]
+        Sia $M$ una varietà chiusa e sia $N$ una varietà connessa con $\partial N = \emptyset$
+        e $\dim M = \dim N$. Sia $M$ orientata con $\Theta^M$ e sia $N$ orientata con $\Theta^N$. \smallskip
+
+        Se $y \in N$ è regolare per $f : M \to N$ liscia, si definisce il \textbf{grado di $f$ rispetto a $y$} come:
+        \[
+            \boxed{\deg(f; y) \defeq \sum_{x \in f\inv(y)} \sgn(\dif f_x).}
+        \]
+    \end{definition}
+
+    \begin{remark}[Il grado intero è localmente costante] \label{rmk:grado_loc_costante}
+        Se $y \in N$ è regolare, possiamo scegliere per il Lemma \ref{lem:pila} un intorno $I_1$
+        sul quale $\abs{f\inv(-)}$ è costante. \smallskip
+
+        Inoltre, per il Teorema della permanenza del
+        segno applicato sul determinante dello jacobiano di $h\inv \circ f \circ g$, dove
+        $g : U \to g(U)$ parametrizza localmente $x \in f\inv(y)$ e $h : V \to h(V)$
+        un intorno di $y$, esiste un intorno $I_2$ di $y$ sul quale le orientazioni sono
+        preservate allo stesso modo in cui lo sono preservate dalle controimmagini di $y$. \smallskip
+
+        Poiché i valori regolari sono aperti (vd. Lemma \ref{lem:valori_regolari_aperto}),
+        possiamo allora prendere un intorno aperto di valori regolari
+        in $I_1 \cap I_2$ entro cui $\deg(f; -)$ è costante; quindi il grado intero è \textit{localmente}
+        costante.
+    \end{remark}
+
+    \begin{lemma}[Il grado di una mappa estendibile dal bordo è nullo]
+        Sia $X$ una varietà compatta e orientata con bordo non nullo. Sia $N$
+        una varietà connessa, orientata, senza bordo e con $\dim X = \dim N + 1$.
+        Sia $F : X \to N$ una mappa liscia. \smallskip
+
+        Se $y \in N$ è un valore regolare per $f \defeq \restr{F}{\partial X}$, allora
+        $\deg(f; y) = 0$.
+    \end{lemma}
+
+    \begin{proof}
+        Denotiamo con $n$ la dimensione di $X$. \smallskip
+
+        Grazie all'Osservazione \ref{rmk:grado_loc_costante}, sappiamo che esiste un intorno
+        di $y$ fatto di valori regolari di $f$ su cui $\deg(f; -)$ è costante. Possiamo prendere allora in questo intorno,
+        per il Teorema di Brown (per varietà, Corollario \ref{cor:brown}), un valore regolare
+        $z$ di $F$. Per definizione, $z$ è valore regolare sia di $F$ che di $f$; mostrando che
+        $\deg(f; z) = 0$, mostriamo dunque anche che $\deg(f; y) = 0$, per costruzione. \smallskip
+
+        Per il Teorema \ref{thm:varietà_bordata_da_valore_regolare}, allora $F\inv(z)$ è una $1$-varietà
+        compatta e chiusa topologicamente con bordo $F\inv(z) \cap \partial M = f\inv(z)$. Per il
+        Corollario \ref{cor:classificazione_dim_1}, $F\inv(z)$ è unione di archi (con $2$ punti sul bordo ciascuno)
+        e cerchi (che non hanno bordo). Per mostrare la tesi è sufficiente mostrare che per ogni arco
+        i punti di bordo abbiano segno opposto sul differenziale, in modo tale che la somma complessiva dei
+        segni sia ancora nulla. \smallskip
+
+        Sia $A \subseteq F\inv(z) \subseteq X$ un tale arco. Fissiamo un diffeomorfismo $\varphi : [0, 1] \to A$.
+        Poniamo $v_1(t) \defeq \dif \varphi_t (1)$. Allora vale:
+        \[
+            T_{\varphi(t)} X = \underbrace{T_{\varphi(t)} A}_{\mathclap{=\, \Span(v_1(t))}} \oplus (T_{\varphi(t)} A)^\perp,
+        \]
+        dove ricordiamo che, per una generalizzazione della Proposizione \ref{prop:tangente_valore_regolare},
+        $\restr{\dif F_{\varphi(t)}}{(T_{\varphi(t)} A)^\perp} : (T_{\varphi(t)} A)^\perp \to T_z N$ è un isomorfismo. \smallskip
+
+        Fissiamo una base positiva $\{w_2, \ldots, w_n\}$ di $T_y N$. Possiamo allora porre:
+        \[
+            v_i(t) = \restr{\dif F_{\varphi(t)}}{(T_{\varphi(t)} A)^\perp}\inv(w_i), \quad i = 2, \ldots, n.
+        \]
+        Poiché $v_1(t)$ è ortogonale agli altri $v_i(t)$, $\{v_i(t)\}_i$ è una base
+        di $T_{\varphi(t)} X$. \smallskip
+
+        Se poniamo $A \defeq \{t \mid \{v_i(t)\}_i \text{ positiva}\} \subseteq [0, 1]$,
+        allora $A$ è un aperto di $[0, 1]$. Infatti, per il Teorema della permanenza del segno applicato
+        allo jacobiano di una parametrizzazione locale, in un
+        intorno di $t_0$ si mantiene la stessa orientazione.
+        Analogamente anche il complementare
+        di $A$ è aperto. Dacché $[0, 1]$ è connesso, allora uno tra $A$ e il suo complementare è vuoto: in altre
+        parole $\{v_i(t)\}_i$ è sempre positiva per ogni $t \in [0, 1]$, o altrimenti è sempre negativa. \smallskip
+
+        A meno di invertire l'orientazione di $\varphi$ usando al suo posto $\varphi(1 - t)$, possiamo
+        assumere che $\basis(t) \defeq \{v_i(t)\}_i$ sia sempre positiva. \smallskip
+
+        Mostriamo che $\sgn(\dif f_{\varphi(0)}) = -1$. Sia $\basis' \defeq \{v_1(0), v_2'(0), \ldots, v_n'(0)\}$
+        una base di $T_{\varphi(0)} \partial X$ tale per cui $\{ \dif F_{\varphi(0)} (v_i'(0)) \}_{i \geq 2} $ è
+        una base positiva di $T_z N$. Se mostriamo che $\basis$ e $\basis'$ hanno la stessa orientazione,
+        dal momento che $\basis$ è positiva e $v_1(0)$ è \underline{interno} per il Lemma \ref{lem:0_interno_1_esterno},
+        si deduce dalla definizione di orientazione di bordo che
+        $\{ v_2'(0), \ldots, v_n'(0)\}$ è negativa; in particolare $\dif f_{\varphi(0)}$ invertirebbe l'orientazione,
+        e quindi avrebbe segno $-1$. \smallskip
+
+        Consideriamo la matrice di cambio di base da $\basis$ a $\basis'$, della seguente forma:
+        \[
+            M \defeq \begin{pmatrix}
+                1 & \vline & * \\
+                \hline
+                0 & \vline & B
+            \end{pmatrix}.
+        \]
+        Osserviamo che $B$ è la matrice di cambio di base ottenuta togliendo ad entrambi le
+        basi il vettore $v_1(0)$. Per costruzione, queste tali basi hanno la stessa orientazione
+        dal momento che $\dif F_{\varphi(0)}$ mantiene invariate le orientazioni. Dunque
+        $\det(B) > 0$, da cui si deduce che $\det(M) > 0$, e quindi che $\basis$ e
+        $\basis'$ hanno effettivamente la stessa orientazione. \smallskip
+
+        Per $\varphi(1)$ il ragionamento è del tutto analogo, ma essendo $v_1(1)$ \underline{esterno} per
+        il Lemma \ref{lem:0_interno_1_esterno}, il segno sarà invece $+1$. Questo conclude la dimostrazione
+        per le osservazioni fatte in precedenza.
+    \end{proof}
 \end{multicols*}
