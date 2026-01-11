@@ -1961,4 +1961,79 @@
         aperto anche un valore regolare di $g$. Per il Lemma \ref{lem:omotopia_intero},
         dunque $f$ e $g$ condividono lo stesso grado intero.
     \end{proof}
+
+    \begin{corollary}
+        Sia $M$ una varietà chiusa e connessa. Se $f : M \to M$
+        è un diffeomorfismo di grado $\deg(f) = -1$, allora
+        $f$ non è omotopa all'identità $\id_M$, né a una mappa costante $c_x$ per
+        $x \in M$.
+    \end{corollary}
+
+    \begin{proof}
+        La tesi è un'immediata conseguenza del Teorema \ref{thm:fondamentale_grado_intero},
+        dal momento che $\deg(\id_M) = 1$ e $\deg(c_x) = 0$ (infatti $c_x$ non è surgettiva).
+    \end{proof}
+
+    \begin{proposition}[Il grado è moltiplicativo]
+        Sia $M$ una varietà orientata, chiusa e connessa. Se $f$ e $g$ sono due
+        mappe lisce da $M$ in sé stessa, allora:
+        \[
+            \boxed{\deg(f \circ g) = \deg(f) \deg(g).}
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        ...
+    \end{proof}
+
+    \subsection{Applicazioni immediate della teoria del grado intero}
+
+    \begin{lemma} \label{lem:grado_zk}
+        Sia $f_k : S^1 \to S^1$ tale per cui:
+        \[
+            f_k(z) = z^k \in \CC,
+        \]
+        dove si è identificato $S^1 \subseteq \RR^2$ in $\CC$.
+        Allora $1$ è un valore regolare di $f_k$ e $\deg(f_k) = k$. \smallskip
+
+        Quindi, per $k \neq 0$, $f_k$ \underline{non} può estendersi a una mappa
+        liscia da $D^2$ a $S^1$.
+    \end{lemma}
+
+    \begin{proof}
+        Consideriamo l'elemento $1 \in S^1$. Osserviamo che
+        $f_k\inv(1)$ è l'insieme delle radici $k$-esime dell'unità,
+        e quindi contiene esattamente $k$ elementi (a meno del segno). \smallskip
+
+        La funzione $f_k$ si estende a $F_k(z) = z^k$ su tutto $\CC$. Osserviamo
+        che $T_1 S^1 = \Span(i)$. Per determinare allora il segno di $\dif (f_k)_1$ è
+        sufficiente considerare la seguente derivata:
+        \[
+            \dif (f_k)_1 (i) = \dertime{e^{i t k}}{t=0} = k i.
+        \]
+        Dunque $\dif (f_k)_1$ è un isomorfismo per $k \neq 0$, e preserva l'orientazione
+        se $k > 0$, mentre non la preserva se $k < 0$. \smallskip
+
+        Sia ora $\xi = e^{i \theta_0} \in f_k\inv(1)$. Consideriamo il diffeomorfismo $h_\xi : S^1 \to S^1$ tale
+        per cui:
+        \[
+            h_\xi(z) = \xi \cdot z,
+        \]
+        ovverosia la rotazione indotta da $\xi$. Si verifica facilmente che:
+        \[
+            H : S^1 \times [0, 1] \to S^1, \quad H(z, t) = e^{i \theta_0 t} z
+        \]
+        è un'omotopia liscia da $\id_{S^1}$ a $h_\xi$. Dunque $\deg(h_\xi; 1) = \deg(\id_{S^1}; 1) = 1$. \smallskip
+
+        Osserviamo che $f_k = f_k \circ h_\xi$. Quindi:
+        \[
+            \dif (f_k)_1 = \dif (f_k \circ h_\xi)_1 = \dif (f_k)_\xi \circ \dif (h_\xi)_1 = \dif (f_k)_\xi \circ h_\xi.
+        \]
+        Dal momento che $h_\xi$ è invertibile, si deduce che $\dif (f_k)_\xi$ è sempre un isomorfismo, e
+        dunque che $1$ è un valore regolare. Inoltre, dalla stessa uguaglianza si deduce per la
+        moltiplicatività del segno dei differenziali che $\sgn(\dif (f_k)_1) = \sgn(\dif (f_k)_\xi)$. \smallskip
+
+        Si conclude facilmente allora che $\deg(f) = \deg(f; 1) = k$. L'ultima affermazione è conseguenza
+        del Lemma \ref{lem:grado_mappa_estendibile}.
+    \end{proof}
 \end{multicols*}
