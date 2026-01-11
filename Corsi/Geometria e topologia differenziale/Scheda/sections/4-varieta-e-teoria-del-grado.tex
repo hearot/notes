@@ -1068,7 +1068,7 @@
 
     \subsection{Omotopie \texorpdfstring{$C^\infty$}{C∞}}
 
-    \begin{remark}[{$M \times [0,1]$} è una varietà con bordo]
+    \begin{remark}[{$M \times [0,1]$} è una varietà con bordo] \label{rmk:m_01_varietà}
         Sia $M$ una $m$-varietà senza bordo. Allora, per la Proposizione \ref{prop:prodotto_varietà},
         $M \times \RR$ è una $(m+1)$-varietà senza bordo. \smallskip
 
@@ -1291,8 +1291,6 @@
     \end{theorem}
 
     \begin{proof}
-        \smallskip
-
         Per il Lemma \ref{lem:valori_regolari_aperto}, i valori regolari di $f$ formano un aperto in $N$. Allora, per il Teorema
         di Brown (per varietà, Corollario \ref{cor:brown}), esiste in questo
         aperto anche un valore regolare di $g$. Per il Lemma \ref{lem:omotopia},
@@ -1339,7 +1337,7 @@
     \begin{definition}[Orientazione canonica]
         Si definisce l'\textbf{orientazione canonica} $\Theta_0$ di $\RR^n$
         come la classe di equivalenza indotta dall'orientazione della base
-        canonica.
+        canonica. \smallskip
     \end{definition}
 
     \begin{remark}
@@ -1351,6 +1349,50 @@
         Infatti la matrice di cambio di base è invariante per isomorfismo. \smallskip
 
         Indicheremo tale mappa con il simbolo dell'isomorfismo da cui è indotta.
+    \end{remark}
+
+    \begin{definition}[Segno di una base]
+        Dato uno spazio vettoriale $V$ orientato con $\Theta$, si definisce
+        il \textbf{segno} di una base $\basis$ come:
+        \[
+            \boxed{\sgn_\Theta(\basis) \defeq \begin{cases}
+                    +1 & \text{se } \basis \sim \Theta, \\
+                    -1 & \text{altrimenti}.
+                \end{cases}}
+        \]
+    \end{definition}
+
+    \subsection{Orientazione su prodotti di spazi vettoriali}
+
+    \begin{definition}[Orientazione prodotto]
+        Siano $V$ e $W$ due $\RR$-spazi vettoriali di dimensione finita.
+        Se $\Theta^V$ è un'orientazione di $V$ e $\Theta^W$ lo è di $W$,
+        allora si definisce l'\textbf{orientazione prodotto} $\Theta^V \times \Theta^W$ su
+        $V \times W$ come l'orientazione indotta dalla giustapposizione di $\basis_V$ e $\basis_W$:
+        \[ \boxed{\basis_V \sqcup \basis_W \defeq \basis_V \times \{0_W\} \cup \{0_V\} \times \basis_W,} \]
+        dove $\basis_V$ e $\basis_W$ sono basi di $V$ e $W$ con
+        $[\basis_V] = \Theta^V$ e $[\basis_W] = \Theta^W$.
+    \end{definition}
+
+    \begin{remark}[Regola dei segni per l'orientazione prodotto] \label{rmk:regola_segni}
+        Siano $V$ e $W$ $\RR$-spazi orientati con $\Theta^V$ e $\Theta^W$.
+        Siano $\basis_V$ e $\basis_W$ basi di $V$ e $W$. Sia $M_V$
+        la matrice di cambio di base da una base positiva di $V$ a $\basis_V$. Sia
+        $M_W$ l'analogo per $W$. \smallskip
+
+        La matrice di cambio di base dalla giustapposizione delle basi positive alla giustapposizione di $\basis_V$
+        e $\basis_W$ è esattamente:
+        \[
+            M = \begin{pmatrix}
+                M_V & \vline & 0   \\
+                \hline
+                0   & \vline & M_W
+            \end{pmatrix}.
+        \]
+        Quindi vale la seguente \textit{regola dei segni}:
+        \[
+            \boxed{\sgn_{\Theta^V \times \Theta^W}(\basis_V \sqcup \basis_W) = \sgn_{\Theta^V}(\basis_V) \sgn_{\Theta^W}(\basis_W).}
+        \]
     \end{remark}
 
     \subsection{Orientazione su varietà e prime proprietà}
@@ -1474,6 +1516,8 @@
         prendere l'orientazione indotta da un'unica parametrizzazione locale.
     \end{remark}
 
+    \subsection{Orientabilità di \texorpdfstring{$m$}{m}-varietà immerse in \texorpdfstring{$\RR^m$}{ℝᵐ}}
+
     \begin{proposition}[$m$-varietà immerse in $\RR^m$ sono orientabili] \label{prop:orientazione_immersa_Rm}
         Sia $M$ una $m$-varietà immersa in $\RR^m$. Allora
         $M$ è orientabile secondo l'orientazione canonica di $\RR^m$.
@@ -1499,6 +1543,23 @@
         o negativo, e quindi $g$ preserva localmente l'orientazione.
         Dunque $M$ è orientabile secondo l'orientazione canonica di $\RR^m$.
     \end{proof}
+
+    \subsection{Orientazione nel prodotto di due varietà orientate}
+
+    \begin{definition}[Orientazione prodotto per varietà]
+        Siano $(M, \Theta^M)$ e $(N, \Theta^N)$ due varietà orientate.
+        Si definisce l'\textbf{orientazione prodotto} su $M \times N$
+        come l'orientazione $\Theta^{M \times N}$ tale per cui:
+        \[
+            \boxed{\Theta_{(x, y)}^{M \times N} = \Theta_x^M \times \Theta_y^N, \quad \forall x \in M, y \in N}
+        \]
+        dove $\Theta_x^M \times \Theta_y^N$ è l'orientazione prodotto su
+        $T_{(x, y)} M \times N \cong T_x M \times T_y N$ indotta da
+        $\Theta_x^M$ e $\Theta_y^N$. \smallskip
+
+        Il prodotto di parametrizzazioni locali compatibili induce parametrizzazioni
+        locali compatibili con l'orientazione prodotto appena definita.
+    \end{definition}
 
     \subsection{Semispazio interno o esterno}
 
@@ -1728,7 +1789,9 @@
         costante.
     \end{remark}
 
-    \begin{lemma}[Il grado di una mappa estendibile dal bordo è nullo]
+    \subsection{Grado di una mappa estendibile dal bordo}
+
+    \begin{lemma}[Il grado di una mappa estendibile dal bordo è nullo] \label{lem:grado_mappa_estendibile}
         Sia $X$ una varietà compatta e orientata con bordo non nullo. Sia $N$
         una varietà connessa, orientata, senza bordo e con $\dim X = \dim N + 1$.
         Sia $F : X \to N$ una mappa liscia. \smallskip
@@ -1804,5 +1867,98 @@
         Per $\varphi(1)$ il ragionamento è del tutto analogo, ma essendo $v_1(1)$ \underline{esterno} per
         il Lemma \ref{lem:0_interno_1_esterno}, il segno sarà invece $+1$. Questo conclude la dimostrazione
         per le osservazioni fatte in precedenza.
+    \end{proof}
+
+    \subsection{Passaggio per omotopia e buona definizione del grado intero di una mappa}
+
+    \begin{lemma}[di omotopia, per il grado intero] \label{lem:omotopia_intero}
+        Siano $M$ e $N$ due varietà orientate con $M$ chiusa e $\dim M = \dim N$.
+        Sia $F : M \times [0, 1] \to N$ un'omotopia $C^\infty$ con $f \defeq F_0$
+        e $g \defeq F_1$. Se $y \in N$ è un valore regolare comune a $f$ e $g$,
+        allora:
+        \[ \boxed{\deg(f; y) = \deg(g; y).} \]
+    \end{lemma}
+
+    \begin{proof}
+        Dal momento che $M \times [0, 1]$ è un prodotto, allora acquisisce l'orientazione
+        prodotto di quella di $M$ con quella canonica di $[0, 1]$. Grazie
+        all'Osservazione \ref{rmk:grado_loc_costante} e al Teorema di Brown (per varietà, Corollario \ref{cor:brown}),
+        possiamo assumere senza perdita di generalità che $y$ sia un valore regolare anche di $F$. \smallskip
+
+        Sia $\basis_x$ una base positiva di $T_x M$ per $x \in M$. Allora,
+        per l'Osservazione \ref{rmk:regola_segni} la base $\basis_x \cup \{1\}$
+        è positiva per $T_{(x, t)} M \times [0, 1] \cong T_x M \times T_t [0, 1]$. \smallskip
+
+        Ricordiamo che il bordo di $M \times [0, 1]$ è $M \times \{0\} \sqcup M \times \{1\}$
+        per \ref{rmk:m_01_varietà}. Studiamo l'orientazione indotta su tale bordo.
+        Poiché $(0, 1) \in T_{(x, 0)} M \times [0, 1]$ è interno per il Lemma \ref{lem:0_interno_1_esterno},
+        $\{-\basis_x\} \cup \{-1\}$ è positiva per $(x, 0)$, e quindi $\basis_x$ è una base negativa di $(x, 0)$ sul
+        bordo. Dunque $M \times \{0\} \cong M$ è orientata come $-M$. Analogamente, $(0, 1) \in T_{(x, 1)} M \times [0, 1]$ è
+        esterno, quindi $M \times \{1\} \cong M$ è orientata come $M$. \smallskip
+
+        Allora, per il Lemma \ref{lem:grado_mappa_estendibile}, si ha:
+        \[
+            \deg(g; y) - \deg(f; y) = \deg(\restr{F}{\partial(M \times [0, 1])}; y) = 0,
+        \]
+        da cui la tesi.
+    \end{proof}
+
+    \begin{theorem}[Il grado intero è ben definito]
+        Siano $M$ e $N$ varietà con $M$ chiusa, $N$ connessa e $\dim M = \dim N$. Se
+        $f : M \to N$ è liscia e $y$, $z \in N$ sono suoi valori regolari, allora:
+        \[
+            \boxed{\deg(f; y) = \deg(f; z).}
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Per il Lemma \ref{lem:omogeneità}, esiste un diffeomorfismo $h : N \to N$
+        con $h(y) = z$ isotopo all'identità $\id_N$. Sia $H : N \times [0, 1] \to N$
+        una tale isotopia. \smallskip
+
+        Consideriamo la mappa $f(t) = \sgn(\dif (H_t)_y (\Theta^N_y))$. Poiché
+        $H_1 = \id_N$, si ha chiaramente $f(1) = 1$. Inoltre $f$ è continua e localmente
+        costante, utilizzando l'usuale argomento sulla permanenza del segno
+        sul determinante dello jacobiano, una volta scelta una parametrizzazione locale.
+        Dunque, poiché $[0, 1]$ è connesso, $f$ deve essere costantemente uguale a $1$.
+        Quindi $\dif (H_t)_y (\Theta^N_y) = \Theta^N_{H_t(y)}$ per ogni $t \in [0, 1]$. \smallskip
+
+        Segue quindi che $\dif h_y (\Theta^N_y) = \Theta^N_z$, da cui per la regola della catena:
+        \[
+            \deg(h \circ f; z) = \deg(f; y).
+        \]
+        D'altra parte $h \circ f$ e $f$ sono $C^\infty$-omotope tramite $H \circ (f \times \id_{0, 1})$,
+        e quindi, per il Lemma \ref{lem:omotopia_intero}:
+        \[
+            \deg(f; y) = \deg(h \circ f; z) = \deg(f; z).
+        \]
+    \end{proof}
+
+    \begin{definition}[Grado intero di una mappa liscia]
+        Sia $M$ una varietà chiusa e sia $N$ una varietà connessa.
+        Siano $M$ e $N$ della stessa dimensione e orientate. Se
+        $f : M \to N$ è una mappa liscia, si definisce il suo
+        \textbf{grado intero} come:
+        \[
+            \boxed{\deg(f) \defeq \deg(f; y),}
+        \]
+        dove $y$ è un valore regolare qualsiasi di $f$.
+    \end{definition}
+
+    \begin{theorem} \label{thm:fondamentale_grado_intero}
+        Sia $M$ una varietà chiusa e sia $N$ una varietà connessa.
+        Siano $M$ e $N$ della stessa dimensione e orientate.
+        Se $f$ e $g$ sono due mappe lisce $C^\infty$-omotope da $M$ in $N$,
+        allora:
+        \[
+            \boxed{\deg(f) = \deg(g).}
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Per il Lemma \ref{lem:valori_regolari_aperto}, i valori regolari di $f$ formano un aperto in $N$. Allora, per il Teorema
+        di Brown (per varietà, Corollario \ref{cor:brown}), esiste in questo
+        aperto anche un valore regolare di $g$. Per il Lemma \ref{lem:omotopia_intero},
+        dunque $f$ e $g$ condividono lo stesso grado intero.
     \end{proof}
 \end{multicols*}
