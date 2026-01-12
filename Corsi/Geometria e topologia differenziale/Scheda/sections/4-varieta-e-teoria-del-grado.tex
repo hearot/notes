@@ -1903,7 +1903,7 @@
         da cui la tesi.
     \end{proof}
 
-    \begin{theorem}[Il grado intero è ben definito]
+    \begin{theorem}[Il grado intero è ben definito] \label{thm:grado_intero_ben_definito}
         Siano $M$ e $N$ varietà con $M$ chiusa, $N$ connessa e $\dim M = \dim N$. Se
         $f : M \to N$ è liscia e $y$, $z \in N$ sono suoi valori regolari, allora:
         \[
@@ -1974,7 +1974,7 @@
         dal momento che $\deg(\id_M) = 1$ e $\deg(c_x) = 0$ (infatti $c_x$ non è surgettiva).
     \end{proof}
 
-    \begin{proposition}[Il grado è moltiplicativo]
+    \begin{proposition}[Il grado è moltiplicativo] \label{prop:grado_moltiplicativo}
         Sia $M$ una varietà orientata, chiusa e connessa. Se $f$ e $g$ sono due
         mappe lisce da $M$ in sé stessa, allora:
         \[
@@ -1983,10 +1983,34 @@
     \end{proposition}
 
     \begin{proof}
-        ...
+        Sia $z$ un valore regolare di $f \circ g$. Sia $x \in (f \circ g)\inv(z)$.
+        Allora, per la regola della catena:
+        \[
+            \dif (f \circ g)_x = \dif f_{g(x)} \circ \dif g_x.
+        \]
+        Dal momento che $z$ è regolare, $x$ è un punto regolare e dunque
+        $\dif (f \circ g)_x$ è un isomorfismo. Dunque necessariamente
+        $\dif f_{g(x)}$ e $\dif g_x$ sono isomorfismi, ovverosia
+        $x$ è regolare anche per $g$, mentre $g(x)$ lo è per $f$. \smallskip
+
+        Sia $f\inv(z) = \{y_1, \ldots, y_n\}$.
+        Da quanto appena visto, ogni $y_i$ è valore regolare.
+        Allora:
+        \[
+            g\inv(f\inv(z)) = \bigsqcup_{i = 1}^n g\inv(y_i).
+        \]
+
+        Allora, sfruttando anche l'Osservazione \ref{rmk:regola_segni}:
+        \[
+            \deg(f \circ g) = \sum_{x \in g\inv(f\inv(z))} \sgn(\dif f_{g(x)}) \sgn(\dif g_x).
+        \]
+        Raccogliendo i termini utilizzando $f\inv(z)$ si ottiene dunque, anche usando il Teorema \ref{thm:grado_intero_ben_definito}:
+        \[
+            \deg(f \circ g) = \sum_{y_i \in f\inv(y_i)} \sgn(\dif f_{y_i}) \deg(g) = \deg(f) \deg(g).
+        \]
     \end{proof}
 
-    \subsection{Applicazioni immediate della teoria del grado intero}
+    \subsection{Grado di \texorpdfstring{$z^k$}{zᵏ}, delle riflessioni e della mappa antipodale su \texorpdfstring{$S^1$}{S¹}}
 
     \begin{lemma} \label{lem:grado_zk}
         Sia $f_k : S^1 \to S^1$ tale per cui:
@@ -2035,5 +2059,88 @@
 
         Si conclude facilmente allora che $\deg(f) = \deg(f; 1) = k$. L'ultima affermazione è conseguenza
         del Lemma \ref{lem:grado_mappa_estendibile}.
+    \end{proof}
+
+    \begin{remark}[Un diffeomorfismo ha grado $1$ o $-1$] \label{rmk:grado_diffeomorfismo}
+        Per un diffeomorfismo $f : M \to M$ su $M$ chiusa e connessa,
+        possono esistere solo due gradi, $+1$ o $-1$, dacché l'insieme
+        controimmagine di un valore regolare contiene un singolo elemento. \smallskip
+
+        In particolare, $\deg(f) = 1$ se e solo se per un elemento $x \in M$, $\dif f_x$
+        preserva l'orientazione.
+    \end{remark}
+
+    \begin{lemma} \label{lem:grado_riflessione}
+        Sia $r_i : S^n \to S_n$ la riflessione tale per cui:
+        \[
+            r_i(x_1, \ldots, x_i, \ldots, x_{n+1}) \defeq (\underbrace{x_1, \ldots}_{\textnormal{invariati}}, -x_i, \underbrace{\ldots, x_{n+1}}_{\textnormal{invariati}}).
+        \]
+        Allora $\deg(r_i) = -1$.
+    \end{lemma}
+
+    \begin{proof}
+        Per l'Osservazione \ref{rmk:grado_diffeomorfismo} è sufficiente studiare $\dif (r_i)_{e_i}$.
+        Per il Corollario \ref{cor:sn_è_varietà},
+        si ha:
+        \[
+            T_{e_i} S^n = e_i^\perp = T_{-e_i} S^n.
+        \]
+        $r_i$ si estende con la stessa formula a un diffeomorfismo $\tilde{r_i}$ su $D^{n+1}$. Poiché
+        $\tilde{r_i}$ è lineare e $T_{e_i} D^{n+1} = \RR^{n+1}$, si ha
+        $\dif \tilde{r_i}_{e_i} = \tilde{r_i}$. Tale differenziale manda la base $\{e_i, e_1, \ldots, e_{n+1}\}$
+        in $\{-e_i, e_1, \ldots, e_{n+1}\}$. Queste due basi hanno orientazione diversa, e quindi solo
+        una di queste induce l'orientazione canonica su $\RR^{n+1}$. \smallskip
+
+        Osserviamo che $e_i$ è esterno per sé stesso; allo stesso modo $-e_i$ è esterno per sé stesso.
+        Segue allora facilmente che $\{e_1, \ldots, e_{n+1}\}$ cambia orientazione tramite $r_i$,
+        e quindi $\deg(r_i) = -1$.
+    \end{proof}
+
+    \begin{lemma} \label{lem:grado_antipodale}
+        Sia $A : S^n \to S^n$ la mappa antipodale, ossia tale per cui $A(x) = -x$.
+        Allora $\deg(A) = (-1)^{n+1}$.
+    \end{lemma}
+
+    \begin{proof}
+        Segue immediatamente dalla Proposizione \ref{prop:grado_moltiplicativo} e il Lemma \ref{lem:grado_riflessione}.
+    \end{proof}
+
+    \subsection{Campi vettoriali tangenti su \texorpdfstring{$S^n$}{Sⁿ} e pettinabilità}
+
+    \begin{definition}[Campo vettoriale (tangente)]
+        Sia $M \subseteq \RR^k$ una varietà liscia, con o senza bordo. Un
+        \textbf{campo vettoriale (tangente)} è una mappa liscia
+        $v : M \to \RR^k$ tale per cui:
+        \[
+            \boxed{v(x) \in T_x M, \quad \forall x \in M.}
+        \]
+    \end{definition}
+
+    \begin{definition}[Pettinabilità]
+        Una varietà liscia, con o senza bordo, si dice \textbf{pettinabile}
+        se ammette un campo vettoriale mai nullo.
+    \end{definition}
+
+    \begin{theorem}[di pettinabilità della sfera] \label{thm:pettinabilità_sfera}
+        $S^n$ è pettinabile se e solo se $n$ è dispari.
+    \end{theorem}
+
+    \begin{proof}
+        Se $n$ è dispari, un campo vettoriale mai nullo è il seguente:
+        \[
+            f(x_1, x_2, \ldots, x_n, x_{n+1}) = (-x_2, x_1, \ldots, -x_{n+1}, x_n) \in x^\perp.
+        \]
+        Sia ora $n$ pari.
+        Supponiamo $v$ sia un campo vettoriale mai nullo. Senza
+        perdita di generalità, possiamo considerarlo unitario. Allora
+        possiamo costruire un omotopia liscia dalla mappa
+        antipodale $A$ a $\id_{S^n}$ nel seguente modo:
+        \[
+            H : S^n \times [0, 1] \to S^n, \quad H(x, t) = \cos(\pi t) x + \sin(\pi t) v(x).
+        \]
+        Tuttavia una tale omotopia \underline{non} può esistere per
+        il Teorema \ref{thm:fondamentale_grado_intero}: l'identità
+        ha grado $1$, mentre la mappa antipodale ha grado $(-1)^{n+1} = -1$ per
+        il Lemma \ref{lem:grado_antipodale}. Quindi $v$ non può esistere per $n$ pari.
     \end{proof}
 \end{multicols*}
