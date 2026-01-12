@@ -2107,9 +2107,9 @@
 
     \subsection{Campi vettoriali tangenti su \texorpdfstring{$S^n$}{Sⁿ} e pettinabilità}
 
-    \begin{definition}[Campo vettoriale (tangente)]
+    \begin{definition}[Campo vettoriale tangente]
         Sia $M \subseteq \RR^k$ una varietà liscia, con o senza bordo. Un
-        \textbf{campo vettoriale (tangente)} è una mappa liscia
+        \textbf{campo vettoriale tangente} è una mappa liscia
         $v : M \to \RR^k$ tale per cui:
         \[
             \boxed{v(x) \in T_x M, \quad \forall x \in M.}
@@ -2118,7 +2118,7 @@
 
     \begin{definition}[Pettinabilità]
         Una varietà liscia, con o senza bordo, si dice \textbf{pettinabile}
-        se ammette un campo vettoriale mai nullo.
+        se ammette un campo vettoriale tangente mai nullo.
     \end{definition}
 
     \begin{theorem}[di pettinabilità della sfera] \label{thm:pettinabilità_sfera}
@@ -2126,12 +2126,12 @@
     \end{theorem}
 
     \begin{proof}
-        Se $n$ è dispari, un campo vettoriale mai nullo è il seguente:
+        Se $n$ è dispari, un campo vettoriale tangente mai nullo è il seguente:
         \[
             f(x_1, x_2, \ldots, x_n, x_{n+1}) = (-x_2, x_1, \ldots, -x_{n+1}, x_n) \in x^\perp.
         \]
         Sia ora $n$ pari.
-        Supponiamo $v$ sia un campo vettoriale mai nullo. Senza
+        Supponiamo $v$ sia un campo vettoriale tangente mai nullo. Senza
         perdita di generalità, possiamo considerarlo unitario. Allora
         possiamo costruire un omotopia liscia dalla mappa
         antipodale $A$ a $\id_{S^n}$ nel seguente modo:
@@ -2143,4 +2143,57 @@
         ha grado $1$, mentre la mappa antipodale ha grado $(-1)^{n+1} = -1$ per
         il Lemma \ref{lem:grado_antipodale}. Quindi $v$ non può esistere per $n$ pari.
     \end{proof}
+
+    \section{Indici di campi vettoriali}
+
+    \subsection{Zero isolato e indice di un campo in uno zero}
+
+    \begin{definition}[Zero isolato]
+        Sia $f : U \subseteq \RR^m \to \RR^m$ liscia con $U$ aperto. Allora
+        $z$ si dice \textbf{zero isolato} di $f$ se esiste un raggio $\eps > 0$
+        tale per cui $f$ in $B_\eps(z)$ ammette come unico zero $z$.
+    \end{definition}
+
+    \begin{remark}[L'indice è ben definito]
+        Sia $\eps > 0$ tale per cui $z$ è unico zero per $f$ in $B_\eps(z)$.
+        Sia $v_\eps : S^m \to \partial B_\eps(z)$ tale per cui:
+        \[
+            v_\eps(x) = z + \eps x.
+        \]
+        Osserviamo che $v_\eps$ preserva l'orientazione. Consideriamo
+        \[
+            \overline{f_\eps} \defeq \bigrestr{\frac{f}{\norm{f}}}{\partial B_\eps(z)}.
+        \]
+        Poiché $v_\eps$ preserva l'orientazione, $\deg(\overline{f_\eps}) = \deg(\overline{f_\eps} \circ v_\eps)$.
+        Scelto un altro $\eps'$, possiamo definire un'omotopia $H$ nel seguente modo:
+        \[
+            H_t = \overline{f_{(1-t)\eps + \eps'}} \circ v_{(1-t)\eps + \eps'}.
+        \]
+        Allora, per il Teorema \ref{thm:fondamentale_grado_intero}:
+        \[
+            \deg(\overline{f_\eps}) = \deg(\overline{f_\eps} \circ v_\eps) = \deg(\overline{f_{\eps'}} \circ v_{\eps'}) = \deg(\overline{f_{\eps'}}).
+        \]
+    \end{remark}
+
+    \begin{definition}[Indice di $f$ in $z$]
+        Sia $f : U \subseteq \RR^m \to \RR^m$ liscia con $U$ aperto. Sia
+        $z$ uno zero isolato di $f$. Si definisce allora l'\textbf{indice di $f$ in $z$}
+        come:
+        \[
+            \boxed{\ind(f, z) \defeq \deg(\overline{f_\eps}), \quad \overline{f_\eps} \defeq \bigrestr{\frac{f}{\norm{f}}}{\partial B_\eps(z)},}
+        \]
+        dove $\eps$ è un raggio tale per cui $z$ è unico zero in $B_\eps(z)$.
+    \end{definition}
+
+    \begin{corollary}[Indice di $z^k$ in $0$]
+        Sia $v_k : \CC \cong \RR^2 \to \CC$ tale per cui
+        $v_k(z) = z^k$. Allora $\ind(v_k, 0) = k$.
+    \end{corollary}
+
+    \begin{proof}
+        Segue immediatamente dal Lemma \ref{lem:grado_zk}.
+    \end{proof}
+
+    \subsection{Lemma di Hopf}
+
 \end{multicols*}
