@@ -2391,7 +2391,7 @@
 
     \subsection{Teorema di Poincaré-Hopf}
 
-    \begin{theorem}[Poincaré-Hopf]
+    \begin{theorem}[Poincaré-Hopf] \label{thm:poincare_hopf}
         Sia $M$ una varietà compatta con bordo, eventualmente vuoto.
         Se $v : M \to \RR^k$ è un campo vettoriale tangente con
         zeri isolati e $\restr{v}{\partial M}$ è esterno in ogni punto
@@ -2412,6 +2412,43 @@
     \end{corollary}
 
     \begin{proof}
-        ...
+        Consideriamo il campo vettoriale tangente:
+        \[
+            v : S^m \to \RR^{m+1}, \quad v(x) = \pi_{x^\perp}(N) = N - (N \cdot x) x,
+        \]
+        dove $N = e_{m+1} \in S^m$. Osserviamo che $v$ si annulla solamente in $\pm N$.
+        Consideriamo le parametrizzazioni locali $g_\pm : U \to \RR^m \times \RR$ di $\pm N$, dove:
+        \[
+            g_\pm(u) = (u, \pm \sqrt{1 - u \cdot u}), \quad U = B_1(0) \subseteq \RR^m.
+        \]
+        Osserviamo che:
+        \[
+            \pd{}{u_i} \sqrt{1 - u \cdot u} = - \frac{u_i}{\sqrt{1 - u \cdot u}},
+        \]
+        da cui si deduce che:
+        \[
+            J g_\pm = \begin{pmatrix}
+                I \\
+                \mp \frac{u}{\sqrt{1 - u \cdot u}}
+            \end{pmatrix}.
+        \]
+        Posto $\xi_\pm(u) \defeq \mp \sqrt{1 - u \cdot u} \, u$, si osserva che:
+        \[
+            (\dif g_\pm)_u(\xi_\pm(u)) = J (g_\pm)_u \, \xi_\pm(u) = v(g(u)).
+        \]
+        Quindi $\ind(v, \pm N) = \ind(\xi_\pm, 0)$. Osserviamo che $\xi_\pm$ si può
+        riscalare per essere $\id_{S^{m-1}}$ nel caso positivo e la mappa
+        antipodale nel caso negativo. \smallskip
+
+        Per il Teorema \ref{thm:poincare_hopf} e il Lemma \ref{lem:grado_antipodale}, allora si ha:
+        \[
+            \begin{split}
+                \chi(S^m) = \ind(v, N) + \ind(v, -N) = \hspace{2cm} \\
+                \hspace{2cm} 1 + (-1)^m = \begin{cases}
+                                              0 & \text{se $m$ è dispari}, \\
+                                              2 & \text{se $m$ è pari}.
+                                          \end{cases}
+            \end{split}
+        \]
     \end{proof}
 \end{multicols*}
