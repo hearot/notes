@@ -2194,6 +2194,129 @@
         Segue immediatamente dal Lemma \ref{lem:grado_zk}.
     \end{proof}
 
-    \subsection{Lemma di Hopf}
+    \subsection{Lemma di Hopf e teorema fondamentale dell'algebra}
 
+    \begin{lemma}[di Hopf] \label{lem:hopf}
+        Sia $X \subseteq \RR^m$ una $m$-varietà compatta con bordo. Sia
+        $v : X \to \RR^m$ un campo vettoriale con zeri isolati e $\restr{v}{\partial X}$
+        mai nullo. \smallskip
+
+        Allora:
+        \[
+            \boxed{\sum_{z \in v\inv(0)} \ind(v, z) = \deg\left(\bigrestr{\frac{v}{\norm{v}}}{\partial X} : \partial X \to S^{m-1} \right).}
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Poiché gli zeri di $v$ sono isolati, possiamo togliere a $X$ una famiglia di dischi disgiunti $\{B_{\eps_i}(z_i)\}$ contenenti tali zeri.
+        Allora, poiché tali dischi sono interni, l'orientazione indotta su $\partial W$ sarà:
+        \[
+            \partial W = \partial X \cup \bigsqcup_i -\partial B_{\eps_i}(z_i).
+        \]
+        Quindi, rispettando le orientazioni si ottiene:
+        \begin{multline*}
+            \deg\left(\bigrestr{\frac{v}{\norm{v}}}{\partial W} : \partial W \to S^{m-1} \right) = \\
+            \deg\left(\bigrestr{\frac{v}{\norm{v}}}{\partial X} : \partial X \to S^{m-1} \right) - \sum_{z \in v\inv(0)} \ind(v, z).
+        \end{multline*}
+        Tuttavia, poiché $\bigrestr{\frac{v}{\norm{v}}}{\partial W}$ è la restrizione di $\frac{v}{\norm{v}} : W \to S^{m-1}$ sul bordo, per il Lemma
+        \ref{lem:grado_mappa_estendibile}, si ha anche:
+        \[
+            \deg\left(\bigrestr{\frac{v}{\norm{v}}}{\partial W} : \partial W \to S^{m-1} \right) = 0,
+        \]
+        da cui segue immediatamente la tesi.
+    \end{proof}
+
+    \begin{theorem}[fondamentale dell'algebra]
+        Sia $p(z) \in \CC[z]$ con $\deg(p) = n$. Allora:
+        \[
+            \boxed{\deg(p) = \sum_{z_0 \in p\inv(0)} \mult(p, z_0),}
+        \]
+        dove $\mult$ indica la molteplicità algebrica di uno zero in un polinomio.
+    \end{theorem}
+
+    \begin{proof}
+        Dal momento che $p(x)$ non può avere più di $n$ zeri, questi sono sicuramente
+        isolati e possiamo prendere inoltre una palla $B_r(0) \subseteq \CC$ con
+        $p\inv(0) \subseteq B_r(0)$. Possiamo allora applicare il Lemma \ref{lem:hopf}
+        su $p : \overline{B_r(0)} \to \CC$ e ottenere:
+        \[
+            \deg\left(\frac{p}{\norm{p}} : \partial B_r(0) \to S^1 \right) = \sum_{z_0 \in p\inv(0)} \ind(p, z_0).
+        \]
+        Mostriamo che il termine a sinistra coincide con $\deg(p)$ (1), e che $\ind(p, z_0)$ coincide
+        con $\mult(p, z_0)$ (2), ottenendo infine la tesi.
+
+        \begin{enumerate}[(1)]
+            \item Supponiamo che $\deg(p)$ sia $n$ e che $p(z)$ sia dunque della seguente forma:
+                  \[
+                      p(z) = a_n z^n + \underbrace{a_{n-1} z^{n-1} + \ldots + a_0}_{\mathclap{g(z)}},
+                  \]
+                  dove $g(z) \defeq p(z) - a_n z^n$. \smallskip
+
+                  Osserviamo che:
+                  \begin{equation} \tag{*}
+                      \lim_{\abs{z} \to \infty} \abs{\frac{g(z)}{z^n}} = 0.
+                  \end{equation}
+                  Una volta posto $p_t(z) = a_n z^n + t g(z)$, si ottiene:
+                  \[
+                      \abs{\frac{p_t(z)}{z^n}} \geq \abs{a_n} - t \abs{\frac{g(z)}{z^n}}.
+                  \]
+                  Allora, per (*), possiamo scegliere $r$ sufficientemente grande in modo tale che si verifichi sempre:
+                  \[
+                      \abs{\frac{p_t(z)}{z^n}} > 0, \quad z \in \partial B_r(0).
+                  \]
+                  In particolare, $p_t(z)$ non si annulla su $\partial B_r(0)$. Possiamo
+                  allora considerare l'omotopia indotta da $\frac{p_t(z)}{\abs{p_t(z)}}$. Osserviamo che
+                  $p_0(z) = a_n z^n$ e che $p_1(z) = p(z)$. Per il Teorema
+                  \ref{thm:fondamentale_grado_intero}, si ha allora:
+                  \[
+                      \begin{split}
+                          \deg\left( \frac{p(z)}{\abs{p(z)}} : \partial B_r(0) \to S^1 \right) = \hspace{2cm} \\
+                          \hspace{2cm} \deg\left( \frac{a_n}{\abs{a_n}} \frac{z^n}{\abs{z^n}} : \partial B_r(0) \to S^1 \right),
+                      \end{split}
+                  \]
+                  a cui, applicando il Lemma \ref{lem:grado_zk} e il fatto secondo cui la moltiplicazione per una costante di
+                  fase è isotopa all'identità (vd. dimostrazione del Lemma \ref{lem:grado_zk}), si ottiene facilmente che:
+                  \[
+                      \deg\left( \frac{p(z)}{\abs{p(z)}} : \partial B_r(0) \to S^1 \right) = n = \deg(p).
+                  \]
+
+            \item Sia $z_0$ uno zero di $p(z)$. Allora $p(z)$ si scrive come:
+                  \[
+                      p(z) = (z - z_0)^\ell q(z),
+                  \]
+                  per un qualche polinomio $q(z) \in \CC[z]$, dove $\ell = \mult(p, z_0)$. Entro
+                  una certa palla di raggio $\eps$ centrata in $z_0$, $q(z)$ non ha alcuno zero. Se
+                  consideriamo la mappa $f : S^1 \to \partial B_{z_0}(\eps)$ tale per cui
+                  $f(z) = z_0 + \eps z$, che preserva l'orientazione, allora si ha:
+                  \[
+                      \ind(p, z_0) = \deg\left(\frac{p \circ f}{\norm{p \circ f}} : \partial S^1 \to S^1 \right).
+                  \]
+                  Osserviamo che:
+                  \[
+                      \frac{p \circ f}{\norm{p \circ f}}\big(z\big) = \frac{z^\ell q(z_0 + \eps z)}{\abs{q(z_0 + \eps z)}}.
+                  \]
+                  Possiamo definire un'omotopia $H : S^1 \times [0, 1] \to S^1$ tale per cui:
+                  \[
+                      H_t(z) = \frac{z^\ell q(z_0 + t \eps z)}{\abs{q(z_0 + t \eps z)}},
+                  \]
+                  che porta $z^\ell \frac{q(z_0)}{\abs{q(z_0)}}$ in $\frac{p \circ f}{\norm{p \circ f}}$. Quindi,
+                  per il Teorema \ref{thm:fondamentale_grado_intero}, si ha:
+                  \[
+                      \begin{split}
+                          \deg\left(z^\ell \frac{q(z_0)}{\abs{q(z_0)}} : S^1 \to S^1\right) = \hspace{2cm} \\
+                          \hspace{2cm} \deg\left(\frac{p \circ f}{\norm{p \circ f}} : \partial S^1 \to S^1 \right).
+                      \end{split}
+                  \]
+                  Come visto nella dimostrazione del Lemma \ref{lem:grado_zk}, la moltiplicazione per elemento di $S^1$ è isotopa all'identità, e dunque:
+                  \[
+                      \deg\left(z^\ell \frac{q(z_0)}{\abs{q(z_0)}} : S^1 \to S^1\right) = \deg(z^\ell : S^1 \to S^1) = \ell,
+                  \]
+                  da cui segue, combinando i pezzi, che:
+                  \[
+                      \ind(p, z_0) = \ell.
+                  \]
+        \end{enumerate}
+    \end{proof}
+
+    \subsection{Teorema di Poincaré-Hopf}
 \end{multicols*}
