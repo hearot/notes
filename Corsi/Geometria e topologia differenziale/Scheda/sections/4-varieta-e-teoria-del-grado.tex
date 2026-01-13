@@ -2144,7 +2144,7 @@
         il Lemma \ref{lem:grado_antipodale}. Quindi $v$ non può esistere per $n$ pari.
     \end{proof}
 
-    \section{Indici di campi vettoriali}
+    \section{Indici di campi vettoriali su aperti di \texorpdfstring{$\RR^m$}{ℝᵐ}}
 
     \subsection{Zero isolato e indice di un campo in uno zero}
 
@@ -2318,5 +2318,100 @@
         \end{enumerate}
     \end{proof}
 
+    \section{Campi vettoriali su varietà}
+
+    \subsection{Indice di un campo vettoriale tangente su una varietà}
+
+    \begin{fact}
+        Sia $v : M \to \RR^k$ un campo vettoriale tangente
+        della varietà $M \subseteq \RR^m$, con $z \in M$ zero isolato di $v$. \smallskip
+
+        Se $g : U \subseteq \RR^m \to g(U)$ è una parametrizzazione di $M$ in $z$
+        con $g(u) = z$,
+        allora possiamo considerare il campo vettoriale
+        $\xi : U \to \RR^m$ tale per cui:
+        \[
+            \xi(u) = (\dif g_u)\inv (v(g(u))), \quad \forall u \in U.
+        \]
+        Allora $\ind(\xi, g\inv(z))$ \underline{non} dipende dalla scelta
+        della parametrizzazione scelta $g$.
+    \end{fact}
+
+    \begin{definition}[Indice di un campo vettoriale tangente su varietà rispetto a un punto]
+        Sia $v : M \to \RR^k$ un campo vettoriale tangente
+        della varietà $M \subseteq \RR^m$, con $z \in M$ zero isolato di $v$. \smallskip
+
+        Si definisce allora l'\textbf{indice di $v$ in $z$} come:
+        \[
+            \boxed{\ind(v, z) \defeq \ind(\xi, g\inv(z))},
+        \]
+        dove $g : U \subseteq \RR^m \to g(U)$ è una parametrizzazione locale di $M$ in $z$
+        con $g(u) = z$ e $\xi : U \to \RR^m$ è tale per cui:
+        \[
+            \boxed{\xi(u) = (\dif g_u)\inv (v(g(u))), \quad \forall u \in U.}
+        \]
+    \end{definition}
+
+    \subsection{Simplessi e caratteristica di Eulero}
+
+    \begin{definition}[$m$-simplesso]
+        Un \textbf{$m$-simplesso} $\Delta^{(m)}$ in $\RR^k$ con $k \geq m$ è
+        definito come l'inviluppo convesso di $m+1$ punti
+        affinemente indipendenti. \smallskip
+
+        Si dice \textbf{faccia} di $\Delta^{(m)}$ un simplesso generato
+        da alcuni dei generatori di $\Delta^{(m)}$.
+    \end{definition}
+
+    \begin{definition}[Complesso simpliciale]
+        Si dice \textbf{complesso simpliciale} l'unione di
+        simplessi in $\RR^k$ che si intersecano a due a due
+        nell'insieme vuoto oppure in una faccia.
+    \end{definition}
+
+    \begin{fact}
+        Ogni varietà $M$ è omeomorfa ad un complesso simpliciale,
+        finito se $M$ è compatta.
+    \end{fact}
+
+    \begin{definition}[Caratteristica di Eulero-Poincaré]
+        Sia $M$ compatta. Allora si definisce la sua \textbf{caratteristica
+            di Eulero-Poincaré} $\chi(M)$ come:
+        \[
+            \boxed{\chi(M) \defeq \sum_{i \geq 0} (-1)^i s_i(C),}
+        \]
+        dove $C$ è un complesso simpliciale finito a cui $M$ è omotopicamente equivalente
+        e $s_i(C)$ è il numero di $i$-simplessi in $C$.
+    \end{definition}
+
+    \begin{fact}
+        La caratteristica di Eulero-Poincaré è ben definita e invariante
+        per equivalenza omotopica.
+    \end{fact}
+
     \subsection{Teorema di Poincaré-Hopf}
+
+    \begin{theorem}[Poincaré-Hopf]
+        Sia $M$ una varietà compatta con bordo, eventualmente vuoto.
+        Se $v : M \to \RR^k$ è un campo vettoriale tangente con
+        zeri isolati e $\restr{v}{\partial M}$ è esterno in ogni punto
+        (se $\partial M \neq \emptyset$), allora:
+        \[
+            \boxed{\sum_{z \in v\inv(0)} \ind(v, z) = \chi(M).}
+        \]
+    \end{theorem}
+
+    \begin{corollary}
+        Si può calcolare $\chi(S^m)$ nel seguente modo:
+        \[
+            \boxed{\chi(S^m) = \begin{cases}
+                    0 & \text{se $m$ è dispari}, \\
+                    1 & \text{se $m$ è pari}.
+                \end{cases}}
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        ...
+    \end{proof}
 \end{multicols*}
