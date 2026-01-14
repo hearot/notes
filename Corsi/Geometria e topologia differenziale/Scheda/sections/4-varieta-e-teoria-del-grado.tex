@@ -93,7 +93,7 @@
 
     \begin{remark}
         Ogni aperto di $\RR^k$ è una varietà di dimensione $k$. Le superfici sono invece varietà
-        di dimensione $2$, le cui parametrizzazioni locali sono date dalle parametrizzazioni
+        di dimensione $2$ immerse in $\RR^3$, le cui parametrizzazioni locali sono indotte dalle parametrizzazioni
         regolari.
     \end{remark}
 
@@ -941,7 +941,7 @@
     \subsection{Classificazione delle \texorpdfstring{$1$}{1}-varietà, lemma di non retrazione sul bordo e teorema del punto fisso di Brouwer}
 
     \begin{theorem}[Classificazione delle $1$-varietà con bordo] \label{thm:classificazione_dim_1_generale}
-        Una $1$-varietà con bordo è diffeomorfa a unioni di copie di $S^1$ e
+        Una $1$-varietà con bordo è diffeomorfa a unioni disgiunte di copie di $S^1$ e
         di intervalli di $\RR$.
     \end{theorem}
 
@@ -950,7 +950,7 @@
     \end{proof}
 
     \begin{corollary}[Classificazione delle $1$-varietà compatte con bordo] \label{cor:classificazione_dim_1}
-        Una $1$-varietà compatta con bordo è necessariamente un'unione
+        Una $1$-varietà compatta con bordo è necessariamente un'unione disgiunta e finita
         di copie di $S^1$ e di intervalli chiusi di $\RR$.
     \end{corollary}
 
@@ -1858,9 +1858,8 @@
                 0 & \vline & B
             \end{pmatrix}.
         \]
-        Osserviamo che $B$ è la matrice di cambio di base ottenuta togliendo ad entrambi le
-        basi il vettore $v_1(0)$. Per costruzione, queste tali basi hanno la stessa orientazione
-        dal momento che $\dif F_{\varphi(0)}$ mantiene invariate le orientazioni. Dunque
+        Osserviamo che $B$ è la matrice di cambio di base da $\{ \dif F_{\varphi(0)} (v_i(0)) \}_{i \geq 2}$ a $\{ \dif F_{\varphi(0)} (v_i'(0)) \}_{i \geq 2}$.
+        Per costruzione, queste tali basi hanno la stessa orientazione; dunque
         $\det(B) > 0$, da cui si deduce che $\det(M) > 0$, e quindi che $\basis$ e
         $\basis'$ hanno effettivamente la stessa orientazione. \smallskip
 
