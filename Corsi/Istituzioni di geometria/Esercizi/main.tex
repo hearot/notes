@@ -1,0 +1,158 @@
+\documentclass[letterpaper, 11pt]{extarticle}
+
+\input{preamble}
+\input{format}
+\input{commands}
+
+\usepackage{thmtools}
+\usepackage{tasks}
+\usepackage{setspace}
+
+\begin{document}
+
+\begin{LARGE}
+    \textsf{\textbf{Esercizi di Istituzioni di Geometria}}
+\end{LARGE}
+
+\vspace{0.2ex}
+
+\begin{Large}
+    \textsf{\textbf{Anno accademico 2025-26}}
+\end{Large}
+
+\vspace{1.5ex}
+
+\begin{large}
+    \textsf{\textbf{Studente:}} \text{Gabriel Antonio Videtta (matricola \texttt{654839})} --  \href{mailto:g.videtta1@studenti.unipi.it}{\texttt{g.videtta1@studenti.unipi.it}}
+\end{large}
+
+\vspace{-0.5ex}
+
+\tcblistof[\section*]{prob}{Indice dei problemi}
+
+\vspace{1ex}
+
+\linespread{1.3}
+
+\begin{problem}{Atlanti non compatibili su \texorpdfstring{$\RR$}{ℝ} -- esercizio 1.1}{problem-1}
+Costruisci due atlanti lisci non compatibili su $\RR$.
+Mostra che le due varietà lisce che ne risultano sono però diffeomorfe.
+
+
+(Nota: Per teoremi profondi, due strutture lisce sulla stessa varietà topologica
+di dimensione $n \leq 3$ sono sempre diffeomorfe. Questo fatto spesso non
+è vero in dimensione $n \geq 4$.)
+\end{problem}
+
+\begin{solution}
+    Siano $\varphi$, $\psi : \RR \to \RR$ le funzioni continue
+    tali per cui $\varphi(x) = x^3$ e $\psi(x) = \sqrt[3]{x}$.
+    Allora $\varphi$ è un omeomorfismo con inversa $\psi$, che però \underline{non} è diffeomorfismo liscio su (infatti $0$ \underline{non} è
+    regolare, dacché $\varphi'(0) = 3 \cdot 0^2 = 0 \notin \RR^*$). \smallskip
+
+    Considerando allora come atlanti $\mathcal{A} = \{ \id : \RR \to \RR \}$ e $\mathcal{A}' = \{ \varphi \}$, questi
+    atlanti \underline{non} sono compatibili dal momento che la funzione di transizione $\id \circ \varphi = \varphi$ \underline{non}
+    è liscia. \smallskip
+
+    Tuttavia, $(\RR, \mathcal{A'})$ è diffeomorfo a $(\RR, \mathcal{A})$ tramite la mappa $\phi$, che in carte è
+    letta come l'identità $\id$.
+
+    \[\begin{tikzcd}
+            {(\RR, \mathcal{A}')} && {(\RR, \mathcal{A})} \\
+            \\
+            \RR && \RR
+            \arrow["\varphi", from=1-1, to=1-3]
+            \arrow["\varphi"{description}, from=1-1, to=3-1]
+            \arrow["\id"{description}, from=1-3, to=3-3]
+            \arrow["\psi"{description}, shift left=3, curve={height=-12pt}, from=3-1, to=1-1]
+            \arrow["\id", from=3-1, to=3-3]
+        \end{tikzcd}\]
+\end{solution}
+
+\begin{problem}{$\varphi : U \subseteq M \to \RR^n$ carta se e solo se diffeomorfismo -- esercizio 1.2}{problem-2}
+Sia $U \subseteq M$ un aperto in una varietà liscia $M$. Mostra che un
+omeomorfismo $\varphi : U \to \RR^n$ è una carta compatibile con la struttura liscia di
+$M$ se e solo se è un diffeomorfismo.
+\end{problem}
+
+\begin{solution}
+    Dimostriamo separatamente le due implicazioni.
+
+    \begin{itemize}
+        \item[$\boxed{\implies}$] Leggendo $\varphi$ in ogni punto di $U$ tramite le carte $\varphi$ per $U$ e $\id$ per $\RR$, otteniamo proprio l'identità, e quindi $\varphi$
+              è banalmente un diffeomorfismo.
+
+              \[\begin{tikzcd}
+                      U && {\RR^n} \\
+                      \\
+                      {\RR^n} && {\RR^n}
+                      \arrow["\varphi", from=1-1, to=1-3]
+                      \arrow["\varphi"', from=1-1, to=3-1]
+                      \arrow["\id", from=1-3, to=3-3]
+                      \arrow["\id"', from=3-1, to=3-3]
+                  \end{tikzcd}\]
+
+        \item[$\boxed{\impliedby}$] Sia $\psi : V \to Z \subseteq \RR^n$ una carta dell'atlante massimale di $M$ con $U \cap V \neq \emptyset$ e mostriamo che $\varphi$
+              e $\psi$ sono compatibili mostrando che la funzione di transizione $[\psi \to \varphi]$ è un diffeomorfismo. \smallskip
+
+              Essendo diffeomorfismo, $\phi$ si legge tramite le carte $\psi$ per $U \cap V$ e $\id$ per $\varphi(U \cap V)$ proprio come la funzione
+              di transizione $[\psi \to \varphi]$, che quindi è diffeomorfismo in quanto uguale a
+              $\restr{\id}{\varphi(U \cap V)} \circ \restr{\varphi}{U \cap V} \circ \restr{\psi\inv}{\psi(U \cap V)}$, composizione di diffeomorfismi.
+
+              \[\begin{tikzcd}
+                      {U \cap V} && {\varphi(U \cap V)} \\
+                      \\
+                      {\psi(U \cap V)} && {\varphi(U \cap V)}
+                      \arrow["\varphi", from=1-1, to=1-3]
+                      \arrow["\psi"', from=1-1, to=3-1]
+                      \arrow["\id", from=1-3, to=3-3]
+                      \arrow["{[\psi \to \varphi]}"', from=3-1, to=3-3]
+                  \end{tikzcd}\]
+    \end{itemize}
+\end{solution}
+
+\begin{problem}{$S^2$ è diffeomorfo a $\CC \PP^1$-- esercizio 1.4}{problem-3}
+Mostra che la funzione costruita a lezione $S^2 \to \CC \PP^1$ è un diffeomorfismo.
+\end{problem}
+
+\begin{solution}
+    Ricordiamo che la funzione costruita era $\gamma : S^2 \to \CC \PP^1$ per cui, posto
+    $N = (0, 0, 1)$, vale:
+    \[
+        \gamma(P) = \begin{cases}
+            [1, 0]        & \se P = N,   \\
+            [\pi_N(P), 1] & \altrimenti,
+        \end{cases}
+    \]
+    dove $\pi_N : S^2 \setminus \{N\} \to \CC$ è la proiezione stereografica da $S^2 \setminus \{N\}$
+    a $\CC$ (identificato come $\RR^2$). \smallskip
+
+    Sia $U_i = \{ [z_0, z_1] \mid z_i \neq 0 \} \subseteq \CC \PP^1$ e $\varphi_i : U_i \to \CC \cong \RR^2$ la carta
+    affine con $\varphi_0([z_0, z_1]) = \nicefrac{z_1}{z_0}$ e $\varphi_1([z_0, z_1]) = \nicefrac{z_0}{z_1}$. Sia
+    $S = (0, 0, -1)$ il punto diametralmente opposto a $N$ su $S^2$. \smallskip
+
+    Se $P \in S^2 \setminus \{N\}$, possiamo leggere in carte $\gamma$ come l'identità $\id : \CC \to \CC$ (che è diffeomorfismo) come segue:
+    \[\begin{tikzcd}
+            {S^2 \setminus \{N\} \ni P} && {U_1 \subseteq \CC \PP^1} \\
+            \\
+            {\CC \cong \RR^2} && {\CC \cong \RR^2}
+            \arrow["\gamma", from=1-1, to=1-3]
+            \arrow["{\pi_N}"{description}, from=1-1, to=3-1]
+            \arrow["{\varphi_1}"{description}, from=1-3, to=3-3]
+            \arrow["\id", from=3-1, to=3-3]
+        \end{tikzcd}\]
+
+    Se invece $P = N$, possiamo leggere in carte $\gamma$ come il complesso coniugato $z \mapsto \overline{z}$ (che è diffeomorfismo) come segue:
+    \[\begin{tikzcd}
+            {S^2 \setminus \{S\} \ni N} && {U_0 \subseteq \CC \PP^1} \\
+            \\
+            {\CC \cong \RR^2} && {\CC \cong \RR^2}
+            \arrow["\gamma", from=1-1, to=1-3]
+            \arrow["{\pi_S}"{description}, from=1-1, to=3-1]
+            \arrow["{\varphi_0}"{description}, from=1-3, to=3-3]
+            \arrow["{\overline{z}}", from=3-1, to=3-3]
+        \end{tikzcd}\]
+    dove si è usato che $\pi_N \circ \pi_S\inv$ corrisponde a $\nicefrac{1}{\overline{z}}$.
+\end{solution}
+
+\end{document}

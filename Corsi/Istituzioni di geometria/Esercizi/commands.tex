@@ -1,0 +1,74 @@
+\newcommand{\eu}{\mathrm{e}}
+\newcommand{\im}{\mathrm{i}}
+
+\newcommand{\degree}{\,^{\circ}}
+
+\newcommand{\transpose}[1]{{#1}^{\mathsf{T}}}
+
+\newcommand{\Int}{\int\limits_{-\infty}^{\infty}}
+
+\newcommand{\rint}[2]{\int{#1}\dd{#2}}
+
+\newcommand{\Rint}[4]{\int\limits_{#1}^{#2}{#3}\dd{#4}}
+
+\newcommand{\HH}{\mathbb{H}}
+\DeclareMathOperator{\ot}{ot}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\TC}{TC}
+\newcommand{\ORD}{\text{ORD}}
+
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\newcommand{\Ham}{\hat{\mathcal{H}}}
+
+\renewcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\christoffelsecond}[4]{\dfrac{1}{2}g^{#3 #4}(\partial_{#1} g_{#2 #4} + \partial_{#2} g_{#1 #4} - \partial_{#4} g_{#1 #2})}
+
+\newcommand{\riemanncurvature}[5]{\partial_{#3} \Gamma_{#4 #2}^{#1} - \partial_{#4} \Gamma_{#3 #2}^{#1} + \Gamma_{#3 #5}^{#1} \Gamma_{#4 #2}^{#5} - \Gamma_{#4 #5}^{#1} \Gamma_{#3 #2}^{#5}}
+
+\newcommand{\covariantriemanncurvature}[5]{g_{#1 #5} R^{#5}{}_{#2 #3 #4}}
+
+\newcommand{\riccitensor}[5]{g_{#1 #5} R^{#5}{}_{#2 #3 #4}}
+
+\renewcommand{\emptyset}{\varnothing}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\imm}{imm}
+\newcommand{\rel}{\mathcal{R}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\bigtimes}{\varprod}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\id}{id}
+\newcommand{\PP}{\mathbb{P}}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\UU}{\mathbb{V}}
+\newcommand{\VV}{\mathbb{V}}
+
+\newcommand{\se}{\text{se }}
+\newcommand{\altrimenti}{\text{altrimenti}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\AC}{$\mathsf{AC}$}
+\newcommand{\PA}{$\mathsf{PA}$}
+\newcommand{\cc}{\mathfrak{c}}
+\DeclareMathOperator{\Fin}{Fin}
+\newcommand{\PPFin}{\PP^{\mathsf{fin}}}
+\DeclareMathOperator{\FSeq}{FSeq}
+\DeclareMathOperator{\bige}{Big}
+\DeclareMathOperator{\Sym}{\mathfrak{S}}
+
+\newcommand{\OO}{\mathfrak{O}}
+\newcommand{\basis}{\mathcal{B}}
+
+\newcommand{\restr}[2]{
+	#1\arrowvert_{#2}
+}

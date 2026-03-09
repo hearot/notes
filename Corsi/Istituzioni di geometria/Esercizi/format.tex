@@ -1,0 +1,46 @@
+\usepackage{titlesec}
+\usepackage[many]{tcolorbox}
+\usepackage{environ}
+
+\titlespacing*{\chapter}{0cm}{-2.0cm}{0.50cm}
+\titlespacing*{\section}{0cm}{0.50cm}{0.25cm}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+
+\newtcbtheorem[list inside={prob}]{problem}{Problema}%
+    {enhanced,
+    colback = black!5, %white,
+    colbacktitle = black!5,
+    coltitle = black,
+    boxrule = 0pt,
+    frame hidden,
+    borderline west = {0.5mm}{0.0mm}{black},
+    fonttitle = \bfseries\sffamily,
+    breakable,
+    before skip = 3ex,
+    after skip = 3ex,
+    boxsep = 2mm
+}{problem}
+
+\newenvironment{solution}
+  {\let\qed\relax\begin{proof}[Soluzione]}
+  {\end{proof}}
+
+\newenvironment{altsolution}
+  {\let\qed\relax\begin{proof}[Soluzione alternativa]}
+  {\end{proof}}
+
+\newif\ifhideproofs
+% \hideproofstrue
+
+\ifhideproofs
+  \usepackage{environ}
+  \NewEnviron{hide}{}
+  \let\solution\hide
+  \let\endsolution\endhide
+  \let\altsolution\hide
+  \let\endaltsolution\endhide
+\fi
+
+\tcbuselibrary{skins, breakable}
