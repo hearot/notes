@@ -39,405 +39,537 @@
 \title{Scheda riassuntiva di Teoria dei campi e di Galois}
 
 \begin{document}
-	
-	\parskip=0.7ex
-	
-	\raggedright
-	\footnotesize
-	
-	\begin{center}
-		\Large{\textbf{Scheda riassuntiva di Teoria dei campi e di Galois}} \\
-	\end{center}
-	\begin{multicols}{3}
-		\setlength{\premulticols}{1pt}
-		\setlength{\postmulticols}{1pt}
-		\setlength{\multicolsep}{1pt}
-		\setlength{\columnsep}{2pt}
-		
-		\section{Campi e omomorfismi}
-		
-		Si dice \textbf{campo} un anello commutativo non banale
-		$K$ che è
-		contemporaneamente anche un corpo. Si dice
-		\textbf{omomorfismo di campo} tra due campi $K$ ed $L$
-		un omomorfismo di anelli. Dal momento che un omomorfismo
-		$\varphi$ è tale per cui $\Ker \varphi$ è un ideale
-		di $K$ con $1 \notin \Ker \varphi$, deve per forza
-		valere $\Ker \varphi = \{0\}$, e quindi ogni omomorfismo
-		di campi è un'immersione. \medskip
-		
-		
-		\section{Caratteristica di un campo}
-		
-		Dato l'omomorfismo $\zeta : \ZZ \to K$ completamente
-		determinato dalla relazione $1 \xmapsto{\zeta} 1_K$,
-		si definisce \textbf{caratteristica di $K$}, detta
-		$\Char K$, il
-		generatore non negativo di $\Ker \zeta$. In particolare
-		$\Char K$ è $0$ o un numero primo. Se $\Char K$ è zero,
-		$\zeta$ è un'immersione, e quindi $K$ è un campo infinito,
-		e in particolare vi si immerge anche $\QQ$. \medskip
-		
-		
-		Tuttavia non è detto che $\Char K = p$ implichi che $K$ è
-		finito. In particolare $\ZZ_p(x)$, il campo delle funzioni
-		razionali a coefficienti in $\ZZ_p$, è un campo infinito
-		a caratteristica $p$.
-		
-		
-		\subsection{Proprietà dei campi a caratteristica $p$}
-		
-		Se $\Char K = p$, per il Primo
-		teorema di isomorfismo per anelli, $\ZZmod{p}$ si immerge
-		su $K$ tramite la proiezione di $\zeta$; pertanto
-		$K$ contiene una copia isomorfa di $\ZZmod{p}$. Per
-		campi di caratteristica $p$, vale il Teorema del
-		binomio ingenuo, ossia:
-		\[ (a + b)^p = a^p + b^p, \]
-		estendibile anche a più addendi.
-		In particolare, per un campo $K$ di caratteristica $p$,
-		la mappa $\Frob : K \to K$ tale per cui $a \xmapsto{\Frob} a^p$
-		è un omomorfismo di campi, ed in particolare è un'immersione
-		di $K$ in $K$, detta \textbf{endomorfismo di Frobenius}. Se $K$ è un campo finito, $\Frob$ è anche
-		un isomorfismo. Si osserva che per gli elementi della
-		copia $K \supseteq \FF_p \cong \ZZmod{p}$ vale
-		$\restr{\Frob}{\FF_p} = \Id_{\FF_p}$, e quindi
-		$\Frob$ è un elemento di $\Gal(K / \FF_p)$. 
-		
-		
-		\section{Campi finiti}
-		
-		
-		Per ogni $p$ primo e $n \in \NN^+$ esiste un campo finito
-		di ordine $p^n$. In particolare, tutti i campi finiti di
-		ordine $p^n$ sono isomorfi tra loro, possono essere visti
-		come spazi vettoriali di dimensione $n$ sull'immersione di $\ZZmod{p}$ che contengono,
-		e come campi di spezzamento di $x^{p^n}-x$
-		su tale immersione. Tali campi hanno obbligatoriamente
-		caratteristica $p$, dove $\abs{K} = p^n$. Esiste
-		sempre un isomorfismo tra due campi finiti che manda la copia isomorfa di $\ZZmod{p}$ di uno nell'altra. \medskip
-		
-		
-		Poiché i campi finiti di medesima cardinalità sono isomorfi,
-		si indicano con $\FF_p$ e $\FF_{p^n}$ le strutture
-		algebriche di tali campi. In particolare con
-		$\FF_{p^n} \subseteq \FF_{p^m}$ si intende che
-		esiste un'immersione di un campo con $p^n$ elementi in
-		uno con $p^m$ elementi, e analogamente si farà con
-		altre relazioni (come l'estensione di campi)
-		tenendo bene in mente di star
-		considerando tutti i campi di tale ordine. \medskip
-		
-		
-		Vale la relazione $\FF_{p^n} \subseteq \FF_{q^m}$
-		se e solo se $p=q$ e $n \mid m$. Conseguentemente,
-		l'estensione minimale per inclusione comune a
-		$\FF_{p^{n_1}}$, ..., $\FF_{p^{n_i}}$ è
-		$\FF_{p^m}$ dove $m := \mcm(n_1, \ldots, n_i)$. Pertanto
-		se $p \in \FF_{p^n}[x]$ si decompone in fattori irriducibili
-		di grado $n_1$, \ldots, $n_i$, il suo campo di spezzamento
-		è $\FF_{p^m}$. Inoltre, $x^{p^n}-x$ è in $\FF_p$ il
-		prodotto di tutti gli irriducibili di grado divisore
-		di $n$.
-		
-		\section{Proprietà dei polinomi di $K[x]$}
-		
-		Per il Teorema di Lagrange sui campi, ogni polinomio
-		di $K[x]$ ammette al più tante radici quante il suo grado.
-		Come conseguenza pratica di questo teorema, ogni sottogruppo
-		moltiplicativo finito di $K$ è ciclico. Pertanto
-		$\FF_{p^n}^* = \gen{\alpha}$ per $\alpha \in \FF_{p^n}$,
-		e quindi $\FF_{p^n} = \FF_p(\alpha)$, ossia
-		$\FF_{p^n}$ è sempre un'estensione semplice su $\FF_p$. Si dice
-		\textbf{campo di spezzamento} di una famiglia $\mathcal{F}$
-		di polinomi di $K[x]$ un sovracampo minimale per
-		inclusione di $K$ che fa sì che ogni polinomio di $\mathcal{F}$ si decomponga in fattori lineari. I campi
-		di spezzamento di $\mathcal{F}$ sono sempre
-		$K$-isomorfi tra loro. \medskip
-		
-		
-		Un polinomio irriducibile si dice separabile se ammette
-		radici distinte. Per il criterio della derivata,
-		$p \in K[x]$ ammette radici multiple se e solo se
-		$\MCD(p, p')$ non è invertibile, dove $p'$ è la derivata
-		formale di $p$. Se $p \in K[x]$ e $n := \deg p$, il campo di spezzamento $L$ di $p$ è tale per cui
-		$[L : K] \leq n!$. Se $p$ è irriducibile e separabile, vale anche che $n \mid [L : K] \mid n!$, come
-		conseguenza dell'azione del relativo gruppo di
-		Galois sulle radici. \medskip
-		
-		
-		Se $p$ è irriducibile in $K[x]$, $(p)$ è un ideale
-		massimale, e $K[x] / (p)$ è un campo che
-		ne contiene una radice, ossia $[x]$. In
-		particolare $K$ si immerge in $K[x] / (p)$,
-		e quindi tale campo può essere identificato come
-		un'estensione di $K$ che aggiunge una radice di $p$.
-		Se $K$ è finito, detta $\alpha$ la radice aggiunta
-		all'estensione, $L := K[x] / (p) \cong K(\alpha)$ contiene
-		tutte le radici di $p$ (ed è dunque il suo campo
-		di spezzamento). Infatti detto $[L : \FF_p] = n$,
-		$[x]$ annulla $x^{p^n}-x$ per il Teorema di Lagrange
-		sui gruppi, e quindi $p$ deve dividere $x^{p^n}-x$;
-		in tal modo $p$ deve spezzarsi in fattori lineari,
-		e quindi ogni radice deve già appartenere ad $L$.
-		In particolare, ogni estensione finita e semplice
-		di un campo finito è normale, e quindi di Galois. \medskip
-		
-		\section{Estensioni di campo}
-		
-		
-		Si dice che $L$ è un'estensione di $K$, e si indica
-		con $L / K$, se $L$ è un sovracampo di $K$,
-		ossia se $K \subseteq L$. Si indica con $[L : K] = \dim_K L$ la
-		dimensione di $L$ come $K$-spazio vettoriale. Si
-		dice che $L$ è un'estensione finita di $K$ se $[L : K]$
-		è finito, e infinita altrimenti. Un'\textbf{estensione finita}
-		di un campo finito è ancora un campo finito. Un'estensione
-		è finita se e solo se è finitamente generata da elementi algebrici. Una $K$-immersione è un omomorfismo di campi
-		iniettivo da un'estensione di $K$ in un'altra estensione di $K$ che
-		agisce come l'identità su $K$. Un $K$-isomorfismo è
-		una $K$-immersione che è isomorfismo. \medskip
-		
-		
-		\subsection{Composto di estensioni e teorema delle torri algebriche}
-		
-		
-		Date estensioni $L$ e $M$ su $K$, si definisce
-		$LM = L(M) = M(L)$ come il \textbf{composto} di $L$
-		ed $M$, ossia come la più piccola estensione di $K$ che
-		contiene sia $L$ che $M$. In particolare, $LM$
-		può essere visto come $L$-spazio vettoriale con
-		vettori in $M$, o analogamente come $M$-spazio con
-		vettori in $L$. \medskip
-		
-		
-		Per il Teorema delle torri algebriche, $L / K$ è
-		un'estensione finita se e solo se $L / F$ e
-		$F / K$ lo sono (ossia la finitezza vale strettamente
-		per torri). Inoltre, se $\basis_{L/F}$ e $\basis_{F/K}$
-		sono basi di $L/F$ e $F/K$, allora
-		$\basis_{L/F} \basis_{F/K}$ è una base di
-		$L / K$, dove i suoi elementi sono i prodotti tra
-		i vari elementi delle due basi. Infine
-		se $L / K$ è finita, allora
-		anche $LM / M$ è finita, e vale che $[LM : M] \leq [L : K]$ (infatti una base di $L / K$ può essere trasformata
-		in un insieme di generatori di $LM / M$), e quindi
-		la finitezza vale per \textit{shift}. Sempre per
-		il Teorema delle torri algebriche, se $L / K$ è
-		finito, allora vale che:
-		\[ [L : K] = [L : F] [F : K]. \]
-		Se $L / K$ e $M / K$ sono finite, anche $LM / K$ lo
-		è (infatti la finitezza vale sia per torri che per \textit{shift}). In particolare, vale che:
-		\[ \mcm([L : K], [M : K]) \mid [LM : K]. \]
-		Se $[L : K]$ ed $[M : K]$ sono coprimi tra loro,
-		allora vale proprio l'uguaglianza
-		$[LM : K] = [L : K] [M : K]$. Infatti, in tal caso,
-		si avrebbe $[L : K] [M : K] \leq [LM : K]$ e
-		$[LM : K] = [LM : M] [M : K] \leq [L : K] [M : K]$.
-		
-		
-		\subsection{Omomorfismo di valutazioni, elementi algebrici e trascendenti e polinomio minimo}
-		
-		
-		Dato $\alpha$, si definisce $K(\alpha)$ il più piccolo
-		sovracampo di $K$ che contiene $\alpha$. Si definisce l'\textbf{omomorfismo di
+
+\parskip=0.7ex
+
+\raggedright
+\footnotesize
+
+\begin{center}
+	\Large{\textbf{Scheda riassuntiva di Teoria dei campi e di Galois}} \\
+\end{center}
+\begin{multicols}{3}
+	\setlength{\premulticols}{1pt}
+	\setlength{\postmulticols}{1pt}
+	\setlength{\multicolsep}{1pt}
+	\setlength{\columnsep}{2pt}
+
+	\textit{La teoria si concentra sulle estensioni finite su campi perfetti,
+		benché si sia dato spazio anche a considerazioni su estensioni infinite
+		o non separabili.}
+
+	\section{Campi e omomorfismi}
+
+	Si dice \textbf{campo} un anello commutativo non banale
+	$K$ i cui elementi non nulli ammettono un inverso
+	moltiplicativo. Si dice
+	\textbf{omomorfismo di campo} tra due campi $K$ ed $L$
+	un omomorfismo che è anche omomorfismo di anelli. \smallskip
+
+	Dal momento che un omomorfismo
+	$\varphi$ è tale per cui $\Ker \varphi$ è un ideale
+	di $K$ con $1 \notin \Ker \varphi$, deve per forza
+	valere $\Ker \varphi = \{0\}$, e quindi ogni omomorfismo
+	di campi è sempre iniettivo.
+
+	\section{Caratteristica di un campo}
+
+	Esiste un unico omomorfismo $\ZZ \to K$ completamente
+	determinato dalla relazione $1 \mapsto 1_K$, e
+	si definisce \textbf{caratteristica di $K$}, detta
+	$\Char K$, il
+	generatore non negativo del nucleo di questa mappa. In particolare
+	$\Char K$ è $0$ o un numero primo. \smallskip
+
+	Se $\Char K$ è zero,
+	$\zeta$ è un'immersione, e quindi $K$ è un campo infinito,
+	e in particolare vi si immerge anche $\QQ$. \smallskip
+
+	Tuttavia non è detto che $\Char K = p$ implichi che $K$ è
+	finito. In particolare $\FF_p(x)$, il campo delle funzioni
+	razionali a coefficienti in $\FF_p$, è un campo infinito
+	a caratteristica $p$.
+
+	\subsection{Proprietà dei campi a caratteristica \texorpdfstring{$p$}{p}}
+
+	Se $\Char K = p$, per il Primo
+	teorema di isomorfismo per anelli, $\FF_p$ si immerge
+	su $K$ tramite il passaggio al quoziente di $\ZZ \to K$; pertanto
+	$K$ contiene una copia isomorfa di $\FF_p$. Per
+	campi di caratteristica $p$, vale il Teorema del
+	binomio ingenuo, ossia:
+	\[ (a + b)^p = a^p + b^p, \]
+	estendibile anche a più addendi. \smallskip
+
+	In particolare, per un campo $K$ di caratteristica $p$,
+	la mappa $\Frob : K \to K$ tale per cui $a \xmapsto{\Frob} a^p$
+	è un omomorfismo di campi, ed in particolare è un'immersione
+	di $K$ in $K$, detta \textbf{endomorfismo di Frobenius}. \smallskip
+
+	Se $K$ è un campo finito, $\Frob$ è anche
+	un isomorfismo (gli omomorfismi tra campi sono iniettivi!).
+	Si osserva che per gli elementi di $\FF_p \subseteq K$ vale
+	$\restr{\Frob}{\FF_p} = \Id_{\FF_p}$, e quindi
+	$\Frob$ è un elemento di $\Gal(K / \FF_p)$.
+
+	\section{Campi finiti}
+
+	Per ogni $p$ primo e $n \in \NN^+$ esiste un campo finito
+	di ordine $p^n$. Ogni tale campo può essere visto
+	come spazi vettoriale di dimensione $n$ sull'immersione di $\FF_p$ che contiene,
+	e come campo di spezzamento di $x^{p^n}-x$
+	su tale immersione. Tale campi ha obbligatoriamente
+	caratteristica $p$. \smallskip
+
+	Fissati $p$ ed $n$, esiste un unico campo finito di cardinalità
+	$p^n$: esiste sempre un isomorfismo tra due campi finiti che
+	fissa le copie di $\FF_p$. Indichiamo con $\FF_{p^n}$ la struttura
+	algebrica di un campo di cardinalità $p^n$. \smallskip
+
+	Vale la relazione $\FF_{p^n} \subseteq \FF_{q^m}$
+	se e solo se $p=q$ e $n \mid m$ (segue facilmente dal Teorema
+	delle torri algebriche). Conseguentemente,
+	l'estensione minimale per inclusione comune a
+	$\FF_{p^{n_1}}$, ..., $\FF_{p^{n_i}}$ è
+	$\FF_{p^m}$ dove $m := \mcm(n_1, \ldots, n_i)$. Pertanto
+	se $p \in \FF_{p^n}[x]$ si decompone in fattori irriducibili
+	di grado $n_1$, \ldots, $n_i$, il suo campo di spezzamento
+	è $\FF_{p^m}$. Da ciò segue anche che $x^{p^n}-x$ è in $\FF_p$ il
+	prodotto di tutti gli irriducibili di grado divisore
+	di $n$.
+
+	\section{Campi di spezzamento per polinomi su \texorpdfstring{$K$}{K}}
+
+	Per il Teorema di Lagrange sui campi, ogni polinomio
+	di $K[x]$ ammette al più tante radici quante il suo grado.
+	Come conseguenza pratica di questo teorema, ogni sottogruppo
+	moltiplicativo finito di $K$ è ciclico. Pertanto
+	$\FF_{p^n}^* = \gen{\alpha}$ per $\alpha \in \FF_{p^n}$,
+	e quindi $\FF_{p^n} = \FF_p(\alpha)$, ossia
+	$\FF_{p^n}$ è sempre un'estensione semplice su $\FF_p$. \smallskip
+
+	Si dice
+	\textbf{campo di spezzamento} di una famiglia $\mathcal{F}$
+	di polinomi di $K[x]$ un sovracampo minimale per
+	inclusione di $K$ che fa sì che ogni polinomio di $\mathcal{F}$
+	si decomponga in fattori lineari. I campi
+	di spezzamento di $\mathcal{F}$ sono sempre
+	$K$-isomorfi tra loro (ossia ammettono isomorfismi che fissano
+	il campo base $K$). \smallskip
+
+	Un polinomio irriducibile si dice separabile se ammette
+	radici distinte. Per il criterio della derivata,
+	$p \in K[x]$ ammette radici multiple se e solo se
+	$\MCD(p, p')$ non è invertibile, dove $p'$ è la derivata
+	formale di $p$. \smallskip
+
+	Se $p \in K[x]$ e $n := \deg p$, il campo di spezzamento $L$ di $p$ è tale per cui
+	$[L : K] \leq n!$ (infatti, presa una radice, la sua aggiunta al campo base
+	restituisce un'estensione di grado al più
+	$n$; dobbiamo poi considerare il polinomio rimanente di grado $n-1$ che aumenta l'estensione
+	di al più un fattore $n-1$; reiterando si ottiene la tesi). Se $p$ è irriducibile e separabile, vale anche che $n \mid [L : K] \mid n!$, come
+	conseguenza dell'azione del relativo gruppo di
+	Galois sulle radici. \smallskip
+
+	Se $p$ è irriducibile in $K[x]$, $(p)$ è un ideale
+	massimale, e $K[x] / (p)$ è un campo che
+	ne contiene una radice, ossia $\overline x$. In
+	particolare $K$ si immerge in $K[x] / (p)$,
+	e quindi tale campo può essere identificato come
+	un'estensione di $K$ che aggiunge una radice di $p$.
+	Se $K$ è finito, detta $\alpha$ la radice aggiunta
+	all'estensione, $L := K[x] / (p) \cong K(\alpha)$ contiene
+	tutte le radici di $p$ (ed è dunque il suo campo
+	di spezzamento). Infatti detto $[L : \FF_p] = n$,
+	$\overline x$ annulla $x^{p^n}-x$ per il Teorema di Lagrange
+	sui gruppi, e quindi $p$ deve dividere $x^{p^n}-x$;
+	in tal modo $p$ deve spezzarsi in fattori lineari,
+	e quindi ogni radice deve già appartenere ad $L$
+	(alternativamente, esiste un unico campo di cardinalità $p^n$ a
+	meno di isomorfismo, e quindi necessariamente le radici devono
+	già appartenere in $\FF_{p^n}$).
+	In particolare, ogni estensione finita e semplice
+	di un campo finito è normale, e quindi di Galois.
+
+	\section{Estensioni di campo}
+
+	Si dice che $L$ è un'estensione di $K$, e si indica
+	con $L / K$, se $L$ è un sovracampo di $K$,
+	ossia se $K \subseteq L$. Si indica con $[L : K] = \dim_K L$ la
+	dimensione di $L$ come $K$-spazio vettoriale. Si
+	dice che $L$ è un'estensione finita di $K$ se $[L : K]$
+	è finito, e infinita altrimenti. Un'\textbf{estensione finita}
+	di un campo finito è ancora un campo finito. Un'estensione
+	è finita se e solo se è finitamente generata da elementi algebrici. \smallskip
+
+	Una $K$-immersione è un omomorfismo di campi
+	da un'estensione di $K$ in un'altra estensione di $K$ che
+	agisce come l'identità su $K$. Un $K$-isomorfismo è
+	una $K$-immersione che è isomorfismo.
+
+	\subsection{Composto di estensioni e teorema delle torri algebriche}
+
+	Date estensioni $L$ e $M$ su $K$, si definisce
+	$LM = L(M) = M(L)$ come il \textbf{composto} di $L$
+	ed $M$, ossia come la più piccola estensione di $K$ che
+	contiene sia $L$ che $M$. In particolare, $LM$
+	può essere visto come $L$-spazio vettoriale con
+	vettori in $M$, o analogamente come $M$-spazio con
+	vettori in $L$. \smallskip
+
+	Per il Teorema delle torri algebriche, $L / K$ è
+	un'estensione finita se e solo se $L / F$ e
+	$F / K$ lo sono (ossia la finitezza vale strettamente
+	per torri). Inoltre, se $\basis_{L/F}$ e $\basis_{F/K}$
+	sono basi di $L/F$ e $F/K$, allora
+	$\basis_{L/F} \basis_{F/K}$ è una base di
+	$L / K$, dove i suoi elementi sono i prodotti tra
+	i vari elementi delle due basi. Infine
+	se $L / K$ è finita, allora
+	anche $LM / M$ è finita, e vale che $[LM : M] \leq [L : K]$ (infatti una base di $L / K$ può essere trasformata
+	in un insieme di generatori di $LM / M$), e quindi
+	la finitezza vale per \textit{shift}. Sempre per
+	il Teorema delle torri algebriche, se $L / K$ è
+	finito, allora vale che:
+	\[ [L : K] = [L : F] [F : K]. \]
+	Se $L / K$ e $M / K$ sono finite, anche $LM / K$ lo
+	è (infatti la finitezza vale sia per torri che per \textit{shift}). In particolare, vale che:
+	\[ \mcm([L : K], [M : K]) \mid [LM : K]. \]
+	Se $[L : K]$ ed $[M : K]$ sono coprimi tra loro,
+	allora vale proprio l'uguaglianza
+	$[LM : K] = [L : K] [M : K]$. Infatti, in tal caso,
+	si avrebbe $[L : K] [M : K] \leq [LM : K]$ e
+	$[LM : K] = [LM : M] [M : K] \leq [L : K] [M : K]$.
+
+	\subsection{Omomorfismo di valutazioni, elementi algebrici e trascendenti e polinomio minimo}
+
+	Dato $\alpha$, si definisce $K(\alpha)$ il più piccolo
+	sovracampo di $K$ che contiene $\alpha$. Si definisce l'\textbf{omomorfismo di
 		valutazione} $\varphi_{\alpha, K} : K[x] \to K[\alpha]$, detto
-		$\varphi_\alpha$ se $K$ è noto, l'omomorfismo completamente
-		determinato dalla relazione $p \xmapsto{\varphi_\alpha} p(\alpha)$. Si verifica che $\varphi_\alpha$ è
-		surgettivo. Se $\varphi_\alpha$ è iniettivo,
-		si dice che $\alpha$ è \textbf{trascendentale} su $K$ e
-		$K[x] \cong K[\alpha]$, da cui $[K[\alpha] : K] =
+	$\varphi_\alpha$ se $K$ è noto, l'omomorfismo completamente
+	determinato dalla relazione $p \xmapsto{\varphi_\alpha} p(\alpha)$. Si verifica che $\varphi_\alpha$ è
+	surgettivo. Se $\varphi_\alpha$ è iniettivo,
+	si dice che $\alpha$ è \textbf{trascendente} su $K$ e
+	$K[x] \cong K[\alpha]$, da cui $[K[\alpha] : K] =
 		[K[x] : K] = \infty$. Se invece $\varphi_\alpha$ non
-		è iniettivo, si dice che $\alpha$ è \textbf{algebrico}
-		su $K$. Si definisce $\mu_\alpha$, detto il \textbf{polinomio
+	è iniettivo, si dice che $\alpha$ è \textbf{algebrico}
+	su $K$. Si definisce $\mu_\alpha$, detto il \textbf{polinomio
 		minimo} di $\alpha$ su $K$, il generatore monico
-		di $\Ker \varphi_\alpha$. IDal momento che $K$ è
-		in particolare un dominio di integrità, $\mu_\alpha$ è sempre irriducibile. \medskip
-		
-		
-		Si definisce
-		$\deg_K \alpha := \deg \mu_\alpha$. Se $\alpha$ è
-		algebrico su $K$, $K[x] / (\mu_\alpha) \cong
+	di $\Ker \varphi_\alpha$. Dal momento che $K$ è
+	in particolare un dominio di integrità e che $K[x]$ è un PID,
+	$\mu_\alpha$ è sempre irriducibile. \smallskip
+
+	Si definisce
+	$\deg_K \alpha := \deg \mu_\alpha$. Se $\alpha$ è
+	algebrico su $K$, $K[x] / (\mu_\alpha) \cong
 		K[\alpha]$, e quindi $K[\alpha]$ è un campo. Dacché
-		$K[\alpha] \subseteq K(\alpha)$, vale allora
-		$K[\alpha] = K(\alpha)$. Inoltre, poiché $\dim_K K[x] / (\mu_\alpha) = \deg_K \alpha$, vale
-		anche che $[K(\alpha) : K] = \deg_K \alpha$.
-		Infine, si verifica che $\alpha$ è algebrico se e solo se
-		$[K(\alpha) : K]$ è finito. \medskip
+	$K[\alpha] \subseteq K(\alpha)$, vale allora
+	$K[\alpha] = K(\alpha)$. Inoltre, poiché $\dim_K K[x] / (\mu_\alpha) = \deg_K \alpha$, vale
+	anche che $[K(\alpha) : K] = \deg_K \alpha$.
+	Infine, si verifica che $\alpha$ è algebrico se e solo se
+	$[K(\alpha) : K]$ è finito. \smallskip
 
+	\subsection{Estensioni semplici, algebriche}
 
-		\subsection{Estensioni semplici, algebriche}
-
-		
-		Si dice che $L$ è un'\textbf{estensione semplice} di
-		$K$ se $\exists \alpha \in L$ tale per cui $L = K(\alpha)$.
-		In tal caso si dice che $\alpha$ è un \textbf{elemento primitivo} di $K$. Si dice che $L$ è un'\textbf{estensione
+	Si dice che $L$ è un'\textbf{estensione semplice} di
+	$K$ se $\exists \alpha \in L$ tale per cui $L = K(\alpha)$.
+	In tal caso si dice che $\alpha$ è un \textbf{elemento primitivo} di $K$. Si dice che $L$ è un'\textbf{estensione
 		algebrica} di $K$ se ogni suo elemento è algebrico su $K$.
-		Ogni estensione finita è algebrica. Non tutte le
-		estensioni algebriche sono finite (e.g.~$\overline{\QQ}$ su $\QQ$). \medskip
-		
-		
-		L'insieme degli elementi algebrici di un'estensione
-		di $K$ su $K$ è un estensione algebrica di $K$.
-		Pertanto se $\alpha$ e $\beta$ sono algebrici,
-		$\alpha \pm \beta$, $\alpha \beta$, $\alpha \beta\inv$
-		e $\alpha\inv \beta$ (a patto che o $\alpha \neq 0$ o
-		$\beta \neq 0$) sono algebrici.  
-		
-		
-		\subsection{Campi perfetti, estensioni separabili e coniugati}
-		
-		
-		Si dice che un'estensione algebrica $L$ è un'\textbf{estensione separabile} di
-		$K$ se per ogni elemento $\alpha \in L$,
-		$\mu_\alpha$ ammette radici distinte. Si dice
-		che $K$ è un \textbf{campo perfetto} se ogni
-		polinomio irriducibile ammette radici distinte,
-		ossia se ogni polinomio irriducibile è separabile.
-		In un campo perfetto, ogni estensione algebrica
-		è separabile. Si definiscono i coniugati di
-		$\alpha$ algebrico su $K$ come le radici
-		di $\mu_\alpha$. Se $K(\alpha)$ è separabile su $K$,
-		$\alpha$ ha esattamente $\deg_K \alpha$ coniugati,
-		altrimenti esistono al più $\deg_K \alpha$ coniugati. \medskip
-		
-		
-		Un campo è perfetto se e solo se ha caratteristica
-		$0$ o altrimenti se l'endomorfismo di
-		Frobenius è un automorfismo. Equivalentemente,
-		un campo è perfetto se le derivate dei polinomi
-		irriducibili sono sempre non nulle. Esempi di
-		campi perfetti sono allora tutti i campi di
-		caratteristica $0$ e tutti i campi finiti. 
-		
-		
-		\subsection{Campi algebricamente chiusi e chiusura algebrica di $K$}
-		
-		Un campo $K$ si dice \textbf{algebricamente chiuso} se
-		ogni $p \in K[x]$ ammette una radice in $K$. Equivalentemente $K$ è algebricamente chiuso se
-		ogni $p \in K[x]$ ammette tutte le sue radici in $K$.
-		Si dice \textbf{chiusura algebrica} di $K$
-		una sua estensione algebrica e algebricamente
-		chiusa. Le chiusure algebriche di $K$ sono
-		$K$-isomorfe tra loro, e quindi si identifica
-		con $\overline{K}$ la struttura algebrica della
-		chiusura algebrica di $K$. \medskip
-		
-		
-		Se $L$ è una sottoestensione di $K$ algebricamente
-		chiuso, allora $\overline{L}$ è il campo degli
-		elementi algebrici di $K$ su $L$. Infatti se
-		$p \in L[x]$, $p$ ammette una radice $\alpha$ in $K$, essendo
-		algebricamente chiuso. Allora $\alpha$ è un elemento
-		di $K$ algebrico su $L$, e quindi $\alpha \in \overline{L}$. Per il Teorema fondamentale dell'algebra,
-		$\overline{\RR} = \CC$.
-		
-		
-		\subsection{Estensioni normali e di Galois, $K$-immersioni di un'estensione finita di $K$}
-		
-		Sia $\alpha$ un elemento algebrico su $K$. Allora
-		$[K(\alpha) : K] = \deg_K \alpha$. Le
-		$K$-immersioni da $K(\alpha)$ in $\overline{K}$
-		sono esattamente tante quanti sono i coniugati di
-		$\alpha$ e sono tali da mappare $\alpha$ ad un suo coniugato. Se $K$ è perfetto, esistono esattamente
-		$\deg_K \alpha$ $K$-immersioni da $K(\alpha)$
-		in $\overline{K}$. \medskip
-		
-		
-		Se $L / K$ è un'estensione separabile finita su $K$, allora
-		esistono esattamente $[L : K]$ $K$-immersioni
-		da $L$ in $\overline{K}$. Per quanto detto prima,
-		tali immersioni mappano gli elementi $L$ nei
-		loro coniugati. \medskip
-		
-		
-		Se $L$ è un'estensione separabile finita, allora per
-		ogni $\varphi : K \to \overline{K}$ esistono
-		esattamente $[L : K]$ estensioni $\varphi_i : L \to \overline{K}$ di $\varphi$, ossia omomorfismi
-		tali per cui $\restr{\varphi_i}{K} = \varphi$. \medskip
-		
-		
-		Per quanto detto prima, per calcolare dunque tutti
-		i coniugati di $\alpha \in L$ su $K$, è sufficiente
-		calcolare i distinti valori delle $K$-immersioni
-		di $L$ su $\alpha$. Infatti, ogni $K$-immersione
-		da $K(\alpha)$ può estendersi a $K$-immersione di
-		$L$, e viceversa ogni $K$-immersione di $L$ può
-		restringersi a $K$-immersione di $K(\alpha)$. In
-		particolare, una volta computati tutti i coniugati, è semplice trovare il polinomio minimo di $\alpha$
-		su $K$ (è sufficiente considerare il prodotto dei vari $x-\alpha_i$ dove gli $\alpha_i$ sono tutti i coniugati di $\alpha$). \medskip
-		
-		
-		Si dice che un'estensione algebrica $L / K$ è un'\textbf{estensione normale}
-		se per ogni $K$-immersione $\varphi$ da $L$ in $\overline{K}$
-		vale che $\varphi(L) = L$. Equivalentemente
-		un'estensione è normale se è il campo di spezzamento
-		di una famiglia di polinomi (in particolare è il campo
-		di spezzamento di tutti i polinomi irriducibili che
-		hanno una radice in $L$). Ancora, un'estensione $L$
-		è normale se e solo se per ogni $\alpha \in L$,
-		i coniugati di $L$ appartengono ancora ad $L$.
-		Per un'estensione normale, per ogni $K$-immersione
-		$\varphi : L \to \overline{K}$ si può restringere
-		il codominio ad un campo isomorfo a $L \subseteq \overline{K}$, e quindi considerare $\varphi$ come
-		un automorfismo di $L$ che fissa $K$. \medskip
-		
-		
-		Un'estensione finita $L/K$ di grado $2$ è sempre normale,
-		ed in particolare può sempre scriversi come
-		$L = K(\sqrt{\Delta})$, dove $\Delta$ non è un quadrato
-		in $K$.
-		
-		
-		Si indica con $\Aut_K(L) = \Aut(L / K)$ l'insieme
-		degli automorfismi di $L$ che fissano $K$. Se
-		$L$ è normale e separabile, si dice
-		\textbf{estensione di Galois}, e si definisce
-		il suo \textbf{gruppo di Galois}
-		$\Gal(L / K)$ come $(\Aut_K L, \circ)$, ossia come
-		il gruppo $\Aut_K L$ con l'operazione di
-		composizione.
-		
-		
-		\subsection{Azione di $\Gal(L / K)$ sulle radici di $L$ campo di spezzamento}
-		
-		Sia $p \in K[x]$ irriducibile e separabile.
-		Allora si definisce
-		il \textbf{gruppo di Galois di $p$} come il gruppo
-		di Galois $\Gal(L / K)$, dove $L$ è un campo di
-		spezzamento di $p$ su $K$. Se $\deg p = n$ e
-		$a_1$, ..., $a_n$ sono le radici di $p$,
-		$\Gal(L / K)$ agisce su $\{a_1, \ldots, a_n\}$
-		mediante $\Xi$, in modo tale che:
-		
-		\begin{equation*}
+	Ogni estensione finita è algebrica. Non tutte le
+	estensioni algebriche sono finite (e.g.~$\overline{\QQ}$ su $\QQ$). \smallskip
+
+	Gli elementi algebrici di $K$ formano un'estensione algebrica di $K$.
+	Pertanto se $\alpha$ e $\beta$ sono algebrici,
+	$\alpha \pm \beta$, $\alpha \beta$, $\alpha \beta\inv$
+	e $\alpha\inv \beta$ (a patto che opportunamente $\alpha \neq 0$ o
+	$\beta \neq 0$) sono algebrici. \smallskip
+
+	Dati $a$, $b \in \QQ$, le estensioni $\QQ(\sqrt{a})$ e
+	$\QQ(\sqrt{b})$ sono uguali se e solo se $ab$ (o equivalentemente
+	$a/b$) è un quadrato in $\QQ$.
+
+	\subsection{Campi perfetti, estensioni separabili e coniugati}
+
+	Si dice che un'estensione algebrica $L$ è un'\textbf{estensione separabile} di
+	$K$ se per ogni elemento $\alpha \in L$,
+	$\mu_\alpha$ ammette radici distinte. Si dice
+	che $K$ è un \textbf{campo perfetto} se ogni
+	polinomio irriducibile ammette radici distinte,
+	ossia se ogni polinomio irriducibile è separabile.
+	In un campo perfetto, ogni estensione algebrica
+	è separabile. Si definiscono i \textbf{coniugati} di
+	$\alpha$ algebrico su $K$ come le radici
+	di $\mu_\alpha$. Se $K(\alpha)$ è separabile su $K$,
+	$\alpha$ ha esattamente $\deg_K \alpha$ coniugati,
+	altrimenti esistono al più $\deg_K \alpha$ coniugati. \smallskip
+
+	Un campo è perfetto se e solo se ha caratteristica
+	$0$ o altrimenti se l'endomorfismo di
+	Frobenius è un automorfismo. Equivalentemente,
+	un campo è perfetto se le derivate dei polinomi
+	irriducibili sono sempre non nulle. Esempi di
+	campi perfetti sono allora tutti i campi di
+	caratteristica $0$ e tutti i campi finiti.
+
+	\subsection{Campi algebricamente chiusi e chiusura algebrica di \texorpdfstring{$K$}{K}}
+
+	Un campo $K$ si dice \textbf{algebricamente chiuso} se
+	ogni $p \in K[x]$ ammette una radice in $K$. Equivalentemente $K$ è algebricamente chiuso se
+	ogni $p \in K[x]$ ammette tutte le sue radici in $K$.
+	Si dice \textbf{chiusura algebrica} di $K$
+	una sua estensione algebrica e algebricamente
+	chiusa. Le chiusure algebriche di $K$ sono
+	$K$-isomorfe tra loro, e quindi si identifica
+	con $\overline{K}$ la struttura algebrica della
+	chiusura algebrica di $K$. \smallskip
+
+	Se $L$ è una sottoestensione di $K$ algebricamente
+	chiuso, allora $\overline{L}$ è il campo degli
+	elementi algebrici di $K$ su $L$. Infatti se
+	$p \in L[x]$, $p$ ammette una radice $\alpha$ in $K$, essendo
+	algebricamente chiuso. Allora $\alpha$ è un elemento
+	di $K$ algebrico su $L$, e quindi $\alpha \in \overline{L}$. Per il Teorema fondamentale dell'algebra,
+	$\overline{\RR} = \CC$.
+
+	\subsection{Estensioni normali e di Galois, \texorpdfstring{$K$}{K}-immersioni di un'estensione finita di \texorpdfstring{$K$}{K}}
+
+	Sia $\alpha$ un elemento algebrico su $K$. Allora
+	$[K(\alpha) : K] = \deg_K \alpha$. Le
+	$K$-immersioni da $K(\alpha)$ in $\overline{K}$
+	sono esattamente tante quanti sono i coniugati di
+	$\alpha$ e sono tali da mappare $\alpha$ ad un suo coniugato. Infatti,
+	ogni $K$-immersione si ottiene come passaggio al quoziente
+	di una mappa $K[x] \to K$ che fissa $K$ il cui nucleo contiene
+	$\mu_\alpha$. Se $K$ è perfetto, esistono esattamente
+	$\deg_K \alpha$ $K$-immersioni da $K(\alpha)$
+	in $\overline{K}$. \smallskip
+
+	Generalizzando, se $L$ è un'estensione separabile finita, allora per
+	ogni $\varphi : K \to \overline{K}$ esistono
+	esattamente $[L : K]$ estensioni $\varphi_i : L \to \overline{K}$ di $\varphi$, ossia omomorfismi
+	tali per cui $\restr{\varphi_i}{K} = \varphi$. \smallskip
+
+	Se $L / K$ è un'estensione separabile finita su $K$, allora
+	esistono esattamente $[L : K]$ $K$-immersioni
+	da $L$ in $\overline{K}$. Per quanto detto prima,
+	tali immersioni mappano gli elementi $L$ nei
+	loro coniugati. \smallskip
+
+	Per calcolare dunque tutti
+	i coniugati di $\alpha \in L$ su $K$, è sufficiente
+	calcolare i distinti valori delle $K$-immersioni
+	di $L$ su $\alpha$. Infatti, ogni $K$-immersione
+	da $K(\alpha)$ può estendersi a $K$-immersione di
+	$L$, e viceversa ogni $K$-immersione di $L$ può
+	restringersi a $K$-immersione di $K(\alpha)$. In
+	particolare, una volta computati tutti i coniugati, è semplice trovare il polinomio minimo di $\alpha$
+	su $K$ (è sufficiente considerare il prodotto dei vari $x-\alpha_i$ dove gli $\alpha_i$ sono tutti i coniugati di $\alpha$). \smallskip
+
+	Si dice che un'estensione algebrica $L / K$ è un'\textbf{estensione normale}
+	se per ogni $K$-immersione $\varphi$ da $L$ in $\overline{K}$
+	vale che $\varphi(L) = L$. Equivalentemente
+	un'estensione è normale se è il campo di spezzamento
+	di una famiglia di polinomi (in particolare è il campo
+	di spezzamento di tutti i polinomi irriducibili che
+	hanno una radice in $L$). Ancora, un'estensione $L$
+	è normale se e solo se per ogni $\alpha \in L$,
+	i coniugati di $L$ appartengono ancora ad $L$. \smallskip
+
+	Per un'estensione normale ad ogni $K$-immersione
+	$\varphi : L \to \overline{K}$ si può restringere
+	il codominio ad $L \subseteq \overline{K}$, e quindi considerare $\varphi$ come
+	un automorfismo di $L$ che fissa $K$. \smallskip
+
+	Se $\Char K \neq 2$, un'estensione finita $L/K$ di grado $2$ è sempre normale,
+	ed in particolare può sempre scriversi come
+	$L = K(\sqrt{\Delta})$, dove $\Delta$ non è un quadrato
+	in $K$. \smallskip
+
+	Si indica con $\Aut_K(L) = \Aut(L / K)$ l'insieme
+	degli automorfismi di $L$ che fissano $K$. Se
+	$L$ è normale e separabile, si dice che $L$ è
+	un'\textbf{estensione di Galois}, e si definisce
+	il suo \textbf{gruppo di Galois}
+	$\Gal(L / K)$ come $(\Aut_K L, \circ)$, ossia come
+	il gruppo $\Aut_K L$ con l'operazione di
+	composizione. \smallskip
+
+	\subsection{Azione di \texorpdfstring{$\Gal(L / K)$}{Gal(L/K)} sulle radici di \texorpdfstring{$L$}{L} campo di spezzamento}
+
+	Sia $p \in K[x]$ irriducibile e separabile.
+	Allora si definisce
+	il \textbf{gruppo di Galois di $p$} come il gruppo
+	di Galois $\Gal(L / K)$, dove $L$ è campo di
+	spezzamento di $p$ su $K$. Se $\deg p = n$ e
+	$a_1$, ..., $a_n$ sono le radici di $p$,
+	$\Gal(L / K)$ agisce fedelmente e transitivamente
+	su $\{a_1, \ldots, a_n\}$ in modo naturale:
+
+	\begin{equation*}
 		\begin{split}
-			\Xi : \Gal(&L / K) \to S(\{a_1, \ldots, a_n\}) \cong S_n, \\
-			&\varphi_i \xmapsto{\Xi} [a_j \mapsto \varphi_i(a_j)].
+			\Gal( & L / K) \curvearrowright S(\{a_1, \ldots, a_n\}) \cong S_n, \\
+			      & \varphi_i \cdot a_j = \varphi_i(a_j).
 		\end{split}
-		\end{equation*}
+	\end{equation*}
 
-		In particolare tale azione è transitiva (dunque $\Orb(a_i) = \{a_j\}_{j=1-n}$)e fedele. Poiché $\Xi$ è fedele, vale che
-		$\Gal(L / K) \mono S_n$. Se $\Gal(L / K)$ è abeliano
-		(e in tal caso si dice che $L$ è un'\textbf{estensione abeliana}), $\Xi$ è anche transitiva, e quindi
-		$\Gal(L / K)$ si identifica come un sottogruppo
-		abeliano transitivo di $S_n$, e in quanto tale deve
-		valere che $\abs{\Gal(L / K)} = n$. \medskip
+	Poiché l'azione è fedele, vale che
+	$\Gal(L / K) \mono S_n$, e quindi $\abs{\Gal(L / K)} \mid n!$.
+	Se $\Gal(L / K)$ è abeliano
+	(e in tal caso si dice che $L$ è un'\textbf{estensione abeliana}), l'azione
+	è anche libera, e quindi per il Lemma orbita-stabilizzatore vale
+	$\abs{\Gal(L / K)} = n$. \smallskip
 
+	Inoltre, poiché $[K(a_1) : K] = n$, vale in particolare:
+	\[ n \mid \abs{\Gal(L / K)} = [L : K] \mid n!. \]
 
-		
-		Dal momento che $\Xi$ è un'immersione, vale
-		che $\abs{\Gal(L / K)} \mid n!$. Dacché allora
-		$[K(a_1) : K] = n$, vale in particolare che:
-		\[ n \mid \abs{\Gal(L / K)} = [L : K] \mid n!. \]
-		
-		
-		\section{Diagrammi di campo e proprietà}
-		
-		
-		Si definisce \textbf{diagramma di campo} un
-		diagramma della seguente forma:
-		\[\begin{tikzcd}
+	\section{Proprietà su torri, traslato, composto e intersezione}
+
+	Sia $\mathcal{P}$ una proprietà. Allora si
+	studia la proprietà $\mathcal{P}$ secondo
+	le seguenti quattro modalità:
+	\begin{itemize}
+		\item validità per \textbf{torri}: se $\mathcal{P}$ vale in due estensioni in $K \subseteq F \subseteq L$, allora vale anche per la terza estensione, ossia
+		      vale per tutta la torre di estensioni,
+		\item validità per \textbf{\textit{shift}} (o per il \textbf{traslato}): se $\mathcal{P}$ vale
+		      per $L / K$, allora vale anche per $LM / M$, ossia
+		      vale sul ramo parallelo a quello di $L / K$,
+		\item validità per il \textbf{composto}: se
+		      $\mathcal{P}$ vale per $L / K$ ed $M / K$, allora
+		      vale anche per $LM / K$.
+		\item validità per l'\textbf{intersezione}:
+		      se $\mathcal{P}$ vale per $L / K$ ed $M / K$,
+		      allora vale anche per $(L \cap M) / K$.
+	\end{itemize}
+	Si dice che $\mathcal{P}$ vale \textit{debolmente}
+	per torri, se $\mathcal{P}$ vale per $L / K$ solo
+	se vale per $L / F$ sottoestensione.
+	Si dice che $\mathcal{P}$ vale \textit{strettamente}
+	per torri, se è $\mathcal{P}$ vale per $L / K$ se
+	e solo se vale per $L / F$ e $F / K$. Se $\mathcal{P}$ vale strettamente per torri, allora $\mathcal{P}$
+	vale anche per l'intersezione. \smallskip
+
+	Si dice che
+	$\mathcal{P}$ vale \textit{inversamente} per
+	\textit{shift} se $\mathcal{P}$ vale su
+	$LF / F$ solo se vale su $L / K$. Si dice che
+	$\mathcal{P}$ vale \textit{inversamente} per
+	il composto se $\mathcal{P}$ vale su $LF / K$
+	implica che $\mathcal{P}$ valga anche su $L / K$
+	e $F / K$. Si dice che $\mathcal{P}$ vale \textit{completamente} per \textit{shift} o composto se $\mathcal{P}$
+	vale \textit{inversamente} e normalmente per \textit{shift} o
+	composto. Se $\mathcal{P}$ vale per torri e
+	per \textit{shift}, allora vale anche per il
+	composto. \smallskip
+
+	La seguente tabella raccoglie le proprietà
+	delle estensioni:
+	\begin{center}
+		\scriptsize
+		\vskip -0.1in
+		\begin{tabular}{l|l|l|l|l}
+			\hline
+			$\mathcal{P}$ & Torri   & \textit{Shift} & Composto & Intersez. \\ \hline
+			Est. fin.     & Strett. & Normal.        & Complet. & Sì        \\ \hline
+			Est. alg.     & Strett. & Complet.       & Complet. & Sì        \\ \hline
+			Est. sep.     & Strett. & Normal.        & Normal.  & Sì        \\ \hline
+			Est. nor.     & Debolm. & Normal.        & Normal.  & Sì        \\ \hline
+			Est. Gal.     & Debolm. & Normal.        & Normal.  & Sì
+		\end{tabular}
+	\end{center}
+
+	\section{Teorema dell'elemento primitivo}
+
+	Se $L / K$ è un'estensione finita e separabile,
+	$L$ è in particolare un'estensione semplice di
+	$K$, per il \textbf{Teorema dell'elemento primitivo}.
+	In campi finiti, un tale elemento primitivo è
+	un generatore di $L^*$. In campi infiniti, per
+	$L = K(a, b)$,
+	si può invece considerare il seguente polinomio:
+	\[ p(x) = \prod_{i < j} (\varphi_i(a) + x \varphi_i(b) - \varphi_j(b) - x \varphi_j(b)), \]
+	dove le varie $\varphi_i$ sono le $K$-immersioni di
+	$L$ su $\overline{K}$.
+	Si verifica che $p(x)$ è non nullo, e pertanto
+	ha supporto non vuoto. Pertanto esiste un $t \in K$ tale
+	per cui $p(t) \neq 0$, da cui si ricava che
+	$L = K(a + bt)$ (perché ha il numero giusto di coniugati per
+	generare tutto $L$!). Reiterando questo algoritmo su
+	tutti i generatori dell'estensione, si ottiene
+	un elemento primitivo desiderato.
+
+	\section{Corrispondenza di Galois}
+
+	\subsection{Teorema di corrispondenza di Galois}
+
+	Se $L / K$ è di Galois, detto $H \leq \Gal(L / K)$,
+	si definisce $L^H$ come la sottoestensione di $L$ composta
+	dagli elementi di $L$
+	fissati da tutti gli elementi di $H$.
+	In particolare vale che $L^H = K \iff H = \Gal(L / K)$.
+	Conseguentemente, vale il seguente teorema:
+
+	\begin{theorem}[di corrispondenza di Galois]
+		Sia $\mathcal{E}$ l'insieme delle sottoestensioni
+		di $L / K$ estensione di Galois. Sia
+		$\mathcal{G}$ l'insieme dei sottogruppi di
+		$\Gal(L / K)$. Allora $\mathcal{E}$ è
+		in bigezione con $\mathcal{G}$ attraverso
+		la mappa $\alpha : \mathcal{E} \to \mathcal{G}$
+		tale per cui:
+		\[ F \xmapsto{\alpha} \Gal(L / F) \leq
+			\Gal(L / K), \]
+		la cui inversa $\beta : \mathcal{G} \to \mathcal{E}$
+		è tale per cui:
+		\[ H \xmapsto{\beta} L^H \subseteq L. \]
+		Questa corrispondenza manda sottoestensioni di grado $n$ su $K$
+		in sottogruppi di indice $n$ e viceversa (infatti $[F : K] = [L : K] / [L : F] = \abs{\Gal(L / K)} / \abs{\Gal(L : F)} =
+			[\Gal(L / K) : \Gal(L / F)]$). \smallskip
+
+		Inoltre, una sottoestensione $F / K$ di
+		$L / K$ è normale su $K$ se e solo se
+		il corrispondente sottogruppo di $\Gal(L / K)$
+		è normale. Infine, se $F / K$ è normale,
+		$F$ è in particolare di Galois e vale:
+		\[ \Gal(F / K) \cong \faktor{\Gal(L / K)}{\Gal(L / F)}. \]
+
+		Infine valgono le seguente proprietà:
+		\begin{itemize}
+			\item $L^H \subseteq L^Q \iff H \geq Q$ (la corrispondenza inverte le inclusioni),
+			\item $L^H L^Q = L^H(L^Q) = L^{H \cap Q}$,
+			\item $L^{\gen{H, Q}} = L^H \cap L^Q$,
+		\end{itemize}
+	\end{theorem}
+
+	In particolare, un diagramma di campi -- a patto
+	che il suo estremo superiore sia di Galois -- può
+	essere collegato ad un diagramma di gruppi,
+	``invertendo'' le inclusioni. Se
+	$G = \Gal(L / K)$ e $H \subseteq G$, allora il
+	diagramma:
+	\[\begin{tikzcd}
+			L \\
+			{L^H} \\
+			K
+			\arrow["G", bend left, no head, from=3-1, to=1-1]
+			\arrow["{G/H}"', no head, from=3-1, to=2-1]
+			\arrow["H"', no head, from=2-1, to=1-1]
+		\end{tikzcd}\]
+	si relaziona tramite corrispondenza al
+	diagramma:
+	\[\begin{tikzcd}[row sep=small]
+			{\{e\}} \\
+			\\
+			H \\
+			\\
+			G
+			\arrow[no head, from=1-1, to=3-1]
+			\arrow[no head, from=3-1, to=5-1]
+		\end{tikzcd}\]
+
+	\subsection{Relazioni tra gruppi di Galois in un diagramma}
+
+	Consideriamo il seguente diagramma di campi:
+	\[\begin{tikzcd}
 			& LM \\
 			L & {} & M \\
 			& {L \cap M} \\
@@ -448,228 +580,98 @@
 			\arrow[no head, from=3-2, to=2-3]
 			\arrow[no head, from=2-3, to=1-2]
 		\end{tikzcd}\]
-		In particolare il precedente diagramma rappresenta
-		lo studio dell'estensione di $LM$ su $K$, e
-		rappresenta $L$, $M$ e $L \cap M$ come sottoestensioni
-		di $LM$. Un estremo superiore di una freccia è sempre,
-		per definizione, un'estensione dell'estremo inferiore
-		della stessa freccia. \medskip
-		
-		
-		Sia $\mathcal{P}$ una proprietà. Allora si
-		studia la proprietà $\mathcal{P}$ secondo
-		le seguenti tre modalità:
-		\begin{itemize}
-			\item validità per \textbf{torri}: se $\mathcal{P}$ vale in due estensioni in $K \subseteq F \subseteq L$, allora vale anche per la terza estensione, ossia
-			vale per tutta la torre di estensioni,
-			\item validità per \textbf{\textit{shift}} (o per il \textbf{traslato}): se $\mathcal{P}$ vale
-			per $F / K$, allora vale anche per $LF / F$, ossia
-			vale sul ramo parallelo a quello di $F / K$,
-			\item validità per il \textbf{composto}: se
-			$\mathcal{P}$ vale per $L / K$ ed $M / K$, allora
-			vale anche per $LM / K$.
-			\item validità per l'\textbf{intersezione}:
-			se $\mathcal{P}$ vale per $L / K$ ed $M / K$,
-			allora vale anche per $L \cap M / K$.
-		\end{itemize}
-		Si dice che $\mathcal{P}$ vale \textit{debolmente}
-		per torri, se $\mathcal{P}$ vale per $L / K$ solo
-		se vale per $L / F$ sottoestensione.
-		Si dice che $\mathcal{P}$ vale \textit{strettamente}
-		per torri, se è $\mathcal{P}$ vale per $L / K$ se
-		e solo se vale per $L / F$ e $F / K$. Se $\mathcal{P}$ vale strettamente per torri, allora $\mathcal{P}$
-		vale anche per l'intersezione. \medskip
-		
-		
-		Si dice che
-		$\mathcal{P}$ vale \textit{inversamente} per
-		\textit{shift} se $\mathcal{P}$ vale su
-		$LF / F$ solo se vale su $L / K$. Si dice che
-		$\mathcal{P}$ vale \textit{inversamente} per
-		il composto se $\mathcal{P}$ vale su $LF / K$
-		implica che $\mathcal{P}$ valga anche su $L / K$
-		e $F / K$. Si dice che $\mathcal{P}$ vale \textit{completamente} per \textit{shift} o composto se $\mathcal{P}$
-		vale \textit{inversamente} e normalmente per \textit{shift} o
-		composto. Se $\mathcal{P}$ vale per torri e
-		per \textit{shift}, allora vale anche per il
-		composto.
-		
-		La seguente tabella raccoglie le proprietà
-		delle estensioni sui diagrammi di campo:
-		\begin{center}
-			\scriptsize
-			\vskip -0.1in
-			\begin{tabular}{l|l|l|l|l}
-				\hline
-				$\mathcal{P}$ & Torri        & \textit{Shift} & Composto      & Intersez. \\ \hline
-				Est. fin.            & Strett. & Normal.                     & Complet. & Sì           \\ \hline
-				Est. alg.         & Strett. & Complet.                   & Complet. & Sì           \\ \hline
-				Est. sep.        & Strett. & Normal.                     & Normal.   & Sì           \\ \hline
-				Est. nor.           & Debolm.   & Normal.                     & Normal.   & Sì           \\ \hline
-				Est. Gal.        & Debolm.   & Normal.                     & Normal.   & Sì          
-			\end{tabular}
-		\end{center}
 
+	Allora $\Gal(LM/M)$ è sempre isomorfo a $\Gal(L/(L \cap M))$ tramite:
+	\[
+		\varphi \mapsto \restr{\varphi}{L}.
+	\]
+	Per la validità dell'isomorfismo, è sufficiente che $L$ sia di Galois, ma non
+	è necessario che lo sia anche $M$ (benché debba essere finita). \smallskip
 
-		\section{Teorema dell'elemento primitivo}
-		
-		Se $L / K$ è un'estensione finita e separabile,
-		$L$ è in particolare un'estensione semplice di
-		$K$, per il \textbf{Teorema dell'elemento primitivo}.
-		In campi finiti, un tale elemento primitivo è
-		un generatore di $L^*$. In campi infiniti, per
-		$L = K(a, b)$,
-		si può invece considerare il seguente polinomio:
-		\[ p(x) = \prod_{i < j} (\varphi_i(a) + x \varphi_i(b) - \varphi_j(b) - x \varphi_j(b)), \]
-		dove le varie $\varphi_i$ sono le $K$-immersioni di
-		$L$ su $\overline{K}$.
-		Si verifica che $p(x)$ è non nullo, e pertanto
-		ha supporto non vuoto. Pertanto esiste un $t \in K$ tale
-		per cui $p(t) \neq 0$, da cui si ricava che
-		$L = K(a + bt)$. Reiterando questo algoritmo su
-		tutti i generatori dell'estensione, si ottiene
-		un elemento primitivo desiderato.
-		
-		\section{Teorema di corrispondenza di Galois}
-		
-		
-		Se $L / K$ è di Galois, detto $H \leq \Gal(L / K)$,
-		si definisce $L^H$ come la sottoestensione di $L$
-		fissata da tutte le $K$-immersioni di $H$.
-		In particolare vale che $L^H = K \iff H = \Gal(L / K)$.
-		Conseguentemente, vale il \textbf{Teorema di corrispondenza di Galois}, di seguito descritto:
-		
-		\begin{theorem}
-			Sia $\mathcal{E}$ l'insieme delle sottoestensioni
-			di $L / K$ estensione di Galois. Sia
-			$\mathcal{G}$ l'insieme dei sottogruppi di
-			$\Gal(L / K)$. Allora $\mathcal{E}$ è
-			in bigezione con $\mathcal{G}$ attraverso
-			la mappa $\alpha : \mathcal{E} \to \mathcal{G}$
-			tale per cui:
-			\[ F \xmapsto{\alpha} \Gal(L / F) \leq
-			\Gal(L / K), \]
-			la cui inversa $\beta : \mathcal{G} \to \mathcal{E}$
-			è tale per cui:
-			\[ H \xmapsto{\beta} L^H \subseteq L. \]
-			Inoltre, una sottoestensione $F / K$ di
-			$L / K$ è normale su $K$ se e solo se
-			il corrispondente sottogruppo di $\Gal(L / K)$
-			è normale. Infine, se $F / K$ è normale,
-			$F$ è in particolare di Galois e vale che:
-			\[ \Gal(F / K) \cong \faktor{\Gal(L / K)}{\Gal(L / F)}. \]
-		\end{theorem}
-		
-		Pertanto, a partire dal Teorema di corrispondenza di Galois, valgono le seguenti proprietà:
+	Pertanto, se $L \cap M = K$, vale $\Gal(LM/M) \cong \Gal(L/K)$, e quindi
+	in tal caso:
+	\[
+		[LM : K] = [L : K] [M : K].
+	\]
 
-		\begin{itemize}
-			\item il numero di sottogruppi di $\Gal(L / K)$ di un certo ordine $n$ è uguale al numero di sottoestensioni di $L$ tali per cui $L$ abbia
-			grado $n$ su di esse (infatti $[L : F] = \abs{\Gal(L / F)}$),
-			\item il numero di sottogruppi di $\Gal(L / K)$ di
-			un certo indice $n$ è uguale al numero di
-			sottoestensioni di $L$ che hanno grado $n$ su
-			$K$ (infatti $[F : K] = [L : K] / [L : F] = \abs{\Gal(L / K)}) / \abs{\Gal(L : F)} =
-			[\Gal(L / K) : \Gal(L / F)]$),
-			\item $L^H \subset L^Q \iff Q < H$,
-			\item $L^H L^Q = L^H(L^Q) = L^{H \cap Q}$,
-			\item $L^{\gen{H, Q}} = L^H \cap L^Q$,
-		\end{itemize}
-	
-		In particolare, un diagramma di campi -- a patto
-		che il suo estremo superiore sia di Galois -- può
-		essere collegato ad un diagramma di gruppi,
-		``invertendo'' le inclusioni. Se
-		$G = \Gal(L / K)$ e $H \subseteq G$, allora il
-		diagramma:
-		    \[\begin{tikzcd}
-				L \\
-				{L^H} \\
-				K
-				\arrow["G", bend left, no head, from=3-1, to=1-1]
-				\arrow["{G/H}"', no head, from=3-1, to=2-1]
-				\arrow["H"', no head, from=2-1, to=1-1]
-			\end{tikzcd}\]
-		si relaziona tramite corrispondenza al
-		diagramma:
-		\[\begin{tikzcd}[row sep=small]
-			{\{e\}} \\
-			\\
-			H \\
-			\\
-			G
-			\arrow[no head, from=1-1, to=3-1]
-			\arrow[no head, from=3-1, to=5-1]
-		\end{tikzcd}\]
-		
-		\section{Gruppi di Galois noti}
+	Sussiste sempre un'immersione:
+	\[
+		\Gal(LM/K) \hookrightarrow \Gal(L/K) \times \Gal(M/K),
+	\]
+	che manda $\varphi$ in $(\restr{\varphi}{L}, \restr{\varphi}{M})$. Tale
+	immersione è un isomorfismo se e solo se $L \cap M = K$, per il precedente
+	risultato.
 
-		\subsection{Campi finiti}
-		
-		Il campo finito $\FF_{p^n}$ è sempre normale
-		su $\FF_p$, dal momento che può essere costruito
-		come campo di spezzamento di $x^{p^n} - x$ su
-		$\FF_p$ stesso. Equivalentemente, poiché
-		un omomorfismo di campi è sempre iniettivo (e dunque
-		conserva sempre la cardinalità),
-		una $\FF_p$-immersione deve mandare $\FF_{p^n}$
-		in un campo della stessa cardinalità, e quindi
-		necessariamente un campo isomorfo a $\FF_{p^n}$. \medskip
-		
-		
-		Per un campo finito, $\Frob$ è un automorfismo che
-		fissa $\FF_p$. Allora $\Frob \in \Gal(\FF_{p^n} / \FF_p)$. Inoltre $\ord \Frob = n = \abs{\Gal(\FF_{p^n} / \FF_p}$ (altrimenti $\FF_{p^n}$ non sarebbe campo di
-		spezzamento di $x^{p^n}-x$), e quindi vale che:
-		\[ \Gal(\FF_{p^n} / \FF_p) = \gen{\Frob} \cong \ZZmod{n}. \]
-			
-		
-		Pertanto se $\alpha \in \FF_{p^n} \setminus \FF_p$,
-		tutti i suoi coniugati si ottengono reiterando
-		al più $p^n$ volte $\Frob$ su $\alpha$.
-		
-		\subsection{Polinomi biquadratici}
-		
-		Sia $p(x) = x^4 + ax^2 + b$ irriducibile su $\QQ$.
-		Allora, se $L$ è un suo campo di spezzamento e $\Delta = a^2 - 4b$ è l'usuale discriminante di $p$ visto come polinomio in $x^2$, vale che:
-		
-		\[ \Gal(L / \QQ) \cong \begin{cases}
-			\ZZmod{4} & \se b \text{ è quadrato in $\QQ$}, \\
+	\section{Gruppi di Galois noti}
+
+	\subsection{Campi finiti}
+
+	Il campo finito $\FF_{p^n}$ è sempre normale
+	su $\FF_p$, dal momento che può essere costruito
+	come campo di spezzamento di $x^{p^n} - x$ su
+	$\FF_p$ stesso. Equivalentemente, poiché
+	un omomorfismo di campi è sempre iniettivo (e dunque
+	conserva sempre la cardinalità),
+	una $\FF_p$-immersione deve mandare $\FF_{p^n}$
+	in un campo della stessa cardinalità, e quindi
+	necessariamente un campo isomorfo a $\FF_{p^n}$. \smallskip
+
+	Per un campo finito, $\Frob$ è un automorfismo che
+	fissa $\FF_p$. Allora $\Frob \in \Gal(\FF_{p^n} / \FF_p)$.
+	Inoltre $\ord \Frob = n = \abs{\Gal(\FF_{p^n} / \FF_p)}$ (altrimenti $\FF_{p^n}$ non sarebbe campo di
+	spezzamento di $x^{p^n}-x$), e quindi vale che:
+	\[ \Gal(\FF_{p^n} / \FF_p) = \gen{\Frob} \cong \ZZmod{n}. \]
+
+	Pertanto se $\alpha \in \FF_{p^n} \setminus \FF_p$,
+	tutti i suoi coniugati si ottengono reiterando
+	al più $p^n$ volte $\Frob$ su $\alpha$. \smallskip
+
+	Se il campo base non è $\FF_p$, si può utilizzare la corrispondenza
+	di Galois per determinare comunque che:
+	\[
+		\Gal(\FF_{p^n} / \FF_{p^m}) \cong \faktor{\ZZ / n \ZZ}{\ZZ / m \ZZ}.
+	\]
+
+	\subsection{Polinomi biquadratici}
+
+	Sia $p(x) = x^4 + ax^2 + b$ irriducibile su $\QQ$.
+	Allora, se $L$ è un suo campo di spezzamento e $\Delta = a^2 - 4b$ è l'usuale discriminante di $p$ visto come polinomio in $x^2$, vale che:
+
+	\[ \Gal(L / \QQ) \cong \begin{cases}
+			\ZZmod{4}                  & \se b \text{ è quadrato in $\QQ$},        \\
 			\ZZmod{2} \times \ZZmod{2} & \se b \Delta \text{ è quadrato in $\QQ$}, \\
-			D_4 & \altrimenti.
+			D_4                        & \altrimenti.
 		\end{cases} \]
-		
-		
-		\subsection{Radici di primi in $\QQ$}
-		
-		Siano $p_1$, ..., $p_n$ numeri primi distinti.
-		Allora
-		vale che:
-		\[ \Gal(\QQ(\sqrt{p_1}, \ldots, \sqrt{p_n})/\QQ) \cong (\ZZmod{2})^n. \]
-		
-		\subsection{I polinomi ciclotomici $\Phi_n(x)$}
-		
-		Sia $\Phi_n(x)$ l'$n$-esimo polinomio ciclotomico, così definito:
-		\[ \Phi_n(x) = \prod_{\substack{1 \leq d \leq n \\ \MCD(d, n) = 1}} (x - \zeta_n^d), \]
-		dove $\zeta_n$ è una radice primitiva $n$-esima dell'unità. \medskip
-		
-		
-		Tale polinomio è sempre a coefficienti interi ed è inoltre primitivo
-		su $\ZZ[x]$. Vale inoltre che:
-		\[ x^n - 1 = \prod_{m \mid n} \Phi_m(x). \]
-		Il campo di spezzamento di $\Phi_n(x)$ su $\QQ$ è
-		$\QQ(\zeta_n)$, che è un'estensione normale, separabile e finita,
-		e pertanto di Galois. \medskip
-		
-		
-		Inoltre vale che:
-		\[ \Gal(\QQ(\zeta_n)/\QQ) \cong (\ZZmod{n})^\times, \]
-		e dunque $\Phi_n(x)$ è sempre irriducibile su $\QQ$.
-		
-		\vfill
-		\hrule
-		~\\
-		Ad opera di Gabriel Antonio Videtta, \url{https://poisson.phc.dm.unipi.it/~videtta/}.
-		~\\Reperibile su
-		\url{https://notes.hearot.it}, nella sezione \textit{Secondo anno $\to$ Algebra 1 $\to$ 3. Teoria delle estensioni di campo e di Galois $\to$ Scheda riassuntiva di Teoria dei campi e di Galois}.
-	\end{multicols}
-	
+
+	\subsection{Radici di primi in \texorpdfstring{$\QQ$}{ℚ}}
+
+	Siano $p_1$, ..., $p_n$ numeri primi distinti.
+	Allora vale che:
+	\[ \Gal(\QQ(\sqrt{p_1}, \ldots, \sqrt{p_n})/\QQ) \cong (\ZZmod{2})^n. \]
+
+	\subsection{I polinomi ciclotomici \texorpdfstring{$\Phi_n(x)$}{Φₙ(x)}}
+
+	Sia $\Phi_n(x)$ l'$n$-esimo polinomio ciclotomico, così definito:
+	\[ \Phi_n(x) = \prod_{\substack{1 \leq d \leq n \\ \MCD(d, n) = 1}} (x - \zeta_n^d), \]
+	dove $\zeta_n$ è una radice primitiva $n$-esima dell'unità. \smallskip
+
+	Tale polinomio è sempre a coefficienti interi ed è inoltre primitivo
+	su $\ZZ[x]$. Vale inoltre che:
+	\[ x^n - 1 = \prod_{m \mid n} \Phi_m(x). \]
+	Il campo di spezzamento di $\Phi_n(x)$ su $\QQ$ è
+	$\QQ(\zeta_n)$, che è un'estensione normale, separabile e finita,
+	e pertanto di Galois. \smallskip
+
+	Inoltre vale che:
+	\[ \Gal(\QQ(\zeta_n)/\QQ) \cong (\ZZmod{n})^\times, \]
+	e dunque $\Phi_n(x)$ è sempre irriducibile su $\QQ$. \smallskip
+
+	\vfill
+	\hrule
+	~\\
+	Ad opera di Gabriel Antonio Videtta, \url{https://poisson.phc.dm.unipi.it/~videtta/}.
+	~\\Reperibile su
+	\url{https://github.com/hearot/notes}, nella sezione \textit{Corsi $\to$ Algebra 1 $\to$ 3. Teoria delle estensioni di campo e di Galois $\to$ Scheda riassuntiva di Teoria dei campi e di Galois}.
+\end{multicols}
+
 \end{document}
