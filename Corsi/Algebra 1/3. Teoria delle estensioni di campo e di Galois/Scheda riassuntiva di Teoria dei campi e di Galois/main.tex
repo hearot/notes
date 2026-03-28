@@ -158,7 +158,7 @@
 	il campo base $K$). \smallskip
 
 	Un polinomio irriducibile si dice separabile se ammette
-	radici distinte. Per il criterio della derivata,
+	radici distinte. Per il Criterio della derivata,
 	$p \in K[x]$ ammette radici multiple se e solo se
 	$\MCD(p, p')$ non è invertibile, dove $p'$ è la derivata
 	formale di $p$. \smallskip
@@ -413,7 +413,8 @@
 	\end{equation*}
 
 	Poiché l'azione è fedele, vale che
-	$\Gal(L / K) \mono S_n$, e quindi $\abs{\Gal(L / K)} \mid n!$.
+	$\Gal(L / K) \mono S_n$, e quindi $\abs{\Gal(L / K)} \mid n!$, perché
+	$n!$ è la cardinalità di $S_n$.
 	Se $\Gal(L / K)$ è abeliano
 	(e in tal caso si dice che $L$ è un'\textbf{estensione abeliana}), l'azione
 	è anche libera, e quindi per il Lemma orbita-stabilizzatore vale
@@ -462,7 +463,8 @@
 	composto. \smallskip
 
 	La seguente tabella raccoglie le proprietà
-	delle estensioni:
+	delle estensioni: \smallskip
+
 	\begin{center}
 		\scriptsize
 		\vskip -0.1in
@@ -602,6 +604,89 @@
 	immersione è un isomorfismo se e solo se $L \cap M = K$, per il precedente
 	risultato.
 
+	\subsection{Sottoestensioni quadratiche di un campo}
+
+	Per il Teorema di corrispondenza di Galois, le sottoestensioni quadratiche di un'estensione
+	di Galois $L/K$ sono in corrispondenza con i sottogruppi di indice $2$ di
+	$\Gal(L/K)$. \smallskip
+
+	Si osserva che un sottogruppo $H \leq G$ di indice $2$ contiene
+	sempre il sottogruppo dei suoi quadrati $G^2 = \langle g^2 \mid g \in G \rangle$.
+	Pertanto, i sottogruppi di indice $2$ di $G = \Gal(L/K)$ sono in corrispondenza a
+	loro volta con i sottogruppi di indice $2$ di $G / G^2$, che è della forma:
+	\[
+		G/G^2 \cong (\ZZ / 2 \ZZ)^k,
+	\]
+	dal momento che ogni suo elemento ha ordine al più $2$. In $(\ZZ / 2 \ZZ)^k$
+	vi sono esattamente $2^k-1$ iperpiani (i.e., sottogruppi di indice $2$), in
+	quanto corrispondenti ai $2^k-1$ vettori non nulli dello spazio vettoriale. Pertanto
+	$2^k-1$ è il numero di sottoestensioni quadratiche di $L$.
+
+	\subsection{Realizzazione di un gruppo come gruppo di Galois}
+
+	Se $p$ è un primo e $f(x) \in \QQ[x]$ è un irriducibile di grado $p$ con esattamente
+	$2$ radici complesse non reali, allora $\Gal(L/\QQ) \cong S_p$, dove $L$ è il
+	campo di spezzamento di $f(x)$ su $\QQ$. Infatti, esisterebbe
+	in $\Gal(L/\QQ)$ una trasposizione indotta dal coniugio e un $p$-ciclo dal momento che
+	$p \mid [L : \QQ]$; su $S_p$, una trasposizione qualsiasi e un $p$-ciclo generano tutto
+	il gruppo, da cui il risultato desiderato. \smallskip
+
+	Per il Lemma di Artin, se $K$ è un campo qualsiasi, e $G$ è un sottogruppo finito di $\Aut(K)$, allora
+	$K/K^G$ e un'estensione di Galois finita con $\Gal(K/K^G) = G$. \smallskip
+
+	Pertanto ogni gruppo finito $G$ si realizza come gruppo di Galois di un'estensione di campi. Infatti,
+	se $|G| = n$, $G$ si immerge in $S_n$, e $S_n$ si immerge in $S_p$ per un primo $p \geq n$. Allora è
+	sufficiente prendere un polinomio irriducibile di grado $p$ con esattamente $2$ radici
+	complesse non reali su $\QQ[x]$ e considerare l'opportuna sottoestensione del suo campo di spezzamento
+	tramite la corrispondenza di Galois.
+
+	\subsection{Discriminante, gruppo alterno e gruppo di Galois di un irriducibile di grado \texorpdfstring{$3$}{3}}
+
+	Dato un polinomio $f(x) \in K[x]$ di grado $n$ e le sue radici
+	$a_1$, ..., $a_n$ in $\overline{K}$, si dice \textbf{discriminante}
+	$\Delta(f)$ la seguente quantità:
+	\[
+		\Delta(f) = \prod_{i < j} (a_i - a_j)^2.
+	\]
+	Il polinomio $f(x)$ ha radici multiple se e solo se
+	$\Delta(f)$ si annulla. Inoltre, $\Delta(f)$ è un polinomio
+	simmetrico nelle radici, e quindi, per il Teorema fondamentale
+	dei polinomi simmetrici, si può scrivere nella base degli
+	$e_i(a_1, \ldots, a_n)$, che sono, a meno di segno e fattore di
+	riscalamento, i coefficienti del polinomio stesso (e quindi
+	$\Delta(f) \in K$). \smallskip
+
+	Il discriminante è invariante per traslazione. I primi discriminanti
+	sono calcolati come segue:
+	\begin{itemize}
+		\item il polinomio $x^2 + bx + c$ ha discriminante $b^2 - 4c$,
+		\item il polinomio $x^3 + px + q$ ha discriminante $-4p^3-27q^2$.
+	\end{itemize}
+
+	Supponiamo ora $f(x)$ irriducibile. Sia $L$ il campo di spezzamento di
+	$f(x)$ su $K$.
+	Essendo una funzione simmetrica nelle radici, il discriminante è invariante
+	rispetto all'azione del gruppo $\Gal(L/K)$, (questo mostra ancora che
+	$\Delta(f) \in K$ per corrispondenza). \smallskip
+
+	Si osserva che, per $\sigma \in \Gal(L/K)$:
+	\[
+		\sigma\left(\prod_{i < j} (a_i - a_j)\right) = \prod_{i < j} (a_{\sigma(i)} - a_{\sigma(j)}) = \sgn(\sigma) \prod_{i < j} (a_i - a_j),
+	\]
+	dove si è trasferito l'azione sugli indici delle radici. Pertanto,
+	$\Gal(L/K)$ si immerge nel gruppo alterno $A_n$ se e solo se
+	la radice quadrata di $\Delta(f)$ è fissata, ovverosia se e solo se
+	$\Delta(f)$ è un quadrato in $K$. \smallskip
+
+	Se $n = 3$, allora, dal momento che le uniche possibilità per cardinalità sono
+	$A_3 \cong \ZZ / 3 \ZZ$ e $S_3$, vale che:
+	\[
+		\Gal(L/K) \cong \begin{cases}
+			\ZZ / 3 \ZZ & \text{se } \Delta(f) = -4p^3-27q^2 \text{ quadrato in } K, \\
+			S_3         & \text{altrimenti}.
+		\end{cases}
+	\]
+
 	\section{Gruppi di Galois noti}
 
 	\subsection{Campi finiti}
@@ -638,8 +723,8 @@
 	Allora, se $L$ è un suo campo di spezzamento e $\Delta = a^2 - 4b$ è l'usuale discriminante di $p$ visto come polinomio in $x^2$, vale che:
 
 	\[ \Gal(L / \QQ) \cong \begin{cases}
-			\ZZmod{4}                  & \se b \text{ è quadrato in $\QQ$},        \\
-			\ZZmod{2} \times \ZZmod{2} & \se b \Delta \text{ è quadrato in $\QQ$}, \\
+			\ZZmod{4}                  & \se b \Delta \text{ è quadrato in $\QQ$}, \\
+			\ZZmod{2} \times \ZZmod{2} & \se b \text{ è quadrato in $\QQ$},        \\
 			D_4                        & \altrimenti.
 		\end{cases} \]
 
@@ -648,23 +733,58 @@
 	Siano $p_1$, ..., $p_n$ numeri primi distinti.
 	Allora vale che:
 	\[ \Gal(\QQ(\sqrt{p_1}, \ldots, \sqrt{p_n})/\QQ) \cong (\ZZmod{2})^n. \]
+	Si possono infatti contare le sottoestensioni quadratiche di
+	$\QQ(\sqrt{p_1}, \ldots, \sqrt{p_{n-1}})$ e constatare che sono esattamente
+	le $\QQ(\sqrt{p_1^{\eps_1} \cdots p_{n-1}^{\eps_{n-1}}})$ con $\eps_i \in \{\pm 1\}$
+	e almeno un $\eps_i$ non nullo. Dal momento che nessuna di questa può coincidere con
+	$\QQ(\sqrt{p_n})$, si ottiene il risultato desiderato. \smallskip
 
-	\subsection{I polinomi ciclotomici \texorpdfstring{$\Phi_n(x)$}{Φₙ(x)}}
+	Un generatore di questa estensione è $\sqrt{p_1} + \ldots + \sqrt{p_n}$ dacché
+	ha $2^n$ coniugati.
+
+	\subsection{Radici dell'unità e polinomi ciclotomici \texorpdfstring{$\Phi_n(x)$}{Φₙ(x)}}
+
+	Dato un campo $K$, il polinomio $x^n - 1$ è separabile se e solo se
+	$\Char K \nmid n$. Infatti, per il Criterio della derivata, $x^n-1$
+	è separabile se e solo se $\MCD(nx^{n-1}, x^n - 1) = 1$.
 
 	Sia $\Phi_n(x)$ l'$n$-esimo polinomio ciclotomico, così definito:
 	\[ \Phi_n(x) = \prod_{\substack{1 \leq d \leq n \\ \MCD(d, n) = 1}} (x - \zeta_n^d), \]
 	dove $\zeta_n$ è una radice primitiva $n$-esima dell'unità. \smallskip
 
+	Di seguito sono presentati i primi $8$ polinomi ciclotomici:
+	\begin{itemize}
+		\item $\Phi_1(x) = x - 1$,
+		\item $\Phi_2(x) = x + 1$,
+		\item $\Phi_3(x) = x^2 + x + 1$,
+		\item $\Phi_4(x) = x^2 + 1$,
+		\item $\Phi_5(x) = x^4 + x^3 + x^2 + x + 1$,
+		\item $\Phi_6(x) = x^2 - x + 1$,
+		\item $\Phi_7(x) = x^6 + x^5 + x^4 + x^3 + x^2 + x + 1$,
+		\item $\Phi_8(x) = x^4 + 1$.
+	\end{itemize}
+
 	Tale polinomio è sempre a coefficienti interi ed è inoltre primitivo
 	su $\ZZ[x]$. Vale inoltre che:
 	\[ x^n - 1 = \prod_{m \mid n} \Phi_m(x). \]
 	Il campo di spezzamento di $\Phi_n(x)$ su $\QQ$ è
-	$\QQ(\zeta_n)$, che è un'estensione normale, separabile e finita,
-	e pertanto di Galois. \smallskip
+	$\QQ(\zeta_n)$, che è quindi un'estensione normale e separabile,
+	e pertanto di Galois finita. \smallskip
 
 	Inoltre vale che:
 	\[ \Gal(\QQ(\zeta_n)/\QQ) \cong (\ZZmod{n})^\times, \]
-	e dunque $\Phi_n(x)$ è sempre irriducibile su $\QQ$. \smallskip
+	e $\Phi_n(x)$ è sempre irriducibile su $\QQ$. \smallskip
+
+	In generale, vale per $n \geq 3$:
+	\[
+		[\QQ(\zeta_n) : \QQ(\zeta_n) \cap \RR] = 2,
+	\]
+	ovverosia il grado di $\QQ(\zeta_n)$ sulla sua parte reale è $2$.
+	Infatti, $\alpha = \zeta_n + \zeta_n\inv \in \QQ(\zeta_n) \cap \RR$ (dacché
+	$\overline{\zeta_n} = \zeta_n\inv$) e $\zeta_n$ è radice di
+	$x^2 - \alpha x + 1$. Si verifica inoltre che
+	$\QQ(\zeta_n) \cap \RR$ coincide proprio con $\QQ(\zeta_n + \zeta_n\inv)$, che è
+	estensione normale di $\QQ$.
 
 	\vfill
 	\hrule
